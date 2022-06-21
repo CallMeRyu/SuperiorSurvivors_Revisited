@@ -1,0 +1,13 @@
+UI_TR = {
+	UI_optionscreen_binding_Call Closest Group Member = "En Yakýn Grup Üyesini Arayýn"
+	UI_optionscreen_binding_Call Closest Non-Group Member = "En Yakýn Grup Dýþý Üyeyi Arayýn",
+	UI_optionscreen_binding_Ask Closest Group Member to Follow = "En Yakýn Grup Üyesinden Takip Etmesini Ýsteyin",
+	UI_optionscreen_binding_Spawn Wild Survivor = "Vahþi Survivor'ý yumurtla",
+	UI_optionscreen_binding_Toggle Group Window = "Grup Penceresini Aç/Kapat",
+	UI_optionscreen_binding_Lower Follow Distance = "Daha Düþük Takip Mesafesi",
+	UI_optionscreen_binding_Raise Follow Distance = "Takip Mesafesini Arttýrýn",
+	UI_optionscreen_binding_SSHotkey_1 = "Kisayol Tuþu 1 Direktif",
+	UI_optionscreen_binding_SSHotkey_2 = "Kisayol Tuþu 2 Direktif",
+	UI_optionscreen_binding_SSHotkey_3 = "Kisayol Tuþu 3 Direktif",
+	UI_optionscreen_binding_SSHotkey_4 = "Kisayol Tuþu 4 Direktif",
+}

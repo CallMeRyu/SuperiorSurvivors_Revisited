@@ -1,0 +1,6 @@
+Challenge_FR = {
+	Challenge_PrisonEscape_name = "11. Évasion de la prison",
+    Challenge_PrisonEscape_desc = "Peu de temps après la catastrophe, le pénitencier de Rosewood a été évacué en raison d'une pénurie de main-d'œuvre. Malheureusement, vous avez été oublié de tous et avez raté le meilleur moment pour évacuer. Lorsque vous vous êtes enfin réveillé le matin, le maître de la prison est devenu EUX. Si vous ne vous dépêchez pas de sortir d'ici maintenant, il est peut-être trop tard. ",
+    Challenge_PrisonEscapeInfoBox = "Prêt à fuir. C'est maintenant ou jamais."
+	Challenge_PrisonKeyRing = " Porte-clés"
+}

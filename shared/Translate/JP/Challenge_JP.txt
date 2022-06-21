@@ -1,0 +1,6 @@
+Challenge_JP = {
+	Challenge_PrisonEscape_name = "脱獄チャレンジ",
+    Challenge_PrisonEscape_desc = "ローズウッド刑務所は、スタッフ不足のため、災害直後に避難しました。 残念ながら、あなたは皆に忘れられ、避難するのに最適な時間を逃しました。 彼らが目を覚ますとき、彼らは刑務所の主人です。 今ここから出ようと急がなければ、手遅れかもしれません。 ",
+    Challenge_PrisonEscapeInfoBox = "早く走らないと手遅れになります！",
+	Challenge_PrisonKeyRing = "のキーホルダー"
+}

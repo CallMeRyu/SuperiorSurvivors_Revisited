@@ -1,0 +1,6 @@
+Challenge_CN = {
+	Challenge_PrisonEscape_name = "越狱挑战",
+    Challenge_PrisonEscape_desc = "灾难爆发后不久， 由于人手短缺， 罗斯伍德监狱被紧急疏散。 不幸的是， 你被所有人遗忘了， 错过了疏散的最佳时间。 一觉醒来， 监狱的主人已经变成了它们。 如果你现在不抓紧时间逃出这里， 可能就再也来不及了。 ",
+    Challenge_PrisonEscapeInfoBox = "快跑，不然就来不及了！",
+	Challenge_PrisonKeyRing = "的钥匙圈"
+}
