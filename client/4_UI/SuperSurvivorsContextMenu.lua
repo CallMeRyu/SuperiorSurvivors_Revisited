@@ -385,7 +385,7 @@ function DebugCharacterUnStuck(test,SS)
 	
 	
 end
--- 
+
 function DebugSpawnSoldier()
 	local ss = SuperSurvivorSoldierSpawn(getSpecificPlayer(0):getCurrentSquare())
 end
