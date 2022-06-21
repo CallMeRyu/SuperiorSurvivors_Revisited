@@ -57,8 +57,13 @@ function PursueTask:update()
 		
 		local distancetoLastSpotSeen = getDistanceBetween(self.LastSquareSeen,self.parent.player)
 		if(distancetoLastSpotSeen > 2.5) then
-		
-			self.parent:setRunning(true) 						
+
+			self.parent:NPC_ShouldRunOrWalk()
+		--	if(theDistance > 2) then  -- set from 6 to 2
+		--		self.parent:setRunning(true) 
+		--	else 
+		--		self.parent:setRunning(false) 
+		--	end					
 			
 			self.parent:walkToDirect(self.LastSquareSeen)
 			
@@ -67,22 +72,27 @@ function PursueTask:update()
 			end
 			
 		else
-			self.parent:setRunning(false)
+			self.parent:NPC_ShouldRunOrWalk()
+		--	self.parent:setRunning(false)
 			self.Complete = true
 			self.parent:Speak(getText("ContextMenu_SD_WhereHeGo"))
 		end
-	
+		
 	else
 		local theDistance = getDistanceBetween(self.Target, self.parent.player)
 		
 		self.LastSquareSeen = self.Target:getCurrentSquare()
 		
-		if(self.TargetSS) and (self.TargetSS:getBuilding()~= nil) then self.parent.TargetBuilding = self.TargetSS:getBuilding() end
+		if(self.TargetSS) and (self.TargetSS:getBuilding()~= nil) then 
+			self.parent.TargetBuilding = self.TargetSS:getBuilding() 
+		end
 		
-		-- set from 6 to 3
-		if(theDistance > 3) then self.parent:setRunning(true) 
-		else self.parent:setRunning(false) end
-		
+			self.parent:NPC_ShouldRunOrWalk()
+		--if(theDistance > 2) then  -- set from 6 to 2
+		--	self.parent:setRunning(true) 
+		--else 
+		--	self.parent:setRunning(false) 
+		--end
 		
 		self.parent:walkToDirect(self.Target:getCurrentSquare())
 	end

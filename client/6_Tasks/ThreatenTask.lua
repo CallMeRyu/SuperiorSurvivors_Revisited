@@ -76,6 +76,13 @@ function ThreatenTask:update()
 	
 	if(not self:isValid()) or (self:isComplete()) then return false end
 	 self.theDistance = getDistanceBetween(self.Aite, self.parent.player)
+
+		self.parent:NPC_ShouldRunOrWalk()
+	--	if ((self.theDistance) < 2) then
+	--		self.parent:setRunning(false)
+	--	else
+	--		self.parent:setRunning(true) 
+	--	end
 	
 	if(self.StartedThreatening == true) then
 		if(self:dealBreaker()) then 			 
@@ -122,13 +129,11 @@ function ThreatenTask:update()
 		local cs = self.Aite.player:getCurrentSquare()
 		
 		self.parent:walkToDirect(cs)
-		self.parent:setRunning(true) -- Newly added
-		
-		--self.parent:DebugSay("walking close to threaten:"..tostring(self.theDistance))
+		--self.parent:setRunning(true) -- Newly added - No. The other movements manage this already
 
-	else
-		self.parent:NPCTask_DoWander() -- Added to the 'if anything fails, go somewhere else'
+	else -- Added to the 'if anything fails, go somewhere else'
 		self.parent:DebugSay("THREATEN TASK - something is wrong")
+		self.parent:NPCTask_DoWander() 
 		self.parent:NPCTask_DoAttemptEntryIntoBuilding()
 		return false
 	end

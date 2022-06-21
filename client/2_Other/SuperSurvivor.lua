@@ -2,7 +2,9 @@
 SuperSurvivor = {}
 SuperSurvivor.__index = SuperSurvivor
 
-SurvivorVisionCone = 0.90
+-- Changed this for now to see if hostile enemies can become a little smarter, even if it doesn't "make sense"
+--SurvivorVisionCone = 0.90
+SurvivorVisionCone = 1.20
 
 function SuperSurvivor:new(isFemale,square)
 	
@@ -3330,6 +3332,23 @@ function SuperSurvivor:AtkTicks_Countdown()
 		self:DebugSay("AtkTicks: "..tostring(self.AtkTicks))
 end
 
+
+-- This function watches over if they're too close to a target or the main player and forces walk if they are.
+-- That way they don't trip over each other (and more importantly the main player)
+-- This function is used mainly in the combat related tasks, but could be used elsewhere if the npc is running over the main player often.
+function SuperSurvivor:NPC_ShouldRunOrWalk()										
+	if (self.LastEnemeySeen ~= nil) then
+		local distance = getDistanceBetween(self.player,self.LastEnemeySeen)
+		local distanceAlt = getDistanceBetween(self.player,getSpecificPlayer(0))	-- To prevent running into the player
+		
+		if (distance > 2) or (distanceAlt > 2) then
+			self:setRunning(true)
+		else
+			self:setRunning(false)
+		end
+	end
+end
+
 -- Manages movement and movement speed
 function SuperSurvivor:NPC_MovementManagement_Guns()
 	if (self:isWalkingPermitted()) and (self:hasGun()) then
@@ -3354,17 +3373,12 @@ function SuperSurvivor:NPC_MovementManagement_Guns()
 				end	
 			end
 		end
-
-			if (RealDistance >= minrange + 1.0) and (self:getTaskManager():getCurrentTask() == "Attack") and (self:getTaskManager():getCurrentTask() ~= "Pursue") then
-				self:setRunning(true)
-
-			else
-				self:setRunning(false)
-			end
+		
+		self:NPC_ShouldRunOrWalk()
 	end
 end
 
--- Manages movement and movement speed
+-- Manages movement and movement for AttackTask. 
 function SuperSurvivor:NPC_MovementManagement()
 	if (self:isWalkingPermitted()) and (not self:hasGun()) then
 		local cs = self.LastEnemeySeen:getCurrentSquare()
@@ -3386,18 +3400,11 @@ function SuperSurvivor:NPC_MovementManagement()
 			end	
 		end
 
-		if (RealDistance >= minrange + 1.0) and (self:getTaskManager():getCurrentTask() == "Attack") and (self:getTaskManager():getCurrentTask() ~= "Pursue") then
-			self:setRunning(true)
-
-		else
-			self:setRunning(false)
-		end
+		self:NPC_ShouldRunOrWalk()
 	end
 end
 
-
-
-
+-- Used in 'if the npc has swiped their weapon'.
 function SuperSurvivor:HasSwipedState()
 	if (self.player:getCurrentState() == SwipeStatePlayer.instance()) then
 		return true
@@ -3423,9 +3430,11 @@ function SuperSurvivor:CanAttackAlt()
 		return true
 	end
 end
+
 -- The new function that will now control NPC attacking. Not perfect, but. Cleaner code, and works better-ish.
 function SuperSurvivor:NPC_Attack(victim) -- New Function 
 
+	-- 6/21/2022 - Come to think of it, I could use  "if (self:IsNOT_AtkTicksZero()) or (self:CanAttackAlt() == false) then" but may need to check how the timer works.
 	-- Create the attack cooldown. (once 0, the npc will do the 'attack' then set the time back up by 1, so anti-attack spam method)
 	-- note: don't use self:CanAttackAlt() in this if statement. it's already being done in this function.
 	if (self:IsNOT_AtkTicksZero()) and (self:CanAttackAlt() == true) then
