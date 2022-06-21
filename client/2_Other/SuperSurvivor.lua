@@ -2,9 +2,8 @@
 SuperSurvivor = {}
 SuperSurvivor.__index = SuperSurvivor
 
--- Changed this for now to see if hostile enemies can become a little smarter, even if it doesn't "make sense"
---SurvivorVisionCone = 0.90
-SurvivorVisionCone = 1.20
+SurvivorVisionCone = 0.90
+
 
 function SuperSurvivor:new(isFemale,square)
 	
