@@ -4,7 +4,6 @@ SuperSurvivor.__index = SuperSurvivor
 
 SurvivorVisionCone = 0.90
 
-
 function SuperSurvivor:new(isFemale,square)
 	
 	local o = {}	
@@ -701,8 +700,6 @@ end
 function SuperSurvivor:getCurrentTask()
 	return self:getTaskManager():getCurrentTask()
 end
-
--- This function is an absolute mess...
 function SuperSurvivor:isTooScaredToFight()
 	
 	if (self.EnemiesOnMe >= 3) then
@@ -2025,9 +2022,10 @@ function SuperSurvivor:Task_IsNotAttack()
 end
 function SuperSurvivor:Task_IsNotThreaten()
 	if (self:getTaskManager():getCurrentTask() ~= "Threaten") then
-		self:DebugSay("Task_IsNotThreaten Is 'True'")
+		self:DebugSay("Task_IsNotThreaten Is 'True', but is it? Code, is it? -toString is claiming it is:")
 		return true
 	else
+		self:DebugSay("Task_IsNotThreaten Is 'False', but is it? Code, is it? -toString is claiming it is:")
 		return false
 	end
 end
@@ -2052,21 +2050,17 @@ function SuperSurvivor:Task_IsNotWander()
 		return false
 	end
 end
+
 function SuperSurvivor:Task_IsNotPursue()
 	if (self:getTaskManager():getCurrentTask() ~= "Pursue") then
-		self:DebugSay("Task_IsNotPursue Is 'True'")
+		self:DebugSay("Task_IsNotPursue Is 'True', but is it? Code, is it? -toString is claiming it is:")
 		return true
 	else
+		self:DebugSay("Task_IsNotPursue Is 'False', but is it? Code, is it? -toString is claiming it is:")
 		return false
 	end
 end
-function SuperSurvivor:Task_IsNotAttemptEntryIntoBuilding()
-	if (self:getTaskManager():getCurrentTask() ~= "Enter New Building") then
-		return true
-	else	
-		return false
-	end
-end
+
 
 -- Specialized AIManager Task conditions - SC standing for 'specializied conditions'
 function SuperSurvivor:NPC_NPCsEnemyHasGun()
@@ -2100,7 +2094,6 @@ function SuperSurvivor:NPC_NPCsEnemyHasGun()
 	end
 end
 
--- This function isn't being used currently here. It was grabbed from AI manager
 function SuperSurvivor:NPC_IsNPCsEnemyHuman()
 	if (instanceof(self.LastEnemeySeen,"IsoPlayer")) then
 		self:DebugSay("NPC_IsEnemyHuman Is 'True', but is it? Code, is it? -toString is claiming it is:")
@@ -2112,37 +2105,39 @@ function SuperSurvivor:NPC_IsNPCsEnemyHuman()
 end
 
 	
-	-- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
+	-- This one is for the Raiders Pursuing the player. Still Under work, but it's here.
 function SuperSurvivor:Task_IsPursue_SC()
+	if  (self:NPC_IsNPCsEnemyHuman()) then
+			--	and (self:hasWeapon())
+			if (self:hasWeapon())
+			and (self:Task_IsNotAttack()) 		
+			and (self:Task_IsNotThreaten())
+			and (self:Task_IsNotPursue()) 		
+			and (self:isWalkingPermitted())
+			and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
+			--and (self:RealCanSee(self.LastEnemeySeen) and (not self:isEnemyInRange(self.LastEnemeySeen)))
+			--and (not self:NPC_NPCsEnemyHasGun()) or ((self:hasGun()) and (self:NPC_NPCsEnemyHasGun())) 				    -- IF NPC doesn't have a gun, npc should run away. but if both has gun, then gunfight
+			and ((not self:RealCanSee(self.LastEnemeySeen)) and (self:inFrontOfLockedDoorAndIsOutside() == false))  		-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false 
+			and	((not self:RealCanSee(self.LastEnemeySeen)) and (self:NPC_IFOD_BarricadedInside() == false))			-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false
+			
+		then
+			self:DebugSay("Task_IsPursue_SC Is 'True', but is it? Code, is it? -toString is claiming it is:")
+			return true
+		else
+			--print("(self:NPC_IsNPCsEnemyHuman())) "..tostring(self:NPC_IsNPCsEnemyHuman()))
+			--print("(self:hasWeapon())) "..tostring(self:hasWeapon()))
+			--print("(self:Task_IsNotAttack())) "..tostring(self:Task_IsNotAttack()))
+			--print("(self:Task_IsNotThreaten())) "..tostring(self:Task_IsNotThreaten()))
+			--print("(self:Task_IsNotPursue())) "..tostring(self:Task_IsNotPursue()))
+			--print("(self:isWalkingPermitted())) "..tostring(self:isWalkingPermitted()))
+			--print("(self:getDangerSeenCount())) "..tostring(self:getDangerSeenCount()))
+			--print("(self:HasMultipleInjury())) "..tostring(self:HasMultipleInjury()))
 	
-	-- All this does is find the closest enemy that's nearby
-	-- To make sure the scan doesn't spam during this time.
-	-- If the npc is, then force wander
-	if (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) then
-		self:DoHumanEntityScan()
-	end
 	
-	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) then
-
-
-		-- How far you want the NPCs to sense their hostiles near them
-		local zRangeToPursue = 3 -- If the NPC and the NPC's Target is inside (default)
-
-		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true) then -- NPC's Target AND the NPC itself are Both Outside
-			zRangeToPursue = 5
+			--self:DebugSay("Task_IsPursue_SC Is 'False', but is it? Code, is it? -toString is claiming it is:")
+			return false
 		end
-		if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true) then -- NPC's Target Is Inside | NPC itself Is Outside
-			return false
-		end		
-		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == false) then -- NPC's Target Is Outside | NPC itself Is Inside
-			return false
-		end
-		
-	
-		local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
-		
-		if (Distance_AnyEnemy >= zRangeToPursue) then 	-- We don't want the NPCs to spam this function if too far away, so yes, we're double checking range.
-			return false
+
 		end
 
 		if (not self:RealCanSee(self.LastEnemeySeen)) and ((self:inFrontOfLockedDoorAndIsOutside() == true) or (self:NPC_IFOD_BarricadedInside() == true)) then
@@ -2756,20 +2751,6 @@ function SuperSurvivor:WalkToUpdate()
    end
    
    --]]
-end
-
--- New Function: This is the attempt to make the NPCs less likely to freeze in place. 
--- Because it won't be using certain commands that StopWalk is using.
-function SuperSurvivor:iStopMovement()
-	self.player:setPath2(nil)
-	self.player:getModData().bWalking = false
-	self.player:getModData().Running = false
-	self:setRunning(false)
-	self.player:setSneaking(false)		
-	self.player:NPCSetJustMoved(false)
-	self.player:NPCSetAttack(false)
-	self.player:NPCSetMelee(false)
-	self.player:NPCSetAiming(false)	
 end
 
 function SuperSurvivor:StopWalk()
@@ -3482,35 +3463,6 @@ function SuperSurvivor:AtkTicks_Countdown()
 		self:DebugSay("AtkTicks: "..tostring(self.AtkTicks))
 end
 
-
--- This function watches over if they're too close to a target or the main player and forces walk if they are.
--- That way they don't trip over each other (and more importantly the main player)
--- This function is used mainly in the combat related tasks, but could be used elsewhere if the npc is running over the main player often.
--- 6/21/2022: If I set 'setruning' to true , then else false? NPCs will run into each other! But if it looks like what it is now, it works fine!
--- 		This literally implies it will check top to bottom priority. I'm writing this to remind myself for the future.	
-function SuperSurvivor:NPC_ShouldRunOrWalk()
-	
-	-- Emergency failsafe to prevent NPCs from running into player
-	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 1) then
-		self:setRunning(false)
-	end
-	
-	if (self.LastEnemeySeen ~= nil) then
-		local distance = getDistanceBetween(self.player,self.LastEnemeySeen)
-		local distanceAlt = getDistanceBetween(self.player,getSpecificPlayer(0))	-- To prevent running into the player
-		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
-		
-		if (distance < 2) or (distanceAlt < 2) or (zNPC_AttackRange) then
-			self:setRunning(false)
-		else
-			self:setRunning(true)
-		end
-	else
-		self:setRunning(true)
-	end
-	
-end
-
 -- Manages movement and movement speed
 function SuperSurvivor:NPC_MovementManagement_Guns()
 	if (self:isWalkingPermitted()) and (self:hasGun()) then
@@ -3535,12 +3487,17 @@ function SuperSurvivor:NPC_MovementManagement_Guns()
 				end	
 			end
 		end
-		
-		
+
+			if (RealDistance >= minrange + 1.0) and (self:getTaskManager():getCurrentTask() == "Attack") and (self:getTaskManager():getCurrentTask() ~= "Pursue") then
+				self:setRunning(true)
+
+			else
+				self:setRunning(false)
+			end
 	end
 end
 
--- Manages movement and movement for AttackTask. 
+-- Manages movement and movement speed
 function SuperSurvivor:NPC_MovementManagement()
 	if (self:isWalkingPermitted()) and (not self:hasGun()) then
 		local cs = self.LastEnemeySeen:getCurrentSquare()
@@ -3562,11 +3519,18 @@ function SuperSurvivor:NPC_MovementManagement()
 			end	
 		end
 
-		
+		if (RealDistance >= minrange + 1.0) and (self:getTaskManager():getCurrentTask() == "Attack") and (self:getTaskManager():getCurrentTask() ~= "Pursue") then
+			self:setRunning(true)
+
+		else
+			self:setRunning(false)
+		end
 	end
 end
 
--- Used in 'if the npc has swiped their weapon'.
+
+
+
 function SuperSurvivor:HasSwipedState()
 	if (self.player:getCurrentState() == SwipeStatePlayer.instance()) then
 		return true
@@ -3592,11 +3556,9 @@ function SuperSurvivor:CanAttackAlt()
 		return true
 	end
 end
-
 -- The new function that will now control NPC attacking. Not perfect, but. Cleaner code, and works better-ish.
 function SuperSurvivor:NPC_Attack(victim) -- New Function 
 
-	-- 6/21/2022 - Come to think of it, I could use  "if (self:IsNOT_AtkTicksZero()) or (self:CanAttackAlt() == false) then" but may need to check how the timer works.
 	-- Create the attack cooldown. (once 0, the npc will do the 'attack' then set the time back up by 1, so anti-attack spam method)
 	-- note: don't use self:CanAttackAlt() in this if statement. it's already being done in this function.
 	if (self:IsNOT_AtkTicksZero()) and (self:CanAttackAlt() == true) then
@@ -3623,6 +3585,7 @@ function SuperSurvivor:NPC_Attack(victim) -- New Function
 	-- Makes sure if the npc has their weapon out first 
 	if(self:WeaponReady()) then 
 		self:StopWalk()
+		-- Makes sure the stances is set
 		self.player:NPCSetAiming(true) -- Visually animate 
 		self.player:NPCSetAttack(true) -- Visually animate 
 		self.player:faceThisObject(victim)
@@ -3639,7 +3602,7 @@ function SuperSurvivor:NPC_Attack(victim) -- New Function
 
 	-- Hitting the entity in question
 --	if((RealDistance <= minrange) or (RealDistance <= 0.65)) and (self.AtkTicks <= 0) and (self:CanAttackAlt()) then
-	if((RealDistance <= minrange) or zNPC_AttackRange) and (self.AtkTicks <= 0) and (self:CanAttackAlt() == true) and (self.player:NPCGetRunning() == false) then
+	if((RealDistance <= minrange) or zNPC_AttackRange) and (self.AtkTicks <= 0) and (self:CanAttackAlt() == true) then
 		victim:Hit(weapon, self.player, damage, false, 1.0, false)
 			-- To keep the NPC from spamming another entity, but give fighting chance for zeds
 			if (instanceof(victim,"IsoPlayer")) then self.AtkTicks = 2 end
@@ -3648,7 +3611,7 @@ function SuperSurvivor:NPC_Attack(victim) -- New Function
 
 end
 
--- This is the old variant of the attack function. It should not be used for melee attacks. It works well with guns though, so... 
+
 function SuperSurvivor:Attack(victim)
 	
 	-- Create the attack cooldown. (once 0, the npc will do the 'attack' then set the time back up by 1, so anti-attack spam method)
@@ -3699,7 +3662,7 @@ function SuperSurvivor:Attack(victim)
 						end
 					else
 						victim:Hit(weapon, self.player, damage, false, 1.0, false)
-						self:DebugSay("MELEE STRIKE! For some reason... I shouldn't be using this Attack function! Modder, fix this!")
+						self:DebugSay("MELEE STRIKE!")
 						self.AtkTicks = 1
 					end
 				end
@@ -4067,28 +4030,66 @@ function SuperSurvivor:SuitUp(SuitName)
 			self:WearThis("Base.Jacket_Chef");
 			self:WearThis("Base.Trousers_Chef");
 			self:WearThis("Base.Shoes_Black");
-		elseif(SuitName == "Fireman") then
-			self:WearThis("Base.Hat_Fireman");
-			self:WearThis("Base.Jacket_Fireman");
-			self:WearThis("Base.Trousers_Fireman");
-			self:WearThis("Base.Shoes_BlackBoots");
 		elseif(SuitName == "Doctor") then
 			self:WearThis("Base.Hat_SurgicalCap_Blue");
 			self:WearThis("Base.JacketLong_Doctor");
 			self:WearThis("Base.Trousers_Scrubs");
 			self:WearThis("Base.Shoes_Black");
+--Edits
+	if isModEnabled("STR") then
+		elseif(SuitName == "Police") then
+			self:WearThis("STR.Hat_PoliceKSP");
+			self:WearThis("STR.TShirt_PoliceKSP");
+			self:WearThis("STR.Shirt_PoliceKSP");
+			self:WearThis("STR.Trousers_PoliceKSP_Summer");
+			self:WearThis("STR.Jacket_PoliceKSP");
+			self:WearThis("STR.Belt_PoliceDuty");
+			self:WearThis("STR.Chest_Walkie");
+			self:WearThis("Base.Shoes_Black");
+		elseif(SuitName == "Inmate") then
+			self:WearThis("STR.Boilersuit_MeadeGenPopPrisoner");
+			self:WearThis("Base.Shoes_Slippers");					
+			self:WearThis("Base.Socks_Ankle");					
+			self:WearThis("Base.Tshirt_DefaultTEXTURE");
+			self:WearThis("Base.Belt2");
+		elseif(SuitName == "Guard") then
+			self:WearThis("STR.Hat_BaseballCap_DOC_Meade");
+			self:WearThis("STR.TShirt_DOC_Meade");
+			self:WearThis("STR.Shirt_DOC_Meade");
+			self:WearThis("STR.Trousers_DOC_Meade");
+			self:WearThis("STR.Jacket_DOC_Meade");
+			self:WearThis("Base.Shoes_Black");
+		elseif(SuitName == "Fireman") then
+			self:WearThis("STR.Hat_Fireman_Meade_Yellow");
+			self:WearThis("STR.TShirt_Profession_FiremanBlue_Meade");
+			self:WearThis("STR.Trousers_Fireman_Meade_Khaki");
+			self:WearThis("STR.Jacket_Fireman_Meade_Khaki");
+			self:WearThis("Base.Shoes_BlackBoots");
+	elseif not isModEnabled("STR") then
 		elseif(SuitName == "Police") then
 			self:WearThis("Base.Hat_Police_Grey");
 			self:WearThis("Base.Jacket_Police");
 			self:WearThis("Base.Trousers_PoliceGrey");
 			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Farmer") then
-			self:WearThis("Base.Boilersuit");
-			self:WearThis("Base.Dungarees");
-			self:WearThis("Base.Shoes_BlackBoots");
+		elseif(SuitName == "Inmate") then
+			self:WearThis("Base.Boilersuit_Prisoner");
+			self:WearThis("Base.Shoes_Slippers");					
+			self:WearThis("Base.Socks_Ankle");					
+			self:WearThis("Base.Tshirt_DefaultTEXTURE");
+			self:WearThis("Base.Belt2");
 		elseif(SuitName == "Guard") then
 			self:WearThis("Base.Shirt_PrisonGuard");
 			self:WearThis("Base.Trousers_PrisonGuard");
+			self:WearThis("Base.Shoes_BlackBoots");
+		elseif(SuitName == "Fireman") then
+			self:WearThis("Base.Hat_Fireman");
+			self:WearThis("Base.Jacket_Fireman");
+			self:WearThis("Base.Trousers_Fireman");
+			self:WearThis("Base.Shoes_BlackBoots");
+	end
+		elseif(SuitName == "Farmer") then
+			self:WearThis("Base.Boilersuit");
+			self:WearThis("Base.Dungarees");
 			self:WearThis("Base.Shoes_BlackBoots");
 		elseif(SuitName == "Formal") then
 			self:WearThis("Base.Shirt_FormalWhite");
@@ -4116,13 +4117,8 @@ function SuperSurvivor:SuitUp(SuitName)
 			self:WearThis("Base.Shirt_Workman");					
 			self:WearThis("Base.Trousers_DefaultTEXTURE");					
 			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Inmate") then
-			self:WearThis("Base.Boilersuit_Prisoner");
-			self:WearThis("Base.Shoes_Slippers");					
-			self:WearThis("Base.Socks_Ankle");					
-			self:WearThis("Base.Tshirt_DefaultTEXTURE");
-			self:WearThis("Base.Belt2");
 		else -- random basic clothes
+--Edits End
 			
 			getRandomSurvivorSuit(self)
 		
