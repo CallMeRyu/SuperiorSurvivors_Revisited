@@ -1855,6 +1855,91 @@ function SuperSurvivor:NPC_inFrontOfUnBarricadedWindowOutside()
 	self:DebugSay("NPC In front of Unbarricaded Window Outside: Window is barricaded("..tostring(window:isBarricaded())..") and Is outside("..tostring(self.player:isOutside())..")")
 end
 
+-- This function is still in testing. It's basically 'dovision' but re-functioned to find the closest hostile the npc can find, that is a human only.
+-- DO *NOT* put this in update() function or anything similar. This is supposed to be exclusively to make dopursuealt work.
+-- And to attempt-fix a situation where the player can walk behind the NPC mid-attack and the npc suddenly forgetting about the player.
+function SuperSurvivor:DoHumanEntityScan()
+
+	local atLeastThisClose = 5;
+	local spottedList = self.player:getCell():getObjectList()
+	local closestSoFar = 6
+	local closestSurvivorSoFar = 6
+	self.seenCount = 0
+	self.dangerSeenCount = 0
+	self.EnemiesOnMe = 0
+	self.LastEnemeySeen = nil
+	self.LastSurvivorSeen = nil
+	local dangerRange = 6
+	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
+	
+	local closestNumber = nil
+	local tempdistance = 1
+	
+	
+	if(spottedList ~= nil) then
+		for i=0, spottedList:size()-1 do
+			local character = spottedList:get(i);
+			if(character ~= nil) and (character ~= self.player) and (instanceof(character,"IsoPlayer")) and not (instanceof(character,"IsoZombie")) then
+			
+				if (character:isDead() == false) then
+					tempdistance = tonumber(getDistanceBetween(character,self.player))
+					
+					if( (tempdistance <= atLeastThisClose) and self:isEnemy(character) ) then	
+					
+						local CanSee = self:RealCanSee(character)
+						
+						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
+							self.EnemiesOnMe = self.EnemiesOnMe + 1 
+						end
+						if(tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
+							self.dangerSeenCount = self.dangerSeenCount + 1 
+						end
+						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
+							self.seenCount = self.seenCount + 1 
+						end
+						if( ( ((not CanSee) or (CanSee)) or (tempdistance < 3.5)) and (tempdistance < closestSoFar) ) then
+							closestSoFar = tempdistance ;
+							self.player:getModData().seenZombie = true;
+							closestNumber = i;							
+						end
+						
+					elseif( tempdistance < closestSurvivorSoFar ) and false then
+						closestSurvivorSoFar = tempdistance
+						self.LastSurvivorSeen = character						
+					end
+				end
+				
+			end
+		end
+	end
+	
+	-- This only tells the other function there's a enemy nearby as long as the npc isn't stuck in front of a blocked off door
+	if(closestNumber ~= nil) and (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) then 
+		self.LastEnemeySeen = spottedList:get(closestNumber)
+		
+		return self.LastEnemeySeen
+	end
+	
+end
+
+
+
+-- This was built for getting away from zeds 
+function SuperSurvivor:NPC_FleeWhileReadyingGun()
+	local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
+	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
+	local Enemy_Is_a_Human = (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
+	local Weapon_HandGun = self.player:getPrimaryHandItem()
+	local NPCsDangerSeen = self:getDangerSeenCount()
+	
+	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready. 
+	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))  then
+		self:NPCTask_Clear()
+		self:NPCTask_DoFlee()
+		self:NPCTask_DoFleeFromHere()
+		return true
+	end
+end
 
 -- Function List for checking specific scenarios of NPC tasks
 	-- This one is for if the NPC is trying to get out or inside a building but can not
