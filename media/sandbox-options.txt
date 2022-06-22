@@ -1,0 +1,213 @@
+VERSION = 1,
+option SuperiorSubparSurvivors.custom1
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom1,
+}
+option SuperiorSubparSurvivors.custom2
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom2,
+}
+option SuperiorSubparSurvivors.custom3
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom3,
+}
+option SuperiorSubparSurvivors.custom4
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom4,
+}
+option SuperiorSubparSurvivors.custom5
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom5,
+}
+option SuperiorSubparSurvivors.custom6
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom6,
+}
+option SuperiorSubparSurvivors.custom7
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom7,
+}
+option SuperiorSubparSurvivors.custom8
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom8,
+}
+option SuperiorSubparSurvivors.custom9
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom9,
+}
+option SuperiorSubparSurvivors.custom10
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom10,
+}
+
+option SuperiorSubparSurvivors.custom1m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom1m,
+}
+option SuperiorSubparSurvivors.custom2m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom2m,
+}
+option SuperiorSubparSurvivors.custom3m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom3m,
+}
+option SuperiorSubparSurvivors.custom4m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom4m,
+}
+option SuperiorSubparSurvivors.custom5m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom5m,
+}
+option SuperiorSubparSurvivors.custom6m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom6m,
+}
+option SuperiorSubparSurvivors.custom7m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom7m,
+}
+option SuperiorSubparSurvivors.custom8m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom8m,
+}
+option SuperiorSubparSurvivors.custom9m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom9m,
+}
+option SuperiorSubparSurvivors.custom10m
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom10m,
+}
+
+option SuperiorSubparSurvivors.custom1f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom1f,
+}
+option SuperiorSubparSurvivors.custom2f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom2f,
+}
+option SuperiorSubparSurvivors.custom3f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom3f,
+}
+option SuperiorSubparSurvivors.custom4f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom4f,
+}
+option SuperiorSubparSurvivors.custom5f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom5f,
+}
+option SuperiorSubparSurvivors.custom6f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom6f,
+}
+option SuperiorSubparSurvivors.custom7f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom7f,
+}
+option SuperiorSubparSurvivors.custom8f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom8f,
+}
+option SuperiorSubparSurvivors.custom9f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom9f,
+}
+option SuperiorSubparSurvivors.custom10f
+{
+	type = string,
+	default = ,
+	page = SuperiorSubparSurvivors,
+	translation = SuperiorSubparSurvivors_custom10f,
+}
