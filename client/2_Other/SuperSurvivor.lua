@@ -1855,6 +1855,7 @@ function SuperSurvivor:NPC_inFrontOfUnBarricadedWindowOutside()
 	self:DebugSay("NPC In front of Unbarricaded Window Outside: Window is barricaded("..tostring(window:isBarricaded())..") and Is outside("..tostring(self.player:isOutside())..")")
 end
 
+
 -- This function is still in testing. It's basically 'dovision' but re-functioned to find the closest hostile the npc can find, that is a human only.
 -- DO *NOT* put this in update() function or anything similar. This is supposed to be exclusively to make dopursuealt work.
 -- And to attempt-fix a situation where the player can walk behind the NPC mid-attack and the npc suddenly forgetting about the player.
