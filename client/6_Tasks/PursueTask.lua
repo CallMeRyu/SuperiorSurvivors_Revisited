@@ -48,24 +48,17 @@ function PursueTask:isValid()
 end
 
 function PursueTask:update()
-
+	
 	if(not self:isValid()) or (self:isComplete()) then return false end
-	
-	
-	if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
-		if (self.parent:needToReadyGun(weapon)) then
-			self.parent:ReadyGun(weapon)
-			return false
-		end
-	end
 	
 	self.parent:NPC_ManageLockedDoors() -- To be sure the NPC doesn't get stuck in front of doors
 	
 	if(self.parent.player:CanSee(self.Target) == false) then
 		
-		
 		local distancetoLastSpotSeen = getDistanceBetween(self.LastSquareSeen,self.parent.player)
 		if(distancetoLastSpotSeen > 2.5) then
+		
+			self.parent:setRunning(true) 						
 			
 			self.parent:walkToDirect(self.LastSquareSeen)
 			
@@ -74,20 +67,23 @@ function PursueTask:update()
 			end
 			
 		else
-			
-		--	self.parent:setRunning(false)
+			self.parent:setRunning(false)
 			self.Complete = true
 			self.parent:Speak(getText("ContextMenu_SD_WhereHeGo"))
 		end
-		
+	
 	else
 		local theDistance = getDistanceBetween(self.Target, self.parent.player)
 		
 		self.LastSquareSeen = self.Target:getCurrentSquare()
 		
-		if(self.TargetSS) and (self.TargetSS:getBuilding()~= nil) then 
-			self.parent.TargetBuilding = self.TargetSS:getBuilding() 
-		end
+		if(self.TargetSS) and (self.TargetSS:getBuilding()~= nil) then self.parent.TargetBuilding = self.TargetSS:getBuilding() end
+		
+		-- set from 6 to 3
+		if(theDistance > 3) then self.parent:setRunning(true) 
+		else self.parent:setRunning(false) end
+		
+		
 		self.parent:walkToDirect(self.Target:getCurrentSquare())
 	end
 	

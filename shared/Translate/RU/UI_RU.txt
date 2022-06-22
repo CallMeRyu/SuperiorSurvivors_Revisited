@@ -1,0 +1,13 @@
+UI_RU = {
+	UI_optionscreen_binding_Call Closest Group Member = "Позвонить ближайшему члену группы"
+	UI_optionscreen_binding_Call Closest Non-Group Member = "Позвонить ближайшему выжившему не из группы",
+	UI_optionscreen_binding_Ask Closest Group Member to Follow = "Приказать ближайшему члену группы подписаться",
+	UI_optionscreen_binding_Spawn Wild Survivor = "Создать Wild Survivor",
+UI_optionscreen_binding_Toggle Group Window = "Переключение окна участника",
+UI_optionscreen_binding_Lower Follow Distance = "Уменьшить расстояние следования",
+UI_optionscreen_binding_Raise Follow Distance = "Увеличить расстояние следования",
+UI_optionscreen_binding_SSHotkey_1 = "Команда быстрого доступа 1",
+UI_optionscreen_binding_SSHotkey_2 = "Команда быстрого доступа 2",
+UI_optionscreen_binding_SSHotkey_3 = "Команда быстрого доступа 3",
+UI_optionscreen_binding_SSHotkey_4 = "Команда быстрого доступа 4", 
+}

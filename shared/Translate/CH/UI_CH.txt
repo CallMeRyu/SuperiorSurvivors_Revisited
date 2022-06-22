@@ -1,0 +1,13 @@
+UI_CH = {
+	UI_optionscreen_binding_Call Closest Group Member = "召喚附近團隊成員"
+	UI_optionscreen_binding_Call Closest Non-Group Member = "召喚附近無團隊的倖存者",
+	UI_optionscreen_binding_Ask Closest Group Member to Follow = "命令附近團隊成員跟隨",
+	UI_optionscreen_binding_Spawn Wild Survivor = "刷新野外倖存者",
+	UI_optionscreen_binding_Toggle Group Window = "成員窗口開關",
+	UI_optionscreen_binding_Lower Follow Distance = "減少跟隨距離",
+	UI_optionscreen_binding_Raise Follow Distance = "增加跟隨距離",
+	UI_optionscreen_binding_SSHotkey_1 = "快捷鍵 1 指令",
+	UI_optionscreen_binding_SSHotkey_2 = "快捷鍵 2 指令",
+	UI_optionscreen_binding_SSHotkey_3 = "快捷鍵 3 指令",
+	UI_optionscreen_binding_SSHotkey_4 = "快捷鍵 4 指令", 
+}

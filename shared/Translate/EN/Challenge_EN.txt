@@ -1,0 +1,6 @@
+Challenge_EN = {
+	Challenge_PrisonEscape_name = "Prison Escape",
+    Challenge_PrisonEscape_desc = "Shortly after the disaster, Rosewood Penitentiary was evacuated due to manpower shortages. Unfortunately, you were forgotten by everyone and missed the best time to evacuate. When you finally woke up in the morning, the master of the prison has become THEM. If you don't hurry to get out of here now, it may be too late. ",
+    Challenge_PrisonEscapeInfoBox = "Ready to flee. It is now or never."
+	Challenge_PrisonKeyRing = "'s KeyRing"
+}

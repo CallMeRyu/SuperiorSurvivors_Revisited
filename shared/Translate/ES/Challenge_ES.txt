@@ -1,0 +1,6 @@
+Challenge_ES = {
+	Challenge_PrisonEscape_name = "Escape de la prisión",
+    Challenge_PrisonEscape_desc = "Poco después del desastre, la Penitenciaría de Rosewood fue evacuada debido a la escasez de mano de obra. Desafortunadamente, todos lo olvidaron y se perdió el mejor momento para evacuar. Cuando finalmente te despertaste por la mañana, el maestro de la prisión se convirtió en ELLOS. Si no te apresuras a salir de aquí ahora, puede que sea demasiado tarde.",
+    Challenge_PrisonEscapeInfoBox = "Listo para huir. Es ahora o nunca."
+	Challenge_PrisonKeyRing = " Llavero"
+}

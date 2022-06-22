@@ -1,0 +1,13 @@
+UI_PTBR = {
+	UI_optionscreen_binding_Call Closest Group Member = "Chamar membro do grupo mais próximo"
+	UI_optionscreen_binding_Call Closest Non-Group Member = "Chamar Sobrevivente Não-Grupo Mais Próximo",
+	UI_optionscreen_binding_Ask Closest Group Member to Follow = "Comandar um membro da equipe próximo a seguir",
+	UI_optionscreen_binding_Spawn Wild Survivor = "Sobrevivente Selvagem de Spawn",
+	UI_optionscreen_binding_Toggle Group Window = "Janela do grupo alternando",
+	UI_optionscreen_binding_Lower Follow Distance = "Distância de seguimento mais baixa",
+	UI_optionscreen_binding_Raise Follow Distance = "Aumente a seguinte distância",
+	UI_optionscreen_binding_SSHotkey_1 = "Comando de atalho 1",
+	UI_optionscreen_binding_SSHotkey_2 = "Comando de atalho 2",
+	UI_optionscreen_binding_SSHotkey_3 = "Comando de atalho 3",
+	UI_optionscreen_binding_SSHotkey_4 = "Comando de atalho 4",
+}

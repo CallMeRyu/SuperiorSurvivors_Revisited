@@ -1,0 +1,13 @@
+UI_IT = {
+	UI_optionscreen_binding_Call Closest Group Member = "Chiama il membro del gruppo più vicino"
+	UI_optionscreen_binding_Call Closest Non-Group Member = "Chiama sopravvissuto non gruppo più vicino",
+	UI_optionscreen_binding_Ask Closest Group Member to Follow = "Comanda a un membro del team vicino di seguire",
+	UI_optionscreen_binding_Spawn Wild Survivor = "Spawn Wild Survivor",
+	UI_optionscreen_binding_Toggle Group Window = "Attiva/disattiva finestra membri",
+	UI_optionscreen_binding_Lower Follow Distance = "Riduci distanza di follow",
+	UI_optionscreen_binding_Raise Follow Distance = "Aumenta distanza segui",
+UI_optionscreen_binding_SSHotkey_1 = "Scorciatoia 1 comando",
+UI_optionscreen_binding_SSHotkey_2 = "Scorciatoia 2 comando",
+UI_optionscreen_binding_SSHotkey_3 = "Scorciatoia 3 comando",
+UI_optionscreen_binding_SSHotkey_4 = "Scorciatoia 4 comando", 
+}
