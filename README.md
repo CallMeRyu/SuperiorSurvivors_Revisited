@@ -14,3 +14,7 @@ and the NPCs are mostly doing what they're supposed to.
 
 The NPCs on Pursue task / Threaten task, when very far away, they are currently walking, when they should be running. This is currently a known bug
 and I'll be working on that later too. But for now, here you go (to anyone that reads this.)
+
+
+You want to go here and send the files into this area. Make sure you get a prompt to overwrite existing files. 
+![image](https://user-images.githubusercontent.com/73253293/175006784-0671d6e8-8fc1-4edf-be0c-405f3f01d92a.png)
