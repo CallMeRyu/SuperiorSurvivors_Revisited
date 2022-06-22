@@ -48,6 +48,7 @@ function PursueTask:isValid()
 end
 
 function PursueTask:update()
+	self.parent:NPC_ShouldRunOrWalk()
 	
 	if(not self:isValid()) or (self:isComplete()) then return false end
 	
@@ -55,10 +56,11 @@ function PursueTask:update()
 	
 	if(self.parent.player:CanSee(self.Target) == false) then
 		
+		
 		local distancetoLastSpotSeen = getDistanceBetween(self.LastSquareSeen,self.parent.player)
 		if(distancetoLastSpotSeen > 2.5) then
 
-			self.parent:NPC_ShouldRunOrWalk()
+			
 		--	if(theDistance > 2) then  -- set from 6 to 2
 		--		self.parent:setRunning(true) 
 		--	else 
@@ -72,7 +74,7 @@ function PursueTask:update()
 			end
 			
 		else
-			self.parent:NPC_ShouldRunOrWalk()
+			
 		--	self.parent:setRunning(false)
 			self.Complete = true
 			self.parent:Speak(getText("ContextMenu_SD_WhereHeGo"))
@@ -87,7 +89,7 @@ function PursueTask:update()
 			self.parent.TargetBuilding = self.TargetSS:getBuilding() 
 		end
 		
-			self.parent:NPC_ShouldRunOrWalk()
+			
 		--if(theDistance > 2) then  -- set from 6 to 2
 		--	self.parent:setRunning(true) 
 		--else 

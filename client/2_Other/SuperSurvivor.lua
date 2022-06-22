@@ -701,6 +701,8 @@ end
 function SuperSurvivor:getCurrentTask()
 	return self:getTaskManager():getCurrentTask()
 end
+
+-- This function is an absolute mess...
 function SuperSurvivor:isTooScaredToFight()
 	
 	if (self.EnemiesOnMe >= 3) then
@@ -1862,10 +1864,10 @@ end
 -- And to attempt-fix a situation where the player can walk behind the NPC mid-attack and the npc suddenly forgetting about the player.
 function SuperSurvivor:DoHumanEntityScan()
 
-	local atLeastThisClose = 10;
+	local atLeastThisClose = 5;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 15
-	local closestSurvivorSoFar = 15
+	local closestSoFar = 6
+	local closestSurvivorSoFar = 6
 	self.seenCount = 0
 	self.dangerSeenCount = 0
 	self.EnemiesOnMe = 0
@@ -1914,8 +1916,9 @@ function SuperSurvivor:DoHumanEntityScan()
 			end
 		end
 	end
-		
-	if(closestNumber ~= nil) then 
+	
+	-- This only tells the other function there's a enemy nearby as long as the npc isn't stuck in front of a blocked off door
+	if(closestNumber ~= nil) and (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) then 
 		self.LastEnemeySeen = spottedList:get(closestNumber)
 		
 		return self.LastEnemeySeen
@@ -3440,7 +3443,13 @@ end
 -- This function watches over if they're too close to a target or the main player and forces walk if they are.
 -- That way they don't trip over each other (and more importantly the main player)
 -- This function is used mainly in the combat related tasks, but could be used elsewhere if the npc is running over the main player often.
-function SuperSurvivor:NPC_ShouldRunOrWalk()										
+function SuperSurvivor:NPC_ShouldRunOrWalk()
+	
+	-- Emergency failsafe to prevent NPCs from running into player
+	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 2.5) then
+		self:setRunning(false)
+	end
+	
 	if (self.LastEnemeySeen ~= nil) then
 		local distance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local distanceAlt = getDistanceBetween(self.player,getSpecificPlayer(0))	-- To prevent running into the player
@@ -3450,7 +3459,10 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		else
 			self:setRunning(false)
 		end
+	else
+		self:setRunning(true)
 	end
+	
 end
 
 -- Manages movement and movement speed
