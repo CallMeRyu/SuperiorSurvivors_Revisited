@@ -1927,6 +1927,24 @@ function SuperSurvivor:DoHumanEntityScan()
 end
 
 
+
+-- This was built for getting away from zeds 
+function SuperSurvivor:NPC_FleeWhileReadyingGun()
+	local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
+	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
+	local Enemy_Is_a_Human = (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
+	local Weapon_HandGun = self.player:getPrimaryHandItem()
+	local NPCsDangerSeen = self:getDangerSeenCount()
+	
+	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready. 
+	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))  then
+		self:NPCTask_Clear()
+		self:NPCTask_DoFlee()
+		self:NPCTask_DoFleeFromHere()
+		return true
+	end
+end
+
 -- Function List for checking specific scenarios of NPC tasks
 	-- This one is for if the NPC is trying to get out or inside a building but can not
 	-- This **should** be the complete list of tasks that would get an npc stuck
@@ -2141,7 +2159,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 				and (self:Task_IsNotSurender())
 				and (self:Task_IsNotAttemptEntryIntoBuilding())
 				and (self:isWalkingPermitted())
-				and (self:WeaponReady())
+				and (self:WeaponReady() == true)
 				and (self:NPC_IFOD_BarricadedInside() == false)
 				and (self:inFrontOfLockedDoorAndIsOutside() == false)
 				and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
@@ -2190,7 +2208,17 @@ function SuperSurvivor:NPCTask_DoFindUnlootedBuilding()
 		self:getTaskManager():AddToTop(FindUnlootedBuildingTask:new(self))
 	end
 end
+function SuperSurvivor:NPCTask_DoFleeFromHere()
+	if (self:getTaskManager():getCurrentTask() ~= "Flee From Spot") or (self:getTaskManager():getCurrentTask() ~= "Flee") then	
+		self:getTaskManager():AddToTop(FleeFromHereTask:new(self,self.player:getCurrentSquare()))
+	end
+end
+function SuperSurvivor:NPCTask_DoFlee() -- Which is different from ^
+	if (self:getTaskManager():getCurrentTask() ~= "Flee") or (self:getTaskManager():getCurrentTask() ~= "Flee From Spot") then	
+		self:getTaskManager():AddToTop(FleeTask:new(self))
 
+	end
+end
 
 
 function SuperSurvivor:NPCTask_DoAttemptEntryIntoBuilding()
@@ -2982,7 +3010,8 @@ function SuperSurvivor:startReload()
 end
 
 function SuperSurvivor:ReadyGun(weapon)
-
+	--self:DoZombieEntityScan()
+	
 	if(not weapon) or (not weapon:isAimedFirearm()) then return true end
 	
 	if weapon:isJammed() then

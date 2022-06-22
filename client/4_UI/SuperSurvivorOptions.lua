@@ -53,7 +53,10 @@ function SuperSurvivorGetOptionValue(option)
 	elseif(option == "RaidersAfterHours") then return (((num-2) * 5) * 24)
 	
 	elseif(option == "RaidersChance") then return ((num + 2) * 24 * 14)  -- (6 * 24 * 14)
-	elseif(option == "Bravery") then return (num - 1)
+	elseif(option == "Bravery") and (num == 1) then return 1
+	elseif(option == "Bravery") and (num == 2) then return 2
+	elseif(option == "Bravery") and (num == 3) then return 3
+	elseif(option == "Bravery") and (num == 4) then return 50
 	elseif(option == "AltSpawn") and (num == 1) then return 1 -- If false
 	elseif(option == "AltSpawn") and (num == 2) then return 2 -- If true
 	elseif(option == "AltSpawn") and (num == 3) then return 3 -- If true
