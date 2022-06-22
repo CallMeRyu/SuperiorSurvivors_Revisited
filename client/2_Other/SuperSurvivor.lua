@@ -1942,7 +1942,6 @@ function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	end
 end
 
-
 -- Function List for checking specific scenarios of NPC tasks
 	-- This one is for if the NPC is trying to get out or inside a building but can not
 	-- This **should** be the complete list of tasks that would get an npc stuck
