@@ -73,17 +73,19 @@ function ThreatenTask:dealComplete()
 end
 
 function ThreatenTask:update()
-	
 	if(not self:isValid()) or (self:isComplete()) then return false end
-	 self.theDistance = getDistanceBetween(self.Aite, self.parent.player)
 
-		self.parent:NPC_ShouldRunOrWalk()
-	--	if ((self.theDistance) < 2) then
-	--		self.parent:setRunning(false)
-	--	else
-	--		self.parent:setRunning(true) 
-	--	end
+	if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
+		if (self.parent:needToReadyGun(weapon)) then
+			self.parent:ReadyGun(weapon)
+			return false
+		end
+	end
 	
+	
+	 self.theDistance = getDistanceBetween(self.Aite, self.parent.player)
+	 self.parent:NPC_ShouldRunOrWalk()
+
 	if(self.StartedThreatening == true) then
 		if(self:dealBreaker()) then 			 
 			--self.parent.player:getModData().isRobber = false
@@ -127,8 +129,19 @@ function ThreatenTask:update()
 		self.parent:NPC_ManageLockedDoors() -- This function should force walking away if stuck
 	
 		local cs = self.Aite.player:getCurrentSquare()
+
+		if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
+			if (self.parent:needToReadyGun(weapon)) then
+				self.parent:ReadyGun(weapon)
+				return false
+			else
+				self.parent:walkToDirect(cs)
+			end
+		else
+			self.parent:walkToDirect(cs)
+		end	
 		
-		self.parent:walkToDirect(cs)
+		
 		--self.parent:setRunning(true) -- Newly added - No. The other movements manage this already
 
 	else -- Added to the 'if anything fails, go somewhere else'

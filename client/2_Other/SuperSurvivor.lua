@@ -2141,6 +2141,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 				and (self:Task_IsNotSurender())
 				and (self:Task_IsNotAttemptEntryIntoBuilding())
 				and (self:isWalkingPermitted())
+				and (self:WeaponReady())
 				and (self:NPC_IFOD_BarricadedInside() == false)
 				and (self:inFrontOfLockedDoorAndIsOutside() == false)
 				and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
@@ -2150,7 +2151,6 @@ function SuperSurvivor:Task_IsPursue_SC()
 			--	and	(not(self:RealCanSee(self.LastEnemeySeen)) and (self:NPC_IFOD_BarricadedInside() == false))				-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false
 			then
 				self:DebugSay("Task_IsPursue_SC Is 'True', all conditions were met")
-				self:NPC_ShouldRunOrWalk()
 				return true
 			else
 				return false
@@ -3458,19 +3458,20 @@ end
 -- That way they don't trip over each other (and more importantly the main player)
 -- This function is used mainly in the combat related tasks, but could be used elsewhere if the npc is running over the main player often.
 -- 6/21/2022: If I set 'setruning' to true , then else false? NPCs will run into each other! But if it looks like what it is now, it works fine!
--- 		This literally implies it will check top to bottom priority. I'm writing this to remind myself for the future.
+-- 		This literally implies it will check top to bottom priority. I'm writing this to remind myself for the future.	
 function SuperSurvivor:NPC_ShouldRunOrWalk()
 	
 	-- Emergency failsafe to prevent NPCs from running into player
-	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 2.5) then
+	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 1) then
 		self:setRunning(false)
 	end
 	
 	if (self.LastEnemeySeen ~= nil) then
 		local distance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local distanceAlt = getDistanceBetween(self.player,getSpecificPlayer(0))	-- To prevent running into the player
+		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
 		
-		if (distance < 2) or (distanceAlt < 2) then
+		if (distance < 2) or (distanceAlt < 2) or (zNPC_AttackRange) then
 			self:setRunning(false)
 		else
 			self:setRunning(true)
@@ -3506,7 +3507,7 @@ function SuperSurvivor:NPC_MovementManagement_Guns()
 			end
 		end
 		
-		self:NPC_ShouldRunOrWalk()
+		
 	end
 end
 
@@ -3532,7 +3533,7 @@ function SuperSurvivor:NPC_MovementManagement()
 			end	
 		end
 
-		self:NPC_ShouldRunOrWalk()
+		
 	end
 end
 
@@ -3592,7 +3593,8 @@ function SuperSurvivor:NPC_Attack(victim) -- New Function
 
 	-- Makes sure if the npc has their weapon out first 
 	if(self:WeaponReady()) then 
-		self:StopWalk()
+		--self:StopWalk()
+		self:iStopMovement()
 		-- Makes sure the stances is set
 		self.player:NPCSetAiming(true) -- Visually animate 
 		self.player:NPCSetAttack(true) -- Visually animate 

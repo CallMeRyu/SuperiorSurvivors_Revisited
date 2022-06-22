@@ -48,9 +48,15 @@ function PursueTask:isValid()
 end
 
 function PursueTask:update()
-	self.parent:NPC_ShouldRunOrWalk()
-	
+
 	if(not self:isValid()) or (self:isComplete()) then return false end
+	
+	if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
+		if (self.parent:needToReadyGun(weapon)) then
+			self.parent:ReadyGun(weapon)
+			return false
+		end
+	end
 	
 	self.parent:NPC_ManageLockedDoors() -- To be sure the NPC doesn't get stuck in front of doors
 	
@@ -59,13 +65,6 @@ function PursueTask:update()
 		
 		local distancetoLastSpotSeen = getDistanceBetween(self.LastSquareSeen,self.parent.player)
 		if(distancetoLastSpotSeen > 2.5) then
-
-			
-		--	if(theDistance > 2) then  -- set from 6 to 2
-		--		self.parent:setRunning(true) 
-		--	else 
-		--		self.parent:setRunning(false) 
-		--	end					
 			
 			self.parent:walkToDirect(self.LastSquareSeen)
 			
@@ -88,14 +87,6 @@ function PursueTask:update()
 		if(self.TargetSS) and (self.TargetSS:getBuilding()~= nil) then 
 			self.parent.TargetBuilding = self.TargetSS:getBuilding() 
 		end
-		
-			
-		--if(theDistance > 2) then  -- set from 6 to 2
-		--	self.parent:setRunning(true) 
-		--else 
-		--	self.parent:setRunning(false) 
-		--end
-		
 		self.parent:walkToDirect(self.Target:getCurrentSquare())
 	end
 	
