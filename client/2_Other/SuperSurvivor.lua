@@ -2108,15 +2108,15 @@ function SuperSurvivor:Task_IsPursue_SC()
 
 
 		-- How far you want the NPCs to sense their hostiles near them
-		local zRangeToPursue = 3
+		local zRangeToPursue = 3 -- If the NPC and the NPC's Target is inside (default)
 
-		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true) then
+		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true) then -- NPC's Target AND the NPC itself are Both Outside
 			zRangeToPursue = 5
 		end
-		if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true) then
-			zRangeToPursue = 0
+		if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true) then -- NPC's Target Is Inside | NPC itself Is Outside
+			return false
 		end		
-		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == false) then -- if NPC is inside while target isn't
+		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == false) then -- NPC's Target Is Outside | NPC itself Is Inside
 			return false
 		end
 		
@@ -2728,6 +2728,20 @@ function SuperSurvivor:WalkToUpdate()
    end
    
    --]]
+end
+
+-- New Function: This is the attempt to make the NPCs less likely to freeze in place. 
+-- Because it won't be using certain commands that StopWalk is using.
+function SuperSurvivor:iStopMovement()
+	self.player:setPath2(nil)
+	self.player:getModData().bWalking = false
+	self.player:getModData().Running = false
+	self:setRunning(false)
+	self.player:setSneaking(false)		
+	self.player:NPCSetJustMoved(false)
+	self.player:NPCSetAttack(false)
+	self.player:NPCSetMelee(false)
+	self.player:NPCSetAiming(false)	
 end
 
 function SuperSurvivor:StopWalk()
@@ -3443,6 +3457,8 @@ end
 -- This function watches over if they're too close to a target or the main player and forces walk if they are.
 -- That way they don't trip over each other (and more importantly the main player)
 -- This function is used mainly in the combat related tasks, but could be used elsewhere if the npc is running over the main player often.
+-- 6/21/2022: If I set 'setruning' to true , then else false? NPCs will run into each other! But if it looks like what it is now, it works fine!
+-- 		This literally implies it will check top to bottom priority. I'm writing this to remind myself for the future.
 function SuperSurvivor:NPC_ShouldRunOrWalk()
 	
 	-- Emergency failsafe to prevent NPCs from running into player
@@ -3454,10 +3470,10 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		local distance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local distanceAlt = getDistanceBetween(self.player,getSpecificPlayer(0))	-- To prevent running into the player
 		
-		if (distance > 2) or (distanceAlt > 2) then
-			self:setRunning(true)
-		else
+		if (distance < 2) or (distanceAlt < 2) then
 			self:setRunning(false)
+		else
+			self:setRunning(true)
 		end
 	else
 		self:setRunning(true)
@@ -3594,7 +3610,7 @@ function SuperSurvivor:NPC_Attack(victim) -- New Function
 
 	-- Hitting the entity in question
 --	if((RealDistance <= minrange) or (RealDistance <= 0.65)) and (self.AtkTicks <= 0) and (self:CanAttackAlt()) then
-	if((RealDistance <= minrange) or zNPC_AttackRange) and (self.AtkTicks <= 0) and (self:CanAttackAlt() == true) then
+	if((RealDistance <= minrange) or zNPC_AttackRange) and (self.AtkTicks <= 0) and (self:CanAttackAlt() == true) and (self.player:NPCGetRunning() == false) then
 		victim:Hit(weapon, self.player, damage, false, 1.0, false)
 			-- To keep the NPC from spamming another entity, but give fighting chance for zeds
 			if (instanceof(victim,"IsoPlayer")) then self.AtkTicks = 2 end
@@ -3603,7 +3619,7 @@ function SuperSurvivor:NPC_Attack(victim) -- New Function
 
 end
 
-
+-- This is the old variant of the attack function. It should not be used for melee attacks. It works well with guns though, so... 
 function SuperSurvivor:Attack(victim)
 	
 	-- Create the attack cooldown. (once 0, the npc will do the 'attack' then set the time back up by 1, so anti-attack spam method)
@@ -3654,7 +3670,7 @@ function SuperSurvivor:Attack(victim)
 						end
 					else
 						victim:Hit(weapon, self.player, damage, false, 1.0, false)
-						self:DebugSay("MELEE STRIKE!")
+						self:DebugSay("MELEE STRIKE! For some reason... I shouldn't be using this Attack function! Modder, fix this!")
 						self.AtkTicks = 1
 					end
 				end
