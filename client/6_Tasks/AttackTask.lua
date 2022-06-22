@@ -38,6 +38,7 @@ end
 
 function AttackTask:update()
 	if(not self:isValid()) or (self:isComplete()) then return false end
+	
 
 	-- Controls the Range of how far / close the NPC should be
 	if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'

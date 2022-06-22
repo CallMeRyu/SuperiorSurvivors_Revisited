@@ -18,3 +18,13 @@ and I'll be working on that later too. But for now, here you go (to anyone that 
 
 You want to go here and send the files into this area. Make sure you get a prompt to overwrite existing files. 
 ![image](https://user-images.githubusercontent.com/73253293/175006784-0671d6e8-8fc1-4edf-be0c-405f3f01d92a.png)
+
+
+Update 14 Experimental - 2nd upload
+
+- Guns: NPCs should now be even better with using guns as they were previously than last upload. 
+The NPCs will run away though once they have realized they don't have ammo or sense they are in danger for the most part. 
+So this would include your player groups. The NPCs will try to keep their own life in tact. (or try to anyways.)
+
+- Bravery: Forgot about this, but I adjusted the 'Very brave' option. Instead of it being 4 points of bravery, it's now 50. 
+I have no idea how this will effect the NPCs. It may do nothing at all, or it may break everything else. 

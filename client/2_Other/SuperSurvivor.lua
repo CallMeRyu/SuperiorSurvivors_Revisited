@@ -2203,7 +2203,17 @@ function SuperSurvivor:NPCTask_DoFindUnlootedBuilding()
 		self:getTaskManager():AddToTop(FindUnlootedBuildingTask:new(self))
 	end
 end
+function SuperSurvivor:NPCTask_DoFleeFromHere()
+	if (self:getTaskManager():getCurrentTask() ~= "Flee From Spot") or (self:getTaskManager():getCurrentTask() ~= "Flee") then	
+		self:getTaskManager():AddToTop(FleeFromHereTask:new(self,self.player:getCurrentSquare()))
+	end
+end
+function SuperSurvivor:NPCTask_DoFlee() -- Which is different from ^
+	if (self:getTaskManager():getCurrentTask() ~= "Flee") or (self:getTaskManager():getCurrentTask() ~= "Flee From Spot") then	
+		self:getTaskManager():AddToTop(FleeTask:new(self))
 
+	end
+end
 
 
 function SuperSurvivor:NPCTask_DoAttemptEntryIntoBuilding()
@@ -2981,7 +2991,8 @@ function SuperSurvivor:startReload()
 end
 
 function SuperSurvivor:ReadyGun(weapon)
-
+	--self:DoZombieEntityScan()
+	
 	if(not weapon) or (not weapon:isAimedFirearm()) then return true end
 	
 	if weapon:isJammed() then
