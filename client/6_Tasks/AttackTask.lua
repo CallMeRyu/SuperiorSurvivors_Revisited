@@ -88,7 +88,6 @@ function AttackTask:update()
 	
 		self.parent:NPC_ManageLockedDoors() -- To prevent getting stuck in doors
 		--self.parent:NPC_MovementManagement() -- To move around 
-		
 	else
 		self.parent:DebugSay("ATTACK TASK - something is wrong")
 	end

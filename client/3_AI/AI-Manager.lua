@@ -40,16 +40,20 @@ function AIManager(TaskMangerIn)
 	local IsInBase = ASuperSurvivor:isInBase()
 	local CenterBaseSquare = nil
 	local DistanceBetweenMainPlayer = getDistanceBetween(getSpecificPlayer(0),ASuperSurvivor:Get()) 
-	local Distance_AnyEnemy = getDistanceBetween(ASuperSurvivor.LastSurvivorSeen,ASuperSurvivor:Get())  -- idk if this works
+	local Distance_AnyEnemy = getDistanceBetween(ASuperSurvivor.LastEnemeySeen,ASuperSurvivor:Get())  -- idk if this works
 	if(HisGroup) then CenterBaseSquare = HisGroup:getBaseCenter() end
-	
-		-------------shared ai for all -----------------------------------------------
 
--- Enable back later. I don't trust this enough to have it ready.
-	-- if (ASuperSurvivor:Task_IsPursue_SC() == true) then
-	-- 	if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
-	-- 	TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
-	-- end
+
+	--------------------------------------------------------
+	--------------------- Shared AI ------------------------
+	--------------------------------------------------------
+
+	-- To make NPCs find their target that's very close by
+	if (ASuperSurvivor:Task_IsPursue_SC() == true) then
+	 	if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
+	 	TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
+	 end
+
 
 	-- Surrender Task	
 	if(getSpecificPlayer(0) ~= nil) then
@@ -73,6 +77,8 @@ function AIManager(TaskMangerIn)
 			return TaskMangerIn
 		end
 	end
+	
+	
 	
 	if ((TaskMangerIn:getCurrentTask() ~= "Attack") and (TaskMangerIn:getCurrentTask() ~= "Threaten") and not ((TaskMangerIn:getCurrentTask() == "Surender") and EnemyIsSurvivor) and (TaskMangerIn:getCurrentTask() ~= "Doctor") and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) and (TaskMangerIn:getCurrentTask() ~= "Flee")) and ((ASuperSurvivor:hasWeapon() and ((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))) and (IHaveInjury == false) and (ASuperSurvivor:inFrontOfLockedDoor() == false)  then
 		if(ASuperSurvivor.player ~= nil) and (ASuperSurvivor.player:getModData().isRobber) and (not ASuperSurvivor.player:getModData().hitByCharacter) and EnemyIsSurvivor and (not EnemySuperSurvivor.player:getModData().dealBreaker) then 

@@ -1857,6 +1857,73 @@ function SuperSurvivor:NPC_inFrontOfUnBarricadedWindowOutside()
 end
 
 
+-- This function is still in testing. It's basically 'dovision' but re-functioned to find the closest hostile the npc can find, that is a human only.
+-- DO *NOT* put this in update() function or anything similar. This is supposed to be exclusively to make dopursuealt work.
+-- And to attempt-fix a situation where the player can walk behind the NPC mid-attack and the npc suddenly forgetting about the player.
+function SuperSurvivor:DoHumanEntityScan()
+
+	local atLeastThisClose = 10;
+	local spottedList = self.player:getCell():getObjectList()
+	local closestSoFar = 15
+	local closestSurvivorSoFar = 15
+	self.seenCount = 0
+	self.dangerSeenCount = 0
+	self.EnemiesOnMe = 0
+	self.LastEnemeySeen = nil
+	self.LastSurvivorSeen = nil
+	local dangerRange = 6
+	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
+	
+	local closestNumber = nil
+	local tempdistance = 1
+	
+	
+	if(spottedList ~= nil) then
+		for i=0, spottedList:size()-1 do
+			local character = spottedList:get(i);
+			if(character ~= nil) and (character ~= self.player) and (instanceof(character,"IsoPlayer")) and not (instanceof(character,"IsoZombie")) then
+			
+				if (character:isDead() == false) then
+					tempdistance = tonumber(getDistanceBetween(character,self.player))
+					
+					if( (tempdistance <= atLeastThisClose) and self:isEnemy(character) ) then	
+					
+						local CanSee = self:RealCanSee(character)
+						
+						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
+							self.EnemiesOnMe = self.EnemiesOnMe + 1 
+						end
+						if(tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
+							self.dangerSeenCount = self.dangerSeenCount + 1 
+						end
+						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
+							self.seenCount = self.seenCount + 1 
+						end
+						if( ( ((not CanSee) or (CanSee)) or (tempdistance < 3.5)) and (tempdistance < closestSoFar) ) then
+							closestSoFar = tempdistance ;
+							self.player:getModData().seenZombie = true;
+							closestNumber = i;							
+						end
+						
+					elseif( tempdistance < closestSurvivorSoFar ) and false then
+						closestSurvivorSoFar = tempdistance
+						self.LastSurvivorSeen = character						
+					end
+				end
+				
+			end
+		end
+	end
+		
+	if(closestNumber ~= nil) then 
+		self.LastEnemeySeen = spottedList:get(closestNumber)
+		
+		return self.LastEnemeySeen
+	end
+	
+end
+
+
 -- Function List for checking specific scenarios of NPC tasks
 	-- This one is for if the NPC is trying to get out or inside a building but can not
 	-- This **should** be the complete list of tasks that would get an npc stuck
@@ -1937,10 +2004,9 @@ function SuperSurvivor:Task_IsNotAttack()
 end
 function SuperSurvivor:Task_IsNotThreaten()
 	if (self:getTaskManager():getCurrentTask() ~= "Threaten") then
-		self:DebugSay("Task_IsNotThreaten Is 'True', but is it? Code, is it? -toString is claiming it is:")
+		self:DebugSay("Task_IsNotThreaten Is 'True'")
 		return true
 	else
-		self:DebugSay("Task_IsNotThreaten Is 'False', but is it? Code, is it? -toString is claiming it is:")
 		return false
 	end
 end
@@ -1965,17 +2031,21 @@ function SuperSurvivor:Task_IsNotWander()
 		return false
 	end
 end
-
 function SuperSurvivor:Task_IsNotPursue()
 	if (self:getTaskManager():getCurrentTask() ~= "Pursue") then
-		self:DebugSay("Task_IsNotPursue Is 'True', but is it? Code, is it? -toString is claiming it is:")
+		self:DebugSay("Task_IsNotPursue Is 'True'")
 		return true
 	else
-		self:DebugSay("Task_IsNotPursue Is 'False', but is it? Code, is it? -toString is claiming it is:")
 		return false
 	end
 end
-
+function SuperSurvivor:Task_IsNotAttemptEntryIntoBuilding()
+	if (self:getTaskManager():getCurrentTask() ~= "Enter New Building") then
+		return true
+	else	
+		return false
+	end
+end
 
 -- Specialized AIManager Task conditions - SC standing for 'specializied conditions'
 function SuperSurvivor:NPC_NPCsEnemyHasGun()
@@ -2009,6 +2079,7 @@ function SuperSurvivor:NPC_NPCsEnemyHasGun()
 	end
 end
 
+-- This function isn't being used currently here. It was grabbed from AI manager
 function SuperSurvivor:NPC_IsNPCsEnemyHuman()
 	if (instanceof(self.LastEnemeySeen,"IsoPlayer")) then
 		self:DebugSay("NPC_IsEnemyHuman Is 'True', but is it? Code, is it? -toString is claiming it is:")
@@ -2020,38 +2091,72 @@ function SuperSurvivor:NPC_IsNPCsEnemyHuman()
 end
 
 	
-	-- This one is for the Raiders Pursuing the player. Still Under work, but it's here.
+	-- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
 function SuperSurvivor:Task_IsPursue_SC()
-	if  (self:NPC_IsNPCsEnemyHuman()) then
-			--	and (self:hasWeapon())
-			if (self:hasWeapon())
-			and (self:Task_IsNotAttack()) 		
-			and (self:Task_IsNotThreaten())
-			and (self:Task_IsNotPursue()) 		
-			and (self:isWalkingPermitted())
-			and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
-			--and (self:RealCanSee(self.LastEnemeySeen) and (not self:isEnemyInRange(self.LastEnemeySeen)))
-			--and (not self:NPC_NPCsEnemyHasGun()) or ((self:hasGun()) and (self:NPC_NPCsEnemyHasGun())) 				    -- IF NPC doesn't have a gun, npc should run away. but if both has gun, then gunfight
-			and ((not self:RealCanSee(self.LastEnemeySeen)) and (self:inFrontOfLockedDoorAndIsOutside() == false))  		-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false 
-			and	((not self:RealCanSee(self.LastEnemeySeen)) and (self:NPC_IFOD_BarricadedInside() == false))			-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false
-			
-		then
-			self:DebugSay("Task_IsPursue_SC Is 'True', but is it? Code, is it? -toString is claiming it is:")
-			return true
-		else
-			--print("(self:NPC_IsNPCsEnemyHuman())) "..tostring(self:NPC_IsNPCsEnemyHuman()))
-			--print("(self:hasWeapon())) "..tostring(self:hasWeapon()))
-			--print("(self:Task_IsNotAttack())) "..tostring(self:Task_IsNotAttack()))
-			--print("(self:Task_IsNotThreaten())) "..tostring(self:Task_IsNotThreaten()))
-			--print("(self:Task_IsNotPursue())) "..tostring(self:Task_IsNotPursue()))
-			--print("(self:isWalkingPermitted())) "..tostring(self:isWalkingPermitted()))
-			--print("(self:getDangerSeenCount())) "..tostring(self:getDangerSeenCount()))
-			--print("(self:HasMultipleInjury())) "..tostring(self:HasMultipleInjury()))
 	
+	-- All this does is find the closest enemy that's nearby
+	-- To make sure the scan doesn't spam during this time.
+	-- If the npc is, then force wander
+	if (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) then
+		self:DoHumanEntityScan()
+	end
 	
-			--self:DebugSay("Task_IsPursue_SC Is 'False', but is it? Code, is it? -toString is claiming it is:")
+	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) then
+
+
+		-- How far you want the NPCs to sense their hostiles near them
+		local zRangeToPursue = 3
+
+		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true) then
+			zRangeToPursue = 5
+		end
+		if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true) then
+			zRangeToPursue = 0
+		end		
+		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == false) then -- if NPC is inside while target isn't
 			return false
-		end	
+		end
+		
+	
+		local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
+		
+		if (Distance_AnyEnemy >= zRangeToPursue) then 	-- We don't want the NPCs to spam this function if too far away, so yes, we're double checking range.
+			return false
+		end
+
+		if (not self:RealCanSee(self.LastEnemeySeen)) and ((self:inFrontOfLockedDoorAndIsOutside() == true) or (self:NPC_IFOD_BarricadedInside() == true)) then
+			self:DebugSay("Task_IsPursue_SC Returned false: Cant RealCanSee & in front of a blocked off door. (We don't want door lag again) - Enforcing NPC_ManageLockedDoors")
+			self:NPC_ManageLockedDoors()
+			return false
+		end		
+		
+		if (Distance_AnyEnemy < zRangeToPursue) then -- Keep from running a few inches from behind the npc, making the npc give up
+				if (self:hasWeapon())
+				and (self:Task_IsNotAttack()) 		
+				and (self:Task_IsNotThreaten())
+				and (self:Task_IsNotPursue())
+				and (self:Task_IsNotSurender())
+				and (self:Task_IsNotAttemptEntryIntoBuilding())
+				and (self:isWalkingPermitted())
+				and (self:NPC_IFOD_BarricadedInside() == false)
+				and (self:inFrontOfLockedDoorAndIsOutside() == false)
+				and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
+				and (self:RealCanSee(self.LastEnemeySeen) and (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false))		
+			--	and (self:RealCanSee(self.LastEnemeySeen) and (not self:isEnemyInRange(self.LastEnemeySeen)))
+			--	and (not(self:RealCanSee(self.LastEnemeySeen)) and (self:inFrontOfLockedDoorAndIsOutside() == false))  		-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false 
+			--	and	(not(self:RealCanSee(self.LastEnemeySeen)) and (self:NPC_IFOD_BarricadedInside() == false))				-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false
+			then
+				self:DebugSay("Task_IsPursue_SC Is 'True', all conditions were met")
+				self:NPC_ShouldRunOrWalk()
+				return true
+			else
+				return false
+			end	
+		else
+			return false
+		end
+	else
+		return false
 	end
 end
 
