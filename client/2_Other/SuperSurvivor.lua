@@ -3593,9 +3593,7 @@ function SuperSurvivor:NPC_Attack(victim) -- New Function
 
 	-- Makes sure if the npc has their weapon out first 
 	if(self:WeaponReady()) then 
-		--self:StopWalk()
-		self:iStopMovement()
-		-- Makes sure the stances is set
+		self:StopWalk()
 		self.player:NPCSetAiming(true) -- Visually animate 
 		self.player:NPCSetAttack(true) -- Visually animate 
 		self.player:faceThisObject(victim)
