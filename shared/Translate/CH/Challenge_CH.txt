@@ -1,6 +1,0 @@
-Challenge_CH = {
-	Challenge_PrisonEscape_name = "越獄挑戰",
-    Challenge_PrisonEscape_desc = "災難爆發後不久, 由於人手短缺, 羅斯伍德監獄被緊急疏散。 不幸的是, 你被所有人遺忘了, 錯過了疏散的最佳時間。 一覺醒來, 監獄的主人已經變成了它們。 如果你現在不抓緊時間逃出這裡, 可能就再也來不及了。 ",
-    Challenge_PrisonEscapeInfoBox = "快跑, 不然就來不及了！ ",
-	Challenge_PrisonKeyRing = "的鑰匙圈"
-}
