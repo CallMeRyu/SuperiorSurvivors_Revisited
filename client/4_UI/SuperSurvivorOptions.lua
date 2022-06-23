@@ -336,6 +336,11 @@ if index then
 		local y = 5
 		local comboWidth = 300
 		local splitpoint = self:getWidth() / 3;
+		-------------------------------------------
+		
+		y = y + spacing
+		y = y + spacing
+		y = y + spacing
 	
 		
 		local options = {getText("ContextMenu_SD_Off"),getText("ContextMenu_SD_UltraLow"),getText("ContextMenu_SD_ExtremelyLow"), getText("ContextMenu_SD_VeryLow"), getText("ContextMenu_SD_Low"), getText("ContextMenu_SD_SlightlyLower"), getText("ContextMenu_SD_Normal"), getText("ContextMenu_SD_SlightlyHigher"), getText("ContextMenu_SD_High"),getText("ContextMenu_SD_VeryHigh"),getText("ContextMenu_SD_ExtremelyHigh"),getText("ContextMenu_SD_UltraHigh")}
@@ -364,10 +369,13 @@ if index then
 
 		
 			y = y + spacing
+			y = y + spacing
+			y = y + spacing
+			y = y + spacing
 		
 		
 		
-		local options = {getText("ContextMenu_SD_AltSpawnOff"),getText("ContextMenu_SD_AltSpawnOn_05"),getText("ContextMenu_SD_AltSpawnOn"),getText("ContextMenu_SD_AltSpawnOn_20"),getText("ContextMenu_SD_AltSpawnOn_30"),getText("ContextMenu_SD_AltSpawnOn_40"),getText("ContextMenu_SD_AltSpawnOn_50")}
+		local options = {getText("ContextMenu_SD_AltSpawnOff"),getText("ContextMenu_SD_UpTo1"),getText("ContextMenu_SD_UpTo2"),getText("ContextMenu_SD_UpTo3"),getText("ContextMenu_SD_UpTo4"),getText("ContextMenu_SD_UpTo5"),getText("ContextMenu_SD_UpTo6")}
 		local gunspawnrateCombo = self:addCombo(splitpoint, y, comboWidth, 20,getText("ContextMenu_SOption_AltSpawn"), options, 1)
 		gunspawnrateCombo:setToolTipMap({defaultTooltip = getText("ContextMenu_SOption_AltSpawnDesc")});
 		
@@ -394,7 +402,7 @@ if index then
 		y = y + spacing
 		
 		
-		local options = {"0%","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%","11%","12%","13%","14%","15%","16%","17%","18%","19%","20%","21%","22%","23%","24%","25%","26%","27%","28%","29%","30%","31%","32%","33%","34%","35%","36%","37%","38%","39%","40%","41%","42%","43%","44%","45%","46%","47%","48%","49%","50%","51%","52%","53%","54%","55%","56%","57%","58%","59%","60%","61%","62%","63%","64%","65%","66%","67%","68%","69%","70%","71%","72%","73%","74%","75%","76%","77%","78%","79%","80%","81%","82%","83%","84%","85%","86%","87%","88%","89%","90%","91%","92%","93%","94%","95%","96%","97%","98%","99%","100"}
+		local options = {"0%","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%","11%","12%","13%","14%","15%","16%","17%","18%","19%","20%","21%","22%","23%","24%","25%","26%","27%","28%","29%","30%","31%","32%","33%","34%","35%","36%","37%","38%","39%","40%","41%","42%","43%","44%","45%","46%","47%","48%","49%","50%","51%","52%","53%","54%","55%","56%","57%","58%","59%","60%","61%","62%","63%","64%","65%","66%","67%","68%","69%","70%","71%","72%","73%","74%","75%","76%","77%","78%","79%","80%","81%","82%","83%","84%","85%","86%","87%","88%","89%","90%","91%","92%","93%","94%","95%","96%","97%","98%","99%","100%"}
 		local gunspawnrateCombo = self:addCombo(splitpoint, y, comboWidth, 20,getText("ContextMenu_SOption_AltSpawnPercent"), options, 1)
 		gunspawnrateCombo:setToolTipMap({defaultTooltip = getText("ContextMenu_SOption_AltSpawnPercentDesc")});
 		
@@ -446,6 +454,9 @@ if index then
 		
 		
 		y = y + spacing
+		y = y + spacing
+		y = y + spacing
+		y = y + spacing
 		
 		
 		
@@ -473,6 +484,9 @@ if index then
 		self.gameOptions:add(gameOption)
 		
 		
+		y = y + spacing
+		y = y + spacing
+		y = y + spacing
 		y = y + spacing
 		
 
@@ -540,6 +554,9 @@ if index then
 		
 		--- raiders --- start
 		
+		y = y + spacing
+		y = y + spacing
+		y = y + spacing
 		y = y + spacing
 		
 		
@@ -662,6 +679,9 @@ if index then
 		
 		
 		y = y + spacing
+		y = y + spacing
+		y = y + spacing
+		y = y + spacing
 		
 		
 		
@@ -733,6 +753,9 @@ if index then
 		
 		
 		y = y + spacing
+		y = y + spacing
+		y = y + spacing
+		y = y + spacing
 		
 		
 		
@@ -758,6 +781,8 @@ if index then
 			print("option changed to ".. tostring(box.selected))
 		end
 		self.gameOptions:add(gameOption)
+		
+		
 		
 		y = y + spacing
 		
@@ -788,6 +813,9 @@ if index then
 		
 		
 			y = y + spacing
+			y = y + spacing
+			y = y + spacing
+			y = y + spacing
 		
 		
 		
@@ -815,10 +843,9 @@ if index then
 		self.gameOptions:add(gameOption)
 		
 
-		
-		
-			y = y + spacing
-		
+		y = y + spacing
+
+	
 		local options = {getText("ContextMenu_SD_Cowardly"), getText("ContextMenu_SD_Normal"), getText("ContextMenu_SD_Brave"), getText("ContextMenu_SD_VeryBrave")}
 		local gunspawnrateCombo = self:addCombo(splitpoint, y, comboWidth, 20,getText("ContextMenu_SOption_SurvivorBravery"), options, 1)
 		gunspawnrateCombo:setToolTipMap({defaultTooltip = getText("ContextMenu_SOption_SurvivorBraveryDesc")});
@@ -843,6 +870,9 @@ if index then
 		self.gameOptions:add(gameOption)
 		
 		
+			y = y + spacing
+			y = y + spacing
+			y = y + spacing
 			y = y + spacing
 		
 		
@@ -981,37 +1011,13 @@ if index then
 			print("option changed to ".. tostring(box.selected))
 		end
 		self.gameOptions:add(gameOption)
-		
-		
-		y = y + spacing
-		
-		
-		
-		local options = {getText("ContextMenu_SD_Off"),getText("ContextMenu_SD_On")}
-		local DebugOptionsCombo = self:addCombo(splitpoint, y, comboWidth, 20, getText("ContextMenu_SOption_DebugOptions"), options, 1)
-		DebugOptionsCombo:setToolTipMap({defaultTooltip = getText("ContextMenu_SOption_DebugOptionsDesc")});
-		
-		gameOption = GameOption:new('DebugOptions', DebugOptionsCombo)
-		function gameOption.toUI(self)
-			local box = self.control
-			box.selected = SuperSurvivorGetOption("DebugOptions")
-		end
-		function gameOption.apply(self)
-			local box = self.control
-			if box.options[box.selected] then
-				SuperSurvivorSetOption("DebugOptions",box.selected)
-				print("setting survivor option")
-			else
-				print("error could not set survivor option")
-			end
-		end
-		function gameOption:onChange(box)
-			print("option changed to ".. tostring(box.selected))
-		end
-		self.gameOptions:add(gameOption)
+
 		
 		------hot keys-------
 		
+		y = y + spacing
+		y = y + spacing
+		y = y + spacing
 		y = y + spacing
 		
 		
@@ -1115,6 +1121,36 @@ if index then
 		self.gameOptions:add(gameOption)
 		
 		------hot keys------- END
+
+		y = y + spacing
+		y = y + spacing
+		y = y + spacing
+		y = y + spacing
+			
+		local options = {getText("ContextMenu_SD_Off"),getText("ContextMenu_SD_On")}
+		local DebugOptionsCombo = self:addCombo(splitpoint, y, comboWidth, 20, getText("ContextMenu_SOption_DebugOptions"), options, 1)
+		DebugOptionsCombo:setToolTipMap({defaultTooltip = getText("ContextMenu_SOption_DebugOptionsDesc")});
+		
+		gameOption = GameOption:new('DebugOptions', DebugOptionsCombo)
+		function gameOption.toUI(self)
+			local box = self.control
+			box.selected = SuperSurvivorGetOption("DebugOptions")
+		end
+		function gameOption.apply(self)
+			local box = self.control
+			if box.options[box.selected] then
+				SuperSurvivorSetOption("DebugOptions",box.selected)
+				print("setting survivor option")
+			else
+				print("error could not set survivor option")
+			end
+		end
+		function gameOption:onChange(box)
+			print("option changed to ".. tostring(box.selected))
+		end
+		self.gameOptions:add(gameOption)
+		
+		
 	
 		 self.addY = self.addY+MainOptions.translatorPane:getHeight()+22;
 

@@ -66,23 +66,27 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_SD_Brave = "Brave",
 	ContextMenu_SD_VeryBrave = "Very Brave",
 	
-	ContextMenu_SOption_AltSpawn = "Alternative NPC Hourly Spawning:"
+	ContextMenu_SOption_AltSpawn = "Alt Spawning - Groups:"
 	ContextMenu_SD_AltSpawnOff = "Off"
-	ContextMenu_SD_AltSpawnOn = "10% Chance to spawn up to 1 NPC group"
-	ContextMenu_SD_AltSpawnOn_05 = " 5% Chance to spawn up to 1 NPC group"
-	ContextMenu_SD_AltSpawnOn_20 = "20% Chance to spawn up to 2 NPC groups"
-	ContextMenu_SD_AltSpawnOn_30 = "30% Chance to spawn up to 3 NPC groups"
-	ContextMenu_SD_AltSpawnOn_40 = "40% Chance to spawn up to 4 NPC groups"
-	ContextMenu_SD_AltSpawnOn_50 = "50% Chance to spawn up to 5 NPC groups"
-	ContextMenu_SOption_AltSpawnDesc = "Alternative Spawning rolls dice each in game hour, and if it exceeds the % you set, it will spawn NPCs around the player. You can use this spawning method even if 'Survivor Spawn rate' is set to 'off', if you would rather passively see NPCs spawn around you. This spawning method is a bit less intensive to your FPS due to it not calculating where you are going on the map, but rather than in game time itself. (You can use both at the same time, do not feel afraid to exp. with it. You may be surprised!)"
-
+	ContextMenu_SD_UpTo1 = "Just 1 NPC group"
+	ContextMenu_SD_UpTo2 = "1 To 2 NPC groups"
+	ContextMenu_SD_UpTo3 = "1 To 3 NPC groups"
+	ContextMenu_SD_UpTo4 = "1 To 4 NPC groups"
+	ContextMenu_SD_UpTo5 = "1 To 5 NPC groups"
+	ContextMenu_SD_UpTo6 = "1 To 6 NPC groups"
+	ContextMenu_SOption_AltSpawnDesc = "Alt Spawning hourly is a new type of spawning method for NPCs to spawn. How many groups do you want to spawn around you every in game hour? 'Groups' will contain NPCs inside to spawn around you off screen every hour - (Determined by you in the other settings). You can use this spawning method along with 'NPC spawn rate', but effects may differ on performance. Turning this setting 'OFF' will turn off the other settings as well. Read the descriptions on the other Alt spawning options to know more. "
+	
 		ContextMenu_Debug_Character_Swap = "Debug: Character Swap",
 		ContextMenu_Debug_Infect&Murder_Character = "Debug: Infect&Murder Character",
 		ContextMenu_Debug_Character_Output = "Debug: Character Output",
 		ContextMenu_Debug_Unstuck = "Debug: Unstuck",
 		ContextMenu_Debug_Spawn_Soldier = "Debug: Spawn Soldier",
+	
+	ContextMenu_SOption_AltSpawnPercent = "Alt Spawning - Chance:"
+	ContextMenu_SOption_AltSpawnPercentDesc = "You can control the chance when a group(s) of NPCs spawn around you every hour by % chance. If your %chance dice surpass the random roll during an in game hour, groups of NPCs will spawn around you off screen."
+	
 
-	ContextMenu_Option_AltSpawnAmount = "Max Alt Spawn Group Size:"
+	ContextMenu_Option_AltSpawnAmount = "Alt Spawning - Group Size:"
 		ContextMenu_AltSpawnAmount_1 = "Only 1"
 		ContextMenu_AltSpawnAmount_2 = "Random from 1 to 2 max"
 		ContextMenu_AltSpawnAmount_3 = "Random from 1 to 3 max"
@@ -443,8 +447,8 @@ ContextMenu_SD_HelloWord14 = "How do you do?",
 		ContextMenu_SOption_SafeBaseDesc = "Wild Survivors will avoid your marked base",
 		ContextMenu_SOption_SurvivorBases = "Survivor Bases"
 		ContextMenu_SOption_SurvivorBasesDesc = "Wild Survivors will set up their own bases"
-		ContextMenu_SOption_DebugOptions = "Debug Options"
-		ContextMenu_SOption_DebugOptionsDesc = "Turns on debug right click survivor options"
+		ContextMenu_SOption_DebugOptions = "Debug Options - LAG WARNING IF IS TURNED ON: "
+		ContextMenu_SOption_DebugOptionsDesc = "Turns on ALOT of debugging information for the NPCs. Good for if you're wanting to see what's going on, but BE WARNED, keep this OFF if you do not want to see the NPCs spam tons of information. If you see others ask about this in the steam description, PLEASE let them know they have debug mode on, and to turn it off. If you want to test things, this would be the way to do it. CONSOLE.TXT, OPEN THAT TOO, THAT will give *EXTREME* details of nearly every variable the NPC has. CTRL+F 'Super Debug' to scan through the mess you're going to see. to SEE super debug console text? You're going to need to be 6 blocks near (roughly) an NPC to see what it's up to. (This will generate lag as well because it's writing alot, very quickly, so be prepared)"
 	
 	
 	ContextMenu_speech_DoNotTouchFood = "The food here is for members only. Do not touch it!",

@@ -432,6 +432,7 @@ function SuperSurvivorsLoadGridsquare(square)
 			local hoursSurvived = math.floor(getGameTime():getWorldAgeHours())			
 			if(SuperSurvivorSpawnRate ~= 0) and (ZombRand(SuperSurvivorSpawnRate + hoursSurvived) == 0) and (square:getZoneType() == "TownZone") and (not square:isSolid()) then
 				
+				-- NON ALT SPAWNING GROUPS
 				if(ZombRand(15) == 0) then -- spawn group
 					local hours = getGameTime():getWorldAgeHours()
 					local RaiderGroup = SSGM:newGroup()
@@ -1023,6 +1024,9 @@ function SuperSurvivorsNewSurvivorManager()
 				--else
 				--	getSpecificPlayer(0):Say("A custom survivor spawned!");
 				--end
+				
+				-- ALT SPAWNING SECTION -- 
+				-- SURVIVOR, NON RAIDER SPAWNING
 				local RaiderGroup = SSGM:newGroup()
 				local GroupSize = ZombRand(1,AltSpawnGroupSize)
 				
@@ -1061,7 +1065,8 @@ function SuperSurvivorsNewSurvivorManager()
 					
 					local number = ZombRand(1,3)
 					--setRandomSurvivorSuit(raider,"Rare","Bandit"..tostring(number))
-					getRandomSurvivorSuit(raider) -- Even if it says 'raider' it's not. 
+					
+					getRandomSurvivorSuit(raider) -- Even if it says 'raider' it's not giving raider outfits 
 				end
 				ChanceToSpawnWithGun = oldGunSpawnChance
 				RaiderGroup:AllSpokeTo()
@@ -1078,7 +1083,7 @@ function SuperSurSurvivorSpawnGenFivePercent()
 			SuperSurvivorsNewSurvivorManager()
 			print("SuperSurSurvivorSpawnGenTenPercent said yes.")
 	else
-		print("SuperSurSurvivorSpawnGenTenPercent said no. AlternativeSpawning was not 2")
+		print("SuperSurSurvivorSpawnGenTenPercent said no. AlternativeSpawning was not 1 ('2')")
 		return false
 	end
 end
@@ -1087,7 +1092,7 @@ function SuperSurSurvivorSpawnGenTenPercent()
 			SuperSurvivorsNewSurvivorManager()
 			print("SuperSurSurvivorSpawnGenTenPercent said yes.")
 	else
-		print("SuperSurSurvivorSpawnGenTenPercent said no. AlternativeSpawning was not 2")
+		print("SuperSurSurvivorSpawnGenTenPercent said no. AlternativeSpawning was not 2 ('3')")
 		return false
 	end
 end
@@ -1097,7 +1102,7 @@ function SuperSurSurvivorSpawnGenTwentyPercent()
 			SuperSurvivorsNewSurvivorManager()
 			print("SuperSurSurvivorSpawnGenTwentyPercent said yes.")
 	else
-		print("SuperSurSurvivorSpawnGenTwentyPercent said no. AlternativeSpawning was not 3")
+		print("SuperSurSurvivorSpawnGenTwentyPercent said no. AlternativeSpawning was not 3 ('4')")
 		return false
 	end
 end
@@ -1107,7 +1112,7 @@ function SuperSurSurvivorSpawnGenThirtyPercent()
 			SuperSurvivorsNewSurvivorManager()
 			print("SuperSurSurvivorSpawnGenThirtyPercent said yes.")
 	else
-		print("SuperSurSurvivorSpawnGenThirtyPercent said no. AlternativeSpawning was not 4")
+		print("SuperSurSurvivorSpawnGenThirtyPercent said no. AlternativeSpawning was not 4 ('5')")
 		return false
 	end
 end
@@ -1117,54 +1122,88 @@ function SuperSurSurvivorSpawnGenFourtyPercent()
 			SuperSurvivorsNewSurvivorManager()
 			print("SuperSurSurvivorSpawnGenFourtyPercent said yes.")
 	else
-		print("SuperSurSurvivorSpawnGenFourtyPercent said no. AlternativeSpawning was not 5")
+		print("SuperSurSurvivorSpawnGenFourtyPercent said no. AlternativeSpawning was not 5 ('6') ")
 		return false
 	end
 end
 	
 function SuperSurSurvivorSpawnGenFiftyPercent()
-	if (AlternativeSpawning == 7) and (ZombRand(10) > 5) then
+	if (AlternativeSpawning == 7) then
 			SuperSurvivorsNewSurvivorManager()
 			print("SuperSurSurvivorSpawnGenFiftyPercent said yes.")
 	else
-		print("SuperSurSurvivorSpawnGenFiftyPercent said no. AlternativeSpawning was not 6")
+		print("SuperSurSurvivorSpawnGenFiftyPercent said no. AlternativeSpawning was not 6 ('7') ")
 		return false
 	end
 end
 
 
--- Debug version
+-- Non Debug version, not merged
 --function SuperSurvivorDoRandomSpawns()
 --	local RealAlternativeSpawning = AlternativeSpawning - 1
 --	for i = RealAlternativeSpawning,1,-1 
---	do 														-- It will run through these only so many times depending on the options itself. Should reduce lag.
---		print("---------------- SuperSurvivorDoRandomSpawns() START  -----------------------")
---			if (AlternativeSpawning > ZombRand(12)) and (AlternativeSpawning == 2) then  print(tostring(i).." SuperSurSurvivorSpawnGenTenPercent(==true==)") 		SuperSurSurvivorSpawnGenTenPercent() 	else print(tostring(i).." SuperSurSurvivorSpawnGenTenPercent(=false=)") 		end
---			if (AlternativeSpawning > ZombRand(13)) and (AlternativeSpawning == 3) then  print(tostring(i).." SuperSurSurvivorSpawnGenTwentyPercent(==true==)") 	SuperSurSurvivorSpawnGenTwentyPercent() else print(tostring(i).." SuperSurSurvivorSpawnGenTwentyPercent(=false=)")		end
---			if (AlternativeSpawning > ZombRand(14)) and (AlternativeSpawning == 4) then  print(tostring(i).." SuperSurSurvivorSpawnGenThirtyPercent(==true==)") 	SuperSurSurvivorSpawnGenThirtyPercent() else print(tostring(i).." SuperSurSurvivorSpawnGenThirtyPercent(=false=)")		end
---			if (AlternativeSpawning > ZombRand(15)) and (AlternativeSpawning == 5) then  print(tostring(i).." SuperSurSurvivorSpawnGenFourtyPercent(==true==)") 	SuperSurSurvivorSpawnGenFourtyPercent() else print(tostring(i).." SuperSurSurvivorSpawnGenFourtyPercent(=false=)")		end
---			if (AlternativeSpawning > ZombRand(16)) and (AlternativeSpawning == 6) then  print(tostring(i).." SuperSurSurvivorSpawnGenFiftyPercent(==true==)") 		SuperSurSurvivorSpawnGenFiftyPercent()	else print(tostring(i).." SuperSurSurvivorSpawnGenFiftyPercent(=false=)")  		end			-- If 6, it would run 6 times now for the 'for i=AlternativeSpawning' 
---		print("---------------- SuperSurvivorDoRandomSpawns() FINISH -----------------------")
+--	do 
+--		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 2) then	SuperSurSurvivorSpawnGenFivePercent() 	end
+--		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 3) then	SuperSurSurvivorSpawnGenTenPercent() 	end
+--		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 4) then	SuperSurSurvivorSpawnGenTwentyPercent() end
+--		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 5) then	SuperSurSurvivorSpawnGenThirtyPercent() end
+--		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 6) then	SuperSurSurvivorSpawnGenFourtyPercent() end
+--		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 7) then	SuperSurSurvivorSpawnGenFiftyPercent()	end	
 --	end
 --end
--- NON debug version
+
+-- Debug version
 function SuperSurvivorDoRandomSpawns()
-	local RealAlternativeSpawning = AlternativeSpawning - 1
-	for i = RealAlternativeSpawning,1,-1 
-	do 
-		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 2) then	SuperSurSurvivorSpawnGenFivePercent() 	end
-		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 3) then	SuperSurSurvivorSpawnGenTenPercent() 	end
-		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 4) then	SuperSurSurvivorSpawnGenTwentyPercent() end
-		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 5) then	SuperSurSurvivorSpawnGenThirtyPercent() end
-		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 6) then	SuperSurSurvivorSpawnGenFourtyPercent() end
-		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 7) then	SuperSurSurvivorSpawnGenFiftyPercent()	end	
+	if (DebugOptions == true) then
+		local RealAlternativeSpawning = AlternativeSpawning - 1
+		for i = RealAlternativeSpawning,1,-1 
+		do 	-- It will run through these only so many times depending on the options itself. Should reduce lag.
+			print("---------------- SuperSurvivorDoRandomSpawns() START  -----------------------")
+				print("")
+				print("")
+				print("")
+				print("AltSpawnPercent			=	"..tostring(AltSpawnPercent))
+				print("i _________________ 	=	"..tostring(i))
+				print("")
+				print("This may not give true answers, it's testing ZombRand and how it works. To see if EVERY time it's called does it create a new one, EVEN in a For i = 1 do scenario. So don't fall for if it 'fails' or 'passes'. It's testing RANDOM. NOT to see if the values are themselves correct.")
+				print("")
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning >= 2) then  print("Testing a ZombRand AltSpawnPercent and (AlternativeSpawning >= 2) Pass: "..tostring(ZombRand(100))) else print("Testing a ZombRand AltSpawnPercent - 1 and (AlternativeSpawning >= 2) Fail: "..tostring(ZombRand(100)))   end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning >= 3) then  print("Testing a ZombRand AltSpawnPercent and (AlternativeSpawning >= 3) Pass: "..tostring(ZombRand(100))) else print("Testing a ZombRand AltSpawnPercent - 1 and (AlternativeSpawning >= 3) Fail: "..tostring(ZombRand(100)))   end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning >= 4) then  print("Testing a ZombRand AltSpawnPercent and (AlternativeSpawning >= 4) Pass: "..tostring(ZombRand(100))) else print("Testing a ZombRand AltSpawnPercent - 1 and (AlternativeSpawning >= 4) Fail: "..tostring(ZombRand(100)))   end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning >= 5) then  print("Testing a ZombRand AltSpawnPercent and (AlternativeSpawning >= 5) Pass: "..tostring(ZombRand(100))) else print("Testing a ZombRand AltSpawnPercent - 1 and (AlternativeSpawning >= 5) Fail: "..tostring(ZombRand(100)))   end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning >= 6) then  print("Testing a ZombRand AltSpawnPercent and (AlternativeSpawning >= 6) Pass: "..tostring(ZombRand(100))) else print("Testing a ZombRand AltSpawnPercent - 1 and (AlternativeSpawning >= 6) Fail: "..tostring(ZombRand(100)))   end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning >= 7) then  print("Testing a ZombRand AltSpawnPercent and (AlternativeSpawning >= 7) Pass: "..tostring(ZombRand(100))) else print("Testing a ZombRand AltSpawnPercent - 1 and (AlternativeSpawning >= 7) Fail: "..tostring(ZombRand(100)))   end
+				print("")
+				print("")
+				print("")
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 2) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFivePercent() 	(==true==)") 	SuperSurSurvivorSpawnGenFivePercent() 	else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFivePercent() 	(=false=)") end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 3) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTenPercent() 		(==true==)") 	SuperSurSurvivorSpawnGenTenPercent() 	else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTenPercent() 		(=false=)")	end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 4) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTwentyPercent() 	(==true==)") 	SuperSurSurvivorSpawnGenTwentyPercent() else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTwentyPercent() 	(=false=)")	end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 5) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenThirtyPercent() 	(==true==)") 	SuperSurSurvivorSpawnGenThirtyPercent() else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenThirtyPercent() 	(=false=)")	end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 6) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFourtyPercent() 	(==true==)") 	SuperSurSurvivorSpawnGenFourtyPercent() else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFourtyPercent() 	(=false=)") end			
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 7) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFiftyPercent()	(==true==)") 	SuperSurSurvivorSpawnGenFiftyPercent()	else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFiftyPercent()	(=false=)") end			
+				print("")
+				print("")
+				print("")
+			print("---------------- SuperSurvivorDoRandomSpawns() FINISH -----------------------")
+		end
+	else -- if (DebugOptions == false)
+		local RealAlternativeSpawning = AlternativeSpawning - 1
+		for i = RealAlternativeSpawning,1,-1 
+		do 
+			if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 2) then	SuperSurSurvivorSpawnGenFivePercent() 	end
+			if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 3) then	SuperSurSurvivorSpawnGenTenPercent() 	end
+			if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 4) then	SuperSurSurvivorSpawnGenTwentyPercent() end
+			if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 5) then	SuperSurSurvivorSpawnGenThirtyPercent() end
+			if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 6) then	SuperSurSurvivorSpawnGenFourtyPercent() end
+			if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 7) then	SuperSurSurvivorSpawnGenFiftyPercent()	end	
+		end
 	end
 end
+
 Events.EveryHours.Add(SuperSurvivorDoRandomSpawns);
---Events.EveryHours.Add(SuperSurSurvivorSpawnGenTwentyPercent);
---Events.EveryHours.Add(SuperSurSurvivorSpawnGenThirtyPercent);
---Events.EveryHours.Add(SuperSurSurvivorSpawnGenFourtyPercent);
---Events.EveryHours.Add(SuperSurSurvivorSpawnGenFiftyPercent);
+-- Yes the variables have 'percent' in the name, that's because before this version, I had made alt spawning work different.
+-- Do not be confused, the naming scheme means nothing here. 
 
 
 
@@ -1269,6 +1308,7 @@ function SuperSurvivorsRaiderManager()
 			else
 				getSpecificPlayer(0):Say(getText("ContextMenu_SD_WhatWasThatSound"));
 			end
+			-- RAIDER GROUPS
 			local RaiderGroup = SSGM:newGroup()
 			local GroupSize = ZombRand(1,hisGroup:getMemberCount()) + math.floor(hours/(24*30))
 			if (GroupSize > 10) then GroupSize = 10

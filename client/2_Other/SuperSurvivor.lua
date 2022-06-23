@@ -570,7 +570,7 @@ function SuperSurvivor:spawnPlayer(square, isFemale)
 	Buddy:getModData().AIMode = "Random Solo"
 	
 	ISTimedActionQueue.clear(Buddy)
-	
+	-- Note todo: Option to hide display names
 	local namePrefix = ""
 	local namePrefixAfter = ""
 	if(Buddy:getPerkLevel(Perks.FromString("Doctor")) >= 3) then 
