@@ -45,4 +45,12 @@ Update 14 Experimental - Upload 4
 - Carefully updated Task_IsPursue_SC() function. Now it will let any NPC scan for humans, but as long as it doesn't have a target and along with several other if's.
 Basically what this means is, the NPCs will have a small radius sense around them to know when there's another hostile around them. (does it always work? Mostly)
 But generally this is meant for hostile NPCs the most. This way if a NPC gets behind another while an attack happens, the npc can turn around. to simulate that they know that there was just previously a fight going on, and then continue the fight.
+.
+.
+.
+
+Update 14 Experimental - Upload 5
+- NPCs that are your companions, should now follow you more often. HOWEVER, you will notice they will try to run away, but they won't go too far away. If they go outside roughly 10 blocks away, they'll return back to you. 
+
+
 
