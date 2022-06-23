@@ -27,18 +27,6 @@ ContextMenu_EN = {
     ContextMenu_Job_Doctor = "Doctor",
     --[[END Jobs]]--
 
-    --[[In Game Menu thing]]--
-    ContextMenu_SD_AidCheck = "Medical / First Aid Check",
-    ContextMenu_SD_AidCheckDesc = "Walk to this survivor and medical check him, if they move the process can be interupted",
-    ContextMenu_SD_SetName = "Change Name",
-    ContextMenu_SD_AddClothing = "'s Clothing",
-    ContextMenu_SD_RemoveClothing = "Remove Clothing",
-    ContextMenu_UndressingClothes = "*Undressing*",
-    
-    ContextMenu_SD_RulesOfEngagement = "Rules of Engagement",
-        ContextMenu_SD_AttackAnyoneOnSight = "Attack Anyone On Sight",
-        ContextMenu_SD_AttackHostilesOnSight = "Attack Hostiles On Sight",
-    --[[END In Game Menu thing]]--
 
     --[[Orders]]--
     ContextMenu_SD_OrderAll = "Order All ",
@@ -299,8 +287,26 @@ ContextMenu_EN = {
     --[END Hotkeys]--
     --[[END OPTIONS]]--
     
-    --[[Actions WITH Survivors]]--
-	ContextMenu_SD_SurvivorInfoName_Before = "Survivor ",
+    --[[DEBUG]]--
+    ContextMenu_Debug_Character_Swap = "Debug: Character Swap",
+    ContextMenu_Debug_Infect&Murder_Character = "Debug: Infect&Murder Character",
+    ContextMenu_Debug_Character_Output = "Debug: Character Output",
+    ContextMenu_Debug_Unstuck = "Debug: Unstuck",
+    ContextMenu_Debug_Spawn_Soldier = "Debug: Spawn Soldier",
+    ContextMenu_SD_Debug_PlayerStats = "Debug: Change Player Info",
+
+    
+    --[[In Game Menu thing]]--
+    ContextMenu_SD_AidCheck = "Medical / First Aid Check",
+    ContextMenu_SD_AidCheckDesc = "Walk to this survivor and medical check him, if they move the process can be interupted",
+    ContextMenu_SD_SetName = "Change Name",
+    ContextMenu_SD_AddClothing = "'s Clothing",
+    ContextMenu_SD_RemoveClothing = "Remove Clothing",
+    
+    ContextMenu_SD_ViewSurvivorInfo = "View Survivor Info",
+    ContextMenu_SD_ViewSurvivorInfoDesc = "Shows information on this survivor such as perk levels, stats, etc.",
+    ContextMenu_SD_SurvivorInfo = "Survivor Info",
+    ContextMenu_SD_SurvivorInfoName_Before = "Survivor ",
 	ContextMenu_SD_SurvivorInfoName_After = "'s Information: ",
     ContextMenu_SD_CallToArms = "Call to Arms",
     
@@ -323,28 +329,38 @@ ContextMenu_EN = {
     ContextMenu_SD_UseMeleDesc = "Ask Survivor to use his Mele Weapon",
     ContextMenu_SD_UseGun = "Use Gun Weapon",
     ContextMenu_SD_UseGunDesc = "Ask Survivor to use his Gun Weapon",
+    
+    ContextMenu_SD_GiveGun = "Give Your Gun to Survivor",
+    ContextMenu_SD_GiveWeapon = "Give Your Mele Weapon to Survivor" ,
+
+    ContextMenu_SD_SwapGuns = "Swap Guns with Survivor",
+	ContextMenu_SD_SwapWeapons = "Swap Mele Weapons with Survivor" ,
+
+    ContextMenu_SD_RulesOfEngagement = "Rules of Engagement",
+        ContextMenu_SD_AttackAnyoneOnSight = "Attack Anyone On Sight",
+        ContextMenu_SD_AttackHostilesOnSight = "Attack Hostiles On Sight",
     --idk where to put it-- 
     ContextMenu_SD_SurvivorOptions = "Survivor Options",
-    --[[END Actions WITH Survivors]]--
+    --[[END In Game Menu thing]]--
 
-    --[[Actions outcome]]--
-
+	
+    --[[Player interaction with NPC's]]--
 	ContextMenu_SD_CallName_Before = "",
 	ContextMenu_SD_CallName_After = "! Come here!",
-    --[[END Actions outcome]]--
+    ContextMenu_SD_YouWantToJoin = "Want to join my group?",
+	ContextMenu_SD_WantSomeFood = "Want some Food?",
+	ContextMenu_SD_YouWantWater = "Want some Water?",
+	ContextMenu_SD_YouWantAmmo = "Want some Ammo?",
+	ContextMenu_SD_TakeMyWeapon = "Here take my weapon",
+	ContextMenu_SD_CanIJoin = "Can I Join your group?",
+	ContextMenu_SD_TakeArmor = "Here take this armor",
+	ContextMenu_SD_Nothing = "Nothing",
+	ContextMenu_SD_EveryOneUseMele = "Everyone use mele weapons!",
+	ContextMenu_SD_EveryOneUseGun = "Everyone use gun weapons!",
+    --[[END Player interaction with NPC's]]--
 
-	ContextMenu_SD_WeLooting = "we doing some scavenging?",
-	ContextMenu_SD_WeBackToBase= "Goot to be back",
-	ContextMenu_SD_LeaveGroupHungry = "Forget you guys I'm going to find some food",
-	ContextMenu_SD_LeaveBCHungry = "Forget this I'm going to find some food",
-	ContextMenu_SD_NoFindItem_Before = "doesnt seem to be any ",
-	ContextMenu_SD_NoFindItem_After = " around here",
-	ContextMenu_SD_LookForItem_Before = "Going to look for ",
-	ContextMenu_SD_LookForItem_After = "",
-	ContextMenu_SD_ComeWithMe_Before = "",
-	ContextMenu_SD_ComeWithMe_After = ", come with me!",	
 	
-    --[[Survivors OWN actions]]--
+    --[[Survivors Actions]]--
 	ContextMenu_SD_EatFood_Before = "Eats ",
 	ContextMenu_SD_EatFood_After = "",
 	ContextMenu_SD_EquipsArmor_Before = "*Equips ",
@@ -359,16 +375,24 @@ ContextMenu_EN = {
 	ContextMenu_SD_TakesFromCont_After = " from Container*",
 	ContextMenu_SD_Drinking = "Drinking..",
 	ContextMenu_SD_EquipsArmor = "Equips Armor",
-
     ContextMenu_SD_TakesItemFromGround_Before = "Takes ",
 	ContextMenu_SD_TakesItemFromGround_After = " from ground",
 	ContextMenu_SD_BandageBP_Before = "Bandaging ",
 	ContextMenu_SD_BandageBP_After = "",
-	--[[END Survivors OWN actions]]--
+    ContextMenu_UndressingClothes = "*Undressing*",
+    ContextMenu_SD_PickUpCorpse = "*Takes Corpse from ground*",
+    ContextMenu_SD_Resting = "Resting...",
+    ContextMenu_SD_DoctorSplint = "*Applying Splint...*",
+	ContextMenu_SD_DoctorBandageRemove = "*Removing Bandage...*",
+	ContextMenu_SD_DoctorStitches = "*Applying Stitches*",
+	ContextMenu_SD_DoctorGlass = "*Removing Glass...*",
+	ContextMenu_SD_DoctorBullet = "*Removing Bullet...*",
+	ContextMenu_SD_DoctorBandage = "*Applying Bandage...*",
+	--[[END Survivors Actions]]--
     
-	ContextMenu_SD_HeyYou = "Hey you!",
+    --[[Survivors Interactions]]--
+    ContextMenu_SD_HeyYou = "Hey you!",
 	ContextMenu_SD_Bye1 = "Bye...",
-	ContextMenu_SD_SurvivorInfo = "Survivor Info",
 	ContextMenu_SD_HiThere = "Hi there",
 	ContextMenu_SD_HelloThere = "Hello there!",
 	ContextMenu_SD_HelloWord1 = "What are you thinking?",
@@ -385,23 +409,13 @@ ContextMenu_EN = {
     ContextMenu_SD_HelloWord12 = "What would you like to say about your current situation?",
     ContextMenu_SD_HelloWord13 = "Do you want something?", 
     ContextMenu_SD_HelloWord14 = "How do you do?", 
-	
-	ContextMenu_SD_WhatYouWant = "Yeah? What do you want?",
+    ContextMenu_SD_WhatYouWant = "Yeah? What do you want?",
 	ContextMenu_SD_NotInBuilding = "we are not in a building",
 	ContextMenu_SD_CantCarryMore = "I can't carry anymore",
-	ContextMenu_SD_PickUpCorpse = "*Takes Corpse from ground*",
-	ContextMenu_SD_WhereHeGo = "hmm where did he go?",
+    ContextMenu_SD_WhereHeGo = "hmm where did he go?",
 	ContextMenu_SD_WhoSaidThat = "Who's there? Who said that?",
 	ContextMenu_SD_OverHere = "Hey! Over here!",
-	--prefixes--
-	ContextMenu_SD_DoctorPrefix_Before = "Doctor ",
-	ContextMenu_SD_DoctorPrefix_After = "",
-	ContextMenu_SD_VeteranPrefix_Before = "Veteran ",
-	ContextMenu_SD_VeteranPrefix_After = "",
-	ContextMenu_SD_FarmerPrefix_Before = "Farmer ",
-	ContextMenu_SD_FarmerPrefix_After = "",
-	
-	ContextMenu_SD_RainingGoInside = "It's raining. Better get inside",
+    ContextMenu_SD_RainingGoInside = "It's raining. Better get inside",
 	ContextMenu_SD_IGoRelax = "Guess I'll relax for a bit",
 	ContextMenu_SD_IGoGetWood = "Guess I'll go gather some wood",
 	ContextMenu_SD_IGoPileCorpse = "Guess I'll go pile some corpses",
@@ -411,57 +425,58 @@ ContextMenu_EN = {
 	ContextMenu_SD_IGoGuard = "Guess I'll get back to Guarding",
 	ContextMenu_SD_IGoBackBase = "Guess I'll get back to base",
 	ContextMenu_SD_NoWoodHere = "No Wood around here",
-	
-	
-	ContextMenu_SD_Resting = "Resting...",
-	ContextMenu_SD_NoAxeNoChopWood = "no axe anywhere, giving up chopping wood",
+    ContextMenu_SD_NoAxeNoChopWood = "no axe anywhere, giving up chopping wood",
 	ContextMenu_SD_NoTrees = "No Trees around here",
-	
-	ContextMenu_SD_RIPSurvivor = "R.I.P my friend",
+    ContextMenu_SD_RIPSurvivor = "R.I.P my friend",
 	ContextMenu_SD_DoctorDone = "Good as new! Take it easy now!",
-	ContextMenu_SD_DoctorSplint = "*Applying Splint...*",
-	ContextMenu_SD_DoctorBandageRemove = "*Removing Bandage...*",
-	ContextMenu_SD_DoctorStitches = "*Applying Stitches*",
-	ContextMenu_SD_DoctorGlass = "*Removing Glass...*",
-	ContextMenu_SD_DoctorBullet = "*Removing Bullet...*",
-	ContextMenu_SD_DoctorBandage = "*Applying Bandage...*",
-	ContextMenu_SD_HoldStill = "Hold still please...",
+    ContextMenu_SD_HoldStill = "Hold still please...",
+	ContextMenu_SD_WeLooting = "we doing some scavenging?",
+	ContextMenu_SD_WeBackToBase= "Goot to be back",
+	ContextMenu_SD_LeaveGroupHungry = "Forget you guys I'm going to find some food",
+	ContextMenu_SD_LeaveBCHungry = "Forget this I'm going to find some food",
+	ContextMenu_SD_NoFindItem_Before = "doesnt seem to be any ",
+	ContextMenu_SD_NoFindItem_After = " around here",
+	ContextMenu_SD_LookForItem_Before = "Going to look for ",
+	ContextMenu_SD_LookForItem_After = "",
+	ContextMenu_SD_ComeWithMe_Before = "",
+	ContextMenu_SD_ComeWithMe_After = ", come with me!",	
+    ContextMenu_SD_IGotABadFeeling = "I got a bad feeling.",
+	ContextMenu_SD_WhatWasThatSound = "What was that sound!?",
+	ContextMenu_SD_IAttackFoodThief = "That's it! Get out of here!",
+	ContextMenu_SD_IWarnFoodThief = "Hey you! stop stealing our food or else!!",
+    --[[END Survivors Interactions]]--
 	
-	ContextMenu_SD_YouWantToJoin = "Want to join my group?",
-	ContextMenu_SD_WantSomeFood = "Want some Food?",
-	ContextMenu_SD_YouWantWater = "Want some Water?",
-	ContextMenu_SD_YouWantAmmo = "Want some Ammo?",
-	ContextMenu_SD_TakeMyWeapon = "Here take my weapon",
-	ContextMenu_SD_CanIJoin = "Can I Join your group?",
-	ContextMenu_SD_Random_OutOfAmmo4 = "No more Ammo!",
-	ContextMenu_SD_TakeArmor = "Here take this armor",
-	ContextMenu_SD_Nothing = "Nothing",
-	ContextMenu_SD_GiveGun = "Give Your Gun to Survivor",
-	ContextMenu_SD_GiveWeapon = "Give Your Mele Weapon to Survivor" ,
-	ContextMenu_SD_SwapGuns = "Swap Guns with Survivor",
-	ContextMenu_SD_SwapWeapons = "Swap Mele Weapons with Survivor" ,
-	ContextMenu_SD_EveryOneUseMele = "Everyone use mele weapons!",
-	ContextMenu_SD_EveryOneUseGun = "Everyone use gun weapons!",
-	ContextMenu_SD_ViewSurvivorInfo = "View Survivor Info",
-	ContextMenu_SD_ViewSurvivorInfoDesc = "Shows information on this survivor such as perk levels, stats, etc.",
-	ContextMenu_SD_ROESet = "Rules of Engagement has been set",
+
+    --notifications
+    ContextMenu_SD_PerkLeveledUp_Before = "*"	
+	ContextMenu_SD_PerkLeveledUp_After = " Perk Leveled Up!*"
+    ContextMenu_SD_ROESet = "Rules of Engagement has been set",    
+
+	--prefixes--
+	ContextMenu_SD_DoctorPrefix_Before = "Doctor ",
+	ContextMenu_SD_DoctorPrefix_After = "",
+	ContextMenu_SD_VeteranPrefix_Before = "Veteran ",
+	ContextMenu_SD_VeteranPrefix_After = "",
+	ContextMenu_SD_FarmerPrefix_Before = "Farmer ",
+	ContextMenu_SD_FarmerPrefix_After = "",
+	
    
-    --[[PVP message]]-- 
+    --PVP message-- 
 	ContextMenu_SD_PVPDisabled = "PVP Disabled",
 	ContextMenu_SD_PVPEnabled = "PVP Enabled",
 	ContextMenu_SD_PVPForced = "PVP Forced On!",	
-    --[[END PVP message]]--
 
-	--[[Area work]]--
+
+	--Area work--
 	ContextMenu_SD_SetAreaConfirm = "Set",
 	ContextMenu_SD_SetAreaCancel = "Cancel",
 	ContextMenu_SD_SetAreaClear = "Clear",
 	ContextMenu_SD_SetAreaSelect = "Select Area",
 	ContextMenu_SD_SetAreaSelectDesc = "Select an area on the map by holding left click and dragging your mouse around to select an area.  Once area is selected options to use selected area will be available such as declairing your base territory.",
 	ContextMenu_SD_AreaSelecting = "Area Selecting",
-	--[[END Area work]]--
 	
-	--[[Area Types]]--
+
+	--Area Types--
 	ContextMenu_SD_BaseArea = "Base Area",
 	ContextMenu_SD_ChopTreeArea = "Chop Trees Area",
 	ContextMenu_SD_TakeCorpseArea = "Take Corpses Area",
@@ -475,14 +490,9 @@ ContextMenu_EN = {
 	ContextMenu_SD_FarmingArea = "The Farming / Crops Area",
 	ContextMenu_SD_ForageArea = "Foraging Area",
 	ContextMenu_SD_GuardArea = "Guard Area",
-	--[[END Area Types]]--
 	
-
-    --[[
-            THAT IS GOOD
-        ]]--
-
-	ContextMenu_speech_Foraging = "*Foraging..."
+    --[[speeches]]
+    ContextMenu_speech_Foraging = "*Foraging..."
 	ContextMenu_speech_FarmingActionPlanting = "*Planting seeds...*"
 	ContextMenu_speech_FarmingActionHarvesting = "*Harvesting...*"
 	ContextMenu_speech_FarmingActionWatering = "*Watering...*"
@@ -497,6 +507,7 @@ ContextMenu_EN = {
 	ContextMenu_speech_FollowMeToHilltop = "I know a safe place, follow me if you want.",
 
 
+    ContextMenu_speech_WifeIntro1 = "What are we going to do darling?!",
 	ContextMenu_speech_WifeSpeech1 = "Darling?",
     ContextMenu_speech_WifeSpeech2 = "What are we going to do darling?",
     ContextMenu_speech_WifeSpeech3 = "Should we go find a safer place for now?",
@@ -508,8 +519,7 @@ ContextMenu_EN = {
 	ContextMenu_OutOfAmmo2 = "I'm out of Ammo!",
 	ContextMenu_OutOfAmmo3 = "I'm Out",
 	ContextMenu_OutOfAmmo4 = "No more Ammo!",
-
-
+    ContextMenu_SD_Random_OutOfAmmo4 = "No more Ammo!",
     ContextMenu_speech_OutOfAmmo1 = "Out of Ammo!",
     ContextMenu_speech_OutOfAmmo2 = "I'm out of Ammo!",
     ContextMenu_speech_OutOfAmmo3 = "I'm Out",
@@ -518,12 +528,7 @@ ContextMenu_EN = {
 
     ContextMenu_speech_HowDareYou1 = "How dare you!",
 
-
-    ContextMenu_speech_WifeIntro1 = "What are we going to do darling?!",
-
-
     ContextMenu_speech_IDontKnowHowDoctor1 = "I don't know how to be a doctor.",
-   
 
     ContextMenu_speech_IfYouThinkSo1 = "If you think that's best. Fine then.",
     ContextMenu_speech_IfYouThinkSo2 = "If you think that's best.",
@@ -2182,21 +2187,5 @@ ContextMenu_Namb159 = "Leo",
 ContextMenu_Namb160 = "Archie"
     --[[END Names]]--
 
---[[DEBUG]]--
-ContextMenu_Debug_Character_Swap = "Debug: Character Swap",
-ContextMenu_Debug_Infect&Murder_Character = "Debug: Infect&Murder Character",
-ContextMenu_Debug_Character_Output = "Debug: Character Output",
-ContextMenu_Debug_Unstuck = "Debug: Unstuck",
-ContextMenu_Debug_Spawn_Soldier = "Debug: Spawn Soldier",
-ContextMenu_SD_Debug_PlayerStats = "Debug: Change Player Info",
 
-
---[[IDK where to stick this]]--
-ContextMenu_SD_IGotABadFeeling = "I got a bad feeling.",
-	ContextMenu_SD_WhatWasThatSound = "What was that sound!?",
-	ContextMenu_SD_IAttackFoodThief = "That's it! Get out of here!",
-	ContextMenu_SD_IWarnFoodThief = "Hey you! stop stealing our food or else!!",
-
-    ContextMenu_SD_PerkLeveledUp_Before = "*"	
-	ContextMenu_SD_PerkLeveledUp_After = " Perk Leveled Up!*"
 }
