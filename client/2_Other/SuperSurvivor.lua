@@ -2116,8 +2116,9 @@ end
 	-- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
 function SuperSurvivor:Task_IsPursue_SC()
 	
---	if (self.player:getModData().isRobber == true) and (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
-	if (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
+--	if (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
+	-- That way the Bandits chasing the other humans don't ignore zeds, or shouldn't anyways.
+	if (self.player:getModData().isRobber == true) and (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
 	
 		-- All this does is find the closest enemy that's nearby
 		-- To make sure the scan doesn't spam during this time.
