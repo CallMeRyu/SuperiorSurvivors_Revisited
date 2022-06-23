@@ -2104,7 +2104,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 
 --	if (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
 	-- That way the Bandits chasing the other humans don't ignore zeds, or shouldn't anyways.
-	if (self.player:getModData().isRobber == true) and (not instanceof(self.LastEnemeySeen,"IsoZombie")) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
+	if (self.player:getModData().isRobber == true) or (self.player:getModData().isHostile == true) and (not instanceof(self.LastEnemeySeen,"IsoZombie")) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
 	
 		-- All this does is find the closest enemy that's nearby
 		-- To make sure the scan doesn't spam during this time.
@@ -2117,10 +2117,10 @@ function SuperSurvivor:Task_IsPursue_SC()
 	
 	
 			-- How far you want the NPCs to sense their hostiles near them
-			local zRangeToPursue = 3 -- If the NPC and the NPC's Target is inside (default)
+			local zRangeToPursue = 4 -- If the NPC and the NPC's Target is inside (default)
 	
 			if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true) then -- NPC's Target AND the NPC itself are Both Outside
-				zRangeToPursue = 5
+				zRangeToPursue = 7
 			end
 			if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true) then -- NPC's Target Is Inside | NPC itself Is Outside
 				return false
