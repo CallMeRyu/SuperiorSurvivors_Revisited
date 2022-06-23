@@ -58,3 +58,12 @@ Time to get some sleep =P
 Notes to do
 - Make the alt spawning obey the 'chance to spawn hostile' rules
 - 
+
+Update 14 Experimental - Upload 6
+- Updated Options menu, it's now a lot easier to read
+- Updated Alt spawning: You now can choose 0% to 100% chance for alt spawning to take effect each hour
+
+
+Update 14 Experimental - Upload 7
+- More work towards NPCs tasks when they're the companion role (To following the main player) so they don't run away
+- More work into making the NPCs to enforce walking 
