@@ -36,7 +36,9 @@ Update 14 Experimental - Upload 3.
 
 
 Update 14 Experimental - Upload 4
-- Unless you have Debug mode on (the in game option) you can no longer spawn an NPC while pressing 6 key. [THANKS TO NIGHTSCALE FOR FINDING THIS]
+- Unless you have Debug mode on (the in game option) you can no longer spawn an NPC while pressing 6 key. 
+[THANKS TO NIGHTSCALE FOR FINDING THIS]
+
 - Debug mode in the options actually will turn on the debug features.
 - Marked off some of the "print()" functions, it may not seem like much, but enough of them running at once will start adding lag. So, removed some leftovers from the previous modders.
 
