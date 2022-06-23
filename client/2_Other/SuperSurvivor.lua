@@ -2020,52 +2020,38 @@ end
 function SuperSurvivor:Task_IsNotAttack()
 	if (self:getTaskManager():getCurrentTask() ~= "Attack") then
 		return true
-	else
-		return false
 	end
 end
 function SuperSurvivor:Task_IsNotThreaten()
 	if (self:getTaskManager():getCurrentTask() ~= "Threaten") then
 		self:DebugSay("Task_IsNotThreaten Is 'True'")
 		return true
-	else
-		return false
 	end
 end
 function SuperSurvivor:Task_IsNotSurender()
 	if (self:getTaskManager():getCurrentTask() ~= "Surender") then
 		return true
-	else
-		return false
 	end
 end
 function SuperSurvivor:Task_IsNotDoctor()
 	if (self:getTaskManager():getCurrentTask() ~= "Doctor") then
 		return true
-	else
-		return false
 	end
 end
 function SuperSurvivor:Task_IsNotWander()
 	if (self:getTaskManager():getCurrentTask() ~= "Wander") then
 		return true
-	else
-		return false
 	end
 end
 function SuperSurvivor:Task_IsNotPursue()
 	if (self:getTaskManager():getCurrentTask() ~= "Pursue") then
 		self:DebugSay("Task_IsNotPursue Is 'True'")
 		return true
-	else
-		return false
 	end
 end
 function SuperSurvivor:Task_IsNotAttemptEntryIntoBuilding()
 	if (self:getTaskManager():getCurrentTask() ~= "Enter New Building") then
 		return true
-	else	
-		return false
 	end
 end
 
@@ -2115,10 +2101,10 @@ end
 	
 	-- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
 function SuperSurvivor:Task_IsPursue_SC()
-	
+
 --	if (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
 	-- That way the Bandits chasing the other humans don't ignore zeds, or shouldn't anyways.
-	if (self.player:getModData().isRobber == true) and (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
+	if (self.player:getModData().isRobber == true) and (not instanceof(self.LastEnemeySeen,"IsoZombie")) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
 	
 		-- All this does is find the closest enemy that's nearby
 		-- To make sure the scan doesn't spam during this time.
