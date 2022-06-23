@@ -51,6 +51,9 @@ But generally this is meant for hostile NPCs the most. This way if a NPC gets be
 
 Update 14 Experimental - Upload 5
 - NPCs that are your companions, should now follow you more often. HOWEVER, you will notice they will try to run away, but they won't go too far away. If they go outside roughly 10 blocks away, they'll return back to you. 
+- Alt spawning update: You now will also be able to spawn a group and the % seperatly. Right now the localization text isn't correct, it will still say 'group and %' but it really is saying 'ONLY groups'. 
+
+Time to get some sleep =P
 
 
 
