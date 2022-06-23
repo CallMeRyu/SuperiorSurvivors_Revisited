@@ -55,5 +55,6 @@ Update 14 Experimental - Upload 5
 
 Time to get some sleep =P
 
-
-
+Notes to do
+- Make the alt spawning obey the 'chance to spawn hostile' rules
+- 
