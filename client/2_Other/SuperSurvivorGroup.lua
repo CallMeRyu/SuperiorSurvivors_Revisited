@@ -357,7 +357,7 @@ function SuperSurvivorGroup:addMember(newSurvivor, Role)
 	--if(newSurvivor:getGroupID() == self.ID) then return false end
 	if(Role == nil) then Role = "Worker" end
 	if(newSurvivor ~= nil) and (not has_value(self.Members, newSurvivor:getID())) then 	
-		print("adding new survivor "..tostring(newSurvivor:getName()).." to group "..tostring(self.ID) .. " role:" .. tostring(Role))
+	--	print("adding new survivor "..tostring(newSurvivor:getName()).." to group "..tostring(self.ID) .. " role:" .. tostring(Role))
 		table.insert(self.Members, newSurvivor:getID())
 		
 		newSurvivor:setGroupRole(Role)
@@ -376,7 +376,7 @@ end
 function SuperSurvivorGroup:checkMember(newSurvivorID)
 	
 	if(newSurvivorID ~= nil) and (not has_value(self.Members,newSurvivorID)) then 	
-		print("adding checked survivor"..newSurvivorID.." to group"..tostring(self.ID))
+	--	print("adding checked survivor"..newSurvivorID.." to group"..tostring(self.ID))
 		table.insert(self.Members,newSurvivorID)		
 	end
 	
@@ -394,17 +394,17 @@ function SuperSurvivorGroup:removeMember(ID)
 				table.remove(self.Members,i) 
 			end
 		end
-		print("remove success")
+	--	print("remove success")
 		self:Print()
 	else
-		print("remove failed")
+	--	print("remove failed")
 	end
 	
 end
 
 function SuperSurvivorGroup:stealingDetected(thief)
 	
-	print("inside stealing detected!")
+--	print("inside stealing detected!")
 	for i=1,#self.Members do	
 		local workingID = self.Members[i]
 		local workingSS = SSM:Get(workingID)

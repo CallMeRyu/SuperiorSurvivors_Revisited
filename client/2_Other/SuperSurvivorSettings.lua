@@ -1,7 +1,6 @@
 --- use the options menu in main menu: options are not here anymore!
 
 GFollowDistance = 5
-DebugSayEnabled = false
+DebugSayEnabled = DebugOptions
 SpeakEnabled = true
-PVPDefault = false 	-- 
-
+PVPDefault = false

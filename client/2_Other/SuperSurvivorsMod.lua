@@ -671,14 +671,16 @@ function supersurvivortemp(keyNum)
 		--getSpecificPlayer(0):Say(tostring(keyNum))
 	
 		
-		if( keyNum == getCore():getKey("Spawn Wild Survivor")) then 
+		if( keyNum == getCore():getKey("Spawn Wild Survivor")) then -- the 6 key 
+		--SuperSurvivorsRaiderManager()
 		
-			--SuperSurvivorsRaiderManager()
-		
+		if DebugOptions == true then -- This should prevent the infamous 6 key spawning
 			local ss = SuperSurvivorRandomSpawn(getSpecificPlayer(0):getCurrentSquare())
-			--for i=1, 4 do ss:Get():LevelPerk(Perks.FromString("Farming")) end
-			--ss:setAIMode("FollowRoute")
-			--ss:getTaskManager():AddToTop(FollowRouteTask:new(ss,"WPToHilltop"))
+		end	
+			
+		--for i=1, 4 do ss:Get():LevelPerk(Perks.FromString("Farming")) end
+		--ss:setAIMode("FollowRoute")
+		--ss:getTaskManager():AddToTop(FollowRouteTask:new(ss,"WPToHilltop"))
 		
 		elseif( keyNum == 46) then -- c key
 		

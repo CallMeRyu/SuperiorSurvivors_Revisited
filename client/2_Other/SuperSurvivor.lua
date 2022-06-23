@@ -960,9 +960,10 @@ function SuperSurvivor:getBuildingExplored(building)
 end
 
 function SuperSurvivor:DebugSay(text) 
-	local TurnOnDebugText = 0	-- As you can tell, set this to 1 if you want debugText on. Easiest method.
+	-- Now, the In game DebugOptions will now effect this.
+	local TurnOnDebugText = DebugOptions
 
-	if(DebugSayEnabled == true and self.DebugMode == true) or (TurnOnDebugText == 1) then
+	if(DebugSayEnabled == true and self.DebugMode == true) or (TurnOnDebugText == true) then
 
 		if (getDistanceBetween(getSpecificPlayer(0),self.player) < 6) then -- if far enough away from player, don't do anything
 		
@@ -1935,15 +1936,17 @@ function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
 	local Enemy_Is_a_Human = (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
 	local Weapon_HandGun = self.player:getPrimaryHandItem()
-	local NPCsDangerSeen = self:getDangerSeenCount()
+	local NPCsDangerSeen = self:getDangerSeenCount()	
 	
 	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready. 
 	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))  then	
 		self:NPCTask_Clear()
 		self:NPCTask_DoFlee()
 		self:NPCTask_DoFleeFromHere()
+		self:NPC_ShouldRunOrWalk()
 		return true
 	end
+	return true
 end
 
 -- Function List for checking specific scenarios of NPC tasks
@@ -2099,34 +2102,36 @@ function SuperSurvivor:NPC_IsNPCsEnemyHuman()
 end
 
 	
-	-- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
+-- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
 function SuperSurvivor:Task_IsPursue_SC()
 
 --	if (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
 	-- That way the Bandits chasing the other humans don't ignore zeds, or shouldn't anyways.
-	if (self.player:getModData().isRobber == true) or (self.player:getModData().isHostile == true) and (not instanceof(self.LastEnemeySeen,"IsoZombie")) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
+--	if (self.player:getModData().isRobber == true) or (self.player:getModData().isHostile == true) and (not instanceof(self.LastEnemeySeen,"IsoZombie")) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
 	
-		-- All this does is find the closest enemy that's nearby
-		-- To make sure the scan doesn't spam during this time.
-		-- If the npc is, then force wander
-		if (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) then
-			self:DoHumanEntityScan()
+		-- Enforces scan for humans nearby. Only when not stuck in front of blocked off door, AND if there isn't already an enemy in the way.
+		-- Otherwise, there will be lots of loop issues and lag.
+		-- Added extra If conditions to keep from checking entityscan
+		if (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
+			if (self.LastEnemeySeen == nil) then
+				self:DoHumanEntityScan()
+			end
 		end
 		
 		if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) then
 	
 	
 			-- How far you want the NPCs to sense their hostiles near them
-			local zRangeToPursue = 4 -- If the NPC and the NPC's Target is inside (default)
+			local zRangeToPursue = 5 -- If the NPC and the NPC's Target is inside (default)
 	
 			if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true) then -- NPC's Target AND the NPC itself are Both Outside
 				zRangeToPursue = 7
 			end
 			if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true) then -- NPC's Target Is Inside | NPC itself Is Outside
-				return false
+				zRangeToPursue = 3
 			end		
 			if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == false) then -- NPC's Target Is Outside | NPC itself Is Inside
-				return false
+				zRangeToPursue = 3
 			end
 			
 		
@@ -2153,8 +2158,9 @@ function SuperSurvivor:Task_IsPursue_SC()
 					and (self:WeaponReady() == true)
 					and (self:NPC_IFOD_BarricadedInside() == false)
 					and (self:inFrontOfLockedDoorAndIsOutside() == false)
-					and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
-					and (self:RealCanSee(self.LastEnemeySeen) and (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false))		
+					and (self:HasMultipleInjury() == false)
+				--	and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
+				--	and (not self:RealCanSee(self.LastEnemeySeen) and (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false))		
 				--	and (self:RealCanSee(self.LastEnemeySeen) and (not self:isEnemyInRange(self.LastEnemeySeen)))
 				--	and (not(self:RealCanSee(self.LastEnemeySeen)) and (self:inFrontOfLockedDoorAndIsOutside() == false))  		-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false 
 				--	and	(not(self:RealCanSee(self.LastEnemeySeen)) and (self:NPC_IFOD_BarricadedInside() == false))				-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false
@@ -2170,7 +2176,8 @@ function SuperSurvivor:Task_IsPursue_SC()
 		else
 			return false
 		end
-	end
+--	end
+
 end
 
 
@@ -2470,7 +2477,7 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 			)
 		) or (self:getCurrentTask() == "Pursue")
 	) then
-		print(self:getName().." Attempt Entry1")
+	--	print(self:getName().." Attempt Entry1")
 		self:getTaskManager():AddToTop(AttemptEntryIntoBuildingTask:new(self, self.TargetBuilding))
 		self.TicksSinceSquareChanged = 0
 	end
@@ -2742,7 +2749,7 @@ function SuperSurvivor:WalkToUpdate()
 		
             self:StopWalk()
 		elseif (myBehaviorResult ~= BehaviorResult.Working) then
-			print(tostring(myBehaviorResult));
+		--	print(tostring(myBehaviorResult));
         end
   
    end

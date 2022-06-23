@@ -49,7 +49,7 @@ function SuperSurvivorGroupManager:newGroup()
 		end
 	end
 
-	print("created new group with ID of " .. tostring(groupID))
+	--print("created new group with ID of " .. tostring(groupID))
 	self.Groups[groupID] = SuperSurvivorGroup:new(groupID)
 	self.GroupCount = groupID + 1
 	return self.Groups[groupID]
