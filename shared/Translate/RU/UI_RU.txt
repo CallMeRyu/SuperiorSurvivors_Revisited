@@ -1,13 +1,13 @@
 UI_RU = {
-	UI_optionscreen_binding_Call Closest Group Member = "РџРѕР·РІР°С‚СЊ Р±Р»РёР¶Р°Р№С€РµРіРѕ С‡Р»РµРЅР° РіСЂСѓРїРїС‹"
-	UI_optionscreen_binding_Call Closest Non-Group Member = "РџРѕР·РІР°С‚СЊ Р±Р»РёР¶Р°Р№С€РµРіРѕ РІС‹Р¶РёРІС€РµРіРѕ",
-	UI_optionscreen_binding_Ask Closest Group Member to Follow = "РџСЂРёРєР°Р·Р°С‚СЊ Р±Р»РёР¶Р°Р№С€РµРјСѓ С‡Р»РµРЅСѓ РіСЂСѓРїРїС‹ СЃР»РµРґРѕРІР°С‚СЊ",
-	UI_optionscreen_binding_Spawn Wild Survivor = "Р—Р°СЃРїР°СѓРЅРёС‚СЊ РґРёРєРѕРіРѕ РІС‹Р¶РёРІС€РµРіРѕ",
-	UI_optionscreen_binding_Toggle Group Window = "РџРµСЂРµРєР»СЋС‡РµРЅРёРµ РѕРєРЅР° РіСЂСѓРїРїС‹",
-	UI_optionscreen_binding_Lower Follow Distance = "РЈРјРµРЅСЊС€РёС‚СЊ СЂР°СЃСЃС‚РѕСЏРЅРёРµ СЃР»РµРґРѕРІР°РЅРёСЏ",
-	UI_optionscreen_binding_Raise Follow Distance = "РЈРІРµР»РёС‡РёС‚СЊ СЂР°СЃСЃС‚РѕСЏРЅРёРµ СЃР»РµРґРѕРІР°РЅРёСЏ",
-	UI_optionscreen_binding_SSHotkey_1 = "РљРѕРјР°РЅРґР° Р±С‹СЃС‚СЂРѕРіРѕ РґРѕСЃС‚СѓРїР° 1",
-	UI_optionscreen_binding_SSHotkey_2 = "РљРѕРјР°РЅРґР° Р±С‹СЃС‚СЂРѕРіРѕ РґРѕСЃС‚СѓРїР° 2",
-	UI_optionscreen_binding_SSHotkey_3 = "РљРѕРјР°РЅРґР° Р±С‹СЃС‚СЂРѕРіРѕ РґРѕСЃС‚СѓРїР° 3",
-	UI_optionscreen_binding_SSHotkey_4 = "РљРѕРјР°РЅРґР° Р±С‹СЃС‚СЂРѕРіРѕ РґРѕСЃС‚СѓРїР° 4",
+	UI_optionscreen_binding_Call Closest Group Member = "Позвать ближайшего члена группы"
+	UI_optionscreen_binding_Call Closest Non-Group Member = "Позвать ближайшего выжившего",
+	UI_optionscreen_binding_Ask Closest Group Member to Follow = "Приказать ближайшему члену группы следовать",
+	UI_optionscreen_binding_Spawn Wild Survivor = "Заспаунить дикого выжившего",
+	UI_optionscreen_binding_Toggle Group Window = "Переключение окна группы",
+	UI_optionscreen_binding_Lower Follow Distance = "Уменьшить расстояние следования",
+	UI_optionscreen_binding_Raise Follow Distance = "Увеличить расстояние следования",
+	UI_optionscreen_binding_SSHotkey_1 = "Команда быстрого доступа 1",
+	UI_optionscreen_binding_SSHotkey_2 = "Команда быстрого доступа 2",
+	UI_optionscreen_binding_SSHotkey_3 = "Команда быстрого доступа 3",
+	UI_optionscreen_binding_SSHotkey_4 = "Команда быстрого доступа 4",
 }
