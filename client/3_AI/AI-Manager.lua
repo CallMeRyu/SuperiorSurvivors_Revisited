@@ -8,7 +8,6 @@ function AIManager(TaskMangerIn)
 	if(ASuperSurvivor:needToFollow()) or (ASuperSurvivor:Get():getVehicle() ~= nil) then return TaskMangerIn end
 	
 	if (TaskMangerIn == nil) or (ASuperSurvivor == nil) then 
-		--print("error TaskMangerIn or ASuperSurvivor was nil")
 		return false 
 	end
 	
@@ -47,12 +46,20 @@ function AIManager(TaskMangerIn)
 	--------------------------------------------------------
 	--------------------- Shared AI ------------------------
 	--------------------------------------------------------
+	
+	if (ASuperSurvivor:getGroupRole() == "Companion") and (TaskMangerIn:getCurrentTask() ~= "Follow") and (DistanceBetweenMainPlayer > 10) then 
+		TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
+		NPC:DebugSay("Companion Went too far away, returning companion!")
+	end
 
 	-- To make NPCs find their target that's very close by
 	if (ASuperSurvivor:Task_IsPursue_SC() == true) and ( NPC:NPC_FleeWhileReadyingGun()) then
 	 	if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
-	 	TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
-	 end
+		-- To prevent companions from pursuing 
+		if (ASuperSurvivor:getGroupRole() ~= "Companion") then
+			TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
+		end
+	end
 
 
 	-- Surrender Task	
@@ -108,9 +115,20 @@ function AIManager(TaskMangerIn)
 			ASuperSurvivor:DebugSay("Force Finish Task Triggered in the 'Flee from too many Zombies' condition!")
 		end
 		ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number 000_000_03")
-		ASuperSurvivor:getTaskManager():clear()
-		TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
-		TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
+		
+		-- This is for all to those that keep saying their companions keep running away. This should keep them from doing that.
+		if (ASuperSurvivor:getGroupRole() == "Companion") then
+			ASuperSurvivor:getTaskManager():clear()
+			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 	
+			NPC:NPC_ShouldRunOrWalk()
+		end
+		if (ASuperSurvivor:getGroupRole() ~= "Companion") then
+			ASuperSurvivor:getTaskManager():clear()
+			TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
+			TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
+			NPC:NPC_ShouldRunOrWalk()
+		end
+		
 	end
 	-- eat food on person or go find food in building if in building
 	if (false) and (ASuperSurvivor:getAIMode() ~= "Random Solo") and ((ASuperSurvivor:isStarving()) or (ASuperSurvivor:isDyingOfThirst())) then  -- leave group and look for food if starving

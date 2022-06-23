@@ -365,6 +365,7 @@ function SuperSurvivorsLoadGridsquare(square)
 			SuperSurvivorBravery = SuperSurvivorGetOptionValue("Bravery")
 			AlternativeSpawning = SuperSurvivorGetOptionValue("AltSpawn")
 			AltSpawnGroupSize = SuperSurvivorGetOptionValue("AltSpawnAmount")
+			AltSpawnPercent = SuperSurvivorGetOptionValue("AltSpawnPercent")
 			NoPreSetSpawn = SuperSurvivorGetOptionValue("NoPreSetSpawn")
 			DebugOptions = SuperSurvivorGetOptionValue("DebugOptions")
 			SafeBase = SuperSurvivorGetOptionValue("SafeBase")
@@ -1151,12 +1152,12 @@ function SuperSurvivorDoRandomSpawns()
 	local RealAlternativeSpawning = AlternativeSpawning - 1
 	for i = RealAlternativeSpawning,1,-1 
 	do 
-		if (AlternativeSpawning > ZombRand(21)) and (AlternativeSpawning == 2) then	SuperSurSurvivorSpawnGenFivePercent() 	end
-		if (AlternativeSpawning > ZombRand(16)) and (AlternativeSpawning == 3) then	SuperSurSurvivorSpawnGenTenPercent() 	end
-		if (AlternativeSpawning > ZombRand(17)) and (AlternativeSpawning == 4) then	SuperSurSurvivorSpawnGenTwentyPercent() end
-		if (AlternativeSpawning > ZombRand(18)) and (AlternativeSpawning == 5) then	SuperSurSurvivorSpawnGenThirtyPercent() end
-		if (AlternativeSpawning > ZombRand(19)) and (AlternativeSpawning == 6) then	SuperSurSurvivorSpawnGenFourtyPercent() end
-		if (AlternativeSpawning > ZombRand(20)) and (AlternativeSpawning == 7) then	SuperSurSurvivorSpawnGenFiftyPercent()	end	
+		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 2) then	SuperSurSurvivorSpawnGenFivePercent() 	end
+		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 3) then	SuperSurSurvivorSpawnGenTenPercent() 	end
+		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 4) then	SuperSurSurvivorSpawnGenTwentyPercent() end
+		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 5) then	SuperSurSurvivorSpawnGenThirtyPercent() end
+		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 6) then	SuperSurSurvivorSpawnGenFourtyPercent() end
+		if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 7) then	SuperSurSurvivorSpawnGenFiftyPercent()	end	
 	end
 end
 Events.EveryHours.Add(SuperSurvivorDoRandomSpawns);

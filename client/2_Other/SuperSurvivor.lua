@@ -2048,7 +2048,6 @@ function SuperSurvivor:Task_IsNotWander()
 end
 function SuperSurvivor:Task_IsNotPursue()
 	if (self:getTaskManager():getCurrentTask() ~= "Pursue") then
-		self:DebugSay("Task_IsNotPursue Is 'True'")
 		return true
 	end
 end
@@ -2104,6 +2103,9 @@ end
 	
 -- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
 function SuperSurvivor:Task_IsPursue_SC()
+	
+	-- To prevent companions from pursing 
+	if (self:getGroupRole() ~= "Companion") or (self:getTaskManager():getCurrentTask() ~= "Follow") then return false end
 
 --	if (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
 	-- That way the Bandits chasing the other humans don't ignore zeds, or shouldn't anyways.
