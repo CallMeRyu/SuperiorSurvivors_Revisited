@@ -1,3 +1,11 @@
+--[[
+    RWORKED BY - Akstis
+    I slightly improved translations categories so everyone who wants to take part in translations
+    can write their own and it wont be a mess.
+
+    I recomend to stay close to syntax I used
+]]--
+
 ContextMenu_EN = {
 
 
@@ -30,15 +38,6 @@ ContextMenu_EN = {
     ContextMenu_SD_RulesOfEngagement = "Rules of Engagement",
         ContextMenu_SD_AttackAnyoneOnSight = "Attack Anyone On Sight",
         ContextMenu_SD_AttackHostilesOnSight = "Attack Hostiles On Sight",
-
-	ContextMenu_SD_IGotABadFeeling = "I got a bad feeling.",
-	ContextMenu_SD_WhatWasThatSound = "What was that sound!?",
-	ContextMenu_SD_IAttackFoodThief = "That's it! Get out of here!",
-	ContextMenu_SD_IWarnFoodThief = "Hey you! stop stealing our food or else!!",
-	
-	
-    ContextMenu_SD_PerkLeveledUp_Before = "*"	
-	ContextMenu_SD_PerkLeveledUp_After = " Perk Leveled Up!*"
     --[[END In Game Menu thing]]--
 
     --[[Orders]]--
@@ -123,12 +122,39 @@ ContextMenu_EN = {
 	ContextMenu_SD_BaseLocation = "Base Location",
 	--[[END NPC infomation]]--
 
-    --[[Options]]--
+    --[[OPTIONS]]--
+
+    --[Alternative spawn system]--
+    ContextMenu_SOption_AltSpawn = "Alternative NPC Hourly Spawning:"
+        ContextMenu_SD_AltSpawnOff = "Off"
+        ContextMenu_SD_AltSpawnOn = "10% Chance to spawn up to 1 NPC group"
+        ContextMenu_SD_AltSpawnOn_05 = " 5% Chance to spawn up to 1 NPC group"
+        ContextMenu_SD_AltSpawnOn_20 = "20% Chance to spawn up to 2 NPC groups"
+        ContextMenu_SD_AltSpawnOn_30 = "30% Chance to spawn up to 3 NPC groups"
+        ContextMenu_SD_AltSpawnOn_40 = "40% Chance to spawn up to 4 NPC groups"
+        ContextMenu_SD_AltSpawnOn_50 = "50% Chance to spawn up to 5 NPC groups"
+    ContextMenu_SOption_AltSpawnDesc = "Alternative Spawning rolls dice each in game hour, and if it exceeds the % you set, it will spawn NPCs around the player. You can use this spawning method even if 'Survivor Spawn rate' is set to 'off', if you would rather passively see NPCs spawn around you. This spawning method is a bit less intensive to your FPS due to it not calculating where you are going on the map, but rather than in game time itself. (You can use both at the same time, do not feel afraid to exp. with it. You may be surprised!)"
 
 
-    --[[On\Off option]]--
-        ContextMenu_SD_Off = "Off",
-        ContextMenu_SD_On = "On",
+    ContextMenu_Option_AltSpawnAmount = "Max Alt Spawn Group Size:"
+        ContextMenu_AltSpawnAmount_1 = "Only 1"
+        ContextMenu_AltSpawnAmount_2 = "Random from 1 to 2 max"
+        ContextMenu_AltSpawnAmount_3 = "Random from 1 to 3 max"
+        ContextMenu_AltSpawnAmount_4 = "Random from 1 to 4 max"
+        ContextMenu_AltSpawnAmount_5 = "Random from 1 to 5 max"
+        ContextMenu_AltSpawnAmount_6 = "Random from 1 to 6 max"
+    ContextMenu_Context_AltSpawnAmountDesc = "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)"
+    --[END Alternative spawn system]--	
+    
+    --[On\Off options]--
+    ContextMenu_SD_Off = "Off",
+    ContextMenu_SD_On = "On",
+
+    ContextMenu_SD_NoPreSetSpawn = "Disable All Pre-set/Unique Survivors",
+    ContextMenu_SD_NoPreSetSpawnDesc = "Disable All Pre-set/Unique Survivors",
+  
+    ContextMenu_SOption_LockNLoad = "Ready For Battle Mode:",
+    ContextMenu_SOption_LockNLoadDesc = "You and your Wife(if enabled) will spawn with guns and ammo, and Armor(if armor mod enabled) at the start of the game.  Great mode to use if you plan on trying out Raiders at a high spawn rate.",
 
     ContextMenu_SOption_WifeSpawn = "Wife/Husband Spawn:",
 	ContextMenu_SOption_WifeSpawnDesc = "Spawn with a wife or husband who is already in your group at the start of the game",
@@ -136,24 +162,133 @@ ContextMenu_EN = {
     ContextMenu_SOption_InfinitAmmo = "Survivor Infinite Ammo:",
 	ContextMenu_SOption_InfinitAmmoDesc = "If on Survivors do not neeed ammo to use guns, and never run out of ammo. If Off survivors need rounds or boxes in thier inventory to shoot guns. And can be given more ammo via right click menu, and will attempt to find ammo near by when they run out of ammo.",
        
-    ContextMenu_SOption_DebugOptions = "Debug Options"
-	ContextMenu_SOption_DebugOptionsDesc = "Turns on debug right click survivor options"
-
-    ContextMenu_SOption_SafeBase = "Safe Base",
-	ContextMenu_SOption_SafeBaseDesc = "Wild Survivors will avoid your marked base",
-
-    ContextMenu_SOption_SurvivorBases = "Survivor Bases"
-	ContextMenu_SOption_SurvivorBasesDesc = "Wild Survivors will set up their own bases"
+    ContextMenu_SOption_FindWork = "Survivors Auto Base Tasks:",
+    ContextMenu_SOption_FindWorkDesc = "If On, survivors in or near base may do some work tasks around the base on thier own if they find themselves with nothing to do. If off they will never decide to do tasks on thier own.",
 
     ContextMenu_SOption_SurvivorHunger = "Survivor Hunger & Thirst",
-	ContextMenu_SOption_SurvivorHungerDesc = "If Off survivors will never get hungery or thirsty. If On they will, though they will make attempts to find what they need on thier own.",
+    ContextMenu_SOption_SurvivorHungerDesc = "If Off survivors will never get hungery or thirsty. If On they will, though they will make attempts to find what they need on thier own.",
+ 
+    ContextMenu_SOption_SafeBase = "Safe Base",
+	ContextMenu_SOption_SafeBaseDesc = "Wild Survivors will avoid your marked base",
+    
+    ContextMenu_SOption_SurvivorBases = "Survivor Bases",
+	ContextMenu_SOption_SurvivorBasesDesc = "Wild Survivors will set up their own bases",
+
+    ContextMenu_SOption_DebugOptions = "Debug Options",
+	ContextMenu_SOption_DebugOptionsDesc = "Turns on debug right click survivor options",
+    --[END On\Off options]--
+
+    --[Rate options]--
+    ContextMenu_SOption_SurvivorSpawnRate = "NPC Spawn Rate:",
+        ContextMenu_SD_UltraLow = "Ultra Low",
+	    ContextMenu_SD_ExtremelyLow = "Extremely Low",
+	    ContextMenu_SD_VeryLow = "Very Low",
+	    ContextMenu_SD_Low = "Low",
+	    ContextMenu_SD_SlightlyLower = "Slightly Lower",
+	    ContextMenu_SD_Normal = "Normal",
+	    ContextMenu_SD_SlightlyHigher = "Slightly Higher",
+	    ContextMenu_SD_High = "High",
+	    ContextMenu_SD_VeryHigh = "Very High",
+	    ContextMenu_SD_ExtremelyHigh = "Extremely High",
+	    ContextMenu_SD_UltraHigh = "Ultra High",
+	ContextMenu_SOption_SurvivorSpawnRateDesc = "This defines the amount of random survivors that will spawn. NPCs will spawn based on tiles on the map.",
+    
+	ContextMenu_SOption_RaidersChance = "Raider Event Spawning - Chance:",
+    --uses default zomboid's rates--
+	ContextMenu_SOption_RaidersChanceDesc = "The chance a Raider event will happen after the start date has passed.",
+    --[END Rate options]--
+    
+    --[Percent options]--
+    --Uses standart zomboid's %--
+	ContextMenu_SOption_ChancetoSpawnWithGun = "NPC Gun Weapon Chance:",
+	ContextMenu_SOption_ChancetoSpawnWithGunDesc = "Chance to Spawn With Gun",
+    
+    ContextMenu_SOption_WepSpawnRate = "NPC Melee Weapon Chance:",
+	ContextMenu_SOption_WepSpawnRateDesc = "This defines the chances that when a NPC spawns into the world, it will also have a random melee weapon with it.",
+    
+    ContextMenu_SOption_ChancetobeHostile = "Hostile NPC - Spawn Hostile:",
+	ContextMenu_SOption_ChancetobeHostileDesc = "This defines the chance that a random spawn survivor will be hostile when spawned",
 	
-    ContextMenu_SOption_FindWork = "Survivors Auto Base Tasks:",
-	ContextMenu_SOption_FindWorkDesc = "If On, survivors in or near base may do some work tasks around the base on thier own if they find themselves with nothing to do. If off they will never decide to do tasks on thier own.",
+    ContextMenu_SOption_MaxHostileSpawnRate = "Hostile NPC - Hostile Over Time:",
+	ContextMenu_SOption_MaxHostileSpawnRateDesc = "Chance to be hostile increases over time, but it will cap at this % and never go above this % Unsure if this option still works.",
+    --[END Percent options]--
+
+    --[Individual Options]--
+	ContextMenu_SOption_RaidersAfterHours = "Raider Event Spawning - After Day:",
+        ContextMenu_SD_StartImmediately = "Start Immediately",
+	    ContextMenu_SD_AfterDay1 = "After Day 1",
+	    ContextMenu_SD_AfterDay5 = "After Day 5",
+	    ContextMenu_SD_AfterDay10 = "After Day 10",
+	    ContextMenu_SD_AfterDay15 = "After Day 15",
+	    ContextMenu_SD_AfterDay20 = "After Day 20",
+	    ContextMenu_SD_AfterDay25 = "After Day 25",
+	    ContextMenu_SD_AfterDay30 = "After Day 30",
+	    ContextMenu_SD_AfterDay35 = "After Day 35",
+	    ContextMenu_SD_AfterDay40 = "After Day 40",
+	    ContextMenu_SD_AfterDay45 = "After Day 45",
+	    ContextMenu_SD_AfterDay50 = "After Day 50",
+	    ContextMenu_SD_AfterDay55 = "After Day 55",
+	    ContextMenu_SD_AfterDay60 = "After Day 60",
+	    ContextMenu_SD_AfterDay65 = "After Day 65",
+	    ContextMenu_SD_AfterDay70 = "After Day 70",
+	    ContextMenu_SD_AfterDay75 = "After Day 75",
+	    ContextMenu_SD_AfterDay80 = "After Day 80",
+	    ContextMenu_SD_AfterDay85 = "After Day 85",
+	    ContextMenu_SD_AfterDay90 = "After Day 90",
+	    ContextMenu_SD_AfterDay95 = "After Day 95",
+	    ContextMenu_SD_AfterDay100 = "After Day 100",
+	    ContextMenu_SD_Never = "Never",
+	ContextMenu_SOption_RaidersAfterHoursDesc = "Raiders Event can start to Randomly happen after this amount of time has passed. Raiders Guaranteed event also only starts calculating after this time has passed.",
 	
-    ContextMenu_SOption_LockNLoad = "Ready For Battle Mode:",
-	ContextMenu_SOption_LockNLoadDesc = "You and your Wife(if enabled) will spawn with guns and ammo, and Armor(if armor mod enabled) at the start of the game.  Great mode to use if you plan on trying out Raiders at a high spawn rate.",
-    --[[END On\Off option]]--
+	ContextMenu_SOption_RaidersGuaranteed = "Raider Event Spawning - How Often:",
+        ContextMenu_SD_Every5Days = "Every 5 Days",
+        ContextMenu_SD_Every10Days = "Every 10 Days",
+        ContextMenu_SD_Every15Days = "Every 15 Days",
+        ContextMenu_SD_Every20Days = "Every 20 Days",
+	    ContextMenu_SD_Every25Days = "Every 25 Days",
+	    ContextMenu_SD_Every30Days = "Every 30 Days",
+	    ContextMenu_SD_Every35Days = "Every 35 Days",
+	    ContextMenu_SD_Every40Days = "Every 40 Days",
+	    ContextMenu_SD_Every45Days = "Every 45 Days",
+	    ContextMenu_SD_Every50Days = "Every 50 Days",
+	    ContextMenu_SD_Every55Days = "Every 55 Days",
+	    ContextMenu_SD_Every60Days = "Every 60 Days",
+	    ContextMenu_SD_Every65Days = "Every 65 Days",
+	    ContextMenu_SD_Every70Days = "Every 70 Days",
+	    ContextMenu_SD_Every75Days = "Every 75 Days",
+	    ContextMenu_SD_Every80Days = "Every 80 Days",
+	    ContextMenu_SD_Every85Days = "Every 85 Days",
+	    ContextMenu_SD_Every90Days = "Every 90 Days",
+	    ContextMenu_SD_Every95Days = "Every 95 Days",
+	    ContextMenu_SD_Every100Days = "Every 100 Days",
+	    ContextMenu_SD_EveryDay = "Every Day!",
+	    ContextMenu_SD_EveryHour = "Every Hour!",
+        ContextMenu_SD_Every10Minutes = "Every 10 Minutes!",
+	ContextMenu_SOption_RaidersGuaranteedDesc = "If it is past the Raiders start date, and Raiders event has not happened for this amount of time. Raiders will be spawned after this amount of time passes.",
+	
+    ContextMenu_SOption_SurvivorFriendliness = "Survivor Friendliness:",
+        ContextMenu_SD_DesperateforHumanContact = "Desperate for Human Contact",
+        ContextMenu_SD_VeryFriendly = "Very Friendly",
+        ContextMenu_SD_Friendly = "Friendly", 
+        ContextMenu_SD_Mean = "Mean",
+        ContextMenu_SD_VeryMean	= "Very Mean",
+	ContextMenu_SOption_SurvivorFriendlinessDesc = "This defines how easy it is to get a random survivor to join your team. Offering more gifts increase the chance of party invite acceptance, but each time you bug them with an invite, chance also goes down. So spamming invites does not do much good.",
+
+    ContextMenu_SOption_SurvivorBravery = "Survivor Bravery",
+        ContextMenu_SD_Cowardly = "Cowardly",
+        ContextMenu_SD_Brave = "Brave",
+        ContextMenu_SD_VeryBrave = "Very Brave",
+    ContextMenu_SOption_SurvivorBraveryDesc = "Determines how likely Survivors are to fight, rather than flee or avoid.",
+    --[END Individual Options]--
+
+    --[Hotkeys]--
+    ContextMenu_SShotkey1 = "Hotkey 1 Action",
+    СontextMenu_SShotkey2 = "Hotkey 2 Action",
+    ContextMenu_SShotkey3 = "Hotkey 3 Action",
+    ContextMenu_SShotkey4 = "Hotkey 4 Action",
+    ContextMenu_SShotkeyDesc = "Choose an action that will happen when you press this hotkey. Order all actions effect any members within range. While the others only effect those who are listening to you (use with t hotkey).",
+    
+    --I Think This options are unused--
     ContextMenu_SOption_CallClosestGroupMember = "Call Closest Group Member",
 	ContextMenu_SOption_CallClosestNonGroupMember = "Call Closest Non-Group Member",
 	ContextMenu_SOption_AskClosestGroupMembertoFollow = "Ask Closest Group Member to Follow",
@@ -161,164 +296,77 @@ ContextMenu_EN = {
 	ContextMenu_SOption_ToggleGroupWindow = "Toggle Group Window",
 	ContextMenu_SOption_LowerFollowDistance = "Lower Follow Distance",
 	ContextMenu_SOption_RaiseFollowDistance = "Raise Follow Distance",
-	
-    ContextMenu_SShotkey1 = "Hotkey 1 Action",
-    СontextMenu_SShotkey2 = "Hotkey 2 Action",
-    ContextMenu_SShotkey3 = "Hotkey 3 Action",
-    ContextMenu_SShotkey4 = "Hotkey 4 Action",
-    ContextMenu_SShotkeyDesc = "Choose an action that will happen when you press this hotkey. Order all actions effect any members within range. While the others only effect those who are listening to you (use with t hotkey).",
-
-	ContextMenu_SOption_SurvivorSpawnRate = "NPC Spawn Rate:",
-	ContextMenu_SOption_SurvivorSpawnRateDesc = "This defines the amount of random survivors that will spawn. NPCs will spawn based on tiles on the map.",
-	ContextMenu_SOption_ChancetoSpawnWithGun = "NPC Gun Weapon Chance:",
-	ContextMenu_SOption_ChancetoSpawnWithGunDesc = "Chance to Spawn With Gun",
-	ContextMenu_SOption_RaidersGuaranteed = "Raider Event Spawning - How Often:",
-	ContextMenu_SOption_RaidersGuaranteedDesc = "If it is past the Raiders start date, and Raiders event has not happened for this amount of time. Raiders will be spawned after this amount of time passes.",
-	ContextMenu_SOption_RaidersAfterHours = "Raider Event Spawning - After Day:",
-	ContextMenu_SOption_RaidersAfterHoursDesc = "Raiders Event can start to Randomly happen after this amount of time has passed. Raiders Guaranteed event also only starts calculating after this time has passed.",
-	ContextMenu_SOption_RaidersChance = "Raider Event Spawning - Chance %:",
-	ContextMenu_SOption_RaidersChanceDesc = "The chance a Raider event will happen after the start date has passed.",
-	ContextMenu_SOption_WepSpawnRate = "NPC Melee Weapon Chance:",
-	ContextMenu_SOption_WepSpawnRateDesc = "This defines the chances that when a NPC spawns into the world, it will also have a random melee weapon with it.",
-	ContextMenu_SOption_ChancetobeHostile = "Hostile NPC - Spawn Hostile:",
-	ContextMenu_SOption_ChancetobeHostileDesc = "This defines the chance that a random spawn survivor will be hostile when spawned",
-	ContextMenu_SOption_MaxHostileSpawnRate = "Hostile NPC - Hostile Over Time:",
-	ContextMenu_SOption_MaxHostileSpawnRateDesc = "Chance to be hostile increases over time, but it will cap at this % and never go above this % Unsure if this option still works.",
-	
-	
-	
-
-	ContextMenu_SD_UltraLow = "Ultra Low",
-	ContextMenu_SD_ExtremelyLow = "Extremely Low",
-	ContextMenu_SD_VeryLow = "Very Low",
-	ContextMenu_SD_Low = "Low",
-	ContextMenu_SD_SlightlyLower = "Slightly Lower",
-	ContextMenu_SD_Normal = "Normal",
-	ContextMenu_SD_SlightlyHigher = "Slightly Higher",
-	ContextMenu_SD_High = "High",
-	ContextMenu_SD_VeryHigh = "Very High",
-	ContextMenu_SD_ExtremelyHigh = "Extremely High",
-	ContextMenu_SD_UltraHigh = "Ultra High",
-	
-	
-	ContextMenu_SD_Every10Minutes = "Every 10 Minutes!",
-	ContextMenu_SD_EveryHour = "Every Hour!",
-	ContextMenu_SD_EveryDay = "Every Day!",
-	ContextMenu_SD_Every100Days = "Every 100 Days",
-	ContextMenu_SD_Every95Days = "Every 95 Days",
-	ContextMenu_SD_Every90Days = "Every 90 Days",
-	ContextMenu_SD_Every85Days = "Every 85 Days",
-	ContextMenu_SD_Every80Days = "Every 80 Days",
-	ContextMenu_SD_Every75Days = "Every 75 Days",
-	ContextMenu_SD_Every70Days = "Every 70 Days",
-	ContextMenu_SD_Every65Days = "Every 65 Days",
-	ContextMenu_SD_Every60Days = "Every 60 Days",
-	ContextMenu_SD_Every55Days = "Every 55 Days",
-	ContextMenu_SD_Every50Days = "Every 50 Days",
-	ContextMenu_SD_Every45Days = "Every 45 Days",
-	ContextMenu_SD_Every40Days = "Every 40 Days",
-	ContextMenu_SD_Every35Days = "Every 35 Days",
-	ContextMenu_SD_Every30Days = "Every 30 Days",
-	ContextMenu_SD_Every25Days = "Every 25 Days",
-	ContextMenu_SD_Every20Days = "Every 20 Days",
-	ContextMenu_SD_Every15Days = "Every 15 Days",
-	ContextMenu_SD_Every10Days = "Every 10 Days",
-	ContextMenu_SD_Every5Days = "Every 5 Days",
-	ContextMenu_SD_StartImmediately = "Start Immediately",
-	ContextMenu_SD_Never = "Never",
-	ContextMenu_SD_AfterDay1 = "After Day 1",
-	ContextMenu_SD_AfterDay5 = "After Day 5",
-	ContextMenu_SD_AfterDay10 = "After Day 10",
-	ContextMenu_SD_AfterDay15 = "After Day 15",
-	ContextMenu_SD_AfterDay20 = "After Day 20",
-	ContextMenu_SD_AfterDay25 = "After Day 25",
-	ContextMenu_SD_AfterDay30 = "After Day 30",
-	ContextMenu_SD_AfterDay35 = "After Day 35",
-	ContextMenu_SD_AfterDay40 = "After Day 40",
-	ContextMenu_SD_AfterDay45 = "After Day 45",
-	ContextMenu_SD_AfterDay50 = "After Day 50",
-	ContextMenu_SD_AfterDay55 = "After Day 55",
-	ContextMenu_SD_AfterDay60 = "After Day 60",
-	ContextMenu_SD_AfterDay65 = "After Day 65",
-	ContextMenu_SD_AfterDay70 = "After Day 70",
-	ContextMenu_SD_AfterDay75 = "After Day 75",
-	ContextMenu_SD_AfterDay80 = "After Day 80",
-	ContextMenu_SD_AfterDay85 = "After Day 85",
-	ContextMenu_SD_AfterDay90 = "After Day 90",
-	ContextMenu_SD_AfterDay95 = "After Day 95",
-	ContextMenu_SD_AfterDay100 = "After Day 100",
-
-    ContextMenu_SOption_SurvivorFriendliness = "Survivor Friendliness:",
-    ContextMenu_SD_DesperateforHumanContact = "Desperate for Human Contact",
-    ContextMenu_SD_VeryFriendly = "Very Friendly",
-    ContextMenu_SD_Friendly = "Friendly", 
-    ContextMenu_SD_Mean = "Mean",
-    ContextMenu_SD_VeryMean	= "Very Mean",
-	ContextMenu_SOption_SurvivorFriendlinessDesc = "This defines how easy it is to get a random survivor to join your team. Offering more gifts increase the chance of party invite acceptance, but each time you bug them with an invite, chance also goes down. So spamming invites does not do much good.",
-
-    --[[Alternative spawn system]]--
-	ContextMenu_SOption_AltSpawn = "Alternative NPC Hourly Spawning:"
-	    ContextMenu_SD_AltSpawnOff = "Off"
-	    ContextMenu_SD_AltSpawnOn = "10% Chance to spawn up to 1 NPC group"
-	    ContextMenu_SD_AltSpawnOn_05 = " 5% Chance to spawn up to 1 NPC group"
-	    ContextMenu_SD_AltSpawnOn_20 = "20% Chance to spawn up to 2 NPC groups"
-	    ContextMenu_SD_AltSpawnOn_30 = "30% Chance to spawn up to 3 NPC groups"
-	    ContextMenu_SD_AltSpawnOn_40 = "40% Chance to spawn up to 4 NPC groups"
-	    ContextMenu_SD_AltSpawnOn_50 = "50% Chance to spawn up to 5 NPC groups"
-	ContextMenu_SOption_AltSpawnDesc = "Alternative Spawning rolls dice each in game hour, and if it exceeds the % you set, it will spawn NPCs around the player. You can use this spawning method even if 'Survivor Spawn rate' is set to 'off', if you would rather passively see NPCs spawn around you. This spawning method is a bit less intensive to your FPS due to it not calculating where you are going on the map, but rather than in game time itself. (You can use both at the same time, do not feel afraid to exp. with it. You may be surprised!)"
-
-
-	ContextMenu_Option_AltSpawnAmount = "Max Alt Spawn Group Size:"
-		ContextMenu_AltSpawnAmount_1 = "Only 1"
-		ContextMenu_AltSpawnAmount_2 = "Random from 1 to 2 max"
-		ContextMenu_AltSpawnAmount_3 = "Random from 1 to 3 max"
-		ContextMenu_AltSpawnAmount_4 = "Random from 1 to 4 max"
-		ContextMenu_AltSpawnAmount_5 = "Random from 1 to 5 max"
-		ContextMenu_AltSpawnAmount_6 = "Random from 1 to 6 max"
-	ContextMenu_Context_AltSpawnAmountDesc = "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)"
-	--[[END Alternative spawn system]]--	
-
-    ContextMenu_SD_NoPreSetSpawn = "Disable All Pre-set/Unique Survivors",
-    ContextMenu_SD_NoPreSetSpawnDesc = "Disable All Pre-set/Unique Survivors",
-
-    ContextMenu_SOption_SurvivorBravery = "Survivor Bravery",
-	    ContextMenu_SD_Cowardly = "Cowardly",
-	    ContextMenu_SD_Brave = "Brave",
-	    ContextMenu_SD_VeryBrave = "Very Brave",
-	ContextMenu_SOption_SurvivorBraveryDesc = "Determines how likely Survivors are to fight, rather than flee or avoid.",
-
+    --[END Hotkeys]--
+    --[[END OPTIONS]]--
     
-    --[[END Options]]--
-
-	
+    --[[Actions WITH Survivors]]--
 	ContextMenu_SD_SurvivorInfoName_Before = "Survivor ",
 	ContextMenu_SD_SurvivorInfoName_After = "'s Information: ",
-	ContextMenu_SD_EatFood_Before = "Eats ",
-	ContextMenu_SD_EatFood_After = "",
+    ContextMenu_SD_CallToArms = "Call to Arms",
+    
+    ContextMenu_SD_CallOver = "Call Over",
+	ContextMenu_SD_CallOverDesc = "Ask this survivor to come over and talk",
+	ContextMenu_SD_OfferArmor = "Give Clothes",
+	ContextMenu_SD_OfferAmmoBox = "Offer Ammo Box",
+	ContextMenu_SD_OfferAmmoRound = "Offer Ammo Round",
+	ContextMenu_SD_TalkOption = "Talk",
+	ContextMenu_SD_TalkOption_Desc = "Attempt to start a dialogue with this survivor",
+	ContextMenu_SD_InviteToGroup = "Invite to Group",
+	ContextMenu_SD_AskToJoin = "Ask to Join Survivor Group",
+	ContextMenu_SD_OfferWeapon = "Offer Your Weapon as Gift",
+	ContextMenu_SD_OfferFood = "Offer Food",
+	ContextMenu_SD_OfferWater = "Offer Water",
+	ContextMenu_SD_GiveOrder = "Give Order",
+	ContextMenu_SD_OrderDescription = "Order Description",
+
+    ContextMenu_SD_UseMele = "Use Mele Weapon",
+    ContextMenu_SD_UseMeleDesc = "Ask Survivor to use his Mele Weapon",
+    ContextMenu_SD_UseGun = "Use Gun Weapon",
+    ContextMenu_SD_UseGunDesc = "Ask Survivor to use his Gun Weapon",
+    --idk where to put it-- 
+    ContextMenu_SD_SurvivorOptions = "Survivor Options",
+    --[[END Actions WITH Survivors]]--
+
+    --[[Actions outcome]]--
+
 	ContextMenu_SD_CallName_Before = "",
 	ContextMenu_SD_CallName_After = "! Come here!",
-	ContextMenu_SD_LookForItem_Before = "Going to look for ",
-	ContextMenu_SD_LookForItem_After = "",
+    --[[END Actions outcome]]--
+
+	ContextMenu_SD_WeLooting = "we doing some scavenging?",
+	ContextMenu_SD_WeBackToBase= "Goot to be back",
+	ContextMenu_SD_LeaveGroupHungry = "Forget you guys I'm going to find some food",
+	ContextMenu_SD_LeaveBCHungry = "Forget this I'm going to find some food",
 	ContextMenu_SD_NoFindItem_Before = "doesnt seem to be any ",
 	ContextMenu_SD_NoFindItem_After = " around here",
+	ContextMenu_SD_LookForItem_Before = "Going to look for ",
+	ContextMenu_SD_LookForItem_After = "",
+	ContextMenu_SD_ComeWithMe_Before = "",
+	ContextMenu_SD_ComeWithMe_After = ", come with me!",	
+	
+    --[[Survivors OWN actions]]--
+	ContextMenu_SD_EatFood_Before = "Eats ",
+	ContextMenu_SD_EatFood_After = "",
 	ContextMenu_SD_EquipsArmor_Before = "*Equips ",
 	ContextMenu_SD_EquipsArmor_After = "*",
 	ContextMenu_SD_Opens_Before = "Opens ",
 	ContextMenu_SD_Opens_After = "",
 	ContextMenu_SD_Takes_Before = "Takes ",
-	ContextMenu_SD_TakesFromGround_After = " from Ground*",
-	ContextMenu_SD_TakesFromGround_Before = "*Takes ",
-	ContextMenu_SD_TakesFromCont_After = " from Container*",
-	ContextMenu_SD_TakesFromCont_Before = "*Takes ",
 	ContextMenu_SD_Takes_After = "",
+	ContextMenu_SD_TakesFromGround_Before = "*Takes ",
+	ContextMenu_SD_TakesFromGround_After = " from Ground*",
+	ContextMenu_SD_TakesFromCont_Before = "*Takes ",
+	ContextMenu_SD_TakesFromCont_After = " from Container*",
 	ContextMenu_SD_Drinking = "Drinking..",
-	ContextMenu_SD_HeyYou = "Hey you!",
 	ContextMenu_SD_EquipsArmor = "Equips Armor",
-	ContextMenu_SD_WeLooting = "we doing some scavenging?",
-	ContextMenu_SD_WeBackToBase= "Goot to be back",
-	ContextMenu_SD_LeaveGroupHungry = "Forget you guys I'm going to find some food",
-	ContextMenu_SD_LeaveBCHungry = "Forget this I'm going to find some food",
-	
+
+    ContextMenu_SD_TakesItemFromGround_Before = "Takes ",
+	ContextMenu_SD_TakesItemFromGround_After = " from ground",
+	ContextMenu_SD_BandageBP_Before = "Bandaging ",
+	ContextMenu_SD_BandageBP_After = "",
+	--[[END Survivors OWN actions]]--
+    
+	ContextMenu_SD_HeyYou = "Hey you!",
 	ContextMenu_SD_Bye1 = "Bye...",
 	ContextMenu_SD_SurvivorInfo = "Survivor Info",
 	ContextMenu_SD_HiThere = "Hi there",
@@ -345,7 +393,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_WhereHeGo = "hmm where did he go?",
 	ContextMenu_SD_WhoSaidThat = "Who's there? Who said that?",
 	ContextMenu_SD_OverHere = "Hey! Over here!",
-	
+	--prefixes--
 	ContextMenu_SD_DoctorPrefix_Before = "Doctor ",
 	ContextMenu_SD_DoctorPrefix_After = "",
 	ContextMenu_SD_VeteranPrefix_Before = "Veteran ",
@@ -364,14 +412,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_IGoBackBase = "Guess I'll get back to base",
 	ContextMenu_SD_NoWoodHere = "No Wood around here",
 	
-	ContextMenu_SD_TakesItemFromGround_Before = "Takes ",
-	ContextMenu_SD_TakesItemFromGround_After = " from ground",
-	ContextMenu_SD_ComeWithMe_Before = "",
-	ContextMenu_SD_ComeWithMe_After = ", come with me!",	
-	ContextMenu_SD_BandageBP_Before = "Bandaging ",
-	ContextMenu_SD_BandageBP_After = "",
 	
-
 	ContextMenu_SD_Resting = "Resting...",
 	ContextMenu_SD_NoAxeNoChopWood = "no axe anywhere, giving up chopping wood",
 	ContextMenu_SD_NoTrees = "No Trees around here",
@@ -399,42 +440,28 @@ ContextMenu_EN = {
 	ContextMenu_SD_GiveWeapon = "Give Your Mele Weapon to Survivor" ,
 	ContextMenu_SD_SwapGuns = "Swap Guns with Survivor",
 	ContextMenu_SD_SwapWeapons = "Swap Mele Weapons with Survivor" ,
-	ContextMenu_SD_UseMele = "Use Mele Weapon",
-	ContextMenu_SD_UseGun = "Use Gun Weapon",
-	ContextMenu_SD_UseMeleDesc = "Ask Survivor to use his Mele Weapon",
-	ContextMenu_SD_UseGunDesc = "Ask Survivor to use his Gun Weapon",
 	ContextMenu_SD_EveryOneUseMele = "Everyone use mele weapons!",
 	ContextMenu_SD_EveryOneUseGun = "Everyone use gun weapons!",
 	ContextMenu_SD_ViewSurvivorInfo = "View Survivor Info",
 	ContextMenu_SD_ViewSurvivorInfoDesc = "Shows information on this survivor such as perk levels, stats, etc.",
 	ContextMenu_SD_ROESet = "Rules of Engagement has been set",
-	
+   
+    --[[PVP message]]-- 
 	ContextMenu_SD_PVPDisabled = "PVP Disabled",
 	ContextMenu_SD_PVPEnabled = "PVP Enabled",
 	ContextMenu_SD_PVPForced = "PVP Forced On!",	
-	
-	ContextMenu_SD_CallOver = "Call Over",
-	ContextMenu_SD_CallOverDesc = "Ask this survivor to come over and talk",
-	ContextMenu_SD_OfferArmor = "Give Clothes",
-	ContextMenu_SD_OfferAmmoBox = "Offer Ammo Box",
-	ContextMenu_SD_OfferAmmoRound = "Offer Ammo Round",
-	ContextMenu_SD_TalkOption = "Talk",
-	ContextMenu_SD_TalkOption_Desc = "Attempt to start a dialogue with this survivor",
-	ContextMenu_SD_InviteToGroup = "Invite to Group",
-	ContextMenu_SD_AskToJoin = "Ask to Join Survivor Group",
-	ContextMenu_SD_OfferWeapon = "Offer Your Weapon as Gift",
-	ContextMenu_SD_OfferFood = "Offer Food",
-	ContextMenu_SD_OfferWater = "Offer Water",
-	ContextMenu_SD_GiveOrder = "Give Order",
-	ContextMenu_SD_OrderDescription = "Order Description",
-	
+    --[[END PVP message]]--
+
+	--[[Area work]]--
 	ContextMenu_SD_SetAreaConfirm = "Set",
 	ContextMenu_SD_SetAreaCancel = "Cancel",
 	ContextMenu_SD_SetAreaClear = "Clear",
 	ContextMenu_SD_SetAreaSelect = "Select Area",
-	ContextMenu_SD_AreaSelecting = "Area Selecting",
 	ContextMenu_SD_SetAreaSelectDesc = "Select an area on the map by holding left click and dragging your mouse around to select an area.  Once area is selected options to use selected area will be available such as declairing your base territory.",
+	ContextMenu_SD_AreaSelecting = "Area Selecting",
+	--[[END Area work]]--
 	
+	--[[Area Types]]--
 	ContextMenu_SD_BaseArea = "Base Area",
 	ContextMenu_SD_ChopTreeArea = "Chop Trees Area",
 	ContextMenu_SD_TakeCorpseArea = "Take Corpses Area",
@@ -448,11 +475,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_FarmingArea = "The Farming / Crops Area",
 	ContextMenu_SD_ForageArea = "Foraging Area",
 	ContextMenu_SD_GuardArea = "Guard Area",
-	ContextMenu_SD_SurvivorOptions = "Survivor Options",
-	
-	ContextMenu_SD_CallToArms = "Call to Arms",
-	
-	
+	--[[END Area Types]]--
 	
 
     --[[
@@ -2166,4 +2189,14 @@ ContextMenu_Debug_Character_Output = "Debug: Character Output",
 ContextMenu_Debug_Unstuck = "Debug: Unstuck",
 ContextMenu_Debug_Spawn_Soldier = "Debug: Spawn Soldier",
 ContextMenu_SD_Debug_PlayerStats = "Debug: Change Player Info",
+
+
+--[[IDK where to stick this]]--
+ContextMenu_SD_IGotABadFeeling = "I got a bad feeling.",
+	ContextMenu_SD_WhatWasThatSound = "What was that sound!?",
+	ContextMenu_SD_IAttackFoodThief = "That's it! Get out of here!",
+	ContextMenu_SD_IWarnFoodThief = "Hey you! stop stealing our food or else!!",
+
+    ContextMenu_SD_PerkLeveledUp_Before = "*"	
+	ContextMenu_SD_PerkLeveledUp_After = " Perk Leveled Up!*"
 }
