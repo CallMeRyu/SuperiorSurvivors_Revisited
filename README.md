@@ -66,4 +66,34 @@ Update 14 Experimental - Upload 6
 
 Update 14 Experimental - Upload 7 (Current)
 - More work towards NPCs tasks when they're the companion role (To following the main player) so they don't run away
+
 - More work into making the NPCs to enforce walking 
+
+- PVP Setting is now in the options Menu
+
+- "Follower Global Range" added to options menu. So you can choose the extra layer of how close you want your NPCs to be. (Please read its description)
+
+- Changed more conditions to where if NPCs should run/walk. (Mainly checks for if they're too close to the main player, then enforces walk)
+
+- MUCH cleaner options menu. Much more easier to read. This was needed for YEARS.
+
+- NPCs checks if they are a companion, and then checks if they and the mainplayer are both inside or outside. If outside, if they go beyond 9 blocks, they return. inside is 5 
+
+- NPCs should no longer flee when there's alot of zeds, if they are your companion
+
+- 
+______
+
+Nerd Info
+- Added more "IsnotTask" functions 
+- NPC_MovementManagement Updated to check for '	if (distance > minrange + 0.1) ' so they shouldn't move around as they're fighting WHEN using melee.
+- settings.lua changed to where two of the settings are now in the INGAME settings 
+- Cleaned the look of AiManager lua file to be a little more readable. (*This is going to take along time to complete, but I gotta start somewhere*)
+- Lots of the Task files that normally involve running now have "NPC_EnforceWalkNearMainPlayer" To further hopefully prevent NPCs from running into the player, tripping them both.
+
+- Follow Task
+* Was
+* if (distance > (GFollowDistance+self.FollowDistanceOffset+5)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+* Is Now
+* if (distance > (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+
