@@ -1,3 +1,7 @@
+Update 14 - RELEASED!
+
+------------- Information of the progress that happened these past days ------------------
+
 Update 14 Experimental 
 
 - Survivor Bravery is now included on combat tasks. Will it help? It seems like the NPCs won't run away always after first hit. At least with my testing.
@@ -81,7 +85,7 @@ Update 14 Experimental - Upload 7 (Current)
 
 - NPCs should no longer flee when there's alot of zeds, if they are your companion
 
-- 
+- Alt Spawning NPCs obey the 'Chance to be hostile' rule within the in game settings
 ______
 
 Nerd Info
