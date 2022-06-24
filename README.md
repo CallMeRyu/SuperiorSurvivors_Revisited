@@ -93,7 +93,7 @@ Nerd Info
 
 - Follow Task
 * Was
-* if (distance > (GFollowDistance+self.FollowDistanceOffset+5)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+* (GFollowDistance+self.FollowDistanceOffset+5))
 * Is Now
-* if (distance > (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+* (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance))
 
