@@ -85,7 +85,7 @@ Update 14 Experimental - Upload 7 (Current)
 
 - NPCs should no longer flee when there's alot of zeds, if they are your companion
 
-- 
+- Alt Spawning NPCs obey the 'Chance to be hostile' rule within the in game settings
 ______
 
 Nerd Info
