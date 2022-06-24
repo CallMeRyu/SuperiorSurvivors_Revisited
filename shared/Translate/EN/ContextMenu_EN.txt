@@ -311,6 +311,7 @@ ContextMenu_EN = {
     ContextMenu_SD_AidCheck = "Medical / First Aid Check",
     ContextMenu_SD_AidCheckDesc = "Walk to this survivor and medical check him, if they move the process can be interupted",
     ContextMenu_SD_SetName = "Change Name",
+    --Why NPC Clothing named like that? "ADD_Clothing"???--
     ContextMenu_SD_AddClothing = "'s Clothing",
     ContextMenu_SD_RemoveClothing = "Remove Clothing",
     
@@ -349,13 +350,32 @@ ContextMenu_EN = {
 
     ContextMenu_SD_RulesOfEngagement = "Rules of Engagement",
         ContextMenu_SD_AttackAnyoneOnSight = "Attack Anyone On Sight",
+        --miss desc for attack anyone on sight--
         ContextMenu_SD_AttackHostilesOnSight = "Attack Hostiles On Sight",
-    --idk where to put it-- 
+        --miss desc for attack hostiles on sight--
     ContextMenu_SD_SurvivorOptions = "Survivor Options",
     --[[END In Game Menu thing]]--
 
 	
     --[[Player interaction with NPC's]]--
+    ContextMenu_SD_HeyYou = "Hey you!",
+	ContextMenu_SD_Bye1 = "Bye...",
+	ContextMenu_SD_HiThere = "Hi there",
+	ContextMenu_SD_HelloThere = "Hello there!",
+	ContextMenu_SD_HelloWord1 = "What are you thinking?",
+    ContextMenu_SD_HelloWord2 = "We can take a break here.",
+    ContextMenu_SD_HelloWord3 = "How are you?",
+    ContextMenu_SD_HelloWord4 = "How are you doing?",
+    ContextMenu_SD_HelloWord5 = "What do you think?",
+    ContextMenu_SD_HelloWord6 = "What are you thinking about?",
+    ContextMenu_SD_HelloWord7 = "Anything to say?",
+    ContextMenu_SD_HelloWord8 = "What do you know?",
+    ContextMenu_SD_HelloWord9 = "Any new information?",
+    ContextMenu_SD_HelloWord10 = "Any suggestions?",
+    ContextMenu_SD_HelloWord11 = "Want to hear your advice",
+    ContextMenu_SD_HelloWord12 = "What would you like to say about your current situation?",
+    ContextMenu_SD_HelloWord13 = "Do you want something?", 
+    ContextMenu_SD_HelloWord14 = "How do you do?", 
 	ContextMenu_SD_CallName_Before = "",
 	ContextMenu_SD_CallName_After = "! Come here!",
     ContextMenu_SD_YouWantToJoin = "Want to join my group?",
@@ -403,24 +423,7 @@ ContextMenu_EN = {
     
 
     --[[Survivors Interactions]]--
-    ContextMenu_SD_HeyYou = "Hey you!",
-	ContextMenu_SD_Bye1 = "Bye...",
-	ContextMenu_SD_HiThere = "Hi there",
-	ContextMenu_SD_HelloThere = "Hello there!",
-	ContextMenu_SD_HelloWord1 = "What are you thinking?",
-    ContextMenu_SD_HelloWord2 = "We can take a break here.",
-    ContextMenu_SD_HelloWord3 = "How are you?",
-    ContextMenu_SD_HelloWord4 = "How are you doing?",
-    ContextMenu_SD_HelloWord5 = "What do you think?",
-    ContextMenu_SD_HelloWord6 = "What are you thinking about?",
-    ContextMenu_SD_HelloWord7 = "Anything to say?",
-    ContextMenu_SD_HelloWord8 = "What do you know?",
-    ContextMenu_SD_HelloWord9 = "Any new information?",
-    ContextMenu_SD_HelloWord10 = "Any suggestions?",
-    ContextMenu_SD_HelloWord11 = "Want to hear your advice",
-    ContextMenu_SD_HelloWord12 = "What would you like to say about your current situation?",
-    ContextMenu_SD_HelloWord13 = "Do you want something?", 
-    ContextMenu_SD_HelloWord14 = "How do you do?", 
+    
     ContextMenu_SD_WhatYouWant = "Yeah? What do you want?",
 	ContextMenu_SD_NotInBuilding = "we are not in a building",
 	ContextMenu_SD_CantCarryMore = "I can't carry anymore",
