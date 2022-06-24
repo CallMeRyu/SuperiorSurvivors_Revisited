@@ -64,6 +64,6 @@ Update 14 Experimental - Upload 6
 - Updated Alt spawning: You now can choose 0% to 100% chance for alt spawning to take effect each hour
 
 
-Update 14 Experimental - Upload 7 (Not yet released)
+Update 14 Experimental - Upload 7 (Current)
 - More work towards NPCs tasks when they're the companion role (To following the main player) so they don't run away
 - More work into making the NPCs to enforce walking 
