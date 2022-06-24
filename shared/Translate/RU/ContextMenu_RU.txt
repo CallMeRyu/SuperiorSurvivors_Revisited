@@ -123,7 +123,7 @@ ContextMenu_RU = {
         ContextMenu_SD_UpTo4 = "От 1 до 4-х групп"
         ContextMenu_SD_UpTo5 = "От 1 до 5-ти групп"
         ContextMenu_SD_UpTo6 = "От 1 до 6-ти групп"
-	ContextMenu_SOption_AltSpawnDesc = "Alt Spawning hourly is a new type of spawning method for NPCs to spawn. How many groups do you want to spawn around you every in game hour? 'Groups' will contain NPCs inside to spawn around you off screen every hour - (Determined by you in the other settings). You can use this spawning method along with 'NPC spawn rate', but effects may differ on performance. Turning this setting 'OFF' will turn off the other settings as well. Read the descriptions on the other Alt spawning options to know more. "
+	ContextMenu_SOption_AltSpawnDesc = "Альт.Спаун - это новый метод спауна НПС. Сколько групп Вы хотите видеть вокруг себя каждый игровой час? В группах будут находиться НПС, которые будут созданы за пределами вашего экрана - (Выбрать можно в след. настройке). Вы можете использовать и Альт.Метод и обычный, но это может сказаться на производительности. Выключение этой опции приведет к отключению зависящих от неё опций. Прочитайте описание след. настроек Альт.Метода, чтобы узнать больше. "
 
     ContextMenu_Option_AltSpawnAmount = "Максимально кол-во членов в группе при использовании альт.метода:",
         ContextMenu_AltSpawnAmount_1 = "Только 1",
