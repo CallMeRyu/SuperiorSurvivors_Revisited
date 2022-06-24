@@ -1,6 +1,7 @@
 Update 14 - RELEASED!
 
 ------------- Information of the progress that happened these past days ------------------
+
 Update 14 Experimental 
 
 - Survivor Bravery is now included on combat tasks. Will it help? It seems like the NPCs won't run away always after first hit. At least with my testing.
