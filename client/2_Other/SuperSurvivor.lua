@@ -1949,10 +1949,10 @@ function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
 	local Enemy_Is_a_Human = (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
 	local Weapon_HandGun = self.player:getPrimaryHandItem()
-	local NPCsDangerSeen = self:getDangerSeenCount()	
+	local NPCsDangerSeen = self:getDangerSeenCount()
 	
 	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready. 
-	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))  then	
+	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human)) and (self:getGroupRole() ~= "Companion") then	
 		self:NPCTask_Clear()
 		self:NPCTask_DoFlee()
 		self:NPCTask_DoFleeFromHere()
