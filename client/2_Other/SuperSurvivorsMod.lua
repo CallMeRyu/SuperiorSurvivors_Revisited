@@ -362,6 +362,9 @@ function SuperSurvivorsLoadGridsquare(square)
 			IsDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() > 50 and gameVersion:getMinor() < 53)
 			IsNpcDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() >= 53)
 			
+			 
+			Option_ForcePVP = SuperSurvivorGetOptionValue("Option_ForcePVP")
+			Option_FollowDistance = SuperSurvivorGetOptionValue("Option_FollowDistance")
 			SuperSurvivorBravery = SuperSurvivorGetOptionValue("Bravery")
 			AlternativeSpawning = SuperSurvivorGetOptionValue("AltSpawn")
 			AltSpawnGroupSize = SuperSurvivorGetOptionValue("AltSpawnAmount")
@@ -484,7 +487,9 @@ function SuperSurvivorsInit()
 	else AchievementsEnabled = false end
 
 	SurvivorTogglePVP()
+
 	if(IsoPlayer.getCoopPVP() == true) then SurvivorTogglePVP() end
+	if(Option_ForcePVP == 1) then SurvivorTogglePVP() end
 	
 	local player = getSpecificPlayer(0)
 	player:getModData().isHostile = false

@@ -68,6 +68,8 @@ function PursueTask:update()
 		if(distancetoLastSpotSeen > 2.5) then
 			
 			self.parent:walkToDirect(self.LastSquareSeen)
+			self.parent:NPC_ShouldRunOrWalk()
+			self.parent:NPC_EnforceWalkNearMainPlayer()
 			
 			if(ZombRand(4) == 0) and (self.parent:isSpeaking() == false) then
 				self.parent:Speak(getSpeech("SawHimThere"))
@@ -89,6 +91,9 @@ function PursueTask:update()
 			self.parent.TargetBuilding = self.TargetSS:getBuilding() 
 		end
 		self.parent:walkToDirect(self.Target:getCurrentSquare())
+		
+		self.parent:NPC_ShouldRunOrWalk()
+		self.parent:NPC_EnforceWalkNearMainPlayer()
 	end
 	
 	

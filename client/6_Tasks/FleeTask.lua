@@ -36,5 +36,6 @@ function FleeTask:update()
 	self.parent:setSneaking(false)
 	
 	self.parent:walkTo(getFleeSquare(self.parent.player,self.parent.LastEnemeySeen))
+	self.parent:NPC_EnforceWalkNearMainPlayer()
 
 end

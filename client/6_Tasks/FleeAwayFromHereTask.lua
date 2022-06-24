@@ -37,5 +37,6 @@ function FleeFromHereTask:update()
 	self.parent:setRunning(true)
 	
 	self.parent:walkTo(getFleeSquare(self.parent.player,self.fleeFromHere))
+	self.parent:NPC_EnforceWalkNearMainPlayer()
 
 end

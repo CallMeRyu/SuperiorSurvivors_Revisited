@@ -53,6 +53,12 @@ function SuperSurvivorGetOptionValue(option)
 	elseif(option == "RaidersAfterHours") then return (((num-2) * 5) * 24)
 	
 	elseif(option == "RaidersChance") then return ((num + 2) * 24 * 14)  -- (6 * 24 * 14)
+	
+	elseif(option == "Option_FollowDistance") then return (num+2)
+	
+	elseif(option == "Option_ForcePVP") and (num == 1) then return 0
+	elseif(option == "Option_ForcePVP") and (num == 2) then return 1
+	
 	elseif(option == "Bravery") and (num == 1) then return 1
 	elseif(option == "Bravery") and (num == 2) then return 2
 	elseif(option == "Bravery") and (num == 3) then return 3
@@ -154,6 +160,8 @@ if(not SuperSurvivorOptions["RaidersAtLeastHours"]) then SuperSurvivorOptions["R
 if(not SuperSurvivorOptions["RaidersAfterHours"]) then SuperSurvivorOptions["RaidersAfterHours"] = 7 end
 if(SuperSurvivorOptions["RaidersAfterHours"] > 22) then SuperSurvivorOptions["RaidersAfterHours"] = 22 end -- fix legacy bad value
 if(not SuperSurvivorOptions["RaidersChance"]) then SuperSurvivorOptions["RaidersChance"] = 3 end
+if(not SuperSurvivorOptions["Option_FollowDistance"]) then SuperSurvivorOptions["Option_FollowDistance"] = 5 end
+if(not SuperSurvivorOptions["Option_ForcePVP"]) then SuperSurvivorOptions["Option_ForcePVP"] = 0 end
 if(not SuperSurvivorOptions["Bravery"]) then SuperSurvivorOptions["Bravery"] = 2 end
 if(not SuperSurvivorOptions["AltSpawn"]) then SuperSurvivorOptions["AltSpawn"] = 2 end
 if(not SuperSurvivorOptions["AltSpawnAmount"]) then SuperSurvivorOptions["AltSpawnAmount"] = 1 end
@@ -684,9 +692,31 @@ if index then
 		y = y + spacing
 		
 		
+		local options = {getText("ContextMenu_SD_PVPOff"),getText("ContextMenu_SD_PVPOn")}
+		local gunspawnrateCombo = self:addCombo(splitpoint, y, comboWidth, 20,getText("ContextMenu_SD_PVPInfoBar"), options, 1)
+		gunspawnrateCombo:setToolTipMap({defaultTooltip = getText("ContextMenu_SD_PVPInfoBarDesc")});
+		
+		gameOption = GameOption:new('Option_ForcePVP', gunspawnrateCombo)
+		function gameOption.toUI(self)
+			local box = self.control
+			box.selected = SuperSurvivorGetOption("Option_ForcePVP")
+		end
+		function gameOption.apply(self)
+			local box = self.control
+			if box.options[box.selected] then
+				SuperSurvivorSetOption("Option_ForcePVP",box.selected)
+				print("setting survivor option")
+			else
+				print("error could not set survivor option")
+			end
+		end
+		function gameOption:onChange(box)
+			print("option changed to ".. tostring(box.selected))
+		end
+		self.gameOptions:add(gameOption)		
 		
 
-		
+		y = y + spacing
 		
 		
 		local options = {"0%","5%","10%","15%","20%","25%","30%","35%","40%","45%","50%","55%","60%","65%","70%","75%","80%","85%","90%","95%","100%"}
@@ -843,6 +873,32 @@ if index then
 		self.gameOptions:add(gameOption)
 		
 
+		y = y + spacing
+
+	
+		local options = {"3","4","5","6","7","8","9","10"}
+		local gunspawnrateCombo = self:addCombo(splitpoint, y, comboWidth, 20,getText("ContextMenu_SOption_FollowGlobalRange"), options, 1)
+		gunspawnrateCombo:setToolTipMap({defaultTooltip = getText("ContextMenu_SOption_FollowGlobalRangeDesc")});
+		
+		gameOption = GameOption:new('Option_FollowDistance', gunspawnrateCombo)
+		function gameOption.toUI(self)
+			local box = self.control
+			box.selected = SuperSurvivorGetOption("Option_FollowDistance")
+		end
+		function gameOption.apply(self)
+			local box = self.control
+			if box.options[box.selected] then
+				SuperSurvivorSetOption("Option_FollowDistance",box.selected)
+				print("setting survivor option")
+			else
+				print("error could not set survivor option")
+			end
+		end
+		function gameOption:onChange(box)
+			print("option changed to ".. tostring(box.selected))
+		end
+		self.gameOptions:add(gameOption)
+			
 		y = y + spacing
 
 	
