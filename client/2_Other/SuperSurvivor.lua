@@ -1943,7 +1943,8 @@ end
 
 
 
--- This was built for getting away from zeds 
+-- This was built for getting away from zeds
+-- This needed 'not a companion' check to keep the NPC in question not to run away when they're following main player.
 function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
 	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 

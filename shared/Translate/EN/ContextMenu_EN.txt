@@ -86,7 +86,7 @@ ContextMenu_Job_Doctor = "Doctor",
 		ContextMenu_Debug_Spawn_Soldier = "Debug: Spawn Soldier",
 	
 	ContextMenu_SOption_AltSpawnPercent = "Alt Spawning - Chance:"
-	ContextMenu_SOption_AltSpawnPercentDesc = "You can control the chance when a group(s) of NPCs spawn around you every hour by % chance. If your %chance dice surpass the random roll during an in game hour, groups of NPCs will spawn around you off screen."
+	ContextMenu_SOption_AltSpawnPercentDesc = "You can control the chance when a group(s) of NPCs spawn around you every hour by % chance. If your %chance dice surpass the random roll (Random 1-100) during an in game hour, groups of NPCs will spawn around you off screen."
 	
 
 	ContextMenu_Option_AltSpawnAmount = "Alt Spawning - Group Size:"

@@ -71,9 +71,9 @@ function SuperSurvivorGetOptionValue(option)
 	elseif(option == "AltSpawn") and (num == 6) then return 6 -- If true
 	elseif(option == "AltSpawn") and (num == 7) then return 7 -- If true
 	
-	elseif(option == "AltSpawnPercent") then return (num - 1) -- % chance
+	elseif(option == "AltSpawnPercent") then return (num - 1) -- % chance. in this case, 'num - 1' will make it goto 0 for what 'option 1' is. 
 
-	elseif(option == "AltSpawnAmount") and (num == 1) then return 1
+	elseif(option == "AltSpawnAmount") and (num == 1) then return 1 
 	elseif(option == "AltSpawnAmount") and (num == 2) then return 2
 	elseif(option == "AltSpawnAmount") and (num == 3) then return 3
 	elseif(option == "AltSpawnAmount") and (num == 4) then return 4
@@ -164,6 +164,7 @@ if(not SuperSurvivorOptions["Option_FollowDistance"]) then SuperSurvivorOptions[
 if(not SuperSurvivorOptions["Option_ForcePVP"]) then SuperSurvivorOptions["Option_ForcePVP"] = 0 end
 if(not SuperSurvivorOptions["Bravery"]) then SuperSurvivorOptions["Bravery"] = 2 end
 if(not SuperSurvivorOptions["AltSpawn"]) then SuperSurvivorOptions["AltSpawn"] = 2 end
+if(not SuperSurvivorOptions["AltSpawnPercent"]) then SuperSurvivorOptions["AltSpawnPercent"] = 10 end
 if(not SuperSurvivorOptions["AltSpawnAmount"]) then SuperSurvivorOptions["AltSpawnAmount"] = 1 end
 if(not SuperSurvivorOptions["SSHotkey1"]) then SuperSurvivorOptions["SSHotkey1"] = 6 end
 if(not SuperSurvivorOptions["SSHotkey2"]) then SuperSurvivorOptions["SSHotkey2"] = 10 end

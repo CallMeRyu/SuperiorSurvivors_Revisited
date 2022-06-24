@@ -939,11 +939,27 @@ end
 Events.OnEquipPrimary.Add(SuperSurvivorsOnEquipPrimary);
 
 
+
+
+
+
+
+
+
+
 function SuperSurvivorsNewSurvivorManager()
 	-- To make sure if the player has chosen not to use Alt spawning
 	if (AlternativeSpawning == 1) then
 		return false 
 	end
+	
+		local hoursSurvived = math.floor(getGameTime():getWorldAgeHours())
+		local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+
+		local FinalChanceToBeHostile = ChanceToBeHostileNPC + math.floor(hoursSurvived/48)
+		if(FinalChanceToBeHostile > MaxChanceToBeHostileNPC) and (ChanceToBeHostileNPC < MaxChanceToBeHostileNPC) then FinalChanceToBeHostile = MaxChanceToBeHostileNPC end
+	
+	
 	
 		if(getSpecificPlayer(0) == nil) then return false end
 		--this unrelated to raiders but need this to run every once in a while
@@ -1047,7 +1063,15 @@ function SuperSurvivorsNewSurvivorManager()
 					raider = SuperSurvivorRandomSpawn(spawnSquare)
 					if(i == 1) then RaiderGroup:addMember(raider,"Leader")
 					else RaiderGroup:addMember(raider,"Guard") end
-					raider:setHostile(false)
+					
+					-- Updated so alt spawns can decide to be hostile or not.
+					if(ZombRand(100) < FinalChanceToBeHostile ) then 
+						ASuperSurvivor:setHostile(true) 
+					else
+						ASuperSurvivor:setHostile(false) 
+					end
+					
+					-- raider:setHostile(false)
 					raider.player:getModData().isRobber = false
 					local name = raider:getName()
 					--raider:setName("Raider "..name)
@@ -1079,8 +1103,6 @@ function SuperSurvivorsNewSurvivorManager()
 			end
 
 end
-
-
 
 
 function SuperSurSurvivorSpawnGenFivePercent()
