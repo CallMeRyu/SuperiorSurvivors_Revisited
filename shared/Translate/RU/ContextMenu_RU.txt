@@ -115,9 +115,15 @@ ContextMenu_RU = {
     --[[OPTIONS]]--
 
     --[Alternative spawn system]--
-    ContextMenu_SOption_AltSpawn = "Альтернативный метод спауна НПС в %:",
-    ContextMenu_SOption_AltSpawnDesc = "Альтернативный метод выбирает случайный процент каждый игровой час, и если этот процент совпадет с установленным, то скрипт заспаунит НПС рядом с игроком. Вы можете использовать этот метод даже когда 'Частота появления выживших' выключена, если хотите иногда видеть НПС вокруг Вас. Этот метод меньше влияет на Ваш FPS, потому что он не делает доп. рассчеты при помощи положения игрока на карте, а рассчитывает всё по игровым часам. (Вы можете использовать новый и старый метод вместе, не бойтесь эксперементировать. Может быть, Вас кое-что удивит!)",
-
+    ContextMenu_SOption_AltSpawn = "Альт.Спаун - Группы:"
+        ContextMenu_SD_AltSpawnOff = "Откл"
+        ContextMenu_SD_UpTo1 = "Одна группа"
+        ContextMenu_SD_UpTo2 = "От 1 до 2-х групп"
+        ContextMenu_SD_UpTo3 = "От 1 до 3-х групп"
+        ContextMenu_SD_UpTo4 = "От 1 до 4-х групп"
+        ContextMenu_SD_UpTo5 = "От 1 до 5-ти групп"
+        ContextMenu_SD_UpTo6 = "От 1 до 6-ти групп"
+	ContextMenu_SOption_AltSpawnDesc = "Alt Spawning hourly is a new type of spawning method for NPCs to spawn. How many groups do you want to spawn around you every in game hour? 'Groups' will contain NPCs inside to spawn around you off screen every hour - (Determined by you in the other settings). You can use this spawning method along with 'NPC spawn rate', but effects may differ on performance. Turning this setting 'OFF' will turn off the other settings as well. Read the descriptions on the other Alt spawning options to know more. "
 
     ContextMenu_Option_AltSpawnAmount = "Максимально кол-во членов в группе при использовании альт.метода:",
         ContextMenu_AltSpawnAmount_1 = "Только 1",
@@ -127,6 +133,9 @@ ContextMenu_RU = {
         ContextMenu_AltSpawnAmount_5 = "На рандом от 1 до 5-ти макс.",
         ContextMenu_AltSpawnAmount_6 = "На рандом от 1 до 6-ти макс.",
     ContextMenu_Context_AltSpawnAmountDesc = "Вместе с альт.методом Вы можете выбрать кол-во членов в созданной группе. Когда группы будут созданы, машина выберет установленное Вами число на рандом и установит столько же НПС в созданную группу. Не советую ставить большие значения спауна вместе с большим кол-вом членов в группе, потому что это может привести к лагам. (Если альт.метод спауна выключен - то эта опция не работает)",
+
+    ContextMenu_SOption_AltSpawnPercent = "Альтернативный метод спауна НПС в %:",
+    ContextMenu_SOption_AltSpawnPercentDesc = "Альтернативный метод выбирает случайный процент каждый игровой час, и если этот процент совпадет с установленным, то скрипт заспаунит НПС рядом с игроком. Вы можете использовать этот метод даже когда 'Частота появления выживших' выключена, если хотите иногда видеть НПС вокруг Вас. Этот метод меньше влияет на Ваш FPS, потому что он не делает доп. рассчеты при помощи положения игрока на карте, а рассчитывает всё по игровым часам. (Вы можете использовать новый и старый метод вместе, не бойтесь эксперементировать. Может быть, Вас кое-что удивит!)",
     --[END Alternative spawn system]--	
     
     --[On\Off options]--
@@ -466,6 +475,8 @@ ContextMenu_RU = {
 	
    
     --PVP-- 
+    ContextMenu_SD_PVPOff = "Откл"
+	ContextMenu_SD_PVPOn = "Вкл"
     ContextMenu_SD_PVPInfoBar = "PVP Режим: ",
     ContextMenu_SD_PVPInfoBarDesc = "Можно переключить режим ПВП тут, чтобы не дергать его в игре в нижнем правом углу экрана.",
 	ContextMenu_SD_PVPDisabled = "ПВП отключено!",
