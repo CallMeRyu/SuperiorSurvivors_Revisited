@@ -92,8 +92,6 @@ Nerd Info
 - Lots of the Task files that normally involve running now have "NPC_EnforceWalkNearMainPlayer" To further hopefully prevent NPCs from running into the player, tripping them both.
 
 - Follow Task
-* Was
-* (GFollowDistance+self.FollowDistanceOffset+5))
-* Is Now
-* (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance))
+* Was (GFollowDistance+self.FollowDistanceOffset+5)
+* Is Now (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)
 
