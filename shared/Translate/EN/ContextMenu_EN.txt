@@ -9,7 +9,7 @@
 ContextMenu_EN = {
 
 
-    ContextMenu_Title  = "Survivors V0.13",
+    ContextMenu_Title  = "Survivors V0.14",
 
    
     --[[Jobs]]--
@@ -117,7 +117,6 @@ ContextMenu_EN = {
     --[Alternative spawn system]--
     ContextMenu_SOption_AltSpawn = "Alternative NPC Hourly Spawning:",
     ContextMenu_SOption_AltSpawnPercentDesc = "You can control the chance when a group(s) of NPCs spawn around you every hour by % chance. If your %chance dice surpass the random roll (Random 1-100) during an in game hour, groups of NPCs will spawn around you off screen."
-
 
 
     ContextMenu_Option_AltSpawnAmount = "Max Alt Spawn Group Size:",
@@ -263,6 +262,10 @@ ContextMenu_EN = {
         ContextMenu_SD_Brave = "Brave",
         ContextMenu_SD_VeryBrave = "Very Brave",
     ContextMenu_SOption_SurvivorBraveryDesc = "Determines how likely Survivors are to fight, rather than flee or avoid.",
+
+    ContextMenu_SOption_FollowGlobalRange = "Follower Global Range:"
+	ContextMenu_SOption_FollowGlobalRangeDesc = "Follower Global Range was previously in the followtask file at '5' default. With this, you can change the what previously was '5' to a larger or smaller number. This adds padding to your followers of how close/far they can be to you. This setting doesn't change dynamically in game. That's what the hotkey settings is for. (*This is also to help people be aware such settings exist*) WARNING: PLEASE TEST THIS outside your main game before setting this under 5."
+
     --[END Individual Options]--
 
     --[Hotkeys]--
@@ -285,6 +288,8 @@ ContextMenu_EN = {
     
 
     --[[DEBUG]]--
+    ContextMenu_SOption_DebugOptions = "Debug Options - LAG WARNING IF IS TURNED ON: ",
+	ContextMenu_SOption_DebugOptionsDesc = "Turns on ALOT of debugging information for the NPCs. Good for if you're wanting to see what's going on, but BE WARNED, keep this OFF if you do not want to see the NPCs spam tons of information. If you see others ask about this in the steam description, PLEASE let them know they have debug mode on, and to turn it off. If you want to test things, this would be the way to do it. CONSOLE.TXT, OPEN THAT TOO, THAT will give *EXTREME* details of nearly every variable the NPC has. CTRL+F 'Super Debug' to scan through the mess you're going to see. How to SEE super debug console text? You're going to need to be 6 blocks near (roughly) an NPC to see what it's up to. (This will generate lag as well because it's writing alot, very quickly, so be prepared)",
     ContextMenu_Debug_Character_Swap = "Debug: Character Swap",
     ContextMenu_Debug_Infect&Murder_Character = "Debug: Infect&Murder Character",
     ContextMenu_Debug_Character_Output = "Debug: Character Output",
@@ -460,7 +465,10 @@ ContextMenu_EN = {
 	ContextMenu_SD_FarmerPrefix_After = "",
 	
    
-    --PVP message-- 
+    --PVP-- 
+    ContextMenu_SD_PVPInfoBar = "PVP Mode: ",
+    ContextMenu_SD_PVPInfoBarDesc = "Previously in the settings lua, this allows you to turn on PVP mode without having to goto the settings.lua file to do so. This DOES NOT make it where hostile NPCs can't hit you. So setting this to 'off' will still force PVP on when encountering hostile NPCs. This setting was requested a few times so that if you don't want to have to press the PVP button on the bottom right of your screen if you want PVP on by default.",
+
 	ContextMenu_SD_PVPDisabled = "PVP Disabled",
 	ContextMenu_SD_PVPEnabled = "PVP Enabled",
 	ContextMenu_SD_PVPForced = "PVP Forced On!",	
