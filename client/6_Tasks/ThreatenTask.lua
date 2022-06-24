@@ -87,6 +87,7 @@ function ThreatenTask:update()
 	
 	 self.theDistance = getDistanceBetween(self.Aite, self.parent.player)
 	 self.parent:NPC_ShouldRunOrWalk()
+	 self.parent:NPC_EnforceWalkNearMainPlayer()
 
 	if(self.StartedThreatening == true) then
 		if(self:dealBreaker()) then 			 
@@ -129,6 +130,8 @@ function ThreatenTask:update()
 	elseif(self.parent:isWalkingPermitted()) then
 
 		self.parent:NPC_ManageLockedDoors() -- This function should force walking away if stuck
+		self.parent:NPC_ShouldRunOrWalk()
+		self.parent:NPC_EnforceWalkNearMainPlayer()
 	
 		local cs = self.Aite.player:getCurrentSquare()
 
@@ -138,9 +141,13 @@ function ThreatenTask:update()
 				return false
 			else
 				self.parent:walkToDirect(cs)
+				self.parent:NPC_ShouldRunOrWalk()
+				self.parent:NPC_EnforceWalkNearMainPlayer()
 			end
 		else
 			self.parent:walkToDirect(cs)
+			self.parent:NPC_ShouldRunOrWalk()
+			self.parent:NPC_EnforceWalkNearMainPlayer()
 		end	
 		
 		

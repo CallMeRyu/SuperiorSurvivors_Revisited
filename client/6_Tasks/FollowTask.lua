@@ -81,8 +81,8 @@ function FollowTask:update()
 			self.parent:Speak(getText("ContextMenu_SD_WeBackToBase"))
 		end
 		
-		
-		if (distance > (GFollowDistance+self.FollowDistanceOffset+5)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+		-- Option_FollowDistance is replacing the "+5" that it normally defaults to, to the in game settings
+		if (distance > (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
 		self.parent:setRunning(true)
 		else self.parent:setRunning(false) end
 	
