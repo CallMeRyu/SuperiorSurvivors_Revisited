@@ -91,7 +91,7 @@ Nerd Info
 - Cleaned the look of AiManager lua file to be a little more readable. (*This is going to take along time to complete, but I gotta start somewhere*)
 - Lots of the Task files that normally involve running now have "NPC_EnforceWalkNearMainPlayer" To further hopefully prevent NPCs from running into the player, tripping them both.
 
-- Follow Task
+Follow Task
 * Was (GFollowDistance+self.FollowDistanceOffset+5)
 * Is Now (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)
 
