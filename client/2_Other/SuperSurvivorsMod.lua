@@ -1074,7 +1074,7 @@ function SuperSurvivorsNewSurvivorManager()
 					-- raider:setHostile(false)
 					raider.player:getModData().isRobber = false
 					local name = raider:getName()
-					--raider:setName("Raider "..name)
+					-- raider:setName("Raider "..name)
 					raider:setName("Survivor "..name)
 					raider:getTaskManager():AddToTop(WanderTask:new(raider))
 					if(raider:hasWeapon() == false) then raider:giveWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]) end

@@ -266,6 +266,7 @@ function SuperSurvivor:newSet(player)
 	
 	return o
 end
+
 function SuperSurvivor:Wait(ticks)
  self.WaitTicks = ticks
 end
@@ -323,6 +324,7 @@ function SuperSurvivor:isGroupless(thisGuy)
 	else return true end
 
 end
+
 function SuperSurvivor:getX()
 	return self.player:getX()
 end
@@ -332,12 +334,15 @@ end
 function SuperSurvivor:getZ()
 	return self.player:getZ()
 end
+
 function SuperSurvivor:getCurrentSquare()
 	return self.player:getCurrentSquare()
 end
+
 function SuperSurvivor:getModData()
 	return self.player:getModData()
 end
+
 function SuperSurvivor:getName()
 	return self.player:getModData().Name
 end
@@ -359,7 +364,7 @@ function SuperSurvivor:setName(nameToSet)
 	self.player:getModData().NameRaw = nameToSet
 end
 
-function SuperSurvivor:renderName()
+function SuperSurvivor:renderName() -- To do: Make an in game option to hide rendered names. It was requested.
 
 	if (not self.userName) or ((not self.JustSpoke) and ((not self:isInCell()) or (self:Get():getAlpha() ~= 1.0) or getSpecificPlayer(0)==nil or (not getSpecificPlayer(0):CanSee(self.player)))) then return false end
 	
@@ -702,8 +707,7 @@ function SuperSurvivor:getCurrentTask()
 	return self:getTaskManager():getCurrentTask()
 end
 
--- This function is an absolute mess...
-function SuperSurvivor:isTooScaredToFight()
+function SuperSurvivor:isTooScaredToFight() -- This function is an absolute mess...
 	
 	if (self.EnemiesOnMe >= 3) then
 		return true
@@ -721,6 +725,7 @@ function SuperSurvivor:isTooScaredToFight()
 		
 	end
 end
+
 function SuperSurvivor:usingGun()
 	local handItem = self.player:getPrimaryHandItem()
 	if(handItem ~= nil) and (instanceof(handItem,"HandWeapon")) then
@@ -728,6 +733,7 @@ function SuperSurvivor:usingGun()
 	end
 	return false
 end
+
 function SuperSurvivor:isWalkingPermitted()
 	return self.WalkingPermitted
 end
@@ -929,6 +935,24 @@ function SuperSurvivor:isTargetBuildingDangerous()
 	else return false end
 end
 
+-- New function: To allow the exact position of the NPC to mark spot. This could be useful for preventing NPCs from walking to blocked off doors they witnessed
+-- It needs work though, because right now it will more than likely mark off the whole building.
+-- IFOD stands for 'In front of door' but it will also check for barricaded windows too.
+function SuperSurvivor:MarkCurrentSquareExplored_IFOD(building)
+	if (not self:inFrontOfLockedDoor()) or (not self:inFrontOfBarricadedWindowAlt()) then return false end
+	self:resetBuildingWalkToAttempts(building)
+	local bdef = building:getDef()	
+	for x=bdef:getX()-1,(bdef:getX() + bdef:getW()+1) do	
+		for y=bdef:getY()-1,(bdef:getY() + bdef:getH()+1) do
+			
+			local sq = getCell():getGridSquare(x,y,self.player:getZ())			
+			if(sq) then 
+				self:Explore(sq)
+			end			
+		end							
+	end
+end
+
 function SuperSurvivor:MarkBuildingExplored(building)
 	if(not building) then return false end
 	self:resetBuildingWalkToAttempts(building)
@@ -974,9 +998,9 @@ end
 function SuperSurvivor:DebugSay(text) 
 	-- Now, the In game DebugOptions will now effect this.
 	local TurnOnDebugText = DebugOptions
-	local zEmergencyTest = 0
+	local DebugSayDebugMode_Settings = 0
 
-	if(DebugSayEnabled == true and self.DebugMode == true) or (TurnOnDebugText == true and zEmergencyTest == 1) then
+	if(DebugSayEnabled == true and self.DebugMode == true) or (TurnOnDebugText == true and DebugSayDebugMode_Settings == 1) then
 
 		if (getDistanceBetween(getSpecificPlayer(0),self.player) < 6) then -- if far enough away from player, don't do anything
 		
@@ -2131,11 +2155,7 @@ end
 -- This function isn't being used currently here. It was grabbed from AI manager
 function SuperSurvivor:NPC_IsNPCsEnemyHuman()
 	if (instanceof(self.LastEnemeySeen,"IsoPlayer")) then
-		self:DebugSay("NPC_IsEnemyHuman Is 'True', but is it? Code, is it? -toString is claiming it is:")
 		return true
-	else
-		self:DebugSay("NPC_IsEnemyHuman Is 'False', but is it? Code, is it? -toString is claiming it is:")
-		return false
 	end
 end
 
@@ -3528,13 +3548,15 @@ end
 -- That way they don't trip over each other (and more importantly the main player)
 -- This function is used mainly in the combat related tasks, but could be used elsewhere if the npc is running over the main player often.
 -- 6/21/2022: If I set 'setruning' to true , then else false? NPCs will run into each other! But if it looks like what it is now, it works fine!
--- 		This literally implies it will check top to bottom priority. I'm writing this to remind myself for the future.	
+-- 		This literally implies it will check top to bottom priority. I'm writing this to remind myself for the future.
+--	instanceof(self.player:getCell():getObjectList(),"IsoPlayer") < - hold this for now 
 function SuperSurvivor:NPC_ShouldRunOrWalk()
 
 	if (self.LastEnemeySeen ~= nil) then
 		local distance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local distanceAlt = getDistanceBetween(self.player,getSpecificPlayer(0))	-- To prevent running into the player
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
+
 		
 		if (self:Task_IsNotFleeOrFleeFromSpot()) and (distance < 2) or (distanceAlt < 2) or (zNPC_AttackRange) then
 			self:setRunning(false)

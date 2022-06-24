@@ -71,12 +71,12 @@ ContextMenu_Job_Doctor = "Doctor",
 	
 	ContextMenu_SOption_AltSpawn = "Alt Spawning - Groups:"
 	ContextMenu_SD_AltSpawnOff = "Off"
-	ContextMenu_SD_UpTo1 = "Just 1 NPC group"
-	ContextMenu_SD_UpTo2 = "1 To 2 NPC groups"
-	ContextMenu_SD_UpTo3 = "1 To 3 NPC groups"
-	ContextMenu_SD_UpTo4 = "1 To 4 NPC groups"
-	ContextMenu_SD_UpTo5 = "1 To 5 NPC groups"
-	ContextMenu_SD_UpTo6 = "1 To 6 NPC groups"
+	ContextMenu_SD_UpTo1 = "Spawn Only 1 NPC group"
+	ContextMenu_SD_UpTo2 = "Spawn 1 To 2 NPC groups"
+	ContextMenu_SD_UpTo3 = "Spawn 1 To 3 NPC groups"
+	ContextMenu_SD_UpTo4 = "Spawn 1 To 4 NPC groups"
+	ContextMenu_SD_UpTo5 = "Spawn 1 To 5 NPC groups"
+	ContextMenu_SD_UpTo6 = "Spawn 1 To 6 NPC groups"
 	ContextMenu_SOption_AltSpawnDesc = "Alt Spawning hourly is a new type of spawning method for NPCs to spawn. How many groups do you want to spawn around you every in game hour? 'Groups' will contain NPCs inside to spawn around you off screen every hour - (Determined by you in the other settings). You can use this spawning method along with 'NPC spawn rate', but effects may differ on performance. Turning this setting 'OFF' will turn off the other settings as well. Read the descriptions on the other Alt spawning options to know more. "
 	
 		ContextMenu_Debug_Character_Swap = "Debug: Character Swap",
@@ -90,12 +90,12 @@ ContextMenu_Job_Doctor = "Doctor",
 	
 
 	ContextMenu_Option_AltSpawnAmount = "Alt Spawning - Group Size:"
-		ContextMenu_AltSpawnAmount_1 = "Only 1"
-		ContextMenu_AltSpawnAmount_2 = "Random from 1 to 2 max"
-		ContextMenu_AltSpawnAmount_3 = "Random from 1 to 3 max"
-		ContextMenu_AltSpawnAmount_4 = "Random from 1 to 4 max"
-		ContextMenu_AltSpawnAmount_5 = "Random from 1 to 5 max"
-		ContextMenu_AltSpawnAmount_6 = "Random from 1 to 6 max"
+		ContextMenu_AltSpawnAmount_1 = "Only 1 NPC In Each Group"
+		ContextMenu_AltSpawnAmount_2 = "Random - 1 to 2 NPCs In Each Group"
+		ContextMenu_AltSpawnAmount_3 = "Random - 1 to 3 NPCs In Each Group"
+		ContextMenu_AltSpawnAmount_4 = "Random - 1 to 4 NPCs In Each Group"
+		ContextMenu_AltSpawnAmount_5 = "Random - 1 to 5 NPCs In Each Group"
+		ContextMenu_AltSpawnAmount_6 = "Random - 1 to 6 NPCs In Each Group"
 	ContextMenu_Context_AltSpawnAmountDesc = "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)"
 		
 		
@@ -432,7 +432,7 @@ ContextMenu_SD_HelloWord14 = "How do you do?",
 	ContextMenu_SOption_WepSpawnRateDesc = "This defines the chances that when a NPC spawns into the world, it will also have a random melee weapon with it.",
 	
 	ContextMenu_SD_PVPInfoBar = "PVP Mode: "
-	ContextMenu_SD_PVPInfoBarDesc = "Previously in the settings lua, this allows you to turn on PVP mode without having to goto the settings.lua file to do so. This DOES NOT make it where hostile NPCs can't hit you. So setting this to 'off' will still force PVP on when encountering hostile NPCs. This setting was requested a few times so that if you don't want to have to press the PVP button on the bottom right of your screen if you want PVP on by default."
+	ContextMenu_SD_PVPInfoBarDesc = "Previously in the settings lua, this allows you to turn on PVP mode without having to goto the settings.lua file to do so. This DOES NOT make it where hostile NPCs can't hit you. So setting this to 'off' will still force PVP on when encountering hostile NPCs. This setting was requested a few times so that if you don't want to have to press the PVP button on the bottom right of your screen every time you loaded into your game."
 	ContextMenu_SD_PVPOff = "Off"
 	ContextMenu_SD_PVPOn = "On"
 	
