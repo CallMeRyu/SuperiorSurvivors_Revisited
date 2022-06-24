@@ -95,3 +95,5 @@ Follow Task
 * Was (GFollowDistance+self.FollowDistanceOffset+5)
 * Is Now (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)
 
+
+Also: NikolayNK, I know you see this. Add Ryuu on steam.
