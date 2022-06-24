@@ -49,9 +49,11 @@ function AIManager(TaskMangerIn)
 	
 	-- Forces companions that's to the player, will return to the player. 
 	if (ASuperSurvivor:getGroupRole() == "Companion") and (TaskMangerIn:getCurrentTask() ~= "Follow") and 
-		(
+		( 	-- Checks for NPC and main player is indoor/outdoor-like conditions
 		   ( (DistanceBetweenMainPlayer > 9) and    (    getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) )
 		or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) )
+		or ( (DistanceBetweenMainPlayer > 5) and    (    getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) )
+		or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) )
 		) 
 		then 
 		  -- If too far away, let's force clear it and enforce follow

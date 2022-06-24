@@ -1947,19 +1947,26 @@ end
 -- This needed 'not a companion' check to keep the NPC in question not to run away when they're following main player.
 function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
+	local Distance_MainPlayer = getDistanceBetween(getSpecificPlayer(0),self.player)
 	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
 	local Enemy_Is_a_Human = (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
 	local Weapon_HandGun = self.player:getPrimaryHandItem()
 	local NPCsDangerSeen = self:getDangerSeenCount()
 	
 	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready. 
-	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human)) and (self:getGroupRole() ~= "Companion") then	
+	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human)) then	
+		if (self:getGroupRole() ~= "Companion") then 
+			self:NPCTask_Clear()
+			self:NPCTask_DoFlee()
+			self:NPCTask_DoFleeFromHere()
+			self:NPC_EnforceWalkNearMainPlayer()
+			self:DebugSay("NPC_FleeWhileReadyingGun Triggered!")
+		end
+	end
+	if (self:getGroupRole() == "Companion") and ((self:getTaskManager():getCurrentTask() ~= "follow")) and  (Distance_MainPlayer > 9) then
 		self:NPCTask_Clear()
-		self:NPCTask_DoFlee()
-		self:NPCTask_DoFleeFromHere()
-		self:NPC_ShouldRunOrWalk()
-		self:NPC_EnforceWalkNearMainPlayer()
-		return true
+		self:getTaskManager():AddToTop(FollowTask:new(self,getSpecificPlayer(0)))
+		self:DebugSay("NPC_FleeWhileReadyingGun - Companion - Too far away, enforcing follow!")
 	end
 	return true
 end
