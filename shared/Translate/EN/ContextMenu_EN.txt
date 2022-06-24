@@ -83,6 +83,7 @@ ContextMenu_EN = {
 	ContextMenu_OrderDesc_Stop = "Survivor will Stop doing, whatever it is they are doing now",
     --[[END Orders]]--
 
+
     --[[NPC infomation]]--
 	ContextMenu_SD_Level = "Level",
 	ContextMenu_SD_Wife = "Wife",
@@ -110,28 +111,23 @@ ContextMenu_EN = {
 	ContextMenu_SD_BaseLocation = "Base Location",
 	--[[END NPC infomation]]--
 
+
     --[[OPTIONS]]--
 
     --[Alternative spawn system]--
-    ContextMenu_SOption_AltSpawn = "Alternative NPC Hourly Spawning:"
-        ContextMenu_SD_AltSpawnOff = "Off"
-        ContextMenu_SD_AltSpawnOn = "10% Chance to spawn up to 1 NPC group"
-        ContextMenu_SD_AltSpawnOn_05 = " 5% Chance to spawn up to 1 NPC group"
-        ContextMenu_SD_AltSpawnOn_20 = "20% Chance to spawn up to 2 NPC groups"
-        ContextMenu_SD_AltSpawnOn_30 = "30% Chance to spawn up to 3 NPC groups"
-        ContextMenu_SD_AltSpawnOn_40 = "40% Chance to spawn up to 4 NPC groups"
-        ContextMenu_SD_AltSpawnOn_50 = "50% Chance to spawn up to 5 NPC groups"
-    ContextMenu_SOption_AltSpawnDesc = "Alternative Spawning rolls dice each in game hour, and if it exceeds the % you set, it will spawn NPCs around the player. You can use this spawning method even if 'Survivor Spawn rate' is set to 'off', if you would rather passively see NPCs spawn around you. This spawning method is a bit less intensive to your FPS due to it not calculating where you are going on the map, but rather than in game time itself. (You can use both at the same time, do not feel afraid to exp. with it. You may be surprised!)"
+    ContextMenu_SOption_AltSpawn = "Alternative NPC Hourly Spawning:",
+    ContextMenu_SOption_AltSpawnPercentDesc = "You can control the chance when a group(s) of NPCs spawn around you every hour by % chance. If your %chance dice surpass the random roll (Random 1-100) during an in game hour, groups of NPCs will spawn around you off screen."
 
 
-    ContextMenu_Option_AltSpawnAmount = "Max Alt Spawn Group Size:"
-        ContextMenu_AltSpawnAmount_1 = "Only 1"
-        ContextMenu_AltSpawnAmount_2 = "Random from 1 to 2 max"
-        ContextMenu_AltSpawnAmount_3 = "Random from 1 to 3 max"
-        ContextMenu_AltSpawnAmount_4 = "Random from 1 to 4 max"
-        ContextMenu_AltSpawnAmount_5 = "Random from 1 to 5 max"
-        ContextMenu_AltSpawnAmount_6 = "Random from 1 to 6 max"
-    ContextMenu_Context_AltSpawnAmountDesc = "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)"
+
+    ContextMenu_Option_AltSpawnAmount = "Max Alt Spawn Group Size:",
+        ContextMenu_AltSpawnAmount_1 = "Only 1",
+        ContextMenu_AltSpawnAmount_2 = "Random from 1 to 2 max",
+        ContextMenu_AltSpawnAmount_3 = "Random from 1 to 3 max",
+        ContextMenu_AltSpawnAmount_4 = "Random from 1 to 4 max",
+        ContextMenu_AltSpawnAmount_5 = "Random from 1 to 5 max",
+        ContextMenu_AltSpawnAmount_6 = "Random from 1 to 6 max",
+    ContextMenu_Context_AltSpawnAmountDesc = "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)",
     --[END Alternative spawn system]--	
     
     --[On\Off options]--
@@ -287,6 +283,7 @@ ContextMenu_EN = {
     --[END Hotkeys]--
     --[[END OPTIONS]]--
     
+
     --[[DEBUG]]--
     ContextMenu_Debug_Character_Swap = "Debug: Character Swap",
     ContextMenu_Debug_Infect&Murder_Character = "Debug: Infect&Murder Character",
@@ -390,6 +387,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_DoctorBandage = "*Applying Bandage...*",
 	--[[END Survivors Actions]]--
     
+
     --[[Survivors Interactions]]--
     ContextMenu_SD_HeyYou = "Hey you!",
 	ContextMenu_SD_Bye1 = "Bye...",
@@ -452,6 +450,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_PerkLeveledUp_After = " Perk Leveled Up!*"
     ContextMenu_SD_ROESet = "Rules of Engagement has been set",    
 
+
 	--prefixes--
 	ContextMenu_SD_DoctorPrefix_Before = "Doctor ",
 	ContextMenu_SD_DoctorPrefix_After = "",
@@ -491,6 +490,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_ForageArea = "Foraging Area",
 	ContextMenu_SD_GuardArea = "Guard Area",
 	
+    
     --[[speeches]]
     ContextMenu_speech_Foraging = "*Foraging..."
 	ContextMenu_speech_FarmingActionPlanting = "*Planting seeds...*"
@@ -589,7 +589,7 @@ ContextMenu_EN = {
     ContextMenu_speech_Crying3 = "No.. Don't leave me all alone!",
     ContextMenu_speech_Crying4 = "Don't leave me",
     ContextMenu_speech_Crying5 = "Please.. Don't leave me.",
-	ContextMenu_speech_Crying6 = "(ಥ﹏ಥ)",
+	ContextMenu_speech_Crying6 = "Wake up...please wake up!",
     ContextMenu_speech_Crying7 = "Not like this.. Please!",
     ContextMenu_speech_Crying8 = "F*ck f*ck, PLEASE NO!",
     ContextMenu_speech_Crying9 = "NO!",
