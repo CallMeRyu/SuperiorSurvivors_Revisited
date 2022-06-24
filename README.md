@@ -1,3 +1,7 @@
+Update 14 - RELEASED!
+
+------------- Information of the progress that happened these past days ------------------
+
 Update 14 Experimental 
 
 - Survivor Bravery is now included on combat tasks. Will it help? It seems like the NPCs won't run away always after first hit. At least with my testing.
@@ -58,3 +62,42 @@ Time to get some sleep =P
 Notes to do
 - Make the alt spawning obey the 'chance to spawn hostile' rules
 - 
+
+Update 14 Experimental - Upload 6
+- Updated Options menu, it's now a lot easier to read
+- Updated Alt spawning: You now can choose 0% to 100% chance for alt spawning to take effect each hour
+
+
+Update 14 Experimental - Upload 7 (Current)
+- More work towards NPCs tasks when they're the companion role (To following the main player) so they don't run away
+
+- More work into making the NPCs to enforce walking 
+
+- PVP Setting is now in the options Menu
+
+- "Follower Global Range" added to options menu. So you can choose the extra layer of how close you want your NPCs to be. (Please read its description)
+
+- Changed more conditions to where if NPCs should run/walk. (Mainly checks for if they're too close to the main player, then enforces walk)
+
+- MUCH cleaner options menu. Much more easier to read. This was needed for YEARS.
+
+- NPCs checks if they are a companion, and then checks if they and the mainplayer are both inside or outside. If outside, if they go beyond 9 blocks, they return. inside is 5 
+
+- NPCs should no longer flee when there's alot of zeds, if they are your companion
+
+- Alt Spawning NPCs obey the 'Chance to be hostile' rule within the in game settings
+______
+
+Nerd Info
+- Added more "IsnotTask" functions 
+- NPC_MovementManagement Updated to check for '	if (distance > minrange + 0.1) ' so they shouldn't move around as they're fighting WHEN using melee.
+- settings.lua changed to where two of the settings are now in the INGAME settings 
+- Cleaned the look of AiManager lua file to be a little more readable. (*This is going to take along time to complete, but I gotta start somewhere*)
+- Lots of the Task files that normally involve running now have "NPC_EnforceWalkNearMainPlayer" To further hopefully prevent NPCs from running into the player, tripping them both.
+
+Follow Task
+* Was (GFollowDistance+self.FollowDistanceOffset+5)
+* Is Now (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)
+
+
+Also: NikolayNK, I know you see this. Add Ryuu on steam.

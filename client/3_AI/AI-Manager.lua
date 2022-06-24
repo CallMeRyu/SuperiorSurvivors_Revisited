@@ -47,18 +47,28 @@ function AIManager(TaskMangerIn)
 	--------------------- Shared AI ------------------------
 	--------------------------------------------------------
 	
-	if (ASuperSurvivor:getGroupRole() == "Companion") and (TaskMangerIn:getCurrentTask() ~= "Follow") and (DistanceBetweenMainPlayer > 10) then 
-		TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
-		NPC:DebugSay("Companion Went too far away, returning companion!")
+	-- Forces companions that's to the player, will return to the player. 
+	if (ASuperSurvivor:getGroupRole() == "Companion") and (TaskMangerIn:getCurrentTask() ~= "Follow") and 
+		(
+		   ( (DistanceBetweenMainPlayer > 9) and    (    getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) )
+		or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) )
+		) 
+		then 
+		  -- If too far away, let's force clear it and enforce follow
+		  if (DistanceBetweenMainPlayer > 11) then 
+				TaskMangerIn:clear()
+				TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
+				NPC:NPC_EnforceWalkNearMainPlayer()
+				NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
+		  end
+		  TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
+		  NPC:DebugSay("Companion Went too far away, returning companion!")
 	end
 
 	-- To make NPCs find their target that's very close by
 	if (ASuperSurvivor:Task_IsPursue_SC() == true) and ( NPC:NPC_FleeWhileReadyingGun()) then
-	 	if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
-		-- To prevent companions from pursuing 
-		if (ASuperSurvivor:getGroupRole() ~= "Companion") then
-			TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
-		end
+		if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
+		TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
 	end
 
 
@@ -97,39 +107,73 @@ function AIManager(TaskMangerIn)
 			ASuperSurvivor:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_02")
 		end
 	end
-	-- find safe place if injured and enemies near
+	
+ -- find safe place if injured and enemies near
 --	if (TaskMangerIn:getCurrentTask() ~= "Find Building") and (TaskMangerIn:getCurrentTask() ~= "Flee") and (IHaveInjury) and (ASuperSurvivor:getDangerSeenCount() > 0) then
-	if (TaskMangerIn:getCurrentTask() ~= "Find Building") and (TaskMangerIn:getCurrentTask() ~= "Flee") and ((IHaveInjury) and (ASuperSurvivor:isTooScaredToFight())) and (ASuperSurvivor:getDangerSeenCount() > 0) then
+	if (TaskMangerIn:getCurrentTask() ~= "Find Building") 
+	and (TaskMangerIn:getCurrentTask() ~= "Flee") 
+	and ((IHaveInjury) and (ASuperSurvivor:isTooScaredToFight())) 
+	and (ASuperSurvivor:getDangerSeenCount() > 0) 
+	and (ASuperSurvivor:getGroupRole() ~= "Companion") 
+	 then
 		TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))
 		ASuperSurvivor:DebugSay("Find Safe place if Injured condition triggered! Reference Number 000_000_01")
-	end
+	 end
+	
 	-- bandage injuries if no threat near by
-	if (TaskMangerIn:getCurrentTask() ~= "First Aide") and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") and (TaskMangerIn:getCurrentTask() ~= "Flee") and (TaskMangerIn:getCurrentTask() ~= "Doctor") and (TaskMangerIn:getCurrentTask() ~= "Hold Still") and (IHaveInjury) and ((ASuperSurvivor:getDangerSeenCount() == 0) and (not ASuperSurvivor:isTooScaredToFight())) then
+	if (TaskMangerIn:getCurrentTask() ~= "First Aide") 
+	and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") 
+	and (TaskMangerIn:getCurrentTask() ~= "Flee") 
+	and (TaskMangerIn:getCurrentTask() ~= "Doctor") 
+	and (TaskMangerIn:getCurrentTask() ~= "Hold Still") 
+  --and (IHaveInjury) -- Changing to V to keep them from Healing while there's hostiles near by
+	and ((IHaveInjury) and ((ASuperSurvivor:getDangerSeenCount() == 0) and (not ASuperSurvivor:isTooScaredToFight())))
+	 then
 		TaskMangerIn:AddToTop(FirstAideTask:new(ASuperSurvivor))
 		ASuperSurvivor:DebugSay("Bandage Injuries if no threat nearby triggered! Reference Number 000_000_02")
-	end
+	 end
+
+
 	-- flee from too many zombies
-	if (TaskMangerIn:getCurrentTask() ~= "Flee") and (TaskMangerIn:getCurrentTask() ~= "Surender") and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) and (ASuperSurvivor:getDangerSeenCount() > 0) and ( (ASuperSurvivor:isTooScaredToFight()) or (not ASuperSurvivor:hasWeapon() and ASuperSurvivor:getDangerSeenCount() > 1) or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false) ) then
+	if (TaskMangerIn:getCurrentTask() ~= "Flee") 
+	and (TaskMangerIn:getCurrentTask() ~= "Surender")
+	and (ASuperSurvivor:getGroupRole() ~= "Companion") -- New
+	and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
+	and (ASuperSurvivor:getDangerSeenCount() > 0) 
+	and 
+	( 
+		    (ASuperSurvivor:isTooScaredToFight())
+		 or (not ASuperSurvivor:hasWeapon() and ASuperSurvivor:getDangerSeenCount() > 1) 
+		 or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
+		 or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false) 
+	) 
+	then
+			
 		if(TaskMangerIn:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
 			TaskMangerIn:getTask():ForceFinish()
 			ASuperSurvivor:DebugSay("Force Finish Task Triggered in the 'Flee from too many Zombies' condition!")
 		end
+			
 		ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number 000_000_03")
-		
+			
 		-- This is for all to those that keep saying their companions keep running away. This should keep them from doing that.
-		if (ASuperSurvivor:getGroupRole() == "Companion") then
-			ASuperSurvivor:getTaskManager():clear()
-			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 	
-			NPC:NPC_ShouldRunOrWalk()
-		end
-		if (ASuperSurvivor:getGroupRole() ~= "Companion") then
+		
+		--if (ASuperSurvivor:getGroupRole() == "Companion") then -- New
+		--	ASuperSurvivor:getTaskManager():clear()
+		--	TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 	
+		--	NPC:NPC_ShouldRunOrWalk()
+		--	NPC:NPC_EnforceWalkNearMainPlayer()
+		--end
+		if (ASuperSurvivor:getGroupRole() ~= "Companion") then -- New
 			ASuperSurvivor:getTaskManager():clear()
 			TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
 			TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
 			NPC:NPC_ShouldRunOrWalk()
+			NPC:NPC_EnforceWalkNearMainPlayer()
 		end
-		
 	end
+
+
 	-- eat food on person or go find food in building if in building
 	if (false) and (ASuperSurvivor:getAIMode() ~= "Random Solo") and ((ASuperSurvivor:isStarving()) or (ASuperSurvivor:isDyingOfThirst())) then  -- leave group and look for food if starving
 		
@@ -300,7 +344,7 @@ function AIManager(TaskMangerIn)
 					end
 				end
 
-			elseif(ASuperSurvivor:getGroupRole() == "Companion") then
+			elseif(ASuperSurvivor:getGroupRole() == "Companion") then -- Not new, this was here before
 			
 				TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 	
 
@@ -557,6 +601,7 @@ function AIManager(TaskMangerIn)
 			(TaskMangerIn:getCurrentTask() ~= "Enter New Building") and -- new
 			(TaskMangerIn:getCurrentTask() ~= "Barricade Building") and 
 			(ASuperSurvivor:hasWeapon())  and 
+			(ASuperSurvivor:getGroupRole() ~= "Companion") and			-- New
 			(ASuperSurvivor:isInSameBuildingWithEnemyAlt() == false)  and -- That way npc doesn't stop what they're doing moment they look away from a hostile
 			(ASuperSurvivor:hasFood()) 
 		then

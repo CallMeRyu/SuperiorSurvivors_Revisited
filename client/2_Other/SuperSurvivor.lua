@@ -570,7 +570,7 @@ function SuperSurvivor:spawnPlayer(square, isFemale)
 	Buddy:getModData().AIMode = "Random Solo"
 	
 	ISTimedActionQueue.clear(Buddy)
-	
+	-- Note todo: Option to hide display names
 	local namePrefix = ""
 	local namePrefixAfter = ""
 	if(Buddy:getPerkLevel(Perks.FromString("Doctor")) >= 3) then 
@@ -959,11 +959,24 @@ function SuperSurvivor:getBuildingExplored(building)
 	return false
 end
 
+function SuperSurvivor:NPCDebugPrint(text)
+	if (DebugOptions == true) then
+		-- This gives spacing for the console so you can find it
+		--print("")
+		--print("NPCDebugPrint")
+		--print("NPC Name: "..tostring(self:getName()))
+		--print(text)
+		--print("")
+		--print("")
+	end
+end
+
 function SuperSurvivor:DebugSay(text) 
 	-- Now, the In game DebugOptions will now effect this.
 	local TurnOnDebugText = DebugOptions
+	local zEmergencyTest = 0
 
-	if(DebugSayEnabled == true and self.DebugMode == true) or (TurnOnDebugText == true) then
+	if(DebugSayEnabled == true and self.DebugMode == true) or (TurnOnDebugText == true and zEmergencyTest == 1) then
 
 		if (getDistanceBetween(getSpecificPlayer(0),self.player) < 6) then -- if far enough away from player, don't do anything
 		
@@ -1930,20 +1943,22 @@ end
 
 
 
--- This was built for getting away from zeds 
+-- This was built for getting away from zeds
+-- This needed 'not a companion' check to keep the NPC in question not to run away when they're following main player.
 function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
 	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
 	local Enemy_Is_a_Human = (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
 	local Weapon_HandGun = self.player:getPrimaryHandItem()
-	local NPCsDangerSeen = self:getDangerSeenCount()	
+	local NPCsDangerSeen = self:getDangerSeenCount()
 	
 	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready. 
-	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))  then	
+	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human)) and (self:getGroupRole() ~= "Companion") then	
 		self:NPCTask_Clear()
 		self:NPCTask_DoFlee()
 		self:NPCTask_DoFleeFromHere()
 		self:NPC_ShouldRunOrWalk()
+		self:NPC_EnforceWalkNearMainPlayer()
 		return true
 	end
 	return true
@@ -2056,6 +2071,23 @@ function SuperSurvivor:Task_IsNotAttemptEntryIntoBuilding()
 		return true
 	end
 end
+function SuperSurvivor:Task_IsNotFlee()
+	if (self:getTaskManager():getCurrentTask() ~= "Flee") then
+		return true
+	end
+end
+function SuperSurvivor:Task_IsNotFleeFromSpot()
+	if (self:getTaskManager():getCurrentTask() ~= "Flee From Spot") then
+		return true
+	end
+end
+function SuperSurvivor:Task_IsNotFleeOrFleeFromSpot()
+	if (self:getTaskManager():getCurrentTask() ~= "Flee") and (self:getTaskManager():getCurrentTask() ~= "Flee From Spot") then
+		return true
+	end
+end
+
+
 
 -- Specialized AIManager Task conditions - SC standing for 'specializied conditions'
 function SuperSurvivor:NPC_NPCsEnemyHasGun()
@@ -2105,7 +2137,7 @@ end
 function SuperSurvivor:Task_IsPursue_SC()
 	
 	-- To prevent companions from pursing 
-	if (self:getGroupRole() ~= "Companion") or (self:getTaskManager():getCurrentTask() ~= "Follow") then return false end
+	if (self:getGroupRole() == "Companion") then return false end
 
 --	if (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
 	-- That way the Bandits chasing the other humans don't ignore zeds, or shouldn't anyways.
@@ -2161,6 +2193,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 					and (self:NPC_IFOD_BarricadedInside() == false)
 					and (self:inFrontOfLockedDoorAndIsOutside() == false)
 					and (self:HasMultipleInjury() == false)
+					and (not self:getGroupRole() == "Companion")
 				--	and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
 				--	and (not self:RealCanSee(self.LastEnemeySeen) and (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false))		
 				--	and (self:RealCanSee(self.LastEnemeySeen) and (not self:isEnemyInRange(self.LastEnemeySeen)))
@@ -3490,27 +3523,35 @@ end
 -- 6/21/2022: If I set 'setruning' to true , then else false? NPCs will run into each other! But if it looks like what it is now, it works fine!
 -- 		This literally implies it will check top to bottom priority. I'm writing this to remind myself for the future.	
 function SuperSurvivor:NPC_ShouldRunOrWalk()
-	
-	-- Emergency failsafe to prevent NPCs from running into player
-	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 1) then
-		self:setRunning(false)
-	end
-	
+
 	if (self.LastEnemeySeen ~= nil) then
 		local distance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local distanceAlt = getDistanceBetween(self.player,getSpecificPlayer(0))	-- To prevent running into the player
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
 		
-		if (distance < 2) or (distanceAlt < 2) or (zNPC_AttackRange) then
+		if (self:Task_IsNotFleeOrFleeFromSpot()) and (distance < 2) or (distanceAlt < 2) or (zNPC_AttackRange) then
 			self:setRunning(false)
+			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to false due to distance and Task_IsNotFleeOrFleeFromSpot returned true")
 		else
 			self:setRunning(true)
+			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to true due to not distance and Task_IsNotFleeOrFleeFromSpot returned false")
 		end
 	else
+		self:NPCDebugPrint("LastEnemySeen returned Nil so, setting NPC to run")
 		self:setRunning(true)
 	end
 	
 end
+function SuperSurvivor:NPC_EnforceWalkNearMainPlayer()
+	
+	-- Emergency failsafe to prevent NPCs from running into player
+	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 1) then
+		self:setRunning(false)
+	end
+
+end
+
+
 
 -- Manages movement and movement speed
 function SuperSurvivor:NPC_MovementManagement_Guns()
@@ -3549,20 +3590,21 @@ function SuperSurvivor:NPC_MovementManagement()
 		local RealDistance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local minrange = self:getMinWeaponRange()
 		
-		-- The actual walking itself
-		if(instanceof(self.LastEnemeySeen,"IsoPlayer")) then
-			self:walkToDirect(cs)
-		else
-			local fs = cs:getTileInDirection(self.LastEnemeySeen:getDir())
-			if(fs) and (fs:isFree(true)) then
-				self:walkToDirect(fs)
-				self:DebugSay("AtkTicks NPC_MovementManagement Walkto FS")
-			else 
-				self:walkToDirect(cs) 
-				self:DebugSay("AtkTicks NPC_MovementManagement Walkto CS")
-			end	
+		if (distance > minrange + 0.1) then
+			-- The actual walking itself
+			if(instanceof(self.LastEnemeySeen,"IsoPlayer")) then
+				self:walkToDirect(cs)
+			else
+				local fs = cs:getTileInDirection(self.LastEnemeySeen:getDir())
+				if(fs) and (fs:isFree(true)) then
+					self:walkToDirect(fs)
+					self:DebugSay("AtkTicks NPC_MovementManagement Walkto FS")
+				else 
+					self:walkToDirect(cs) 
+					self:DebugSay("AtkTicks NPC_MovementManagement Walkto CS")
+				end	
+			end
 		end
-
 		
 	end
 end
