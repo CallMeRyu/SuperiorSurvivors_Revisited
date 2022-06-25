@@ -119,7 +119,7 @@ function AIManager(TaskMangerIn)
 		   (ASuperSurvivor:hasWeapon() and ((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
 		or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
 		)
-	and (not ASuperSurvivor:isTooScaredToFight() and (IHaveInjury == false)) 
+	and (not ASuperSurvivor:isTooScaredToFight() and (IHaveInjury == false)) -- This. I may want to change this to 'too many injuries' function
 	and (ASuperSurvivor:inFrontOfLockedDoor() == false) 
 	and (NPC:NPC_FleeWhileReadyingGun()) 
 	 then

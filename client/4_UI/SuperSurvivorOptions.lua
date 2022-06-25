@@ -26,21 +26,25 @@ function SuperSurvivorGetOptionValue(option)
 	elseif(option == "SpawnRate") and (num == 11) then return 1000
 	elseif(option == "SpawnRate") and (num == 12) then return 400
 	
-	elseif(option == "GunSpawnRate") and (num == 1) then return 0
-	elseif(option == "GunSpawnRate") and (num == 2) then return 1
-	elseif(option == "GunSpawnRate") and (num == 3) then return 2
-	elseif(option == "GunSpawnRate") then return (num * 5) - 15
+	--elseif(option == "GunSpawnRate") and (num == 1) then return 0	-- For now marked out for testing. Does well? Remove this line if you want.
+	--elseif(option == "GunSpawnRate") and (num == 2) then return 1	-- For now marked out for testing. Does well? Remove this line if you want.
+	--elseif(option == "GunSpawnRate") and (num == 3) then return 2	-- For now marked out for testing. Does well? Remove this line if you want.
+	--elseif(option == "GunSpawnRate") then return (num * 5) - 15	-- For now marked out for testing. Does well? Remove this line if you want.
 	
-	elseif(option == "WepSpawnRate") then return (num * 5) - 5
-	elseif(option == "HostileSpawnRate") then return (num * 5) - 5
-	elseif(option == "MaxHostileSpawnRate") then return (num * 5) - 5
+	elseif(option == "WepSpawnRate") then return (num - 1) 			-- then return (num * 5) - 5	-- Marked out old instead of removing it to test
+	elseif(option == "GunSpawnRate") then return (num - 1) 			-- then return (num * 5) - 5	-- Marked out old instead of removing it to test
+	
+	elseif(option == "HostileSpawnRate") then return (num - 1) 		-- then return (num * 5) - 5
+	elseif(option == "MaxHostileSpawnRate") then return (num - 1) 	-- then return (num * 5) - 5
+	
 	elseif(option == "InfinitAmmo") then return (num ~= 1)
 	elseif(option == "NoPreSetSpawn") then return (num ~= 1)
 	elseif(option == "SafeBase") then return (num ~= 1)
 	elseif(option == "SurvivorBases") then return (num ~= 1)
 	elseif(option == "DebugOptions") then return (num ~= 1)
-	elseif(option == "FindWork") then return (num == 1)
-	elseif(option == "SurvivorHunger") then return (num == 1)
+	elseif(option == "DebugOption_DebugSay") then return (num - 1)
+	elseif(option == "FindWork") then return (num ~= 1)
+	elseif(option == "SurvivorHunger") then return (num ~= 1)
 	elseif(option == "SurvivorFriendliness") then return (10 - ((num-1)*2)) -- 1 = 10, 2 = 8, 3 = 6
 	
 	elseif(option == "RaidersAtLeastHours") and (num == 21) then return 24
@@ -142,38 +146,38 @@ function doesOptionsFileExist(  )
 end
 
 
-SuperSurvivorOptions = LoadSurvivorOptions()
-if(not SuperSurvivorOptions) then SuperSurvivorOptions = {} end
-if(not SuperSurvivorOptions["SpawnRate"]) then SuperSurvivorOptions["SpawnRate"] = 7 end
-if(not SuperSurvivorOptions["WifeSpawn"]) then SuperSurvivorOptions["WifeSpawn"] = 1 end
-if(not SuperSurvivorOptions["LockNLoad"]) then SuperSurvivorOptions["LockNLoad"] = 1 end
-if(not SuperSurvivorOptions["GunSpawnRate"]) then SuperSurvivorOptions["GunSpawnRate"] = 4 end
-if(not SuperSurvivorOptions["WepSpawnRate"]) then SuperSurvivorOptions["WepSpawnRate"] = 12 end
-if(not SuperSurvivorOptions["HostileSpawnRate"]) then SuperSurvivorOptions["HostileSpawnRate"] = 1 end
-if(not SuperSurvivorOptions["MaxHostileSpawnRate"]) then SuperSurvivorOptions["MaxHostileSpawnRate"] = 17 end
-if(not SuperSurvivorOptions["InfinitAmmo"]) then SuperSurvivorOptions["InfinitAmmo"] = 1 end
-if(not SuperSurvivorOptions["NoPreSetSpawn"]) then SuperSurvivorOptions["NoPreSetSpawn"] = 2 end
-if(not SuperSurvivorOptions["SafeBase"]) then SuperSurvivorOptions["SafeBase"] = 2 end
-if(not SuperSurvivorOptions["SurvivorBases"]) then SuperSurvivorOptions["SurvivorBases"] = 2 end
-if(not SuperSurvivorOptions["FindWork"]) then SuperSurvivorOptions["FindWork"] = 1 end
-if(not SuperSurvivorOptions["SurvivorHunger"]) then SuperSurvivorOptions["SurvivorHunger"] = 1 end
-if(not SuperSurvivorOptions["SurvivorFriendliness"]) then SuperSurvivorOptions["SurvivorFriendliness"] = 4 end
-
-if(not SuperSurvivorOptions["RaidersAtLeastHours"]) then SuperSurvivorOptions["RaidersAtLeastHours"] = 13 end
-if(not SuperSurvivorOptions["RaidersAfterHours"]) then SuperSurvivorOptions["RaidersAfterHours"] = 7 end
-if(SuperSurvivorOptions["RaidersAfterHours"] > 22) then SuperSurvivorOptions["RaidersAfterHours"] = 22 end -- fix legacy bad value
-if(not SuperSurvivorOptions["RaidersChance"]) then SuperSurvivorOptions["RaidersChance"] = 3 end
-if(not SuperSurvivorOptions["Option_FollowDistance"]) then SuperSurvivorOptions["Option_FollowDistance"] = 5 end
-if(not SuperSurvivorOptions["Option_ForcePVP"]) then SuperSurvivorOptions["Option_ForcePVP"] = 0 end
-if(not SuperSurvivorOptions["RoleplayMessage"]) then SuperSurvivorOptions["RoleplayMessage"] = 0 end
-if(not SuperSurvivorOptions["Bravery"]) then SuperSurvivorOptions["Bravery"] = 2 end
-if(not SuperSurvivorOptions["AltSpawn"]) then SuperSurvivorOptions["AltSpawn"] = 2 end
-if(not SuperSurvivorOptions["AltSpawnPercent"]) then SuperSurvivorOptions["AltSpawnPercent"] = 10 end
-if(not SuperSurvivorOptions["AltSpawnAmount"]) then SuperSurvivorOptions["AltSpawnAmount"] = 1 end
-if(not SuperSurvivorOptions["SSHotkey1"]) then SuperSurvivorOptions["SSHotkey1"] = 6 end
-if(not SuperSurvivorOptions["SSHotkey2"]) then SuperSurvivorOptions["SSHotkey2"] = 10 end
-if(not SuperSurvivorOptions["SSHotkey3"]) then SuperSurvivorOptions["SSHotkey3"] = 27 end
-if(not SuperSurvivorOptions["SSHotkey4"]) then SuperSurvivorOptions["SSHotkey4"] = 42 end
+	SuperSurvivorOptions = LoadSurvivorOptions()
+	if(not SuperSurvivorOptions) then SuperSurvivorOptions = {} end
+	if(not SuperSurvivorOptions["SpawnRate"]) then SuperSurvivorOptions["SpawnRate"] = 7 end
+	if(not SuperSurvivorOptions["WifeSpawn"]) then SuperSurvivorOptions["WifeSpawn"] = 1 end
+	if(not SuperSurvivorOptions["LockNLoad"]) then SuperSurvivorOptions["LockNLoad"] = 1 end
+	if(not SuperSurvivorOptions["GunSpawnRate"]) then SuperSurvivorOptions["GunSpawnRate"] = 51 end
+	if(not SuperSurvivorOptions["WepSpawnRate"]) then SuperSurvivorOptions["WepSpawnRate"] = 1 end
+	if(not SuperSurvivorOptions["HostileSpawnRate"]) then SuperSurvivorOptions["HostileSpawnRate"] = 1 end
+	if(not SuperSurvivorOptions["MaxHostileSpawnRate"]) then SuperSurvivorOptions["MaxHostileSpawnRate"] = 17 end
+	if(not SuperSurvivorOptions["InfinitAmmo"]) then SuperSurvivorOptions["InfinitAmmo"] = 1 end
+	if(not SuperSurvivorOptions["NoPreSetSpawn"]) then SuperSurvivorOptions["NoPreSetSpawn"] = 2 end
+	if(not SuperSurvivorOptions["SafeBase"]) then SuperSurvivorOptions["SafeBase"] = 2 end
+	if(not SuperSurvivorOptions["SurvivorBases"]) then SuperSurvivorOptions["SurvivorBases"] = 2 end
+	if(not SuperSurvivorOptions["FindWork"]) then SuperSurvivorOptions["FindWork"] = 1 end
+	if(not SuperSurvivorOptions["SurvivorHunger"]) then SuperSurvivorOptions["SurvivorHunger"] = 2 end
+	if(not SuperSurvivorOptions["SurvivorFriendliness"]) then SuperSurvivorOptions["SurvivorFriendliness"] = 4 end
+	
+	if(not SuperSurvivorOptions["RaidersAtLeastHours"]) then SuperSurvivorOptions["RaidersAtLeastHours"] = 13 end
+	if(not SuperSurvivorOptions["RaidersAfterHours"]) then SuperSurvivorOptions["RaidersAfterHours"] = 7 end
+	if(SuperSurvivorOptions["RaidersAfterHours"] > 22) then SuperSurvivorOptions["RaidersAfterHours"] = 22 end -- fix legacy bad value
+	if(not SuperSurvivorOptions["RaidersChance"]) then SuperSurvivorOptions["RaidersChance"] = 3 end
+	if(not SuperSurvivorOptions["Option_FollowDistance"]) then SuperSurvivorOptions["Option_FollowDistance"] = 5 end
+	if(not SuperSurvivorOptions["Option_ForcePVP"]) then SuperSurvivorOptions["Option_ForcePVP"] = 0 end
+	if(not SuperSurvivorOptions["RoleplayMessage"]) then SuperSurvivorOptions["RoleplayMessage"] = 0 end
+	if(not SuperSurvivorOptions["Bravery"]) then SuperSurvivorOptions["Bravery"] = 2 end
+	if(not SuperSurvivorOptions["AltSpawn"]) then SuperSurvivorOptions["AltSpawn"] = 2 end
+	if(not SuperSurvivorOptions["AltSpawnPercent"]) then SuperSurvivorOptions["AltSpawnPercent"] = 10 end
+	if(not SuperSurvivorOptions["AltSpawnAmount"]) then SuperSurvivorOptions["AltSpawnAmount"] = 1 end
+	if(not SuperSurvivorOptions["SSHotkey1"]) then SuperSurvivorOptions["SSHotkey1"] = 6 end
+	if(not SuperSurvivorOptions["SSHotkey2"]) then SuperSurvivorOptions["SSHotkey2"] = 10 end
+	if(not SuperSurvivorOptions["SSHotkey3"]) then SuperSurvivorOptions["SSHotkey3"] = 27 end
+	if(not SuperSurvivorOptions["SSHotkey4"]) then SuperSurvivorOptions["SSHotkey4"] = 42 end
 	
 
 local GameOption = ISBaseObject:derive("GameOption")
@@ -299,7 +303,23 @@ if index then
 		
 		self.gameOptions:add(gameOption)
 	end	
+
+
+	-- ---------------------------------------- --
+	-- Context options to clean up code further --
+	-- You can use these functions to return    --
+	-- Basic answers to. 						--
+	-- HashTagLetsKeepCodeClean					--
+	-- ---------------------------------------- --
 	
+	function NPC_Options_OffOn() -- Because Order of position Matters of if 'Off' and 'On' is first in the options in question
+		return { getText("ContextMenu_SD_Off"), getText("ContextMenu_SD_On") }
+	end
+	function NPC_Options_ZeroToOneHundred()
+		return 	{ "0%","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%","11%","12%","13%","14%","15%","16%","17%","18%","19%","20%","21%","22%","23%","24%","25%","26%","27%","28%","29%","30%","31%","32%","33%","34%","35%","36%","37%","38%","39%","40%","41%","42%","43%","44%","45%","46%","47%","48%","49%","50%","51%","52%","53%","54%","55%","56%","57%","58%","59%","60%","61%","62%","63%","64%","65%","66%","67%","68%","69%","70%","71%","72%","73%","74%","75%","76%","77%","78%","79%","80%","81%","82%","83%","84%","85%","86%","87%","88%","89%","90%","91%","92%","93%","94%","95%","96%","97%","98%","99%","100%"}
+	end
+
+
     -- store the original MainOptions:create() method in a variable
     local oldCreate = MainOptions.create
 
@@ -404,7 +424,6 @@ if index then
 	
 	y = y + spacing4x
 
-
 		local options = 
 		{
 			getText("ContextMenu_SD_AltSpawnOff"),
@@ -419,10 +438,7 @@ if index then
 		
 	y = y + spacing
 	
-		local options = 
-		{
-			"0%","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%","11%","12%","13%","14%","15%","16%","17%","18%","19%","20%","21%","22%","23%","24%","25%","26%","27%","28%","29%","30%","31%","32%","33%","34%","35%","36%","37%","38%","39%","40%","41%","42%","43%","44%","45%","46%","47%","48%","49%","50%","51%","52%","53%","54%","55%","56%","57%","58%","59%","60%","61%","62%","63%","64%","65%","66%","67%","68%","69%","70%","71%","72%","73%","74%","75%","76%","77%","78%","79%","80%","81%","82%","83%","84%","85%","86%","87%","88%","89%","90%","91%","92%","93%","94%","95%","96%","97%","98%","99%","100%"
-		}
+		local options = NPC_Options_ZeroToOneHundred()
 		self:addCustomCombo('AltSpawnPercent',splitpoint,y,comboWidth,getText("ContextMenu_SOption_AltSpawnPercent"),options,getText("ContextMenu_SOption_AltSpawnPercentDesc"))
 		
 	y = y + spacing
@@ -440,36 +456,23 @@ if index then
 		
 	y = y + spacing4x
 
-	local options = 
-		{
-			getText("ContextMenu_SD_Off"),
-			getText("ContextMenu_SD_On")
-		}
+	local options = NPC_Options_OffOn()
+
 		self:addCustomCombo('RoleplayMessage',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RoleplayMessage"),options,getText("ContextMenu_SOption_RoleplayMessageDesc"))
 
 		y = y + spacing
 
-		local options = 
-		{
-			getText("ContextMenu_SD_Off"), getText("ContextMenu_SD_On")
-		}
+		local options = NPC_Options_OffOn()
 		self:addCustomCombo('NoPreSetSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SD_NoPreSetSpawn"),options,getText("ContextMenu_SD_NoPreSetSpawnDesc"))
 		
 	y = y + spacing4x
 
-
-		local options = 
-		{
-			"0%","5%","10%","15%","20%","25%","30%","35%","40%","45%","50%","55%","60%","65%","70%","75%","80%","85%","90%","95%","100%"
-		}
+		local options = NPC_Options_ZeroToOneHundred()
 		self:addCustomCombo('WepSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WepSpawnRate"),options,getText("ContextMenu_SOption_WepSpawnRateDesc"))
 		
 	y = y + spacing
 
-		local options = 
-		{
-			"0%","1%","2%","5%","10%","15%","20%","25%","30%","35%","40%","45%","50%","55%","60%","65%","70%","75%","80%","85%","90%","95%","100%"
-		}
+		local options = NPC_Options_ZeroToOneHundred()
 		self:addCustomCombo('GunSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_ChancetoSpawnWithGun"),options,getText("ContextMenu_SOption_ChancetoSpawnWithGunDesc"))
 		
 	y = y + spacing4x
@@ -515,131 +518,76 @@ if index then
 			
 	y = y + spacing4x
 
-
 		local options = {getText("ContextMenu_SD_PVPOff"),getText("ContextMenu_SD_PVPOn")}
 		self:addCustomCombo('Option_ForcePVP',splitpoint,y,comboWidth,getText("ContextMenu_SD_PVPInfoBar"),options,getText("ContextMenu_SD_PVPInfoBarDesc"))
 		
 	y = y + spacing
 	
-		local options = 
-		{
-			"0%",
-			"5%","10%","15%","20%",
-			"25%","30%","35%","40%",
-			"45%","50%","55%","60%",
-			"65%","70%","75%","80%",
-			"85%","90%","95%","100%"
-		}
+		local options = NPC_Options_ZeroToOneHundred()
 		self:addCustomCombo('HostileSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_ChancetobeHostile"),options,getText("ContextMenu_SOption_ChancetobeHostileDesc"))
 		
 	y = y + spacing
 		
-		local options = 
-		{
-			"0%",
-			"5%","10%","15%","20%",
-			"25%","30%","35%","40%",
-			"45%","50%","55%","60%",
-			"65%","70%","75%","80%",
-			"85%","90%","95%","100%"
-		}
+		local options = NPC_Options_ZeroToOneHundred() -- Hostile Over Time Odds
 		self:addCustomCombo('MaxHostileSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_MaxHostileSpawnRate"),options,getText("ContextMenu_SOption_MaxHostileSpawnRateDesc"))
 		
 	y = y + spacing4x
 
-
-		local options = 
-		{
-			getText("ContextMenu_SD_Off"),
-			getText("ContextMenu_SD_On")
-		}
+		local options = NPC_Options_OffOn()
 		self:addCustomCombo('LockNLoad',splitpoint,y,comboWidth,getText("ContextMenu_SOption_LockNLoad"),options,getText("ContextMenu_SOption_LockNLoadDesc"))
 		
 	y = y + spacing
 		
-		local options = 
-		{
-			getText("ContextMenu_SD_Off"),
-			getText("ContextMenu_SD_On")
-		}
+		local options = NPC_Options_OffOn()
 		self:addCustomCombo('WifeSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WifeSpawn"),options,getText("ContextMenu_SOption_WifeSpawnDesc"))
 		
 	y = y + spacing4x
 
 		local options = 
 		{
-			getText("ContextMenu_SD_DesperateforHumanContact"), 
-			getText("ContextMenu_SD_VeryFriendly"), 
-			getText("ContextMenu_SD_Friendly"), 
-			getText("ContextMenu_SD_Normal"), 
-			getText("ContextMenu_SD_Mean"), 
-			getText("ContextMenu_SD_VeryMean")
+			getText("ContextMenu_SD_DesperateforHumanContact"), getText("ContextMenu_SD_VeryFriendly"), 
+			getText("ContextMenu_SD_Friendly"), getText("ContextMenu_SD_Normal"), 
+			getText("ContextMenu_SD_Mean"), getText("ContextMenu_SD_VeryMean")
 		}
 		self:addCustomCombo('SurvivorFriendliness',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorFriendliness"),options,getText("ContextMenu_SOption_SurvivorFriendlinessDesc"))
 		
 	y = y + spacing
 	
-
-		local options = 
-		{
-			"3","4","5","6","7","8","9","10"
-		}
+		local options = {"3","4","5","6","7","8","9","10"}
 		self:addCustomCombo('Option_FollowDistance',splitpoint,y,comboWidth,getText("ContextMenu_SOption_FollowGlobalRange"),options,getText("ContextMenu_SOption_FollowGlobalRangeDesc"))
 		
 	y = y + spacing
 		
 		local options = 
 		{
-			getText("ContextMenu_SD_Cowardly"), 
-			getText("ContextMenu_SD_Normal"),
-			getText("ContextMenu_SD_Brave"), 
-			getText("ContextMenu_SD_VeryBrave")
+			getText("ContextMenu_SD_Cowardly"), getText("ContextMenu_SD_Normal"),
+			getText("ContextMenu_SD_Brave"), getText("ContextMenu_SD_VeryBrave")
 		}
 		self:addCustomCombo('Bravery',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorBravery"),options,getText("ContextMenu_SOption_SurvivorBraveryDesc"))
 		
 	y = y + spacing4x
 
-		local options = 
-		{
-			getText("ContextMenu_SD_Off"),
-			getText("ContextMenu_SD_On")
-		}
+		local options = NPC_Options_OffOn()
 		self:addCustomCombo('InfinitAmmo',splitpoint,y,comboWidth,getText("ContextMenu_SOption_InfinitAmmo"),options,getText("ContextMenu_SOption_InfinitAmmoDesc"))
 		
 	y = y + spacing
 
-		local options = 
-		{
-			getText("ContextMenu_SD_On"),
-			getText("ContextMenu_SD_Off")
-		}
+		local options = NPC_Options_OffOn()
 		self:addCustomCombo('FindWork',splitpoint,y,comboWidth,getText("ContextMenu_SOption_FindWork"),options,getText("ContextMenu_SOption_FindWorkDesc"))
 		
 	y = y + spacing
 
-		local options = 
-		{
-			getText("ContextMenu_SD_On"),
-			getText("ContextMenu_SD_Off")
-		}
+		local options = NPC_Options_OffOn()
 		self:addCustomCombo('SurvivorHunger',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorHunger"),options,getText("ContextMenu_SOption_SurvivorHungerDesc"))
 		
 	y = y + spacing
 		
-		local options = 
-		{
-			getText("ContextMenu_SD_Off"),
-			getText("ContextMenu_SD_On")
-		}
+		local options = NPC_Options_OffOn()
 		self:addCustomCombo('SafeBase',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SafeBase"),options,getText("ContextMenu_SOption_SafeBaseDesc"))
 		
 	y = y + spacing
-		
-		local options = 
-		{
-			getText("ContextMenu_SD_Off"),
-			getText("ContextMenu_SD_On")
-		}
+	
+		local options = NPC_Options_OffOn()
 		self:addCustomCombo('SurvivorBases',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorBases"),options,getText("ContextMenu_SOption_SurvivorBasesDesc"))		
 		
 	y = y + spacing4x
@@ -664,13 +612,11 @@ if index then
 		
 	y = y + spacing4x
 
-
-		local options = 
-		{
-			getText("ContextMenu_SD_Off"),
-			getText("ContextMenu_SD_On")
-		}
+		local options = NPC_Options_OffOn()
 		self:addCustomCombo('DebugOptions',splitpoint,y,comboWidth,getText("ContextMenu_SOption_DebugOptions"),options,getText("ContextMenu_SOption_DebugOptionsDesc"))		
+	
+		local options = NPC_Options_OffOn()
+		self:addCustomCombo('DebugOption_DebugSay',splitpoint,y,comboWidth,getText("ContextMenu_SDebugOption_DebugSay"),options,getText("ContextMenu_SDebugOption_DebugSayDesc"))		
 
 
 

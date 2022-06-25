@@ -357,7 +357,8 @@ function SuperSurvivorsLoadGridsquare(square)
 			SSGM:Load()
 			HillTopGroup:AllSpokeTo()
 			BlockadeGroup:AllSpokeTo()
-
+			
+			-- I don't think we need this now? But Further testing is needed
 			local gameVersion = getCore():getGameVersion()
 			IsDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() > 50 and gameVersion:getMinor() < 53)
 			IsNpcDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() >= 53)
@@ -373,13 +374,14 @@ function SuperSurvivorsLoadGridsquare(square)
 			AltSpawnPercent = SuperSurvivorGetOptionValue("AltSpawnPercent")
 			NoPreSetSpawn = SuperSurvivorGetOptionValue("NoPreSetSpawn")
 			DebugOptions = SuperSurvivorGetOptionValue("DebugOptions")
+			DebugOption_DebugSay = SuperSurvivorGetOptionValue("DebugOption_DebugSay")
 			SafeBase = SuperSurvivorGetOptionValue("SafeBase")
 			SurvivorBases = SuperSurvivorGetOptionValue("SurvivorBases")
 			SuperSurvivorSpawnRate = SuperSurvivorGetOptionValue("SpawnRate")
 			ChanceToSpawnWithGun = SuperSurvivorGetOptionValue("GunSpawnRate")
 			ChanceToSpawnWithWep = SuperSurvivorGetOptionValue("WepSpawnRate")
 			ChanceToBeHostileNPC = SuperSurvivorGetOptionValue("HostileSpawnRate")
-			MaxChanceToBeHostileNPC = SuperSurvivorGetOptionValue("HostileSpawnRate")
+			MaxChanceToBeHostileNPC = SuperSurvivorGetOptionValue("MaxHostileSpawnRate") -- Fixed, it used to contain 'HostileSpawnRate', previously making MaxHostileSpawnRate a useless option
 			if IsDamageBroken then
 				MaxChanceToBeHostileNPC = 0
 			end
