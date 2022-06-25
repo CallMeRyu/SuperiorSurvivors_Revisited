@@ -680,6 +680,7 @@ function SuperSurvivor:setRunning(toValue)
 	
 		--self.player:setSprinting(toValue);
 		--self.player:setForceSprint(toValue);
+		self:DebugSay("My SetRunning Was changed to "..tostring(toValue).."!")
 	end
 	
 end
@@ -999,10 +1000,11 @@ function SuperSurvivor:DebugSay(text)
 	-- Now, the In game DebugOptions will now effect this.
 	local TurnOnDebugText = DebugOptions
 	local DebugSayDebugMode_Settings = DebugOption_DebugSay
+	local zDebugSayDistance = DebugOption_DebugSay_Distance
 
 	if(DebugSayEnabled == true and self.DebugMode == true) or (TurnOnDebugText == true and DebugSayDebugMode_Settings == 1) then
 
-		if (getDistanceBetween(getSpecificPlayer(0),self.player) < 6) then -- if far enough away from player, don't do anything
+		if (getDistanceBetween(getSpecificPlayer(0),self.player) < zDebugSayDistance) then -- if far enough away from player, don't do anything
 		
 			local zLastEnemySeen = 0
 			if (self.LastEnemeySeen ~= nil) then zLastEnemySeen = self.LastEnemeySeen else zLastEnemySeen = 0 end
@@ -2073,7 +2075,6 @@ function SuperSurvivor:Task_IsNotAttack()
 end
 function SuperSurvivor:Task_IsNotThreaten()
 	if (self:getTaskManager():getCurrentTask() ~= "Threaten") then
-		self:DebugSay("Task_IsNotThreaten Is 'True'")
 		return true
 	end
 end

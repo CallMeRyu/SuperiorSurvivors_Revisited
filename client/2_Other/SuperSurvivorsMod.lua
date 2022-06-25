@@ -371,8 +371,11 @@ function SuperSurvivorsLoadGridsquare(square)
 			AltSpawnGroupSize = SuperSurvivorGetOptionValue("AltSpawnAmount")
 			AltSpawnPercent = SuperSurvivorGetOptionValue("AltSpawnPercent")
 			NoPreSetSpawn = SuperSurvivorGetOptionValue("NoPreSetSpawn")
+			
 			DebugOptions = SuperSurvivorGetOptionValue("DebugOptions")
 			DebugOption_DebugSay = SuperSurvivorGetOptionValue("DebugOption_DebugSay")
+			DebugOption_DebugSay_Distance = SuperSurvivorGetOptionValue("DebugOption_DebugSay_Distance")
+			
 			SafeBase = SuperSurvivorGetOptionValue("SafeBase")
 			SurvivorBases = SuperSurvivorGetOptionValue("SurvivorBases")
 			SuperSurvivorSpawnRate = SuperSurvivorGetOptionValue("SpawnRate")
