@@ -2517,7 +2517,7 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 			--self:Speak(tostring(self.TicksSinceSquareChanged))
 		end
 	end
-	
+		
 	--self.player:Say(tostring(self:isInAction()) ..",".. tostring(self.TicksSinceSquareChanged > 6) ..",".. tostring(self:inFrontOfLockedDoor()) ..",".. tostring(self:getTaskManager():getCurrentTask() ~= "Enter New Building") ..",".. tostring(self.TargetBuilding ~= nil))
 	--print( self:getName()..": "..tostring((self.TargetBuilding ~= nil)))
 	if (
@@ -2539,12 +2539,10 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 			)
 		) or (self:getCurrentTask() == "Pursue")
 	) then
-	--	print(self:getName().." Attempt Entry1")
 		self:getTaskManager():AddToTop(AttemptEntryIntoBuildingTask:new(self, self.TargetBuilding))
 		self.TicksSinceSquareChanged = 0
 	end
-	--self.player:Say(tostring(self:isInAction()) ..",".. tostring(self.TicksSinceSquareChanged > 6) ..",".. tostring((self:inFrontOfWindow())))
-	
+		
 	if (self.TicksSinceSquareChanged > 9) and (self:isInAction() == false) and (self:inFrontOfWindow()) and (self:getCurrentTask() ~= "Enter New Building") then
 		self.player:climbThroughWindow(self:inFrontOfWindow())
 		self.TicksSinceSquareChanged = 0
@@ -2585,7 +2583,7 @@ function SuperSurvivor:update()
 	--self:CleanUp(0.988); -- slowly reduces current blood/dirt by this percent - Ryuu: I have no idea why this is marked out. Guessing it didn't work?
 	
 	self.TriggerHeldDown = false
-	if(not SurvivorHunger) then		
+	if(SurvivorHunger) then						-- removed 'not' for update
 		self.player:getStats():setThirst(0.0)
 		self.player:getStats():setHunger(0.0)	
 	--else
