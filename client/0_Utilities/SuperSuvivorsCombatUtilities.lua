@@ -1,4 +1,4 @@
--- this file only has methods related to npc combat
+-- this file has methods related to npc combat
 
 SuperSurvivorsAmmoBoxes = {   -- for the loot stores that are spawned with preset spawns.
   "Base.223Box",
