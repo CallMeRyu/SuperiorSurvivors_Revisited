@@ -158,49 +158,6 @@ function getMouseSquareX()
 	return sx
 end
 
-function windowHasBarricade(window,character)
-
-local thisSide = window:getBarricadeForCharacter(character)
-local oppositeSide = window:getBarricadeOppositeCharacter(character)
-
-if(thisSide == nil) and (oppositeSide == nil) then return false
-else return true end
-
-end
-
-
-function getDoor(building,character)
-
-	local DoorOut = nil
-	local closestSoFar = 100
-	local bdef = building:getDef()
-	for x=bdef:getX()-1,(bdef:getX() + bdef:getW() + 1) do
-		for y=bdef:getY()-1,(bdef:getY() + bdef:getH() + 1) do
-
-			local sq = getCell():getGridSquare(x,y,character:getZ())
-			if(sq) then
-				local Objs = sq:getObjects();
-				for j=0, Objs:size()-1 do
-					local Object = Objs:get(j)
-					if(Object ~= nil) then
-						local distance = getDistanceBetween(sq,character)
-						if(instanceof(Object,"IsoDoor")) and (Object:isExteriorDoor(character)) and (distance < closestSoFar) then
-
-							closestSoFar = distance
-							DoorOut = Object
-
-						end
-					end
-				end
-			end
-
-		end
-
-	end
-	return DoorOut
-end
-
-
 
 function AbsoluteValue(value)
 	if(value >= 0) then return value;
