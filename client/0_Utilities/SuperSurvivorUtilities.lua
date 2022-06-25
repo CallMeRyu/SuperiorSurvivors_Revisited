@@ -1,29 +1,28 @@
 Orders = {
-"Barricade",
-"Chop Wood",
-"Clean Up Inventory",
-"Doctor",
-"Explore",
-"Follow",
-"Farming",
-"Forage",
-"Gather Wood",
-"Go Find Food",
-"Go Find Water",
-"Go Find Weapon",
-"Guard",
-"Hold Still",
-"Lock Doors",
-"Unlock Doors",
-"Loot Room",
-"Patrol",
-"Stand Ground",
-"Stop",
-"Dismiss",
-"Relax",
-"Return To Base",
-"Pile Corpses",
-
+	"Barricade",
+	"Chop Wood",
+	"Clean Up Inventory",
+	"Doctor",
+	"Explore",
+	"Follow",
+	"Farming",
+	"Forage",
+	"Gather Wood",
+	"Go Find Food",
+	"Go Find Water",
+	"Go Find Weapon",
+	"Guard",
+	"Hold Still",
+	"Lock Doors",
+	"Unlock Doors",
+	"Loot Room",
+	"Patrol",
+	"Stand Ground",
+	"Stop",
+	"Dismiss",
+	"Relax",
+	"Return To Base",
+	"Pile Corpses",
 };
 
 function getPresetColor(Color)
@@ -78,7 +77,6 @@ SurvivorPerks = {
 }
 
 
-
 function getAPerk()
     local result = ZombRand(size(SurvivorPerks)-1)+1;
     return SurvivorPerks[result];
@@ -98,6 +96,13 @@ function has_value (tab, val)
     return false
 end
 
+function AbsoluteValue(value)
+	if(value >= 0) then 
+		return value;
+	else 
+		return (value * -1);
+	end
+end
 
 function makeToolTip(option,name,desc)
 	local toolTip = ISToolTip:new();
@@ -157,253 +162,6 @@ function getMouseSquareX()
 
 	return sx
 end
-
-
-function AbsoluteValue(value)
-	if(value >= 0) then return value;
-	else return (value * -1);
-	end
-end
-
-function MyFindAndReturnCategory(thisItemContainer, thisCategory, survivor)
-
-	if(thisCategory == "Food") then return FindAndReturnBestFood(thisItemContainer, survivor)
-	elseif(thisCategory == "Water") then return FindAndReturnWater(thisItemContainer)
-	elseif(thisCategory == "Weapon") then return FindAndReturnWeapon(thisItemContainer)
-	else return thisItemContainer:FindAndReturnCategory(thisCategory) end
-
-end
-
-function FindAndReturnWeapon(thisItemContainer) -- exlude crap weapons
-	if(not thisItemContainer) then return nil end
-	local items = thisItemContainer:getItems()
-
-	if(items ~= nil) and (items:size() > 0) then
-		for i=1, items:size()-1 do
-			local item = items:get(i)
-			if(item ~= nil) and (item:getCategory() == "Weapon") and (item:getMaxDamage() > 0.1) then
-				--print("FindAndReturnWeapon " .. item:getDisplayName() .. " - " .. tostring(item:getMaxDamage()))
-				return item
-			end
-		end
-	end
-	return nil
-end
-
-function FindAndReturnBestWeapon(thisItemContainer) -- exlude crap weapons
-	if(not thisItemContainer) then return nil end
-	local items = thisItemContainer:getItems()
-	local bestItem = nil
-
-	if(items ~= nil) and (items:size() > 0) then
-		for i=1, items:size()-1 do
-			local item = items:get(i)
-			if(item ~= nil) and (item:getCategory() == "Weapon") and (item:getMaxDamage() > 0.1) and (bestItem == nil or bestItem:getMaxDamage() < item:getMaxDamage()) then bestItem = item end
-		end
-	end
-	if (bestItem ~= nil) then
-		--print("FindAndReturnBestWeapon " .. tostring(bestItem:getDisplayName()) .. " - " .. tostring(bestItem:getMaxDamage()))
-	end
-	return bestItem
-end
-
-FoodsToExlude = {"Bleach", "Cigarettes", "HCCigar", "Antibiotics", "Teabag2", "Salt", "Pepper", "EggCarton"}
-function FindAndReturnFood(thisItemContainer)
-	if(not thisItemContainer) then return nil end
-	local items = thisItemContainer:getItems()
-
-	if(items ~= nil) and (items:size() > 0) then
-		for i=1, items:size()-1 do
-			local item = items:get(i)
-			if(item ~= nil) and (item:getCategory() == "Food") and not (item:getPoisonPower() > 1) and (not has_value(FoodsToExlude,item:getType())) then return item end
-		end
-	end
-	return nil
-end
-
-function GetFoodScore(item)
-	--print("Analyze " .. item:getDisplayName())
-	local Score = 1.0
-
-	if(item:getUnhappyChange() > 0) then
-		Score = Score - math.floor(item:getUnhappyChange() / (item:getHungerChange() * -10.0))
-		--print("-unhappy "..Score..","..tostring(item:getUnhappyChange())..","..tostring(0 - item:getHungerChange()))
-	elseif(item:getUnhappyChange() < 0) then
-		Score = Score + 1
-		--print("-happy")
-	end
-
-	if(item:getBoredomChange() > 0) then
-		Score = Score - math.floor(item:getBoredomChange() / (item:getHungerChange() * -10.0) / 2.0)
-		--print("-bored")
-	elseif(item:getBoredomChange() < 0) then
-		Score = Score + 1
-		--print("-unbored")
-	end
-
-	if(item:isFresh()) then
-		Score = Score + 2
-		--print("-fresh")
-	elseif(item:IsRotten()) then
-		Score = Score - 10
-		--print("-rotten")
-	end
-
-	if(item:isAlcoholic()) then
-		Score = Score - 5
-		--print("-alcoholic")
-	end
-	if(item:isSpice()) then
-		Score = Score - 5
-		--print("-spice")
-	end
-
-	if(item:isbDangerousUncooked()) and not (item:isCooked()) then
-		Score = Score - 10
-		--print("-dont eat it mary, its raw")
-	end
-	--if(item:isBurnt()) then Score = Score - 1 end
-
-	local FoodType = item:getFoodType()
-	if (FoodType == "NoExplicit") or (FoodType == nil) or (tostring(FoodType) == "nil") then
-		--print("-notype")
-		-- save the canned food
-		if string.match(item:getDisplayName(), "Open") then Score = Score + 3
-		elseif string.match(item:getDisplayName(), "Canned") then Score = Score - 5
-		elseif (item:getDisplayName() == "Dog Food") then Score = Score - 10
-		elseif (item:getHungerChange()) == nil or (item:getHungerChange() == 0) then Score = -9999 end -- unidentified, probably canned from a mod
-
-		if(item:isCooked()) then Score = Score + 5 end
-	elseif (FoodType == "Fruits") or (FoodType == "Vegetables") then
-		--print("-produce")
-		Score = Score + 1
-	elseif (FoodType == "Pasta") or (FoodType == "Rice") then
-		--print("-drygoods")
-		Score = Score - 2
-	elseif ((FoodType == "Egg") or (FoodType == "Meat")) or item:isIsCookable() then
-		--print("-meat")
-		if (item:isCooked()) then
-			Score = Score + 2
-		end
-	elseif (FoodType == "Coffee") then
-		--print("-coffee")
-		Score = Score - 5
-	else
-		--print("Unknown food type " .. FoodType)
-	end
-
-	return Score
-end
-
-function FindAndReturnBestFoodOnFloor(sq, survivor)
-	if(not sq) then return nil end
-	local BestFood = nil
-	local BestScore = 1
-
-	if (survivor == nil) or (survivor:isStarving()) then
-		-- if starving, willing to eat anything
-		BestScore = -999
-	elseif (survivor:isVHungry()) then
-		-- not too picky, eat stale food
-		BestScore = -10
-	end
-
-	items = sq:getWorldObjects()
-	--print("Checking " .. tostring(items:size()) .. " world objects.")
-	for j=0, items:size()-1 do
-		if(items:get(j):getItem()) then
-			local item = items:get(j):getItem()
-			if(item ~= nil) and (item:getCategory() == "Food") and not (item:getPoisonPower() > 1) and (not has_value(FoodsToExlude, item:getType())) then
-				local Score = GetFoodScore(item)
-
-				--ContainerItemsScore[i] = Score
-				--print("BestFood Floor " .. item:getDisplayName() .. ": " .. tostring(Score))
-				if Score > BestScore then
-					BestFood = item
-					BestScore = Score
-				end
-			end
-		end
-	end
-	return BestFood
-end
-
-function FindAndReturnBestFood(thisItemContainer, survivor)
-	if(not thisItemContainer) then return nil end
-	local items = thisItemContainer:getItems()
-	local ID = -1
-	local BestFood = nil
-	--local ContainerItemsScore = {}
-	local BestScore = 1
-
-	if (survivor == nil) or (survivor:isStarving()) then
-		-- if starving, willing to eat anything
-		BestScore = -999
-	elseif (survivor:isVHungry()) then
-		-- not too picky, eat stale food
-		BestScore = -10
-	end
-
-	if(items ~= nil) and (items:size() > 0) then
-		for i=1, items:size()-1 do
-			local item = items:get(i)
-			if(item ~= nil) and (item:getCategory() == "Food") and not (item:getPoisonPower() > 1) and (not has_value(FoodsToExlude, item:getType())) then
-				local Score = GetFoodScore(item)
-
-				--ContainerItemsScore[i] = Score
-				--print("BestFood " .. item:getDisplayName() .. ": " .. tostring(Score))
-				if Score > BestScore then
-					BestFood = item
-					BestScore = Score
-				end
-			end
-		end
-
-		-- loop done sort top down
-		--local highestSoFar = 0
-		--for k,v in pairs(ContainerItemsScore) do
-		--	if(v > highestSoFar) then
-		--		ID = k
-		--		highestSoFar = v
-		--	end
-		--end
-		--if(ID ~= -1) then BestFood = items:get(ID) end
-
-	end
-
-	if (BestFood ~= nil) then
-		--print("BestFood Winner " .. tostring(BestFood:getDisplayName()) .. ": " .. tostring(BestScore))
-	end
-	return BestFood
-end
-
-function FindAndReturnWater(thisItemContainer) -- exlude bleach
-	if(not thisItemContainer) then return nil end
-	local items = thisItemContainer:getItems()
-
-	if(items ~= nil) and (items:size() > 0) then
-		for i=1, items:size()-1 do
-			local item = items:get(i)
-			if(item ~= nil) and isItemWater(item) then return item end
-		end
-	end
-	return nil
-end
-
-function myIsCategory(item,category)
-
-	if(category == "Water") and (isItemWater(item)) then return true
-	elseif(category == "Weapon") and (item:getCategory() == category) and (item:getMaxDamage() > 0.1) then return true
-	else return (item:getCategory() == category) end
-
-end
-
-function isItemWater(item)
-	return ((item:isWaterSource()) and (item:getType() ~= "Bleach"))
-end
-
-
-
 
 if not SurvivorRandomSuits then
 	SurvivorRandomSuits = {}
