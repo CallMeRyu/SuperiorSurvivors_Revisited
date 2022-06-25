@@ -118,7 +118,7 @@ function PileCorpsesTask:update()
 					ISTimedActionQueue.add(ISGrabCorpseAction:new(self.parent:Get(),self.TargetSquare:getDeadBody(),30))
 					
 					
-					self.parent:Speak(getText("ContextMenu_SD_PickUpCorpse"))
+					self.parent:RoleplaySpeak(getText("ContextMenu_SD_PickUpCorpse"))
 				else
 					self.Target = nil
 				end

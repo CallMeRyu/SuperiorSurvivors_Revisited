@@ -366,6 +366,8 @@ function SuperSurvivorsLoadGridsquare(square)
 			Option_ForcePVP = SuperSurvivorGetOptionValue("Option_ForcePVP")
 			Option_FollowDistance = SuperSurvivorGetOptionValue("Option_FollowDistance")
 			SuperSurvivorBravery = SuperSurvivorGetOptionValue("Bravery")
+			RoleplayMessage = SuperSurvivorGetOptionValue('RoleplayMessage')
+
 			AlternativeSpawning = SuperSurvivorGetOptionValue("AltSpawn")
 			AltSpawnGroupSize = SuperSurvivorGetOptionValue("AltSpawnAmount")
 			AltSpawnPercent = SuperSurvivorGetOptionValue("AltSpawnPercent")

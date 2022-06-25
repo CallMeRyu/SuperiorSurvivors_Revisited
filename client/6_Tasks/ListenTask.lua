@@ -25,7 +25,9 @@ end
 
 function ListenTask:isComplete()
 	if(self.TicksSinceLastExchange > 15) or (self.parent:getDangerSeenCount() > 0) or (self.parent:needToFollow()) then
-		if(not self.parent:isInGroup(self.Aite)) then self.parent:Speak(getText("ContextMenu_SD_Bye1")) end 
+		if(not self.parent:isInGroup(self.Aite)) then 
+			self.parent:Speak(getText("ContextMenu_SD_Bye1")) 
+		end 
 		return true
 	else
 		return false

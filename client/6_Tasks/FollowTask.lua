@@ -73,7 +73,9 @@ function FollowTask:update()
 		if(true) then -- self.parent:isInAction() == false) then -- for some reason this is true when they doing nothing sometimes...
 		
 		if(self.InBaseAtStart == true) and ( not self.parent:isInBase()) then 
-			if(ZombRand(2)==0) then self.parent:Speak(getText("ContextMenu_SD_WeLooting")) end
+			if(ZombRand(2)==0) then 
+				self.parent:Speak(getText("ContextMenu_SD_WeLooting")) 
+			end
 			self.InBaseAtStart = false 
 		end
 		if(not self.InBaseAtStart) and (self.parent:isInBase()) and (self.parent:Get():getVehicle() == nil) then 

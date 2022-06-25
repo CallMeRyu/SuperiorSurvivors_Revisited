@@ -297,7 +297,9 @@ function FarmingTask:update()
 				if(item and item:isWaterSource()) then
 					local plantType = self.Plant.typeOfSeed
 					print("water " .. plantType)
-					if(self.parent:isSpeaking() == false) then self.parent:Speak(getText("ContextMenu_speech_FarmingActionWatering")) end
+					if(self.parent:isSpeaking() == false) then 
+						self.parent:RoleplaySpeak(getText("ContextMenu_speech_FarmingActionWatering")) 
+					end
 					self.parent:StopWalk()
 					ISTimedActionQueue.add(ISWaterPlantAction:new(self.parent:Get(), item, 1, self.Plant:getSquare(), 20))
 					self:ClearVars()
@@ -315,7 +317,7 @@ function FarmingTask:update()
 		if (self.Plant ~= nil) and (self.FarmingTaskType == "Harvesting") then
 			if(self:AreWeThereYet(self.Plant:getSquare())) then
 				local plantType = self.Plant.typeOfSeed
-				self.parent:Speak(getText("ContextMenu_speech_FarmingActionHarvesting"))
+				self.parent:RoleplaySpeak(getText("ContextMenu_speech_FarmingActionHarvesting"))
 				self.JustHarvested = true
 				self.parent:StopWalk()
 				print("harvest " .. plantType)
@@ -364,7 +366,7 @@ function FarmingTask:update()
 		end
 		if (self.Plant ~= nil) and (self.FarmingTaskType == "Planting") then
 			if(self:AreWeThereYet(self.Plant:getSquare())) then
-				self.parent:Speak(getText("ContextMenu_speech_FarmingActionPlanting"))
+				self.parent:RoleplaySpeak(getText("ContextMenu_speech_FarmingActionPlanting"))
 				local seeds = self:getSomeSeeds()
 				 --print(""..nil)
 				if(seeds) and (#seeds > 0) then

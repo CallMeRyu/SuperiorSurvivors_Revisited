@@ -70,7 +70,7 @@ function AttemptEntryIntoBuildingTask:update()
 	
 	if (self.parent:inFrontOfLockedDoor()) then
 		self.parent.TicksSinceSquareChanged = self.parent.TicksSinceSquareChanged + 1
-		self.parent:Speak("Damnit, the door is blocked off!")
+		self.parent:Speak("Damnit, the door is blocked off!")--TODO: add localization
 		self.parent:MarkBuildingExplored(self.parent:getBuilding())
 		self.TargetSquare = nil
 		self.parent:walkToDirect(outsidesquare)
@@ -80,7 +80,7 @@ function AttemptEntryIntoBuildingTask:update()
 		self.parent.TicksSinceSquareChanged = 0
 	end
 	if (self.parent:inFrontOfBarricadedWindowAlt()) and (self.Door ~= nil) then 
-		self.parent:Speak("Windows are blocked too! Well, there's no point in staying here...")
+		self.parent:Speak("Windows are blocked too! Well, there's no point in staying here...") --TODO: add localization
 		self.parent:MarkBuildingExplored(self.parent:getBuilding())
 		self.TargetSquare = nil
 		self.parent:walkToDirect(outsidesquare)
@@ -132,7 +132,9 @@ function AttemptEntryIntoBuildingTask:update()
 --				if(debugOutput) then print( self.parent:getName() .. " " .."not try window") end
 				if(self.parent:getWalkToAttempt(self.TargetSquare) < 10) then
 --					if(debugOutput) then print( self.parent:getName() .. " " .."trying to get to square inside") end
-				if(debugOutput) then 	self.parent:Speak(tostring(self.parent:getWalkToAttempt(self.TargetSquare))) end
+					if(debugOutput) then 	
+						self.parent:Speak(tostring(self.parent:getWalkToAttempt(self.TargetSquare))) 
+					end
 					--self.parent:walkTo(self.TargetSquare)
 					self.parent:walkToDirect(self.TargetSquare) -- If this doesn't work, use the other
 					self.parent:walkTo(self.TargetSquare)
