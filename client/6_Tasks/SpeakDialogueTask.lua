@@ -42,6 +42,7 @@ function SpeakDialogueTask:update()
 		if (distance > 1.8) then
 			self.parent:walkTo(self.Aite:getCurrentSquare()) 				 		
 		elseif(self:isSpeaking() == false) then
+			self.parent:DebugSay("SpeakDialogueTask is about to trigger a StopWalk! ")
 			self.parent:StopWalk()
 			self.parent.player:faceThisObject(self.Aite)
 			

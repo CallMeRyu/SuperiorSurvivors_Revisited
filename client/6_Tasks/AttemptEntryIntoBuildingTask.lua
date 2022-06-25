@@ -129,27 +129,24 @@ function AttemptEntryIntoBuildingTask:update()
 		
 			
 			if not self.TryWindow and not self.TryBreakDoor then
---				if(debugOutput) then print( self.parent:getName() .. " " .."not try window") end
+				self.parent:DebugSay("Find Unlooted Building Task - trying to get to square inside x" .. tostring(attempts))
 				if(self.parent:getWalkToAttempt(self.TargetSquare) < 10) then
---					if(debugOutput) then print( self.parent:getName() .. " " .."trying to get to square inside") end
-				if(debugOutput) then 	self.parent:Speak(tostring(self.parent:getWalkToAttempt(self.TargetSquare))) end
-					--self.parent:walkTo(self.TargetSquare)
+				if(debugOutput) then self.parent:Speak(tostring(self.parent:getWalkToAttempt(self.TargetSquare))) end
 					self.parent:walkToDirect(self.TargetSquare) -- If this doesn't work, use the other
 					self.parent:walkTo(self.TargetSquare)
-					--self.parent:Speak("Trying Window!")
-					self.parent:DebugSay("Trying Window!")
+					self.parent:DebugSay("Trying Door!")
 				else
 					self.TryWindow = true
 				end
 				
 			elseif self.TryWindow then
---				if(debugOutput) then print( self.parent:getName() .. " " .."try window true") end
 				if(self.Window == nil) then
 				-- If the line below this marked out line doesn't work? change them.
 				--	self.Window = getCloseWindow(self.parent.TargetBuilding,self.parent.player)
 				--	Update: So far it works. If you want to make NPCs not break the window barricades, use the Alt line
 				--	self.Window = self.parent:getUnBarricadedWindowAlt(self.parent.TargetBuilding)
 					self.Window = self.parent:getUnBarricadedWindow(self.parent.TargetBuilding)
+					self.parent:DebugSay("Trying Window!")
 				end
 				
 				if(not self.Window) then
@@ -188,12 +185,14 @@ function AttemptEntryIntoBuildingTask:update()
 							if(self.parent:isInBase()) then 
 								self.Window:ToggleWindow(self.parent.player)
 							else
+								self.parent:DebugSay("AttemptEntryIntoBuildingTask is about to trigger a StopWalk! (Path A) ")
 								self.parent:StopWalk()
 								ISTimedActionQueue.add(ISSmashWindow:new(self.parent.player, self.Window, 20))
 							end
 							self.parent:Wait(3)
 						else
 							if (self.Window:isSmashed()) and (self.Window:isGlassRemoved() == false) and self.parent:hasWeapon() then
+								self.parent:DebugSay("AttemptEntryIntoBuildingTask is about to trigger a StopWalk! (Path B) ")
 								self.parent:StopWalk()
 								ISTimedActionQueue.add(ISRemoveBrokenGlass:new(self.parent.player, self.Window, 20))
 								

@@ -21,7 +21,7 @@ function AttackTask:isComplete()
 	if(not self.parent:needToFollow()) and ((self.parent:getDangerSeenCount() > 0) or (self.parent:isEnemyInRange(self.parent.LastEnemeySeen) and self.parent:hasWeapon())) and (self.parent.LastEnemeySeen) and not self.parent.LastEnemeySeen:isDead() and (self.parent:HasInjury() == false) then 
 		return false
 	else 
-		self.parent:DebugSay("Is complete for AttackTask is Returning TRUE" )
+		self.parent:DebugSay("Is complete for AttackTask is Returning TRUE (And is about to trigger a stopwalk!)" )
 		self.parent:StopWalk()
 		return true 
 	end

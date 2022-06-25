@@ -7,6 +7,7 @@ function SurenderTask:new(superSurvivor, enemy)
 	setmetatable(o, self)
 	self.__index = self
 		
+	superSurvivor:DebugSay("SurenderTask is about to trigger a StopWalk! ")
 	superSurvivor:StopWalk()
 	o.parent = superSurvivor
 	o.Name = "Surender"

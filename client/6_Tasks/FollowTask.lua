@@ -106,7 +106,7 @@ function FollowTask:update()
 				--self.parent:Speak("here i am")
 				local window = getSquaresNearWindow(ropeSquare)
 				if(window) then
-				
+					self.parent:DebugSay("FollowTask is about to trigger a StopWalk! Path A")
 					self.parent:StopWalk()
 					local indoorSquare = window:getIndoorSquare()
 					ISTimedActionQueue.add(ISWalkToTimedAction:new(self.parent.player, indoorSquare))
@@ -162,6 +162,7 @@ function FollowTask:update()
 					doorsquare = lastgoodDoor
 					
 					if(doorsquare ~= nil) then
+						self.parent:DebugSay("FollowTask is about to trigger a StopWalk! Path B")
 						self.parent:StopWalk()
 						print(self.parent:getName()..": adding enter vehicle timed actions and waiting")
 						ISTimedActionQueue.add(ISWalkToTimedAction:new(self.parent:Get(),doorsquare))						

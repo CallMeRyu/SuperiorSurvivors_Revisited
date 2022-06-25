@@ -194,7 +194,8 @@ function LootCategoryTask:update()
 					if(item ~= nil) then
 							self.FoundCount = self.FoundCount + 1
 							self.parent:Speak(getText("ContextMenu_SD_TakesFromCont_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromCont_After"))							
-						if(self.parent:hasRoomInBagFor(item)) then		
+						if(self.parent:hasRoomInBagFor(item)) then
+							self.parent:DebugSay("LootCategoryTask is about to trigger a StopWalk! Path B ")
 							self.parent:StopWalk()
 							ISTimedActionQueue.add(ISInventoryTransferAction:new (self.parent.player, item, self.Container, self.PlayerBag, nil))
 						else

@@ -50,6 +50,7 @@ function PileCorpsesTask:update()
 					
 					--self.BringHereSquare:AddWorldInventoryItem(Corpse,(ZombRand(10)/100),(ZombRand(10)/100),0)
 					--self.parent.player:getInventory():DoRemoveItem(Corpse) 
+					self.parent:DebugSay("PileCorpsesTask is about to trigger a StopWalk! ")
 					self.parent:StopWalk()
 					--print(self:getName().."stopping walking4")
 					ISTimedActionQueue.add(ISDropItemAction:new(self.parent:Get(),Corpse,30))

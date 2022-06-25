@@ -182,6 +182,7 @@ function SuperSurvivorManager:update()
 			if (self.SuperSurvivors[i].TargetSquare ~= nil and self.SuperSurvivors[i].TargetSquare:getZ() ~= self.SuperSurvivors[i].player:getZ() and getGameSpeed() > 1) then
 				print("DANGER ZONE")
 				self.SuperSurvivors[i].TargetSquare = nil
+				self.SuperSurvivors[i]:DebugSay("SuperSurvivorManager Update() is about to trigger a StopWalk!")
 				self.SuperSurvivors[i]:StopWalk()
 				self.SuperSurvivors[i]:Wait(10)
 				--self.SuperSurvivors[i]:getTaskManager():AddToTop(WanderTask:new(self.SuperSurvivors[i]))

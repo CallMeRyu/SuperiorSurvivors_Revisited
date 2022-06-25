@@ -18,6 +18,7 @@ end
 
 function FleeTask:isComplete()
 	if (self.parent:getDangerSeenCount() == 0) or self.parent:needToFollow() then 
+		self.parent:DebugSay("FleeTask is about to trigger a StopWalk! ")
 		self.parent:StopWalk()
 		--print(self:getName().."stopping walking7")
 		self.parent:setRunning(false)

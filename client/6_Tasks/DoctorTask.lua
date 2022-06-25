@@ -96,6 +96,7 @@ function DoctorTask:update()
 					if(rippedsheets == nil) then rippedsheets = doctor:getInventory():AddItem("Base.RippedSheets") end
 								
 					foundbodypartneedingtreatment = true	
+					self.parent:DebugSay("DoctorTask is about to trigger a StopWalk! ")
 					self.parent:StopWalk()
 					if treatment == "Splint" then 
 						self.parent:Speak(getText("ContextMenu_SD_DoctorSplint"))

@@ -107,7 +107,7 @@ function BarricadeBuildingTask:update()
 				self.parent.player:setSecondaryHandItem(self.Plank)
 				if not self.parent.player:getInventory():contains("Nails", true) then self.parent.player:getInventory():AddItem("Base.Nails") end
 									
-				
+				self.parent:DebugSay("BarricadeBuildingTask is about to trigger a StopWalk! ")
 				self.parent:StopWalk()
 				ISTimedActionQueue.add(ISBarricadeAction:new(self.parent.player, self.Window, false, false, 100));
 		

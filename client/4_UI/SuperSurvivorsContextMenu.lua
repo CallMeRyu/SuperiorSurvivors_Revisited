@@ -382,6 +382,23 @@ function DebugCharacterUnStuck(test,SS)
 	SS.player:update()
 	SS.player:setNPC(true)
 	SS.player:setBlockMovement(true)
+	ISTimedActionQueue.add(ISGetHitFromBehindAction:new(SS.player,getSpecificPlayer(0)))
+	
+	local xoff = SS.player:getX() + ZombRand(-3,3)
+    local yoff = SS.player:getY() + ZombRand(-3,3)	
+    SS:DebugSay("CheckForIfStuck is about to trigger a StopWalk!")
+    SS:StopWalk()
+	ISTimedActionQueue.add(ISGetHitFromBehindAction:new(SS.player,getSpecificPlayer(0)))
+    SS:WalkToPoint(xoff,yoff,SS.player:getZ())
+	ISTimedActionQueue.add(ISGetHitFromBehindAction:new(SS.player,getSpecificPlayer(0)))
+	
+	SS.player:setPerformingAnAction(true)
+	SS.player:setVariable("bPathfind", true)	
+	SS.player:setVariable("bKnockedDown", true)
+	SS.player:setVariable("AttackAnim", true)
+	SS.player:setVariable("BumpFall", true)
+	
+	ISTimedActionQueue.add(ISGetHitFromBehindAction:new(SS.player,getSpecificPlayer(0)))
 	
 	
 end

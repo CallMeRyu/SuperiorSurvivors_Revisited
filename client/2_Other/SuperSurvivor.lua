@@ -2549,20 +2549,21 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 		self.TicksSinceSquareChanged = 0
 	end
 	
-	if ((self.TicksSinceSquareChanged > 7) and (self:Get():getModData().bWalking == true)) or (self.TicksSinceSquareChanged > 500) then
+	if ((self.TicksSinceSquareChanged > 7) and (self:Get():getModData().bWalking == true)) or (self.TicksSinceSquareChanged > 250) then
 		--print("detected survivor stuck walking: " .. self:getName() .. " for " .. self.TicksSinceSquareChanged .. " x" .. self.StuckCount)
 		self.StuckCount = self.StuckCount + 1
 	--elseif ((self.TicksSinceSquareChanged > 10) and (self:Get():getModData().bWalking == true)) then
-		if (self.StuckCount > 100) then
+		if (self.StuckCount > 100) and (self.TicksSinceSquareChanged > 250) then
 			--print("trying to knock survivor out of frozen state: " .. self:getName());
 			self.StuckCount = 0
 			ISTimedActionQueue.add(ISGetHitFromBehindAction:new(self.player,getSpecificPlayer(0)))
-		else
-			local xoff = self.player:getX() + ZombRand(-3,3)
-			local yoff = self.player:getY() + ZombRand(-3,3)		
-			self:StopWalk()
-			self:WalkToPoint(xoff,yoff,self.player:getZ())
-			self:Wait(2)
+	--else
+	--	local xoff = self.player:getX() + ZombRand(-3,3)
+	--	local yoff = self.player:getY() + ZombRand(-3,3)	
+	--	self:DebugSay("CheckForIfStuck is about to trigger a StopWalk!")
+	--	self:StopWalk()
+	--	self:WalkToPoint(xoff,yoff,self.player:getZ())
+	--	self:Wait(2)
 		end
 	end
 	
@@ -2625,6 +2626,7 @@ function SuperSurvivor:update()
 	if (self.TargetSquare ~= nil and self.TargetSquare:getZ() ~= self.player:getZ() and getGameSpeed() > 2) then
 		self:DebugSay("DANGER ZONE 2: " .. self:getName());
 		self.TargetSquare = nil
+		self:DebugSay("Update() is about to trigger a StopWalk!")
 		self:StopWalk()
 		self:Wait(10)
 	end
@@ -2738,7 +2740,7 @@ function SuperSurvivor:ManageIndoorStuck()
 			self:StopWalk()
 			self:getTaskManager():clear()
 			self:getTaskManager():AddToTop(WanderTask:new(self))
-			self:DebugSay("This is when I changed my tasks to wander - Reference number ZA - 0002")
+			self:DebugSay("This is when I changed my tasks to wander - Reference number ZA - 0002 (StopWalk Also Triggered)")
 			self.TicksSinceSquareChanged = 0
 		end
 	else
@@ -2807,10 +2809,9 @@ function SuperSurvivor:WalkToUpdate()
 		
       -- if(player:isSpeaking() == false) then player:Say(tostring(myBehaviorResult)) end
         if((myBehaviorResult == BehaviorResult.Failed) or (myBehaviorResult == BehaviorResult.Succeeded)) then   
-		
+			self:DebugSay("WalkToUpdate is about to trigger a StopWalk!")
             self:StopWalk()
 		elseif (myBehaviorResult ~= BehaviorResult.Working) then
-		--	print(tostring(myBehaviorResult));
         end
   
    end
@@ -2830,6 +2831,7 @@ function SuperSurvivor:iStopMovement()
 	self.player:NPCSetAttack(false)
 	self.player:NPCSetMelee(false)
 	self.player:NPCSetAiming(false)	
+	self:DebugSay("iStopMovement is about to trigger a StopWalk!")
 end
 
 function SuperSurvivor:StopWalk()
@@ -3692,7 +3694,8 @@ function SuperSurvivor:NPC_Attack(victim) -- New Function
 	if not (instanceof(victim,"IsoPlayer") or instanceof(victim,"IsoZombie")) then return false end
 
 	-- Makes sure if the npc has their weapon out first 
-	if(self:WeaponReady()) then 
+	if(self:WeaponReady()) then
+		self:DebugSay("NPC_Attack is about to trigger a StopWalk!")
 		self:StopWalk()
 		self.player:NPCSetAiming(true) -- Visually animate 
 		self.player:NPCSetAttack(true) -- Visually animate 
@@ -3737,7 +3740,7 @@ function SuperSurvivor:Attack(victim)
 			ForcePVPOn = true;
 			SurvivorTogglePVP();
 		end
-		
+		self:DebugSay("Attack() is about to trigger a StopWalk!")
 		self:StopWalk()
 		self.player:faceThisObject(victim);
 		
