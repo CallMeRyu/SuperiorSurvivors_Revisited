@@ -1,4 +1,6 @@
 -- this file only has methods related to world context
+
+-- gets the coordinate from a npc survivor
 function getCoordsFromID(id)
 
 	for k,v in pairs(SurvivorMap) do
@@ -16,16 +18,20 @@ function getCoordsFromID(id)
 
 end
 
-
+-- gets the distance between 2 instances (zombies, npcs or players)
 function getDistanceBetween(z1,z2)
-	if(z1 == nil) or (z2 == nil) then return -1 end
+	if(z1 == nil) or (z2 == nil) then 
+		return -1 
+	end
 
 	local z1x = z1:getX()
 	local z1y = z1:getY()
 	local z1z = z1:getZ()
+
 	local z2x = z2:getX()
 	local z2y = z2:getY()
 	local z2z = z2:getZ()
+
 	local dx = z1x - z2x
 	local dy = z1y - z2y
 	local dz = z1z - z2z
@@ -34,9 +40,11 @@ function getDistanceBetween(z1,z2)
 
 end
 
+-- gets the distance between 2 coordinates
 function getDistanceBetweenPoints(Ax,Ay,Bx,By)
-	if(Ax == nil) or (Bx == nil) then return -1 end
-
+	if(Ax == nil) or (Bx == nil) then 
+		return -1 
+	end
 
 	local dx = Ax - Bx
 	local dy = Ay - By
@@ -109,7 +117,7 @@ function getFleeSquare(fleeGuy,attackGuy)
 
 	return fleeGuy:getCell():getGridSquare(fleex,fleey,fleeGuy:getZ());
 end
--- TODO: // same logic from getFleeSquare
+
 function getTowardsSquare(moveguy,x,y,z)
 	local distance = 15
 	local tempx = (moveguy:getX() - x);
