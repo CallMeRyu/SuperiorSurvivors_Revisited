@@ -1,5 +1,76 @@
 -- this file only has methods related to world context
 
+--- SQUARES
+
+function GetAdjSquare(square,dir)
+
+	if(dir == 'N') then
+		return getCell():getGridSquare(square:getX(),square:getY() - 1,square:getZ());
+	elseif(dir == 'E') then
+		return getCell():getGridSquare(square:getX() + 1,square:getY(),square:getZ());
+	elseif(dir == 'S') then
+		return getCell():getGridSquare(square:getX(),square:getY() + 1,square:getZ());
+	else
+		return getCell():getGridSquare(square:getX() - 1,square:getY(),square:getZ());
+	end
+end
+
+function getSideSquare(square,supersurvivor)
+
+	local player = supersurvivor.player
+	local nsquare,nnsquare;
+	nsquare = GetAdjSquare(square,'N');
+	if(nsquare ~= nil) then
+		if ((supersurvivor:getWalkToAttempt(nsquare) == 0 and (nsquare:isFree(false)) and (nsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nsquare) ~= 0)) and (nsquare:isOutside() == false) then return nsquare end
+
+		nnsquare = GetAdjSquare(nsquare,'E');
+		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then 
+			return nnsquare 
+		end
+
+		nnsquare = GetAdjSquare(nsquare,'W');
+		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
+
+		nnsquare = GetAdjSquare(nsquare,'N');
+		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
+
+	end
+	nsquare = GetAdjSquare(square,'E');
+	if(nsquare) then
+		if ((supersurvivor:getWalkToAttempt(nsquare) == 0 and (nsquare:isFree(false)) and (nsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nsquare) ~= 0)) and (nsquare:isOutside() == false) then return nsquare end
+
+		nnsquare = GetAdjSquare(nsquare,'E');
+		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
+
+	end
+	nsquare = GetAdjSquare(square,'S');
+	if(nsquare) then
+		if ((supersurvivor:getWalkToAttempt(nsquare) == 0 and (nsquare:isFree(false)) and (nsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nsquare) ~= 0)) and (nsquare:isOutside() == false) then return nsquare end
+
+		nnsquare = GetAdjSquare(nsquare,'E');
+		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
+
+		nnsquare = GetAdjSquare(nsquare,'W');
+		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
+
+		nnsquare = GetAdjSquare(nsquare,'S');
+		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
+
+
+	end
+	nsquare = GetAdjSquare(square,'W');
+	if(nsquare) then
+		if ((supersurvivor:getWalkToAttempt(nsquare) == 0 and (nsquare:isFree(false)) and (nsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nsquare) ~= 0)) and (nsquare:isOutside() == false) then return nsquare end
+
+		nnsquare = GetAdjSquare(nsquare,'W');
+		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
+
+	end
+
+	return square;
+end
+--- SQUARES
+
 --- COORDINATES ---
 -- gets the coordinate from a npc survivor
 function getCoordsFromID(id)
@@ -332,7 +403,7 @@ function getDoor(building,character)
 	local DoorOut = nil
 	local closestSoFar = 100
 	local bdef = building:getDef()
-	
+
 	for x=bdef:getX()-1,(bdef:getX() + bdef:getW() + 1) do
 		for y=bdef:getY()-1,(bdef:getY() + bdef:getH() + 1) do
 
@@ -454,59 +525,3 @@ function getRandomFreeBuildingSquare(building)
 	return nil
 end
 --- END BUILDINGS ---
-
-function getSideSquare(square,supersurvivor)
-
-	local player = supersurvivor.player
-	local nsquare,nnsquare;
-	nsquare = GetAdjSquare(square,'N');
-	if(nsquare ~= nil) then
-		if ((supersurvivor:getWalkToAttempt(nsquare) == 0 and (nsquare:isFree(false)) and (nsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nsquare) ~= 0)) and (nsquare:isOutside() == false) then return nsquare end
-
-		nnsquare = GetAdjSquare(nsquare,'E');
-		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then 
-			return nnsquare 
-		end
-
-		nnsquare = GetAdjSquare(nsquare,'W');
-		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
-
-		nnsquare = GetAdjSquare(nsquare,'N');
-		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
-
-	end
-	nsquare = GetAdjSquare(square,'E');
-	if(nsquare) then
-		if ((supersurvivor:getWalkToAttempt(nsquare) == 0 and (nsquare:isFree(false)) and (nsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nsquare) ~= 0)) and (nsquare:isOutside() == false) then return nsquare end
-
-		nnsquare = GetAdjSquare(nsquare,'E');
-		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
-
-	end
-	nsquare = GetAdjSquare(square,'S');
-	if(nsquare) then
-		if ((supersurvivor:getWalkToAttempt(nsquare) == 0 and (nsquare:isFree(false)) and (nsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nsquare) ~= 0)) and (nsquare:isOutside() == false) then return nsquare end
-
-		nnsquare = GetAdjSquare(nsquare,'E');
-		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
-
-		nnsquare = GetAdjSquare(nsquare,'W');
-		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
-
-		nnsquare = GetAdjSquare(nsquare,'S');
-		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
-
-
-	end
-	nsquare = GetAdjSquare(square,'W');
-	if(nsquare) then
-		if ((supersurvivor:getWalkToAttempt(nsquare) == 0 and (nsquare:isFree(false)) and (nsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nsquare) ~= 0)) and (nsquare:isOutside() == false) then return nsquare end
-
-		nnsquare = GetAdjSquare(nsquare,'W');
-		if (nnsquare ~= nil) and ((supersurvivor:getWalkToAttempt(nnsquare) == 0 and (nnsquare:isFree(false)) and (nnsquare:isBlockedTo(player:getCurrentSquare()) == false)) or (supersurvivor:getWalkToAttempt(nnsquare) ~= 0)) and (nnsquare:isOutside() == false) then return nnsquare end
-
-	end
-
-
-return square;
-end

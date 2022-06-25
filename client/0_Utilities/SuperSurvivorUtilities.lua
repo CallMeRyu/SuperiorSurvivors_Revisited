@@ -165,19 +165,6 @@ function AbsoluteValue(value)
 	end
 end
 
-function GetAdjSquare(square,dir)
-
-	if(dir == 'N') then
-		return getCell():getGridSquare(square:getX(),square:getY() - 1,square:getZ());
-	elseif(dir == 'E') then
-		return getCell():getGridSquare(square:getX() + 1,square:getY(),square:getZ());
-	elseif(dir == 'S') then
-		return getCell():getGridSquare(square:getX(),square:getY() + 1,square:getZ());
-	else
-		return getCell():getGridSquare(square:getX() - 1,square:getY(),square:getZ());
-	end
-end
-
 function doesFileExist( fileName )
 	local fileTable = {}
 	local readFile = getModFileReader("SuperiorSubparSurvivors",getWorld():getWorld()..getFileSeparator()..fileName, false)
