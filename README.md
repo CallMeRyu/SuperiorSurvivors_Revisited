@@ -18,7 +18,13 @@ Update 15 Experimental - U3
 
 
 Experimental 15 - U4
+
 * Updates to the "DebugCharacterUnStuck", so when right click unstuck an NPC, the NPC in question may actually move now. 
 * * (This needs more testing)
+
 * Made an adjustment to how 'NPCs Get stuck management' is handled, which was causing NPCs to 'stutter walk' during some instances. 
 * * (Also needs testing to see how NPCs are moving around)
+
+* The options menu has been updated further! any setting that had a % chance to do something? Now scales from 0% to 100%. You now have full control.
+* Fixed a bug where the previous one that modded the NPCs mod did not have "Hostile over time" to function correctly. It was copying a different option value! 
+* 
