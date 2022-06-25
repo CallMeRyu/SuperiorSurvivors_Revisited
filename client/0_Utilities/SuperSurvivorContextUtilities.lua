@@ -1,4 +1,4 @@
--- this file only has methods related to world context
+-- this file has methods related to world context
 
 --- SQUARES
 
