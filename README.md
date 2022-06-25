@@ -11,3 +11,7 @@ This will be in experimental until there is enough additions to make it public-w
 
 Update 15 Experimental - U2
 * Cleaned up SuperSurvivorOptions.lua - the more files cleaned, the more optimized the mod will be - Special thanks to Chingling152 for helping make this happen!
+
+
+Update 15 Experimental - U3
+* Updates to the Debug mode - To be able to find bugs, we must create a more diverse debugging system. And now the in game options has that. 
