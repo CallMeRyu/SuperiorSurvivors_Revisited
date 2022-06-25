@@ -99,65 +99,6 @@ function has_value (tab, val)
 end
 
 
-function getSquaresWindow(cs)
-
-	if not cs then return nil end
-
-	local objs = cs:getObjects()
-	for i=1, objs:size() do
-		if (instanceof(objs:get(i),"IsoWindow")) then return objs:get(i) end
-	end
-
-
-	return nil
-end
-
-function getSquaresNearWindow(cs)
-
-	local osquare = GetAdjSquare(cs,"N")
-	if cs and osquare and getSquaresWindow(osquare) then return getSquaresWindow(osquare) end
-
-	osquare = GetAdjSquare(cs,"E")
-	if cs and osquare and getSquaresWindow(osquare) then return getSquaresWindow(osquare) end
-
-	osquare = GetAdjSquare(cs,"S")
-	if cs and osquare and getSquaresWindow(osquare) then return getSquaresWindow(osquare) end
-
-	osquare = GetAdjSquare(cs,"W")
-	if cs and osquare and getSquaresWindow(osquare) then return getSquaresWindow(osquare) end
-
-	return nil
-
-end
-
-
-function getDoorsInsideSquare(door,player)
-
-	if(player == nil) or not (instanceof(door,"IsoDoor")) then return nil end
-	local sq1 = door:getOppositeSquare()
-	local sq2 = door:getSquare()
-	local sq3 = door:getOtherSideOfDoor(player)
-
-	if(not sq1:isOutside()) then return sq1
-	elseif(not sq2:isOutside()) then return sq2
-	elseif(not sq3:isOutside()) then return sq3
-	else return nil end
-
-end
-function getDoorsOutsideSquare(door,player)
-
-	if(player == nil) or not (instanceof(door,"IsoDoor")) then return nil end
-	local sq1 = door:getOppositeSquare()
-	local sq2 = door:getSquare()
-	local sq3 = door:getOtherSideOfDoor(player)
-
-	if(sq1 and sq1:isOutside()) then return sq1
-	elseif(sq2 and sq2:isOutside()) then return sq2
-	elseif(sq3 and sq3:isOutside()) then return sq3
-	else return nil end
-
-end
-
 function makeToolTip(option,name,desc)
 	local toolTip = ISToolTip:new();
         toolTip:initialise();
