@@ -998,7 +998,7 @@ end
 function SuperSurvivor:DebugSay(text) 
 	-- Now, the In game DebugOptions will now effect this.
 	local TurnOnDebugText = DebugOptions
-	local DebugSayDebugMode_Settings = 0
+	local DebugSayDebugMode_Settings = DebugOption_DebugSay
 
 	if(DebugSayEnabled == true and self.DebugMode == true) or (TurnOnDebugText == true and DebugSayDebugMode_Settings == 1) then
 

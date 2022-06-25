@@ -42,6 +42,7 @@ function SuperSurvivorGetOptionValue(option)
 	elseif(option == "SafeBase") then return (num ~= 1)
 	elseif(option == "SurvivorBases") then return (num ~= 1)
 	elseif(option == "DebugOptions") then return (num ~= 1)
+	elseif(option == "DebugOption_DebugSay") then return (num - 1)
 	elseif(option == "FindWork") then return (num ~= 1)
 	elseif(option == "SurvivorHunger") then return (num ~= 1)
 	elseif(option == "SurvivorFriendliness") then return (10 - ((num-1)*2)) -- 1 = 10, 2 = 8, 3 = 6
