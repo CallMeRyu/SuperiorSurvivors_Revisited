@@ -111,7 +111,7 @@ end
 -- incModule is not being used
 function getAmmoType(weapon,incModule)
 
-	if(weapon == nil) or (weapon.getAmmoType() == nil) then 
+	if(weapon == nil) or (weapon:getAmmoType() == nil) then 
     return nil 
   end
 
