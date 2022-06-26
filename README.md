@@ -27,4 +27,9 @@ Experimental 15 - U4
 
 * The options menu has been updated further! any setting that had a % chance to do something? Now scales from 0% to 100%. You now have full control.
 * Fixed a bug where the previous one that modded the NPCs mod did not have "Hostile over time" to function correctly. It was copying a different option value! 
-* 
+
+
+Experimental 15 - U5
+* Hoxfix for NPCs not stopping mid combat
+* Update to AImanager - Attempt fix NPcs running away right after any form of combat 
+
