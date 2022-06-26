@@ -68,7 +68,7 @@ function AttemptEntryIntoBuildingTask:update()
 
 	if(not self:isValid()) then return false end
 
-	
+	-- Idea: try 'wait()' function to test. Confirmed: The NPC will stand still when testing in the other files
 	if (self.parent:inFrontOfLockedDoor()) then
 		self.parent.TicksSinceSquareChanged = self.parent.TicksSinceSquareChanged + 1
 		self.parent:Speak("Damnit, the door is blocked off!")

@@ -83,10 +83,15 @@ function FollowTask:update()
 		end
 		
 		-- Option_FollowDistance is replacing the "+5" that it normally defaults to, to the in game settings
-		if (distance > (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)) or (self.FollowChar:getModData().Running == true) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
-		self.parent:setRunning(true)
-		-- Add EnforceWalkWhenNearMainPlayer
-		else self.parent:setRunning(false) end
+		-- U7 - Moving that variable to the NPC_ERW_AroundMainPlayer function.
+		if (distance > (GFollowDistance+self.FollowDistanceOffset+5)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+			self.parent:setRunning(true)
+			self.parent:NPC_EnforceWalkNearMainPlayer() -- New
+		else 
+			self.parent:setRunning(false)
+			self.parent:NPC_ERW_AroundMainPlayer(Option_FollowDistance+1) -- ERW stands for 'EnforceRunWalk'
+			self.parent:NPC_EnforceWalkNearMainPlayer() -- New
+		end
 	
 	
 	

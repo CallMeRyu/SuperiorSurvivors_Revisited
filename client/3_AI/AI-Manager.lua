@@ -48,15 +48,19 @@ function AIManager(TaskMangerIn)
 	-- ---------------------------------------------------------- --
 	-- ------------------- Shared AI ---------------------------- --
 	-- ---------------------------------------------------------- --
-	
+
+
+
+	-- --------------------------------------- --
 	-- Forces companions that's to the player, will return to the player. 
+	-- --------------------------------------- --
 	if (ASuperSurvivor:getGroupRole() == "Companion") and 
 		( 	-- Checks for NPC and main player is indoor/outdoor-like conditions
 		   ( (DistanceBetweenMainPlayer > 9) and    (    getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) ) -- Both Outside
 		or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) ) -- Both Inside
 		or ( (DistanceBetweenMainPlayer > 5) and    (    getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) ) -- Player Outside / NPC Inside
 		or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) ) -- Player Inside / NPC Outside
-		or ( (DistanceBetweenMainPlayer > 2) and    (    getSpecificPlayer(0):getModData().Running == true        	    ) ) -- Player Inside / NPC Outside
+	--	or ( (DistanceBetweenMainPlayer > 2) and    (    getSpecificPlayer(0):getModData().Running == true        	    ) ) -- Player Inside / NPC Outside
 		) 
 		then 
 		  -- If WAY too far away, let's force clear it and enforce follow
@@ -179,7 +183,7 @@ function AIManager(TaskMangerIn)
 	and 
 	( 
 		--    (ASuperSurvivor:isTooScaredToFight())
-			(not ASuperSurvivor:hasWeapon() and ASuperSurvivor:getDangerSeenCount() > 1) 
+			(not ASuperSurvivor:hasWeapon() and ASuperSurvivor:getDangerSeenCount() > 1)  -- maybe add a 'or (ASuperSurvivor:isTooScaredToFight())' after dangerseen
 		 or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
 		 or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false) 
 	) 

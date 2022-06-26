@@ -3595,6 +3595,19 @@ function SuperSurvivor:NPC_EnforceWalkNearMainPlayer()
 	end
 
 end
+-- ERW stands for 'EnforceRunWalk'
+function SuperSurvivor:NPC_ERW_AroundMainPlayer(VarDist)
+
+		-- Emergency failsafe to prevent NPCs from running into player
+		if (getDistanceBetween(self.player,getSpecificPlayer(0)) < VarDist) then
+			self:setRunning(false)
+		else
+			if (self:isInAction() == false) then
+				self:setRunning(true)
+			end
+		end
+
+end
 
 
 
