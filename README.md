@@ -47,3 +47,8 @@ Experimental 15 - U7
 
 Experimental 15 - U7.1
 * Further tweaks to the 'follow task'. NPCs that follow you should now follow you more efficiently, and run to you better, (based off the in game follow option) in hopes to make it where you don't have to constantly use the hotkeys 'stay closer' to 0, just to get an NPC to run to you. 
+
+Experimental 15 - U7.1
+* NPCs should do pretty darn greatly with the follow task
+* Fixed a bug where Alt Spawn NPCs was creating an error when checking to be hostile chance.
+
