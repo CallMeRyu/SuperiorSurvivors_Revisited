@@ -666,6 +666,11 @@ function SuperSurvivor:setSneaking(toValue)
 end
 
 function SuperSurvivor:setRunning(toValue)
+	
+	 if((self.player:NPCGetRunning() ~= true) and (self.player:NPCGetRunning() ~= false)) then
+		self:DebugSay("Somehow Running wasn't true OR false... It was NULL. (why?) Reference Number SR_0001_001")
+		return
+	 end
 
 	if(self.player:NPCGetRunning() ~= toValue) then
 		self.player:NPCSetRunning(toValue)
@@ -680,7 +685,6 @@ function SuperSurvivor:setRunning(toValue)
 	
 		--self.player:setSprinting(toValue);
 		--self.player:setForceSprint(toValue);
-		self:DebugSay("My SetRunning Was changed to "..tostring(toValue).."!")
 	end
 	
 end
@@ -1979,9 +1983,10 @@ function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	local Weapon_HandGun = self.player:getPrimaryHandItem()
 	local NPCsDangerSeen = self:getDangerSeenCount()
 	
-	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready. 
-	if (self:hasGun() == true) and ((NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))) then	
-		if (self:getGroupRole() ~= "Companion") then
+	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready.  
+--	if (self:hasGun() == true) and ((NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 3) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))) then	
+	if (self:hasGun() == true) and (self:isTooScaredToFight()) then	
+		if (self:getGroupRole() == "Random Solo") then
 			if (self:ReadyGun(Weapon_HandGun)) then
 				self:NPCTask_Clear()
 				self:NPCTask_DoFlee()
@@ -2570,7 +2575,7 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 		self:StopWalk()
 		self:WalkToPoint(xoff,yoff,self.player:getZ())
 	--	self:Wait(2)
-		self:Wait(0)
+		self:Wait(1)
 		end
 	end
 	
@@ -3087,7 +3092,7 @@ function SuperSurvivor:ReadyGun(weapon)
 		weapon:setJammed(false)
 	end	
 	
-	self:DebugSay("readygun " .. weapon:getCurrentAmmoCount() .. " " .. weapon:getMaxAmmo() .. " " .. self.EnemiesOnMe .. " " .. self.seenCount)
+	self:DebugSay("readygun ( weapon:getCurrentAmmoCount() = " .. weapon:getCurrentAmmoCount() .. ") (weapon:getMaxAmmo() = " .. weapon:getMaxAmmo() .. ") (self.EnemiesOnMe = " .. self.EnemiesOnMe .. ")  (self.seenCount =" .. self.seenCount..")")
 	
 	if weapon:haveChamber() and not weapon:isRoundChambered() then
 		if(ISReloadWeaponAction.canRack(weapon)) then

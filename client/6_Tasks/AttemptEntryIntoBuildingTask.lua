@@ -81,7 +81,7 @@ function AttemptEntryIntoBuildingTask:update()
 		self.parent.TicksSinceSquareChanged = 0
 	end
 	if (self.parent:inFrontOfBarricadedWindowAlt()) and (self.Door ~= nil) then 
-		self.parent:Speak("Windows are blocked too! Well, there's no point in staying here...")
+		self.parent:Speak("This window is blocked off!")
 		self.parent:MarkBuildingExplored(self.parent:getBuilding())
 		self.TargetSquare = nil
 		self.parent:walkToDirect(outsidesquare)
