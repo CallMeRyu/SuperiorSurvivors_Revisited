@@ -85,6 +85,7 @@ function FollowTask:update()
 		-- Option_FollowDistance is replacing the "+5" that it normally defaults to, to the in game settings
 		if (distance > (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)) or (self.FollowChar:getModData().Running == true) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
 		self.parent:setRunning(true)
+		-- Add EnforceWalkWhenNearMainPlayer
 		else self.parent:setRunning(false) end
 	
 	

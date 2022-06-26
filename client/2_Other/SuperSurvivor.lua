@@ -2700,17 +2700,20 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 
 			-- Double failsafe - For being outside, npc should try to go inside
 			if (self:NPC_IsOutside() == true) then
-				self:NPC_ForceFindNearestBuilding()
+				self:NPC_ForceFindNearestBuilding()	
 				self:getTaskManager():AddToTop(AttemptEntryIntoBuildingTask:new(self, self.TargetBuilding))
 			end
 			
 			-- timer will continue going up within an emergency
-			if (self.StuckDoorTicks > 20) then 
-				self:getTaskManager():clear()
+			if (self.StuckDoorTicks > 15) then
 				self:getTaskManager():AddToTop(WanderTask:new(self))
-				self:getTaskManager():AddToTop(FleeFromHereTask:new(self, self:Get():getCurrentSquare()))
+				if (self:getGroupRole() == "Random Solo") then -- Not a player's base allie
+					self:getTaskManager():clear()
+					self:getTaskManager():AddToTop(FleeFromHereTask:new(self, self:Get():getCurrentSquare()))
+				end					
 				self:DebugSay("NPC_ManageLockedDoors - NPC refused to leave door, forcing clear task!")		
 				self.StuckDoorTicks = 0	
+				
 			end
 			
 		end
