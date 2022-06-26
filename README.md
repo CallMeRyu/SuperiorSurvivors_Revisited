@@ -33,3 +33,9 @@ Experimental 15 - U5
 * Hoxfix for NPCs not stopping mid combat
 * Update to AImanager - Attempt fix NPcs running away right after any form of combat 
 
+
+Experimental 15 - U6
+* NPCs seem to run away from hordes with melee
+* NPCs seem not to run away as much with guns during hordes
+* NPCs combat each other just fine
+* NPCs do not run away after a combat encounter  as far as noticed
