@@ -46,4 +46,4 @@ Experimental 15 - U7
 * Basically, please report any weirdness from NPCs when you give them new orders after you give them the 'follow' order. 
 
 Experimental 15 - U7.1
-* Further tweaks to the 'follow task'. NPCs that follow you should now follow you more efficiently, and run to you better, (based off the in game follow option)
+* Further tweaks to the 'follow task'. NPCs that follow you should now follow you more efficiently, and run to you better, (based off the in game follow option) in hopes to make it where you don't have to constantly use the hotkeys 'stay closer' to 0, just to get an NPC to run to you. 
