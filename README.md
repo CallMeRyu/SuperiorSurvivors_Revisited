@@ -39,3 +39,9 @@ Experimental 15 - U6
 * NPCs seem not to run away as much with guns during hordes
 * NPCs combat each other just fine
 * NPCs do not run away after a combat encounter  as far as noticed
+
+Experimental 15 - U7
+* NPCs that are your 'companions' will now obey new orders that you give them
+* Please report any weird results of this. I am trying to see if the job 'Worker' has other things with them. I couldn't find anything, so I figured this would hopefully give the NPC in question to do what you tell them to do. 
+* Basically, please report any weirdness from NPCs when you give them new orders after you give them the 'follow' order. 
+
