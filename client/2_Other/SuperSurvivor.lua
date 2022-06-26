@@ -2126,6 +2126,23 @@ function SuperSurvivor:Task_IsNotFleeOrFleeFromSpot()
 	end
 end
 
+-- Test Functions
+function SuperSurvivor:TMI_CTOneVar_IsNot(Var1)
+	if (self:getTaskManager():getCurrentTask() ~= Var1) then
+		return true
+	end
+end
+
+-- NPC:TMI_CTFourVars_IsNot("Surender", "Flee", "Flee From Spot", "Clean Inventory")
+function SuperSurvivor:TMI_CTFourVars_IsNot(Var1,Var2,Var3,Var4)
+	if (self:getTaskManager():getCurrentTask() ~= Var1) 
+	and (self:getTaskManager():getCurrentTask() ~= Var2)
+	and (self:getTaskManager():getCurrentTask() ~= Var3)
+	and (self:getTaskManager():getCurrentTask() ~= Var4)
+	 then
+		return true
+	end
+end
 
 
 -- Specialized AIManager Task conditions - SC standing for 'specializied conditions'

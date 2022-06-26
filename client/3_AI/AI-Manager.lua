@@ -621,8 +621,12 @@ function AIManager(TaskMangerIn)
 			end
 		end
 	end	
-	-------------If in base tasks --END--------------------------------------
-	
+
+	-- ----------------------------------------------------------- --
+	-- ------ END -------- Base Tasks ------- END ---------------- --
+	-- ----------------------------------------------------------- --
+
+
 	-- if(ASuperSurvivor.DebugMode) then print(ASuperSurvivor:getAIMode()) end
 	
 	if(ASuperSurvivor:getAIMode() == "Random Solo") and (TaskMangerIn:getCurrentTask() ~= "Listen") and (TaskMangerIn:getCurrentTask() ~= "Take Gift") then -- solo random survivor AI flow	
