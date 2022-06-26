@@ -11,6 +11,7 @@ function AttackTask:new(superSurvivor)
 	o.Name = "Attack"
 	o.OnGoing = false
 	--o.parent:Speak("starting attack")
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 
@@ -39,7 +40,8 @@ end
 function AttackTask:update()
 	if(not self:isValid()) or (self:isComplete()) then return false end
 	
-
+	self.parent:NPC_MovementManagement() 		-- For melee movement management
+	
 	-- Controls the Range of how far / close the NPC should be
 	if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
 		if (self.parent:needToReadyGun(weapon)) then
@@ -47,9 +49,8 @@ function AttackTask:update()
 		else
 			self.parent:NPC_MovementManagement_Guns() 	-- To move around, it checks for in attack range too
 		end
-	else
-		self.parent:NPC_MovementManagement() 		-- For melee movement management
 	end
+	
 	
 
 	local theDistance = getDistanceBetween(self.parent.LastEnemeySeen, self.parent.player)
@@ -97,9 +98,9 @@ function AttackTask:update()
 	elseif(self.parent:isWalkingPermitted()) then
 	
 		self.parent:NPC_ManageLockedDoors() -- To prevent getting stuck in doors
-		--self.parent:NPC_MovementManagement() -- To move around 
+		self.parent:NPC_MovementManagement() -- To move around 
 		self.parent:NPC_EnforceWalkNearMainPlayer()
-	
+
 
 	--	self.parent:DebugSay("walking close to attack:"..tostring(theDistance))
 	else

@@ -74,6 +74,7 @@ function AIManager(TaskMangerIn)
 	if (ASuperSurvivor:Task_IsPursue_SC() == true) and ( NPC:NPC_FleeWhileReadyingGun()) then
 		if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
 		TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
+		NPC:DebugSay("PursueTask Conditions Met! PT_0001")
 	end
 
 	-- ----------------------------- --
@@ -173,11 +174,11 @@ function AIManager(TaskMangerIn)
 	and (TaskMangerIn:getCurrentTask() ~= "Surender")
 	and (ASuperSurvivor:getGroupRole() ~= "Companion") -- New
 	and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
-	and (ASuperSurvivor:getDangerSeenCount() > 0) 
+	and ((ASuperSurvivor:getDangerSeenCount() > 0) and (ASuperSurvivor:isTooScaredToFight()))
 	and 
 	( 
-		    (ASuperSurvivor:isTooScaredToFight())
-		 or (not ASuperSurvivor:hasWeapon() and ASuperSurvivor:getDangerSeenCount() > 1) 
+		--    (ASuperSurvivor:isTooScaredToFight())
+			(not ASuperSurvivor:hasWeapon() and ASuperSurvivor:getDangerSeenCount() > 1) 
 		 or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
 		 or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false) 
 	) 

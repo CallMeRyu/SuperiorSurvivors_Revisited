@@ -21,6 +21,7 @@ function AttemptEntryIntoBuildingTask:new(superSurvivor,building)
 	o.ReEquipGunOnFinish = false
 	o.BreakInAttempts = 0
 	o.Toggle = false
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	if(building) then o.parent.TargetBuilding = building end
 	

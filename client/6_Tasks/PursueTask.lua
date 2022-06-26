@@ -29,6 +29,8 @@ function PursueTask:new(superSurvivor, target)
 		o.parent:reEquipGun()
 	end
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end

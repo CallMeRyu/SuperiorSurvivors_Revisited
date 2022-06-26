@@ -17,6 +17,7 @@ function BarricadeBuildingTask:new(superSurvivor)
 	o.Complete = false
 	o.PrevWeapon1 = o.parent.player:getPrimaryHandItem()
 	o.PrevWeapon2 = o.parent.player:getSecondaryHandItem()
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	local inv = o.parent.player:getInventory()
 	local temp = inv:FindAndReturn("Hammer")

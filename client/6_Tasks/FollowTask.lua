@@ -36,6 +36,7 @@ function FollowTask:new(superSurvivor, FollowMeplayer)
 		print(superSurvivor:getName()..": setting distance offset to " .. tostring(o.FollowDistanceOffset))
 	end
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	return o
 
 end

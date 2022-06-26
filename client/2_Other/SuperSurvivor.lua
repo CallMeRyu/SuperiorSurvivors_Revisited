@@ -1980,19 +1980,21 @@ function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	local NPCsDangerSeen = self:getDangerSeenCount()
 	
 	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready. 
-	if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human)) then	
-		if (self:getGroupRole() ~= "Companion") then 
-			self:NPCTask_Clear()
-			self:NPCTask_DoFlee()
-			self:NPCTask_DoFleeFromHere()
-			self:NPC_EnforceWalkNearMainPlayer()
-			self:DebugSay("NPC_FleeWhileReadyingGun Triggered!")
+	if (self:hasGun() == true) and ((NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 7) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))) then	
+		if (self:getGroupRole() ~= "Companion") then
+			if (self:ReadyGun(Weapon_HandGun)) then
+				self:NPCTask_Clear()
+				self:NPCTask_DoFlee()
+				self:NPCTask_DoFleeFromHere()
+				self:NPC_EnforceWalkNearMainPlayer()
+				self:DebugSay("NPC_FleeWhileReadyingGun Triggered! Reference number NFWRG_0001")
+			end
 		end
 	end
 	if (self:getGroupRole() == "Companion") and ((self:getTaskManager():getCurrentTask() ~= "follow")) and  (Distance_MainPlayer > 9) then
 		self:NPCTask_Clear()
 		self:getTaskManager():AddToTop(FollowTask:new(self,getSpecificPlayer(0)))
-		self:DebugSay("NPC_FleeWhileReadyingGun - Companion - Too far away, enforcing follow!")
+		self:DebugSay("NPC_FleeWhileReadyingGun - Companion - Too far away, enforcing follow! Reference number NFWRG_0002")
 	end
 	return true
 end
@@ -2163,9 +2165,7 @@ end
 	
 -- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
 function SuperSurvivor:Task_IsPursue_SC()
-	
-	-- To prevent companions from pursing 
-	if (self:getGroupRole() == "Companion") then return false end
+
 
 --	if (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
 	-- That way the Bandits chasing the other humans don't ignore zeds, or shouldn't anyways.
@@ -2174,11 +2174,12 @@ function SuperSurvivor:Task_IsPursue_SC()
 		-- Enforces scan for humans nearby. Only when not stuck in front of blocked off door, AND if there isn't already an enemy in the way.
 		-- Otherwise, there will be lots of loop issues and lag.
 		-- Added extra If conditions to keep from checking entityscan
-		if (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
+
+		--if (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
 			if (self.LastEnemeySeen == nil) then
 				self:DoHumanEntityScan()
 			end
-		end
+		--end
 		
 		if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) then
 	
@@ -2202,12 +2203,18 @@ function SuperSurvivor:Task_IsPursue_SC()
 			if (Distance_AnyEnemy >= zRangeToPursue) then 	-- We don't want the NPCs to spam this function if too far away, so yes, we're double checking range.
 				return false
 			end
-	
+			
+			-- Anti Door Sticking
 			if (not self:RealCanSee(self.LastEnemeySeen)) and ((self:inFrontOfLockedDoorAndIsOutside() == true) or (self:NPC_IFOD_BarricadedInside() == true)) then
 				self:DebugSay("Task_IsPursue_SC Returned false: Cant RealCanSee & in front of a blocked off door. (We don't want door lag again) - Enforcing NPC_ManageLockedDoors")
 				self:NPC_ManageLockedDoors()
 				return false
 			end		
+			
+			-- Prevent companions from going too far away
+			if ((self:getGroupRole() == "Companion") and Distance_AnyEnemy > 4) then
+				return false
+			end
 			
 			if (Distance_AnyEnemy < zRangeToPursue) then -- Keep from running a few inches from behind the npc, making the npc give up
 					if (self:hasWeapon())
@@ -2221,7 +2228,6 @@ function SuperSurvivor:Task_IsPursue_SC()
 					and (self:NPC_IFOD_BarricadedInside() == false)
 					and (self:inFrontOfLockedDoorAndIsOutside() == false)
 					and (self:HasMultipleInjury() == false)
-					and (not self:getGroupRole() == "Companion")
 				--	and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
 				--	and (not self:RealCanSee(self.LastEnemeySeen) and (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false))		
 				--	and (self:RealCanSee(self.LastEnemeySeen) and (not self:isEnemyInRange(self.LastEnemeySeen)))
@@ -2557,13 +2563,13 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 			--print("trying to knock survivor out of frozen state: " .. self:getName());
 			self.StuckCount = 0
 			ISTimedActionQueue.add(ISGetHitFromBehindAction:new(self.player,getSpecificPlayer(0)))
-	--else
-	--	local xoff = self.player:getX() + ZombRand(-3,3)
-	--	local yoff = self.player:getY() + ZombRand(-3,3)	
-	--	self:DebugSay("CheckForIfStuck is about to trigger a StopWalk!")
-	--	self:StopWalk()
-	--	self:WalkToPoint(xoff,yoff,self.player:getZ())
-	--	self:Wait(2)
+	else
+		local xoff = self.player:getX() + ZombRand(-3,3)
+		local yoff = self.player:getY() + ZombRand(-3,3)	
+		self:DebugSay("CheckForIfStuck is about to trigger a StopWalk!")
+		self:StopWalk()
+		self:WalkToPoint(xoff,yoff,self.player:getZ())
+		self:Wait(1)
 		end
 	end
 	
@@ -3561,13 +3567,13 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		
 		if (self:Task_IsNotFleeOrFleeFromSpot()) and (distance < 2) or (distanceAlt < 2) or (zNPC_AttackRange) then
 			self:setRunning(false)
-			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to false due to distance and Task_IsNotFleeOrFleeFromSpot returned true")
+			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to false due to distance and Task_IsNotFleeOrFleeFromSpot returned true SRW_0001")
 		else
 			self:setRunning(true)
-			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to true due to not distance and Task_IsNotFleeOrFleeFromSpot returned false")
+			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to true due to not distance and Task_IsNotFleeOrFleeFromSpot returned false SRW_0002")
 		end
 	else
-		self:NPCDebugPrint("LastEnemySeen returned Nil so, setting NPC to run")
+		self:NPCDebugPrint("LastEnemySeen returned Nil so, setting NPC to run Reference Number SRW_0003")
 		self:setRunning(true)
 	end
 	
