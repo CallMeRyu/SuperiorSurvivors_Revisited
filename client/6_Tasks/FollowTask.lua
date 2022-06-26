@@ -55,7 +55,8 @@ function FollowTask:needToFollow()
 	local distance = getDistanceBetween(self.parent.player,self.FollowChar)
 	if self.parent == nil or self.FollowChar == nil or self.FollowChar:getCurrentSquare() == nil then return false end
 		if (distance > GFollowDistance+self.FollowDistanceOffset) or (self.parent:getBuilding() ~= self.FollowChar:getCurrentSquare():getBuilding()) or self.parent:Get():getVehicle() or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle() ) then 
-		--print(self.parent:getName().." needs to follow");
+	--	if (distance > GFollowDistance - (Option_FollowDistance / self.FollowDistanceOffset ) ) or (self.parent:getBuilding() ~= self.FollowChar:getCurrentSquare():getBuilding()) or self.parent:Get():getVehicle() or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle() ) then 
+		self.parent:NPC_ERW_AroundMainPlayer(Option_FollowDistance) -- ERW stands for 'EnforceRunWalk'
 		return true
 		else return false end
 end
@@ -84,13 +85,14 @@ function FollowTask:update()
 		
 		-- Option_FollowDistance is replacing the "+5" that it normally defaults to, to the in game settings
 		-- U7 - Moving that variable to the NPC_ERW_AroundMainPlayer function.
-		if (distance > (GFollowDistance+self.FollowDistanceOffset+5)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
-			self.parent:setRunning(true)
+--		if (distance > (GFollowDistance+self.FollowDistanceOffset+5)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+		if (distance < (GFollowDistance+self.FollowDistanceOffset + (Option_FollowDistance / 5 ) )) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+			self.parent:setRunning(false)
 			self.parent:NPC_EnforceWalkNearMainPlayer() -- New
 		else 
-			self.parent:setRunning(false)
-			self.parent:NPC_ERW_AroundMainPlayer(Option_FollowDistance+1) -- ERW stands for 'EnforceRunWalk'
-			self.parent:NPC_EnforceWalkNearMainPlayer() -- New
+			if (distance - (Option_FollowDistance / self.FollowDistanceOffset ) >= (GFollowDistance+self.FollowDistanceOffset )) then
+				self.parent:setRunning(true)
+			end
 		end
 	
 	
