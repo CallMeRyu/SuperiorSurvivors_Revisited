@@ -2212,7 +2212,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 			end		
 			
 			-- Prevent companions from going too far away
-			if ((self:getGroupRole() == "Companion") and Distance_AnyEnemy > 4) then
+			if ((self:getGroupRole() == "Companion") and (Distance_AnyEnemy > 4 or self:isEnemyInRange(self.LastEnemeySeen) )) then
 				return false
 			end
 			
@@ -2569,7 +2569,8 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 		self:DebugSay("CheckForIfStuck is about to trigger a StopWalk!")
 		self:StopWalk()
 		self:WalkToPoint(xoff,yoff,self.player:getZ())
-		self:Wait(1)
+	--	self:Wait(2)
+		self:Wait(0)
 		end
 	end
 	

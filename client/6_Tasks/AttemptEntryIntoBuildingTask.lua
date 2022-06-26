@@ -131,7 +131,7 @@ function AttemptEntryIntoBuildingTask:update()
 			
 			if not self.TryWindow and not self.TryBreakDoor then
 				self.parent:DebugSay("Find Unlooted Building Task - trying to get to square inside x" .. tostring(attempts))
-				if(self.parent:getWalkToAttempt(self.TargetSquare) < 10) then
+				if(self.parent:getWalkToAttempt(self.TargetSquare) < 6) then -- was 10
 				if(debugOutput) then self.parent:Speak(tostring(self.parent:getWalkToAttempt(self.TargetSquare))) end
 					self.parent:walkToDirect(self.TargetSquare) -- If this doesn't work, use the other
 					self.parent:walkTo(self.TargetSquare)
