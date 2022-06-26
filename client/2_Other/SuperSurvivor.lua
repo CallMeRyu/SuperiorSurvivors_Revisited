@@ -2614,7 +2614,7 @@ function SuperSurvivor:update()
 	--self:CleanUp(0.988); -- slowly reduces current blood/dirt by this percent - Ryuu: I have no idea why this is marked out. Guessing it didn't work?
 	
 	self.TriggerHeldDown = false
-	if(SurvivorHunger) then						-- removed 'not' for update
+	if(not SurvivorHunger) then						-- removed 'not' for update
 		self.player:getStats():setThirst(0.0)
 		self.player:getStats():setHunger(0.0)	
 	--else
