@@ -16,7 +16,7 @@ function PileCorpsesTask:new(superSurvivor, BringHere)
 	o.TargetSquare = nil
 	o.Complete = false
 	
-	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	return o
 
 end

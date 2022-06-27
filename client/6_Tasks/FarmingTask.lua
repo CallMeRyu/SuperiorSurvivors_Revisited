@@ -21,7 +21,7 @@ function FarmingTask:new(superSurvivor, BringHere)
 	
 	o.Seeds = {"farming.BroccoliSeed","farming.CabbageSeed","farming.CarrotSeed","farming.PotatoSeed","farming.TomatoSeed","farming.RedRadishSeed"}
 	
-	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 

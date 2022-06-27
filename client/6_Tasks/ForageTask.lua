@@ -14,6 +14,8 @@ function ForageTask:new(superSurvivor)
 	o.Complete = false
 	o.ForagedCount = 0
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end

@@ -15,6 +15,8 @@ function LockDoorsTask:new(superSurvivor, lock)
 	o.TargetSquare = nil
 	o.PreviousSquare = nil
 	o.Complete = false
+	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 		
 	return o
 

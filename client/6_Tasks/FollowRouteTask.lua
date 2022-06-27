@@ -41,7 +41,7 @@ function FollowRouteTask:new(superSurvivor, RouteID)
 		end
 	end	
 	
-	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 

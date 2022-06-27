@@ -16,6 +16,7 @@ function FirstAideTask:new(superSurvivor)
 	o.Ticks = 0
 	o.WorkingBP = nil
 	o.WorkingItem = nil
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	return o
 
 end

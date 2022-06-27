@@ -17,6 +17,8 @@ function ReturnToBaseTask:new(superSurvivor)
 	end
 	o.Group = SSGM:Get(o.GroupID)
 	o.BaseCoords = o.Group:getBaseCenterCoords()
+	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 		
 	return o
 

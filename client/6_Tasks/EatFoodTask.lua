@@ -18,6 +18,7 @@ function EatFoodTask:new(superSurvivor, food)
 	o.EatingStarted = false
 	o.OnGoing = false
 	o.eatthisMuch = 1.00
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 

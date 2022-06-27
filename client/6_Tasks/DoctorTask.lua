@@ -13,6 +13,7 @@ function DoctorTask:new(superSurvivor)
 	o.OnGoing = false
 	o.Complete = false
 	o.ReturnSquare = superSurvivor:Get():getCurrentSquare()
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 		
 	return o
 

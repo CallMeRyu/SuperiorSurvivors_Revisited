@@ -17,6 +17,8 @@ function TakeGiftTask:new(superSurvivor, gift)
 	o.Ticks = 0
 	o.Complete = false
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end

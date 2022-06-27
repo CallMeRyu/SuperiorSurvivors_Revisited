@@ -29,6 +29,8 @@ function LootCategoryTask:new(superSurvivor, building , category, thisQuantity)
 	o.Complete = false
 	o.Floor = 0
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end

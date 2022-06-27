@@ -122,6 +122,8 @@ function MedicalCheckSurvivor(test,player)
 
 end
 
+-- I double checked, this does not count for NPCs asking each other to join groups. That's in the AImanager
+-- Idea: Maybe make it where NPCs could tell each other no in the AImanager
 function AskToJoin(test,player)
 
 	local SS = SSM:Get(player:getModData().ID)
@@ -148,7 +150,8 @@ function AskToJoin(test,player)
 					end
 				end
 			else
-				group:addMember(MySS, getText("ContextMenu_Job_Partner"))
+			--	group:addMember(MySS, getText("ContextMenu_Job_Partner"))
+				group:addMember(MySS, getText("ContextMenu_Job_Companion"))
 			end
 		end
 	else

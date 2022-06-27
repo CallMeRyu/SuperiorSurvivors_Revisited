@@ -7,7 +7,6 @@ function FollowTask:new(superSurvivor, FollowMeplayer)
 	setmetatable(o, self)
 	self.__index = self
 	
-	print(superSurvivor:getName()..": new follow task");
 	if(FollowMeplayer == nil) then
 		if(superSurvivor.player:getModData().FollowCharID ~= nil) then
 			local SS = SSM:Get(superSurvivor.player:getModData().FollowCharID)

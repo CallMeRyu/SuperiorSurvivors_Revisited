@@ -12,6 +12,7 @@ function EquipWeaponTask:new(superSurvivor)
 
 	o.OnGoing = true
 	o.Complete = false
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 

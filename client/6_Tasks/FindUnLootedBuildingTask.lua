@@ -17,6 +17,7 @@ function FindUnlootedBuildingTask:new(superSurvivor)
 	o.WanderDirection = nil
 	o.TicksSinceReversedDir = 0
 	o.parent.TargetBuilding = nil
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	if(o.parent:getSeenCount() == 0) then o.parent:setSneaking(true) end
 	return o
 
