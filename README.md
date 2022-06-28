@@ -61,6 +61,7 @@ Hopefully this will be the final experimental build for Update 15, I just need c
 * Combat updates should now work like they're supposed to 
 * NPCs should now run away when they see danger (exception: Your companions) ex: seeing a horde of zeds
 
-
+* Want to send feedback here instead of Steam?
+https://github.com/DartVonRyuu/SuperiorSurvivors_Revisited/discussions/6
 
 
