@@ -22,7 +22,6 @@ function AttackTask:isComplete()
 	if(not self.parent:needToFollow()) and ((self.parent:getDangerSeenCount() > 0) or (self.parent:isEnemyInRange(self.parent.LastEnemeySeen) and self.parent:hasWeapon())) and (self.parent.LastEnemeySeen) and not self.parent.LastEnemeySeen:isDead() and (self.parent:HasInjury() == false) then 
 		return false
 	else 
-		self.parent:DebugSay("Is complete for AttackTask is Returning TRUE (And is about to trigger a stopwalk!)" )
 		self.parent:StopWalk()
 		return true 
 	end
@@ -32,7 +31,6 @@ function AttackTask:isValid()
 	if (not self.parent) or (not self.parent.LastEnemeySeen) or (not self.parent:isInSameRoom(self.parent.LastEnemeySeen)) or (self.parent.LastEnemeySeen:isDead()) then 
 			return false 
 		else 
-			self.parent:DebugSay("Is Valid for AttackTask is Returning TRUE" )
 			return true 
 	end
 end
@@ -41,7 +39,7 @@ function AttackTask:update()
 	if(not self:isValid()) or (self:isComplete()) then return false end
 	
 	self.parent:NPC_MovementManagement() 		-- For melee movement management
-	
+
 	-- Controls the Range of how far / close the NPC should be
 	if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
 		if (self.parent:needToReadyGun(weapon)) then
@@ -50,7 +48,6 @@ function AttackTask:update()
 			self.parent:NPC_MovementManagement_Guns() 	-- To move around, it checks for in attack range too
 		end
 	end
-	
 	
 
 	local theDistance = getDistanceBetween(self.parent.LastEnemeySeen, self.parent.player)

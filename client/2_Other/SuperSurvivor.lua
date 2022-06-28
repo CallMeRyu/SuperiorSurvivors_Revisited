@@ -1175,8 +1175,9 @@ function SuperSurvivor:DebugSay(text)
 			print("")
 			print("")
 			print("")
-		
-			self:Speak(text)
+			if (self:isSpeaking() == false) then
+				self:Speak(text)
+			end
 		end
 		
 	end
@@ -1720,6 +1721,8 @@ end
 
  
 function SuperSurvivor:WalkToPoint(tx, ty, tz) 
+	
+	
 
     if(not self.player:getPathFindBehavior2():isTargetLocation(tx,ty,tz)) then
 	
@@ -1733,10 +1736,12 @@ function SuperSurvivor:WalkToPoint(tx, ty, tz)
   end
 
 function SuperSurvivor:NPC_TargetIsOutside() -- The LastEnemySeen kind of target the npc is witnessing
-	if self.LastEnemeySeen:isOutside() == true then
-		return true
-	else
-		return false
+	if (self.LastEnemeySeen ~= nil) then
+		if self.LastEnemeySeen:isOutside() == true then
+			return true	
+		else	
+			return false
+		end
 	end
 end
 
@@ -1812,7 +1817,7 @@ function SuperSurvivor:NPC_IFOD_BarricadedInside() -- IFOD stands for In front o
 
 	local door = self:inFrontOfDoor()
 			
-	if (door ~= nil) and (door:isBarricaded()) and (not self.player:isOutside())  then
+	if (door ~= nil) and ((door:isBarricaded()) and (not self.player:isOutside()))  then
 		return true
 	else 
 		return false
@@ -1828,7 +1833,18 @@ function SuperSurvivor:NPC_IFOD_BarricadedOutside() -- IFOD stands for In front 
 	else 
 		return false
 	end
-	
+
+end
+
+-- I'm tired of writing long precise 'ifs' so, Xor it is (IDK and IDC if that's what 'Xor' means.)
+function SuperSurvivor:NPC_IFOD_Xor_BlockedDoor()
+	if (self:inFrontOfLockedDoorAndIsOutside() == true) then
+		return true
+	elseif  (self:NPC_IFOD_BarricadedInside() == true) then
+		return true
+	else
+		return false
+	end
 end
 
 
@@ -1909,16 +1925,16 @@ end
 -- Update: BE VERY CAREFUL using this. It will overwrite Dovision. This is using for bandits to keep up with the main player.
 function SuperSurvivor:DoHumanEntityScan()
 
-	local atLeastThisClose = 4;
+	local atLeastThisClose = 11;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 5
-	local closestSurvivorSoFar = 5
+	local closestSoFar = 12
+	local closestSurvivorSoFar = 12
 	self.seenCount = 0
 	self.dangerSeenCount = 0
 	self.EnemiesOnMe = 0
 	self.LastEnemeySeen = nil
 	self.LastSurvivorSeen = nil
-	local dangerRange = 6
+	local dangerRange = 8
 	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
 	
 	local closestNumber = nil
@@ -1963,7 +1979,7 @@ function SuperSurvivor:DoHumanEntityScan()
 	end
 	
 	-- This only tells the other function there's a enemy nearby as long as the npc isn't stuck in front of a blocked off door
-	if(closestNumber ~= nil) and (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) then 
+	if(closestNumber ~= nil) then 
 		self.LastEnemeySeen = spottedList:get(closestNumber)
 		
 		return self.LastEnemeySeen
@@ -2184,92 +2200,189 @@ function SuperSurvivor:NPC_IsNPCsEnemyHuman()
 	end
 end
 
-	
+
+
+
+
+-- Built for pursueTaskSE, to keep clean code
+function SuperSurvivor:zDebugSayPTSC(zTxtRef,zTxtRefNum)
+	if (self:isSpeaking() == false) then
+		return self:DebugSay("zRangeToPursue "..tostring(zTxtRef).."= Reference Number PTSE_000"..zTxtRefNum)
+	end
+end	
+
+
+
+-- Super Function: Pursue_SC - Point system for the NPC to pursue a target. 	
 -- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
-function SuperSurvivor:Task_IsPursue_SC()
+-- Todo: add self:RealCanSee(self.LastEnemeySeen) senses
+-- Any zRangeToPursue higher numbers need to be at higher part of the code. if you put a 
+-- return 5 under a line that's 
+-- return 3 would be an inbetween priority 
+-- return 0, then odds are, the NPC may change priorities incorrectly
+-- So HIGHER numbers is the priority , NOT lower numbers (which I know is usually backwords, but work with me here.)
 
+function SuperSurvivor:NPC_CheckPursueScore()
+	
+	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
+	local Enemy_Is_a_Human 	= (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
+	local Weapon_HandGun   	= self.player:getPrimaryHandItem()
+	local NPCsDangerSeen   	= self:getDangerSeenCount()
 
---	if (not instanceof(self.LastEnemeySeen,"IsoZombie")) then
-	-- That way the Bandits chasing the other humans don't ignore zeds, or shouldn't anyways.
---	if (self.player:getModData().isRobber == true) or (self.player:getModData().isHostile == true) and (not instanceof(self.LastEnemeySeen,"IsoZombie")) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
+	local zRangeToPursue = 0 
+	local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
 	
-		-- Enforces scan for humans nearby. Only when not stuck in front of blocked off door, AND if there isn't already an enemy in the way.
-		-- Otherwise, there will be lots of loop issues and lag.
-		-- Added extra If conditions to keep from checking entityscan
 
-		--if (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false) and (self:Task_IsNotAttack()) and (self:Task_IsNotThreaten()) and (self:Task_IsNotPursue()) then
-			if (self.LastEnemeySeen == nil) then
-				self:DoHumanEntityScan()
-			end
-		--end
-		
-		if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) then
-	
-	
-			-- How far you want the NPCs to sense their hostiles near them
-			local zRangeToPursue = 5 -- If the NPC and the NPC's Target is inside (default)
-	
-			if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true) then -- NPC's Target AND the NPC itself are Both Outside
-				zRangeToPursue = 7
-			end
-			if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true) then -- NPC's Target Is Inside | NPC itself Is Outside
-				zRangeToPursue = 3
-			end		
-			if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == false) then -- NPC's Target Is Outside | NPC itself Is Inside
-				zRangeToPursue = 3
-			end
-			
-		
-			local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
-			
-			if (Distance_AnyEnemy >= zRangeToPursue) then 	-- We don't want the NPCs to spam this function if too far away, so yes, we're double checking range.
-				return false
-			end
-			
-			-- Anti Door Sticking
-			if (not self:RealCanSee(self.LastEnemeySeen)) and ((self:inFrontOfLockedDoorAndIsOutside() == true) or (self:NPC_IFOD_BarricadedInside() == true)) then
-				self:DebugSay("Task_IsPursue_SC Returned false: Cant RealCanSee & in front of a blocked off door. (We don't want door lag again) - Enforcing NPC_ManageLockedDoors")
-				self:NPC_ManageLockedDoors()
-				return false
-			end		
-			
-			-- Prevent companions from going too far away
-			if ((self:getGroupRole() == "Companion") and (Distance_AnyEnemy > 4 or self:isEnemyInRange(self.LastEnemeySeen) )) then
-				return false
-			end
-			
-			if (Distance_AnyEnemy < zRangeToPursue) then -- Keep from running a few inches from behind the npc, making the npc give up
-					if (self:hasWeapon())
-					and (self:Task_IsNotAttack()) 		
-					and (self:Task_IsNotThreaten())
-					and (self:Task_IsNotPursue())
-					and (self:Task_IsNotSurender())
-					and (self:Task_IsNotAttemptEntryIntoBuilding())
-					and (self:isWalkingPermitted())
-					and (self:WeaponReady() == true)
-					and (self:NPC_IFOD_BarricadedInside() == false)
-					and (self:inFrontOfLockedDoorAndIsOutside() == false)
-					and (self:HasMultipleInjury() == false)
-				--	and ((self:getDangerSeenCount() == 0) and (self:HasMultipleInjury() == false))
-				--	and (not self:RealCanSee(self.LastEnemeySeen) and (self:inFrontOfLockedDoorAndIsOutside() == false) and (self:NPC_IFOD_BarricadedInside() == false))		
-				--	and (self:RealCanSee(self.LastEnemeySeen) and (not self:isEnemyInRange(self.LastEnemeySeen)))
-				--	and (not(self:RealCanSee(self.LastEnemeySeen)) and (self:inFrontOfLockedDoorAndIsOutside() == false))  		-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false 
-				--	and	(not(self:RealCanSee(self.LastEnemeySeen)) and (self:NPC_IFOD_BarricadedInside() == false))				-- To make sure the npc can be in front of a blocked door, but if they also can't see the target, then return false
-				then
-					self:DebugSay("Task_IsPursue_SC Is 'True', all conditions were met")
-					return true
-				else
-					return false
-				end	
-			else
-				return false
-			end
-		else
-			return false
+	-- ------------------------------------  --
+	-- Keep pursue from happening when 	
+	-- lots of enemies the npc sees --		
+	-- ------------------------------------  --		
+	if ( ((self:getSeenCount() > 4) and (self:isEnemyInRange()) and (Enemy_Is_a_Zombie)) or (self:isTooScaredToFight()) ) then
+		zRangeToPursue = 0
+		return zRangeToPursue	
+	end
+
+	if (self.LastEnemeySeen == nil) or (self.player == nil) then
+		self:zDebugSayPTSC(zRangeToPursue,"0")
+		zRangeToPursue = 0
+		return zRangeToPursue
+	end	
+
+	if (self.LastEnemeySeen ~= nil) then
+
+		-- -------------------------------------- --
+		--  Companion: Prevent from going too far away
+		-- -------------------------------------- --
+		if ((self:getGroupRole() == "Companion") and (self:isEnemyInRange(self.LastEnemeySeen) )) then
+			self:zDebugSayPTSC(zRangeToPursue,"5")
+			zRangeToPursue = 6
+			return zRangeToPursue
 		end
---	end
+		
+		-- ------------------------ --
+		-- Locked door checker 		--
+		-- IFOD 'In front of door' 	--
+		-- ------------------------ --
+		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true)	then -- NPC's Target AND the NPC itself are Both OUT-SIDE
+			self:zDebugSayPTSC(zRangeToPursue,"1")
+			zRangeToPursue = 7
+			return zRangeToPursue
+		end	
+		if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == false) then -- NPC's Target AND the NPC itself are Both INSIDE
+			self:zDebugSayPTSC(zRangeToPursue,"2")
+			zRangeToPursue = 6
+			return zRangeToPursue
+		end	
+		if ((self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true )) then 	-- NPC's Target Is Inside | NPC itself Is OUTSIDE		
+			self:zDebugSayPTSC(zRangeToPursue,"6")
+			zRangeToPursue = 4
+			return zRangeToPursue
+		end			
+		if (self:NPC_TargetIsOutside() == true ) and (self:NPC_IsOutside() == false)  then 	-- NPC's Target Is OUTSIDE | NPC itself Is Inside	
+			self:zDebugSayPTSC(zRangeToPursue,"7")
+			zRangeToPursue = 4
+			return zRangeToPursue
+		end	
+		
+		-- -------------------------------------- -- 
+		-- Gun Checker
+		-- Don't add 'force reload' AI manager does this already
+		-- -------------------------------------- --
+		if (self:hasGun() == true) then
+			self:zDebugSayPTSC(zRangeToPursue,"10")
+			if (self:WeaponReady() == false) then
+				self:zDebugSayPTSC(zRangeToPursue,"11")
+				zRangeToPursue = 0
+				return zRangeToPursue
+				
+			elseif (self:WeaponReady() == false) then
+				self:zDebugSayPTSC(zRangeToPursue,"11_A1")
+				zRangeToPursue = 5
+				return zRangeToPursue
+			end
+		end
+		
+		-- -------------------------------------- --
+		-- Check if target is too far away 		
+		-- We don't want the NPCs to spam this function if too far away, 
+		-- so yes, we're double checking range. 
+		-- IDEA: How ab out making this line option an in game option!
+		-- -------------------------------------- --
+		if (Distance_AnyEnemy >= 10) then 	
+			self:zDebugSayPTSC(zRangeToPursue,"12")
+			zRangeToPursue = 0
+			return zRangeToPursue
+		end
+		
+		if (self:HasMultipleInjury()) then	-- Make the NPC not persist pursing until injuries are fixed
+			self:zDebugSayPTSC(zRangeToPursue,"13")
+			zRangeToPursue = 0
+			return zRangeToPursue
+		end
+	end
+	
+	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) and (zRangeToPursue ~= 0) then
+		self:zDebugSayPTSC(zRangeToPursue,"144")
+		return zRangeToPursue
+	end
 
 end
+
+
+
+-- ----------------------------- --
+-- 	The Pursue Task itself 		 --
+-- ----------------------------- --
+function SuperSurvivor:Task_IsPursue_SC()
+	
+	-- ---------------------------------------------- -- 
+	-- Entity Scan: If there are currently no targets --
+	-- Then scan for them from time to time			  --
+	-- ---------------------------------------------- --
+	
+	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount == 0 or self.dangerSeenCount == 0) then
+		self:DoHumanEntityScan()
+	end
+	
+	
+	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) then
+	
+		local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
+		local zNPC_AttackRange  = self:isEnemyInRange(self.LastEnemeySeen)
+	
+		if (self:NPC_CheckPursueScore() > Distance_AnyEnemy ) then -- Task priority checker
+				if (self:hasWeapon())
+				and (self:Task_IsAttack() and (not zNPC_AttackRange)) 		
+				and (self:Task_IsNotThreaten())
+				and (self:Task_IsNotPursue())
+				and (self:Task_IsNotSurender())
+				and (self:Task_IsNotAttemptEntryIntoBuilding() )
+				and (self:isWalkingPermitted())
+			then
+				self:DebugSay("Task_IsPursue_SC Is 'True', all conditions were met")
+				return true
+			else
+				self:zDebugSayPTSC(self:NPC_CheckPursueScore(),"false_13")
+				return false
+			end	
+		else
+			self:zDebugSayPTSC(self:NPC_CheckPursueScore(),"false_14")
+			return false
+		end
+	else
+		self:zDebugSayPTSC(self:NPC_CheckPursueScore(),"false_15")
+		return false
+	end
+end
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2728,7 +2841,7 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 					self:getTaskManager():clear()
 					self:getTaskManager():AddToTop(FleeFromHereTask:new(self, self:Get():getCurrentSquare()))
 				end					
-				self:DebugSay("NPC_ManageLockedDoors - NPC refused to leave door, forcing clear task!")		
+				self:DebugSay("NPC_ManageLockedDoors - NPC refused to leave door, forcing clear task!")			
 				self.StuckDoorTicks = 0	
 				
 			end
@@ -3667,10 +3780,13 @@ function SuperSurvivor:NPC_MovementManagement()
 		local distance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local RealDistance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local minrange = self:getMinWeaponRange()
+		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
+		
+		self:NPC_ERW_AroundMainPlayer(1)
 		
 		if (distance > minrange + 0.1) then
 			-- The actual walking itself
-			if(instanceof(self.LastEnemeySeen,"IsoPlayer")) then
+			if(instanceof(self.LastEnemeySeen,"IsoPlayer")) then	
 				self:walkToDirect(cs)
 			else
 				local fs = cs:getTileInDirection(self.LastEnemeySeen:getDir())
