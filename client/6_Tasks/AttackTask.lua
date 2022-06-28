@@ -38,17 +38,19 @@ end
 function AttackTask:update()
 	if(not self:isValid()) or (self:isComplete()) then return false end
 	
-	self.parent:NPC_MovementManagement() 		-- For melee movement management
+	if(self.parent:isWalkingPermitted()) then
+		self.parent:NPC_MovementManagement() 		-- For melee movement management
 
-	-- Controls the Range of how far / close the NPC should be
-	if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
-		if (self.parent:needToReadyGun(weapon)) then
-			self.parent:ReadyGun(weapon)
-		else
-			self.parent:NPC_MovementManagement_Guns() 	-- To move around, it checks for in attack range too
+		-- Controls the Range of how far / close the NPC should be
+		if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
+			if (self.parent:needToReadyGun(weapon)) then
+				self.parent:ReadyGun(weapon)
+			else
+				self.parent:NPC_MovementManagement_Guns() 	-- To move around, it checks for in attack range too
+			end
 		end
 	end
-	
+		
 
 	local theDistance = getDistanceBetween(self.parent.LastEnemeySeen, self.parent.player)
 	local minrange = self.parent:getMinWeaponRange()
@@ -95,7 +97,7 @@ function AttackTask:update()
 	elseif(self.parent:isWalkingPermitted()) then
 	
 		self.parent:NPC_ManageLockedDoors() -- To prevent getting stuck in doors
-		self.parent:NPC_MovementManagement() -- To move around 
+	--	self.parent:NPC_MovementManagement() -- To move around 
 		self.parent:NPC_EnforceWalkNearMainPlayer()
 
 

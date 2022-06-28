@@ -1925,16 +1925,16 @@ end
 -- Update: BE VERY CAREFUL using this. It will overwrite Dovision. This is using for bandits to keep up with the main player.
 function SuperSurvivor:DoHumanEntityScan()
 
-	local atLeastThisClose = 11;
+	local atLeastThisClose = 4;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 12
-	local closestSurvivorSoFar = 12
+	local closestSoFar = 5
+	local closestSurvivorSoFar = 5
 	self.seenCount = 0
 	self.dangerSeenCount = 0
 	self.EnemiesOnMe = 0
 	self.LastEnemeySeen = nil
 	self.LastSurvivorSeen = nil
-	local dangerRange = 8
+	local dangerRange = 5
 	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
 	
 	local closestNumber = nil
@@ -2242,7 +2242,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		return zRangeToPursue	
 	end
 
-	if (self.LastEnemeySeen == nil) or (self.player == nil) then
+	if (self.LastEnemeySeen == nil) and (self.player == nil) then
 		self:zDebugSayPTSC(zRangeToPursue,"0")
 		zRangeToPursue = 0
 		return zRangeToPursue
@@ -2340,7 +2340,9 @@ function SuperSurvivor:Task_IsPursue_SC()
 	-- Then scan for them from time to time			  --
 	-- ---------------------------------------------- --
 	
-	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount == 0 or self.dangerSeenCount == 0) then
+	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
+	
+	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 5) and (self:getGroupRole() ~= "Companion") then
 		self:DoHumanEntityScan()
 	end
 	
@@ -2358,6 +2360,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 				and (self:Task_IsNotSurender())
 				and (self:Task_IsNotAttemptEntryIntoBuilding() )
 				and (self:isWalkingPermitted())
+				and (self:NPC_CheckPursueScore() > 0)
 			then
 				self:DebugSay("Task_IsPursue_SC Is 'True', all conditions were met")
 				return true
@@ -3624,7 +3627,10 @@ function SuperSurvivor:hasAmmoForPrevGun()
 	return false
 end
 function SuperSurvivor:reEquipGun()
-	
+	if (not self:hasGun()) then 
+		self:DebugSay("I have no gun to equip =( ")
+		return false 
+	end -- New, attempt fix re-equip gun error
 	if(self.LastGunUsed == nil) then return false end
 	if(self.player:getPrimaryHandItem() ~= nil and self.player:getPrimaryHandItem():isTwoHandWeapon()) then self.player:setSecondaryHandItem(nil) end 
 	self.player:setPrimaryHandItem(self.LastGunUsed)
@@ -3741,6 +3747,22 @@ function SuperSurvivor:NPC_ERW_AroundMainPlayer(VarDist)
 	self:NPC_EnforceWalkNearMainPlayer() -- New
 
 end
+-- ERW stands for 'EnforceRunWalk' walk priority
+function SuperSurvivor:NPC_ERW_AroundMainPlayerReverse(VarDist)
+
+		-- Emergency failsafe to prevent NPCs from running into player
+		if (getDistanceBetween(self.player,getSpecificPlayer(0)) > VarDist) then
+			if (self:isInAction() == true) then
+				self:setRunning(false)
+			end
+		else
+			if (self:isInAction() == true) then
+				self:setRunning(true)
+			end
+		end
+	self:NPC_EnforceWalkNearMainPlayer() -- New
+
+end
 
 
 
@@ -3782,7 +3804,7 @@ function SuperSurvivor:NPC_MovementManagement()
 		local minrange = self:getMinWeaponRange()
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
 		
-		self:NPC_ERW_AroundMainPlayer(1)
+		self:NPC_ERW_AroundMainPlayerReverse(minrange)
 		
 		if (distance > minrange + 0.1) then
 			-- The actual walking itself

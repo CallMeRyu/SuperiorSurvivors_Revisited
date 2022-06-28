@@ -33,6 +33,7 @@ function AIManager(TaskMangerIn)
 			LastSurvivorHasGun = LastSuperSurvivor:hasGun()
 		end
 	end
+	local zNPC_AttackRange = NPC:isEnemyInRange(NPC.LastEnemeySeen)
 	local IHaveInjury = ASuperSurvivor:HasInjury()
 	local weapon = ASuperSurvivor.player:getPrimaryHandItem()
 	local IsInAction = ASuperSurvivor:isInAction()
@@ -135,7 +136,7 @@ function AIManager(TaskMangerIn)
 		)
 	and (not ASuperSurvivor:isTooScaredToFight() and (IHaveInjury == false)) -- This. I may want to change this to 'too many injuries' function
 	and (ASuperSurvivor:inFrontOfLockedDoor() == false) 
-	and (NPC:NPC_FleeWhileReadyingGun()) 
+--	and (NPC:NPC_FleeWhileReadyingGun())  -- hmm
 	 then
 		if(ASuperSurvivor.player ~= nil) 
 		and (ASuperSurvivor.player:getModData().isRobber) 
@@ -177,6 +178,7 @@ function AIManager(TaskMangerIn)
   --and (IHaveInjury) -- Changing to V to keep them from Healing while there's hostiles near by
   --and ((IHaveInjury) and ((ASuperSurvivor:getDangerSeenCount() == 0) and (not ASuperSurvivor:isTooScaredToFight())))
     and (IHaveInjury)
+
 	 then
 		TaskMangerIn:AddToTop(FirstAideTask:new(ASuperSurvivor))
 		ASuperSurvivor:DebugSay("Bandage Injuries if no threat nearby triggered! Reference Number 000_000_02")
@@ -185,44 +187,48 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- flee from too many zombies
 	-- ----------------------------- --
-	if (TaskMangerIn:getCurrentTask() ~= "Flee") 
-	and (TaskMangerIn:getCurrentTask() ~= "Surender")
-	and (ASuperSurvivor:getGroupRole() ~= "Companion") -- New
-	and (ASuperSurvivor:getGroupRole() ~= "Guard") 	   -- New
-	and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
-	--and ((ASuperSurvivor:getDangerSeenCount() > 0) and (ASuperSurvivor:isTooScaredToFight()))
-	--and ( ((NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie)) or (ASuperSurvivor:isTooScaredToFight()) )
-	and 
-	( 
-	   (not ASuperSurvivor:hasWeapon() and ( (ASuperSurvivor:getDangerSeenCount() > 1) or (NPC:getSeenCount() >= 4)) )  -- maybe add a 'or (ASuperSurvivor:isTooScaredToFight())' after dangerseen
-	or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
-	or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false)
-	or (ASuperSurvivor:isTooScaredToFight())
-	 
-	 -- To check for EnemyIsZombie, which will look there and go 'OH GOD, I can't fight THIS many zombies' 
-	or (
-			(   (NPC:getSeenCount() > 4) and (    NPC:isEnemyInRange()) and (EnemyIsZombie) and (NPC:hasGun())		)
-		or
-			(   (NPC:getSeenCount() > 4) and (not NPC:isEnemyInRange()) and (EnemyIsZombie) and (not NPC:hasGun()) 	)
-		)									--		^ This maybe not needed - Note to future self
-	) 
-	then
-			
-		if(TaskMangerIn:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
-			TaskMangerIn:getTask():ForceFinish()
-			ASuperSurvivor:DebugSay("Force Finish Task Triggered in the 'Flee from too many Zombies' condition! Reference Number LCT_000_01")
-		end
 	
-		if (ASuperSurvivor:getGroupRole() ~= "Companion") and (ASuperSurvivor:getGroupRole() ~= "Guard") then -- New - To prevent Followers from doing this
-			ASuperSurvivor:getTaskManager():clear()
-			TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
-			TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
-			NPC:NPC_ShouldRunOrWalk()
-			NPC:NPC_EnforceWalkNearMainPlayer()
-			ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02")
+	if (ASuperSurvivor:getGroupRole() ~= "Companion") and (ASuperSurvivor:getGroupRole() ~= "Guard") then
+		if (TaskMangerIn:getCurrentTask() ~= "Flee") 
+		and (TaskMangerIn:getCurrentTask() ~= "Surender")
+		and (ASuperSurvivor:getGroupRole() ~= "Companion") 
+		and (ASuperSurvivor:getGroupRole() ~= "Guard") 	   
+		and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
+		--and ((ASuperSurvivor:getDangerSeenCount() > 0) and (ASuperSurvivor:isTooScaredToFight()))
+		--and ( ((NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie)) or (ASuperSurvivor:isTooScaredToFight()) )
+		and 
+		( 
+		   (not ASuperSurvivor:hasWeapon() and ( (ASuperSurvivor:getDangerSeenCount() > 1) or (NPC:getSeenCount() >= 4)) )  -- maybe add a 'or (ASuperSurvivor:isTooScaredToFight())' after dangerseen
+		or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
+		or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false)
+		or (ASuperSurvivor:isTooScaredToFight())
+		 
+		 -- To check for EnemyIsZombie, which will look there and go 'OH GOD, I can't fight THIS many zombies' 
+		or (
+				(   (NPC:getSeenCount() > 4) and (    NPC:isEnemyInRange()) and (EnemyIsZombie) and (NPC:hasGun())		)
+			or
+				(   (NPC:getSeenCount() > 4) and (not NPC:isEnemyInRange()) and (EnemyIsZombie) and (not NPC:hasGun()) 	)
+			)									--		^ This maybe not needed - Note to future self
+		) 
+		then
+				
+			if(TaskMangerIn:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
+				TaskMangerIn:getTask():ForceFinish()
+				ASuperSurvivor:DebugSay("Force Finish Task Triggered in the 'Flee from too many Zombies' condition! Reference Number LCT_000_01")
+			end
+		
+			if (ASuperSurvivor:getGroupRole() ~= "Companion") and (ASuperSurvivor:getGroupRole() ~= "Guard") then -- New - To prevent Followers from doing this
+				ASuperSurvivor:getTaskManager():clear()
+				TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
+				TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
+				NPC:NPC_ShouldRunOrWalk()
+				NPC:NPC_EnforceWalkNearMainPlayer()
+				ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02")
+			end
 		end
 	end
-
+	
+	
 	-- ----------------------------- --
 	-- If NPC is Starving or drhydrating, force leave group
 	-- To do - Give player option to let this task happen or not too
