@@ -54,6 +54,7 @@ Experimental 15 - U7.3
 
 
 Experimental 15 - U8
+-
 Hopefully this will be the final experimental build for Update 15, I just need checking if the update didn't break anything. Still need feedback from the community
 * Pursue_sc now has a 'score system' to determin when an NPC should chase after something else. In the future, you will be able to in-game settings adjust these values to your liking. But for now it's pretty standard stuff. 
 * Prioritized tasks between the tasks between companion (the 'follow' task) rules
