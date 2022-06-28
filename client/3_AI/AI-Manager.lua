@@ -76,6 +76,26 @@ function AIManager(TaskMangerIn)
 		  NPC:DebugSay("Companion Went too far away, returning companion!")
 	end
 
+	-- Healing
+	if (IHaveInjury) and (ASuperSurvivor:getGroupRole() == "Companion") then
+		if (TaskMangerIn:getCurrentTask() ~= "First Aide") 
+		  and (TaskMangerIn:getCurrentTask() ~= "Flee") 
+		  and (TaskMangerIn:getCurrentTask() ~= "Doctor") 
+		  and (TaskMangerIn:getCurrentTask() ~= "Hold Still") 
+		  and (TaskMangerIn:getCurrentTask() ~= "Pursue") 
+		then
+			TaskMangerIn:AddToTop(FirstAideTask:new(ASuperSurvivor))
+			ASuperSurvivor:DebugSay("Bandage Injuries if no threat nearby triggered! Reference Number 000_000_02")
+		end
+	end	
+
+
+
+	-- --------------------------------------- --
+	-- Companion follower related code | END   --
+	-- --------------------------------------- --
+
+
 
 	-- --------------------------------------- --
 	-- Pursue Task 							   --
@@ -84,7 +104,6 @@ function AIManager(TaskMangerIn)
 	if (ASuperSurvivor:Task_IsPursue_SC() == true) and ( NPC:NPC_FleeWhileReadyingGun()) then
 		if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
 		TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
-		NPC:DebugSay("PursueTask Conditions Met! PT_0001")
 	end
 
 
@@ -129,12 +148,14 @@ function AIManager(TaskMangerIn)
 		and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
 		and (TaskMangerIn:getCurrentTask() ~= "Flee")
 		and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") 
+		and (not ((IHaveInjury) and (ASuperSurvivor:getGroupRole() == "Companion"))) -- Companion follower prevention heal
 		) 
 	and (
 		   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
 		or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
 		)
-	and (not ASuperSurvivor:isTooScaredToFight() and (IHaveInjury == false)) -- This. I may want to change this to 'too many injuries' function
+--	and (not ASuperSurvivor:isTooScaredToFight() and (IHaveInjury == false)) -- This. I may want to change this to 'too many injuries' function
+	and (not ASuperSurvivor:isTooScaredToFight()) -- This. I may want to change this to 'too many injuries' function
 	and (ASuperSurvivor:inFrontOfLockedDoor() == false) 
 --	and (NPC:NPC_FleeWhileReadyingGun())  -- hmm
 	 then
@@ -168,31 +189,37 @@ function AIManager(TaskMangerIn)
 	
 	-- ----------------------------- --
 	-- bandage injuries if no threat near by
+	-- Companions have their own healing rule
 	-- ----------------------------- --
-	if (TaskMangerIn:getCurrentTask() ~= "First Aide") 
-	and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") 
-	and (TaskMangerIn:getCurrentTask() ~= "Flee") 
-	and (TaskMangerIn:getCurrentTask() ~= "Doctor") 
-	and (TaskMangerIn:getCurrentTask() ~= "Attack") -- new
-	and (TaskMangerIn:getCurrentTask() ~= "Hold Still") 
-  --and (IHaveInjury) -- Changing to V to keep them from Healing while there's hostiles near by
-  --and ((IHaveInjury) and ((ASuperSurvivor:getDangerSeenCount() == 0) and (not ASuperSurvivor:isTooScaredToFight())))
-    and (IHaveInjury)
+	if (IHaveInjury) and (ASuperSurvivor:getGroupRole() ~= "Companion") then
+		if (TaskMangerIn:getCurrentTask() ~= "First Aide") 
+		  and (TaskMangerIn:getCurrentTask() ~= "Flee") 
+		  and (TaskMangerIn:getCurrentTask() ~= "Doctor") 
+		  and (TaskMangerIn:getCurrentTask() ~= "Hold Still") 
+		  and ((NPC:getSeenCount() >= 1) and (Distance_AnyEnemy <= 6))
+		then
+			TaskMangerIn:AddToTop(FirstAideTask:new(ASuperSurvivor)) -- If general healing
+			TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
+			NPC:NPC_ShouldRunOrWalk()
+			
+				if ((NPC:getSeenCount() >= 3) and (Distance_AnyEnemy <= 3)) then -- If EMERGENCY run away and heal
+					NPC:NPC_ShouldRunOrWalk()
+					TaskMangerIn:AddToTop(FirstAideTask:new(ASuperSurvivor))
+					TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
+					TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
+				end 
+			 
+			ASuperSurvivor:DebugSay("Bandage Injuries if no threat nearby triggered! Reference Number 000_000_02")
+		end
+	end	
 
-	 then
-		TaskMangerIn:AddToTop(FirstAideTask:new(ASuperSurvivor))
-		ASuperSurvivor:DebugSay("Bandage Injuries if no threat nearby triggered! Reference Number 000_000_02")
-	end
 
 	-- ----------------------------- --
 	-- flee from too many zombies
 	-- ----------------------------- --
-	
-	if (ASuperSurvivor:getGroupRole() ~= "Companion") and (ASuperSurvivor:getGroupRole() ~= "Guard") then
+	if (ASuperSurvivor:getGroupRole() ~= "Companion") and (ASuperSurvivor:getGroupRole() ~= "Guard") then -- To ABSOLUTELY prevent these two jobs from listening to this task.
 		if (TaskMangerIn:getCurrentTask() ~= "Flee") 
-		and (TaskMangerIn:getCurrentTask() ~= "Surender")
-		and (ASuperSurvivor:getGroupRole() ~= "Companion") 
-		and (ASuperSurvivor:getGroupRole() ~= "Guard") 	   
+		and (TaskMangerIn:getCurrentTask() ~= "Surender") 
 		and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
 		--and ((ASuperSurvivor:getDangerSeenCount() > 0) and (ASuperSurvivor:isTooScaredToFight()))
 		--and ( ((NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie)) or (ASuperSurvivor:isTooScaredToFight()) )
@@ -205,26 +232,23 @@ function AIManager(TaskMangerIn)
 		 
 		 -- To check for EnemyIsZombie, which will look there and go 'OH GOD, I can't fight THIS many zombies' 
 		or (
-				(   (NPC:getSeenCount() > 4) and (    NPC:isEnemyInRange()) and (EnemyIsZombie) and (NPC:hasGun())		)
+				(   (NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie) and (NPC:hasGun())		)
 			or
-				(   (NPC:getSeenCount() > 4) and (not NPC:isEnemyInRange()) and (EnemyIsZombie) and (not NPC:hasGun()) 	)
-			)									--		^ This maybe not needed - Note to future self
+				(   (NPC:getSeenCount() > 4) and (EnemyIsZombie) and (not NPC:hasGun()) 	)
+			)									
 		) 
 		then
 				
-			if(TaskMangerIn:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
-				TaskMangerIn:getTask():ForceFinish()
-				ASuperSurvivor:DebugSay("Force Finish Task Triggered in the 'Flee from too many Zombies' condition! Reference Number LCT_000_01")
-			end
-		
-			if (ASuperSurvivor:getGroupRole() ~= "Companion") and (ASuperSurvivor:getGroupRole() ~= "Guard") then -- New - To prevent Followers from doing this
-				ASuperSurvivor:getTaskManager():clear()
-				TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
-				TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
-				NPC:NPC_ShouldRunOrWalk()
-				NPC:NPC_EnforceWalkNearMainPlayer()
-				ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02")
-			end
+		if(TaskMangerIn:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
+			TaskMangerIn:getTask():ForceFinish()
+			ASuperSurvivor:DebugSay("Force Finish Task Triggered in the 'Flee from too many Zombies' condition! Reference Number LCT_000_01")
+		end
+			ASuperSurvivor:getTaskManager():clear()
+			TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
+			TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
+			NPC:NPC_ShouldRunOrWalk()
+			NPC:NPC_EnforceWalkNearMainPlayer()
+			ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02")
 		end
 	end
 	

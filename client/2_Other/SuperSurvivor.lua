@@ -666,11 +666,6 @@ function SuperSurvivor:setSneaking(toValue)
 end
 
 function SuperSurvivor:setRunning(toValue)
-	
-	 if((self.player:NPCGetRunning() ~= true) and (self.player:NPCGetRunning() ~= false)) then
-		self:DebugSay("Somehow Running wasn't true OR false... It was NULL. (why?) Reference Number SR_0001_001")
-		return
-	 end
 
 	if(self.player:NPCGetRunning() ~= toValue) then
 		self.player:NPCSetRunning(toValue)
@@ -1925,16 +1920,16 @@ end
 -- Update: BE VERY CAREFUL using this. It will overwrite Dovision. This is using for bandits to keep up with the main player.
 function SuperSurvivor:DoHumanEntityScan()
 
-	local atLeastThisClose = 4;
+	local atLeastThisClose = 5;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 5
-	local closestSurvivorSoFar = 5
-	self.seenCount = 0
-	self.dangerSeenCount = 0
-	self.EnemiesOnMe = 0
-	self.LastEnemeySeen = nil
-	self.LastSurvivorSeen = nil
-	local dangerRange = 5
+	local closestSoFar = 6
+	local closestSurvivorSoFar = 6
+--	self.seenCount = 0
+--	self.dangerSeenCount = 0
+--	self.EnemiesOnMe = 0
+--	self.LastEnemeySeen = nil
+--	self.LastSurvivorSeen = nil
+	local dangerRange = 6
 	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
 	
 	local closestNumber = nil
@@ -2205,10 +2200,18 @@ end
 
 
 -- Built for pursueTaskSE, to keep clean code
+-- Set the local var debugging in function to 1 to enable superdebugging of the function
+-- Otherwise the NPC will just say in game what the value is. I will create another option for this
 function SuperSurvivor:zDebugSayPTSC(zTxtRef,zTxtRefNum)
-	if (self:isSpeaking() == false) then
-		return self:DebugSay("zRangeToPursue "..tostring(zTxtRef).."= Reference Number PTSE_000"..zTxtRefNum)
-	end
+	-- Exclusive function debugger- 	--
+	-- -------------------------------- --
+	-- 									--
+	local Task_IsPursueSC_Debugging = 0	--
+	-- 									--	
+	-- --------------------------------	--
+	
+	if (Task_IsPursueSC_Debugging == 1) then return    self:Speak("zRangeToPursue "..tostring(zTxtRef).."= Reference Number PTSE_000"..zTxtRefNum)
+	elseif (self:isSpeaking() == false) and (Task_IsPursueSC_Debugging == 2) then return self:DebugSay("zRangeToPursue "..tostring(zTxtRef).."= Reference Number PTSE_000"..zTxtRefNum) end
 end	
 
 
@@ -2224,14 +2227,8 @@ end
 
 function SuperSurvivor:NPC_CheckPursueScore()
 	
-	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
-	local Enemy_Is_a_Human 	= (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
-	local Weapon_HandGun   	= self.player:getPrimaryHandItem()
-	local NPCsDangerSeen   	= self:getDangerSeenCount()
-
+	if (self.LastEnemeySeen ~= nil) then
 	local zRangeToPursue = 0 
-	local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
-	
 
 	-- ------------------------------------  --
 	-- Keep pursue from happening when 	
@@ -2248,7 +2245,15 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		return zRangeToPursue
 	end	
 
-	if (self.LastEnemeySeen ~= nil) then
+
+	
+		local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
+		local Enemy_Is_a_Human 	= (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
+		local Weapon_HandGun   	= self.player:getPrimaryHandItem()
+		local NPCsDangerSeen   	= self:getDangerSeenCount()
+		local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
+
+
 
 		-- -------------------------------------- --
 		--  Companion: Prevent from going too far away
@@ -2342,7 +2347,9 @@ function SuperSurvivor:Task_IsPursue_SC()
 	
 	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
 	
-	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 5) and (self:getGroupRole() ~= "Companion") then
+--	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 5) and (self:getGroupRole() ~= "Companion") then
+--	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 1) and (self:getGroupRole() ~= "Companion") then
+	if (self.LastEnemeySeen == nil)  then
 		self:DoHumanEntityScan()
 	end
 	
@@ -2360,6 +2367,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 				and (self:Task_IsNotSurender())
 				and (self:Task_IsNotAttemptEntryIntoBuilding() )
 				and (self:isWalkingPermitted())
+			--	and ((self:isEnemy(self.LastEnemeySeen)) or (self:isEnemy(self.LastSurvivorSeen)))
 				and (self:NPC_CheckPursueScore() > 0)
 			then
 				self:DebugSay("Task_IsPursue_SC Is 'True', all conditions were met")
@@ -2373,7 +2381,9 @@ function SuperSurvivor:Task_IsPursue_SC()
 			return false
 		end
 	else
-		self:zDebugSayPTSC(self:NPC_CheckPursueScore(),"false_15")
+	--	Un-mark if you need to see if the NPCs aren't pursuing, to see if it's returning the 'final false'
+	-- 	Otherwise NPCs will just spam this message infinitely
+	--	self:zDebugSayPTSC(self:NPC_CheckPursueScore(),"false_15")
 		return false
 	end
 end
@@ -2666,7 +2676,7 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 	--self.player:Say(tostring(self:isInAction()) ..",".. tostring(self.TicksSinceSquareChanged > 6) ..",".. tostring(self:inFrontOfLockedDoor()) ..",".. tostring(self:getTaskManager():getCurrentTask() ~= "Enter New Building") ..",".. tostring(self.TargetBuilding ~= nil))
 	--print( self:getName()..": "..tostring((self.TargetBuilding ~= nil)))
 	if (
-		(self:inFrontOfLockedDoor())
+		(self:inFrontOfLockedDoor()) -- this may need to be changed to the Xor blocked door?
 		or
 		(self:inFrontOfWindow())
 	) and (

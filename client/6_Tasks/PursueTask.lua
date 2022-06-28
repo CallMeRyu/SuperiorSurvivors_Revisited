@@ -37,11 +37,23 @@ end
 
 function PursueTask:OnComplete()
 	if(self.SwitchBackToMele) then self.parent:reEquipMele() end
+	
+	--if (self.parent.LastEnemeySeen ~= nil) and (self.parent.player ~= nil) then
+	--	local theDistance = getDistanceBetween(self.parent.LastEnemeySeen, self.parent.player)
+	--	local minrange = self.parent:getMinWeaponRange()
+	--	
+	--	if (theDistance <= minrange) then
+	--		self.parent:StopWalk()
+	--		self.parent:DebugSay("Pursure done")
+	--	end
+	--end
 end
 
-function PursueTask:isComplete()
+function PursueTask:isComplete()	
 	if (not self.Target) or self.Target:isDead() or (self.parent:HasInjury()) or self.parent:isEnemy( self.Target) == false then return true
-	else return self.Complete end
+	else 
+		return self.Complete 
+	end
 end
 
 function PursueTask:isValid()
