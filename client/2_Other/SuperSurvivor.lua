@@ -2205,7 +2205,7 @@ function SuperSurvivor:zDebugSayPTSC(zTxtRef,zTxtRefNum)
 	-- Exclusive function debugger- 	--
 	-- -------------------------------- --
 	-- 									--
-	local Task_IsPursueSC_Debugging = 0	--
+	local Task_IsPursueSC_Debugging = 1	--
 	-- 									--	
 	-- --------------------------------	--
 	
@@ -2227,13 +2227,14 @@ function SuperSurvivor:NPC_CheckPursueScore()
 	-- Keep pursue from happening when 	
 	-- lots of enemies the npc sees --		
 	-- ------------------------------------  --		
-	if ( ((self:getSeenCount() > 4) and (self:isEnemyInRange()) and (Enemy_Is_a_Zombie)) or (self:isTooScaredToFight()) ) then
+	if (not self:getGroupRole() == "Companion") and ( ((self:getSeenCount() > 4) and (self:isEnemyInRange()) and (Enemy_Is_a_Zombie)) or (self:isTooScaredToFight()) ) then
 		zRangeToPursue = 0
+		self:zDebugSayPTSC(zRangeToPursue,"Fear_0")
 		return zRangeToPursue	
 	end
 
 	if (self.LastEnemeySeen == nil) and (self.player == nil) then
-		self:zDebugSayPTSC(zRangeToPursue,"0")
+		self:zDebugSayPTSC(zRangeToPursue,"0_CantFind")
 		zRangeToPursue = 0
 		return zRangeToPursue
 	end	
@@ -2259,7 +2260,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 			end
 			if (self:HasInjury()) then 
 				self:zDebugSayPTSC(zRangeToPursue,"_Companion_1")
-				zRangeToPursue = 0
+				zRangeToPursue = 4
 				return zRangeToPursue
 			end
 
@@ -2298,7 +2299,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 			self:zDebugSayPTSC(zRangeToPursue,"10")
 			if (self:WeaponReady() == false) then
 				self:zDebugSayPTSC(zRangeToPursue,"11")
-				zRangeToPursue = 0
+				zRangeToPursue = 5
 				return zRangeToPursue
 				
 			elseif (self:WeaponReady() == false) then
@@ -2320,7 +2321,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 			return zRangeToPursue
 		end
 		
-		if (self:HasMultipleInjury()) then	-- Make the NPC not persist pursing until injuries are fixed
+		if (self:HasMultipleInjury()) and not (self:getGroupRole() == "Companion") then	-- Make the NPC not persist pursing until injuries are fixed
 			self:zDebugSayPTSC(zRangeToPursue,"13")
 			zRangeToPursue = 0
 			return zRangeToPursue
