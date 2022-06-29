@@ -1680,8 +1680,10 @@ function SuperSurvivor:walkTo(square)
 				self:DebugSay("little pig, little pig")
 				self:NPC_ManageLockedDoors() -- This function will be sure ^ doesn't make the npc stuck in these cases
 	end
-		self:WalkToAttempt(square)
-		self:WalkToPoint(adjacent:getX(),adjacent:getY(),adjacent:getZ())
+		if (self.StuckDoorTicks < 7) then
+			self:WalkToAttempt(square)
+			self:WalkToPoint(adjacent:getX(),adjacent:getY(),adjacent:getZ())
+		end
 	end
 	--]]
 end
@@ -1991,12 +1993,14 @@ end
 -- Come to think of it, this function could be cloned to find windows/doors if done right......
 -- This function is to keep companions from being snuck upon. It's a little OP, but it's also preventing situations like
 -- 'Oh I'm trying to fight a NPC I'm stuck on, oh no a zombie behind me and I could clearly hear it? Oh well...' THIS function prevents cases like THAT.
+-- Also I believe since the self.seencount and other variables that 'reset to 0' is marked off, maybe helping as to why this function's working so cleverly.
+
 function SuperSurvivor:Companion_DoSixthSenseScan()
 
-	local atLeastThisClose = 5;
+	local atLeastThisClose = 2;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 6
-	local closestSurvivorSoFar = 6
+	local closestSoFar = 3
+	local closestSurvivorSoFar = 3
 --	self.seenCount = 0
 --	self.dangerSeenCount = 0
 --	self.EnemiesOnMe = 0
@@ -2280,7 +2284,7 @@ function SuperSurvivor:zDebugSayPTSC(zTxtRef,zTxtRefNum)
 	-- Exclusive function debugger- 	--
 	-- -------------------------------- --
 	-- 									--
-	local Task_IsPursueSC_Debugging = 1	--
+	local Task_IsPursueSC_Debugging = 0	--
 	-- 									--	
 	-- --------------------------------	--
 	
@@ -2438,10 +2442,10 @@ function SuperSurvivor:Task_IsPursue_SC()
 				and (self:Task_IsNotAttemptEntryIntoBuilding() )
 				and (self:isWalkingPermitted())
 			--	and ((self:isEnemy(self.LastEnemeySeen)) or (self:isEnemy(self.LastSurvivorSeen)))
-			then
+			  then
 				self:DebugSay("Task_IsPursue_SC Is 'True', all conditions were met")
 				return true
-			else
+			  else
 				self:zDebugSayPTSC(self:NPC_CheckPursueScore(),"false_13")
 				return false
 			end	
@@ -2805,6 +2809,16 @@ function SuperSurvivor:update()
 	
 	self:DoVision() -- Moving this up to the top
 	
+	-- I know this says 'not companion' but it's so good to use currently.
+	-- It doesn't reset known enemy count
+	if (Option_Perception_Bonus == 2) then
+		if (self:getGroupRole() ~= "Companion") then 
+			self:Companion_DoSixthSenseScan() 
+		end
+		print("Option_Perception_Bonus = 2?")
+		print(Option_Perception_Bonus)
+	end
+
 	self.player:setBlockMovement(true)
 	
 	--self:CleanUp(0.988); -- slowly reduces current blood/dirt by this percent - Ryuu: I have no idea why this is marked out. Guessing it didn't work?
@@ -2866,7 +2880,7 @@ function SuperSurvivor:update()
 
 	--self:Speak(tostring(self:isInBase()))	
 	if(self.Reducer % 480 == 0) then 
-		if(DebugMode) then print(self:getName().." task:"..MyTaskManager:getCurrentTask()) end
+	--	if(DebugMode) then print(self:getName().." task:"..MyTaskManager:getCurrentTask()) end
 		self:setSneaking(false)
 		
 		self.player:setNPC(true)
@@ -2910,7 +2924,7 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 	
 	if ((self:inFrontOfLockedDoorAndIsOutside() == true) or (self:NPC_IFOD_BarricadedInside() == true)) then
 		self.StuckDoorTicks = self.StuckDoorTicks + 1
-		
+	
 		-- Once the timer strikes 11
 		if (self.StuckDoorTicks > 10) then
 			self:getTaskManager():AddToTop(WanderTask:new(self))
@@ -2923,11 +2937,12 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 			end
 			
 			-- timer will continue going up within an emergency
-			if (self.StuckDoorTicks > 15) then
+			if (self.StuckDoorTicks > 12) then
 				if (self:getGroupRole() == "Random Solo") then -- Not a player's base allie
-					self:getTaskManager():AddToTop(WanderTask:new(self))
 					self:getTaskManager():clear()
-					self:getTaskManager():AddToTop(FleeFromHereTask:new(self, self:Get():getCurrentSquare()))
+					self:getTaskManager():AddToTop(WanderTask:new(self))
+					self:getTaskManager():AddToTop(FindUnlootedBuildingTask:new(self))
+					self:getTaskManager():AddToTop(WanderTask:new(self))
 				end					
 				self:DebugSay("NPC_ManageLockedDoors - NPC refused to leave door, forcing clear task!")			
 				self.StuckDoorTicks = 0	

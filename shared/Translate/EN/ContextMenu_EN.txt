@@ -69,6 +69,10 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_SOption_FollowGlobalRange = "[Changed] - Follower Sprint Range:"
 	ContextMenu_SOption_FollowGlobalRangeDesc = "This controls the 'follow' command, giving you the ability for NPCs to run or walk when they are x distance from you. (Instead of previously you would need to call them closer). This option may warrent unexpected results, and needs feedback. (Do not forget you can also press the + and - hotkeys (right side of the keyboard) to bring a follower closer/further from/to you.) (also, if you bring them to distance '0' they will act weird) "
 	
+	ContextMenu_SOption_PerceptionBonus = "[Experimental] - NPC Perception Boost: "
+	ContextMenu_SOption_PerceptionBonusDesc = "This option should help NPCs 'know' when hostile things are close to them when it seems like they 'should have known'. (This option isn't fully tested but deemed decent results.)"
+	
+	
 	ContextMenu_SOption_AltSpawn = "Alt Spawning - Groups:"
 	ContextMenu_SD_AltSpawnOff = "Off"
 	ContextMenu_SD_UpTo1 = "Spawn Only 1 NPC group"

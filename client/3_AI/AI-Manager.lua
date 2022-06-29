@@ -277,6 +277,8 @@ function AIManager(TaskMangerIn)
 
 	-- --------------------------------------------------------------------- --
 	-- ------------------- Non Companion Shared ---------------------------- --
+	-- 	if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
+	--	Removed. You want it? Add it back in the line above pursuetask		 --
 	-- --------------------------------------------------------------------- --
 
 	-- --------------------------------------- --
@@ -286,7 +288,7 @@ function AIManager(TaskMangerIn)
 	if (AiNPC_Job_IsNot(NPC,"Companion")) then
 		if (ASuperSurvivor:Task_IsPursue_SC() == true) then
 			if ( NPC:NPC_FleeWhileReadyingGun()) then
-				if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
+			
 				TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
 			end
 		end
