@@ -2006,7 +2006,7 @@ function SuperSurvivor:NPC_FleeWhileReadyingGun()
 		end
 	end
 	if (self:getGroupRole() == "Companion") and (Distance_MainPlayer > 9) then
-		self:NPCTask_Clear()
+	--	self:NPCTask_Clear()
 		self:getTaskManager():AddToTop(FollowTask:new(self,getSpecificPlayer(0)))
 		self:DebugSay("NPC_FleeWhileReadyingGun - Companion - Too far away, enforcing follow! Reference number NFWRG_0002")
 	end
@@ -2252,18 +2252,9 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		-- -------------------------------------- --
 		--  Companion: Prevent from going too far away
 		-- -------------------------------------- --
-		if ((self:getGroupRole() == "Companion") and (self:isEnemyInRange(self.LastEnemeySeen) )) then
-			if (not self:HasInjury()) then 
-				self:zDebugSayPTSC(zRangeToPursue,"_Companion_2")
-				zRangeToPursue = 5
-				return zRangeToPursue
-			end
-			if (self:HasInjury()) then 
-				self:zDebugSayPTSC(zRangeToPursue,"_Companion_1")
-				zRangeToPursue = 4
-				return zRangeToPursue
-			end
-
+		if ((self:getGroupRole() == "Companion") and (self:isEnemyInRange(self.LastEnemeySeen))) then
+			zRangeToPursue = 5
+			return zRangeToPursue
 		end
 		
 		-- ------------------------ --
@@ -2329,7 +2320,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 	end
 	
 	-- This should keep the NPC from returning 0 when the local variable at top is 0
-	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) and (zRangeToPursue ~= 0) then
+	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) and (zRangeToPursue == 0) then
 		self:zDebugSayPTSC(zRangeToPursue,"144")
 		return zRangeToPursue
 	end
@@ -2364,15 +2355,14 @@ function SuperSurvivor:Task_IsPursue_SC()
 		local zNPC_AttackRange  = self:isEnemyInRange(self.LastEnemeySeen)
 	
 		if (self:NPC_CheckPursueScore() > Distance_AnyEnemy ) then -- Task priority checker
-				if (self:hasWeapon())
-				and (self:Task_IsAttack() and (not zNPC_AttackRange)) 		
+			if (self:hasWeapon())
+			--	and (self:Task_IsAttack() and (not zNPC_AttackRange)) 		
 				and (self:Task_IsNotThreaten())
 				and (self:Task_IsNotPursue())
 				and (self:Task_IsNotSurender())
 				and (self:Task_IsNotAttemptEntryIntoBuilding() )
 				and (self:isWalkingPermitted())
 			--	and ((self:isEnemy(self.LastEnemeySeen)) or (self:isEnemy(self.LastSurvivorSeen)))
-				and (self:NPC_CheckPursueScore() > 0)
 			then
 				self:DebugSay("Task_IsPursue_SC Is 'True', all conditions were met")
 				return true
@@ -2390,6 +2380,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 	--	self:zDebugSayPTSC(self:NPC_CheckPursueScore(),"false_15")
 		return false
 	end
+	return true
 end
 
 
