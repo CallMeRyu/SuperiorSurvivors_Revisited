@@ -2815,8 +2815,6 @@ function SuperSurvivor:update()
 		if (self:getGroupRole() ~= "Companion") then 
 			self:Companion_DoSixthSenseScan() 
 		end
-		print("Option_Perception_Bonus = 2?")
-		print(Option_Perception_Bonus)
 	end
 
 	self.player:setBlockMovement(true)
