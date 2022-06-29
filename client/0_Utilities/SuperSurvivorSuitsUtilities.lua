@@ -255,13 +255,13 @@ function getRandomSurvivorSuit(SS)
 	local randomize = false
 
 	if(roll <= 10) then -- choose rare suit
-		print("Rare suit:")
+	--	print("Rare suit:")
 		tempTable = SurvivorRandomSuits["Rare"]
 	elseif(roll <= 20) then --  chose normal suit
-		print("Normal suit:")
+	--	print("Normal suit:")
 		tempTable = SurvivorRandomSuits["Normal"]
 	else --chose common suit
-		print("Common suit:")
+	--	print("Common suit:")
 		tempTable = SurvivorRandomSuits["Common"]
 		randomize = true
 	end
@@ -273,15 +273,15 @@ function getRandomSurvivorSuit(SS)
 	local result = table.randFrom(tempTable)
 
 	while (string.sub(result, -1) == "F" and not SS.player:isFemale()) or (string.sub(result, -1) == "M" and SS.player:isFemale()) do
-		print("Wrong gender " .. result .. " (it's only 1993 and KY isn't woke yet)")
+	--	print("Wrong gender " .. result .. " (it's only 1993 and KY isn't woke yet)")
 		result = table.randFrom(tempTable)
 	end
-	print("random key result is: "..tostring(result))
+	-- print("random key result is: "..tostring(result))
 
 	local suitTable = tempTable[result]
 	for i=1, #suitTable do
 		if(suitTable[i] ~= nil) then
-			print("WearThis: " .. tostring(suitTable[i]))
+		--	print("WearThis: " .. tostring(suitTable[i]))
 			SS:WearThis(suitTable[i])
 		end
 	end
@@ -292,7 +292,7 @@ function getRandomSurvivorSuit(SS)
 			local result = table.randFrom(tempTable)
 			local suitTable = tempTable[result]
 			item = suitTable[ZombRand(1, #suitTable)]
-			print("WearThis randomize: " .. item)
+		--	print("WearThis randomize: " .. item)
 			SS:WearThis(item)
 		end
 	end
@@ -305,7 +305,7 @@ function setRandomSurvivorSuit(SS,tbl,name)
 	if suitTable then
 		for i=1,#suitTable do
 			if(suitTable[i] ~= nil) then
-				print("WearThis: " .. tostring(suitTable[i]))
+			--	print("WearThis: " .. tostring(suitTable[i]))
 				SS:WearThis(suitTable[i])
 			end
 		end
