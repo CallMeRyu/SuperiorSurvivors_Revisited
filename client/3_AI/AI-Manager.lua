@@ -108,6 +108,11 @@ function AIManager(TaskMangerIn)
 	-- Attack Task
 	-- ----------- --
 	if AiNPC_Job_Is(NPC,"Companion") then
+
+		
+		-- Note: May want to add 'IF Enemy isn't instance of 'is zombie' & lastenemyseen(thezombie) is in attack range
+			NPC:DoHumanEntityScan()
+
 		if (
 					(TaskMangerIn:getCurrentTask() ~= "Attack") 
 				and (TaskMangerIn:getCurrentTask() ~= "Threaten") 

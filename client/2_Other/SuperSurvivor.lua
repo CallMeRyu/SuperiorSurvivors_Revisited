@@ -3637,17 +3637,15 @@ function SuperSurvivor:hasAmmoForPrevGun()
 	return false
 end
 function SuperSurvivor:reEquipGun()
-	if (not self:hasGun()) then 
-		self:DebugSay("I have no gun to equip =( ")
-		return false 
-	end -- New, attempt fix re-equip gun error
 	if(self.LastGunUsed == nil) then return false end
-	if(self.player:getPrimaryHandItem() ~= nil and self.player:getPrimaryHandItem():isTwoHandWeapon()) then self.player:setSecondaryHandItem(nil) end 
-	self.player:setPrimaryHandItem(self.LastGunUsed)
-	if(self.LastGunUsed:isTwoHandWeapon()) then self.player:setSecondaryHandItem(self.LastGunUsed) end
 	
-	return true
-	
+	if(self.LastGunUsed ~= nil) then
+		if(self.player:getPrimaryHandItem() ~= nil and self.player:getPrimaryHandItem():isTwoHandWeapon()) then self.player:setSecondaryHandItem(nil) end 
+		self.player:setPrimaryHandItem(self.LastGunUsed)
+		if(self.LastGunUsed:isTwoHandWeapon()) then self.player:setSecondaryHandItem(self.LastGunUsed) end
+		return true
+	end
+
 end
 function SuperSurvivor:reEquipMele()
 	
