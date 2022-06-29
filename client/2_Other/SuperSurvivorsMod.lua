@@ -462,6 +462,7 @@ function SuperSurvivorsLoadGridsquare(square)
 							RaiderGroup:addMember(raider,"Guard") 
 							raider:setHostile(groupHostility)
 							raider:getTaskManager():AddToTop(FollowTask:new(raider,Leader:Get()))
+							mySS:DebugSay("Follow task in survivorsmod lua - Path b")
 						end						
 						
 						if(raider:hasWeapon() == false) then raider:giveWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]) end
@@ -818,6 +819,7 @@ function supersurvivortemp(keyNum)
 						mySS:Get():Say(getText("ContextMenu_SD_ComeWithMe_Before") .. member:Get():getForname() .. getText("ContextMenu_SD_ComeWithMe_After"))
 						member:getTaskManager():clear()
 						member:getTaskManager():AddToTop(FollowTask:new(member,mySS:Get()))
+						mySS:DebugSay("Follow Task triggered in supersurvivorsmod - path a")
 					else
 						--print("getClosestMember returned nil")
 					end

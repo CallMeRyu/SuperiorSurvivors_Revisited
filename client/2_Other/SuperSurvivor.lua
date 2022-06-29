@@ -1170,9 +1170,7 @@ function SuperSurvivor:DebugSay(text)
 			print("")
 			print("")
 			print("")
-			if (self:isSpeaking() == false) then
 				self:Speak(text)
-			end
 		end
 		
 	end
@@ -2007,7 +2005,7 @@ function SuperSurvivor:NPC_FleeWhileReadyingGun()
 			end
 		end
 	end
-	if (self:getGroupRole() == "Companion") and ((self:getTaskManager():getCurrentTask() ~= "follow")) and  (Distance_MainPlayer > 9) then
+	if (self:getGroupRole() == "Companion") and (Distance_MainPlayer > 9) then
 		self:NPCTask_Clear()
 		self:getTaskManager():AddToTop(FollowTask:new(self,getSpecificPlayer(0)))
 		self:DebugSay("NPC_FleeWhileReadyingGun - Companion - Too far away, enforcing follow! Reference number NFWRG_0002")
@@ -2202,6 +2200,7 @@ end
 -- Built for pursueTaskSE, to keep clean code
 -- Set the local var debugging in function to 1 to enable superdebugging of the function
 -- Otherwise the NPC will just say in game what the value is. I will create another option for this
+
 function SuperSurvivor:zDebugSayPTSC(zTxtRef,zTxtRefNum)
 	-- Exclusive function debugger- 	--
 	-- -------------------------------- --
@@ -2216,15 +2215,9 @@ end
 
 
 
--- Super Function: Pursue_SC - Point system for the NPC to pursue a target. 	
--- This one is for the Raiders Pursuing the player. Still Under work, but it's here. 'specializied conditions'
+-- Super Function: Pursue_SC - Point system for the NPC to pursue a target.
+-- Pursue, as far as I've seen, is used any time the NPC needs to reach their target, either it be zombie or human.
 -- Todo: add self:RealCanSee(self.LastEnemeySeen) senses
--- Any zRangeToPursue higher numbers need to be at higher part of the code. if you put a 
--- return 5 under a line that's 
--- return 3 would be an inbetween priority 
--- return 0, then odds are, the NPC may change priorities incorrectly
--- So HIGHER numbers is the priority , NOT lower numbers (which I know is usually backwords, but work with me here.)
-
 function SuperSurvivor:NPC_CheckPursueScore()
 	
 	if (self.LastEnemeySeen ~= nil) then
@@ -2259,9 +2252,17 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		--  Companion: Prevent from going too far away
 		-- -------------------------------------- --
 		if ((self:getGroupRole() == "Companion") and (self:isEnemyInRange(self.LastEnemeySeen) )) then
-			self:zDebugSayPTSC(zRangeToPursue,"5")
-			zRangeToPursue = 6
-			return zRangeToPursue
+			if (not self:HasInjury()) then 
+				self:zDebugSayPTSC(zRangeToPursue,"_Companion_2")
+				zRangeToPursue = 5
+				return zRangeToPursue
+			end
+			if (self:HasInjury()) then 
+				self:zDebugSayPTSC(zRangeToPursue,"_Companion_1")
+				zRangeToPursue = 0
+				return zRangeToPursue
+			end
+
 		end
 		
 		-- ------------------------ --
@@ -2270,22 +2271,22 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		-- ------------------------ --
 		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true)	then -- NPC's Target AND the NPC itself are Both OUT-SIDE
 			self:zDebugSayPTSC(zRangeToPursue,"1")
-			zRangeToPursue = 7
+			zRangeToPursue = 6
 			return zRangeToPursue
 		end	
 		if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == false) then -- NPC's Target AND the NPC itself are Both INSIDE
 			self:zDebugSayPTSC(zRangeToPursue,"2")
-			zRangeToPursue = 6
+			zRangeToPursue = 3
 			return zRangeToPursue
 		end	
 		if ((self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true )) then 	-- NPC's Target Is Inside | NPC itself Is OUTSIDE		
 			self:zDebugSayPTSC(zRangeToPursue,"6")
-			zRangeToPursue = 4
+			zRangeToPursue = 3
 			return zRangeToPursue
 		end			
 		if (self:NPC_TargetIsOutside() == true ) and (self:NPC_IsOutside() == false)  then 	-- NPC's Target Is OUTSIDE | NPC itself Is Inside	
 			self:zDebugSayPTSC(zRangeToPursue,"7")
-			zRangeToPursue = 4
+			zRangeToPursue = 2
 			return zRangeToPursue
 		end	
 		
@@ -2326,6 +2327,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		end
 	end
 	
+	-- This should keep the NPC from returning 0 when the local variable at top is 0
 	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) and (zRangeToPursue ~= 0) then
 		self:zDebugSayPTSC(zRangeToPursue,"144")
 		return zRangeToPursue
@@ -2339,6 +2341,7 @@ end
 -- 	The Pursue Task itself 		 --
 -- ----------------------------- --
 function SuperSurvivor:Task_IsPursue_SC()
+	
 	
 	-- ---------------------------------------------- -- 
 	-- Entity Scan: If there are currently no targets --
@@ -2833,6 +2836,11 @@ end
 -- Don't add more tasks to this function, Wander task is the only one that turns the NPC around and walks away. 
 -- If you see 'ManageOutdoorStuck' and 'ManageIndoorStuck', that was my older version attempts at the final result of this function.
 function SuperSurvivor:NPC_ManageLockedDoors()
+	
+	-- Prevent your follers from listening to this rule. Temp solution for now.
+	if (self:getGroupRole() == "Companion") then self.StuckDoorTicks = 0 end
+	
+	
 	if ((self:inFrontOfLockedDoorAndIsOutside() == true) or (self:NPC_IFOD_BarricadedInside() == true)) then
 		self.StuckDoorTicks = self.StuckDoorTicks + 1
 		
@@ -2849,8 +2857,8 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 			
 			-- timer will continue going up within an emergency
 			if (self.StuckDoorTicks > 15) then
-				self:getTaskManager():AddToTop(WanderTask:new(self))
 				if (self:getGroupRole() == "Random Solo") then -- Not a player's base allie
+					self:getTaskManager():AddToTop(WanderTask:new(self))
 					self:getTaskManager():clear()
 					self:getTaskManager():AddToTop(FleeFromHereTask:new(self, self:Get():getCurrentSquare()))
 				end					
