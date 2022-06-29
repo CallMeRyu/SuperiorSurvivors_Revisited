@@ -45,7 +45,7 @@ function getAmmoBox(bullets)
 	elseif (bullets == "Nails") then return "NailsBox" -- For Nailgun Mod
 	end
 
-	print("no ammo box found for bullets "..tostring(bullets))
+--	print("no ammo box found for bullets "..tostring(bullets))
 	return ""
 end
 
@@ -127,7 +127,7 @@ function getAmmoType(weapon,incModule)
 	end
 
 	if(out == nil) then
-		print("no bullets found for weapon: " .. wepType)
+--		print("no bullets found for weapon: " .. wepType)
 		return nil
 	end
 
