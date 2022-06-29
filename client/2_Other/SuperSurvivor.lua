@@ -1002,7 +1002,11 @@ function SuperSurvivor:DebugSay(text)
 	local zDebugSayDistance = DebugOption_DebugSay_Distance
 
 	if(DebugSayEnabled == true and self.DebugMode == true) or (TurnOnDebugText == true and DebugSayDebugMode_Settings == 1) then
+		
+		print(text)
 
+
+		
 		if (getDistanceBetween(getSpecificPlayer(0),self.player) < zDebugSayDistance) then -- if far enough away from player, don't do anything
 		
 			local zLastEnemySeen = 0
@@ -1170,8 +1174,12 @@ function SuperSurvivor:DebugSay(text)
 			print("")
 			print("")
 			print("")
-				self:Speak(text)
+				
 		end
+		
+		print(text)
+		self:Speak(text)
+
 		
 	end
 end
@@ -1980,6 +1988,73 @@ function SuperSurvivor:DoHumanEntityScan()
 	
 end
 
+-- Come to think of it, this function could be cloned to find windows/doors if done right......
+-- This function is to keep companions from being snuck upon. It's a little OP, but it's also preventing situations like
+-- 'Oh I'm trying to fight a NPC I'm stuck on, oh no a zombie behind me and I could clearly hear it? Oh well...' THIS function prevents cases like THAT.
+function SuperSurvivor:Companion_DoSixthSenseScan()
+
+	local atLeastThisClose = 5;
+	local spottedList = self.player:getCell():getObjectList()
+	local closestSoFar = 6
+	local closestSurvivorSoFar = 6
+--	self.seenCount = 0
+--	self.dangerSeenCount = 0
+--	self.EnemiesOnMe = 0
+--	self.LastEnemeySeen = nil
+--	self.LastSurvivorSeen = nil
+	local dangerRange = 2
+	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
+	
+	local closestNumber = nil
+	local tempdistance = 1
+	
+	
+	if(spottedList ~= nil) then
+		for i=0, spottedList:size()-1 do
+			local character = spottedList:get(i);
+			if(character ~= nil) and (character ~= self.player) and (instanceof(character,"IsoPlayer")) or (instanceof(character,"IsoZombie")) then
+			
+				if (character:isDead() == false) then
+					tempdistance = tonumber(getDistanceBetween(character,self.player))
+					
+					if( (tempdistance <= atLeastThisClose) and self:isEnemy(character) ) then	
+					
+						local CanSee = self:RealCanSee(character)
+						
+						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
+							self.EnemiesOnMe = self.EnemiesOnMe + 1 
+						end
+						if(tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
+							self.dangerSeenCount = self.dangerSeenCount + 1 
+						end
+						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
+							self.seenCount = self.seenCount + 1 
+						end
+						if( ( ((not CanSee) or (CanSee)) or (tempdistance < 3.5)) and (tempdistance < closestSoFar) ) then
+							closestSoFar = tempdistance ;
+							self.player:getModData().seenZombie = true;
+							closestNumber = i;							
+						end
+						
+					elseif( tempdistance < closestSurvivorSoFar ) and false then
+						closestSurvivorSoFar = tempdistance
+						self.LastSurvivorSeen = character						
+					end
+				end
+				
+			end
+		end
+	end
+	
+	-- This only tells the other function there's a enemy nearby as long as the npc isn't stuck in front of a blocked off door
+	if(closestNumber ~= nil) then 
+		self.LastEnemeySeen = spottedList:get(closestNumber)
+		
+		return self.LastEnemeySeen
+	end
+	
+end
+
 
 
 -- This was built for getting away from zeds
@@ -1995,7 +2070,7 @@ function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready.  
 --	if (self:hasGun() == true) and ((NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 3) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))) then	
 	if (self:hasGun() == true) and (self:isTooScaredToFight()) then	
-		if (self:getGroupRole() == "Random Solo") then
+		if (self:getGroupRole() == "Random Solo") then -- Prevents any job classes from doing the following
 			if (self:ReadyGun(Weapon_HandGun)) then
 				self:NPCTask_Clear()
 				self:NPCTask_DoFlee()
@@ -2967,7 +3042,7 @@ function SuperSurvivor:WalkToUpdate()
 		
       -- if(player:isSpeaking() == false) then player:Say(tostring(myBehaviorResult)) end
         if((myBehaviorResult == BehaviorResult.Failed) or (myBehaviorResult == BehaviorResult.Succeeded)) then   
-			self:DebugSay("WalkToUpdate is about to trigger a StopWalk!")
+		--	self:DebugSay("WalkToUpdate is about to trigger a StopWalk!")
             self:StopWalk()
 		elseif (myBehaviorResult ~= BehaviorResult.Working) then
         end
