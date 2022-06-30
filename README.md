@@ -1,7 +1,6 @@
 Update 15 - Released!
 -
 Plenty of updates and bugfixes! If you wish to know the process of my decending madness, (or see what updates were made along the exp phase) then...
-
 -
 
 Update 15 Experimental - U1
