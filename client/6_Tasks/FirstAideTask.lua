@@ -10,7 +10,6 @@ function FirstAideTask:new(superSurvivor)
 	o.parent = superSurvivor
 	o.Name = "First Aide"
 	o.OnGoing = false
-	print(superSurvivor:getName()..": new first aide task IS ABOUT TO TRIGGER A STOPWALK")
 	o.parent:StopWalk()
 	o.myTimedAction = nil
 	o.Ticks = 0
