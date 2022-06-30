@@ -13,12 +13,13 @@ Special thanks to NightScale for this addition!
 
 EXP 16 - U2
 -
-Added in game option to hide/display NPCs names
-Added in game option to hide/display the red color on hostile NPCs
+* Added in game option to hide/display NPCs names
+* Added in game option to hide/display the red color on hostile NPCs
 
 
 EXP 16 - U3
 -
-Expansion to the Clothing set rarity. So now you can have more tiers of rare chance choices.
+* Expansion to the Clothing set rarity. So now you can have more tiers of rare chance choices.
 ALL THE WAY UP TO legendary 1%
+
 (*Because someone will request it*)
