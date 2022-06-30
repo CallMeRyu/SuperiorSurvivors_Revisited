@@ -6,6 +6,7 @@ function CleanInvTask:new(superSurvivor, DropSquare, incldHandItems)
 	local o = {}
 	setmetatable(o, self)
 	self.__index = self
+	superSurvivor:DebugSay("CleanInvTask is about to trigger a StopWalk! ")
 	superSurvivor:StopWalk()
 	if(incldHandItems == nil) then incldHandItems=false end	
 	if(instanceof(DropSquare,"IsoPlayer")) then o.TheDropSquare = DropSquare:getCurrentSquare()
@@ -71,6 +72,7 @@ function CleanInvTask:update()
 			if(sweapon == nil) then sweapon = 0 end
 			
 			-- exlude ammo types and ammo box types
+			self.parent:DebugSay("CleanInvTask is about to trigger a StopWalk! (Path B) ")
 			self.parent:StopWalk()
 			local items = inv:getItems() ;
 			if(items) then

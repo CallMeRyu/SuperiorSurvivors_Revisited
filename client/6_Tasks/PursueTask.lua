@@ -29,6 +29,8 @@ function PursueTask:new(superSurvivor, target)
 		o.parent:reEquipGun()
 	end
 	
+--	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end
@@ -59,7 +61,7 @@ function PursueTask:update()
 		end
 	end
 	
-	self.parent:NPC_ManageLockedDoors() -- To be sure the NPC doesn't get stuck in front of doors
+	
 	
 	if(self.parent.player:CanSee(self.Target) == false) then
 		

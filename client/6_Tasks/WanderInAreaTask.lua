@@ -13,6 +13,8 @@ function WanderInAreaTask:new(superSurvivor, thisArea)
 	o.Name = "Wander In Area"
 	o.OnGoing = true
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end

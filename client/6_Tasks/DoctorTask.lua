@@ -13,6 +13,7 @@ function DoctorTask:new(superSurvivor)
 	o.OnGoing = false
 	o.Complete = false
 	o.ReturnSquare = superSurvivor:Get():getCurrentSquare()
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 		
 	return o
 
@@ -96,6 +97,7 @@ function DoctorTask:update()
 					if(rippedsheets == nil) then rippedsheets = doctor:getInventory():AddItem("Base.RippedSheets") end
 								
 					foundbodypartneedingtreatment = true	
+					self.parent:DebugSay("DoctorTask is about to trigger a StopWalk! ")
 					self.parent:StopWalk()
 					if treatment == "Splint" then 
 						self.parent:RoleplaySpeak(getText("ContextMenu_SD_DoctorSplint"))

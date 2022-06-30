@@ -10,12 +10,13 @@ function FirstAideTask:new(superSurvivor)
 	o.parent = superSurvivor
 	o.Name = "First Aide"
 	o.OnGoing = false
-	print(superSurvivor:getName()..": new first aide task")
+	print(superSurvivor:getName()..": new first aide task IS ABOUT TO TRIGGER A STOPWALK")
 	o.parent:StopWalk()
 	o.myTimedAction = nil
 	o.Ticks = 0
 	o.WorkingBP = nil
 	o.WorkingItem = nil
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	return o
 
 end
@@ -53,6 +54,7 @@ function FirstAideTask:update()
 			if(item == nil) then item = self.parent.player:getInventory():AddItem("Base.RippedSheets") end
 			self.WorkingItem = item;
 			--print(self.parent:getName()..": adding apply bandage TA")
+			self.parent:DebugSay("FirstAideTask is about to trigger a StopWalk! Path B")
 			self.parent:StopWalk()
 			self.myTimedAction = ISApplyBandage:new(self.parent.player, self.parent.player, item, bp, true)
 			if(not self.myTimedAction) then print("failed to create timed action apply bandage") end

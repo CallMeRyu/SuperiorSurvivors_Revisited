@@ -12,6 +12,8 @@ function GuardTask:new(superSurvivor, square)
 	o.Name = "Guard"
 	o.OnGoing = true
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end

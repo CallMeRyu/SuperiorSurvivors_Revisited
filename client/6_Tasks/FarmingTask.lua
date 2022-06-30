@@ -21,7 +21,7 @@ function FarmingTask:new(superSurvivor, BringHere)
 	
 	o.Seeds = {"farming.BroccoliSeed","farming.CabbageSeed","farming.CarrotSeed","farming.PotatoSeed","farming.TomatoSeed","farming.RedRadishSeed"}
 	
-	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 
@@ -319,6 +319,7 @@ function FarmingTask:update()
 				local plantType = self.Plant.typeOfSeed
 				self.parent:RoleplaySpeak(getText("ContextMenu_speech_FarmingActionHarvesting"))
 				self.JustHarvested = true
+				self.parent:DebugSay("FarmingTask is about to trigger a StopWalk! ")
 				self.parent:StopWalk()
 				print("harvest " .. plantType)
 				ISTimedActionQueue.add(ISHarvestPlantAction:new(self.parent:Get(), self.Plant, 50))
@@ -353,6 +354,7 @@ function FarmingTask:update()
 			self.TargetSquare = self.Plant:getSquare()
 			if(self:AreWeThereYet(self.Plant:getSquare())) then
 				--self.parent:Speak("plowing square")
+				self.parent:DebugSay("FarmingTask is about to trigger a StopWalk! (Path B) ")
 				self.parent:StopWalk()
 				ISTimedActionQueue.add(ISPlowAction:new (self.parent:Get(), self.TargetSquare, self:getShovel(), 150))
 				self:ClearVars()
@@ -376,6 +378,7 @@ function FarmingTask:update()
 					elseif(plantType == "PotatoSeed") then plantType = "Potatoes"
 					elseif(plantType == "RedRadishSeed") then plantType = "RedRadish"
 					else plantType = plantType:gsub('Seed', 's') end
+					self.parent:DebugSay("FarmingTask is about to trigger a StopWalk! (Path C) ")
 					self.parent:StopWalk()
 					ISTimedActionQueue.add(ISSeedAction:new(self.parent:Get(), seeds, #seeds, plantType, self.Plant, 200))
 					self:ClearVars()

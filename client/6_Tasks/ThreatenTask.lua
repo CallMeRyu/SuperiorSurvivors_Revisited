@@ -23,6 +23,8 @@ function ThreatenTask:new(superSurvivor,Aite,Demands)
 	o.SquareAtThreat = nil
 	o.TicksWaitedForResponse = 0
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	
 	return o
 
@@ -31,6 +33,7 @@ end
 function ThreatenTask:isComplete()
 	if(not self.Complete) then return false
 	else 
+		self.parent:DebugSay("ThreatenTask is about to trigger a StopWalk! ")
 		self.parent:StopWalk()
 		return true 
 	end
@@ -108,7 +111,7 @@ function ThreatenTask:update()
 	
 	
 	if(self.parent.player:IsAttackRange(self.Aite:getX(),self.Aite:getY(),self.Aite:getZ())) or (self.theDistance < 0.65 )then
-			
+			self.parent:DebugSay("ThreatenTask is about to trigger a StopWalk! Path A ")
 			self.parent:StopWalk()
 			self.parent.player:NPCSetAiming(true)
 			self.parent.player:faceThisObject(self.Aite.player)	
@@ -118,10 +121,11 @@ function ThreatenTask:update()
 					self.SquareAtThreat = self.Aite.player:getCurrentSquare()
 					
 					if self.Aite.player:isLocalPlayer() == false then
+						self.parent:DebugSay("ThreatenTask B is about to trigger a StopWalk! Path B")
 						self.Aite:StopWalk()
 						self.Aite:getTaskManager():clear()
 						self.Aite:getTaskManager():AddToTop(FleeFromHereTask:new(self.parent, self.Aite.player:getCurrentSquare()))	
-						--self.Aite:getTaskManager():AddToTop(SurenderTask:new(self.parent, self.Aite))											
+						--self.Aite:getTaskManager():AddToTop(SurenderTask:new(self.parent, self.Aite))	
 					end
 					self.StartedThreatening = true
 				end

@@ -186,6 +186,7 @@ function FindThisTask:update()
 						end
 						
 					else
+						self.parent:DebugSay("FindThisTask is about to trigger a StopWalk! ")
 						self.parent:StopWalk()
 						ISTimedActionQueue.add(ISInventoryTransferAction:new(self.parent.player, self.TargetItem, self.TargetItem:getContainer(), self.BagToPutIn, 20))
 						self.parent:RoleplaySpeak(getText("ContextMenu_SD_TakesFromCont_Before") .. self.TargetItem:getDisplayName() .. getText("ContextMenu_SD_TakesFromCont_After"))

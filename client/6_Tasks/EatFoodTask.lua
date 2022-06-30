@@ -18,6 +18,7 @@ function EatFoodTask:new(superSurvivor, food)
 	o.EatingStarted = false
 	o.OnGoing = false
 	o.eatthisMuch = 1.00
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 
@@ -106,6 +107,7 @@ function EatFoodTask:update()
 			--print(self.parent:getName() .. " eat " .. tostring(hunger)..","..tostring(HungerChange)..","..tostring(self.eatthisMuch))
 		
 			self.parent:RoleplaySpeak(getText("ContextMenu_SD_EatFood_Before") .. self.TheFood:getDisplayName() .. getText("ContextMenu_SD_EatFood_After"));
+			self.parent:DebugSay("EatFoodTask is about to trigger a StopWalk! ")
 			self.parent:StopWalk()
 			ISTimedActionQueue.add(ISEatFoodAction:new(self.parent.player,self.TheFood,self.eatthisMuch))
 			--self.parent.player:getStats():setHunger(self.parent.player:getStats():getHunger() + self.TheFood:getHungChange());

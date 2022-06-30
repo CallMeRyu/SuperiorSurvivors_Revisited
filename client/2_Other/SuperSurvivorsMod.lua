@@ -373,8 +373,11 @@ function SuperSurvivorsLoadGridsquare(square)
 			AltSpawnGroupSize = SuperSurvivorGetOptionValue("AltSpawnAmount")
 			AltSpawnPercent = SuperSurvivorGetOptionValue("AltSpawnPercent")
 			NoPreSetSpawn = SuperSurvivorGetOptionValue("NoPreSetSpawn")
+			
 			DebugOptions = SuperSurvivorGetOptionValue("DebugOptions")
 			DebugOption_DebugSay = SuperSurvivorGetOptionValue("DebugOption_DebugSay")
+			DebugOption_DebugSay_Distance = SuperSurvivorGetOptionValue("DebugOption_DebugSay_Distance")
+			
 			SafeBase = SuperSurvivorGetOptionValue("SafeBase")
 			SurvivorBases = SuperSurvivorGetOptionValue("SurvivorBases")
 			SuperSurvivorSpawnRate = SuperSurvivorGetOptionValue("SpawnRate")
@@ -950,7 +953,7 @@ Events.OnEquipPrimary.Add(SuperSurvivorsOnEquipPrimary);
 
 
 
-
+-- ALT SPAWNING
 function SuperSurvivorsNewSurvivorManager()
 	-- To make sure if the player has chosen not to use Alt spawning
 	if (AlternativeSpawning == 1) then
@@ -958,7 +961,6 @@ function SuperSurvivorsNewSurvivorManager()
 	end
 	
 		local hoursSurvived = math.floor(getGameTime():getWorldAgeHours())
-		local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
 
 		local FinalChanceToBeHostile = ChanceToBeHostileNPC + math.floor(hoursSurvived/48)
 		if(FinalChanceToBeHostile > MaxChanceToBeHostileNPC) and (ChanceToBeHostileNPC < MaxChanceToBeHostileNPC) then FinalChanceToBeHostile = MaxChanceToBeHostileNPC end
@@ -1059,8 +1061,10 @@ function SuperSurvivorsNewSurvivorManager()
 					elseif (GroupSize < 1) then GroupSize = 1 
 				
 				end
-				local oldGunSpawnChance = ChanceToSpawnWithGun 
-					ChanceToSpawnWithGun = ChanceToSpawnWithGun * 1.5
+				
+				-- Since the options update 0-100 , this may need changing
+				local oldGunSpawnChance    = ChanceToSpawnWithGun 
+					  ChanceToSpawnWithGun = ChanceToSpawnWithGun * 1.5
 			
 				for i=1, GroupSize do
 				
@@ -1070,9 +1074,9 @@ function SuperSurvivorsNewSurvivorManager()
 					
 					-- Updated so alt spawns can decide to be hostile or not.
 					if(ZombRand(100) < FinalChanceToBeHostile ) then 
-						ASuperSurvivor:setHostile(true) 
+						raider:setHostile(true) 
 					else
-						ASuperSurvivor:setHostile(false) 
+						raider:setHostile(false) 
 					end
 					
 					-- raider:setHostile(false)

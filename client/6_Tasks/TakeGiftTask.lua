@@ -17,6 +17,8 @@ function TakeGiftTask:new(superSurvivor, gift)
 	o.Ticks = 0
 	o.Complete = false
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end
@@ -95,6 +97,7 @@ function TakeGiftTask:update()
 					self.parent:WearThis(self.TheGift)
 				end
 			else
+				self.parent:DebugSay("ThreatenTask is about to trigger a StopWalk! ")("TakeGiftTask is about to trigger a StopWalk! ")
 				self.parent:StopWalk()
 				ISTimedActionQueue.add(ISInventoryTransferAction:new (self.parent.player, self.TheGift, self.TheGift:getContainer(), self.parent:getBag(), 20))
 			end

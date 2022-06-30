@@ -29,6 +29,8 @@ function LootCategoryTask:new(superSurvivor, building , category, thisQuantity)
 	o.Complete = false
 	o.Floor = 0
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end
@@ -193,8 +195,9 @@ function LootCategoryTask:update()
 					local item = MyFindAndReturnCategory(self.Container, self.Category, self.parent)
 					if(item ~= nil) then
 							self.FoundCount = self.FoundCount + 1
-							self.parent:RoleplaySpeak(getText("ContextMenu_SD_TakesFromCont_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromCont_After"))							
-						if(self.parent:hasRoomInBagFor(item)) then		
+							self.parent:RoleplaySpeak(getText("ContextMenu_SD_TakesFromCont_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromCont_After"))
+						if(self.parent:hasRoomInBagFor(item)) then
+							self.parent:DebugSay("LootCategoryTask is about to trigger a StopWalk! Path B ")
 							self.parent:StopWalk()
 							ISTimedActionQueue.add(ISInventoryTransferAction:new (self.parent.player, item, self.Container, self.PlayerBag, nil))
 						else

@@ -12,6 +12,7 @@ function AIManager(TaskMangerIn)
 	end
 	
 	local EnemyIsSurvivor = (instanceof(ASuperSurvivor.LastEnemeySeen,"IsoPlayer"))
+	local EnemyIsZombie = (instanceof(ASuperSurvivor.LastEnemeySeen,"IsoZombie"))
 	local EnemySuperSurvivor = nil
 	local LastSuperSurvivor = nil
 	local EnemyIsSurvivorHasGun = false
@@ -48,19 +49,23 @@ function AIManager(TaskMangerIn)
 	-- ---------------------------------------------------------- --
 	-- ------------------- Shared AI ---------------------------- --
 	-- ---------------------------------------------------------- --
-	
-	-- Forces companions that's to the player, will return to the player. 
-	if (ASuperSurvivor:getGroupRole() == "Companion") and (TaskMangerIn:getCurrentTask() ~= "Follow") and 
+
+
+
+	-- --------------------------------------- --
+	-- Companion follower related code         --
+	-- --------------------------------------- --
+	if (ASuperSurvivor:getGroupRole() == "Companion") and 
 		( 	-- Checks for NPC and main player is indoor/outdoor-like conditions
 		   ( (DistanceBetweenMainPlayer > 9) and    (    getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) ) -- Both Outside
 		or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) ) -- Both Inside
 		or ( (DistanceBetweenMainPlayer > 5) and    (    getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) ) -- Player Outside / NPC Inside
 		or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) ) -- Player Inside / NPC Outside
+	--	or ( (DistanceBetweenMainPlayer > 2) and    (    getSpecificPlayer(0):getModData().Running == true        	    ) ) -- Player Inside / NPC Outside
 		) 
 		then 
 		  -- If WAY too far away, let's force clear it and enforce follow
 		  if (DistanceBetweenMainPlayer > 11) then 
-				TaskMangerIn:clear()
 				TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
 				NPC:NPC_EnforceWalkNearMainPlayer()
 				NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
@@ -70,11 +75,19 @@ function AIManager(TaskMangerIn)
 		  NPC:DebugSay("Companion Went too far away, returning companion!")
 	end
 
+
+	-- --------------------------------------- --
+	-- Pursue Task 							   --
+	-- --------------------------------------- --
 	-- To make NPCs find their target that's very close by
 	if (ASuperSurvivor:Task_IsPursue_SC() == true) and ( NPC:NPC_FleeWhileReadyingGun()) then
 		if(ASuperSurvivor:Get():getModData().isHostile) and (ASuperSurvivor:isSpeaking() == false) then ASuperSurvivor:Speak(getSpeech("GonnaGetYou")) end
 		TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
+		NPC:DebugSay("PursueTask Conditions Met! PT_0001")
 	end
+
+
+
 
 	-- ----------------------------- --
 	-- 		Surrender Task	
@@ -114,9 +127,10 @@ function AIManager(TaskMangerIn)
 		and (TaskMangerIn:getCurrentTask() ~= "Doctor") 
 		and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
 		and (TaskMangerIn:getCurrentTask() ~= "Flee")
+		and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") 
 		) 
 	and (
-		   (ASuperSurvivor:hasWeapon() and ((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
+		   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
 		or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
 		)
 	and (not ASuperSurvivor:isTooScaredToFight() and (IHaveInjury == false)) -- This. I may want to change this to 'too many injuries' function
@@ -138,7 +152,7 @@ function AIManager(TaskMangerIn)
 	end
 	
 	-- ----------------------------- --
-	-- find safe place if injured and enemies near
+	-- find safe place if injured and enemies near		this needs updating
 	-- ----------------------------- --
 	--	if (TaskMangerIn:getCurrentTask() ~= "Find Building") and (TaskMangerIn:getCurrentTask() ~= "Flee") and (IHaveInjury) and (ASuperSurvivor:getDangerSeenCount() > 0) then
 	if (TaskMangerIn:getCurrentTask() ~= "Find Building") 
@@ -158,9 +172,11 @@ function AIManager(TaskMangerIn)
 	and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") 
 	and (TaskMangerIn:getCurrentTask() ~= "Flee") 
 	and (TaskMangerIn:getCurrentTask() ~= "Doctor") 
+	and (TaskMangerIn:getCurrentTask() ~= "Attack") -- new
 	and (TaskMangerIn:getCurrentTask() ~= "Hold Still") 
   --and (IHaveInjury) -- Changing to V to keep them from Healing while there's hostiles near by
-	and ((IHaveInjury) and ((ASuperSurvivor:getDangerSeenCount() == 0) and (not ASuperSurvivor:isTooScaredToFight())))
+  --and ((IHaveInjury) and ((ASuperSurvivor:getDangerSeenCount() == 0) and (not ASuperSurvivor:isTooScaredToFight())))
+    and (IHaveInjury)
 	 then
 		TaskMangerIn:AddToTop(FirstAideTask:new(ASuperSurvivor))
 		ASuperSurvivor:DebugSay("Bandage Injuries if no threat nearby triggered! Reference Number 000_000_02")
@@ -172,14 +188,23 @@ function AIManager(TaskMangerIn)
 	if (TaskMangerIn:getCurrentTask() ~= "Flee") 
 	and (TaskMangerIn:getCurrentTask() ~= "Surender")
 	and (ASuperSurvivor:getGroupRole() ~= "Companion") -- New
+	and (ASuperSurvivor:getGroupRole() ~= "Guard") 	   -- New
 	and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
-	and (ASuperSurvivor:getDangerSeenCount() > 0) 
+	--and ((ASuperSurvivor:getDangerSeenCount() > 0) and (ASuperSurvivor:isTooScaredToFight()))
+	--and ( ((NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie)) or (ASuperSurvivor:isTooScaredToFight()) )
 	and 
 	( 
-		    (ASuperSurvivor:isTooScaredToFight())
-		 or (not ASuperSurvivor:hasWeapon() and ASuperSurvivor:getDangerSeenCount() > 1) 
-		 or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
-		 or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false) 
+	   (not ASuperSurvivor:hasWeapon() and ( (ASuperSurvivor:getDangerSeenCount() > 1) or (NPC:getSeenCount() >= 4)) )  -- maybe add a 'or (ASuperSurvivor:isTooScaredToFight())' after dangerseen
+	or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
+	or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false)
+	or (ASuperSurvivor:isTooScaredToFight())
+	 
+	 -- To check for EnemyIsZombie, which will look there and go 'OH GOD, I can't fight THIS many zombies' 
+	or (
+			(   (NPC:getSeenCount() > 4) and (    NPC:isEnemyInRange()) and (EnemyIsZombie) and (NPC:hasGun())		)
+		or
+			(   (NPC:getSeenCount() > 4) and (not NPC:isEnemyInRange()) and (EnemyIsZombie) and (not NPC:hasGun()) 	)
+		)									--		^ This maybe not needed - Note to future self
 	) 
 	then
 			
@@ -188,7 +213,7 @@ function AIManager(TaskMangerIn)
 			ASuperSurvivor:DebugSay("Force Finish Task Triggered in the 'Flee from too many Zombies' condition! Reference Number LCT_000_01")
 		end
 	
-		if (ASuperSurvivor:getGroupRole() ~= "Companion") then -- New - To prevent Followers from doing this
+		if (ASuperSurvivor:getGroupRole() ~= "Companion") and (ASuperSurvivor:getGroupRole() ~= "Guard") then -- New - To prevent Followers from doing this
 			ASuperSurvivor:getTaskManager():clear()
 			TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
 			TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
@@ -283,11 +308,18 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- 	Gun Readying / Reloading     -- 
 	-- ----------------------------- --
-	if(ASuperSurvivor:getNeedAmmo()) and (ASuperSurvivor:hasAmmoForPrevGun()) and (IsInAction == false) and (TaskMangerIn:getCurrentTask() ~= "Take Gift") and (ASuperSurvivor:getDangerSeenCount()==0)  then
-			ASuperSurvivor:setNeedAmmo(false)
-			ASuperSurvivor:reEquipGun()
-			ASuperSurvivor:DebugSay("GetNeed ammo condition met in AiManager Triggered! Reference Number 006")
-	end
+	if(ASuperSurvivor:getNeedAmmo())
+	and (ASuperSurvivor:hasAmmoForPrevGun()) 
+	and (IsInAction == false) 
+	and (TaskMangerIn:getCurrentTask() ~= "Take Gift") 
+	and (TaskMangerIn:getCurrentTask() ~= "Flee") 			-- New
+	and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") -- New
+	and (ASuperSurvivor:getDangerSeenCount()==0)  
+	  then
+		ASuperSurvivor:setNeedAmmo(false)
+		ASuperSurvivor:reEquipGun()
+		ASuperSurvivor:DebugSay("GetNeed ammo condition met in AiManager Triggered! Reference Number 006")
+	  end
 
 
 	-- ----------------------------- --
@@ -615,8 +647,12 @@ function AIManager(TaskMangerIn)
 			end
 		end
 	end	
-	-------------If in base tasks --END--------------------------------------
-	
+
+	-- ----------------------------------------------------------- --
+	-- ------ END -------- Base Tasks ------- END ---------------- --
+	-- ----------------------------------------------------------- --
+
+
 	-- if(ASuperSurvivor.DebugMode) then print(ASuperSurvivor:getAIMode()) end
 	
 	if(ASuperSurvivor:getAIMode() == "Random Solo") and (TaskMangerIn:getCurrentTask() ~= "Listen") and (TaskMangerIn:getCurrentTask() ~= "Take Gift") then -- solo random survivor AI flow	

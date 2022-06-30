@@ -17,6 +17,7 @@ function FindUnlootedBuildingTask:new(superSurvivor)
 	o.WanderDirection = nil
 	o.TicksSinceReversedDir = 0
 	o.parent.TargetBuilding = nil
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	if(o.parent:getSeenCount() == 0) then o.parent:setSneaking(true) end
 	return o
 
@@ -111,6 +112,7 @@ function FindUnlootedBuildingTask:update()
 			if not self.WanderDirection then self.WanderDirection = ZombRand(1,4) end
 	
 			if (self.TicksSinceReversedDir > 15) then -- Meaning just stop movement entirely, so it doesn't lag
+				self.parent:DebugSay("FindUnlootedBuildingTask is about to trigger a StopWalk! ")
 				self.parent:StopWalk()
 				self.parent:getTaskManager():clear()
 				return false
@@ -145,7 +147,7 @@ function FindUnlootedBuildingTask:update()
 			
 				local attempts = self.parent:getWalkToAttempt(self.TargetSquare)
 				if(attempts < 6) then
-					self.parent:DebugSay("trying to get to square inside x" .. tostring(attempts))
+					self.parent:DebugSay("Find Unlooted Building Task - trying to get to square inside x" .. tostring(attempts))
 					--self.parent:WalkToAttempt(self.TargetSquare)
 
 					self.parent:walkTo(self.parent:FindClosestOutsideSquare(Square))

@@ -20,6 +20,7 @@ function WashSelfTask:new(superSurvivor)
 	o.Complete = false
 	o.WasSuccessful = false
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	superSurvivor:RoleplaySpeak(getText("ContextMenu_SD_LookForItem_Before").."Wash Water"..getText("ContextMenu_SD_LookForItem_After"))
 	return o
 

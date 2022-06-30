@@ -17,6 +17,7 @@ function GatherWoodTask:new(superSurvivor, BringHere)
 	o.CarryingToPoint = false
 	o.Complete = false
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 

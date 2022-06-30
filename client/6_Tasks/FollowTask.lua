@@ -7,7 +7,6 @@ function FollowTask:new(superSurvivor, FollowMeplayer)
 	setmetatable(o, self)
 	self.__index = self
 	
-	print(superSurvivor:getName()..": new follow task");
 	if(FollowMeplayer == nil) then
 		if(superSurvivor.player:getModData().FollowCharID ~= nil) then
 			local SS = SSM:Get(superSurvivor.player:getModData().FollowCharID)
@@ -36,6 +35,7 @@ function FollowTask:new(superSurvivor, FollowMeplayer)
 		print(superSurvivor:getName()..": setting distance offset to " .. tostring(o.FollowDistanceOffset))
 	end
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	return o
 
 end
@@ -54,7 +54,8 @@ function FollowTask:needToFollow()
 	local distance = getDistanceBetween(self.parent.player,self.FollowChar)
 	if self.parent == nil or self.FollowChar == nil or self.FollowChar:getCurrentSquare() == nil then return false end
 		if (distance > GFollowDistance+self.FollowDistanceOffset) or (self.parent:getBuilding() ~= self.FollowChar:getCurrentSquare():getBuilding()) or self.parent:Get():getVehicle() or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle() ) then 
-		--print(self.parent:getName().." needs to follow");
+	--	if (distance > GFollowDistance - (Option_FollowDistance / self.FollowDistanceOffset ) ) or (self.parent:getBuilding() ~= self.FollowChar:getCurrentSquare():getBuilding()) or self.parent:Get():getVehicle() or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle() ) then 
+		self.parent:NPC_ERW_AroundMainPlayer(Option_FollowDistance) -- ERW stands for 'EnforceRunWalk'
 		return true
 		else return false end
 end
@@ -84,9 +85,16 @@ function FollowTask:update()
 		end
 		
 		-- Option_FollowDistance is replacing the "+5" that it normally defaults to, to the in game settings
-		if (distance > (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
-		self.parent:setRunning(true)
-		else self.parent:setRunning(false) end
+		-- U7 - Moving that variable to the NPC_ERW_AroundMainPlayer function.
+--		if (distance > (GFollowDistance+self.FollowDistanceOffset+5)) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+		if (distance < (GFollowDistance+self.FollowDistanceOffset + (Option_FollowDistance / 5 ) )) or (self.FollowChar:getVehicle() ~= self.parent:Get():getVehicle()) then 
+			self.parent:setRunning(false)
+			self.parent:NPC_EnforceWalkNearMainPlayer() -- New
+		else 
+			if (distance - (Option_FollowDistance / self.FollowDistanceOffset ) >= (GFollowDistance+self.FollowDistanceOffset )) then
+				self.parent:setRunning(true)
+			end
+		end
 	
 	
 	
@@ -108,7 +116,7 @@ function FollowTask:update()
 				--self.parent:Speak("here i am")
 				local window = getSquaresNearWindow(ropeSquare)
 				if(window) then
-				
+					self.parent:DebugSay("FollowTask is about to trigger a StopWalk! Path A")
 					self.parent:StopWalk()
 					local indoorSquare = window:getIndoorSquare()
 					ISTimedActionQueue.add(ISWalkToTimedAction:new(self.parent.player, indoorSquare))
@@ -164,6 +172,7 @@ function FollowTask:update()
 					doorsquare = lastgoodDoor
 					
 					if(doorsquare ~= nil) then
+						self.parent:DebugSay("FollowTask is about to trigger a StopWalk! Path B")
 						self.parent:StopWalk()
 						print(self.parent:getName()..": adding enter vehicle timed actions and waiting")
 						ISTimedActionQueue.add(ISWalkToTimedAction:new(self.parent:Get(),doorsquare))						

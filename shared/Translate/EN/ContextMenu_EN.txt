@@ -1,6 +1,6 @@
 ContextMenu_EN = {
 
-ContextMenu_Title  = "Survivors V0.14",
+ContextMenu_Title  = "Survivors Version 0.15",
 ContextMenu_SD_AidCheck = "Medical / First Aid Check",
 ContextMenu_SD_AidCheckDesc = "Walk to this survivor and medical check him, if they move the process can be interupted",
 
@@ -66,8 +66,8 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_SD_Brave = "Brave",
 	ContextMenu_SD_VeryBrave = "Very Brave",
 	
-	ContextMenu_SOption_FollowGlobalRange = "Follower Global Range:"
-	ContextMenu_SOption_FollowGlobalRangeDesc = "Follower Global Range was previously in the followtask file at '5' default. With this, you can change the what previously was '5' to a larger or smaller number. This adds padding to your followers of how close/far they can be to you. This setting doesn't change dynamically in game. That's what the hotkey settings is for. (*This is also to help people be aware such settings exist*) WARNING: PLEASE TEST THIS outside your main game before setting this under 5."
+	ContextMenu_SOption_FollowGlobalRange = "[Changed] - Follower Sprint Range:"
+	ContextMenu_SOption_FollowGlobalRangeDesc = "This controls the 'follow' command, giving you the ability for NPCs to run or walk when they are x distance from you. (Instead of previously you would need to call them closer). This option may warrent unexpected results, and needs feedback. (Do not forget you can also press the + and - hotkeys (right side of the keyboard) to bring a follower closer/further from/to you.) (also, if you bring them to distance '0' they will act weird) "
 	
 	ContextMenu_SOption_AltSpawn = "Alt Spawning - Groups:"
 	ContextMenu_SD_AltSpawnOff = "Off"
@@ -458,10 +458,15 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_SOption_SafeBaseDesc = "Wild Survivors will avoid your marked base",
 	ContextMenu_SOption_SurvivorBases = "Survivor Bases"
 	ContextMenu_SOption_SurvivorBasesDesc = "Wild Survivors will set up their own bases"
-	ContextMenu_SOption_DebugOptions = "Debug Options - LAG WARNING IF IS TURNED ON: "
-	ContextMenu_SOption_DebugOptionsDesc = "Turns on ALOT of debugging information for the NPCs. Good for if you're wanting to see what's going on, but BE WARNED, keep this OFF if you do not want to see the NPCs spam tons of information. If you see others ask about this in the steam description, PLEASE let them know they have debug mode on, and to turn it off. If you want to test things, this would be the way to do it. CONSOLE.TXT, OPEN THAT TOO, THAT will give *EXTREME* details of nearly every variable the NPC has. CTRL+F 'Super Debug' to scan through the mess you're going to see. to SEE super debug console text? You're going to need to be 6 blocks near (roughly) an NPC to see what it's up to. (This will generate lag as well because it's writing alot, very quickly, so be prepared)"
+	ContextMenu_SOption_DebugOptions = "Debug Mode: "
+	ContextMenu_SOption_DebugOptionsDesc = "Debug mode will turn on general settings like, enabling the 6 key to spawn NPCs, spawning soldiers, and among other useful details."
 	
+	ContextMenu_SDebugOption_DebugSay = "SuperDebug() Mode - LAG WARNING: "
+	ContextMenu_SDebugOption_DebugSayDesc = "You need to turn on Debug mode along with superdebug() for NPCs to tell you SuperDebug information. This will enable the function DebugSay to NPCs, which is a custom function that will give precise detail of what the NPC is up to. You will need to be at least 6 blocks away from the NPC to recieve their SuperDebug information to the console / in game chat. "
 	
+	ContextMenu_SDebugOption_DebugSay_Distance = "SuperDebug() - Distance: "
+	ContextMenu_SDebugOption_DebugSay_DistanceDesc = "You can choose how far away you want to be able to see debug information from the NPCs's 'SuperDebug' Function. It's HIGHLY ADVISED to keep this a low number, otherwise you can make all npcs in a large area write to your console."
+
 	ContextMenu_speech_DoNotTouchFood = "The food here is for members only. Do not touch it!",
 	ContextMenu_speech_HilltopIntro = "Hello and Welcome to Hilltop! We saw this coming a long time ago, and set up this community",
 	ContextMenu_speech_BlockadeIntro = "This is the North East Blockade. No one is aloud past the rear Blockade. Lethal force will be used if necessary",

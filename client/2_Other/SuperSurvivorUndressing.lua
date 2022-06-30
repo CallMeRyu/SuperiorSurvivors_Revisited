@@ -62,6 +62,7 @@ function SuperSurvivor:UnequipClothes()
     local allOfType = inventory:getItems()
 
     if allOfType and allOfType:size() > 0 then
+		SS:DebugSay("SuperbUndressing UnequipClothes is about to trigger a StopWalk!")
         SS:StopWalk()
 
         for i = 1, allOfType:size() do
