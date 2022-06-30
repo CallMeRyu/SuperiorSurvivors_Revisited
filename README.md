@@ -11,3 +11,15 @@ Link to addon: https://steamcommunity.com/sharedfiles/filedetails/?id=2828423670
 
 Special thanks to NightScale for this addition! 
 
+EXP 16 - U2
+-
+* Added in game option to hide/display NPCs names
+* Added in game option to hide/display the red color on hostile NPCs
+
+
+EXP 16 - U3
+-
+* Expansion to the Clothing set rarity. So now you can have more tiers of rare chance choices.
+ALL THE WAY UP TO legendary 1%
+
+(*Because someone will request it*)
