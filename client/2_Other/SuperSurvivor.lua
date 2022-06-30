@@ -2808,13 +2808,26 @@ function SuperSurvivor:update()
 	self:DoVision() -- Moving this up to the top
 	
 	-- I know this says 'not companion' but it's so good to use currently.
-	-- It doesn't reset known enemy count
-	if (Option_Perception_Bonus == 2) then
-		if (self:getGroupRole() ~= "Companion") then 
-			self:Companion_DoSixthSenseScan() 
+	-- It doesn't reset known enemy count. (Also marked lines is for debugging exclusive.)
+--	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 10) then
+	if (Option_Perception_Bonus == 2) then	
+		if (not (self:getGroupRole() == "Companion")) then -- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
+			if (not (self:usingGun()) and (self.isHostile == true)) then
+				self:Companion_DoSixthSenseScan() 
+			--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
+			--else
+			--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH A====")
+			end
+		--else
+		--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH B ====")
 		end
+	--else
+	--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH C ====")
 	end
-
+--	end
+	
+	
+	
 	self.player:setBlockMovement(true)
 	
 	--self:CleanUp(0.988); -- slowly reduces current blood/dirt by this percent - Ryuu: I have no idea why this is marked out. Guessing it didn't work?
