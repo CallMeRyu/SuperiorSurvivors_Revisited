@@ -71,7 +71,7 @@ function AttemptEntryIntoBuildingTask:update()
 	-- Idea: try 'wait()' function to test. Confirmed: The NPC will stand still when testing in the other files
 	if (self.parent:inFrontOfLockedDoor()) then
 		self.parent.TicksSinceSquareChanged = self.parent.TicksSinceSquareChanged + 1
-		self.parent:Speak("Damnit, the door is blocked off!")
+		self.parent:Speak("Damnit, the door is blocked off!")--TODO: add localization
 		self.parent:MarkBuildingExplored(self.parent:getBuilding())
 		self.TargetSquare = nil
 		self.parent:walkToDirect(outsidesquare)

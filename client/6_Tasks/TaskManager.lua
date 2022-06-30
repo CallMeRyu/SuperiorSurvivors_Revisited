@@ -34,8 +34,12 @@ function TaskManager:AddToTop(newTask)
 	self.LastTask = self:getCurrentTask()
 	self.CurrentTask = newTask.Name
 	
-	if(self.LastTask == self.CurrentTask) then print("warning. "..self.parent:getName() .. " task loop? " .. self.CurrentTask) end
-	if(self.LastLastTaskt == self.CurrentTask) then print("warning. "..self.parent:getName() .. " task alternating? " .. self.CurrentTask) end
+	if(self.LastTask == self.CurrentTask) then 
+		print("warning. "..self.parent:getName() .. " task loop? " .. self.CurrentTask) 
+	end
+	if(self.LastLastTaskt == self.CurrentTask) then 
+		print("warning. "..self.parent:getName() .. " task alternating? " .. self.CurrentTask) 
+	end
 	
 	self.TaskUpdateCount = 0
 	for i=self.TaskCount,1,-1 do

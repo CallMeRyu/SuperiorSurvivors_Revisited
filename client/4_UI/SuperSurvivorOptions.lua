@@ -66,6 +66,9 @@ function SuperSurvivorGetOptionValue(option)
 	
 	elseif(option == "Option_ForcePVP") and (num == 1) then return 0
 	elseif(option == "Option_ForcePVP") and (num == 2) then return 1
+
+	elseif(option == "RoleplayMessage") and (num == 1) then return 0
+	elseif(option == "RoleplayMessage") and (num == 2) then return 1
 	
 	elseif(option == "Bravery") and (num == 1) then return 1
 	elseif(option == "Bravery") and (num == 2) then return 2
@@ -262,18 +265,18 @@ end
 
 if index then
     -- we got a index, first lets insert our new entries
-    table.insert(keyBinding, index+1, {value = "Call Closest Group Member", key = 20})
-    table.insert(keyBinding, index+2, {value = "Call Closest Non-Group Member", key = 21})
-    table.insert(keyBinding, index+3, {value = "Ask Closest Group Member to Follow", key = 34})
-    table.insert(keyBinding, index+4, {value = "Toggle Group Window", key = 22})
-    table.insert(keyBinding, index+5, {value = "Spawn Wild Survivor", key = 7})
-    table.insert(keyBinding, index+6, {value = "Lower Follow Distance", key = 74})
-    table.insert(keyBinding, index+7, {value = "Raise Follow Distance", key = 78})
+  	table.insert(keyBinding, index+1, {value = "Call Closest Group Member", key = 20})
+  	table.insert(keyBinding, index+2, {value = "Call Closest Non-Group Member", key = 21})
+  	table.insert(keyBinding, index+3, {value = "Ask Closest Group Member to Follow", key = 34})
+  	table.insert(keyBinding, index+4, {value = "Toggle Group Window", key = 22})
+  	table.insert(keyBinding, index+5, {value = "Spawn Wild Survivor", key = 7})
+  	table.insert(keyBinding, index+6, {value = "Lower Follow Distance", key = 74})
+  	table.insert(keyBinding, index+7, {value = "Raise Follow Distance", key = 78})
    
-   table.insert(keyBinding, index+8, {value = "SSHotkey_1", key = 200})
-   table.insert(keyBinding, index+9, {value = "SSHotkey_2", key = 208})
-   table.insert(keyBinding, index+10, {value = "SSHotkey_3", key = 203})
-   table.insert(keyBinding, index+11, {value = "SSHotkey_4", key = 205})
+  	table.insert(keyBinding, index+8, {value = "SSHotkey_1", key = 200})
+  	table.insert(keyBinding, index+9, {value = "SSHotkey_2", key = 208})
+  	table.insert(keyBinding, index+10, {value = "SSHotkey_3", key = 203})
+  	table.insert(keyBinding, index+11, {value = "SSHotkey_4", key = 205})
 
 -- ----------------------- --
 -- Options Menu controller --
@@ -486,16 +489,16 @@ if index then
 		local options = 
 		{
 			getText("ContextMenu_SD_StartImmediately"),	getText("ContextMenu_SD_AfterDay1"), 
-			getText("ContextMenu_SD_AfterDay5"), 		getText("ContextMenu_SD_AfterDay10"), 
-			getText("ContextMenu_SD_AfterDay15"), 		getText("ContextMenu_SD_AfterDay20"), 
-			getText("ContextMenu_SD_AfterDay25"), 		getText("ContextMenu_SD_AfterDay30"), 
-			getText("ContextMenu_SD_AfterDay35"), 		getText("ContextMenu_SD_AfterDay40"), 
-			getText("ContextMenu_SD_AfterDay45"), 		getText("ContextMenu_SD_AfterDay50"), 
-			getText("ContextMenu_SD_AfterDay55"), 		getText("ContextMenu_SD_AfterDay60"),
-			getText("ContextMenu_SD_AfterDay65"), 		getText("ContextMenu_SD_AfterDay70"), 
-			getText("ContextMenu_SD_AfterDay75"), 		getText("ContextMenu_SD_AfterDay80"), 
-			getText("ContextMenu_SD_AfterDay85"), 		getText("ContextMenu_SD_AfterDay90"), 
-			getText("ContextMenu_SD_AfterDay95"),		getText("ContextMenu_SD_Never")
+			getText("ContextMenu_SD_AfterDay5"), 				getText("ContextMenu_SD_AfterDay10"), 
+			getText("ContextMenu_SD_AfterDay15"), 			getText("ContextMenu_SD_AfterDay20"), 
+			getText("ContextMenu_SD_AfterDay25"), 			getText("ContextMenu_SD_AfterDay30"), 
+			getText("ContextMenu_SD_AfterDay35"), 			getText("ContextMenu_SD_AfterDay40"), 
+			getText("ContextMenu_SD_AfterDay45"), 			getText("ContextMenu_SD_AfterDay50"), 
+			getText("ContextMenu_SD_AfterDay55"), 			getText("ContextMenu_SD_AfterDay60"),
+			getText("ContextMenu_SD_AfterDay65"), 			getText("ContextMenu_SD_AfterDay70"), 
+			getText("ContextMenu_SD_AfterDay75"), 			getText("ContextMenu_SD_AfterDay80"), 
+			getText("ContextMenu_SD_AfterDay85"), 			getText("ContextMenu_SD_AfterDay90"), 
+			getText("ContextMenu_SD_AfterDay95"),				getText("ContextMenu_SD_Never")
 		}
 		self:addCustomCombo('RaidersAfterHours',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RaidersAfterHours"),options,getText("ContextMenu_SOption_RaidersAfterHoursDesc"))
 		
@@ -513,7 +516,16 @@ if index then
 
 		local options = {getText("ContextMenu_SD_PVPOff"),getText("ContextMenu_SD_PVPOn")}
 		self:addCustomCombo('Option_ForcePVP',splitpoint,y,comboWidth,getText("ContextMenu_SD_PVPInfoBar"),options,getText("ContextMenu_SD_PVPInfoBarDesc"))
-		
+	
+	y = y + spacing
+	
+	local options = 
+	{
+		getText("ContextMenu_SD_Off"),
+		getText("ContextMenu_SD_On")
+	}
+	self:addCustomCombo('RoleplayMessage',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RoleplayMessage"),options,getText("ContextMenu_SOption_RoleplayMessageDesc"))
+
 	y = y + spacing
 	
 		local options = NPC_Options_ZeroToOneHundred()

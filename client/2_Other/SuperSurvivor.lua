@@ -666,6 +666,11 @@ function SuperSurvivor:setSneaking(toValue)
 end
 
 function SuperSurvivor:setRunning(toValue)
+	
+	 if((self.player:NPCGetRunning() ~= true) and (self.player:NPCGetRunning() ~= false)) then
+		self:DebugSay("Somehow Running wasn't true OR false... It was NULL. (why?) Reference Number SR_0001_001")
+		return
+	 end
 
 	if(self.player:NPCGetRunning() ~= toValue) then
 		self.player:NPCSetRunning(toValue)
@@ -1000,10 +1005,7 @@ function SuperSurvivor:DebugSay(text)
 	local zDebugSayDistance = DebugOption_DebugSay_Distance
 
 	if(DebugOptions == true and DebugOption_DebugSay == 1) then
-		
 		print(text)
-
-
 		
 		if (getDistanceBetween(getSpecificPlayer(0),self.player) < zDebugSayDistance) then -- if far enough away from player, don't do anything
 		
@@ -1177,25 +1179,43 @@ function SuperSurvivor:DebugSay(text)
 		
 		print(text)
 		self:Speak(text)
-
 		
 	end
 end
 
 function SuperSurvivor:isSpeaking()
-	if(self.JustSpoke) or (self.player:isSpeaking()) then return true
-	else return false end
+	if(self.JustSpoke) or (self.player:isSpeaking()) then 
+		return true
+	else 
+		return false 
+	end
 end
 
 function SuperSurvivor:Speak(text)
 
 	if(SpeakEnabled) then
 	
-		--print(self:getName()..": "..text)
 		self.SayLine1 = text
 		self.JustSpoke = true
 		self.TicksSinceSpoke = 0
 		
+	end
+end
+
+
+function SuperSurvivor:RoleplaySpeak(text)
+
+	if(SuperSurvivorGetOptionValue("RoleplayMessage") == 1) then
+		
+		if(text:match('^\*(.*)\*$')) then -- checks if the string already have '*' (some localizations have it)
+			self.SayLine1 = text
+		else
+			self.SayLine1 = "*".. text .. "*"
+		end
+
+		self.JustSpoke = true
+		self.TicksSinceSpoke = 0
+	
 	end
 end
 
@@ -1940,8 +1960,7 @@ function SuperSurvivor:DoHumanEntityScan()
 	
 	local closestNumber = nil
 	local tempdistance = 1
-	
-	
+		
 	if(spottedList ~= nil) then
 		for i=0, spottedList:size()-1 do
 			local character = spottedList:get(i);
@@ -2286,8 +2305,11 @@ function SuperSurvivor:zDebugSayPTSC(zTxtRef,zTxtRefNum)
 	-- 									--	
 	-- --------------------------------	--
 	
-	if (Task_IsPursueSC_Debugging == 1) then return    self:Speak("zRangeToPursue "..tostring(zTxtRef).."= Reference Number PTSE_000"..zTxtRefNum)
-	elseif (self:isSpeaking() == false) and (Task_IsPursueSC_Debugging == 2) then return self:DebugSay("zRangeToPursue "..tostring(zTxtRef).."= Reference Number PTSE_000"..zTxtRefNum) end
+	if (Task_IsPursueSC_Debugging == 1) then 
+		return self:Speak("zRangeToPursue "..tostring(zTxtRef).."= Reference Number PTSE_000"..zTxtRefNum)
+	elseif (self:isSpeaking() == false) and (Task_IsPursueSC_Debugging == 2) then 
+		return self:DebugSay("zRangeToPursue "..tostring(zTxtRef).."= Reference Number PTSE_000"..zTxtRefNum) 
+	end
 end	
 
 
@@ -3129,7 +3151,7 @@ function SuperSurvivor:ManageXP()
 					display_perk = getText("IGUI_perks_Blunt") .. " " .. display_perk
 				end
 				
-				self:Speak(getText("ContextMenu_SD_PerkLeveledUp_Before")..tostring(display_perk)..getText("ContextMenu_SD_PerkLeveledUp_After"))
+				self:RoleplaySpeak(getText("ContextMenu_SD_PerkLeveledUp_Before")..tostring(display_perk)..getText("ContextMenu_SD_PerkLeveledUp_After"))
 			end
 			--if(SurvivorPerks[i] == "Aiming") then self.player:Say(tostring(currentXP).."/"..tostring(XPforNextLevel)) end
 		end
@@ -3687,7 +3709,7 @@ function SuperSurvivor:openBoxForGun()
 			--print("in loop!")
 			inv:AddItem(modl..ammotype)
 		end
-		self:Speak("**".. getText("ContextMenu_SD_Opens_Before") .. ammoBox:getDisplayName() .. getText("ContextMenu_SD_Opens_After") ..  "*")
+		self:RoleplaySpeak(getText("ContextMenu_SD_Opens_Before") .. ammoBox:getDisplayName() .. getText("ContextMenu_SD_Opens_After"))
 		ammoBox:getContainer():Remove(ammoBox)
 		return self.player:getInventory():FindAndReturn(ammotype);
 	else
