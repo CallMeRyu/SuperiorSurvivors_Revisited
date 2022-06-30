@@ -17,7 +17,7 @@ Added in game option to hide/display NPCs names
 Added in game option to hide/display the red color on hostile NPCs
 
 
-Experimental 16 - U3
+EXP 16 - U3
 -
 Expansion to the Clothing set rarity. So now you can have more tiers of rare chance choices.
 ALL THE WAY UP TO legendary 1%
