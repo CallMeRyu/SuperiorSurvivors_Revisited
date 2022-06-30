@@ -1,6 +1,6 @@
 Update 16 Experimental
 -
-Yep, already started for the nexxt version of the mod!
+Yep, already started for the next version of the mod!
 
 EXP 16 - U1 
 - 
