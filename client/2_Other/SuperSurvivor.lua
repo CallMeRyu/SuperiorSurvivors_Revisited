@@ -2299,21 +2299,21 @@ function SuperSurvivor:NPC_CheckPursueScore()
 	if (self.LastEnemeySeen ~= nil) then
 	local zRangeToPursue = 0 
 
-	-- ------------------------------------  --
-	-- Keep pursue from happening when 	
-	-- lots of enemies the npc sees --		
-	-- ------------------------------------  --		
-	if (not self:getGroupRole() == "Companion") and ( ((self:getSeenCount() > 4) and (self:isEnemyInRange()) and (Enemy_Is_a_Zombie)) or (self:isTooScaredToFight()) ) then
-		zRangeToPursue = 0
-		self:zDebugSayPTSC(zRangeToPursue,"Fear_0")
-		return zRangeToPursue	
-	end
+		-- ------------------------------------  --
+		-- Keep pursue from happening when 	
+		-- lots of enemies the npc sees --		
+		-- ------------------------------------  --		
+		if (not self:getGroupRole() == "Companion") and ( ((self:getSeenCount() > 4) and (self:isEnemyInRange()) and (Enemy_Is_a_Zombie)) or (self:isTooScaredToFight()) ) then
+			zRangeToPursue = 0
+			self:zDebugSayPTSC(zRangeToPursue,"Fear_0")
+			return zRangeToPursue	
+		end
 
-	if (self.LastEnemeySeen == nil) and (self.player == nil) then
-		self:zDebugSayPTSC(zRangeToPursue,"0_CantFind")
-		zRangeToPursue = 0
-		return zRangeToPursue
-	end	
+		if (self.LastEnemeySeen == nil) and (self.player == nil) then
+			self:zDebugSayPTSC(zRangeToPursue,"0_CantFind")
+			zRangeToPursue = 0
+			return zRangeToPursue
+		end	
 
 
 	
