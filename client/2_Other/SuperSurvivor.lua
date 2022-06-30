@@ -366,34 +366,63 @@ end
 
 function SuperSurvivor:renderName() -- To do: Make an in game option to hide rendered names. It was requested.
 
-	if (not self.userName) or ((not self.JustSpoke) and ((not self:isInCell()) or (self:Get():getAlpha() ~= 1.0) or getSpecificPlayer(0)==nil or (not getSpecificPlayer(0):CanSee(self.player)))) then return false end
-	
-	if(self.JustSpoke == true) and (self.TicksSinceSpoke == 0) then
-		self.TicksSinceSpoke = 250		
-		self.userName:ReadString(self.player:getForname() .."\n" .. self.SayLine1)
-	elseif(self.TicksSinceSpoke > 0) then
-		self.TicksSinceSpoke = self.TicksSinceSpoke - 1
-		if(self.TicksSinceSpoke == 0) then
-			self.userName:ReadString(self.player:getForname() );
-			self.JustSpoke = false
-			self.SayLine1 = ""
-		end	
-	end
+
+		if (not self.userName) or ((not self.JustSpoke) and ((not self:isInCell()) or (self:Get():getAlpha() ~= 1.0) or getSpecificPlayer(0)==nil or (not getSpecificPlayer(0):CanSee(self.player)))) then return false end
 		
-	local sx = IsoUtils.XToScreen(self:Get():getX(), self:Get():getY(), self:Get():getZ(), 0);
-	local sy = IsoUtils.YToScreen(self:Get():getX(), self:Get():getY(), self:Get():getZ(), 0);
-	sx = sx - IsoCamera.getOffX() - self:Get():getOffsetX();
-	sy = sy - IsoCamera.getOffY() - self:Get():getOffsetY();
+		if(self.JustSpoke == true) and (self.TicksSinceSpoke == 0) then
+			self.TicksSinceSpoke = 250	
+			
+			if (Option_Display_Survivor_Names == 1) then
+				self.userName:ReadString(self.SayLine1)
+			end			
+			if (Option_Display_Survivor_Names == 2) then
+				self.userName:ReadString(self.player:getForname() .."\n" .. self.SayLine1)
+			end
+			
+		elseif(self.TicksSinceSpoke > 0) then
+			self.TicksSinceSpoke = self.TicksSinceSpoke - 1
+			if(self.TicksSinceSpoke == 0) then
+				if (Option_Display_Survivor_Names == 1) then
+					self.userName:ReadString("");
+				end				
+				if (Option_Display_Survivor_Names == 2) then
+					self.userName:ReadString(self.player:getForname() );
+				end
+				self.JustSpoke = false
+				self.SayLine1 = ""
+			end	
+		end
+			
+		local sx = IsoUtils.XToScreen(self:Get():getX(), self:Get():getY(), self:Get():getZ(), 0);
+		local sy = IsoUtils.YToScreen(self:Get():getX(), self:Get():getY(), self:Get():getZ(), 0);
+		sx = sx - IsoCamera.getOffX() - self:Get():getOffsetX();
+		sy = sy - IsoCamera.getOffY() - self:Get():getOffsetY();
 
-	sy = sy - 128
+		sy = sy - 128
 
-	sx = sx / getCore():getZoom(0)
-	sy = sy / getCore():getZoom(0)
+		sx = sx / getCore():getZoom(0)
+		sy = sy / getCore():getZoom(0)
 
-	sy = sy - self.userName:getHeight()
+		sy = sy - self.userName:getHeight()
 
-	self.userName:AddBatchedDraw(sx, sy, true)
+		self.userName:AddBatchedDraw(sx, sy, true)
 
+end
+
+function SuperSurvivor:setHostile(toValue) 		-- Moved up, to find easier
+	if (Option_Display_Hostile_Color == 2) then	-- SuperSurvivorsMod.lua
+		if(toValue) then
+			self.userName:setDefaultColors(128,128, 128, 255);
+			self.userName:setOutlineColors(180,0, 0,255);
+		else		
+			self.userName:setDefaultColors(255,255, 255, 255);
+			self.userName:setOutlineColors(0,0, 0,255);	
+		end
+		self.player:getModData().isHostile = toValue
+		if(ZombRand(2) == 1) then 
+			self.player:getModData().isRobber = true
+		end
+	end
 end
 
 function SuperSurvivor:SpokeTo(playerID)
@@ -1695,19 +1724,7 @@ function SuperSurvivor:walkTowards(x,y,z)
 
 end
 
-function SuperSurvivor:setHostile(toValue)
-	if(toValue) then
-		self.userName:setDefaultColors(128,128, 128, 255);
-		self.userName:setOutlineColors(180,0, 0,255);
-	else		
-		self.userName:setDefaultColors(255,255, 255, 255);
-		self.userName:setOutlineColors(0,0, 0,255);	
-	end
-	self.player:getModData().isHostile = toValue
-	if(ZombRand(2) == 1) then 
-		self.player:getModData().isRobber = true
-	end
-end
+
 
 function SuperSurvivor:walkToDirect(square)
 

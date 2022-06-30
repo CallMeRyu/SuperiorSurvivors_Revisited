@@ -366,6 +366,9 @@ function SuperSurvivorsLoadGridsquare(square)
 			
 			Option_Perception_Bonus = SuperSurvivorGetOptionValue("Option_Perception_Bonus")
 			
+			Option_Display_Survivor_Names = SuperSurvivorGetOptionValue("Option_Display_Survivor_Names")
+			Option_Display_Hostile_Color = SuperSurvivorGetOptionValue("Option_Display_Hostile_Color")
+			
 			Option_ForcePVP = SuperSurvivorGetOptionValue("Option_ForcePVP")
 			Option_FollowDistance = SuperSurvivorGetOptionValue("Option_FollowDistance")
 			SuperSurvivorBravery = SuperSurvivorGetOptionValue("Bravery")

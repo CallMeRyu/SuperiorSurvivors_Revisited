@@ -67,6 +67,11 @@ function SuperSurvivorGetOptionValue(option)
 	elseif(option == "Option_ForcePVP") and (num == 1) then return 0
 	elseif(option == "Option_ForcePVP") and (num == 2) then return 1
 	
+	
+	
+	elseif(option == "Option_Display_Survivor_Names") then return (num)
+	elseif(option == "Option_Display_Hostile_Color") then return (num)
+	
 	elseif(option == "Bravery") and (num == 1) then return 1
 	elseif(option == "Bravery") and (num == 2) then return 2
 	elseif(option == "Bravery") and (num == 3) then return 3
@@ -172,7 +177,13 @@ end
 	if(not SuperSurvivorOptions["RaidersChance"]) then SuperSurvivorOptions["RaidersChance"] = 3 end
 	if(not SuperSurvivorOptions["Option_FollowDistance"]) then SuperSurvivorOptions["Option_FollowDistance"] = 5 end
 	if(not SuperSurvivorOptions["Option_ForcePVP"]) then SuperSurvivorOptions["Option_ForcePVP"] = 0 end
+	
+	if(not SuperSurvivorOptions["Option_Display_Survivor_Names"]) then SuperSurvivorOptions["Option_Display_Survivor_Names"] = 2 end
+	if(not SuperSurvivorOptions["Option_Display_Hostile_Color"]) then SuperSurvivorOptions["Option_Display_Hostile_Color"] = 2 end
+	
 	if(not SuperSurvivorOptions["Bravery"]) then SuperSurvivorOptions["Bravery"] = 2 end
+	if(not SuperSurvivorOptions["Bravery"]) then SuperSurvivorOptions["Bravery"] = 2 end
+	
 	if(not SuperSurvivorOptions["AltSpawn"]) then SuperSurvivorOptions["AltSpawn"] = 2 end
 	if(not SuperSurvivorOptions["AltSpawnPercent"]) then SuperSurvivorOptions["AltSpawnPercent"] = 10 end
 	if(not SuperSurvivorOptions["AltSpawnAmount"]) then SuperSurvivorOptions["AltSpawnAmount"] = 1 end
@@ -564,6 +575,16 @@ if index then
 			getText("ContextMenu_SD_Brave"), getText("ContextMenu_SD_VeryBrave")
 		}
 		self:addCustomCombo('Bravery',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorBravery"),options,getText("ContextMenu_SOption_SurvivorBraveryDesc"))
+		
+	y = y + spacing
+
+		local options = NPC_Options_OffOn()
+		self:addCustomCombo('Option_Display_Survivor_Names',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Survivor_Names"),options,getText("ContextMenu_Option_Display_Survivor_NamesDesc"))
+		
+	y = y + spacing
+
+		local options = NPC_Options_OffOn()
+		self:addCustomCombo('Option_Display_Hostile_Color',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Hostile_Color"),options,getText("ContextMenu_Option_Display_Hostile_ColorDesc"))
 		
 	y = y + spacing
 

@@ -101,7 +101,12 @@ ContextMenu_Job_Doctor = "Doctor",
 		ContextMenu_AltSpawnAmount_5 = "Random - 1 to 5 NPCs In Each Group"
 		ContextMenu_AltSpawnAmount_6 = "Random - 1 to 6 NPCs In Each Group"
 	ContextMenu_Context_AltSpawnAmountDesc = "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)"
-		
+	
+	ContextMenu_Option_Display_Survivor_Names = "Display NPC Names: "
+	ContextMenu_Option_Display_Survivor_NamesDesc = "Do you want to see the names of the NPCs displayed above their heads?"
+	
+	ContextMenu_Option_Display_Hostile_Color = "Display Hostile Color: "
+	ContextMenu_Option_Display_Hostile_ColorDesc = "Do you want to know if an NPC is hostile or not? Setting this 'off' will prevent hostile NPC's names from glowing red"
 		
 	ContextMenu_OutOfAmmo1 = "Out of Ammo!",
 	ContextMenu_OutOfAmmo2 = "I'm out of Ammo!",
