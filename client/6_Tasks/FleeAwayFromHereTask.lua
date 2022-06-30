@@ -12,13 +12,16 @@ function FleeFromHereTask:new(superSurvivor,fleeFromHere)
 	o.OnGoing = false
 	o.fleeFromHere = fleeFromHere
 	if o.parent.TargetBuilding ~= nil then o.parent:MarkAttemptedBuildingExplored(o.parent.TargetBuilding) end -- otherwise he just keeps running back to the building though the threat likely lingers there
-		
-	return o
+	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
+		return o
 
 end
 
 function FleeFromHereTask:isComplete()
 	if getDistanceBetween(self.parent.player, self.fleeFromHere) > 30 then 
+		self.parent:DebugSay("FleeFromHereTask is about to trigger a StopWalk! ")
 		self.parent:StopWalk()		
 		self.parent:setRunning(false)
 		return true	

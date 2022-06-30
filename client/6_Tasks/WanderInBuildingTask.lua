@@ -14,7 +14,7 @@ function WanderInBuildingTask:new(superSurvivor, building)
 	if building == nil and superSurvivor:getBuilding() ~= nil then o.Building = superSurvivor:getBuilding()
 	elseif superSurvivor.TargetBuilding ~= nil then o.Building = superSurvivor.TargetBuilding
 	else o.Building = building end
-	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	return o
 
 end

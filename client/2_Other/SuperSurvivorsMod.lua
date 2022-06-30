@@ -357,12 +357,15 @@ function SuperSurvivorsLoadGridsquare(square)
 			SSGM:Load()
 			HillTopGroup:AllSpokeTo()
 			BlockadeGroup:AllSpokeTo()
-
+			
+			-- I don't think we need this now? But Further testing is needed
 			local gameVersion = getCore():getGameVersion()
 			IsDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() > 50 and gameVersion:getMinor() < 53)
 			IsNpcDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() >= 53)
 			
-			 
+			
+			Option_Perception_Bonus = SuperSurvivorGetOptionValue("Option_Perception_Bonus")
+			
 			Option_ForcePVP = SuperSurvivorGetOptionValue("Option_ForcePVP")
 			Option_FollowDistance = SuperSurvivorGetOptionValue("Option_FollowDistance")
 			SuperSurvivorBravery = SuperSurvivorGetOptionValue("Bravery")
@@ -370,14 +373,18 @@ function SuperSurvivorsLoadGridsquare(square)
 			AltSpawnGroupSize = SuperSurvivorGetOptionValue("AltSpawnAmount")
 			AltSpawnPercent = SuperSurvivorGetOptionValue("AltSpawnPercent")
 			NoPreSetSpawn = SuperSurvivorGetOptionValue("NoPreSetSpawn")
+			
 			DebugOptions = SuperSurvivorGetOptionValue("DebugOptions")
+			DebugOption_DebugSay = SuperSurvivorGetOptionValue("DebugOption_DebugSay")
+			DebugOption_DebugSay_Distance = SuperSurvivorGetOptionValue("DebugOption_DebugSay_Distance")
+			
 			SafeBase = SuperSurvivorGetOptionValue("SafeBase")
 			SurvivorBases = SuperSurvivorGetOptionValue("SurvivorBases")
 			SuperSurvivorSpawnRate = SuperSurvivorGetOptionValue("SpawnRate")
 			ChanceToSpawnWithGun = SuperSurvivorGetOptionValue("GunSpawnRate")
 			ChanceToSpawnWithWep = SuperSurvivorGetOptionValue("WepSpawnRate")
 			ChanceToBeHostileNPC = SuperSurvivorGetOptionValue("HostileSpawnRate")
-			MaxChanceToBeHostileNPC = SuperSurvivorGetOptionValue("HostileSpawnRate")
+			MaxChanceToBeHostileNPC = SuperSurvivorGetOptionValue("MaxHostileSpawnRate") -- Fixed, it used to contain 'HostileSpawnRate', previously making MaxHostileSpawnRate a useless option
 			if IsDamageBroken then
 				MaxChanceToBeHostileNPC = 0
 			end
@@ -457,6 +464,7 @@ function SuperSurvivorsLoadGridsquare(square)
 							RaiderGroup:addMember(raider,"Guard") 
 							raider:setHostile(groupHostility)
 							raider:getTaskManager():AddToTop(FollowTask:new(raider,Leader:Get()))
+						--	--mySS:DebugSay("Follow task in survivorsmod lua - Path b")
 						end						
 						
 						if(raider:hasWeapon() == false) then raider:giveWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]) end
@@ -813,11 +821,12 @@ function supersurvivortemp(keyNum)
 						mySS:Get():Say(getText("ContextMenu_SD_ComeWithMe_Before") .. member:Get():getForname() .. getText("ContextMenu_SD_ComeWithMe_After"))
 						member:getTaskManager():clear()
 						member:getTaskManager():AddToTop(FollowTask:new(member,mySS:Get()))
+						--mySS:DebugSay("Follow Task triggered in supersurvivorsmod - path a")
 					else
 						--print("getClosestMember returned nil")
 					end
 				else
-					mySS:DebugSay("no group")
+					--mySS:DebugSay("no group")
 					--print("cant call close member bc no group for player detected")
 				end
 			end
@@ -837,7 +846,7 @@ function supersurvivortemp(keyNum)
 						--print("getClosestMember returned nil")
 					end
 				else
-					mySS:DebugSay("no group")
+					--mySS:DebugSay("no group")
 					--print("cant call close member bc no group for player detected")
 				end
 			end
@@ -946,7 +955,7 @@ Events.OnEquipPrimary.Add(SuperSurvivorsOnEquipPrimary);
 
 
 
-
+-- ALT SPAWNING
 function SuperSurvivorsNewSurvivorManager()
 	-- To make sure if the player has chosen not to use Alt spawning
 	if (AlternativeSpawning == 1) then
@@ -954,7 +963,6 @@ function SuperSurvivorsNewSurvivorManager()
 	end
 	
 		local hoursSurvived = math.floor(getGameTime():getWorldAgeHours())
-		local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
 
 		local FinalChanceToBeHostile = ChanceToBeHostileNPC + math.floor(hoursSurvived/48)
 		if(FinalChanceToBeHostile > MaxChanceToBeHostileNPC) and (ChanceToBeHostileNPC < MaxChanceToBeHostileNPC) then FinalChanceToBeHostile = MaxChanceToBeHostileNPC end
@@ -1055,8 +1063,10 @@ function SuperSurvivorsNewSurvivorManager()
 					elseif (GroupSize < 1) then GroupSize = 1 
 				
 				end
-				local oldGunSpawnChance = ChanceToSpawnWithGun 
-					ChanceToSpawnWithGun = ChanceToSpawnWithGun * 1.5
+				
+				-- Since the options update 0-100 , this may need changing
+				local oldGunSpawnChance    = ChanceToSpawnWithGun 
+					  ChanceToSpawnWithGun = ChanceToSpawnWithGun * 1.5
 			
 				for i=1, GroupSize do
 				
@@ -1066,9 +1076,9 @@ function SuperSurvivorsNewSurvivorManager()
 					
 					-- Updated so alt spawns can decide to be hostile or not.
 					if(ZombRand(100) < FinalChanceToBeHostile ) then 
-						ASuperSurvivor:setHostile(true) 
+						raider:setHostile(true) 
 					else
-						ASuperSurvivor:setHostile(false) 
+						raider:setHostile(false) 
 					end
 					
 					-- raider:setHostile(false)
@@ -1192,7 +1202,7 @@ function SuperSurvivorDoRandomSpawns()
 				print("AltSpawnPercent			=	"..tostring(AltSpawnPercent))
 				print("i _________________ 	=	"..tostring(i))
 				print("")
-				print("This may not give true answers, it's testing ZombRand and how it works. To see if EVERY time it's called does it create a new one, EVEN in a For i = 1 do scenario. So don't fall for if it 'fails' or 'passes'. It's testing RANDOM. NOT to see if the values are themselves correct.")
+				print("This may not give true answers, it's testing ZombRand and how it works. To see if EVERY time it's called does it create a new one, EVEN in a For i = 1 do scenario. So don't fall for if it 'fails' or 'passes'. It's testing RANDOM.")
 				print("")
 				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning >= 2) then  print("Testing a ZombRand AltSpawnPercent and (AlternativeSpawning >= 2) Pass: "..tostring(ZombRand(100))) else print("Testing a ZombRand AltSpawnPercent - 1 and (AlternativeSpawning >= 2) Fail: "..tostring(ZombRand(100)))   end
 				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning >= 3) then  print("Testing a ZombRand AltSpawnPercent and (AlternativeSpawning >= 3) Pass: "..tostring(ZombRand(100))) else print("Testing a ZombRand AltSpawnPercent - 1 and (AlternativeSpawning >= 3) Fail: "..tostring(ZombRand(100)))   end
