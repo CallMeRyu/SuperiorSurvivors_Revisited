@@ -2051,7 +2051,6 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 	-- This only tells the other function there's a enemy nearby as long as the npc isn't stuck in front of a blocked off door
 	if(closestNumber ~= nil) then 
 		self.LastEnemeySeen = spottedList:get(closestNumber)
-		
 		return self.LastEnemeySeen
 	end
 	
