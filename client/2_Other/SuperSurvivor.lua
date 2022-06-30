@@ -366,34 +366,63 @@ end
 
 function SuperSurvivor:renderName() -- To do: Make an in game option to hide rendered names. It was requested.
 
-	if (not self.userName) or ((not self.JustSpoke) and ((not self:isInCell()) or (self:Get():getAlpha() ~= 1.0) or getSpecificPlayer(0)==nil or (not getSpecificPlayer(0):CanSee(self.player)))) then return false end
-	
-	if(self.JustSpoke == true) and (self.TicksSinceSpoke == 0) then
-		self.TicksSinceSpoke = 250		
-		self.userName:ReadString(self.player:getForname() .."\n" .. self.SayLine1)
-	elseif(self.TicksSinceSpoke > 0) then
-		self.TicksSinceSpoke = self.TicksSinceSpoke - 1
-		if(self.TicksSinceSpoke == 0) then
-			self.userName:ReadString(self.player:getForname() );
-			self.JustSpoke = false
-			self.SayLine1 = ""
-		end	
-	end
+
+		if (not self.userName) or ((not self.JustSpoke) and ((not self:isInCell()) or (self:Get():getAlpha() ~= 1.0) or getSpecificPlayer(0)==nil or (not getSpecificPlayer(0):CanSee(self.player)))) then return false end
 		
-	local sx = IsoUtils.XToScreen(self:Get():getX(), self:Get():getY(), self:Get():getZ(), 0);
-	local sy = IsoUtils.YToScreen(self:Get():getX(), self:Get():getY(), self:Get():getZ(), 0);
-	sx = sx - IsoCamera.getOffX() - self:Get():getOffsetX();
-	sy = sy - IsoCamera.getOffY() - self:Get():getOffsetY();
+		if(self.JustSpoke == true) and (self.TicksSinceSpoke == 0) then
+			self.TicksSinceSpoke = 250	
+			
+			if (Option_Display_Survivor_Names == 1) then
+				self.userName:ReadString(self.SayLine1)
+			end			
+			if (Option_Display_Survivor_Names == 2) then
+				self.userName:ReadString(self.player:getForname() .."\n" .. self.SayLine1)
+			end
+			
+		elseif(self.TicksSinceSpoke > 0) then
+			self.TicksSinceSpoke = self.TicksSinceSpoke - 1
+			if(self.TicksSinceSpoke == 0) then
+				if (Option_Display_Survivor_Names == 1) then
+					self.userName:ReadString("");
+				end				
+				if (Option_Display_Survivor_Names == 2) then
+					self.userName:ReadString(self.player:getForname() );
+				end
+				self.JustSpoke = false
+				self.SayLine1 = ""
+			end	
+		end
+			
+		local sx = IsoUtils.XToScreen(self:Get():getX(), self:Get():getY(), self:Get():getZ(), 0);
+		local sy = IsoUtils.YToScreen(self:Get():getX(), self:Get():getY(), self:Get():getZ(), 0);
+		sx = sx - IsoCamera.getOffX() - self:Get():getOffsetX();
+		sy = sy - IsoCamera.getOffY() - self:Get():getOffsetY();
 
-	sy = sy - 128
+		sy = sy - 128
 
-	sx = sx / getCore():getZoom(0)
-	sy = sy / getCore():getZoom(0)
+		sx = sx / getCore():getZoom(0)
+		sy = sy / getCore():getZoom(0)
 
-	sy = sy - self.userName:getHeight()
+		sy = sy - self.userName:getHeight()
 
-	self.userName:AddBatchedDraw(sx, sy, true)
+		self.userName:AddBatchedDraw(sx, sy, true)
 
+end
+
+function SuperSurvivor:setHostile(toValue) 		-- Moved up, to find easier
+	if (Option_Display_Hostile_Color == 2) then	-- SuperSurvivorsMod.lua
+		if(toValue) then
+			self.userName:setDefaultColors(128,128, 128, 255);
+			self.userName:setOutlineColors(180,0, 0,255);
+		else		
+			self.userName:setDefaultColors(255,255, 255, 255);
+			self.userName:setOutlineColors(0,0, 0,255);	
+		end
+		self.player:getModData().isHostile = toValue
+		if(ZombRand(2) == 1) then 
+			self.player:getModData().isRobber = true
+		end
+	end
 end
 
 function SuperSurvivor:SpokeTo(playerID)
@@ -1715,19 +1744,7 @@ function SuperSurvivor:walkTowards(x,y,z)
 
 end
 
-function SuperSurvivor:setHostile(toValue)
-	if(toValue) then
-		self.userName:setDefaultColors(128,128, 128, 255);
-		self.userName:setOutlineColors(180,0, 0,255);
-	else		
-		self.userName:setDefaultColors(255,255, 255, 255);
-		self.userName:setOutlineColors(0,0, 0,255);	
-	end
-	self.player:getModData().isHostile = toValue
-	if(ZombRand(2) == 1) then 
-		self.player:getModData().isRobber = true
-	end
-end
+
 
 function SuperSurvivor:walkToDirect(square)
 
@@ -2070,7 +2087,6 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 	-- This only tells the other function there's a enemy nearby as long as the npc isn't stuck in front of a blocked off door
 	if(closestNumber ~= nil) then 
 		self.LastEnemeySeen = spottedList:get(closestNumber)
-		
 		return self.LastEnemeySeen
 	end
 	
@@ -2322,21 +2338,21 @@ function SuperSurvivor:NPC_CheckPursueScore()
 	if (self.LastEnemeySeen ~= nil) then
 	local zRangeToPursue = 0 
 
-	-- ------------------------------------  --
-	-- Keep pursue from happening when 	
-	-- lots of enemies the npc sees --		
-	-- ------------------------------------  --		
-	if (not self:getGroupRole() == "Companion") and ( ((self:getSeenCount() > 4) and (self:isEnemyInRange()) and (Enemy_Is_a_Zombie)) or (self:isTooScaredToFight()) ) then
-		zRangeToPursue = 0
-		self:zDebugSayPTSC(zRangeToPursue,"Fear_0")
-		return zRangeToPursue	
-	end
+		-- ------------------------------------  --
+		-- Keep pursue from happening when 	
+		-- lots of enemies the npc sees --		
+		-- ------------------------------------  --		
+		if (not self:getGroupRole() == "Companion") and ( ((self:getSeenCount() > 4) and (self:isEnemyInRange()) and (Enemy_Is_a_Zombie)) or (self:isTooScaredToFight()) ) then
+			zRangeToPursue = 0
+			self:zDebugSayPTSC(zRangeToPursue,"Fear_0")
+			return zRangeToPursue	
+		end
 
-	if (self.LastEnemeySeen == nil) and (self.player == nil) then
-		self:zDebugSayPTSC(zRangeToPursue,"0_CantFind")
-		zRangeToPursue = 0
-		return zRangeToPursue
-	end	
+		if (self.LastEnemeySeen == nil) and (self.player == nil) then
+			self:zDebugSayPTSC(zRangeToPursue,"0_CantFind")
+			zRangeToPursue = 0
+			return zRangeToPursue
+		end	
 
 
 	
@@ -2830,13 +2846,26 @@ function SuperSurvivor:update()
 	self:DoVision() -- Moving this up to the top
 	
 	-- I know this says 'not companion' but it's so good to use currently.
-	-- It doesn't reset known enemy count
-	if (Option_Perception_Bonus == 2) then
-		if (self:getGroupRole() ~= "Companion") then 
-			self:Companion_DoSixthSenseScan() 
+	-- It doesn't reset known enemy count. (Also marked lines is for debugging exclusive.)
+--	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 10) then
+	if (Option_Perception_Bonus == 2) then	
+		if (not (self:getGroupRole() == "Companion")) then -- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
+			if (not (self:usingGun()) and (self.isHostile == true)) then
+				self:Companion_DoSixthSenseScan() 
+			--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
+			--else
+			--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH A====")
+			end
+		--else
+		--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH B ====")
 		end
+	--else
+	--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH C ====")
 	end
-
+--	end
+	
+	
+	
 	self.player:setBlockMovement(true)
 	
 	--self:CleanUp(0.988); -- slowly reduces current blood/dirt by this percent - Ryuu: I have no idea why this is marked out. Guessing it didn't work?
