@@ -3,7 +3,11 @@
 
 if not SurvivorRandomSuits then
 	SurvivorRandomSuits = {}
-	SurvivorRandomSuits["Common"] = {} -- 70%
-	SurvivorRandomSuits["Normal"] = {}  -- 20%
-	SurvivorRandomSuits["Rare"] = {}	-- 10%
+	SurvivorRandomSuits["Common"] = {}
+	SurvivorRandomSuits["Uncommon"] = {}
+	SurvivorRandomSuits["Normal"] = {}
+	SurvivorRandomSuits["Rare"] = {}
+	SurvivorRandomSuits["VeryRare"] = {}
+	SurvivorRandomSuits["Legendary"] = {}
+	SurvivorRandomSuits["Backup"] = {}
 end
