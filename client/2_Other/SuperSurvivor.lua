@@ -4030,66 +4030,28 @@ function SuperSurvivor:SuitUp(SuitName)
 			self:WearThis("Base.Jacket_Chef");
 			self:WearThis("Base.Trousers_Chef");
 			self:WearThis("Base.Shoes_Black");
-		elseif(SuitName == "Doctor") then
-			self:WearThis("Base.Hat_SurgicalCap_Blue");
-			self:WearThis("Base.JacketLong_Doctor");
-			self:WearThis("Base.Trousers_Scrubs");
-			self:WearThis("Base.Shoes_Black");
---Edits
-	if isModEnabled("STR") then
-		elseif(SuitName == "Police") then
-			self:WearThis("STR.Hat_PoliceKSP");
-			self:WearThis("STR.TShirt_PoliceKSP");
-			self:WearThis("STR.Shirt_PoliceKSP");
-			self:WearThis("STR.Trousers_PoliceKSP_Summer");
-			self:WearThis("STR.Jacket_PoliceKSP");
-			self:WearThis("STR.Belt_PoliceDuty");
-			self:WearThis("STR.Chest_Walkie");
-			self:WearThis("Base.Shoes_Black");
-		elseif(SuitName == "Inmate") then
-			self:WearThis("STR.Boilersuit_MeadeGenPopPrisoner");
-			self:WearThis("Base.Shoes_Slippers");					
-			self:WearThis("Base.Socks_Ankle");					
-			self:WearThis("Base.Tshirt_DefaultTEXTURE");
-			self:WearThis("Base.Belt2");
-		elseif(SuitName == "Guard") then
-			self:WearThis("STR.Hat_BaseballCap_DOC_Meade");
-			self:WearThis("STR.TShirt_DOC_Meade");
-			self:WearThis("STR.Shirt_DOC_Meade");
-			self:WearThis("STR.Trousers_DOC_Meade");
-			self:WearThis("STR.Jacket_DOC_Meade");
-			self:WearThis("Base.Shoes_Black");
-		elseif(SuitName == "Fireman") then
-			self:WearThis("STR.Hat_Fireman_Meade_Yellow");
-			self:WearThis("STR.TShirt_Profession_FiremanBlue_Meade");
-			self:WearThis("STR.Trousers_Fireman_Meade_Khaki");
-			self:WearThis("STR.Jacket_Fireman_Meade_Khaki");
-			self:WearThis("Base.Shoes_BlackBoots");
-	elseif not isModEnabled("STR") then
-		elseif(SuitName == "Police") then
-			self:WearThis("Base.Hat_Police_Grey");
-			self:WearThis("Base.Jacket_Police");
-			self:WearThis("Base.Trousers_PoliceGrey");
-			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Inmate") then
-			self:WearThis("Base.Boilersuit_Prisoner");
-			self:WearThis("Base.Shoes_Slippers");					
-			self:WearThis("Base.Socks_Ankle");					
-			self:WearThis("Base.Tshirt_DefaultTEXTURE");
-			self:WearThis("Base.Belt2");
-		elseif(SuitName == "Guard") then
-			self:WearThis("Base.Shirt_PrisonGuard");
-			self:WearThis("Base.Trousers_PrisonGuard");
-			self:WearThis("Base.Shoes_BlackBoots");
 		elseif(SuitName == "Fireman") then
 			self:WearThis("Base.Hat_Fireman");
 			self:WearThis("Base.Jacket_Fireman");
 			self:WearThis("Base.Trousers_Fireman");
 			self:WearThis("Base.Shoes_BlackBoots");
-	end
+		elseif(SuitName == "Doctor") then
+			self:WearThis("Base.Hat_SurgicalCap_Blue");
+			self:WearThis("Base.JacketLong_Doctor");
+			self:WearThis("Base.Trousers_Scrubs");
+			self:WearThis("Base.Shoes_Black");
+		elseif(SuitName == "Police") then
+			self:WearThis("Base.Hat_Police_Grey");
+			self:WearThis("Base.Jacket_Police");
+			self:WearThis("Base.Trousers_PoliceGrey");
+			self:WearThis("Base.Shoes_BlackBoots");
 		elseif(SuitName == "Farmer") then
 			self:WearThis("Base.Boilersuit");
 			self:WearThis("Base.Dungarees");
+			self:WearThis("Base.Shoes_BlackBoots");
+		elseif(SuitName == "Guard") then
+			self:WearThis("Base.Shirt_PrisonGuard");
+			self:WearThis("Base.Trousers_PrisonGuard");
 			self:WearThis("Base.Shoes_BlackBoots");
 		elseif(SuitName == "Formal") then
 			self:WearThis("Base.Shirt_FormalWhite");
@@ -4117,8 +4079,13 @@ function SuperSurvivor:SuitUp(SuitName)
 			self:WearThis("Base.Shirt_Workman");					
 			self:WearThis("Base.Trousers_DefaultTEXTURE");					
 			self:WearThis("Base.Shoes_BlackBoots");
+		elseif(SuitName == "Inmate") then
+			self:WearThis("Base.Boilersuit_Prisoner");
+			self:WearThis("Base.Shoes_Slippers");					
+			self:WearThis("Base.Socks_Ankle");					
+			self:WearThis("Base.Tshirt_DefaultTEXTURE");
+			self:WearThis("Base.Belt2");
 		else -- random basic clothes
---Edits End
 			
 			getRandomSurvivorSuit(self)
 		
