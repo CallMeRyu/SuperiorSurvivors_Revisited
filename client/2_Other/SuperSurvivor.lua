@@ -3051,13 +3051,6 @@ end
 function SuperSurvivor:OnDeath()
 	print(self:getName() .. " has died")
 
-	-- Cannibal support
-	if not self.player:getBodyDamage():isInfected() then
-		for i=1, ZombRand(1,10) do
-			self.player:getInventory():AddItem("Subpar.StrangeMeat")
-		end
-	end
-
 	local ID = self:getID()
 	SSM:OnDeath(ID)
 	
