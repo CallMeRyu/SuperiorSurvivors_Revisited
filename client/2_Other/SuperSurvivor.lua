@@ -1038,7 +1038,12 @@ function SuperSurvivor:DebugSay(text)
 	local zDebugSayDistance = DebugOption_DebugSay_Distance
 
 	if(DebugOptions == true and DebugOption_DebugSay == 1) then
-		print(text)
+		
+		if (getDistanceBetween(getSpecificPlayer(0),self.player) < 10) then
+			print("")
+			print("============="..tostring(self:getName()).." = "..text)
+		end
+		
 		
 		if (getDistanceBetween(getSpecificPlayer(0),self.player) < zDebugSayDistance) then -- if far enough away from player, don't do anything
 		
@@ -1210,7 +1215,6 @@ function SuperSurvivor:DebugSay(text)
 				
 		end
 		
-		print(text)
 		self:Speak(text)
 		
 	end
@@ -2358,6 +2362,10 @@ function SuperSurvivor:NPC_CheckPursueScore()
 			return zRangeToPursue
 		end	
 
+		if (self:getTaskManager():getCurrentTask() == "Enter New Building") then
+			zRangeToPursue = 0
+			return zRangeToPursue
+		end
 
 	
 		local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
@@ -2366,10 +2374,15 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		local NPCsDangerSeen   	= self:getDangerSeenCount()
 		local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
 
-
+		-- To make enemies stop chasing after their target cause too far away. 
+		-- Unless you have a real reason, you wouldn't pursue a target forever.
+		if (Distance_AnyEnemy > 10) and (self:RealCanSee(self.LastEnemeySeen)) then
+			zRangeToPursue = 0
+			return zRangeToPursue		
+		end
 
 		-- -------------------------------------- --
-		--  Companion: Prevent from going too far away
+		--  Companion: They should always be cautious of their surroundings
 		-- -------------------------------------- --
 		if ((self:getGroupRole() == "Companion") and (self:isEnemyInRange(self.LastEnemeySeen))) then
 			zRangeToPursue = 5
@@ -2381,23 +2394,23 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		-- IFOD 'In front of door' 	--
 		-- ------------------------ --
 		if (self:NPC_TargetIsOutside() == true) and (self:NPC_IsOutside() == true)	then -- NPC's Target AND the NPC itself are Both OUT-SIDE
-			self:zDebugSayPTSC(zRangeToPursue,"1")
+			self:zDebugSayPTSC(zRangeToPursue,"_door_1")
 			zRangeToPursue = 6
 			return zRangeToPursue
 		end	
 		if (self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == false) then -- NPC's Target AND the NPC itself are Both INSIDE
-			self:zDebugSayPTSC(zRangeToPursue,"2")
+			self:zDebugSayPTSC(zRangeToPursue,"_door_2")
 			zRangeToPursue = 3
 			return zRangeToPursue
 		end	
 		if ((self:NPC_TargetIsOutside() == false) and (self:NPC_IsOutside() == true )) then 	-- NPC's Target Is Inside | NPC itself Is OUTSIDE		
-			self:zDebugSayPTSC(zRangeToPursue,"6")
-			zRangeToPursue = 3
+			self:zDebugSayPTSC(zRangeToPursue,"_door_6")
+			zRangeToPursue = 0
 			return zRangeToPursue
 		end			
 		if (self:NPC_TargetIsOutside() == true ) and (self:NPC_IsOutside() == false)  then 	-- NPC's Target Is OUTSIDE | NPC itself Is Inside	
-			self:zDebugSayPTSC(zRangeToPursue,"7")
-			zRangeToPursue = 2
+			self:zDebugSayPTSC(zRangeToPursue,"_door_7")
+			zRangeToPursue = 1
 			return zRangeToPursue
 		end	
 		
@@ -2440,7 +2453,8 @@ function SuperSurvivor:NPC_CheckPursueScore()
 	
 	-- This should keep the NPC from returning 0 when the local variable at top is 0
 	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) and (zRangeToPursue == 0) then
-		self:zDebugSayPTSC(zRangeToPursue,"144")
+		self:zDebugSayPTSC(zRangeToPursue,"LE_144")
+		self.LastEnemeySeen = nil -- To force npc to stop pursuing the first target to re-scan
 		return zRangeToPursue
 	end
 
@@ -2463,7 +2477,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 	
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 5) and (self:getGroupRole() ~= "Companion") then
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 1) and (self:getGroupRole() ~= "Companion") then
-	if (self.LastEnemeySeen == nil)  then
+	if (self.LastEnemeySeen == nil)   then
 		self:DoHumanEntityScan()
 	end
 	
@@ -2808,6 +2822,7 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 			)
 		) or (self:getCurrentTask() == "Pursue")
 	) then
+		self:DebugSay("CheckForIfStuck Function Is happening!")
 		self:getTaskManager():AddToTop(AttemptEntryIntoBuildingTask:new(self, self.TargetBuilding))
 		self.TicksSinceSquareChanged = 0
 	end
@@ -2855,7 +2870,9 @@ function SuperSurvivor:update()
 	if (Option_Perception_Bonus == 2) then	
 		if (not (self:getGroupRole() == "Companion")) then -- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
 			if (not (self:usingGun()) and (self.isHostile == true)) then
-				self:Companion_DoSixthSenseScan() 
+				if (not (self:RealCanSee(self.LastEnemeySeen))) then
+					self:Companion_DoSixthSenseScan() 
+				end
 			--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
 			--else
 			--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH A====")
