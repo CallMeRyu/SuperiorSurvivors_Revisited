@@ -131,11 +131,12 @@ function AIManager(TaskMangerIn)
 			-- ------------------------- --
 			
 			if (
-					(TaskMangerIn:getCurrentTask() ~= "Attack") 
-				and (TaskMangerIn:getCurrentTask() ~= "Threaten") 
-				and (TaskMangerIn:getCurrentTask() ~= "First Aide") 
-				and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
-				) 
+					(TaskMangerIn:getCurrentTask() ~= "Attack") and 
+					(TaskMangerIn:getCurrentTask() ~= "Threaten") and 
+					(TaskMangerIn:getCurrentTask() ~= "First Aide") and 
+					(ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) and
+					(not ASuperSurvivor:HasFellDown())
+			) 
 			and (
 				(ASuperSurvivor:hasWeapon() and 		((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
 				or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
