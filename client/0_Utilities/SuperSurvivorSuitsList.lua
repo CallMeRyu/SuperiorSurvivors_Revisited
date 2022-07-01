@@ -3,38 +3,38 @@ require "0_Utilities/SuperSurvivorSuitsRegistry"
 -- this file has the survivor's suits
 
 if(isModEnabled("Brita_2")) then
-	SurvivorRandomSuits["Rare"]["Army"] = {
+	SurvivorRandomSuits["VeryRare"]["Army"] = {
     "Base.Hat_BeretArmy", -- HEAD
     "Base.Tshirt_ArmyGreen", "Base.Jacket_CoatArmy", "Brita_2.Bag_Plate_Carrier", "Brita_2.Bag_D3M", -- BODY 
     "Base.Trousers_ArmyService", -- LEGS
     "Base.Shoes_ArmyBoots" --- FEET
   }
-	SurvivorRandomSuits["Rare"]["ArmyCamo"] = {
+	SurvivorRandomSuits["VeryRare"]["ArmyCamo"] = {
     "Brita_2.Hat_FAST_Opscore", "Brita_2.Hat_Sordin", 
     "Base.Tshirt_CamoDesert", "Base.Shirt_CamoDesert", "Base.Jacket_ArmyCamoDesert", "Brita_2.Bag_Plate_Carrier", "Brita_2.Bag_D3M", 
     "Base.Trousers_CamoDesert", 
     "Base.Shoes_ArmyBootsDesert"
   }
-	SurvivorRandomSuits["Rare"]["MarinesCamo"] = {
+	SurvivorRandomSuits["VeryRare"]["MarinesCamo"] = {
     "Base.Hat_Army", "Brita_2.Hat_Helmet_Headset", 
     "Base.Tshirt_CamoGreen", "Base.Shirt_CamoGreen", "Base.Jacket_ArmyCamoGreen", "Base.Vest_BulletArmy", "Brita_2.Bag_D3M", 
     "Base.Trousers_CamoGreen", 
     "Base.Shoes_ArmyBoots"
   }
 else
-	SurvivorRandomSuits["Rare"]["Army"] = {
+	SurvivorRandomSuits["VeryRare"]["Army"] = {
     "Base.Hat_BeretArmy", 
     "Base.Tshirt_ArmyGreen", "Base.Jacket_CoatArmy", "Base.Bag_ALICEpack", 
     "Base.Trousers_ArmyService", 
     "Base.Shoes_ArmyBoots"
   }
-	SurvivorRandomSuits["Rare"]["ArmyCamo"] = {
+	SurvivorRandomSuits["VeryRare"]["ArmyCamo"] = {
     "Base.Tshirt_CamoDesert", 
     "Base.Shirt_CamoDesert", "Base.Jacket_ArmyCamoDesert", "Base.Bag_ALICEpack", 
     "Base.Trousers_CamoDesert", 
     "Base.Shoes_ArmyBootsDesert"
   }
-	SurvivorRandomSuits["Rare"]["MarinesCamo"] = {
+	SurvivorRandomSuits["VeryRare"]["MarinesCamo"] = {
     "Base.Hat_Army", 
     "Base.Tshirt_CamoGreen", "Base.Shirt_CamoGreen", "Base.Jacket_ArmyCamoGreen", "Base.Bag_ALICEpack", "Base.Vest_BulletArmy", 
     "Base.Trousers_CamoGreen", 
@@ -158,33 +158,33 @@ SurvivorRandomSuits["Normal"]["Student2"] = {
   "Base.TrousersMesh_DenimLight", 
   "Base.Socks_Ankle", "Base.Shoes_TrainerTINT"
 }
-SurvivorRandomSuits["Normal"]["Office1M"] = {
+SurvivorRandomSuits["Uncommon"]["Office1M"] = {
   "Base.Tie_Full", "Base.Shirt_FormalWhite", 
   "Base.Trousers_Suit", 
   "Base.Socks_Ankle", "Base.Shoes_Black"
 }
-SurvivorRandomSuits["Normal"]["Office1F"] = {
+SurvivorRandomSuits["Uncommon"]["Office1F"] = {
   "Base.Shirt_FormalWhite", 
   "Base.Skirt_Normal", 
   "Base.Socks_Long", "Base.Shoes_Black"
 }
-SurvivorRandomSuits["Normal"]["Biker1"] = {
+SurvivorRandomSuits["Uncommon"]["Biker1"] = {
   "Base.Hat_Bandana", "Base.Glasses_Aviators", 
   "Base.Jacket_Black", "Base.Tshirt_Rock", 
   "Base.TrousersMesh_DenimLight", 
   "Base.Socks_Ankle", "Base.Shoes_Black"
 }
 
-SurvivorRandomSuits["Normal"]["Generic1F"] = {
+SurvivorRandomSuits["Uncommon"]["Generic1F"] = {
   "Base.Dress_Normal", 
   "Base.Socks_Ankle", "Base.Shoes_Black"
 }
-SurvivorRandomSuits["Normal"]["Generic2F"] = {
+SurvivorRandomSuits["Uncommon"]["Generic2F"] = {
   "Base.Hat_Beret", 
   "Base.Dress_Knees", 
   "Base.Socks_Long", "Base.Shoes_Black"
 }
-SurvivorRandomSuits["Normal"]["Generic3F"] = {
+SurvivorRandomSuits["Uncommon"]["Generic3F"] = {
   "Base.Dress_Long", 
   "Base.Socks_Long", "Base.Shoes_Black"
 }
@@ -227,6 +227,11 @@ SurvivorRandomSuits["Common"]["Generic4M"] = {
 }
 SurvivorRandomSuits["Common"]["Basic1"] = {
   "Base.Hat_BaseballCapBlue", "Base.Shirt_HawaiianRed", 
+  "Base.TrousersMesh_DenimLight", 
+  "Base.Shoes_Black"
+}
+SurvivorRandomSuits["Backup"]["Backup1"] = {
+  "Base.Shirt_HawaiianRed", 
   "Base.TrousersMesh_DenimLight", 
   "Base.Shoes_Black"
 }

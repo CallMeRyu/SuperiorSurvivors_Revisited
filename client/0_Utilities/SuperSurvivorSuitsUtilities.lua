@@ -15,20 +15,61 @@ end
 
 function getRandomSurvivorSuit(SS)
 
-	local roll = ZombRand(1,100)
+	local roll = ZombRand(0,101)
 	local tempTable = nil
 	local randomize = false
+	
+	print(tostring(roll))
 
-	if(roll <= 10) then -- choose rare suit
-		print("Rare suit:")
-		tempTable = SurvivorRandomSuits["Rare"]
-	elseif(roll <= 20) then --  chose normal suit
-		print("Normal suit:")
-		tempTable = SurvivorRandomSuits["Normal"]
-	else --chose common suit
-		print("Common suit:")
-		tempTable = SurvivorRandomSuits["Common"]
-		randomize = false
+	if(roll == 1) then -- choose legendary suit
+		if SurvivorRandomSuits["Legendary"] then
+			print("Legendary suit:")
+			tempTable = SurvivorRandomSuits["Legendary"]
+		else 
+			print("Backup suit:")
+			tempTable = SurvivorRandomSuits["Backup"]
+		end
+	elseif(roll <= 5) then -- choose veryrare suit
+		if SurvivorRandomSuits["VeryRare"] then
+			print("VeryRare suit:")
+			tempTable = SurvivorRandomSuits["VeryRare"]
+		else 
+			print("Backup suit:")
+			tempTable = SurvivorRandomSuits["Backup"]
+		end
+	elseif(roll <= 15) then -- choose rare suit
+		if SurvivorRandomSuits["Rare"] then
+			print("Rare suit:")
+			tempTable = SurvivorRandomSuits["Rare"]
+		else 
+			print("Backup suit:")
+			tempTable = SurvivorRandomSuits["Backup"]
+		end
+	elseif(roll <= 25) then -- chose normal suit
+		if SurvivorRandomSuits["Normal"] then
+			print("Normal suit:")
+			tempTable = SurvivorRandomSuits["Normal"]
+		else 
+			print("Backup suit:")
+			tempTable = SurvivorRandomSuits["Backup"]
+		end
+	elseif(roll <= 40) then -- chose uncommon suit
+		if SurvivorRandomSuits["Uncommon"] then
+			print("Uncommon suit:")
+			tempTable = SurvivorRandomSuits["Uncommon"]
+		else 
+			print("Backup suit:")
+			tempTable = SurvivorRandomSuits["Backup"]
+		end
+	else -- chose common suit
+		if SurvivorRandomSuits["Common"] then
+			print("Common suit:")
+			tempTable = SurvivorRandomSuits["Common"]
+			randomize = false
+		else 
+			print("Backup suit:")
+			tempTable = SurvivorRandomSuits["Backup"]
+		end
 	end
 
 	--print(tostring(size(tempTable)).." total suits in category.")

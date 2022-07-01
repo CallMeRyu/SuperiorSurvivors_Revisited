@@ -410,19 +410,23 @@ function SuperSurvivor:renderName() -- To do: Make an in game option to hide ren
 end
 
 function SuperSurvivor:setHostile(toValue) 		-- Moved up, to find easier
+	
 	if (Option_Display_Hostile_Color == 2) then	-- SuperSurvivorsMod.lua
-		if(toValue) then
+		if(toValue) then	
 			self.userName:setDefaultColors(128,128, 128, 255);
 			self.userName:setOutlineColors(180,0, 0,255);
 		else		
 			self.userName:setDefaultColors(255,255, 255, 255);
 			self.userName:setOutlineColors(0,0, 0,255);	
 		end
-		self.player:getModData().isHostile = toValue
-		if(ZombRand(2) == 1) then 
-			self.player:getModData().isRobber = true
-		end
 	end
+	
+	self.player:getModData().isHostile = toValue
+	
+	if(ZombRand(2) == 1) then 
+		self.player:getModData().isRobber = true
+	end
+	
 end
 
 function SuperSurvivor:SpokeTo(playerID)
