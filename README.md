@@ -23,3 +23,9 @@ EXP 16 - U3
 ALL THE WAY UP TO legendary 1%
 
 (*Because someone will request it*)
+
+
+EXP 16 - U4
+-
+* Added an in game option to hide 'roleplay messages' the kind of messages you would see npcs do like ' *Reloading gun* ' with * in the text. You now have the ability to disable that if you like. 
+* Updated PTBR localization - Thanks to ruannuness for this!
