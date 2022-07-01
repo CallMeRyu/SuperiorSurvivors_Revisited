@@ -39,7 +39,7 @@ function ChopWoodTask:update()
 		local player = self.parent:Get()
 		--player:Say(tostring(player:getStats():getEndurance()))
 		if(player:getStats():getEndurance() < 0.50) then
-			if(self.parent.Reducer % 240 == 0) then self.parent:Speak("*".. getText("ContextMenu_SD_Resting") .."*") end
+			if(self.parent.Reducer % 240 == 0) then self.parent:RoleplaySpeak(getText("ContextMenu_SD_Resting")) end
 			player:getStats():setEndurance(player:getStats():getEndurance() + 0.01)
 			return 
 		end

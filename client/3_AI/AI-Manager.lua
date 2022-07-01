@@ -294,6 +294,9 @@ function AIManager(TaskMangerIn)
 		end
 	end
 
+
+
+
 	-- ----------------------------- --
 	-- 		Surrender Task	
 	-- ----------------------------- --

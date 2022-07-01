@@ -12,7 +12,8 @@ function SurvivorOrder(test,player,order,orderParam)
 		TaskMangerIn:setTaskUpdateLimit(0)
 		
 		ASuperSurvivor:setWalkingPermitted(true)
-		if(order == "Loot Room") and (orderParam ~= nil) then TaskMangerIn:AddToTop(LootCategoryTask:new(ASuperSurvivor,ASuperSurvivor:getBuilding(),orderParam,0)) 
+		if(order == "Loot Room") and (orderParam ~= nil) then 
+			TaskMangerIn:AddToTop(LootCategoryTask:new(ASuperSurvivor,ASuperSurvivor:getBuilding(),orderParam,0)) 
 		elseif(order == "Follow") then
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Companion")) 
 			TaskMangerIn:clear()
@@ -21,7 +22,9 @@ function SurvivorOrder(test,player,order,orderParam)
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Dustman")) 
 			local dropSquare = getSpecificPlayer(0):getCurrentSquare()
 			local storagearea = ASuperSurvivor:getGroup():getGroupArea("CorpseStorageArea")
-			if(storagearea[1] ~= 0) then dropSquare = getCenterSquareFromArea(storagearea[1],storagearea[2],storagearea[3],storagearea[4],storagearea[5]) end
+			if(storagearea[1] ~= 0) then 
+				dropSquare = getCenterSquareFromArea(storagearea[1],storagearea[2],storagearea[3],storagearea[4],storagearea[5]) 
+			end
 			TaskMangerIn:AddToTop(PileCorpsesTask:new(ASuperSurvivor,dropSquare)) 
 		elseif(order == "Guard") then 
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Guard"))
