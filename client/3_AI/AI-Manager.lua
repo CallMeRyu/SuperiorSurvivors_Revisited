@@ -20,7 +20,7 @@ function AiNPC_Job_IsNot(NPC,JobName)			-- AiNPC_Job_IsNot(NPC, "JobName")
 	return (NPC:getGroupRole() ~= JobName)
 end
 
---TODO: move to SuperSurvivorsAiManagerUtilities.lua
+--TODO: move to SuperSurvivorsAiManagerUtilities.lua (or SuperSurvivor.lua)
 
 local function AiNpc_Task_Is_AnyOf(AiTmi,...)
 	for task in arg do
@@ -40,31 +40,39 @@ local function AiNpc_IsTarget_Zombie(NPC)
 	return (instanceof(NPC.LastEnemeySeen,"IsoPlayer"))
 end
 
+local function AiNpc_HaveTooManyInjuries(NPC)
+	return NPC:isTooScaredToFight() and NPC:HasInjury()
+end
+
+local function AiNpc_IsInDanger(NPC)
+	local hasWeapon = NPC:hasWeapon() 
+	local enemyIsSurvivor = AiNpc_IsTarget_Survivor(NPC)
+	local dangerCount = NPC:getDangerSeenCount()
+	local isEnemyInRange = (NPC:isEnemyInRange(NPC.LastEnemeySeen))
+
+	return (
+		( hasWeapon and ( dangerCount >= 1 or isEnemyInRange ) )
+		or
+		( not hasWeapon and dangerCount == 1 and not enemyIsSurvivor )
+	)
+end
+
 local function AiNPC_CanAttack(AiTmi,NPC) 
 	local forbidenTasks = {"Attack","Threaten","First Aide"};
 
 	local canAttack = not AiNpc_Task_Is_AnyOf(AiTmi,forbidenTasks)
 	local isInTheSameRoom = NPC:isInSameRoom(NPC.LastEnemeySeen)
-	local isEnemyInRange = (NPC:isEnemyInRange(NPC.LastEnemeySeen))
 
 	local hasNotFellDown = not NPC:HasFellDown() 
-	local dangerCount = NPC:getDangerSeenCount()
-	local hasWeapon = NPC:hasWeapon() 
 
-	local enemyIsSurvivor = AiNpc_IsTarget_Survivor(NPC)
+	local isNotTooScaredToFight = not NPC:isTooScaredToFight()
 
 	return 
 		canAttack and 
 		isInTheSameRoom and 
-		hasNotFellDown
-		and (
-			hasWeapon and
-				(
-					dangerCount >= 1 or isEnemyInRange
-				)
-			or
-			not hasWeapon and dangerCount == 1 and not enemyIsSurvivor
-		)
+		hasNotFellDown and 
+		AiNpc_IsInDanger(NPC) and 
+		isNotTooScaredToFight
 end
 
 function AIManager(TaskMangerIn)
