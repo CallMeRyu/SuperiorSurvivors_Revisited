@@ -281,29 +281,34 @@ function AIManager(TaskMangerIn)
 	--	Removed. You want it? Add it back in the line above pursuetask		 --
 	-- --------------------------------------------------------------------- --
 
+	-- 'If enemy is in a fair range and Pursue_SC checks out, and the NPC's enemy is in Pursue Score's range'
 	-- --------------------------------------- --
 	-- Pursue Task 							   --
 	-- --------------------------------------- --
 	-- To make NPCs find their target that's very close by
 	if (AiNPC_Job_IsNot(NPC,"Companion")) then
-		if (ASuperSurvivor:Task_IsPursue_SC() == true) and (Distance_AnyEnemy <= 9) and (NPC:NPC_CheckPursueScore() > 0)   then
+		if (ASuperSurvivor:Task_IsPursue_SC() == true) and (Distance_AnyEnemy <= 9) and (Distance_AnyEnemy < NPC:NPC_CheckPursueScore() )   then
 			if ( NPC:NPC_FleeWhileReadyingGun()) then
 				
-				-- To make SURE the NPC does not pursue further | Idea: use 'NPC_CheckPursueScore > Distance_AnyEnemy+5(or a player option number)'
-				if  (Distance_AnyEnemy > 10) then
+				-- To make SURE the NPC does not pursue further
+				if  (Distance_AnyEnemy > NPC:NPC_CheckPursueScore() * 2) then
 					NPC.LastEnemeySeen = nil
 					TaskMangerIn:clear()
 					NPC:AddToTop(WanderInBaseTask:new(NPC)) -- We don't want that NPC purusing a target far away
+					NPC:DebugSay("Forget about that loser")
 				end
-		
+				
+				-- If all checks out, pursue target
 				TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
+				
 			end
 		end
 	end
 
 
 
-
+	-- I haven't tampered with this one, it does OK for the most part. 
+	-- Bug: If you shoot the gun and it has nothing in it, the NPC will still keep their hands up 
 	-- ----------------------------- --
 	-- 		Surrender Task	
 	-- ----------------------------- --
@@ -371,6 +376,15 @@ function AIManager(TaskMangerIn)
 			 end
 		end
 	end
+	
+	-- New: To attempt players that are NOT trying to encounter a fight, should be able to run away. maybe a dice roll for the future?
+	if (EnemyIsSurvivor) and (TaskMangerIn:getCurrentTask() == "Threaten") and (Distance_AnyEnemy > 10) then
+		TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
+		TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor,nil))	
+		TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
+		TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))
+	end
+	
 	
 	-- ----------------------------- --
 	-- find safe place if injured and enemies near		this needs updating
