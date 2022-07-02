@@ -47,3 +47,10 @@ NPCs should be a little bit better reacting with their surroundings.
 * Weapons expanded* Just like the clothing, you now can make your own addon mods for base weapons and modded weapons into superior survivors!
 
 * Threaten task edit: Now there should be a chance you can run away from a npc threatening you to go away
+
+
+EXP 16 - U6
+-
+I *believe* I have made it where the NPCs, when using a gun and reloading it, AND there is zombies near said npc, 99% of the time, that NPC will run away.
+This *MAY* have side effects of hostile NPCs running away from you, but that could also be counted as a feature if you turn off hostile colors in the options menu.
+As per always, feedback requested.
