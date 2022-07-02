@@ -40,7 +40,8 @@ Experimental 16 - U5
 * NPCs under the new Pursue_se function should now obey locked door rules more often and will be less likely to get stuck once again =)
 
 * Made adjustments to the Pursue_se and scores functions.
-NPCs should be a little bit better reacting with their surroundings. 
+NPCs should be a little bit better reacting with their surroundings.
+
 (*THIS WILL NEED TESTING & FEEDBACK, PLEASE*)
 
 *Weapons expanded* Just like the clothing, you now can make your own addon mods for base weapons and modded weapons into superior survivors!
