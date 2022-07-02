@@ -52,5 +52,5 @@ NPCs should be a little bit better reacting with their surroundings.
 EXP 16 - U6
 -
 I *believe* I have made it where the NPCs, when using a gun and reloading it, AND there is zombies near said npc, 99% of the time, that NPC will run away.
-This *MAY* have side effects of hostile NPCs running away from you, but that could also be counted as a feature if you turn off hostile colors in the options menu.
+This *MAY* have side effects of hostile NPCs running away from you, but that could also be counted as a feature if you turn off hostile colors in the options menu. Also do not worry, this does not effect followers (unless the follower bugs out because some other unforseen reason)
 As per always, feedback requested.
