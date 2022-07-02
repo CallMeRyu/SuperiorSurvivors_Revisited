@@ -2,6 +2,12 @@ require "0_Utilities/SuperSurvivorSuitsRegistry"
 
 -- this file has the survivor's suits
 
+SurvivorRandomSuits["Legendary"]["Bathrobe1"] = {
+  "Base.Hat_ShowerCap",
+  "Base.LongCoat_Bathrobe", 
+  "Base.Shoes_Slippers"
+}
+
 if(isModEnabled("Brita_2")) then
 	SurvivorRandomSuits["VeryRare"]["Army"] = {
     "Base.Hat_BeretArmy", -- HEAD
@@ -227,11 +233,6 @@ SurvivorRandomSuits["Common"]["Generic4M"] = {
 }
 SurvivorRandomSuits["Common"]["Basic1"] = {
   "Base.Hat_BaseballCapBlue", "Base.Shirt_HawaiianRed", 
-  "Base.TrousersMesh_DenimLight", 
-  "Base.Shoes_Black"
-}
-SurvivorRandomSuits["Backup"]["Backup1"] = {
-  "Base.Shirt_HawaiianRed", 
   "Base.TrousersMesh_DenimLight", 
   "Base.Shoes_Black"
 }

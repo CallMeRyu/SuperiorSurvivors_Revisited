@@ -76,17 +76,19 @@ function AttemptEntryIntoBuildingTask:update()
 		self.TargetSquare = nil
 		self.parent:walkToDirect(outsidesquare)
 		self.parent:walkTo(outsidesquare)
-	--	self.TryWindow = true
+		self:giveUpOnBuilding() 
+		self.TryWindow = true
 	else
 		self.parent.TicksSinceSquareChanged = 0
 	end
-	if (self.parent:inFrontOfBarricadedWindowAlt()) and (self.Door ~= nil) then 
-		self.parent:Speak("This window is blocked off!")
-		self.parent:MarkBuildingExplored(self.parent:getBuilding())
-		self.TargetSquare = nil
-		self.parent:walkToDirect(outsidesquare)
-		self.parent:walkTo(outsidesquare)
-	--	self:giveUpOnBuilding() 
+	--	if (self.parent:inFrontOfBarricadedWindowAlt()) and (self.Door ~= nil) then 
+	if (self.parent:inFrontOfBarricadedWindowAlt()) then 
+	--	self.parent:Speak("This window is blocked off!")
+	--	self.parent:MarkBuildingExplored(self.parent:getBuilding())
+	----	self.TargetSquare = nil
+	--	self.parent:walkToDirect(outsidesquare)
+	--	self.parent:walkTo(outsidesquare)
+	----	self:giveUpOnBuilding() 
 	end
 
 	if (self.parent.TicksSinceSquareChanged > 10) and ((self.parent:inFrontOfBarricadedWindowAlt()) or (self.parent:inFrontOfLockedDoor())) then
@@ -204,6 +206,7 @@ function AttemptEntryIntoBuildingTask:update()
 									self.parent.player:setBlockMovement(false)
 									self.parent.player:climbThroughWindow(self.Window)
 									self.parent.player:setBlockMovement(true)
+									--ISTimedActionQueue.add(ISClimbThroughWindow:new(self.parent.player, self.Window, 0))
 									--ISTimedActionQueue.add(ISClimbThroughWindow:new(self.parent.player, self.Window, 0))
 									--self.parent.player:hopFence(self.parent.player:getLastdir() , false)
 									--self.parent.player:Say("climbing through")

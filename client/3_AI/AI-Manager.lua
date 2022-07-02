@@ -134,7 +134,7 @@ function AIManager(TaskMangerIn)
 	--	or ( (DistanceBetweenMainPlayer > 2) and    (    getSpecificPlayer(0):getModData().Running == true        	    ) ) -- Player Inside / NPC Outside
 		) 
 		then 
-		  if (DistanceBetweenMainPlayer > 0) then -- Double checker
+		  if (DistanceBetweenMainPlayer > 10) then -- Double checker
 				TaskMangerIn:clear()
 				TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
 				NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
@@ -148,16 +148,17 @@ function AIManager(TaskMangerIn)
 
 	if (AiNPC_Job_Is(NPC,"Companion")) then
 	
-		-- ------------------------- --
-		-- Combat	   				 
+		-- ------------------------- --   				 
 		-- reminder: NPC:NPCTask_DoAttack() already 
 		-- checks 'if task ~= attack, then do attack' in it
-		-- Adding it to here just makes the companions freeze\
-		-- don't add 'and AiNPC_TaskIsNot(AiTmi,"Pursue")' to attack 
+		-- Adding it to here too just makes the companions freeze
 		-- ------------------------- --
 		-- Edit: I have trid so many other ways to do this. Any other way the companion just doesn't do anything.
 		-- So it's staying like this for now
 		-- Don't add 'and AiNPC_TaskIsNot(AiTmi,"First Aide")' because you want companions to still attack enemies while hurt
+		-- ------------------------- --
+
+
 		-- ------------ --
 		-- Pursue
 		-- ------------ --
@@ -186,7 +187,7 @@ function AIManager(TaskMangerIn)
 					(not ASuperSurvivor:HasFellDown())
 			) 
 			and (
-				(ASuperSurvivor:hasWeapon() and 		((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
+				   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or  (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
 				or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
 				)
 				
@@ -276,6 +277,7 @@ function AIManager(TaskMangerIn)
 		if (IHaveInjury) then
 			if    (TaskMangerIn:getCurrentTask() ~= "First Aide") 
 			  and (TaskMangerIn:getCurrentTask() ~= "Find Building") 
+		--	  and (TaskMangerIn:getCurrentTask() ~= "Equip Weapon") 	-- New : Needs testing though
 			  
 			  and (TaskMangerIn:getCurrentTask() ~= "Flee") 
 			  and (TaskMangerIn:getCurrentTask() ~= "Doctor") 
@@ -330,22 +332,34 @@ function AIManager(TaskMangerIn)
 	--	Removed. You want it? Add it back in the line above pursuetask		 --
 	-- --------------------------------------------------------------------- --
 
+	-- 'If enemy is in a fair range and Pursue_SC checks out, and the NPC's enemy is in Pursue Score's range'
 	-- --------------------------------------- --
 	-- Pursue Task 							   --
 	-- --------------------------------------- --
 	-- To make NPCs find their target that's very close by
 	if (AiNPC_Job_IsNot(NPC,"Companion")) then
-		if (ASuperSurvivor:Task_IsPursue_SC() == true) then
+		if (ASuperSurvivor:Task_IsPursue_SC() == true) and (Distance_AnyEnemy <= 9) and (Distance_AnyEnemy < NPC:NPC_CheckPursueScore() )   then
 			if ( NPC:NPC_FleeWhileReadyingGun()) then
-			
+				
+				-- To make SURE the NPC does not pursue further
+				if  (Distance_AnyEnemy > NPC:NPC_CheckPursueScore() * 2) then
+					NPC.LastEnemeySeen = nil
+					TaskMangerIn:clear()
+					NPC:AddToTop(WanderInBaseTask:new(NPC)) -- We don't want that NPC purusing a target far away
+					NPC:DebugSay("Forget about that loser")
+				end
+				
+				-- If all checks out, pursue target
 				TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
+				
 			end
 		end
 	end
 
 
 
-
+	-- I haven't tampered with this one, it does OK for the most part. 
+	-- Bug: If you shoot the gun and it has nothing in it, the NPC will still keep their hands up 
 	-- ----------------------------- --
 	-- 		Surrender Task	
 	-- ----------------------------- --
@@ -387,6 +401,8 @@ function AIManager(TaskMangerIn)
 			and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
 			and (TaskMangerIn:getCurrentTask() ~= "Flee")
 			and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") 
+			and (NPC:NPC_CheckPursueScore() > 0) -- New: It maybe pursue, but it can be used for attack too, it's helping against door spam
+			and ( Distance_AnyEnemy < NPC:NPC_CheckPursueScore() ) -- Don't want them chasing from across the map
 			) 
 		and (
 			   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
@@ -414,6 +430,18 @@ function AIManager(TaskMangerIn)
 	end
 	
 	-- ----------------------------- --
+	-- New: To attempt players that are NOT trying to encounter a fight, 
+	-- should be able to run away. maybe a dice roll for the future?
+	-- ----------------------------- --
+	if (EnemyIsSurvivor) and (TaskMangerIn:getCurrentTask() == "Threaten") and (Distance_AnyEnemy > 10) then
+		TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
+		TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor,nil))	
+		TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
+		TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))
+	end
+	
+	
+	-- ----------------------------- --
 	-- find safe place if injured and enemies near		this needs updating
 	-- ----------------------------- --
 		--	if (TaskMangerIn:getCurrentTask() ~= "Find Building") and (TaskMangerIn:getCurrentTask() ~= "Flee") and (IHaveInjury) and (ASuperSurvivor:getDangerSeenCount() > 0) then
@@ -424,7 +452,7 @@ function AIManager(TaskMangerIn)
 			and (ASuperSurvivor:getDangerSeenCount() > 0) 
 			then
 				TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))
-				ASuperSurvivor:DebugSay("Find Safe place if Injured condition triggered! Reference Number 000_000_01")
+				ASuperSurvivor:DebugSay("Find Safe place if Injured condition triggered! Reference Number FBTII_000_01")
 			end
 		end
 	-- ----------------------------- --
@@ -467,6 +495,7 @@ function AIManager(TaskMangerIn)
 		and 
 		( 
 		   (not ASuperSurvivor:hasWeapon() and ( (ASuperSurvivor:getDangerSeenCount() > 1) or (NPC:getSeenCount() >= 4)) )  -- maybe add a 'or (ASuperSurvivor:isTooScaredToFight())' after dangerseen
+		or ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1) or ((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 3))) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
 		or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
 		or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false)
 		or (ASuperSurvivor:isTooScaredToFight())
@@ -705,7 +734,10 @@ function AIManager(TaskMangerIn)
 						end
 					end
 				end
-
+				
+			-- ModderNote: From what I've observed, companion isn't used on anything else except to follow
+			-- So exploiting that knowledge, I made the companion more of a 'class job priority' set of jobs at the top of the code.
+			-- So if you are another modder that has the torch, that's looking to make Followers listen to you more, Follower = 'companion'
 			elseif(ASuperSurvivor:getGroupRole() == "Companion") then -- Not new, this was here before
 
 					TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 	
