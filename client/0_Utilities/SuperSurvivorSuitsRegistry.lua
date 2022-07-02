@@ -9,5 +9,4 @@ if not SurvivorRandomSuits then
 	SurvivorRandomSuits["Rare"] = {}
 	SurvivorRandomSuits["VeryRare"] = {}
 	SurvivorRandomSuits["Legendary"] = {}
-	SurvivorRandomSuits["Backup"] = {}
 end
