@@ -20,21 +20,69 @@ function AiNPC_Job_IsNot(NPC,JobName)			-- AiNPC_Job_IsNot(NPC, "JobName")
 	return (NPC:getGroupRole() ~= JobName)
 end
 
+--TODO: move to SuperSurvivorsAiManagerUtilities.lua
+
+local function AiNpc_Task_Is_AnyOf(AiTmi,...)
+	for task in arg do
+		if(AiNPC_Task_Is(AiTmi,task)) then
+			return true
+		end
+	end
+
+	return false
+end
+
+local function AiNpc_IsTarget_Survivor(NPC)
+	return (instanceof(NPC.LastEnemeySeen,"IsoZombie"))
+end
+
+local function AiNpc_IsTarget_Zombie(NPC)
+	return (instanceof(NPC.LastEnemeySeen,"IsoPlayer"))
+end
+
+local function AiNPC_CanAttack(AiTmi,NPC) 
+	local forbidenTasks = {"Attack","Threaten","First Aide"};
+
+	local canAttack = not AiNpc_Task_Is_AnyOf(AiTmi,forbidenTasks)
+	local isInTheSameRoom = NPC:isInSameRoom(NPC.LastEnemeySeen)
+	local isEnemyInRange = (NPC:isEnemyInRange(NPC.LastEnemeySeen))
+
+	local hasNotFellDown = not NPC:HasFellDown() 
+	local dangerCount = NPC:getDangerSeenCount()
+	local hasWeapon = NPC:hasWeapon() 
+
+	local enemyIsSurvivor = AiNpc_IsTarget_Survivor(NPC)
+
+	return 
+		canAttack and 
+		isInTheSameRoom and 
+		hasNotFellDown
+		and (
+			hasWeapon and
+				(
+					dangerCount >= 1 or isEnemyInRange
+				)
+			or
+			not hasWeapon and dangerCount == 1 and not enemyIsSurvivor
+		)
+end
 
 function AIManager(TaskMangerIn)
 	
+	if (TaskMangerIn == nil) or (TaskMangerIn.parent == nil) then 
+		return 
+	end
+
 	local ASuperSurvivor = TaskMangerIn.parent	-- the previous variable, trying to convert to "NPC"
 	local AiTmi = TaskMangerIn 					-- Used for AiNPC_TaskIsNot code cleanup/easier-to-read
 	local NPC   = TaskMangerIn.parent			-- Used to Cleanup some of the function's long names
 	
 --	if(ASuperSurvivor.DebugMode) then ASuperSurvivor:DebugSay(ASuperSurvivor:getName().." "..ASuperSurvivor:getAIMode() .. " AIManager1 " .. TaskMangerIn:getCurrentTask()) end
 	
-	if(ASuperSurvivor:needToFollow()) or (ASuperSurvivor:Get():getVehicle() ~= nil) then return TaskMangerIn end
-	
-	if (TaskMangerIn == nil) or (ASuperSurvivor == nil) then 
-		return false 
+	if(ASuperSurvivor:needToFollow()) or (ASuperSurvivor:Get():getVehicle() ~= nil) then 
+		return 
 	end
-	
+		
 	local EnemyIsSurvivor = (instanceof(ASuperSurvivor.LastEnemeySeen,"IsoPlayer"))
 	local EnemyIsZombie = (instanceof(ASuperSurvivor.LastEnemeySeen,"IsoZombie"))
 	local EnemySuperSurvivor = nil
@@ -169,35 +217,35 @@ function AIManager(TaskMangerIn)
 	-- 	Reload Gun	    			
 	--  NPC:getDangerSeenCount() removed
 	-- --------------------------------- --
-		if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
+	if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
+	
+		if(ASuperSurvivor:getNeedAmmo())
+		and (ASuperSurvivor:hasAmmoForPrevGun()) 
+		and (IsInAction == false)
+		then
+			NPC:setNeedAmmo(false)
+			NPC:reEquipGun()
+			NPC:DebugSay("Companion RELOAD_Gun_0001")
+		end
 		
-			if(ASuperSurvivor:getNeedAmmo())
-			and (ASuperSurvivor:hasAmmoForPrevGun()) 
-			and (IsInAction == false)
-			then
-				NPC:setNeedAmmo(false)
-				NPC:reEquipGun()
-				NPC:DebugSay("Companion RELOAD_Gun_0001")
+	end
+		
+	-- --------------------------------- --
+	-- 	Ready Weapon	    			
+	--  NPC:getDangerSeenCount() removed
+	-- --------------------------------- --
+	if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
+		if
+			(IsInAction == false) and (ASuperSurvivor:getNeedAmmo() == false)  and ASuperSurvivor:usingGun() and 
+			((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and 
+			(NPC:NPC_FleeWhileReadyingGun()) 
+		then
+			ASuperSurvivor:ReadyGun(weapon)		
+			if (NPC:isSpeaking() == false) then 
+				NPC:DebugSay("Companion READY_Gun_0001") 
 			end
-			
-		end
-		
-		-- --------------------------------- --
-		-- 	Ready Weapon	    			
-		--  NPC:getDangerSeenCount() removed
-		-- --------------------------------- --
-		if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
-			if(IsInAction == false) 
-			and (ASuperSurvivor:getNeedAmmo() == false) 
-			and ASuperSurvivor:usingGun() 
-			
-			and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) 
-			and (NPC:NPC_FleeWhileReadyingGun()) 
-			then
-				ASuperSurvivor:ReadyGun(weapon)		
-				if (NPC:isSpeaking() == false) then NPC:DebugSay("Companion READY_Gun_0001") end
-			end	
-		end
+		end	
+	end
 		
 		-- ----------------------------- --
 		-- 	Equip Weapon                 -- 
