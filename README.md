@@ -31,7 +31,7 @@ EXP 16 - U4
 * Updated PTBR localization - Thanks to ruannuness for this!
 
 
-Experimental 16 - U5
+EXP 16 - U5
 -
 (since I did not post update notes in last upload)
 
