@@ -1,5 +1,6 @@
 
-
+-- IDEA: If zombies near companion while reloading or something particular, run to player if player is further out
+-- Bug: companions are pursing a target without they returning to the player when out of range
 
 -- ---------------------------------------------------------- --
 -- Functions to Attempt-Clean / Make this file easier to read --
