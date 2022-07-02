@@ -44,4 +44,4 @@ NPCs should be a little bit better reacting with their surroundings.
 
 (*THIS WILL NEED TESTING & FEEDBACK, PLEASE*)
 
-*Weapons expanded* Just like the clothing, you now can make your own addon mods for base weapons and modded weapons into superior survivors!
+* Weapons expanded* Just like the clothing, you now can make your own addon mods for base weapons and modded weapons into superior survivors!
