@@ -29,3 +29,21 @@ EXP 16 - U4
 -
 * Added an in game option to hide 'roleplay messages' the kind of messages you would see npcs do like ' *Reloading gun* ' with * in the text. You now have the ability to disable that if you like. 
 * Updated PTBR localization - Thanks to ruannuness for this!
+
+
+EXP 16 - U5
+-
+(since I did not post update notes in last upload)
+
+* Fixed the clothing mod bug returning 'legendary' rolls as null
+
+* NPCs under the new Pursue_se function should now obey locked door rules more often and will be less likely to get stuck once again =)
+
+* Made adjustments to the Pursue_se and scores functions.
+NPCs should be a little bit better reacting with their surroundings.
+
+(*THIS WILL NEED TESTING & FEEDBACK, PLEASE*)
+
+* Weapons expanded* Just like the clothing, you now can make your own addon mods for base weapons and modded weapons into superior survivors!
+
+* Threaten task edit: Now there should be a chance you can run away from a npc threatening you to go away
