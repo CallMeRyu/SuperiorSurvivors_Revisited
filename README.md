@@ -45,3 +45,5 @@ NPCs should be a little bit better reacting with their surroundings.
 (*THIS WILL NEED TESTING & FEEDBACK, PLEASE*)
 
 * Weapons expanded* Just like the clothing, you now can make your own addon mods for base weapons and modded weapons into superior survivors!
+
+* Threaten task edit: Now there should be a chance you can run away from a npc threatening you to go away
