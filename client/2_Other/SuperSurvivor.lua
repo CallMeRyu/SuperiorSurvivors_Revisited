@@ -2363,6 +2363,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		end	
 
 		if (self:getTaskManager():getCurrentTask() == "Enter New Building") then
+			self:zDebugSayPTSC(zRangeToPursue,"0_EnteringNewBuilding")
 			zRangeToPursue = 0
 			return zRangeToPursue
 		end
@@ -2439,13 +2440,13 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		-- IDEA: How ab out making this line option an in game option!
 		-- -------------------------------------- --
 		if (Distance_AnyEnemy >= 10) then 	
-			self:zDebugSayPTSC(zRangeToPursue,"12")
+			self:zDebugSayPTSC(zRangeToPursue,"12_ToFarEnemy")
 			zRangeToPursue = 0
 			return zRangeToPursue
 		end
 		
 		if (self:HasMultipleInjury()) and not (self:getGroupRole() == "Companion") then	-- Make the NPC not persist pursing until injuries are fixed
-			self:zDebugSayPTSC(zRangeToPursue,"13")
+			self:zDebugSayPTSC(zRangeToPursue,"13_Injured_NonCompanion")
 			zRangeToPursue = 0
 			return zRangeToPursue
 		end

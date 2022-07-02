@@ -136,7 +136,7 @@ function AIManager(TaskMangerIn)
 				and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
 				) 
 			and (
-				(ASuperSurvivor:hasWeapon() and 		((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
+				   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or  (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
 				or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
 				)
 				
@@ -351,6 +351,7 @@ function AIManager(TaskMangerIn)
 			and (TaskMangerIn:getCurrentTask() ~= "Flee")
 			and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") 
 			and (NPC:NPC_CheckPursueScore() > 0) -- New: It maybe pursue, but it can be used for attack too, it's helping against door spam
+			and ( Distance_AnyEnemy < NPC:NPC_CheckPursueScore() ) -- Don't want them chasing from across the map
 			) 
 		and (
 			   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
@@ -377,7 +378,10 @@ function AIManager(TaskMangerIn)
 		end
 	end
 	
-	-- New: To attempt players that are NOT trying to encounter a fight, should be able to run away. maybe a dice roll for the future?
+	-- ----------------------------- --
+	-- New: To attempt players that are NOT trying to encounter a fight, 
+	-- should be able to run away. maybe a dice roll for the future?
+	-- ----------------------------- --
 	if (EnemyIsSurvivor) and (TaskMangerIn:getCurrentTask() == "Threaten") and (Distance_AnyEnemy > 10) then
 		TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
 		TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor,nil))	
@@ -397,7 +401,7 @@ function AIManager(TaskMangerIn)
 			and (ASuperSurvivor:getDangerSeenCount() > 0) 
 			then
 				TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))
-				ASuperSurvivor:DebugSay("Find Safe place if Injured condition triggered! Reference Number 000_000_01")
+				ASuperSurvivor:DebugSay("Find Safe place if Injured condition triggered! Reference Number FBTII_000_01")
 			end
 		end
 	-- ----------------------------- --
@@ -440,6 +444,7 @@ function AIManager(TaskMangerIn)
 		and 
 		( 
 		   (not ASuperSurvivor:hasWeapon() and ( (ASuperSurvivor:getDangerSeenCount() > 1) or (NPC:getSeenCount() >= 4)) )  -- maybe add a 'or (ASuperSurvivor:isTooScaredToFight())' after dangerseen
+		or ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1) or ((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 3))) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
 		or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
 		or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false)
 		or (ASuperSurvivor:isTooScaredToFight())
