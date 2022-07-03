@@ -199,6 +199,31 @@ function getFleeSquare(fleeGuy,attackGuy)
 	return fleeGuy:getCell():getGridSquare(fleex,fleey,fleeGuy:getZ());
 end
 
+-- New Function where you can choose the distance
+function getFleeSquareAlt(fleeGuy,attackGuy,distanceToFlee)
+	local distance = distanceToFlee
+	local tempx = (fleeGuy:getX() - attackGuy:getX());
+	local tempy = (fleeGuy:getY() - attackGuy:getY());
+
+	if (tempx < 0) then 
+    tempx = -distance;
+	else 
+    tempx = distance; 
+  end
+	if (tempy < 0) then 
+    tempy = -distance
+	else 
+    tempy = distance
+  end
+
+  local fleex = fleeGuy:getX() + tempx + ZombRand(-5,5)
+  local fleey = fleeGuy:getY() + tempy + ZombRand(-5,5)
+
+	return fleeGuy:getCell():getGridSquare(fleex,fleey,fleeGuy:getZ());
+end
+
+
+
 function getTowardsSquare(moveguy,x,y,z)
 	local distance = 15
 	local tempx = (moveguy:getX() - x);
