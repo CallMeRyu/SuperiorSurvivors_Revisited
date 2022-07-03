@@ -1,0 +1,3 @@
+-- Currently nothing in here yet. Just preparing for the future
+-- RandomSurvivor(rules) will be for npcs that aren't hostile & just random npcs just roaming the world
+-- #CleanupTheCode

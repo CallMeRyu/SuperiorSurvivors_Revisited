@@ -415,7 +415,7 @@ function AIManager(TaskMangerIn)
 			  and (TaskMangerIn:getCurrentTask() ~= "Flee") 
 			  and (TaskMangerIn:getCurrentTask() ~= "Doctor") 
 			  and (TaskMangerIn:getCurrentTask() ~= "Hold Still") 
-			  and ((NPC:getSeenCount() >= 1) and (Distance_AnyEnemy <= 6))
+			  and ((NPC:getSeenCount() >= 1) and (Distance_AnyEnemy <= 6)) -- This line doesn't make sense, what if the npc needs to heal outside of hostiles?
 			then
 				TaskMangerIn:AddToTop(FirstAideTask:new(ASuperSurvivor)) -- If general healing
 				TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
@@ -896,6 +896,8 @@ function AIManager(TaskMangerIn)
 				end -- allowed to go out work end
 			end
 		end
+		
+		-- Oop, found this. I could use this for followers to get back to main player
 		if (ASuperSurvivor:getCurrentTask() == "None") and (IsInBase == false) and (not IsInAction) and (HisGroup~=nil) then
 			local baseSq = CenterBaseSquare
 			if(baseSq ~= nil) then 

@@ -249,7 +249,7 @@ function SuperSurvivorsLoadGridsquare(square)
 					local GroupSize = ZombRand(2,5) + math.floor(hours/(24*30))
 					if (GroupSize > 10) then GroupSize = 10 end
 					local oldGunSpawnChance = ChanceToSpawnWithGun 
-					ChanceToSpawnWithGun = ChanceToSpawnWithGun * 1.5
+					ChanceToSpawnWithGun = ChanceToSpawnWithGun --* 1.5
 					local groupHostility
 					local Leader
 					for i=1, GroupSize do
@@ -865,7 +865,7 @@ function SuperSurvivorsNewSurvivorManager()
 				
 				-- Since the options update 0-100 , this may need changing
 				local oldGunSpawnChance    = ChanceToSpawnWithGun 
-					  ChanceToSpawnWithGun = ChanceToSpawnWithGun * 1.5
+					  ChanceToSpawnWithGun = ChanceToSpawnWithGun --* 1.5
 			
 				for i=1, GroupSize do
 				
@@ -1150,7 +1150,7 @@ function SuperSurvivorsRaiderManager()
 			if (GroupSize > 10) then GroupSize = 10
 			elseif (GroupSize < 1) then GroupSize = 1 end
 			local oldGunSpawnChance = ChanceToSpawnWithGun 
-			ChanceToSpawnWithGun = ChanceToSpawnWithGun * 1.5
+			ChanceToSpawnWithGun = ChanceToSpawnWithGun --* 1.5
 		
 			for i=1, GroupSize do
 			

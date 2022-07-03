@@ -1,0 +1,3 @@
+-- Currently nothing in here yet. Just preparing for the future
+-- This is for, well, hostile npcs. We will be able to expand with spead apart files with less issues as a result.
+-- #CleanupTheCode
