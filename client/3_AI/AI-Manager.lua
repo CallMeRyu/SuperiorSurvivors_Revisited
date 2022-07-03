@@ -187,21 +187,7 @@ function AIManager(TaskMangerIn)
 			--	NPC:Companion_DoSixthSenseScan()
 			-- ------------------------- --
 			
-			if (
-					(TaskMangerIn:getCurrentTask() ~= "Attack") and 
-					(TaskMangerIn:getCurrentTask() ~= "Threaten") and 
-					(TaskMangerIn:getCurrentTask() ~= "First Aide") and 
-					(ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) and
-					(not ASuperSurvivor:HasFellDown())
-			) 
-			and (
-				   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or  (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
-				or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
-				)
-				
-			--and ((not ASuperSurvivor:isTooScaredToFight() and (IHaveInjury == false)) -- This. I may want to change this to 'too many injuries' function
-			
-			and (not NPC:isTooScaredToFight())
+			if ( AiNPC_CanAttack(AiTmi,NPC) )
 		--	and (ASuperSurvivor:inFrontOfLockedDoor() == false) 
 			then
 				if(ASuperSurvivor.player ~= nil) 

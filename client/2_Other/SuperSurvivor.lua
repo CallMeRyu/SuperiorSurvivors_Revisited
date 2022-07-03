@@ -4074,12 +4074,18 @@ function SuperSurvivor:Attack(victim)
 	-- note: don't use self:CanAttackAlt() in this if statement. it's already being done in this function.
 	if (self:IsNOT_AtkTicksZero()) and (self:CanAttackAlt() == true) then
 		self:AtkTicks_Countdown()
-	return false end
+		return false 
+	end
 
 	--if(self.player:getCurrentState() == SwipeStatePlayer.instance()) then return false end -- already attacking wait
-	if(self.player:getModData().felldown) then return false end -- cant attack if stunned by an attack
+	if(self.player:getModData().felldown) then 
+		return false 
+	end -- cant attack if stunned by an attack
 	
-	if not (instanceof(victim,"IsoPlayer") or instanceof(victim,"IsoZombie")) then return false end
+	if not (instanceof(victim,"IsoPlayer") or instanceof(victim,"IsoZombie")) then 
+		return false 
+	end
+
 	if(self:WeaponReady()) then
 		if(instanceof(victim,"IsoPlayer") and IsoPlayer.getCoopPVP() == false) then
 			ForcePVPOn = true;
@@ -4089,16 +4095,18 @@ function SuperSurvivor:Attack(victim)
 		self:StopWalk()
 		self.player:faceThisObject(victim);
 		
-		if(self.UsingFullAuto) then self.TriggerHeldDown = true end
+		if(self.UsingFullAuto) then 
+			self.TriggerHeldDown = true 
+		end
+
 		if(self.player ~= nil) then 
 			local distance = getDistanceBetween(self.player,victim)
 			local minrange = self:getMinWeaponRange() + 0.1
-			local GunHitChance = 11 	-- ZombRand(0,5)	If you want random chance, remove the number and put the ZombRand in.
 			local weapon = self.player:getPrimaryHandItem();
 			
 			local damage = 0
 			if (weapon ~= nil) then
-				damage = weapon:getMaxDamage();
+				damage = ZombRand(weapon:getMinDamage(),weapon:getMaxDamage());
 			end
 			self.player:NPCSetAiming(true)
 			self.player:NPCSetAttack(true)
@@ -4108,7 +4116,48 @@ function SuperSurvivor:Attack(victim)
 			else 
 				if (self.AtkTicks <= 0) then -- First to make sure it's okay to attack
 					if (self:hasGun()) then
-						if (GunHitChance > ZombRand(0,10)) then
+						local aimingLevel = self.player:getPerkLevel(Perks.FromString("Aiming"))
+						
+						local objs = victim:getCurrentSquare():getObjects()
+
+						-- local totalCover = 0
+						
+						-- print("objects : " .. tostring(objs:size()))
+
+						-- if( objs:size() > 0) then
+						-- 	for i = 0, objs:size() do
+						-- 		local obj = objs[i]
+						-- 		print(tostring(obj))
+						-- 		if(obj ~= nil)then
+						-- 			print(obj:getObjectName())
+						-- 			totalCover = totalCover + getCoverValue(obj)
+						-- 		end
+						-- 	end
+						-- end
+
+						local weaponHitChance = weapon:getHitChance()
+						local aimingPerkModifier = weapon:getAimingPerkHitChanceModifier()
+						local hitChance = weaponHitChance + (aimingPerkModifier * aimingLevel)
+						local finalHitChance = hitChance - distance 
+
+						damage = damage - (damage * (distance * 0.1))
+
+						local dice = ZombRand(0,100)
+
+						-- print("damage : " .. tostring(damage))
+						-- print("totalCover : " .. tostring(totalCover))
+						-- print("distance : " .. tostring(distance))
+						-- print("aiming level : " .. tostring(aimingLevel))
+						-- print("hitChance : " .. tostring(hitChance))
+						-- print("weaponHitChance : " .. tostring(weaponHitChance))
+						-- print("aimingPerkModifier : " .. tostring(aimingPerkModifier))
+
+						-- print("---------")
+						-- print("dice : " .. tostring(dice))
+						-- print("finalHitChance : " .. tostring(finalHitChance))
+						-- print("---------")
+
+						if (finalHitChance >= dice)then
 							victim:Hit(weapon, self.player, damage, false, 1.0, false)
 							self:DebugSay("I HIT THE GUNSHOT!")
 							self.AtkTicks = 1
