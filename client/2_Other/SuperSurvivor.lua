@@ -4074,6 +4074,71 @@ function SuperSurvivor:NPC_Attack(victim) -- New Function
 
 end
 
+--- gets every square between the npc and the target and adds a cover value 
+---@param victim any
+---@return number represents the final cover value of the victim
+function SuperSurvivor:checkVictimCoverValue(victim)
+	local totalCover = 0
+	local blockingObjects  = 0 
+
+	local squares = getSquaresBetween(self:getCurrentSquare(),victim:getCurrentSquare())
+
+	for _, square in ipairs(squares) do
+		local objs = square:getObjects()
+
+		for i = 0, objs:size() - 1, 1 do
+			local obj = objs:get(i)
+			if(obj ~= nil)then
+				local coverValue = getCoverValue(obj) -- the function is considering grass as a 10 cover value (fix it later)
+				totalCover = totalCover + coverValue
+				blockingObjects = blockingObjects + 1 
+			end
+		end
+	end
+
+	if blockingObjects == 0 then -- prevent divide by zero exceptions
+		return totalCover
+	end
+
+	totalCover = totalCover/ blockingObjects
+	
+	--print("total cover : " .. tostring(totalCover))
+
+	return totalCover - 10  -- workaround (see line 4085)
+end
+
+--- gets the weapon damager based on a rng and distance from the target
+---@param weapon any
+---@param distance number
+---@return number represents the damage that the weapon will give if hits
+function SuperSurvivor:getWeaponDamage(weapon,distance)
+	if (weapon == nil) then
+		return 0
+	end
+
+	local damage = ZombRand(weapon:getMinDamage(), weapon:getMaxDamage())
+	damage = damage - (damage * (distance * 0.1))
+
+	return damage
+end
+
+--- Gets the change of a shoot based on aiming skill, weapon, victim's distance and cover
+---@param weapon any
+---@param victim any
+---@return number represents the chance of a hit
+function SuperSurvivor:getGunHitChange(weapon,victim)
+	local aimingLevel = self.player:getPerkLevel(Perks.FromString("Aiming"))
+	local aimingPerkModifier = weapon:getAimingPerkHitChanceModifier()
+	local weaponHitChance = weapon:getHitChance()
+	
+	local hitChance = weaponHitChance + (aimingPerkModifier * aimingLevel)
+
+	local distance = getDistanceBetween(self.player,victim)
+	local coverValue = self:checkVictimCoverValue(victim)
+
+	return hitChance - distance - coverValue -- TODO: change formula when coverValue != 0
+end
+
 -- This is the old variant of the attack function. It should not be used for melee attacks. It works well with guns though, so... 
 function SuperSurvivor:Attack(victim)
 	
@@ -4103,10 +4168,7 @@ function SuperSurvivor:Attack(victim)
 			local GunHitChance = 11 	-- ZombRand(0,5)	If you want random chance, remove the number and put the ZombRand in.
 			local weapon = self.player:getPrimaryHandItem();
 			
-			local damage = 0
-			if (weapon ~= nil) then
-				damage = weapon:getMaxDamage();
-			end
+			local damage = self:getWeaponDamage(weapon,distance)
 			self.player:NPCSetAiming(true)
 			self.player:NPCSetAttack(true)
 
@@ -4114,8 +4176,18 @@ function SuperSurvivor:Attack(victim)
 				victim:Hit(weapon, self.player, damage, true, 1.0, false) --self:Speak("Shove!"..tostring(distance).."/"..tostring(minrange))
 			else 
 				if (self.AtkTicks <= 0) then -- First to make sure it's okay to attack
-					if (self:hasGun()) then
-						if (GunHitChance > ZombRand(0,10)) then
+					if (self:hasGun()) then							
+						local hitChance = self:getGunHitChange(weapon,victim) 
+
+						local dice = ZombRand(0,100)
+
+						-- print("---------")
+						-- print("dice : " .. tostring(dice))
+						-- print("damage : " .. tostring(damage))
+						-- print("hitChance : " .. tostring(hitChance))
+						-- print("---------")
+
+						if (hitChance >= dice)then
 							victim:Hit(weapon, self.player, damage, false, 1.0, false)
 							self:DebugSay("I HIT THE GUNSHOT!")
 							self.AtkTicks = 1

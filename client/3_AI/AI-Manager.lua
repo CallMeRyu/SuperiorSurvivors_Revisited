@@ -7,9 +7,14 @@
 -- #CleanCode      		                                      --
 -- ---------------------------------------------------------- --
 
-function AiNPC_Task_Is(AiTmi,TaskName)			-- AiNPC_Task_Is(AiTmi,"TaskName")
+--- Checks if TaskName the current task of the AiTmi
+---@param AiTmi (table) Task Manager
+---@param TaskName (string) Task name to be checked
+---@return (boolean) returns true if the TaskName is the current task of AiTmi
+function AiNPC_Task_Is(AiTmi,TaskName)
 	return (AiTmi:getCurrentTask() == TaskName) 
 end
+
 function AiNPC_TaskIsNot(AiTmi,TaskName)			-- AiNPC_TaskIsNot(AiTmi,"TaskName")
 	return (AiTmi:getCurrentTask() ~= TaskName) 
 end
@@ -21,6 +26,64 @@ function AiNPC_Job_IsNot(NPC,JobName)			-- AiNPC_Job_IsNot(NPC, "JobName")
 	return (NPC:getGroupRole() ~= JobName)
 end
 
+--TODO: move to SuperSurvivorsAiManagerUtilities.lua (or SuperSurvivor.lua)
+
+--- Checks if AiTmi is doing any of the tasks
+---@param AiTmi (table) Task Manager
+---@param tasks (table) List of strings of the task names 
+---@return (boolean) returns true if any task of tasks is the current task of AiTmi
+local function AiNpc_Task_Is_AnyOf(AiTmi,tasks)
+	for _,task in ipairs(tasks) do
+		if(AiNPC_Task_Is(AiTmi,task)) then
+			return true
+		end
+	end
+
+	return false
+end
+
+local function AiNpc_IsTarget_Survivor(NPC)
+	return (instanceof(NPC.LastEnemeySeen,"IsoZombie"))
+end
+
+local function AiNpc_IsTarget_Zombie(NPC)
+	return (instanceof(NPC.LastEnemeySeen,"IsoPlayer"))
+end
+
+local function AiNpc_HaveTooManyInjuries(NPC)
+	return NPC:isTooScaredToFight() and NPC:HasInjury()
+end
+
+local function AiNpc_IsInDanger(NPC)
+	local hasWeapon = NPC:hasWeapon() 
+	local enemyIsSurvivor = AiNpc_IsTarget_Survivor(NPC)
+	local dangerCount = NPC:getDangerSeenCount()
+	local isEnemyInRange = (NPC:isEnemyInRange(NPC.LastEnemeySeen))
+
+	return (
+		( hasWeapon and ( dangerCount >= 1 or isEnemyInRange ) )
+		or
+		( not hasWeapon and dangerCount == 1 and not enemyIsSurvivor )
+	)
+end
+
+local function AiNPC_CanAttack(AiTmi,NPC) 
+	local forbidenTasks = {"Attack","Threaten","First Aide"};
+
+	local canAttack = not AiNpc_Task_Is_AnyOf(AiTmi,forbidenTasks)
+	local isInTheSameRoom = NPC:isInSameRoom(NPC.LastEnemeySeen)
+
+	local hasNotFellDown = not NPC:HasFellDown() 
+
+	local isNotTooScaredToFight = not NPC:isTooScaredToFight()
+
+	return 
+		canAttack and 
+		isInTheSameRoom and 
+		hasNotFellDown and 
+		AiNpc_IsInDanger(NPC) and 
+		isNotTooScaredToFight
+end
 
 function AIManager(TaskMangerIn)
 	

@@ -1,7 +1,27 @@
 -- this file has methods related to world context
 
+local enableDebugContext = false
+
+--- Prints a debug message when enableDebugContext is true
+---@param text string
+local function debugContext(text)
+	if enableDebugContext then
+		print(text)
+	end
+end
+
 --- SQUARES
 
+---@alias direction 
+---| '"N"' # North
+---| '"S"' # South
+---| '"E"' # East
+---| '"W"' # West
+
+---Get an adjacent square based on a direction
+---@param square any  
+---@param dir direction
+---@return any the adjacent square
 function GetAdjSquare(square,dir)
 
 	if(dir == 'N') then
@@ -13,6 +33,77 @@ function GetAdjSquare(square,dir)
 	else
 		return getCell():getGridSquare(square:getX() - 1,square:getY(),square:getZ());
 	end
+end
+
+--- gets all squares between 2 positions (don't use it with large distances)
+---@param from any
+---@param to any
+---@return table
+function getSquaresBetween(from,to)
+	
+	local fromX = math.ceil(from:getX())
+	local fromY = math.ceil(from:getY())
+	
+	local toX = math.ceil(to:getX())
+	local toY = math.ceil(to:getY())
+
+	local squares = {}
+	local pos = 0
+	local sqr = from
+	
+	debugContext("----- getSquaresBetween -----")
+	debugContext("from x : " .. tostring(fromX) .. " from y : " .. tostring(fromY))
+	debugContext("to x : " .. tostring(toX) .. " to y : " .. tostring(toY))
+
+	repeat
+		if fromY < toY then
+			sqr = GetAdjSquare(sqr,"S")
+			fromY = fromY + 1
+		elseif fromY > toY then
+			sqr = GetAdjSquare(sqr,"N")
+			fromY = fromY - 1
+		end
+		
+		if fromX < toX then
+			sqr = GetAdjSquare(sqr,"E")
+			fromX = fromX + 1
+		elseif fromX > toX then
+			sqr = GetAdjSquare(sqr,"W")
+			fromX = fromX - 1
+		end
+		
+		debugContext("getting square x : " .. tostring(fromX) .. " y : " .. tostring(fromY))
+		
+		if sqr ~= nil then		
+			debugContext("saving square x : " .. tostring(fromX) .. " y : " .. tostring(fromY) .. " into position : " .. tostring(pos))
+			squares[pos] = sqr
+			pos = pos + 1
+		end
+	until fromX == toX and fromY == toY
+
+	debugContext("total squares : " .. tostring(pos))
+	debugContext("----- getSquaresBetween -----")
+	return squares
+end
+
+--TODO : change the ifs from getSideSquare
+---Get an adjacent square based on a direction 
+---@param supersurvivor any  
+---@param square any 
+---@return boolean returns true if the current square is not blocked
+local function squareIsFree(supersurvivor,square)
+	if (square == nil) then
+		return false
+	end
+
+	local walkToAttempt = supersurvivor:getWalkToAttempt(square)
+
+	return 
+		(
+			(walkToAttempt == 0 and (square:isFree(false)) and (square:isBlockedTo(player:getCurrentSquare()) == false)) or 
+			(walkToAttempt ~= 0)
+		) 
+		and (nsquare:isOutside() == false)
 end
 
 function getSideSquare(square,supersurvivor)
@@ -223,7 +314,6 @@ function getFleeSquareAlt(fleeGuy,attackGuy,distanceToFlee)
 end
 
 
-
 function getTowardsSquare(moveguy,x,y,z)
 	local distance = 15
 	local tempx = (moveguy:getX() - x);
@@ -233,7 +323,10 @@ function getTowardsSquare(moveguy,x,y,z)
     tempx = -distance;
 	elseif (tempx < -distance) then 
     tempx = distance
-	else tempx = -tempx end
+	else 
+		tempx = -tempx 
+	end
+
 	if (tempy > 0) and (tempy >= distance) then 
 		tempy = -distance
 	elseif (tempy < -distance) then 
