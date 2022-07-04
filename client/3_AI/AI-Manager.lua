@@ -7,9 +7,14 @@
 -- #CleanCode      		                                      --
 -- ---------------------------------------------------------- --
 
-function AiNPC_Task_Is(AiTmi,TaskName)			-- AiNPC_Task_Is(AiTmi,"TaskName")
+--- Checks if TaskName the current task of the AiTmi
+---@param AiTmi (table) Task Manager
+---@param TaskName (string) Task name to be checked
+---@return (boolean) returns true if the TaskName is the current task of AiTmi
+function AiNPC_Task_Is(AiTmi,TaskName)
 	return (AiTmi:getCurrentTask() == TaskName) 
 end
+
 function AiNPC_TaskIsNot(AiTmi,TaskName)			-- AiNPC_TaskIsNot(AiTmi,"TaskName")
 	return (AiTmi:getCurrentTask() ~= TaskName) 
 end
@@ -23,8 +28,12 @@ end
 
 --TODO: move to SuperSurvivorsAiManagerUtilities.lua (or SuperSurvivor.lua)
 
-local function AiNpc_Task_Is_AnyOf(AiTmi,...)
-	for task in arg do
+--- Checks if AiTmi is doing any of the tasks
+---@param AiTmi (table) Task Manager
+---@param tasks (table) List of strings of the task names 
+---@return (boolean) returns true if any task of tasks is the current task of AiTmi
+local function AiNpc_Task_Is_AnyOf(AiTmi,tasks)
+	for _,task in ipairs(tasks) do
 		if(AiNPC_Task_Is(AiTmi,task)) then
 			return true
 		end
