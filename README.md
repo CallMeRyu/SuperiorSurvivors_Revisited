@@ -60,3 +60,21 @@ EXP 16 - U7
 * First attempt at fixing the "Chance to spawn with guns" isn't multiplied 1.5x (This is how last modder added it, because previously there wasn't 0-100%, it was multiples of 5 in the options menu.)
 
 * Getting preparations set for AI-Manager update for the future. Soon AI-Manager tasks should use less RAM/CPU since it will not be having to scan through as much code as it previously once did. But for now, just preparing the code for that day.
+
+
+EXP 16 - U8
+-
+* Changed HumanEntityScan and SixthSenseScan functions: They will no longer increase dangerseencount; DoVision already does this. What that means is, there should be less likely NPCs will run away from weird situations like you vs the npc while there not being any zombies around.
+
+* dohumanentityscan will also require not standing in front of a door. This should assist with npcs not spamming doors, 'knowing' that you're on the other side.
+
+* Removed a 'return true' at the end of pursue_se
+
+* Changed AI-Manager checks for 'If Job is companion follower', so now followers should ignore certain tasks that aren't meant for them more likely.
+
+* Follower task update to now check more often if the follower has the 'follower' task
+
+* Fixed a bug where 'bravery' was posted twice in value
+* Chanced Bravery's default setting to 'very brave' since most players want non-cowardly npcs
+
+* Updated the visual of the options menu to be more easier to read
