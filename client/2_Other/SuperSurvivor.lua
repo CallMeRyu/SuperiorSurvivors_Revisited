@@ -3068,6 +3068,13 @@ end
 function SuperSurvivor:OnDeath()
 	print(self:getName() .. " has died")
 
+	-- Cannibal support
+	if not self.player:getBodyDamage():isInfected() then
+		for i=1, ZombRand(1,10) do
+			self.player:getInventory():AddItem("Subpar.StrangeMeat")
+		end
+	end
+
 	local ID = self:getID()
 	SSM:OnDeath(ID)
 	
@@ -4139,18 +4146,12 @@ function SuperSurvivor:Attack(victim)
 	-- note: don't use self:CanAttackAlt() in this if statement. it's already being done in this function.
 	if (self:IsNOT_AtkTicksZero()) and (self:CanAttackAlt() == true) then
 		self:AtkTicks_Countdown()
-		return false 
-	end
+	return false end
 
 	--if(self.player:getCurrentState() == SwipeStatePlayer.instance()) then return false end -- already attacking wait
-	if(self.player:getModData().felldown) then 
-		return false 
-	end -- cant attack if stunned by an attack
+	if(self.player:getModData().felldown) then return false end -- cant attack if stunned by an attack
 	
-	if not (instanceof(victim,"IsoPlayer") or instanceof(victim,"IsoZombie")) then 
-		return false 
-	end
-
+	if not (instanceof(victim,"IsoPlayer") or instanceof(victim,"IsoZombie")) then return false end
 	if(self:WeaponReady()) then
 		if(instanceof(victim,"IsoPlayer") and IsoPlayer.getCoopPVP() == false) then
 			ForcePVPOn = true;
@@ -4160,13 +4161,11 @@ function SuperSurvivor:Attack(victim)
 		self:StopWalk()
 		self.player:faceThisObject(victim);
 		
-		if(self.UsingFullAuto) then 
-			self.TriggerHeldDown = true 
-		end
-
+		if(self.UsingFullAuto) then self.TriggerHeldDown = true end
 		if(self.player ~= nil) then 
 			local distance = getDistanceBetween(self.player,victim)
 			local minrange = self:getMinWeaponRange() + 0.1
+			local GunHitChance = 11 	-- ZombRand(0,5)	If you want random chance, remove the number and put the ZombRand in.
 			local weapon = self.player:getPrimaryHandItem();
 			
 			local damage = self:getWeaponDamage(weapon,distance)
