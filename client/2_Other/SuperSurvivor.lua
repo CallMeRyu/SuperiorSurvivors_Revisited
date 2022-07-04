@@ -2049,6 +2049,12 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 --	self.LastEnemeySeen = nil
 --	self.LastSurvivorSeen = nil
 	local dangerRange = 2
+	if (self:getGroupRole() == "Companion") then 
+		atLeastThisClose = 5
+		closestSoFar = 5
+		dangerRange = 5 
+	end
+	
 	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
 	
 	local closestNumber = nil

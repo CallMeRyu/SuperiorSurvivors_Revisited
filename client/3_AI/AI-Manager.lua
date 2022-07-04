@@ -172,15 +172,13 @@ function AIManager(TaskMangerIn)
 		-- Don't add 'and AiNPC_TaskIsNot(AiTmi,"First Aide")' because you want companions to still attack enemies while hurt
 		-- ------------------------- --
 
+		-- ----- Perception Buff --- --
+		NPC:Companion_DoSixthSenseScan()
 
 		-- ------------ --
 		-- Pursue
 		-- ------------ --
-		if AiNPC_TaskIsNot(AiTmi,"First Aide") and AiNPC_TaskIsNot(AiTmi,"Pursue") and AiNPC_TaskIsNot(AiTmi,"Attack") then
-		
-				-- ----- Perception Buff --- --
-				NPC:Companion_DoSixthSenseScan()
-		
+		if AiNPC_TaskIsNot(AiTmi,"First Aide") and AiNPC_TaskIsNot(AiTmi,"Pursue") and AiNPC_TaskIsNot(AiTmi,"Attack") and (DistanceBetweenMainPlayer < 10)  then
 			if (EnemyIsSurvivor or EnemyIsZombie) then
 				TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
 			end
@@ -499,7 +497,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- flee from too many zombies
 	-- ----------------------------- --
-	if (AiNPC_Job_IsNot(NPC,"Companion")) then -- To ABSOLUTELY prevent these two jobs from listening to this task.
+	if not (AiNPC_Job_Is(NPC,"Companion"))  then -- To ABSOLUTELY prevent these two jobs from listening to this task.
 		if (TaskMangerIn:getCurrentTask() ~= "Flee") 
 		and (TaskMangerIn:getCurrentTask() ~= "Surender") 
 		and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
@@ -621,7 +619,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- 	Gun Readying / Reloading     -- 
 	-- ----------------------------- --
-	if AiNPC_TaskIsNot(NPC,"Companion") then
+	if AiNPC_Job_IsNot(NPC,"Companion") then
 		if(ASuperSurvivor:getNeedAmmo())
 		and (ASuperSurvivor:hasAmmoForPrevGun()) 
 		and (IsInAction == false) 
@@ -650,7 +648,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- 	Equip Weapon Task            -- 
 	-- ----------------------------- --
-	if AiNPC_TaskIsNot(NPC,"Companion") then
+	if AiNPC_Job_IsNot(NPC,"Companion") then
 		if(IsInAction == false) and (ASuperSurvivor:getNeedAmmo() == false) and ASuperSurvivor:usingGun() and (ASuperSurvivor:getDangerSeenCount() == 0) and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and (NPC:NPC_FleeWhileReadyingGun()) then			
 			--print(ASuperSurvivor:getName() .. " AI detected need to ready gun")
 			ASuperSurvivor:ReadyGun(weapon)		
