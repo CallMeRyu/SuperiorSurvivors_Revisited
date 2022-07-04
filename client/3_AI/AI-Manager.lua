@@ -21,77 +21,19 @@ function AiNPC_Job_IsNot(NPC,JobName)			-- AiNPC_Job_IsNot(NPC, "JobName")
 	return (NPC:getGroupRole() ~= JobName)
 end
 
---TODO: move to SuperSurvivorsAiManagerUtilities.lua (or SuperSurvivor.lua)
-
-local function AiNpc_Task_Is_AnyOf(AiTmi,...)
-	for task in arg do
-		if(AiNPC_Task_Is(AiTmi,task)) then
-			return true
-		end
-	end
-
-	return false
-end
-
-local function AiNpc_IsTarget_Survivor(NPC)
-	return (instanceof(NPC.LastEnemeySeen,"IsoZombie"))
-end
-
-local function AiNpc_IsTarget_Zombie(NPC)
-	return (instanceof(NPC.LastEnemeySeen,"IsoPlayer"))
-end
-
-local function AiNpc_HaveTooManyInjuries(NPC)
-	return NPC:isTooScaredToFight() and NPC:HasInjury()
-end
-
-local function AiNpc_IsInDanger(NPC)
-	local hasWeapon = NPC:hasWeapon() 
-	local enemyIsSurvivor = AiNpc_IsTarget_Survivor(NPC)
-	local dangerCount = NPC:getDangerSeenCount()
-	local isEnemyInRange = (NPC:isEnemyInRange(NPC.LastEnemeySeen))
-
-	return (
-		( hasWeapon and ( dangerCount >= 1 or isEnemyInRange ) )
-		or
-		( not hasWeapon and dangerCount == 1 and not enemyIsSurvivor )
-	)
-end
-
-local function AiNPC_CanAttack(AiTmi,NPC) 
-	local forbidenTasks = {"Attack","Threaten","First Aide"};
-
-	local canAttack = not AiNpc_Task_Is_AnyOf(AiTmi,forbidenTasks)
-	local isInTheSameRoom = NPC:isInSameRoom(NPC.LastEnemeySeen)
-
-	local hasNotFellDown = not NPC:HasFellDown() 
-
-	local isNotTooScaredToFight = not NPC:isTooScaredToFight()
-
-	return 
-		canAttack and 
-		isInTheSameRoom and 
-		hasNotFellDown and 
-		AiNpc_IsInDanger(NPC) and 
-		isNotTooScaredToFight
-end
 
 function AIManager(TaskMangerIn)
 	
-	if (TaskMangerIn == nil) or (TaskMangerIn.parent == nil) then 
-		return 
-	end
-
 	local ASuperSurvivor = TaskMangerIn.parent	-- the previous variable, trying to convert to "NPC"
 	local AiTmi = TaskMangerIn 					-- Used for AiNPC_TaskIsNot code cleanup/easier-to-read
 	local NPC   = TaskMangerIn.parent			-- Used to Cleanup some of the function's long names
+
+	if(ASuperSurvivor:needToFollow()) or (ASuperSurvivor:Get():getVehicle() ~= nil) then return TaskMangerIn end
 	
---	if(ASuperSurvivor.DebugMode) then ASuperSurvivor:DebugSay(ASuperSurvivor:getName().." "..ASuperSurvivor:getAIMode() .. " AIManager1 " .. TaskMangerIn:getCurrentTask()) end
-	
-	if(ASuperSurvivor:needToFollow()) or (ASuperSurvivor:Get():getVehicle() ~= nil) then 
-		return 
+	if (TaskMangerIn == nil) or (ASuperSurvivor == nil) then 
+		return false 
 	end
-		
+	
 	local EnemyIsSurvivor = (instanceof(ASuperSurvivor.LastEnemeySeen,"IsoPlayer"))
 	local EnemyIsZombie = (instanceof(ASuperSurvivor.LastEnemeySeen,"IsoZombie"))
 	local EnemySuperSurvivor = nil
@@ -188,7 +130,20 @@ function AIManager(TaskMangerIn)
 			--	NPC:Companion_DoSixthSenseScan()
 			-- ------------------------- --
 			
-			if ( AiNPC_CanAttack(AiTmi,NPC) )
+			if (
+					(TaskMangerIn:getCurrentTask() ~= "Attack") 
+				and (TaskMangerIn:getCurrentTask() ~= "Threaten") 
+				and (TaskMangerIn:getCurrentTask() ~= "First Aide") 
+				and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
+				) 
+			and (
+				   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or  (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
+				or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
+				)
+				
+			--and ((not ASuperSurvivor:isTooScaredToFight() and (IHaveInjury == false)) -- This. I may want to change this to 'too many injuries' function
+			
+			and (not NPC:isTooScaredToFight())
 		--	and (ASuperSurvivor:inFrontOfLockedDoor() == false) 
 			then
 				if(ASuperSurvivor.player ~= nil) 
@@ -213,35 +168,35 @@ function AIManager(TaskMangerIn)
 	-- 	Reload Gun	    			
 	--  NPC:getDangerSeenCount() removed
 	-- --------------------------------- --
-	if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
-	
-		if(ASuperSurvivor:getNeedAmmo())
-		and (ASuperSurvivor:hasAmmoForPrevGun()) 
-		and (IsInAction == false)
-		then
-			NPC:setNeedAmmo(false)
-			NPC:reEquipGun()
-			NPC:DebugSay("Companion RELOAD_Gun_0001")
+		if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
+		
+			if(ASuperSurvivor:getNeedAmmo())
+			and (ASuperSurvivor:hasAmmoForPrevGun()) 
+			and (IsInAction == false)
+			then
+				NPC:setNeedAmmo(false)
+				NPC:reEquipGun()
+				NPC:DebugSay("Companion RELOAD_Gun_0001")
+			end
+			
 		end
 		
-	end
-		
-	-- --------------------------------- --
-	-- 	Ready Weapon	    			
-	--  NPC:getDangerSeenCount() removed
-	-- --------------------------------- --
-	if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
-		if
-			(IsInAction == false) and (ASuperSurvivor:getNeedAmmo() == false)  and ASuperSurvivor:usingGun() and 
-			((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and 
-			(NPC:NPC_FleeWhileReadyingGun()) 
-		then
-			ASuperSurvivor:ReadyGun(weapon)		
-			if (NPC:isSpeaking() == false) then 
-				NPC:DebugSay("Companion READY_Gun_0001") 
-			end
-		end	
-	end
+		-- --------------------------------- --
+		-- 	Ready Weapon	    			
+		--  NPC:getDangerSeenCount() removed
+		-- --------------------------------- --
+		if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
+			if(IsInAction == false) 
+			and (ASuperSurvivor:getNeedAmmo() == false) 
+			and ASuperSurvivor:usingGun() 
+			
+			and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) 
+			and (NPC:NPC_FleeWhileReadyingGun()) 
+			then
+				ASuperSurvivor:ReadyGun(weapon)		
+				if (NPC:isSpeaking() == false) then NPC:DebugSay("Companion READY_Gun_0001") end
+			end	
+		end
 		
 		-- ----------------------------- --
 		-- 	Equip Weapon                 -- 
