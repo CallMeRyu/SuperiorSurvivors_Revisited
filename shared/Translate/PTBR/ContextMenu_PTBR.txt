@@ -1,13 +1,45 @@
 ContextMenu_PTBR = {
+
+	ContextMenu_Title  = "Survivors Verção 0.15.1",
+	ContextMenu_SD_AidCheck = "Verificação Médica / Primeiros socorros",
+	ContextMenu_SD_AidCheckDesc = "Caminhe até este sobrevivente e faça um check-up médico, se o sobrevivente se mexer, o processo pode ser interrompido",
+
+	ContextMenu_SD_AddClothing = "'s Roupas",
+	ContextMenu_SD_RemoveClothing = "Tirar a roupa",
+	ContextMenu_UndressingClothes = "*Despindo*",
+	ContextMenu_SD_SetName = "Mude o nome",
+	ContextMenu_SD_Debug_PlayerStats = "Debug: Alterar informações do jogador",
+
+	ContextMenu_Job_Leader = "Lider",
+	ContextMenu_Job_Companion = "Companheiro",
+	ContextMenu_Job_Dustman = "Lixeiro",
+	ContextMenu_Job_Guard = "Guarda",
+	ContextMenu_Job_Sheriff = "Delegado",
+	ContextMenu_Job_Junkman = "Mecanico",
+	ContextMenu_Job_Farmer = "Fazendeiro",
+	ContextMenu_Job_Timberjack = "Lenhador",
+	ContextMenu_Job_Hauler = "Transportador",
+	ContextMenu_Job_Worker = "Trabalhador",
+	ContextMenu_Job_Partner = "Parceiro",
+	ContextMenu_Job_Doctor = "Doutor",
+
+	ContextMenu_SD_NoPreSetSpawn = "Desativar todos os sobreviventes predefinidos/únicos",
+	ContextMenu_SD_NoPreSetSpawnDesc = "Desativar todos os sobreviventes predefinidos/únicos",
+	ContextMenu_SD_RulesOfEngagement = "Regras de envolvimento",
+	ContextMenu_SD_AttackAnyoneOnSight = "Ataque qualquer um à vista",
+	ContextMenu_SD_AttackHostilesOnSight = "Ataque Hostis à Vista",
+	
+	ContextMenu_SD_IGotABadFeeling = "Eu tenho um mau pressentimento.",
+	ContextMenu_SD_WhatWasThatSound = "O que foi esse som!?",
 	
 	ContextMenu_SD_IAttackFoodThief = "É isso aí! Saia daqui!",
-	ContextMenu_SD_IWarnFoodThief = "Ei você! pare de roubar nossa comida ou então !!",
+	ContextMenu_SD_IWarnFoodThief = "Ei você! pare de roubar nossa comida ou então.. !!",
 	
 	ContextMenu_SD_OrderAll = "Ordernar Tudo",
-	ContextMenu_SShotkey1 = "Hotkey 1  Ação",
-	ContextMenu_SShotkey2 = "Hotkey 2  Ação",
-	ContextMenu_SShotkey3 = "Hotkey 3  Ação",
-	ContextMenu_SShotkey4 = "Hotkey 4  Ação",
+	ContextMenu_SShotkey1 = "Tecla de atalho 1  Ação",
+	ContextMenu_SShotkey2 = "Tecla de atalho 2  Ação",
+	ContextMenu_SShotkey3 = "Tecla de atalho 3  Ação",
+	ContextMenu_SShotkey4 = "Tecla de atalho 4  Ação",
 	ContextMenu_SShotkeyDesc = "Escolha uma ação que acontecerá quando você pressionar esta tecla de atalho. Ordenar todas as ações efetuam quaisquer membros dentro do alcance. Enquanto os outros afetam apenas aqueles que estão ouvindo você (Use T como atalho).",
 	
 	ContextMenu_speech_NoForagingHere = "Eu não vou encontrar nada aqui",
@@ -30,13 +62,45 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_NoFarmingArea = "Não ha nenhuma área de cultivo designada",
 	ContextMenu_speech_IDontKnowHowFarming = "Eu não sei mecher com agricultura",
 	ContextMenu_SOption_SurvivorBravery = "Sobrevivente Bravo",
-	ContextMenu_SOption_SurvivorBraveryDesc = "Determina a probabilidade de sobrevivencia dos sobreviventes, em vez de fugirem ou lhe evitar.",
+	ContextMenu_SOption_SurvivorBraveryDesc = "Determina a probabilidade de os Sobreviventes lutarem, em vez de fugir ou lhe evitar.",
 	ContextMenu_SD_Cowardly = "Covarde",
 	ContextMenu_SD_Brave = "Corajoso",
 	ContextMenu_SD_VeryBrave = "Muito bravo",
+
+	ContextMenu_SOption_FollowGlobalRange = "[Alterar] - Intervalo de corrida do seguidor:",
+	ContextMenu_SOption_FollowGlobalRangeDesc = "Isso controla o comando 'seguir', dando a você a capacidade de NPCs correrem ou andarem quando estiverem a x de distâncias de você. (Em vez de anteriormente, você precisaria chamá-los para mais perto). Esta opção pode garantir resultados inesperados e precisa de feedback. (Não se esqueça que você também pode pressionar as teclas de atalho + e - (lado direito do teclado) para trazer um seguidor para mais perto/mais longe de/para você.) ",
 	
-	
-	
+	ContextMenu_SOption_PerceptionBonus = "[Experimental] - Aumenta a capacidade de Percepção dos NPCs: ",
+	ContextMenu_SOption_PerceptionBonusDesc = "Esta opção deve ajudar os NPCs a 'saber' quando coisas hostis estão perto deles quando parece que eles 'deveriam saber'. (Esta opção não é totalmente testada, mas considerada resultados decentes.)",
+		
+	ContextMenu_SOption_AltSpawn = "Alt Spawning - Grupos:",
+	ContextMenu_SD_AltSpawnOff = "Desativar",
+	ContextMenu_SD_UpTo1 = "Spawnar apenas 1 grupo de NPC",
+	ContextMenu_SD_UpTo2 = "Spawna de 1 a 2 grupos de NPCs",
+	ContextMenu_SD_UpTo3 = "Spawna de 1 a 3 grupos de NPCs",
+	ContextMenu_SD_UpTo4 = "Spawna de 1 a 4 grupos de NPCs",
+	ContextMenu_SD_UpTo5 = "Spawna de 1 a 5 grupos de NPCs",
+	ContextMenu_SD_UpTo6 = "Spawna de 1 a 6 grupos de NPCs",
+	ContextMenu_SOption_AltSpawnDesc = "Alt Spawning de hora em hora é um novo tipo de método de spawnar os NPCs. Quantos grupos você quer gerar ao seu redor a cada hora de jogo? 'Grupos' conterão NPCs dentro para aparecer ao seu redor fora da tela a cada hora - (determinado por você nas outras configurações). Você pode usar esse método de geração junto com a 'taxa de geração de NPC', mas os efeitos podem diferir no desempenho. Desative esta configuração selecionado 'Desativo', desativará as outras configurações também. Leia as descrições nas outras opções de geração de Alt para saber mais.",
+
+		ContextMenu_Debug_Character_Swap = "Debug: Troca de Personagem",
+		ContextMenu_Debug_Infect&Murder_Character = "Debug: Personagem Infectado&Assassino",
+		ContextMenu_Debug_Character_Output = "Debug: Saída de caracteres",
+		ContextMenu_Debug_Unstuck = "Debug: Soltar",
+		ContextMenu_Debug_Spawn_Soldier = "Debug: Gerar Soldado",
+
+	ContextMenu_SOption_AltSpawnPercent = "Alt Spawning - Chance:",
+	ContextMenu_SOption_AltSpawnPercentDesc = "Você pode controlar a chance de um ou mais grupos de NPCs aparecerem ao seu redor a cada hora por % de chance. Se seus dados de % chance ultrapassarem a jogada aleatória (Aleatóio 1-100) durante uma hora de jogo, grupos de NPCs aparecerão ao seu redor fora da tela.",
+
+	ContextMenu_Option_AltSpawnAmount = "Alt Spawning - Tamanho do grupo:",
+		ContextMenu_AltSpawnAmount_1 = "Apenas 1 NPC em cada grupo.",
+		ContextMenu_AltSpawnAmount_2 = "Random - de 1 a 2 NPCs em cada grupo",
+		ContextMenu_AltSpawnAmount_3 = "Random - de 1 a 3 NPCs em cada grupo",
+		ContextMenu_AltSpawnAmount_4 = "Random - de 1 a 4 NPCs em cada grupo",
+		ContextMenu_AltSpawnAmount_5 = "Random - de 1 a 5 NPCs em cada grupo",
+		ContextMenu_AltSpawnAmount_6 = "Random - de 1 a 6 NPCs em cada grupo",
+	ContextMenu_Context_AltSpawnAmountDesc = "Junto com a Geração Alternativa, você pode decidir o tamanho que deseja que os grupos sejam, cada vez que o dado rolar uma vitória. Digamos que você escolheu 10%, e os dados rolaram um sucesso e geraram um NPC naquela hora. Em vez de apenas 1 NPC, ele rolará outro dado 1 de 6, e você obterá tantos NPCs. Seja cauteloso ao definir isso para um número alto, juntamente com a geração alt de hora em hora, pode levar a lags. (Se você tiver alt spawning desligado, esta opção também está desabilitada)",
+
 	ContextMenu_OutOfAmmo1 = "Sem munição!!",
 	ContextMenu_OutOfAmmo2 = "Estou sem munição!",
 	ContextMenu_OutOfAmmo3 = "Acabou à munição",
@@ -157,11 +221,11 @@ ContextMenu_PTBR = {
 	ContextMenu_SD_Every5Days = "A cada 5 dias",
 	ContextMenu_SD_StartImmediately = "Iniciar Imediatamente",
 	ContextMenu_SD_Never = "Nunca",
-	ContextMenu_SD_AfterDay1 = "Apos o dia 1",
-	ContextMenu_SD_AfterDay5 = "Apos o dia 5",
-	ContextMenu_SD_AfterDay10 = "Apos o dia 10",
-	ContextMenu_SD_AfterDay15 = "Apos o dia 15",
-	ContextMenu_SD_AfterDay20 = "Apos o dia 20",
+	ContextMenu_SD_AfterDay1 = "Depois de dia 1",
+	ContextMenu_SD_AfterDay5 = "Depois de dia 5",
+	ContextMenu_SD_AfterDay10 = "Depois de dia 10",
+	ContextMenu_SD_AfterDay15 = "Depois de dia 15",
+	ContextMenu_SD_AfterDay20 = "Depois de dia 20",
 	ContextMenu_SD_AfterDay25 = "Depois do dia 25",
 	ContextMenu_SD_AfterDay30 = "Depois do dia 30",
 	ContextMenu_SD_AfterDay35 = "Depois do dia 35",
@@ -187,7 +251,7 @@ ContextMenu_PTBR = {
 	ContextMenu_SD_VeryMean = "Muito hostil",
 
 	ContextMenu_SD_SurvivorInfoName_Before = "Sobrevivente",
-	ContextMenu_SD_SurvivorInfoName_After = "'s Informacao:",
+	ContextMenu_SD_SurvivorInfoName_After = "'s Informacão:",
 	ContextMenu_SD_EatFood_Before = "Comer",
 	ContextMenu_SD_EatFood_After = "",
 	ContextMenu_SD_CallName_Before = "",
@@ -293,26 +357,26 @@ ContextMenu_PTBR = {
 	ContextMenu_SD_PVPEnabled = "PVP ativado",
 	ContextMenu_SD_PVPForced = "PVP forçado!",
 
-	ContextMenu_SD_CallOver = "Chamada",
-	ContextMenu_SD_CallOverDesc = "Peça para a este sobrevivente vir falar",
-	ContextMenu_SD_OfferArmor = "Oferecer Armadura",
+	ContextMenu_SD_CallOver = "Chamar",
+	ContextMenu_SD_CallOverDesc = "Peça a este sobrevivente para vir até sua posição e conversar",
+	ContextMenu_SD_OfferArmor = "Oferecer roupa",
 	ContextMenu_SD_OfferAmmoBox = "Oferecer Caixa de munição",
 	ContextMenu_SD_OfferAmmoRound = "Oferecer alguns cartuchos de Munição",
-	ContextMenu_SD_TalkOption = "Falar",
+	ContextMenu_SD_TalkOption = "Conversar",
 	ContextMenu_SD_TalkOption_Desc = "Tentar iniciar um dialogo com este sobrevivente",
 	ContextMenu_SD_InviteToGroup = "Convidar para o Grupo",
-	ContextMenu_SD_AskToJoin = "Perguntar para se pode se juntar ao Grupo de Sobrevivência",
+	ContextMenu_SD_AskToJoin = "Perguntar ao sobrevivente se deseja se juntar ao Grupo de Sobrevivência",
 	ContextMenu_SD_OfferWeapon = "Ofereca sua arma como presente",
 	ContextMenu_SD_OfferFood = "Oferecer comida",
 	ContextMenu_SD_OfferWater = "Oferecer água",
 	ContextMenu_SD_GiveOrder = "Dar Ordem",
-	ContextMenu_SD_OrderDescription = "Descricao da Ordem",
+	ContextMenu_SD_OrderDescription = "Descrição da Ordem",
 	
 	ContextMenu_SD_SetAreaConfirm = "Definir",
 	ContextMenu_SD_SetAreaCancel = "Cancelar",
 	ContextMenu_SD_SetAreaClear = "Limpar",
 	ContextMenu_SD_SetAreaSelect = "Selecionar área",
-	ContextMenu_SD_AreaSelecting = "Selecao de área",
+	ContextMenu_SD_AreaSelecting = "Selecão de área",
 	ContextMenu_SD_SetAreaSelectDesc = "Selecione uma área no mapa segurando o botão esquerdo e arrastando o mouse para selecionar uma área. Depois que a área for selecionada, as opções para usar a área selecionada estarão disponíveis, como declarar seu território base.",
 
 	ContextMenu_SD_BaseArea = "Área Base",
@@ -326,8 +390,8 @@ ContextMenu_PTBR = {
 	ContextMenu_SD_ToolStorageArea = "Área de Armazenamento de Ferramentas",
 	ContextMenu_SD_MedicalStorageArea = "área de Armazenamento Médicamentos",
 	ContextMenu_SD_FarmingArea = "Área de Cultivo/Lavoura",
-	ContextMenu_SD_ForageArea = "área de Forrageio",
-	ContextMenu_SD_GuardArea = "área para ficar de guarda",
+	ContextMenu_SD_ForageArea = "Área de Forrageio",
+	ContextMenu_SD_GuardArea = "Área para ficar de guarda",
 	ContextMenu_SD_SurvivorOptions = "Opções do Sobrevivente",
 
 	ContextMenu_SD_CallToArms = "Falar com Membros",
@@ -380,7 +444,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_WifeSpeech1 = "Querido?",
 	ContextMenu_speech_WifeSpeech2 = "O que vamos fazer, querido?",
 	ContextMenu_speech_WifeSpeech3 = "Devemos encontrar um lugar mais seguro agora?",
-	ContextMenu_speech_WifeSpeech4 = "ou devemos ficar aqui?",
+	ContextMenu_speech_WifeSpeech4 = "Ou devemos ficar aqui?",
 	ContextMenu_speech_WifeSpeech5 = "Estou com medo ..",
 
 	ContextMenu_speech_OutOfAmmo1 = "Sem munição!",
@@ -443,7 +507,7 @@ ContextMenu_PTBR = {
 
 	ContextMenu_speech_Crying1 = "* Soluçando *",
 	ContextMenu_speech_Crying2 = "* soluços *",
-	ContextMenu_speech_Crying3 = "Não .. não me deixe sozinho!",
+	ContextMenu_speech_Crying3 = "Não... não me deixe sozinho!",
 	ContextMenu_speech_Crying4 = "Não me deixe",
 	ContextMenu_speech_Crying5 = "Por favor .. não me deixe.",
 	ContextMenu_speech_Crying7 = "Não é assim .. Por favor!",
@@ -477,14 +541,14 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_VTired3 = "* HUFF * Precisa .. * PUFF * rest ..",
 	ContextMenu_speech_VTired4 = "* HUFF PUFF *",
 	ContextMenu_speech_VTired5 = "Pernas .. Cansado ..",
-	ContextMenu_speech_VTired6 = "Eu poderia realmente dar ... uma pausa!",
+	ContextMenu_speech_VTired6 = "Eu poderia realmente dar... uma pausa!",
 
 
 	ContextMenu_speech_STired1 = "Tão cansado .. Estou morrendo de cansaço."
 	ContextMenu_speech_STired2 = "Tão cansado ... Morrendo de cansaço",
 	ContextMenu_speech_STired3 = "Eu estou .. * HUFF * .. Implorando por um descanso ..",
 	ContextMenu_speech_STired4 = "Eu preciso REALMENTE descansar! * HUFF *",
-	ContextMenu_speech_STired5 = "Droga, ESPERE!",
+	ContextMenu_speech_STired5 = "Droga, ESPERE!!",
 	ContextMenu_speech_STired6 = "Eu vou desmaiar se não pararmos por um segundo!",
 	ContextMenu_speech_STired7 = "EU PRECISO de um descanso! * HUFF PUFF *",
 
@@ -580,7 +644,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_No2 = "Não, obrigado",
 	ContextMenu_speech_No3 = "De jeito nenhum!",
 	ContextMenu_speech_No4 = "Não",
-	ContextMenu_speech_No5 = "nah",
+	ContextMenu_speech_No5 = "Nah",
 	ContextMenu_speech_No6 = "Eu não penso assim",
 	ContextMenu_speech_No7 = "Não pense assim",
 
@@ -624,7 +688,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_SeenFirstZombie1 = "O que e isso ?!",
 	ContextMenu_speech_SeenFirstZombie2 = "Oh, merda.",
 	ContextMenu_speech_SeenFirstZombie3 = "O que ha de errado com essa pessoa !?",
-	ContextMenu_speech_SeenFirstZombie4 = "É..é um monstro!",
+	ContextMenu_speech_SeenFirstZombie4 = "É... é um monstro!",
 	ContextMenu_speech_SeenFirstZombie5 = "Ei! O que ha de errado com você ?!",
 	ContextMenu_speech_SeenFirstZombie6 = "O que ha de errado com você ?!",
 	ContextMenu_speech_SeenFirstZombie7 = "O que e isso ?! Recue! RECUE!",
@@ -637,8 +701,8 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_SeenFirstZombie14 = "Isso e .. Um dos infectados?",
 	ContextMenu_speech_SeenFirstZombie15 = "Que Porra e essa coisa ?!",
 	ContextMenu_speech_SeenFirstZombie16 = "Mas que diabos?",
-	ContextMenu_speech_SeenFirstZombie17 = "merda, o que há de errado com você ?!",
-	ContextMenu_speech_SeenFirstZombie18 = "O que ... O que e isso ?!",
+	ContextMenu_speech_SeenFirstZombie17 = "Merda, o que há de errado com você!!?",
+	ContextMenu_speech_SeenFirstZombie18 = "O que... O que e isso!!?",
 
 	
 	ContextMenu_speech_IdleChatter1 = "Esta tudo bem parar aqui?",
@@ -665,7 +729,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_IdleChatter22 = "Você acha que precisamos usar mascaras?",
 	ContextMenu_speech_IdleChatter23 = "Acha seguro deixar os corpos por ai? Devemos queima-los, so para ter certeza?",
 	ContextMenu_speech_IdleChatter24 = "Obrigado por confiar em mim."
-	ContextMenu_speech_IdleChatter25 = "Ei .. Obrigado por confiar em mim.",
+	ContextMenu_speech_IdleChatter25 = "Ei... Obrigado por confiar em mim.",
 	ContextMenu_speech_IdleChatter26 = "Obrigado pela ajuda la atras."
 	ContextMenu_speech_IdleChatter27 = "Você e um otimo amigo. Obrigado por cobrir minhas costas."
 	ContextMenu_speech_IdleChatter28 = "Obrigado pela ajuda la atras."
@@ -689,7 +753,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_IdleChatter46 = "Você sabe como sobreviver. Você não tem ideia de como estou feliz por ter encontrado você.",
 	ContextMenu_speech_IdleChatter47 = "Os militares com certeza",
 	ContextMenu_speech_IdleChatter48 = "Acha que as forcas armadas ainda estao por ai?",
-	ContextMenu_speech_IdleChatter49 = "as vezes parece que esse e um pesadelo doentio e distorcido."
+	ContextMenu_speech_IdleChatter49 = "As vezes parece que esse e um pesadelo doentio e distorcido."
 	ContextMenu_speech_IdleChatter50 = "Você ja se perguntou o que causou este surto? Sim, eu também ..",
     ContextMenu_speech_IdleChatter51 = "Sabe o que mais sinto falta? Hamburgueres.",
 	ContextMenu_speech_IdleChatter52 = "Você acha que Washington DC ja foi invadida?",
@@ -710,7 +774,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_IdleChatter67 = "Você ja sentiu isso? quando sabe que tudo esta errado?",
 	ContextMenu_speech_IdleChatter68 = "Você ja sentiu isso? quando sabe que tudo vai dar certo?",
 	ContextMenu_speech_IdleChatter69 = "Você acredita nas transmissÃµes? Estamos realmente imunes?",
-	ContextMenu_speech_IdleChatter70 = "e estranho, meu amigo se transformou em uma desses ... Coisas. Ele nem sequer foi mordido."
+	ContextMenu_speech_IdleChatter70 = "É estranho, meu amigo se transformou em uma desses... Coisas. Ele nem sequer foi mordido."
 	ContextMenu_speech_IdleChatter71 = "Você acha que o mundo todo esta infectado agora?",
 	ContextMenu_speech_IdleChatter72 = "Outros por ai ainda devem estar vivos. Eles devem ser.",
 	ContextMenu_speech_IdleChatter73 = "Você acha que somos imunes?",
@@ -722,7 +786,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_IdleChatter79 = "Você sabe .. Você e um grande amigo. Eu so queria que você soubesse."
 	ContextMenu_speech_IdleChatter80 = "Você esta bem? Você parece bem cansado."
 	ContextMenu_speech_IdleChatter81 = "Você esta indo bem?",
-	ContextMenu_speech_IdleChatter82 = "e bom dar uma pausa de vez em quando.",
+	ContextMenu_speech_IdleChatter82 = "É bom dar uma pausa de vez em quando.",
 	ContextMenu_speech_IdleChatter83 = "Você sabe, quando esta quieto assim? Você pode fingir que não ha zeds no mundo ...",
 	ContextMenu_speech_IdleChatter84 = "Tenho um amigo chamado Nolan .. me pergunto como ele esta ... provavelmente se escondendo em algum telhado em algum lugar."
 	ContextMenu_speech_IdleChatter85 = "Você esta bem?",
@@ -747,8 +811,8 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_IdleChatter104 = "Eu ainda acho que isso e uma piada doentia.",
 	ContextMenu_speech_IdleChatter105 = "Eu realmente sinto falta da minha familia ..",
 	ContextMenu_speech_IdleChatter106 = "Quantas pessoas você acha que ainda estao ... Vivas?",
-	ContextMenu_speech_IdleChatter107 = "e melhor irmos com cuidado. Não queremos atrair Invasores."
-	ContextMenu_speech_IdleChatter108 = "e melhor irmos com cuidado. Não queremos atrair os infectados."
+	ContextMenu_speech_IdleChatter107 = "É melhor irmos com cuidado. Não queremos atrair Invasores."
+	ContextMenu_speech_IdleChatter108 = "É melhor irmos com cuidado. Não queremos atrair os infectados."
 	ContextMenu_speech_IdleChatter109 = "Você confia em mim? Eu so pergunto porque confio em você.",
 	ContextMenu_speech_IdleChatter110 = "* Comeca a cantarolar silenciosamente para si mesmo *",
 	ContextMenu_speech_IdleChatter111 = "Não sou louco por conspiracao .. Mas você não acha uma coincidencia que os militares tenham aparecido exatamente quando isso aconteceu?",
@@ -783,7 +847,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_PreZombieChatter9 = "Claro que e um bom dia.",
 	ContextMenu_speech_PreZombieChatter10 = "Ola! Belo dia, não e?",
 	ContextMenu_speech_PreZombieChatter11 = "Gostaria de saber se o PAWS esta sendo exibido hoje?",
-	ContextMenu_speech_PreZombieChatter12 = "e .. e alguém gritando ...?",
+	ContextMenu_speech_PreZombieChatter12 = "é... é alguém gritando ...?",
 	ContextMenu_speech_PreZombieChatter13 = "Bom tempo hoje.",
 	ContextMenu_speech_PreZombieChatter14 = "Bom dia.",
 
@@ -835,8 +899,8 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_BadInjured3 = "Aaah! Estou gravemente ferido!"
 	ContextMenu_speech_BadInjured4 = "Eu preciso de tratamento, estou falando seria!",
 	ContextMenu_speech_BadInjured5 = "Eu preciso de ajuda! Estou ferido, fudido!",
-	ContextMenu_speech_BadInjured6 = "merda, estou muito ferido",
-	ContextMenu_speech_BadInjured7 = "merda, ele me pegou porra!",
+	ContextMenu_speech_BadInjured6 = "Merda, estou muito ferido",
+	ContextMenu_speech_BadInjured7 = "Merda, ele me pegou porra!",
 	ContextMenu_speech_BadInjured8 = "Precisa de ajuda aqui!",
 	ContextMenu_speech_BadInjured9 = "Eu estou .. Não me sentindo muito bem ..",
 	ContextMenu_speech_BadInjured10 = "Estou muito machucado!",
@@ -845,7 +909,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_BadInjured13 = "Arghhhhh!",
 	ContextMenu_speech_BadInjured14 = "Essa Porra doi ..",
 	ContextMenu_speech_BadInjured15 = "Ughhh!",
-	ContextMenu_speech_BadInjured16 = "merda, estou sangrando muito.",
+	ContextMenu_speech_BadInjured16 = "Merda, estou sangrando muito.",
 	ContextMenu_speech_BadInjured17 = "Essa mordida me deixou muito mal ..",
 
 
@@ -967,7 +1031,7 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_Greetings28 = "Você quer se unir? Você parece ter vivido muita coisa."
 	ContextMenu_speech_Greetings29 = "Espere um minuto ... Eu não te conheço? caralho, vamos acompanhar!",
 	ContextMenu_speech_Greetings30 = "Ei, você! Quer pegar alguns zeds comigo?",
-	ContextMenu_speech_Greetings31 = "alguém ainda vivo, hein? Eu sou a diversão. Vamos fazer rolar.",
+	ContextMenu_speech_Greetings31 = "Alguém ainda vivo, hein? Eu sou a diversão. Vamos fazer rolar.",
 	ContextMenu_speech_Greetings32 = "Eu vou ficar nas suas costas e você fica nas minha minha."
 	ContextMenu_speech_Greetings33 = "Você pode confiar em mim cara. Pois eu confio em você de volta."
 	ContextMenu_speech_Greetings34 = "Você e a primeira pessoa que eu vejo ha anos. Quer se juntar?",
@@ -986,14 +1050,14 @@ ContextMenu_PTBR = {
 
 	
    	ContextMenu_speech_WantToHide1 = "Eu preciso sair daqui",
-	ContextMenu_speech_WantToHide2 = "merda, eu tenho que sair daqui",
+	ContextMenu_speech_WantToHide2 = "Merda, eu tenho que sair daqui",
 	ContextMenu_speech_WantToHide3 = "Eu tenho que me esconder."
 	ContextMenu_speech_WantToHide4 = "Estou dando o fora dessa merda.",
 	ContextMenu_speech_WantToHide5 = "Eu preciso sair daqui",
 	ContextMenu_speech_WantToHide6 = "Estou dando o fora dessa merda antes que os zeds me vejam..",
 	ContextMenu_speech_WantToHide7 = "Isso não e bom.",
 	ContextMenu_speech_WantToHide8 = "Quao difícil e encontrar algum lugar seguro? caramba.",
-	ContextMenu_speech_WantToHide9 = "e muito perigoso ao ar livre.",
+	ContextMenu_speech_WantToHide9 = "É muito perigoso ao ar livre.",
 	ContextMenu_speech_WantToHide10 = "merda, ha muitos deles por aqui. e melhor eu me esconder.",
 	ContextMenu_speech_WantToHide11 = "Esse costumava ser um bairro tão legal."
 	ContextMenu_speech_WantToHide12 = "A ultima coisa que vou fazer e ficar aqui."
@@ -1091,13 +1155,13 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_Panic11 = "Eles ainda estao aqui!",
 	ContextMenu_speech_Panic12 = "O que eu vou fazer ?!",
 	ContextMenu_speech_Panic13 = "Eu não vou deixar vocês me matarem!",
-	ContextMenu_speech_Panic14 = "merda! Droga ZEDS!",
+	ContextMenu_speech_Panic14 = "Merda! Droga ZEDS!",
 	ContextMenu_speech_Panic15 = "Oh merda. Ohhh Porra.",
 	ContextMenu_speech_Panic16 = "e isso! Este e o fim!",
 	ContextMenu_speech_Panic17 = "Porra! O que eu faço?",
 	ContextMenu_speech_Panic18 = "Você não vão conseguindo nada de mim, seu maldito!",
 	ContextMenu_speech_Panic19 = "Volte, seus bastardos!",
-	ContextMenu_speech_Panic20 = "O que eu faço? O que eu faço ?!",
+	ContextMenu_speech_Panic20 = "O que eu faço? O QUE EU FAÇO!!?",
 	ContextMenu_speech_Panic21 = "merda. merda. merda.",
 	ContextMenu_speech_Panic22 = "Onde eu vou ?!",
 	ContextMenu_speech_Panic23 = "O que eu faço ?!",
@@ -1109,11 +1173,11 @@ ContextMenu_PTBR = {
 	ContextMenu_speech_Scared4 = "O que diabos esta acontecendo ?!",
 	ContextMenu_speech_Scared5 = "Onde esta a policia ?!",
 	ContextMenu_speech_Scared6 = "Porra Porra Cristo!",
-	ContextMenu_speech_Scared7 = "Porra iferno!",
+	ContextMenu_speech_Scared7 = "Porra inferno!",
 	ContextMenu_speech_Scared8 = "Mas que Porra! Afaste-se de mim!",
 	ContextMenu_speech_Scared9 = "Oh merda! Oh merda!",
 	ContextMenu_speech_Scared10 = "Pegue a porra de volta!",
-	ContextMenu_speech_Scared11 = "Ajuda! Eu não quero morrer!",
+	ContextMenu_speech_Scared11 = "Me Ajuda! Eu não quero morrer!",
 	ContextMenu_speech_Scared12 = "O que diabos esta acontecendo ?!",
 	ContextMenu_speech_Scared13 = "Você me quer ?! Venha me pegar!",
 	ContextMenu_speech_Scared14 = "Afaste-se de mim!",

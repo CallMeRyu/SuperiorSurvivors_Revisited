@@ -54,3 +54,9 @@ EXP 16 - U6
 I *believe* I have made it where the NPCs, when using a gun and reloading it, AND there is zombies near said npc, 99% of the time, that NPC will run away.
 This *MAY* have side effects of hostile NPCs running away from you, but that could also be counted as a feature if you turn off hostile colors in the options menu. Also do not worry, this does not effect followers (unless the follower bugs out because some other unforseen reason)
 As per always, feedback requested.
+
+EXP 16 - U7
+-
+* First attempt at fixing the "Chance to spawn with guns" isn't multiplied 1.5x (This is how last modder added it, because previously there wasn't 0-100%, it was multiples of 5 in the options menu.)
+
+* Getting preparations set for AI-Manager update for the future. Soon AI-Manager tasks should use less RAM/CPU since it will not be having to scan through as much code as it previously once did. But for now, just preparing the code for that day.
