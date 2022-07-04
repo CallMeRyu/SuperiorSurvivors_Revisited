@@ -281,7 +281,7 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_SD_HeyYou = "Hey you!",
 	ContextMenu_SD_EquipsArmor = "Equips Armor",
 	ContextMenu_SD_WeLooting = "we doing some scavenging?",
-	ContextMenu_SD_WeBackToBase= "Goot to be back",
+	ContextMenu_SD_WeBackToBase= "Good to be back",
 	ContextMenu_SD_LeaveGroupHungry = "Forget you guys I'm going to find some food",
 	ContextMenu_SD_LeaveBCHungry = "Forget this I'm going to find some food",
 	

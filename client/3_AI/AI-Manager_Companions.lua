@@ -175,6 +175,7 @@ function AIManager_Companion(TMI)
 		end
 		
 		-- Careful setting up Flee to heal and 'healing', they will conflict very easily.
+		-- This may need also a check for if not too far from player
 		-- -----------   --
 		-- Flee to heal  --
 		-- -----------   --
