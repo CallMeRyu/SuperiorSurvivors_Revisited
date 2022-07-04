@@ -184,8 +184,7 @@ end
 	if(not SuperSurvivorOptions["Option_Display_Survivor_Names"]) then SuperSurvivorOptions["Option_Display_Survivor_Names"] = 2 end
 	if(not SuperSurvivorOptions["Option_Display_Hostile_Color"]) then SuperSurvivorOptions["Option_Display_Hostile_Color"] = 2 end
 	
-	if(not SuperSurvivorOptions["Bravery"]) then SuperSurvivorOptions["Bravery"] = 2 end
-	if(not SuperSurvivorOptions["Bravery"]) then SuperSurvivorOptions["Bravery"] = 2 end
+	if(not SuperSurvivorOptions["Bravery"]) then SuperSurvivorOptions["Bravery"] = 4 end
 	
 	if(not SuperSurvivorOptions["AltSpawn"]) then SuperSurvivorOptions["AltSpawn"] = 2 end
 	if(not SuperSurvivorOptions["AltSpawnPercent"]) then SuperSurvivorOptions["AltSpawnPercent"] = 10 end
@@ -408,9 +407,9 @@ if index then
 		
 		
 		----- Survivor options in Game Options -----
-		local spacing = 10
+		local spacing = 3
 		local spacing2x = 20
-		local spacing4x = 40
+		local spacing4x = 30
 	
 		self:addPage(getText("ContextMenu_Title"))
 		self.addY = 0
@@ -527,16 +526,7 @@ if index then
 
 		local options = {getText("ContextMenu_SD_PVPOff"),getText("ContextMenu_SD_PVPOn")}
 		self:addCustomCombo('Option_ForcePVP',splitpoint,y,comboWidth,getText("ContextMenu_SD_PVPInfoBar"),options,getText("ContextMenu_SD_PVPInfoBarDesc"))
-	
-	y = y + spacing
-	
-	local options = 
-	{
-		getText("ContextMenu_SD_Off"),
-		getText("ContextMenu_SD_On")
-	}
-	self:addCustomCombo('RoleplayMessage',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RoleplayMessage"),options,getText("ContextMenu_SOption_RoleplayMessageDesc"))
-
+		
 	y = y + spacing
 	
 		local options = NPC_Options_ZeroToOneHundred()
@@ -550,12 +540,27 @@ if index then
 	y = y + spacing4x
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('LockNLoad',splitpoint,y,comboWidth,getText("ContextMenu_SOption_LockNLoad"),options,getText("ContextMenu_SOption_LockNLoadDesc"))
+		self:addCustomCombo('Option_Display_Survivor_Names',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Survivor_Names"),options,getText("ContextMenu_Option_Display_Survivor_NamesDesc"))
+		
+	y = y + spacing
+
+		local options = NPC_Options_OffOn()
+		self:addCustomCombo('Option_Display_Hostile_Color',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Hostile_Color"),options,getText("ContextMenu_Option_Display_Hostile_ColorDesc"))
+		
+	y = y + spacing
+	
+		local options = NPC_Options_OffOn()
+		self:addCustomCombo('RoleplayMessage',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RoleplayMessage"),options,getText("ContextMenu_SOption_RoleplayMessageDesc"))
+			
+	y = y + spacing4x
+
+		local options = NPC_Options_OffOn()
+		self:addCustomCombo('WifeSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WifeSpawn"),options,getText("ContextMenu_SOption_WifeSpawnDesc"))
 		
 	y = y + spacing
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('WifeSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WifeSpawn"),options,getText("ContextMenu_SOption_WifeSpawnDesc"))
+		self:addCustomCombo('LockNLoad',splitpoint,y,comboWidth,getText("ContextMenu_SOption_LockNLoad"),options,getText("ContextMenu_SOption_LockNLoadDesc"))
 
 	y = y + spacing4x
 	
@@ -587,17 +592,7 @@ if index then
 			getText("ContextMenu_SD_Brave"), getText("ContextMenu_SD_VeryBrave")
 		}
 		self:addCustomCombo('Bravery',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorBravery"),options,getText("ContextMenu_SOption_SurvivorBraveryDesc"))
-		
-	y = y + spacing
-
-		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Display_Survivor_Names',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Survivor_Names"),options,getText("ContextMenu_Option_Display_Survivor_NamesDesc"))
-		
-	y = y + spacing
-
-		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Display_Hostile_Color',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Hostile_Color"),options,getText("ContextMenu_Option_Display_Hostile_ColorDesc"))
-		
+			
 	y = y + spacing
 
 		local options = NPC_Options_OffOn()

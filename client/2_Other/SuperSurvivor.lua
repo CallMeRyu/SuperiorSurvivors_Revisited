@@ -2001,9 +2001,10 @@ function SuperSurvivor:DoHumanEntityScan()
 						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
 							self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						end
-						if(tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
-							self.dangerSeenCount = self.dangerSeenCount + 1 
-						end
+						-- Removed: The sixth sense and dovision does this well enough. this would just stack numbers infinitely
+						--if(tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
+						--	self.dangerSeenCount = self.dangerSeenCount + 1 
+						--end
 						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
 							self.seenCount = self.seenCount + 1 
 						end
@@ -2049,6 +2050,7 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 --	self.LastEnemeySeen = nil
 --	self.LastSurvivorSeen = nil
 	local dangerRange = 2
+	
 	if (self:getGroupRole() == "Companion") then 
 		atLeastThisClose = 5
 		closestSoFar = 5
@@ -2076,8 +2078,9 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
 							self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						end
-						if(tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
-							self.dangerSeenCount = self.dangerSeenCount + 1 
+						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) then
+							self.dangerSeenCount = self.dangerSeenCount + 1
+							print("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
 						end
 						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
 							self.seenCount = self.seenCount + 1 
@@ -2481,11 +2484,17 @@ function SuperSurvivor:Task_IsPursue_SC()
 	-- ---------------------------------------------- --
 	
 	local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
+	local Enemy_Is_a_Human  = (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
 	
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 5) and (self:getGroupRole() ~= "Companion") then
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 1) and (self:getGroupRole() ~= "Companion") then
-	if (self.LastEnemeySeen == nil)   then
+	if (self.LastEnemeySeen == nil) and (self:inFrontOfDoor() == nil)  then
 		self:DoHumanEntityScan()
+	end
+	
+	if (self:inFrontOfDoor() ~= nil) and (Enemy_Is_a_Human) and not (Enemy_Is_a_Zombie) then
+		self.LastEnemeySeen = nil
+		return false
 	end
 	
 	
@@ -2520,7 +2529,8 @@ function SuperSurvivor:Task_IsPursue_SC()
 	--	self:zDebugSayPTSC(self:NPC_CheckPursueScore(),"false_15")
 		return false
 	end
-	return true
+	
+	-- return true
 end
 
 
@@ -3000,7 +3010,7 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 		self.StuckDoorTicks = self.StuckDoorTicks + 1
 	
 		-- Once the timer strikes 11
-		if (self.StuckDoorTicks > 10) then
+		if (self.StuckDoorTicks > 5) then
 			self:getTaskManager():AddToTop(WanderTask:new(self))
 			self:DebugSay("NPC_ManageLockedDoors Function triggered!")
 
@@ -3011,7 +3021,7 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 			end
 			
 			-- timer will continue going up within an emergency
-			if (self.StuckDoorTicks > 12) then
+			if (self.StuckDoorTicks > 11) then
 				if (self:getGroupRole() == "Random Solo") then -- Not a player's base allie
 					self:getTaskManager():clear()
 					self:getTaskManager():AddToTop(WanderTask:new(self))
@@ -4149,7 +4159,7 @@ end
 function SuperSurvivor:Attack(victim)
 	
 	-- Create the attack cooldown. (once 0, the npc will do the 'attack' then set the time back up by 1, so anti-attack spam method)
-	-- note: don't use self:CanAttackAlt() in this if statement. it's already being done in this function.
+	-- note: don't use self:CanAttackAlt() in this if statement. it's already being done in this function. (Update: It works long as it's set to true)
 	if (self:IsNOT_AtkTicksZero()) and (self:CanAttackAlt() == true) then
 		self:AtkTicks_Countdown()
 	return false end

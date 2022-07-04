@@ -21,7 +21,6 @@ end
 
 function FleeFromHereTask:isComplete()
 	if getDistanceBetween(self.parent.player, self.fleeFromHere) > 30 then 
-		self.parent:DebugSay("FleeFromHereTask is about to trigger a StopWalk! ")
 		self.parent:StopWalk()		
 		self.parent:setRunning(false)
 		return true	

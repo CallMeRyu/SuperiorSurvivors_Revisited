@@ -445,7 +445,7 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_SD_PVPOff = "Off"
 	ContextMenu_SD_PVPOn = "On"
 	
-    ContextMenu_SOption_RoleplayMessage = "Roleplay Message"
+    ContextMenu_SOption_RoleplayMessage = "Display Roleplay Messages:"
     ContextMenu_SOption_RoleplayMessageDesc = "This defines if messages of actions will be showed"
 	ContextMenu_SOption_ChancetobeHostile = "Hostile NPC - Spawn Hostile:",
 	ContextMenu_SOption_ChancetobeHostileDesc = "This defines the chance that a random spawn survivor will be hostile when spawned",
