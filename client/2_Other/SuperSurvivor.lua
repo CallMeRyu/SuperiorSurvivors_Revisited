@@ -2509,7 +2509,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 				and (self:Task_IsNotThreaten())
 				and (self:Task_IsNotPursue())
 				and (self:Task_IsNotSurender())
-				and (self:Task_IsNotAttemptEntryIntoBuilding() )
+			--	and (self:Task_IsNotAttemptEntryIntoBuilding() )
 				and (self:isWalkingPermitted())
 			--	and ((self:isEnemy(self.LastEnemeySeen)) or (self:isEnemy(self.LastSurvivorSeen)))
 			  then
@@ -2545,6 +2545,7 @@ end
 
 
 -- Verifier level tasks. This will check to make sure the task itself isn't already active, to activate
+-- Update: there needs to be a better way for this
 function SuperSurvivor:NPCTask_Clear()
 	self:getTaskManager():clear()
 end
