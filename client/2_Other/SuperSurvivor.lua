@@ -4130,12 +4130,20 @@ end
 ---@return number represents the damage that the weapon will give if hits
 function SuperSurvivor:getWeaponDamage(weapon,distance)
 	if (weapon == nil) then
+		print("weapon returned a nil value, no weapon found")
 		return 0
 	end
 
-	local damage = ZombRand(weapon:getMinDamage(), weapon:getMaxDamage())
-	damage = damage - (damage * (distance * 0.1))
+--	local damage = ZombRand(weapon:getMinDamage(), weapon:getMaxDamage())
+--	damage = damage - (damage * (distance * 0.1))
 
+	local damage = 0
+		  damage = weapon:getMaxDamage() - ZombRand(0,weapon:getMaxDamage())
+		  damage = damage - (damage * (distance * 0.1))	
+	
+	print("weapon returned "..tostring(damage))
+	print("")
+	
 	return damage
 end
 
@@ -4198,11 +4206,11 @@ function SuperSurvivor:Attack(victim)
 
 						local dice = ZombRand(0,100)
 
-						-- print("---------")
-						-- print("dice : " .. tostring(dice))
-						-- print("damage : " .. tostring(damage))
-						-- print("hitChance : " .. tostring(hitChance))
-						-- print("---------")
+						 print("---------")
+						 print("dice : " .. tostring(dice))
+						 print("damage : " .. tostring(damage))
+						 print("hitChance : " .. tostring(hitChance))
+						 print("---------")
 
 						if (hitChance >= dice)then
 							victim:Hit(weapon, self.player, damage, false, 1.0, false)
