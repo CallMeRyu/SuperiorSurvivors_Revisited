@@ -4206,11 +4206,11 @@ function SuperSurvivor:Attack(victim)
 
 						local dice = ZombRand(0,100)
 
-						 print("---------")
-						 print("dice : " .. tostring(dice))
-						 print("damage : " .. tostring(damage))
-						 print("hitChance : " .. tostring(hitChance))
-						 print("---------")
+					--	 print("---------")
+					--	 print("dice : " .. tostring(dice))
+					--	 print("damage : " .. tostring(damage))
+					--	 print("hitChance : " .. tostring(hitChance))
+					--	 print("---------")
 
 						if (hitChance >= dice)then
 							victim:Hit(weapon, self.player, damage, false, 1.0, false)
