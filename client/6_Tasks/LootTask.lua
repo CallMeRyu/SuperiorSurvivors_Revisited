@@ -29,7 +29,6 @@ function LootCategoryTask:new(superSurvivor, building , category, thisQuantity)
 	o.Complete = false
 	o.Floor = 0
 	
-	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 
@@ -75,18 +74,20 @@ function LootCategoryTask:isValid()
 end
 
 function LootCategoryTask:update()
-
+	-- added isTargetBuildingDangerousAlt so that it can check if the npc is in the player's base or not
 	if(not self:isValid()) or self.parent:isTooScaredToFight() then
-		self.parent:DebugSay("too scared")
 		self.Complete = true
 		return false 
 	end
 	if(self.parent:isInAction()) then
 		return false 
 	end
+		-- Checks if safebase is set to 'true' and if so, and the npc is inside a safebase the player made? forces task complete
+		if (self.Building ~= nil) and self.parent:isTargetBuildingClaimed(self.Building) then
+			self.Complete = true
+			return false 
+		end
 	
-		self.parent:DebugSay("loot update")
-		
 		if(self.Category == nil) then self.Category = "Food" end 
 		local loopcount
 		

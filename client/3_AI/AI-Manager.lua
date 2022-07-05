@@ -676,7 +676,7 @@ function AIManager(TaskMangerIn)
 	
 	if(getSpecificPlayer(0) == nil) or (not getSpecificPlayer(0):isAsleep()) then
 		SafeToGoOutAndWork = true
-		local AutoWorkTaskTimeLimit = 300
+		local AutoWorkTaskTimeLimit = 300 
 		
 		--print("basetasks " .. ASuperSurvivor:getName().." "..ASuperSurvivor:getAIMode() .. " " .. TaskMangerIn:getCurrentTask() .. " " .. ASuperSurvivor:getGroupRole() .. " " .. ASuperSurvivor:getCurrentTask() .. " " .. tostring(IsInAction))
 		if(not SurvivorsFindWorkThemselves or not IsInBase) and (ASuperSurvivor:getGroupRole() == "Guard") and (ASuperSurvivor:getCurrentTask() == "None") and (not IsInAction) and (ZombRand(4)==0) then
@@ -790,6 +790,7 @@ function AIManager(TaskMangerIn)
 						jobScores["Clean Inventory"] = 2
 						jobScores["Gather Wood"] = 2
 						jobScores["Pile Corpses"] = 2
+						jobScores["Wash Self"] = 2 -- Newly added line
 
 						-- skilled work
 						jobScores["Chop Wood"] = 2 + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Axe")), 3)
@@ -996,14 +997,14 @@ function AIManager(TaskMangerIn)
 			ASuperSurvivor:DebugSay("Find Unlooted Building Task condition met in AI manager! Reference number B_0002")
 		end
 		
-		if(ASuperSurvivor.TargetBuilding ~= nil) or (ASuperSurvivor:inUnLootedBuilding()) then
+		if(ASuperSurvivor.TargetBuilding ~= nil) or (ASuperSurvivor:inUnLootedBuilding())then
 			if ASuperSurvivor.TargetBuilding == nil then ASuperSurvivor.TargetBuilding = ASuperSurvivor:getBuilding() end
-			if (not ASuperSurvivor:hasWeapon()) and (TaskMangerIn:getCurrentTask() ~= "Loot Category") and (ASuperSurvivor:getDangerSeenCount() <= 0) and (ASuperSurvivor:inUnLootedBuilding()) then
+			if (not ASuperSurvivor:hasWeapon()) and (TaskMangerIn:getCurrentTask() ~= "Loot Category") and (ASuperSurvivor:getDangerSeenCount() <= 0) and (ASuperSurvivor:inUnLootedBuilding()) and (NPC:isTargetBuildingClaimed(ASuperSurvivor.TargetBuilding) == false) then
 				ASuperSurvivor:DebugSay("Loot Task condition met in AI manager! Reference number B_0003")
 				TaskMangerIn:AddToTop(LootCategoryTask:new(ASuperSurvivor,ASuperSurvivor.TargetBuilding,"Food",2))
 				TaskMangerIn:AddToTop(EquipWeaponTask:new(ASuperSurvivor))
 				TaskMangerIn:AddToTop(LootCategoryTask:new(ASuperSurvivor,ASuperSurvivor.TargetBuilding,"Weapon",2))
-			elseif (ASuperSurvivor:hasRoomInBag()) and (TaskMangerIn:getCurrentTask() ~= "Loot Category") and (ASuperSurvivor:getDangerSeenCount() <= 0) and (ASuperSurvivor:inUnLootedBuilding()) then
+			elseif (ASuperSurvivor:hasRoomInBag()) and (TaskMangerIn:getCurrentTask() ~= "Loot Category") and (ASuperSurvivor:getDangerSeenCount() <= 0) and (ASuperSurvivor:inUnLootedBuilding()) and (NPC:isTargetBuildingClaimed(ASuperSurvivor.TargetBuilding) == false) then
 				TaskMangerIn:AddToTop(LootCategoryTask:new(ASuperSurvivor,ASuperSurvivor.TargetBuilding,"Food",1))
 				ASuperSurvivor:DebugSay(" Task condition met in AI manager! Reference number B_0004")
 			end
