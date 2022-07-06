@@ -2078,9 +2078,9 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
 							self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						end
-						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) then
+						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) and (not (self:getGroupRole() == "Companion")) then
 							self.dangerSeenCount = self.dangerSeenCount + 1
-							print("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
+							self:DebugSay("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
 						end
 						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
 							self.seenCount = self.seenCount + 1 
@@ -2371,7 +2371,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 			return zRangeToPursue
 		end	
 
-		if (self:getTaskManager():getCurrentTask() == "Enter New Building") then
+		if (self:getTaskManager():getCurrentTask() == "Enter New Building") and not (self:RealCanSee(self.LastEnemeySeen)) then
 			self:zDebugSayPTSC(zRangeToPursue,"0_EnteringNewBuilding")
 			zRangeToPursue = 0
 			return zRangeToPursue
@@ -2488,25 +2488,28 @@ function SuperSurvivor:Task_IsPursue_SC()
 	
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 5) and (self:getGroupRole() ~= "Companion") then
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 1) and (self:getGroupRole() ~= "Companion") then
-	if (self.LastEnemeySeen == nil) and (self:inFrontOfDoor() == nil)  then
+	if (self.LastEnemeySeen == nil)  then
 		self:DoHumanEntityScan()
 	end
 	
-	if (self:inFrontOfDoor() ~= nil) and (Enemy_Is_a_Human) and not (Enemy_Is_a_Zombie) then
-		self.LastEnemeySeen = nil
-		return false
-	end
+	-- This was a test, it didn't work very well. It was an attempt to block door spam but other things are doing that already.
+	--if (self:inFrontOfDoor() ~= nil) and (getDistanceBetween(self.LastEnemeySeen,self.player) >= 8) and (Enemy_Is_a_Human) and not (Enemy_Is_a_Zombie) then
+	--	self.LastEnemeySeen = nil
+	--	self:DebugSay("Forcing lastenemyseen to be nil")
+	--	return false
+	--end
+	
 	
 	
 	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) then
-	
 		local Distance_AnyEnemy = getDistanceBetween(self.LastEnemeySeen,self.player)
 		local zNPC_AttackRange  = self:isEnemyInRange(self.LastEnemeySeen)
-	
+		
 		if (self:NPC_CheckPursueScore() > Distance_AnyEnemy ) then -- Task priority checker
 			if (self:hasWeapon())
 			--	and (self:Task_IsAttack() and (not zNPC_AttackRange)) 		
 				and (self:Task_IsNotThreaten())
+				and (zNPC_AttackRange)
 				and (self:Task_IsNotPursue())
 				and (self:Task_IsNotSurender())
 			--	and (self:Task_IsNotAttemptEntryIntoBuilding() )
@@ -2531,6 +2534,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 	end
 	
 	-- return true
+	
 end
 
 
@@ -4211,8 +4215,9 @@ function SuperSurvivor:Attack(victim)
 					--	 print("damage : " .. tostring(damage))
 					--	 print("hitChance : " .. tostring(hitChance))
 					--	 print("---------")
-
-						if (hitChance >= dice)then
+					
+						-- Added RealCanSee to see if it works | and (damage > 0)
+						if (hitChance >= dice) and (damage > 0) and (self:RealCanSee(victim)) then
 							victim:Hit(weapon, self.player, damage, false, 1.0, false)
 							self:DebugSay("I HIT THE GUNSHOT!")
 							self.AtkTicks = 1

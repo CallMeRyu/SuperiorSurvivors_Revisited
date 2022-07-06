@@ -69,32 +69,32 @@ function AttemptEntryIntoBuildingTask:update()
 	if(not self:isValid()) then return false end
 
 	-- Idea: try 'wait()' function to test. Confirmed: The NPC will stand still when testing in the other files
-	if (self.parent:inFrontOfLockedDoor()) then
-		self.parent.TicksSinceSquareChanged = self.parent.TicksSinceSquareChanged + 1
-		self.parent:Speak("Damnit, the door is blocked off!")--TODO: add localization
-		self.parent:MarkBuildingExplored(self.parent:getBuilding())
-		self.TargetSquare = nil
-		self.parent:walkToDirect(outsidesquare)
-		self.parent:walkTo(outsidesquare)
-		self:giveUpOnBuilding() 
-		self.TryWindow = true
-	else
-		self.parent.TicksSinceSquareChanged = 0
-	end
-	--	if (self.parent:inFrontOfBarricadedWindowAlt()) and (self.Door ~= nil) then 
-	if (self.parent:inFrontOfBarricadedWindowAlt()) then 
-	--	self.parent:Speak("This window is blocked off!")
+	--if (self.parent:inFrontOfLockedDoor()) then
+	--	self.parent.TicksSinceSquareChanged = self.parent.TicksSinceSquareChanged + 1
+	--	self.parent:Speak("Damnit, the door is blocked off!")--TODO: add localization
 	--	self.parent:MarkBuildingExplored(self.parent:getBuilding())
-	----	self.TargetSquare = nil
+	--	self.TargetSquare = nil
 	--	self.parent:walkToDirect(outsidesquare)
 	--	self.parent:walkTo(outsidesquare)
-	----	self:giveUpOnBuilding() 
-	end
+	--	self:giveUpOnBuilding() 
+	--	self.TryWindow = true
+	--else
+	--	self.parent.TicksSinceSquareChanged = 0
+	--end
+	----	if (self.parent:inFrontOfBarricadedWindowAlt()) and (self.Door ~= nil) then 
+	--if (self.parent:inFrontOfBarricadedWindowAlt()) then 
+	----	self.parent:Speak("This window is blocked off!")
+	----	self.parent:MarkBuildingExplored(self.parent:getBuilding())
+	------	self.TargetSquare = nil
+	----	self.parent:walkToDirect(outsidesquare)
+	----	self.parent:walkTo(outsidesquare)
+	------	self:giveUpOnBuilding() 
+	--end
 
-	if (self.parent.TicksSinceSquareChanged > 10) and ((self.parent:inFrontOfBarricadedWindowAlt()) or (self.parent:inFrontOfLockedDoor())) then
-		self:giveUpOnBuilding()
-		return false
-	end
+	--if (self.parent.TicksSinceSquareChanged > 10) and ((self.parent:inFrontOfBarricadedWindowAlt()) or (self.parent:inFrontOfLockedDoor())) then
+	--	self:giveUpOnBuilding()
+	--	return false
+	--end
 
 	-- Let the rest of the code do whatever, but make it where if the window is at least barricaded, 
 	-- then make it where the npc actually gives up raiding. Otherwise, the npc will break window like normal. 

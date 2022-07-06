@@ -448,13 +448,14 @@ function AIManager(TaskMangerIn)
 	-- New: To attempt players that are NOT trying to encounter a fight, 
 	-- should be able to run away. maybe a dice roll for the future?
 	-- ----------------------------- --
-	if (EnemyIsSurvivor) and (TaskMangerIn:getCurrentTask() == "Threaten") and (Distance_AnyEnemy > 10) then
-		TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
-		TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor,nil))	
-		TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
-		TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))
+	if not (AiNPC_Job_Is(NPC,"Companion"))  then
+		if (EnemyIsSurvivor) and (TaskMangerIn:getCurrentTask() == "Threaten") and (Distance_AnyEnemy > 10) then
+			TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
+			TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor,nil))	
+			TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
+			TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))
+		end	
 	end
-	
 	
 	-- ----------------------------- --
 	-- find safe place if injured and enemies near		this needs updating
@@ -663,6 +664,17 @@ function AIManager(TaskMangerIn)
 		end	
 	end
 	
+	-- ----------------------------- --
+	-- 	Shift task quickly to attack -- 
+	--  QuickFix for the stuck task  --
+	-- ----------------------------- --
+	--if not (AiNPC_Job_Is(NPC,"Companion"))  then
+	--	if (NPC.LastEnemeySeen ~= nil) and ((NPC:isInSameRoom(NPC.LastEnemeySeen)) or (NPC:RealCanSee(NPC.LastEnemeySeen))) and (AiNPC_Task_Is(NPC,"Enter New Building")) then
+	--		TaskMangerIn:AddToTop(AttackTask:new(ASuperSurvivor))
+	--		NPC:DebugSay("Shifting from Enter New Building to Attack! Task! Reference Number ENB_T_PT_0001")
+	--	end
+	--end
+
 	-- ---------------------------------------------------------- --
 	-- ------ END -------- Shared AI ------ END ----------------- --
 	-- ---------------------------------------------------------- --
@@ -986,7 +998,7 @@ function AIManager(TaskMangerIn)
 	
 	if(ASuperSurvivor:getAIMode() == "Random Solo") and (TaskMangerIn:getCurrentTask() ~= "Listen") and (TaskMangerIn:getCurrentTask() ~= "Take Gift") then -- solo random survivor AI flow	
 
-		if(TaskMangerIn:getCurrentTask() == "None") and (ASuperSurvivor.TargetBuilding ~= nil) and (not ASuperSurvivor:getBuildingExplored(ASuperSurvivor.TargetBuilding)) then
+		if(TaskMangerIn:getCurrentTask() == "None") and (ASuperSurvivor.TargetBuilding ~= nil) and (not ASuperSurvivor:getBuildingExplored(ASuperSurvivor.TargetBuilding)) and (not ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)) then
 			TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor, ASuperSurvivor.TargetBuilding))
 			ASuperSurvivor:DebugSay("Attempt entry into building Task condition met in AI manager! Reference number B_0001")
 

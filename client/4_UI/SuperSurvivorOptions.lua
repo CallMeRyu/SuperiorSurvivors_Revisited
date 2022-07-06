@@ -420,8 +420,10 @@ if index then
 		local splitpoint = self:getWidth() / 3;
 		-------------------------------------------
 
+
 	y = y + spacing2x
-		
+
+
 		local options = 
 		{
 			getText("ContextMenu_SD_Off"),
@@ -438,27 +440,22 @@ if index then
 			getText("ContextMenu_SD_UltraHigh")
 		}
 		self:addCustomCombo('SpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorSpawnRate"),options,getText("ContextMenu_SOption_SurvivorSpawnRateDesc"))
-	
+
+
 	y = y + spacing4x
+
 
 		local options = 
 		{
-			getText("ContextMenu_SD_AltSpawnOff"),
-			getText("ContextMenu_SD_UpTo1"),
-			getText("ContextMenu_SD_UpTo2"),
-			getText("ContextMenu_SD_UpTo3"),
-			getText("ContextMenu_SD_UpTo4"),
-			getText("ContextMenu_SD_UpTo5"),
-			getText("ContextMenu_SD_UpTo6")
+			getText("ContextMenu_SD_AltSpawnOff"), 
+			getText("ContextMenu_SD_UpTo1"),getText("ContextMenu_SD_UpTo2"),
+			getText("ContextMenu_SD_UpTo3"),getText("ContextMenu_SD_UpTo4"),
+			getText("ContextMenu_SD_UpTo5"),getText("ContextMenu_SD_UpTo6")
 		}
 		self:addCustomCombo('AltSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SOption_AltSpawn"),options,getText("ContextMenu_SOption_AltSpawnDesc"))
-		
-	y = y + spacing
-	
+
 		local options = NPC_Options_ZeroToOneHundred()
 		self:addCustomCombo('AltSpawnPercent',splitpoint,y,comboWidth,getText("ContextMenu_SOption_AltSpawnPercent"),options,getText("ContextMenu_SOption_AltSpawnPercentDesc"))
-		
-	y = y + spacing
 		
 		local options = 
 		{
@@ -470,18 +467,10 @@ if index then
 			getText("ContextMenu_AltSpawnAmount_6")
 		}
 		self:addCustomCombo('AltSpawnAmount',splitpoint,y,comboWidth,getText("ContextMenu_Option_AltSpawnAmount"),options,getText("ContextMenu_Context_AltSpawnAmountDesc"))
-		
+
+
 	y = y + spacing4x
 
-		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('WepSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WepSpawnRate"),options,getText("ContextMenu_SOption_WepSpawnRateDesc"))
-		
-	y = y + spacing
-
-		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('GunSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_ChancetoSpawnWithGun"),options,getText("ContextMenu_SOption_ChancetoSpawnWithGunDesc"))
-		
-	y = y + spacing4x
 
 		local options = 
 		{
@@ -493,9 +482,7 @@ if index then
 			getText("ContextMenu_SD_EveryDay"), getText("ContextMenu_SD_EveryHour"), getText("ContextMenu_SD_Every10Minutes")
 		}
 		self:addCustomCombo('RaidersAtLeastHours',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RaidersGuaranteed"),options,getText("ContextMenu_SOption_RaidersGuaranteedDesc"))
-			
-	y = y + spacing
-			
+
 		local options = 
 		{
 			getText("ContextMenu_SD_StartImmediately"),	getText("ContextMenu_SD_AfterDay1"), 
@@ -512,8 +499,6 @@ if index then
 		}
 		self:addCustomCombo('RaidersAfterHours',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RaidersAfterHours"),options,getText("ContextMenu_SOption_RaidersAfterHoursDesc"))
 		
-	y = y + spacing
-
 		local options = 
 		{
 			getText("ContextMenu_SD_VeryHigh"), getText("ContextMenu_SD_High"),
@@ -521,60 +506,67 @@ if index then
 			getText("ContextMenu_SD_Low"),getText("ContextMenu_SD_VeryLow")
 		}
 		self:addCustomCombo('RaidersChance',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RaidersChance"),options,getText("ContextMenu_SOption_RaidersChanceDesc"))
-			
+
+
 	y = y + spacing4x
+
+
+		local options = NPC_Options_ZeroToOneHundred()
+		self:addCustomCombo('WepSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WepSpawnRate"),options,getText("ContextMenu_SOption_WepSpawnRateDesc"))
+
+		local options = NPC_Options_ZeroToOneHundred()
+		self:addCustomCombo('GunSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_ChancetoSpawnWithGun"),options,getText("ContextMenu_SOption_ChancetoSpawnWithGunDesc"))
+
+
+	y = y + spacing4x
+
 
 		local options = {getText("ContextMenu_SD_PVPOff"),getText("ContextMenu_SD_PVPOn")}
 		self:addCustomCombo('Option_ForcePVP',splitpoint,y,comboWidth,getText("ContextMenu_SD_PVPInfoBar"),options,getText("ContextMenu_SD_PVPInfoBarDesc"))
 		
-	y = y + spacing
-	
 		local options = NPC_Options_ZeroToOneHundred()
 		self:addCustomCombo('HostileSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_ChancetobeHostile"),options,getText("ContextMenu_SOption_ChancetobeHostileDesc"))
 		
-	y = y + spacing
 		
 		local options = NPC_Options_ZeroToOneHundred() -- Hostile Over Time Odds
 		self:addCustomCombo('MaxHostileSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_MaxHostileSpawnRate"),options,getText("ContextMenu_SOption_MaxHostileSpawnRateDesc"))
-		
+
+
 	y = y + spacing4x
+
 
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('Option_Display_Survivor_Names',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Survivor_Names"),options,getText("ContextMenu_Option_Display_Survivor_NamesDesc"))
 		
-	y = y + spacing
-
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('Option_Display_Hostile_Color',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Hostile_Color"),options,getText("ContextMenu_Option_Display_Hostile_ColorDesc"))
-		
-	y = y + spacing
-	
+			
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('RoleplayMessage',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RoleplayMessage"),options,getText("ContextMenu_SOption_RoleplayMessageDesc"))
-			
+
+
 	y = y + spacing4x
+
 
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('WifeSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WifeSpawn"),options,getText("ContextMenu_SOption_WifeSpawnDesc"))
-		
-	y = y + spacing
-		
+
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('LockNLoad',splitpoint,y,comboWidth,getText("ContextMenu_SOption_LockNLoad"),options,getText("ContextMenu_SOption_LockNLoadDesc"))
 
+
 	y = y + spacing4x
-	
+
+
 		local options = {"3","4","5","6","7","8","9","10"}
 		self:addCustomCombo('Option_FollowDistance',splitpoint,y,comboWidth,getText("ContextMenu_SOption_FollowGlobalRange"),options,getText("ContextMenu_SOption_FollowGlobalRangeDesc"))
-		
-	y = y + spacing
-		
+			
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('Option_Perception_Bonus',splitpoint,y,comboWidth,getText("ContextMenu_SOption_PerceptionBonus"),options,getText("ContextMenu_SOption_PerceptionBonusDesc"))
 
 
-
 	y = y + spacing4x
+
 
 		local options = 
 		{
@@ -583,67 +575,55 @@ if index then
 			getText("ContextMenu_SD_Mean"), getText("ContextMenu_SD_VeryMean")
 		}
 		self:addCustomCombo('SurvivorFriendliness',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorFriendliness"),options,getText("ContextMenu_SOption_SurvivorFriendlinessDesc"))
-		
-	y = y + spacing
-		
+			
 		local options = 
 		{
 			getText("ContextMenu_SD_Cowardly"), getText("ContextMenu_SD_Normal"),
 			getText("ContextMenu_SD_Brave"), getText("ContextMenu_SD_VeryBrave")
 		}
 		self:addCustomCombo('Bravery',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorBravery"),options,getText("ContextMenu_SOption_SurvivorBraveryDesc"))
-			
-	y = y + spacing
 
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('NoPreSetSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SD_NoPreSetSpawn"),options,getText("ContextMenu_SD_NoPreSetSpawnDesc"))
-		
+
+
 	y = y + spacing4x
+
 
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('InfinitAmmo',splitpoint,y,comboWidth,getText("ContextMenu_SOption_InfinitAmmo"),options,getText("ContextMenu_SOption_InfinitAmmoDesc"))
 		
-	y = y + spacing
-
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('FindWork',splitpoint,y,comboWidth,getText("ContextMenu_SOption_FindWork"),options,getText("ContextMenu_SOption_FindWorkDesc"))
 		
-	y = y + spacing
-
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('SurvivorHunger',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorHunger"),options,getText("ContextMenu_SOption_SurvivorHungerDesc"))
-		
-	y = y + spacing
 		
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('SafeBase',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SafeBase"),options,getText("ContextMenu_SOption_SafeBaseDesc"))
 		
-	y = y + spacing
-	
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('SurvivorBases',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorBases"),options,getText("ContextMenu_SOption_SurvivorBasesDesc"))		
-		
+
+
 	y = y + spacing4x
+
 
 		local options = SSHotKeyOptions
 		self:addCustomCombo('SSHotkey1',splitpoint,y,comboWidth,getText("ContextMenu_SShotkey1"),options,getText("ContextMenu_SShotkeyDesc"))					
 	
-	y = y + spacing
-		
 		local options = SSHotKeyOptions
 		self:addCustomCombo('SSHotkey2',splitpoint,y,comboWidth,getText("ContextMenu_SShotkey2"),options,getText("ContextMenu_SShotkeyDesc"))					
 	
-	y = y + spacing
-
 		local options = SSHotKeyOptions
 		self:addCustomCombo('SSHotkey3',splitpoint,y,comboWidth,getText("ContextMenu_SShotkey3"),options,getText("ContextMenu_SShotkeyDesc"))					
-	
-	y = y + spacing
 
 		local options = SSHotKeyOptions
 		self:addCustomCombo('SSHotkey4',splitpoint,y,comboWidth,getText("ContextMenu_SShotkey4"),options,getText("ContextMenu_SShotkeyDesc"))		
 		
+
 	y = y + spacing4x
+
 
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('DebugOptions',splitpoint,y,comboWidth,getText("ContextMenu_SOption_DebugOptions"),options,getText("ContextMenu_SOption_DebugOptionsDesc"))		
