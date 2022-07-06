@@ -355,23 +355,10 @@ function AIManager(TaskMangerIn)
 	if not (AiNPC_Job_Is(NPC,"Companion"))  then
 		if (ASuperSurvivor:Task_IsPursue_SC() == true) and (Distance_AnyEnemy <= 9) and (Distance_AnyEnemy < NPC:NPC_CheckPursueScore() )   then
 			if ( NPC:NPC_FleeWhileReadyingGun()) then
-				
-				-- To make SURE the NPC does not pursue further
-				if  (Distance_AnyEnemy > NPC:NPC_CheckPursueScore() * 2) then
-					NPC.LastEnemeySeen = nil
-					TaskMangerIn:clear()
-					NPC:AddToTop(WanderInBaseTask:new(NPC)) -- We don't want that NPC purusing a target far away
-					NPC:DebugSay("Forget about that loser")
-				end
-				
-				-- If all checks out, pursue target
-				TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
-				
+				TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen)) -- If all checks out, pursue target
 			end
 		end
-	end
-
-
+	end	
 
 	-- I haven't tampered with this one, it does OK for the most part. 
 	-- Bug: If you shoot the gun and it has nothing in it, the NPC will still keep their hands up 
@@ -511,7 +498,7 @@ function AIManager(TaskMangerIn)
 		--and ( ((NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie)) or (ASuperSurvivor:isTooScaredToFight()) )
 		and 
 		( 
-		   (not ASuperSurvivor:hasWeapon() and ( (ASuperSurvivor:getDangerSeenCount() > 1) or (NPC:getSeenCount() >= 4)) )  -- maybe add a 'or (ASuperSurvivor:isTooScaredToFight())' after dangerseen
+		   (not ASuperSurvivor:hasWeapon() and (ASuperSurvivor:usingGun() == false) and ((ASuperSurvivor:getDangerSeenCount() > 0) and (NPC:getSeenCount() >= 3)) ) -- If one enemy is VERY close & see 3 or more enemies
 --		or ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1) or ((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 3))) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
 		or ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1 and (Distance_AnyEnemy < 3) and (EnemyIsZombie)) 	 or 	((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 2) and (EnemyIsZombie)) ) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
 		or ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1 and (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) or 	( (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) ) )  							  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun

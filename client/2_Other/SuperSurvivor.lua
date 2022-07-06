@@ -2040,7 +2040,7 @@ end
 
 function SuperSurvivor:Companion_DoSixthSenseScan()
 
-	local atLeastThisClose = 2;
+	local atLeastThisClose = 3;
 	local spottedList = self.player:getCell():getObjectList()
 	local closestSoFar = 3
 	local closestSurvivorSoFar = 3
@@ -2078,9 +2078,11 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
 							self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						end
-						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) and (not (self:getGroupRole() == "Companion")) then
+						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) and not (self:getGroupRole() == "Companion") then
 							self.dangerSeenCount = self.dangerSeenCount + 1
 							self:DebugSay("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
+						else
+							self:DebugSay("self.dangerSeenCount IS NOT WORKING, BUT HERE'S THE AMOUNT ANYWAYS = "..tostring(self.dangerSeenCount))
 						end
 						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
 							self.seenCount = self.seenCount + 1 
@@ -2892,9 +2894,9 @@ function SuperSurvivor:update()
 			if (not (self:getGroupRole() == "Companion")) then 						-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
 				--if (not (self:usingGun()) and (self.isHostile == true)) then		-- Hostiles with guns are banned from using this. It makes them very OP (Until further notice)
 
-					if ((self.LastEnemeySeen ~= nil) and (not (self:RealCanSee(self.LastEnemeySeen)))) or (self.LastEnemeySeen == nil) then		-- This in theory should make the NPC re-scan for new entities around them
+				--	if (self.LastEnemeySeen ~= nil) and (getDistanceBetween(self.player,self.LastEnemeySeen) > 1) then		-- This in theory should make the NPC re-scan for new entities around them
 						self:Companion_DoSixthSenseScan() 
-					end
+				--	end
 				--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
 				--else
 				--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH A====")
