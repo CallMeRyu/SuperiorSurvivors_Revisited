@@ -4134,7 +4134,7 @@ end
 ---@return number represents the damage that the weapon will give if hits
 function SuperSurvivor:getWeaponDamage(weapon,distance)
 	if (weapon == nil) then
-		print("weapon returned a nil value, no weapon found")
+	--	print("weapon returned a nil value, no weapon found")
 		return 0
 	end
 
@@ -4145,8 +4145,8 @@ function SuperSurvivor:getWeaponDamage(weapon,distance)
 		  damage = weapon:getMaxDamage() - ZombRand(0,weapon:getMaxDamage())
 		  damage = damage - (damage * (distance * 0.1))	
 	
-	print("weapon returned "..tostring(damage))
-	print("")
+	--print("weapon returned "..tostring(damage))
+	--print("")
 	
 	return damage
 end
