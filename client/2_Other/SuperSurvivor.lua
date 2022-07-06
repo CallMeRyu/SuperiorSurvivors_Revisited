@@ -2081,8 +2081,8 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) and not (self:getGroupRole() == "Companion") then
 							self.dangerSeenCount = self.dangerSeenCount + 1
 							self:DebugSay("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
-						else
-							self:DebugSay("self.dangerSeenCount IS NOT WORKING, BUT HERE'S THE AMOUNT ANYWAYS = "..tostring(self.dangerSeenCount))
+							--else
+							--self:DebugSay("self.dangerSeenCount IS NOT WORKING, BUT HERE'S THE AMOUNT ANYWAYS = "..tostring(self.dangerSeenCount))
 						end
 						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
 							self.seenCount = self.seenCount + 1 

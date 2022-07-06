@@ -507,6 +507,9 @@ function AIManager(TaskMangerIn)
 		or (ASuperSurvivor:isTooScaredToFight())
 		 
 		 -- To check for EnemyIsZombie, which will look there and go 'OH GOD, I can't fight THIS many zombies' 
+		 -- Update: I may of already fixed this issue on the lines above... 
+		 -- now that I understand that getDangerSeenCount means if something is like SUPER close to the npc, you can simulate 
+		 -- the idea of 'there's an enemy basically on me and I see more in the distance, I don't think this is worth fighting'
 		or (
 				(   (NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie) and (NPC:hasGun())		)
 			or
