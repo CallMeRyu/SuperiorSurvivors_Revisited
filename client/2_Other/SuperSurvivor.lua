@@ -2886,18 +2886,20 @@ function SuperSurvivor:update()
 	
 	self:DoVision() -- Moving this up to the top
 	
---																				-- I know this is 'not companion' but the function works almost too well not to use.
---	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 10) then			-- The test line, there's no need to let this be for debug options, it adds 10x lag. 
-		if (Option_Perception_Bonus == 2) then									-- The in game option from supersurvivorsmod.lua
-			if (not (self:getGroupRole() == "Companion")) then 					-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
-				if (not (self:usingGun()) and (self.isHostile == true)) then	-- Hostiles with guns are banned from using this. It makes them very OP (Until further notice)
-					if (not (self:RealCanSee(self.LastEnemeySeen))) then		-- This in theory should make the NPC re-scan for new entities around them
+--																					-- I know this is 'not companion' but the function works almost too well not to use.
+--	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 10) then				-- The test line, there's no need to let this be for debug options, it adds 10x lag. 
+		if (Option_Perception_Bonus == 2) then										-- The in game option from supersurvivorsmod.lua
+			if (not (self:getGroupRole() == "Companion")) then 						-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
+				--if (not (self:usingGun()) and (self.isHostile == true)) then		-- Hostiles with guns are banned from using this. It makes them very OP (Until further notice)
+
+					if ((self.LastEnemeySeen ~= nil) and (not (self:RealCanSee(self.LastEnemeySeen)))) or (self.LastEnemeySeen == nil) then		-- This in theory should make the NPC re-scan for new entities around them
 						self:Companion_DoSixthSenseScan() 
+						print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
 					end
 				--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
 				--else
 				--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH A====")
-				end
+				--end
 			--else
 			--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH B ====")
 			end
