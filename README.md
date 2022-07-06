@@ -78,3 +78,26 @@ EXP 16 - U8
 * Chanced Bravery's default setting to 'very brave' since most players want non-cowardly npcs
 
 * Updated the visual of the options menu to be more easier to read
+
+EXP 16 - U9 (Final)
+-
+This should be the final update for this experimental update. This is the most I can do, and it's due time for a public release. Other than minor updates that is. 
+
+* Gun damage with NPCs are a bit more randomized, AND they can now MISS their shots. 
+
+* NPCs will no longer try to loot your base! Be sure 'safe base' is on, AND you have your base's squares set!
+(Side note: Don't let your mouse left click touch a yellow square when you're clicking in the menu of 'set base', or it'll reset the squares!)
+
+* The clothing addon now supports weapons! You now can add weapon tables from your (or other's) mods for the NPCs!
+
+* Updated the default options for certain settings that players don't consider & yet wonder why x thing isn't happening that they want.
+* NPCs are more likely to goto windows again when they can't enter a door! 
+* NPCs that are in your group: I increased the priority odds to make NPCs to clean themselves. Was at +0, now at +2
+* ManageStuckDoors function will also look out for barricaded windows, even if the name doesn't make sense now. 
+* Changed the sixthsense scan, it works with hostile npcs w/guns again
+* NPCs will have a chance to give up chasing you if you run far enough away from them 
+
+
+
+* As always, updated options menu UI - Some day I'll leave the options menu alone lol.
+
