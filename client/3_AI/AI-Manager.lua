@@ -680,7 +680,12 @@ function AIManager(TaskMangerIn)
 		SafeToGoOutAndWork = true
 		local AutoWorkTaskTimeLimit = 300 
 		
-		--print("basetasks " .. ASuperSurvivor:getName().." "..ASuperSurvivor:getAIMode() .. " " .. TaskMangerIn:getCurrentTask() .. " " .. ASuperSurvivor:getGroupRole() .. " " .. ASuperSurvivor:getCurrentTask() .. " " .. tostring(IsInAction))
+		
+		if (NPC:getName() ~= nil) and (NPC:getAIMode() ~= nil) and (NPC:getCurrentTask() ~= nil) and (NPC:getGroupRole() ~= nil) and (NPC:getCurrentTask() ~= nil) and (IsInAction ~= nil) then
+			print("basetasks " .. ASuperSurvivor:getName().." "..ASuperSurvivor:getAIMode() .. " " .. TaskMangerIn:getCurrentTask() .. " " .. ASuperSurvivor:getGroupRole() .. " " .. ASuperSurvivor:getCurrentTask() .. " " .. tostring(IsInAction))
+			print("")
+		end
+		
 		if(not SurvivorsFindWorkThemselves or not IsInBase) and (ASuperSurvivor:getGroupRole() == "Guard") and (ASuperSurvivor:getCurrentTask() == "None") and (not IsInAction) and (ZombRand(4)==0) then
 				
 			local randresult = ZombRand(10) + 1
@@ -763,7 +768,7 @@ function AIManager(TaskMangerIn)
 					TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 	
 
 			elseif(SurvivorsFindWorkThemselves) then
-				--print("yes im a worker: "..tostring(ASuperSurvivor:Get():getBodyDamage():getWetness()))
+				print("yes im a worker: "..tostring(ASuperSurvivor:Get():getBodyDamage():getWetness()))
 
 				--if(RainManager.isRaining()) and (ASuperSurvivor:Get():getBodyDamage():getWetness() > 0.5) and (ASuperSurvivor:Get():isOutside()) and (TaskMangerIn.TaskUpdateLimit ~= 0) and (TaskMangerIn:getCurrentTask() ~= "Enter New Building") and (TaskMangerIn:getCurrentTask() ~= "Find Building") then
 				--	ASuperSurvivor:Speak(getText("ContextMenu_SD_RainingGoInside"))
@@ -786,13 +791,12 @@ function AIManager(TaskMangerIn)
 						local job = "Relax"
 						-- idle tasks
 						jobScores["Relax"] = 0 + math.floor(ASuperSurvivor:Get():getStats():getBoredom() * 20.0)
-						jobScores["Wash Self"] = 0
+						jobScores["Wash Self"] = 1
 
 						-- maintenance
 						jobScores["Clean Inventory"] = 2
 						jobScores["Gather Wood"] = 2
 						jobScores["Pile Corpses"] = 2
-						jobScores["Wash Self"] = 2 -- Newly added line
 
 						-- skilled work
 						jobScores["Chop Wood"] = 2 + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Axe")), 3)
