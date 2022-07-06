@@ -2894,7 +2894,6 @@ function SuperSurvivor:update()
 
 					if ((self.LastEnemeySeen ~= nil) and (not (self:RealCanSee(self.LastEnemeySeen)))) or (self.LastEnemeySeen == nil) then		-- This in theory should make the NPC re-scan for new entities around them
 						self:Companion_DoSixthSenseScan() 
-						print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
 					end
 				--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
 				--else
