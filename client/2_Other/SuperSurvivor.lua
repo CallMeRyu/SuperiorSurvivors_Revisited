@@ -3014,7 +3014,7 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 	if (self:getGroupRole() == "Companion") then self.StuckDoorTicks = 0 end
 	
 	
-	if ((self:inFrontOfLockedDoorAndIsOutside() == true) or (self:NPC_IFOD_BarricadedInside() == true)) then
+	if ((self:inFrontOfLockedDoorAndIsOutside() == true) or (self:NPC_IFOD_BarricadedInside() == true) or (self:inFrontOfBarricadedWindowAlt() )) then
 		self.StuckDoorTicks = self.StuckDoorTicks + 1
 	
 		-- Once the timer strikes 11
@@ -3035,10 +3035,18 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 					self:getTaskManager():AddToTop(WanderTask:new(self))
 					self:getTaskManager():AddToTop(FindUnlootedBuildingTask:new(self))
 					self:getTaskManager():AddToTop(WanderTask:new(self))
-				end					
-				self:DebugSay("NPC_ManageLockedDoors - NPC refused to leave door, forcing clear task!")			
-				self.StuckDoorTicks = 0	
-				
+					self:DebugSay("NPC_ManageLockedDoors - NPC refused to leave door, trying more measure!")	
+				end				
+				if (self.StuckDoorTicks > 15) then
+					if (self.player:getModData().isHostile == true) then -- Not a player's base allie
+						self.lastenemyseen = nil
+						self:getTaskManager():clear()
+						self:getTaskManager():AddToTop(FleeTask:new(self))
+						self:getTaskManager():AddToTop(FleeFromHereTask:new(self, self:Get():getCurrentSquare()))
+						self:DebugSay("NPC_ManageLockedDoors - THAT'S IT, NPC refuses to list, enforcing drastic measures!")
+						self.StuckDoorTicks = 0	
+					end
+				end
 			end
 			
 		end
