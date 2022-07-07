@@ -1,6 +1,6 @@
 ContextMenu_PTBR = {
 
-	ContextMenu_Title  = "Survivors Verção 0.16",
+	ContextMenu_Title  = "Survivors Verção 0.16.1",
 	ContextMenu_SD_AidCheck = "Verificação Médica / Primeiros socorros",
 	ContextMenu_SD_AidCheckDesc = "Caminhe até este sobrevivente e faça um check-up médico, se o sobrevivente se mexer, o processo pode ser interrompido",
 

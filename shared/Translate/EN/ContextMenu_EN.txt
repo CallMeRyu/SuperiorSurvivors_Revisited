@@ -1,6 +1,6 @@
 ContextMenu_EN = {
 
-ContextMenu_Title  = "Survivors Version 0.16",
+ContextMenu_Title  = "Survivors Version 0.16.1",
 ContextMenu_SD_AidCheck = "Medical / First Aid Check",
 ContextMenu_SD_AidCheckDesc = "Walk to this survivor and medical check him, if they move the process can be interupted",
 
