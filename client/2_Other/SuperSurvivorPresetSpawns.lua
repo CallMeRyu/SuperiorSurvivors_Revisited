@@ -1,3 +1,5 @@
+require "0_Utilities/SuperSurvivorSuitsList"
+
 function isModEnabled(modname)
 
 	local actmods = getActivatedMods();
