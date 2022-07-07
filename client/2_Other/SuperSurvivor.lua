@@ -4052,7 +4052,7 @@ end
 
 -- The new function that will now control NPC attacking. Not perfect, but. Cleaner code, and works better-ish.
 function SuperSurvivor:NPC_Attack(victim) -- New Function 
-
+	
 	-- 6/21/2022 - Come to think of it, I could use  "if (self:IsNOT_AtkTicksZero()) or (self:CanAttackAlt() == false) then" but may need to check how the timer works.
 	-- Create the attack cooldown. (once 0, the npc will do the 'attack' then set the time back up by 1, so anti-attack spam method)
 	-- note: don't use self:CanAttackAlt() in this if statement. it's already being done in this function.
@@ -4151,9 +4151,11 @@ function SuperSurvivor:getWeaponDamage(weapon,distance)
 
 --	local damage = ZombRand(weapon:getMinDamage(), weapon:getMaxDamage())
 --	damage = damage - (damage * (distance * 0.1))
-
+	
+	--local Multiplier = Option_NPC_AttackMultiplier 
+	-- local minrange = self:getMinWeaponRange() + 0.1
 	local damage = 0
-		  damage = weapon:getMaxDamage() - ZombRand(0,weapon:getMaxDamage())
+		  damage = (weapon:getMaxDamage() * ZombRand(10))
 		  damage = damage - (damage * (distance * 0.1))	
 	
 	--print("weapon returned "..tostring(damage))
