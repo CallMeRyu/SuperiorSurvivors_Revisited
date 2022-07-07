@@ -1,3 +1,7 @@
+UPDATE 16 - RELEASED
+-
+Here is the progress of what happened. 
+
 Update 16 Experimental
 -
 Yep, already started for the next version of the mod!
