@@ -236,3 +236,139 @@ SurvivorRandomSuits["Common"]["Basic1"] = {
   "Base.TrousersMesh_DenimLight", 
   "Base.Shoes_Black"
 }
+
+-- Presets, for use with the new Preset Spawns feature.
+SurvivorRandomSuits["Preset"]["Preset_Army"] = {
+  "Base.Hat_BeretArmy", 
+  "Base.Tshirt_ArmyGreen",
+  "Base.Jacket_CoatArmy",
+  "Base.Trousers_ArmyService",
+  "Base.Shoes_ArmyBoots",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Gangster"] = {
+  "Base.Hat_BaseballCapGreen_Reverse",
+  "Base.Trousers_JeanBaggy",
+  "Base.Shoes_RedTrainers",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Survivalist"] = {
+  "Base.Ghillie_Top", 
+  "Base.Ghillie_Trousers",
+  "Base.Shoes_BlackBoots",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Hunter"] = {
+  "Base.Hat_BonnieHat_CamoGreen", 
+  "Base.Vest_Hunting_Camo",
+  "Base.Trousers_CamoGreen",
+  "Base.Shoes_BlackBoots",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_MarinesCamo"] = {
+  "Base.Hat_Army", 
+  "Base.Tshirt_CamoGreen",
+  "Base.Shirt_CamoGreen",
+  "Base.Jacket_ArmyCamoGreen",
+  "Base.Vest_BulletArmy",
+  "Base.Trousers_CamoGreen",
+  "Base.Shoes_ArmyBoots",
+  "Base.Bag_ALICEpack",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_ArmyCamo"] = {
+  "Base.Tshirt_CamoDesert", 
+  "Base.Shoes_Slippers",
+  "Base.Socks_Ankle",
+  "Base.Shirt_CamoDesert",
+  "Base.Jacket_ArmyCamoDesert",
+  "Base.Trousers_CamoDesert",
+  "Base.Shoes_ArmyBootsDesert",
+  "Base.Bag_ALICEpack",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Chef"] = {
+  "Base.Hat_ChefHat", 
+  "Base.Jacket_Chef",
+  "Base.Trousers_Chef",
+  "Base.Shoes_Black",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Fireman"] = {
+  "Base.Hat_Fireman", 
+  "Base.Jacket_Fireman",
+  "Base.Trousers_Fireman",
+  "Base.Shoes_BlackBoots",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Doctor"] = {
+  "Base.Hat_SurgicalCap_Blue", 
+  "Base.JacketLong_Doctor",
+  "Base.Trousers_Scrubs",
+  "Base.Shoes_Black",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Police"] = {
+  "Base.Hat_Police_Grey", 
+  "Base.Jacket_Police",
+  "Base.Trousers_PoliceGrey",
+  "Base.Shoes_BlackBoots",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Farmer"] = {
+  "Base.Boilersuit", 
+  "Base.Dungarees",
+  "Base.Shoes_BlackBoots",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Guard"] = {
+  "Base.Shirt_PrisonGuard", 
+  "Base.Trousers_PrisonGuard",
+  "Base.Shoes_BlackBoots",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Formal"] = {
+  "Base.Shirt_FormalWhite", 
+  "Base.Trousers_WhiteTEXTURE",
+  "Base.Shoes_Black",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Spiffo"] = {
+  "Base.SpiffoSuit", 
+  "Base.Hat_Spiffo",
+  "Base.SpiffoTail",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Santa"] = {
+  "Base.Hat_SantaHat", 
+  "Base.JacketLong_Santa",
+  "Base.Trousers_Santa",
+  "Base.Shoes_BlackBoots",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Hazmat"] = {
+  "Base.Shoes_BlackBoots", 
+  "Base.HazmatSuit",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Leader"] = {
+  "Base.Vest_BulletPolice", 
+  "Base.Shirt_Lumberjack",
+  "Base.Trousers_DefaultTEXTURE",
+  "Base.Shoes_Black",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Worker"] = {
+  "Base.Hat_HardHatYellow", 
+  "Base.Shirt_Workman",
+  "Base.Trousers_DefaultTEXTURE",
+  "Base.Shoes_BlackBoots",
+  "Base.Belt2"
+}
+SurvivorRandomSuits["Preset"]["Preset_Inmate"] = {
+  "Base.Boilersuit_Prisoner", 
+  "Base.Shoes_Slippers",
+  "Base.Socks_Ankle",
+  "Base.Tshirt_DefaultTEXTURE",
+  "Base.Belt2"
+}
