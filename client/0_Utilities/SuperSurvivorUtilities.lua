@@ -25,31 +25,66 @@ Orders = {
 	"Pile Corpses",
 };
 
-function getPresetColor(Color)
+---@alias color
+---| "White" 
+---| "Grey" 
+---| "Blond" 
+---| "Sand" 
+---| "Hazel" 
+---| "Brown" 
+---| "Red" 	
+---| "Pink" 
+---| "Purple"
+---| "Blue" 
+---| "Black" 
 
-	if Color == "White" then return ImmutableColor.new(0.75,0.74,0.72)
-	elseif Color == "Grey" then return mmutableColor.new(0.48,0.47,0.44)
-	elseif Color == "Blond" then return ImmutableColor.new(0.82,0.82,0.39)
-	elseif Color == "Sand" then return ImmutableColor.new(0.86,0.78,0.66)
-	elseif Color == "Hazel" then return ImmutableColor.new(0.61,0.50,0.34)
-	elseif Color == "Brown" then return ImmutableColor.new(0.62,0.42,0.17)
-	elseif Color == "Red" then return ImmutableColor.new(0.58,0.25,0.25)
-	elseif Color == "Pink" then return ImmutableColor.new(0.59,0.39,0.55)
-	elseif Color == "Purple" then return ImmutableColor.new(0.47,0.43,0.59)
-	elseif Color == "Blue" then return ImmutableColor.new(0.39,0.47,0.59)
-	elseif Color == "Black" then return ImmutableColor.new(0.10,0.08,0.09)
+--- gets a preset color value
+---@param color color
+function getPresetColor(color)
+
+	if color 			== "White" 	then return ImmutableColor.new(0.75,0.74,0.72)
+	elseif color 	== "Grey" 	then return mmutableColor.new(0.48,0.47,0.44)
+	elseif color 	== "Blond" 	then return ImmutableColor.new(0.82,0.82,0.39)
+	elseif color 	== "Sand" 	then return ImmutableColor.new(0.86,0.78,0.66)
+	elseif color 	== "Hazel" 	then return ImmutableColor.new(0.61,0.50,0.34)
+	elseif color 	== "Brown" 	then return ImmutableColor.new(0.62,0.42,0.17)
+	elseif color 	== "Red" 		then return ImmutableColor.new(0.58,0.25,0.25)
+	elseif color 	== "Pink" 	then return ImmutableColor.new(0.59,0.39,0.55)
+	elseif color 	== "Purple" then return ImmutableColor.new(0.47,0.43,0.59)
+	elseif color 	== "Blue" 	then return ImmutableColor.new(0.39,0.47,0.59)
+	elseif color 	== "Black" 	then return ImmutableColor.new(0.10,0.08,0.09)
 	else return ImmutableColor.new(0.99,0.99,0.99)
 	end
 
 end
 
-
+--- gets a speech text
+---@param key string key of the speech
+---@return string a survivor speech
 function getSpeech(key)
-	if(not SurvivorSpeechTable[key]) then return "?" end
+	if(not SurvivorSpeechTable[key]) then 
+		return "?" 
+	end
+	
 	local result = ZombRand(1,#SurvivorSpeechTable[key]);
 	return tostring(SurvivorSpeechTable[key][result]);
- end
+end
 
+---@alias	gender
+---| "GirlNames"
+---| "BoyNames"
+
+--- gets a survivor name
+---@param key gender key of the name
+---@return string a random survivor name
+function getName(key)
+	if(not SurvivorNameTable[key]) then 
+		return "?" 
+	end
+	
+	local result = ZombRand(1,#SurvivorNameTable[key]);
+	return tostring(SurvivorNameTable[key][result]);
+end
 
 SurvivorPerks = {
 	"Aiming",
@@ -76,24 +111,41 @@ SurvivorPerks = {
 	"Survivalist"
 }
 
-
+--- Gets a random perk
+---@return string a random perk name
 function getAPerk()
-    local result = ZombRand(size(SurvivorPerks)-1)+1;
-    return SurvivorPerks[result];
+  local result = ZombRand(size(SurvivorPerks)-1)+1;
+  return SurvivorPerks[result];
 end
 
+--- gets the size of a table
+---@param a table
+---@return integer returns the size of the table
+function size(a)
+	local i = 1
+	 	while a[i] do
+			i = i + 1
+	 	end
+ 	return i;
+end
 
+--- checks if the table contains a value
+---@param tab table table to be searched
+---@param val any value to be searched
+---@return boolean returns true if the value exists in the table
 function has_value (tab, val)
 	if(tab ~= nil) and (val ~= nil) then
-		--for index, value in ipairs (tab) do
+
 		for k=1, #tab do
 			local value = tab[k]
 			if value == val then
 				return true
 			end
 		end
+
 	end
-    return false
+
+  return false
 end
 
 function AbsoluteValue(value)
@@ -119,6 +171,8 @@ function makeToolTip(option,name,desc)
        return toolTip;
 end
 
+--- gets the square where the mouse is empty
+---@return any returns the a square
 function getMouseSquare()
 	local sw = (128 / getCore():getZoom(0));
 	local sh = (64 / getCore():getZoom(0));
@@ -135,6 +189,8 @@ function getMouseSquare()
 	return sq;
 end
 
+--- gets the world Y position of the mouse
+---@return number returns the Y position
 function getMouseSquareY()
 	local sw = (128 / getCore():getZoom(0));
 	local sh = (64 / getCore():getZoom(0));
@@ -149,6 +205,8 @@ function getMouseSquareY()
 	return sy
 end
 
+--- gets the world X position of the mouse
+---@return number returns the X position
 function getMouseSquareX()
 	local sw = (128 / getCore():getZoom(0));
 	local sh = (64 / getCore():getZoom(0));
@@ -161,38 +219,4 @@ function getMouseSquareX()
 	local sx = mapx + (mousex / (sw/2) + mousey / (sh/2)) /2;
 
 	return sx
-end
-
-function print_r ( t )
-   -- local print_r_cache={}
-   -- local function sub_print_r(t,indent)
-   --     if (print_r_cache[tostring(t)]) then
-   --     --    print(indent.."*"..tostring(t))
-   --     else
-   --         print_r_cache[tostring(t)]=true
-   --         if (type(t)=="table") then
-   --             for pos,val in pairs(t) do
-   --                 if (type(val)=="table") then
-   --                     print(indent.."["..pos.."] => "..tostring(t).." {")
-   --                     sub_print_r(val,indent..string.rep(" ",string.len(pos)+8))
-   --                     print(indent..string.rep(" ",string.len(pos)+6).."}")
-   --                 elseif (type(val)=="string") then
-   --                     print(indent.."["..pos..'] => "'..val..'"')
-   --                 else
-   --                     print(indent.."["..pos.."] => "..tostring(val))
-   --                 end
-   --             end
-   --         else
-   --             print(indent..tostring(t))
-   --         end
-   --     end
-   -- end
-   -- if (type(t)=="table") then
-   --     print(tostring(t).." {")
-   --     sub_print_r(t,"  ")
-   --     print("}")
-   -- else
-   --     sub_print_r(t,"  ")
-   -- end
-   -- print()
 end
