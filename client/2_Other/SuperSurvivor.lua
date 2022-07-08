@@ -4209,7 +4209,11 @@ function SuperSurvivor:Attack(victim)
 			local GunHitChance = 11 	-- ZombRand(0,5)	If you want random chance, remove the number and put the ZombRand in.
 			local weapon = self.player:getPrimaryHandItem();
 			
-			local damage = self:getWeaponDamage(weapon,distance)
+			-- local damage = self:getWeaponDamage(weapon,distance)
+			-- For now disabling rng shooting, I just can't get it working
+			-- But at least the 'RealCanSee' works 
+			damage = weapon:getMaxDamage();
+			
 			self.player:NPCSetAiming(true)
 			self.player:NPCSetAttack(true)
 
