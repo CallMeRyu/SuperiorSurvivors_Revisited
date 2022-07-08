@@ -1,3 +1,5 @@
+require "0_Utilities/SuperSurvivorSuitsList"
+
 function isModEnabled(modname)
 
 	local actmods = getActivatedMods();
@@ -27,7 +29,7 @@ if( not PresetSpawns ) then PresetSpawns = {} end
 
 --ROSEWOOD 
 --PresetSpawns[#PresetSpawns+1] = {Suit = "Fireman", Greeting = "Howdy. You can call me Tex. Been waiting for the military or some such, but you\'ll do my friend. Welcome!",PerkName = "Axe",PerkLevel = 5,isFemale=false,  Name = "Fire Fighter", X = 8143, Y = 11736, Z = 1 , Weapon = "Base.Axe", Orders = "Standing Ground", isHostile = false};
-PresetSpawns[#PresetSpawns+1] = {Suit = "Inmate", nil,  Name = "Prisoner", X = 7684, Y = 11925, Z = 0 , Weapon = "Base.LeadPipe", Orders = "Wander", isHostile = true};
+PresetSpawns[#PresetSpawns+1] = {Suit = "Preset_Inmate", nil,  Name = "Prisoner", X = 7684, Y = 11925, Z = 0 , Weapon = "Base.LeadPipe", Orders = "Wander", isHostile = true};
 --PresetSpawns[#PresetSpawns+1] = {Suit = "Formal", Greeting = "Thank God! Please help me!",  Name = "Librarian", X = 8335, Y = 11615, Z = 0 , Weapon = "Base.BaseballBat", Orders = "Standing Ground", isHostile = false};
 --PresetSpawns[#PresetSpawns+1] = {Greeting = "I\'ve been to eight county fairs and a goat rodeo, but I\'ve never seen anything like that. Thanks for the rescue. Now I gotta find Rick",PerkName = "Aiming",PerkLevel = 10, isFemale=false, NoParty = true,   Name = "Abraham", X = 8211, Y = 11805, Z = 0 , Weapon = getWeapon("Base.HuntingRifle"), Orders = "Guard", isHostile = false};
 --PresetSpawns[#PresetSpawns+1] = {Greeting = "Thank you for saving me. So you\'re aware, I\'m on record as stating that I\'m not combat ready or even for that matter combat inclined",PerkName = "Blunt",PerkLevel = 3, isFemale=false, NoParty = true,   Name = "Eugene", X = 8231, Y = 11816, Z = 0 , Weapon = "Base.Plank", Orders = "Guard", isHostile = false}; 

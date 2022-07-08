@@ -1,4 +1,4 @@
-
+require "0_Utilities/SuperSurvivorWeaponsList"
 
 -- To-Do: Change OnTickTicks to NPC_SSM_OnTicks , reason is , I don't know if other mods may try to call that variable.
 OnTickTicks = 0

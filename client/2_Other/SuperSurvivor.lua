@@ -1,3 +1,4 @@
+require "2_Other/SuperSurvivorPresetSpawns"
 
 SuperSurvivor = {}
 SuperSurvivor.__index = SuperSurvivor
@@ -4560,123 +4561,13 @@ function SuperSurvivor:SuitUp(SuitName)
 		--Suits["Army"] = {"Base.Hat_BeretArmy","Base.Jacket_CoatArmy","Base.Trousers_ArmyService","Base.Shoes_ArmyBoots"}
 		--Suits["Gangster"] = {"Base.Hat_BaseballCapGreen_Reverse","Base.Trousers_JeanBaggy","Base.Shoes_RedTrainers"}
 		
-		if(SuitName == "Army") then
-			self:WearThis("Base.Hat_BeretArmy");
-			self:WearThis("Base.Tshirt_ArmyGreen");
-			self:WearThis("Base.Jacket_CoatArmy");
-			self:WearThis("Base.Trousers_ArmyService");
-			self:WearThis("Base.Shoes_ArmyBoots");
-			if(isModEnabled("Brita_2")) then
-				self:WearThis("Brita_2.Bag_Plate_Carrier");
-				self:WearThis("Brita_2.Bag_D3M")
-			end
-		elseif(SuitName == "Gangster") then
-			local result = ZombRand(3)
-			if(result == 1) then self:WearThis("Base.HoodieUP_WhiteTINT");
-			elseif(result == 2) then self:WearThis("Base.HoodieDOWN_WhiteTINT");
-			else self:WearThis("Base.Hat_BaseballCapGreen_Reverse") end
-			self:WearThis("Base.Trousers_JeanBaggy");
-			self:WearThis("Base.Shoes_RedTrainers");
-		elseif(SuitName == "Survivalist") then
-			self:WearThis("Base.Ghillie_Top");
-			self:WearThis("Base.Ghillie_Trousers");
-			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Hunter") then
-			self:WearThis("Base.Hat_BonnieHat_CamoGreen");
-			self:WearThis("Base.Vest_Hunting_Camo");
-			self:WearThis("Base.Trousers_CamoGreen");
-			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "MarinesCamo") then
-			self:WearThis("Base.Hat_Army");
-			self:WearThis("Base.Tshirt_CamoGreen");
-			self:WearThis("Base.Shirt_CamoGreen");
-			self:WearThis("Base.Jacket_ArmyCamoGreen");
-			self:WearThis("Base.Vest_BulletArmy");
-			self:WearThis("Base.Trousers_CamoGreen");
-			self:WearThis("Base.Shoes_ArmyBoots");
-			if(isModEnabled("Brita_2")) then
-				self:WearThis("Brita_2.Hat_Helmet_Headset");
-				self:WearThis("Brita_2.Bag_D3M")
-			else
-				self:WearThis("Base.Bag_ALICEpack")
-			end
-		elseif(SuitName == "ArmyCamo") then
-			self:WearThis("Base.Tshirt_CamoDesert");
-			self:WearThis("Base.Shirt_CamoDesert");
-			self:WearThis("Base.Jacket_ArmyCamoDesert");
-			self:WearThis("Base.Trousers_CamoDesert");
-			self:WearThis("Base.Shoes_ArmyBootsDesert");
-			if(isModEnabled("Brita_2")) then
-				self:WearThis("Brita_2.Hat_FAST_Opscore");
-				self:WearThis("Brita_2.Hat_Sordin");
-				self:WearThis("Brita_2.Bag_Plate_Carrier");
-				self:WearThis("Brita_2.Bag_D3M")
-			else
-				self:WearThis("Base.Bag_ALICEpack")
-			end
-		elseif(SuitName == "Chef") then
-			self:WearThis("Base.Hat_ChefHat");
-			self:WearThis("Base.Jacket_Chef");
-			self:WearThis("Base.Trousers_Chef");
-			self:WearThis("Base.Shoes_Black");
-		elseif(SuitName == "Fireman") then
-			self:WearThis("Base.Hat_Fireman");
-			self:WearThis("Base.Jacket_Fireman");
-			self:WearThis("Base.Trousers_Fireman");
-			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Doctor") then
-			self:WearThis("Base.Hat_SurgicalCap_Blue");
-			self:WearThis("Base.JacketLong_Doctor");
-			self:WearThis("Base.Trousers_Scrubs");
-			self:WearThis("Base.Shoes_Black");
-		elseif(SuitName == "Police") then
-			self:WearThis("Base.Hat_Police_Grey");
-			self:WearThis("Base.Jacket_Police");
-			self:WearThis("Base.Trousers_PoliceGrey");
-			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Farmer") then
-			self:WearThis("Base.Boilersuit");
-			self:WearThis("Base.Dungarees");
-			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Guard") then
-			self:WearThis("Base.Shirt_PrisonGuard");
-			self:WearThis("Base.Trousers_PrisonGuard");
-			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Formal") then
-			self:WearThis("Base.Shirt_FormalWhite");
-			self:WearThis("Base.Trousers_WhiteTEXTURE");
-			self:WearThis("Base.Shoes_Black");
-		elseif(SuitName == "Spiffo") then
-			self:WearThis("Base.SpiffoSuit");
-			self:WearThis("Base.Hat_Spiffo");
-			self:WearThis("Base.SpiffoTail");
-		elseif(SuitName == "Santa") then
-			self:WearThis("Base.Hat_SantaHat");
-			self:WearThis("Base.JacketLong_Santa");
-			self:WearThis("Base.Trousers_Santa");
-			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Hazmat") then
-			self:WearThis("Base.Shoes_BlackBoots");
-			self:WearThis("Base.HazmatSuit");					
-		elseif(SuitName == "Leader") then
-			self:WearThis("Base.Vest_BulletPolice");
-			self:WearThis("Base.Shirt_Lumberjack");					
-			self:WearThis("Base.Trousers_DefaultTEXTURE");					
-			self:WearThis("Base.Shoes_Black");
-		elseif(SuitName == "Worker") then
-			self:WearThis("Base.Hat_HardHatYellow");
-			self:WearThis("Base.Shirt_Workman");					
-			self:WearThis("Base.Trousers_DefaultTEXTURE");					
-			self:WearThis("Base.Shoes_BlackBoots");
-		elseif(SuitName == "Inmate") then
-			self:WearThis("Base.Boilersuit_Prisoner");
-			self:WearThis("Base.Shoes_Slippers");					
-			self:WearThis("Base.Socks_Ankle");					
-			self:WearThis("Base.Tshirt_DefaultTEXTURE");
-			self:WearThis("Base.Belt2");
-		else -- random basic clothes
-			
-			getRandomSurvivorSuit(self)
+		-- Select the preset if applicable
+		local tempTable = SurvivorRandomSuits["Preset"]
+		if SuitName:contains("Preset_") then
+			setRandomSurvivorSuit(self,"Preset",SuitName)
+		-- Do the normal outfit selection otherwise
+		else getRandomSurvivorSuit(self)
+		
 		
 			local hoursSurvived = math.min(math.floor(getGameTime():getWorldAgeHours() / 24.0), 28)
 			local result = ZombRand(1, 72) + hoursSurvived
