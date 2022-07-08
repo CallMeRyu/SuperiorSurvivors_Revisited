@@ -191,7 +191,8 @@ function AskToJoin(test,player) -- When the NPC asks another npc to join a group
 end
 function InviteToParty(test,player) -- When the player offers an NPC to join the group
 	local SS = SSM:Get(player:getModData().ID)
-	getSpecificPlayer(0):Say(getText("ContextMenu_SD_YouWantToJoin"))	
+	getSpecificPlayer(0):Say(getText("ContextMenu_SD_YouWantToJoin"))
+	SS:PlusRelationshipWP(1.0) -- Slight bonus to what existed, npcs are a bit rude 
 
 	local Relationship = SS:getRelationshipWP()
 	--player:Say(tostring(Relationship))
@@ -227,7 +228,7 @@ function InviteToParty(test,player) -- When the player offers an NPC to join the
 		SS:setGroupRole("Companion") -- Newly added
 	else
 		SS:Speak(getSpeech("No"))
-		SS:PlusRelationshipWP(-1.0)
+		SS:PlusRelationshipWP(-2.0) -- changed to -2 from -1
 	end	
 	
 end
