@@ -3045,6 +3045,14 @@ function SuperSurvivor:NPC_ManageLockedDoors()
 						self:DebugSay("NPC_ManageLockedDoors - THAT'S IT, NPC refuses to list, enforcing drastic measures!")
 						self.StuckDoorTicks = 0	
 					end
+					if (self.player:getModData().isHostile == false) then -- Not a player's base allie
+						self:getTaskManager():clear()
+						self:getTaskManager():AddToTop(FleeTask:new(self))
+						self:getTaskManager():AddToTop(FleeFromHereTask:new(self, self:Get():getCurrentSquare()))
+						self:getTaskManager():AddToTop(WanderTask:new(self))
+						self:DebugSay("NPC_ManageLockedDoors - THAT'S IT, NPC refuses to list, enforcing drastic measures!")
+						self.StuckDoorTicks = 0	
+					end
 				end
 			end
 			
