@@ -836,7 +836,7 @@ function SuperSurvivorsNewSurvivorManager()
 			
 				spawnSquare = getCell():getGridSquare(x,y,0)
 				
-				if (spawnSquare ~= nil) and (not hisGroup:IsInBounds(spawnSquare)) and spawnSquare:isOutside() and (not spawnSquare:IsOnScreen()) then 
+				if (spawnSquare ~= nil) and (not hisGroup:IsInBounds(spawnSquare)) and spawnSquare:isOutside() and (not spawnSquare:IsOnScreen()) and (not spawnSquare:isSolid()) and (not spawnSquare:isSolidFloor() ) then 
 					success = true
 					break
 				end
@@ -870,8 +870,8 @@ function SuperSurvivorsNewSurvivorManager()
 				for i=1, GroupSize do
 				
 					raider = SuperSurvivorRandomSpawn(spawnSquare)
-					if(i == 1) then RaiderGroup:addMember(raider,"Leader")
-					else RaiderGroup:addMember(raider,"Guard") end
+					--if(i == 1) then RaiderGroup:addMember(raider,"Leader")
+					--else RaiderGroup:addMember(raider,"Guard") end
 					
 					-- Updated so alt spawns can decide to be hostile or not.
 					if(ZombRand(100) < FinalChanceToBeHostile ) then 
@@ -1128,7 +1128,7 @@ function SuperSurvivorsRaiderManager()
 		
 			spawnSquare = getCell():getGridSquare(x,y,0)
 			
-			if (spawnSquare ~= nil) and (not hisGroup:IsInBounds(spawnSquare)) and spawnSquare:isOutside() and (not spawnSquare:IsOnScreen()) then 
+			if (spawnSquare ~= nil) and (not hisGroup:IsInBounds(spawnSquare)) and spawnSquare:isOutside() and (not spawnSquare:IsOnScreen()) and (not spawnSquare:isSolid()) and ( spawnSquare:isSolidFloor() ) then 
 				success = true
 				break
 			end
