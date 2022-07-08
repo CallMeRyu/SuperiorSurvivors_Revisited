@@ -111,7 +111,7 @@ function table.save( tbl,fileName )
 	local writeFile = getModFileWriter(modid, getFileFullPath(fileName .. ".lua"), true, false)
 	
 	for i = 1,#tbl do
-		debugMethodAction("writing line", tostring(#tbl))
+		debugMethodAction("writing line", tostring(i))
 		writeFile:write(tbl[i].."\r\n");
 	end
 	
