@@ -153,9 +153,8 @@ function MedicalCheckSurvivor(test,player)
 
 end
 
--- I double checked, this does not count for NPCs asking each other to join groups. That's in the AImanager
--- Idea: Maybe make it where NPCs could tell each other no in the AImanager
-function AskToJoin(test,player)
+
+function AskToJoin(test,player) -- When the NPC asks another npc to join a group
 
 	local SS = SSM:Get(player:getModData().ID)
 	local MySS = SSM:Get(0)
@@ -181,8 +180,8 @@ function AskToJoin(test,player)
 					end
 				end
 			else
-			--	group:addMember(MySS, getText("ContextMenu_Job_Partner"))
-				group:addMember(MySS, getText("ContextMenu_Job_Companion"))
+				group:addMember(MySS, getText("ContextMenu_Job_Partner"))
+			--	group:addMember(MySS, getText("ContextMenu_Job_Companion"))
 			end
 		end
 	else
@@ -190,7 +189,7 @@ function AskToJoin(test,player)
 	end
 	
 end
-function InviteToParty(test,player)
+function InviteToParty(test,player) -- When the player offers an NPC to join the group
 	local SS = SSM:Get(player:getModData().ID)
 	getSpecificPlayer(0):Say(getText("ContextMenu_SD_YouWantToJoin"))	
 
@@ -225,6 +224,7 @@ function InviteToParty(test,player)
 		SS:setAIMode("Follow")
 		tm:clear()
 		tm:AddToTop(followtask)
+		SS:setGroupRole("Companion") -- Newly added
 	else
 		SS:Speak(getSpeech("No"))
 		SS:PlusRelationshipWP(-1.0)

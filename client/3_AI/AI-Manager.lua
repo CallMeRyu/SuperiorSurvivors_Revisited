@@ -147,24 +147,19 @@ function AIManager(TaskMangerIn)
 		 or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) ) -- Both Inside
 		 or ( (DistanceBetweenMainPlayer > 5) and    (    getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) ) -- Player Outside / NPC Inside
 		 or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) ) -- Player Inside / NPC Outside
-		 or ( (DistanceBetweenMainPlayer > 8) ) -- For general purpose
+		 or ( (DistanceBetweenMainPlayer > 10) ) -- For general purpose
 		 ) 	
 		then
-		  if (DistanceBetweenMainPlayer > 10) then -- Double checker
-				TaskMangerIn:clear()
-				TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
-				NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
-		  end
-		  -- This will avoid clearing tasks if can help it, so the NPC can remember to do things like heal and reload
-		  TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
-		  NPC:DebugSay("Companion Went too far away, returning companion!")
+			TaskMangerIn:clear()
+			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
+			NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
 		end
 		
 	end
 		
 		
 		
-	if (AiNPC_Job_Is(NPC,"Companion")) then
+	if (AiNPC_Job_Is(NPC,"Companion")) and (DistanceBetweenMainPlayer <= 10) then
 	
 		-- ------------------------- --   				 
 		-- reminder: NPC:NPCTask_DoAttack() already 
@@ -283,6 +278,7 @@ function AIManager(TaskMangerIn)
 			then
 			--	TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))	
 				TaskMangerIn:AddToTop(FindUnlootedBuildingTask:new(ASuperSurvivor))	
+				TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
 				ASuperSurvivor:DebugSay("Companion HEALING_0001")
 		end
 		

@@ -2867,7 +2867,6 @@ function SuperSurvivor:CheckForIfStuck() -- This code was taken out of update() 
 	else
 		local xoff = self.player:getX() + ZombRand(-3,3)
 		local yoff = self.player:getY() + ZombRand(-3,3)	
-		self:DebugSay("CheckForIfStuck is about to trigger a StopWalk!")
 		self:StopWalk()
 		self:WalkToPoint(xoff,yoff,self.player:getZ())
 	--	self:Wait(2)
