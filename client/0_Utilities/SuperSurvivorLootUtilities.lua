@@ -41,7 +41,7 @@ end
 
 local function debugFoodScore(bullet ,change ,score)
 	if enableDebugLoot then
-		print("\t" .. bullet .. " " .. change .. "\n\t score : " .. tostring(score))
+		print("\t" .. bullet .. " " .. change .. " score : " .. tostring(score))
 	end
 end
 --- END DEBUG ---
