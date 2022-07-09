@@ -17,6 +17,8 @@ function TakeGiftTask:new(superSurvivor, gift)
 	o.Ticks = 0
 	o.Complete = false
 	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	
 	return o
 
 end
@@ -67,7 +69,7 @@ function TakeGiftTask:update()
 		local distance = getDistanceBetween(self.parent:Get(), sq)
 			
 		if(not self.DestContainer:contains(self.TheGift)) and (distance < 2.0) then
-			self.parent:Speak("*" .. getText("ContextMenu_SD_Takes_Before") .. self.TheGift:getDisplayName() .. getText("ContextMenu_SD_Takes_After") .. "*")
+			self.parent:RoleplaySpeak(getText("ContextMenu_SD_Takes_Before") .. self.TheGift:getDisplayName() .. getText("ContextMenu_SD_Takes_After"))
 			
 			if(self.SrcContainer == "Ground") then
 				self.DestContainer:AddItem(self.TheGift)
@@ -85,16 +87,17 @@ function TakeGiftTask:update()
 				if  self.TheGift:getCategory()=="Container" then
 					self.parent:getBag():Remove(self.TheGift)
 					self.parent:Get():getInventory():AddItem(self.TheGift)
-					self.parent:Speak("*"..getText("ContextMenu_SD_EquipsArmor").."*")
+					self.parent:RoleplaySpeak(getText("ContextMenu_SD_EquipsArmor"))
 					self.parent.player:setClothingItem_Back(self.TheGift)
 				elseif  instanceof(self.TheGift,"Clothing") then
 					print("gift clothing body location is:" .. tostring(self.TheGift:getBodyLocation()))
 					self.parent:getBag():Remove(self.TheGift)
 					self.parent:Get():getInventory():AddItem(self.TheGift)
-					self.parent:Speak("*"..getText("ContextMenu_SD_EquipsArmor").."*")
+					self.parent:RoleplaySpeak(getText("ContextMenu_SD_EquipsArmor"))
 					self.parent:WearThis(self.TheGift)
 				end
 			else
+				self.parent:DebugSay("ThreatenTask is about to trigger a StopWalk! ")("TakeGiftTask is about to trigger a StopWalk! ")
 				self.parent:StopWalk()
 				ISTimedActionQueue.add(ISInventoryTransferAction:new (self.parent.player, self.TheGift, self.TheGift:getContainer(), self.parent:getBag(), 20))
 			end
@@ -107,7 +110,7 @@ function TakeGiftTask:update()
 			if self.TheGift:isClothing()  then
 				self.parent:getBag():Remove(self.TheGift)
 				self.parent:Get():getInventory():AddItem(self.TheGift)
-				self.parent:Speak("*"..getText("ContextMenu_SD_EquipsArmor").."*")
+				self.parent:RoleplaySpeak(getText("ContextMenu_SD_EquipsArmor"))
 				self.parent:WearThis(self.TheGift)
 			end
 		else

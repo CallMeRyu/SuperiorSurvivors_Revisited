@@ -17,6 +17,7 @@ function BarricadeBuildingTask:new(superSurvivor)
 	o.Complete = false
 	o.PrevWeapon1 = o.parent.player:getPrimaryHandItem()
 	o.PrevWeapon2 = o.parent.player:getSecondaryHandItem()
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	local inv = o.parent.player:getInventory()
 	local temp = inv:FindAndReturn("Hammer")
@@ -107,7 +108,7 @@ function BarricadeBuildingTask:update()
 				self.parent.player:setSecondaryHandItem(self.Plank)
 				if not self.parent.player:getInventory():contains("Nails", true) then self.parent.player:getInventory():AddItem("Base.Nails") end
 									
-				
+				self.parent:DebugSay("BarricadeBuildingTask is about to trigger a StopWalk! ")
 				self.parent:StopWalk()
 				ISTimedActionQueue.add(ISBarricadeAction:new(self.parent.player, self.Window, false, false, 100));
 		

@@ -34,8 +34,12 @@ function TaskManager:AddToTop(newTask)
 	self.LastTask = self:getCurrentTask()
 	self.CurrentTask = newTask.Name
 	
-	if(self.LastTask == self.CurrentTask) then print("warning. "..self.parent:getName() .. " task loop? " .. self.CurrentTask) end
-	if(self.LastLastTaskt == self.CurrentTask) then print("warning. "..self.parent:getName() .. " task alternating? " .. self.CurrentTask) end
+	if(self.LastTask == self.CurrentTask) then 
+		print("warning. "..self.parent:getName() .. " task loop? " .. self.CurrentTask) 
+	end
+	if(self.LastLastTaskt == self.CurrentTask) then 
+		print("warning. "..self.parent:getName() .. " task alternating? " .. self.CurrentTask) 
+	end
 	
 	self.TaskUpdateCount = 0
 	for i=self.TaskCount,1,-1 do
@@ -119,6 +123,10 @@ end
 function TaskManager:update()
 
 	self = AIManager(self)
+
+	if (self == nil)then	
+		return
+	end
 		
 	local currentTask = self:getCurrentTask()
 	--if(self.parent.Reducer % 180 == 0) then self.parent:DebugSay(currentTask..tostring(self.TaskCount) .. ": " .. tostring(self.TaskUpdateCount).."/"..tostring(self.TaskUpdateLimit)) end

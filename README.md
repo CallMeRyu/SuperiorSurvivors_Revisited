@@ -1,103 +1,107 @@
-Update 14 - RELEASED!
+UPDATE 16 - RELEASED
+-
+Here is the progress of what happened. 
 
-------------- Information of the progress that happened these past days ------------------
+Update 16 Experimental
+-
+Yep, already started for the next version of the mod!
 
-Update 14 Experimental 
-
-- Survivor Bravery is now included on combat tasks. Will it help? It seems like the NPCs won't run away always after first hit. At least with my testing.
-
-- Pursue Task Update: I brought it back, I believe I figured out how to keep it working too. Now the hostile NPCs will not magically forget where you are 
-within a short range. But if they are on your tail, they're going to try to find you, and they're going to be better at it. (That's the hopeful idea anyways.)
-
-- Walking/Running: Added a new function to assist the NPCs to run or walk to their targets. This is to assist further on fixing the issues where
-the NPCs run into the main player or into each other, or pushing you into a horde of zombies. 
-
-- Guns Update: NPCs be a bit better with guns. Especially the hostile NPCs. The hostile NPCs currently will not goto to you to threaten you, then run off
-to reload and then fight you. The NPCs will now prepare for battle like they should. This wasn't easy to get going, but so far things are looking good, 
-and the NPCs are mostly doing what they're supposed to.
-
-The NPCs on Pursue task / Threaten task, when very far away, they are currently walking, when they should be running. This is currently a known bug
-and I'll be working on that later too. But for now, here you go (to anyone that reads this.)
-
-
-You want to go here and send the files into this area. Make sure you get a prompt to overwrite existing files. 
-![image](https://user-images.githubusercontent.com/73253293/175006784-0671d6e8-8fc1-4edf-be0c-405f3f01d92a.png)
-
-
-Update 14 Experimental - 2nd upload
-
-- Guns: NPCs should now be even better with using guns as they were previously than last upload. 
-The NPCs will run away though once they have realized they don't have ammo or sense they are in danger for the most part. 
-So this would include your player groups. The NPCs will try to keep their own life in tact. (or try to anyways.)
-
-- Bravery: Forgot about this, but I adjusted the 'Very brave' option. Instead of it being 4 points of bravery, it's now 50. 
-I have no idea how this will effect the NPCs. It may do nothing at all, or it may break everything else. 
-
-
-Update 14 Experimental - Upload 3. 
-- I figured out why the NPCs weren't attacking zeds. 
-
-
-
-Update 14 Experimental - Upload 4
-- Unless you have Debug mode on (the in game option) you can no longer spawn an NPC while pressing 6 key.                                                       
-[THANKS TO NIGHTSCALE FOR FINDING THIS]
-
-- Debug mode in the options actually will turn on the debug features.
-- Marked off some of the "print()" functions, it may not seem like much, but enough of them running at once will start adding lag. So, removed some leftovers from the previous modders.
-
-- Carefully updated Task_IsPursue_SC() function. Now it will let any NPC scan for humans, but as long as it doesn't have a target and along with several other if's.
-Basically what this means is, the NPCs will have a small radius sense around them to know when there's another hostile around them. (does it always work? Mostly)
-But generally this is meant for hostile NPCs the most. This way if a NPC gets behind another while an attack happens, the npc can turn around. to simulate that they know that there was just previously a fight going on, and then continue the fight.
-.
-.
-.
-
-Update 14 Experimental - Upload 5
-- NPCs that are your companions, should now follow you more often. HOWEVER, you will notice they will try to run away, but they won't go too far away. If they go outside roughly 10 blocks away, they'll return back to you. 
-- Alt spawning update: You now will also be able to spawn a group and the % seperatly. Right now the localization text isn't correct, it will still say 'group and %' but it really is saying 'ONLY groups'. 
-
-Time to get some sleep =P
-
-Notes to do
-- Make the alt spawning obey the 'chance to spawn hostile' rules
+EXP 16 - U1 
 - 
+* Clothing update: You now can make your own addon mods for the NPCs to wear! Got a clothing mod you want the NPCs to wear by chance? Now you can! 
 
-Update 14 Experimental - Upload 6
-- Updated Options menu, it's now a lot easier to read
-- Updated Alt spawning: You now can choose 0% to 100% chance for alt spawning to take effect each hour
-
-
-Update 14 Experimental - Upload 7 (Current)
-- More work towards NPCs tasks when they're the companion role (To following the main player) so they don't run away
-
-- More work into making the NPCs to enforce walking 
-
-- PVP Setting is now in the options Menu
-
-- "Follower Global Range" added to options menu. So you can choose the extra layer of how close you want your NPCs to be. (Please read its description)
-
-- Changed more conditions to where if NPCs should run/walk. (Mainly checks for if they're too close to the main player, then enforces walk)
-
-- MUCH cleaner options menu. Much more easier to read. This was needed for YEARS.
-
-- NPCs checks if they are a companion, and then checks if they and the mainplayer are both inside or outside. If outside, if they go beyond 9 blocks, they return. inside is 5 
-
-- NPCs should no longer flee when there's alot of zeds, if they are your companion
-
-- Alt Spawning NPCs obey the 'Chance to be hostile' rule within the in game settings
-______
-
-Nerd Info
-- Added more "IsnotTask" functions 
-- NPC_MovementManagement Updated to check for '	if (distance > minrange + 0.1) ' so they shouldn't move around as they're fighting WHEN using melee.
-- settings.lua changed to where two of the settings are now in the INGAME settings 
-- Cleaned the look of AiManager lua file to be a little more readable. (*This is going to take along time to complete, but I gotta start somewhere*)
-- Lots of the Task files that normally involve running now have "NPC_EnforceWalkNearMainPlayer" To further hopefully prevent NPCs from running into the player, tripping them both.
-
-Follow Task
-* Was (GFollowDistance+self.FollowDistanceOffset+5)
-* Is Now (GFollowDistance+self.FollowDistanceOffset+Option_FollowDistance)
+Link to addon: https://steamcommunity.com/sharedfiles/filedetails/?id=2828423670
 
 
-Also: NikolayNK, I know you see this. Add Ryuu on steam.
+Special thanks to NightScale for this addition! 
+
+EXP 16 - U2
+-
+* Added in game option to hide/display NPCs names
+* Added in game option to hide/display the red color on hostile NPCs
+
+
+EXP 16 - U3
+-
+* Expansion to the Clothing set rarity. So now you can have more tiers of rare chance choices.
+ALL THE WAY UP TO legendary 1%
+
+(*Because someone will request it*)
+
+
+EXP 16 - U4
+-
+* Added an in game option to hide 'roleplay messages' the kind of messages you would see npcs do like ' *Reloading gun* ' with * in the text. You now have the ability to disable that if you like. 
+* Updated PTBR localization - Thanks to ruannuness for this!
+
+
+EXP 16 - U5
+-
+(since I did not post update notes in last upload)
+
+* Fixed the clothing mod bug returning 'legendary' rolls as null
+
+* NPCs under the new Pursue_se function should now obey locked door rules more often and will be less likely to get stuck once again =)
+
+* Made adjustments to the Pursue_se and scores functions.
+NPCs should be a little bit better reacting with their surroundings.
+
+(*THIS WILL NEED TESTING & FEEDBACK, PLEASE*)
+
+* Weapons expanded* Just like the clothing, you now can make your own addon mods for base weapons and modded weapons into superior survivors!
+
+* Threaten task edit: Now there should be a chance you can run away from a npc threatening you to go away
+
+
+EXP 16 - U6
+-
+I *believe* I have made it where the NPCs, when using a gun and reloading it, AND there is zombies near said npc, 99% of the time, that NPC will run away.
+This *MAY* have side effects of hostile NPCs running away from you, but that could also be counted as a feature if you turn off hostile colors in the options menu. Also do not worry, this does not effect followers (unless the follower bugs out because some other unforseen reason)
+As per always, feedback requested.
+
+EXP 16 - U7
+-
+* First attempt at fixing the "Chance to spawn with guns" isn't multiplied 1.5x (This is how last modder added it, because previously there wasn't 0-100%, it was multiples of 5 in the options menu.)
+
+* Getting preparations set for AI-Manager update for the future. Soon AI-Manager tasks should use less RAM/CPU since it will not be having to scan through as much code as it previously once did. But for now, just preparing the code for that day.
+
+
+EXP 16 - U8
+-
+* Changed HumanEntityScan and SixthSenseScan functions: They will no longer increase dangerseencount; DoVision already does this. What that means is, there should be less likely NPCs will run away from weird situations like you vs the npc while there not being any zombies around.
+
+* dohumanentityscan will also require not standing in front of a door. This should assist with npcs not spamming doors, 'knowing' that you're on the other side.
+
+* Removed a 'return true' at the end of pursue_se
+
+* Changed AI-Manager checks for 'If Job is companion follower', so now followers should ignore certain tasks that aren't meant for them more likely.
+
+* Follower task update to now check more often if the follower has the 'follower' task
+
+* Fixed a bug where 'bravery' was posted twice in value
+* Chanced Bravery's default setting to 'very brave' since most players want non-cowardly npcs
+
+* Updated the visual of the options menu to be more easier to read
+
+EXP 16 - U9 (Final)
+-
+This should be the final update for this experimental update. This is the most I can do, and it's due time for a public release. Other than minor updates that is. 
+
+* Gun damage with NPCs are a bit more randomized, AND they can now MISS their shots. 
+
+* NPCs will no longer try to loot your base! Be sure 'safe base' is on, AND you have your base's squares set!
+(Side note: Don't let your mouse left click touch a yellow square when you're clicking in the menu of 'set base', or it'll reset the squares!)
+
+* The clothing addon now supports weapons! You now can add weapon tables from your (or other's) mods for the NPCs!
+
+* Updated the default options for certain settings that players don't consider & yet wonder why x thing isn't happening that they want.
+* NPCs are more likely to goto windows again when they can't enter a door! 
+* NPCs that are in your group: I increased the priority odds to make NPCs to clean themselves. Was at +0, now at +2
+* ManageStuckDoors function will also look out for barricaded windows, even if the name doesn't make sense now. 
+* Changed the sixthsense scan, it works with hostile npcs w/guns again
+* NPCs will have a chance to give up chasing you if you run far enough away from them 
+
+
+
+* As always, updated options menu UI - Some day I'll leave the options menu alone lol.
+

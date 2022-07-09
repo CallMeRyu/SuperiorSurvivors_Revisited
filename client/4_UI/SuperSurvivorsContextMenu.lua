@@ -1,3 +1,6 @@
+-- the job 'companion' has alot of embedding put into it to keep it from breaking away from main player
+-- So if you add new commands for the npcs through here, make sure you keep in mind about companions
+-- if you don't change the job along with the task, the npc will just return to the player
 require ('CharacterSave_SaveLoad')
 
 
@@ -12,17 +15,24 @@ function SurvivorOrder(test,player,order,orderParam)
 		TaskMangerIn:setTaskUpdateLimit(0)
 		
 		ASuperSurvivor:setWalkingPermitted(true)
-		if(order == "Loot Room") and (orderParam ~= nil) then TaskMangerIn:AddToTop(LootCategoryTask:new(ASuperSurvivor,ASuperSurvivor:getBuilding(),orderParam,0)) 
+		
+		if(order == "Loot Room") and (orderParam ~= nil) then 
+			TaskMangerIn:AddToTop(LootCategoryTask:new(ASuperSurvivor,ASuperSurvivor:getBuilding(),orderParam,0)) 
+		
 		elseif(order == "Follow") then
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Companion")) 
 			TaskMangerIn:clear()
 			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 
+		
 		elseif(order == "Pile Corpses") then 
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Dustman")) 
 			local dropSquare = getSpecificPlayer(0):getCurrentSquare()
 			local storagearea = ASuperSurvivor:getGroup():getGroupArea("CorpseStorageArea")
-			if(storagearea[1] ~= 0) then dropSquare = getCenterSquareFromArea(storagearea[1],storagearea[2],storagearea[3],storagearea[4],storagearea[5]) end
+			if(storagearea[1] ~= 0) then 
+				dropSquare = getCenterSquareFromArea(storagearea[1],storagearea[2],storagearea[3],storagearea[4],storagearea[5]) 
+			end
 			TaskMangerIn:AddToTop(PileCorpsesTask:new(ASuperSurvivor,dropSquare)) 
+		
 		elseif(order == "Guard") then 
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Guard"))
 			local area = ASuperSurvivor:getGroup():getGroupArea("GuardArea")
@@ -33,31 +43,48 @@ function SurvivorOrder(test,player,order,orderParam)
 			else
 				TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getSpecificPlayer(0):getCurrentSquare())) 
 			end
+		
 		elseif(order == "Patrol") then 
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Sheriff"))
 			TaskMangerIn:AddToTop(PatrolTask:new(ASuperSurvivor,getSpecificPlayer(0):getCurrentSquare(),ASuperSurvivor:Get():getCurrentSquare())) 		
+		
 		elseif(order == "Return To Base") then 
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end-- To prevent follower companion tasks overwrite
 			TaskMangerIn:clear()
 			TaskMangerIn:AddToTop(ReturnToBaseTask:new(ASuperSurvivor)) 
-		elseif(order == "Explore") then TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor)) 
+		
+		elseif(order == "Explore") then
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end
+			TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor)) 
+		
 		elseif(order == "Stop") then 
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end
 			TaskMangerIn:clear()
+		
 		elseif(order == "Relax") and (ASuperSurvivor:getBuilding()~=nil) then 
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end
 			TaskMangerIn:clear()
 			TaskMangerIn:AddToTop(WanderInBuildingTask:new(ASuperSurvivor,ASuperSurvivor:getBuilding())) 
+		
 		elseif(order == "Relax") and (ASuperSurvivor:getBuilding()==nil) then 
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end
 			TaskMangerIn:clear()
 			TaskMangerIn:AddToTop(WanderInBuildingTask:new(ASuperSurvivor,nil)) 
 			TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor)) 
+		
 		elseif(order == "Barricade") then 
 			TaskMangerIn:AddToTop(BarricadeBuildingTask:new(ASuperSurvivor)) 
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))
+		
 		elseif(order == "Stand Ground") then 
+			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Guard"))	
 			TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getSpecificPlayer(0):getCurrentSquare()))
 			ASuperSurvivor:setWalkingPermitted(false)
-		elseif(order == "Forage") then 
+		
+		elseif(order == "Forage") then
 			TaskMangerIn:AddToTop(ForageTask:new(ASuperSurvivor))
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Junkman"))
+		
 		elseif(order == "Farming") then 
 			if(true) then--if(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Farming")) >= 3) then
 				TaskMangerIn:AddToTop(FarmingTask:new(ASuperSurvivor))
@@ -65,17 +92,25 @@ function SurvivorOrder(test,player,order,orderParam)
 			else
 				ASuperSurvivor:Speak(getText("ContextMenu_speech_IDontKnowHowFarming"))
 			end
+		
 		elseif(order == "Chop Wood") then 
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end	
 			TaskMangerIn:AddToTop(ChopWoodTask:new(ASuperSurvivor))
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Timberjack"))
-		elseif(order == "Hold Still") then TaskMangerIn:AddToTop(HoldStillTask:new(ASuperSurvivor,true))
+		
+		elseif(order == "Hold Still") then 
+			TaskMangerIn:AddToTop(HoldStillTask:new(ASuperSurvivor,true))
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Guard"))	end	
+		
 		elseif(order == "Gather Wood") then 
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Hauler"))
 			local dropSquare = getSpecificPlayer(0):getCurrentSquare()
 			local woodstoragearea = ASuperSurvivor:getGroup():getGroupArea("WoodStorageArea")
 			if(woodstoragearea[1] ~= 0) then dropSquare = getCenterSquareFromArea(woodstoragearea[1],woodstoragearea[2],woodstoragearea[3],woodstoragearea[4],woodstoragearea[5]) end
 			TaskMangerIn:AddToTop(GatherWoodTask:new(ASuperSurvivor,dropSquare))
+		
 		elseif(order == "Lock Doors") then TaskMangerIn:AddToTop(LockDoorsTask:new(ASuperSurvivor,true))
+		
 		elseif(order == "Dismiss") then 
 			ASuperSurvivor:setAIMode("Random Solo") 
 			local group = SSGM:Get(ASuperSurvivor:getGroupID())
@@ -88,17 +123,21 @@ function SurvivorOrder(test,player,order,orderParam)
 			else
 				ASuperSurvivor:Speak(getSpeech("IfYouThinkSo")) 
 			end
-		elseif(order == "Unlock Doors") then TaskMangerIn:AddToTop(LockDoorsTask:new(ASuperSurvivor,false))
-		elseif(order == "Go Find Food") then TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Food","Category",1))
-		elseif(order == "Go Find Weapon") then TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Weapon","Category",1))
-		elseif(order == "Go Find Water") then TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Water","Category",1))
-		elseif(order == "Clean Up Inventory") then TaskMangerIn:AddToTop(CleanInvTask:new(ASuperSurvivor,getSpecificPlayer(0),false))
+
+		elseif(order == "Unlock Doors") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(LockDoorsTask:new(ASuperSurvivor,false))
+		elseif(order == "Go Find Food") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Food","Category",1))
+		elseif(order == "Go Find Weapon") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Weapon","Category",1))
+		elseif(order == "Go Find Water") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Water","Category",1))
+		elseif(order == "Clean Up Inventory") 	then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(CleanInvTask:new(ASuperSurvivor,getSpecificPlayer(0),false))
+
 		elseif(order == "Doctor") and (ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Doctor")) >= 1 or ASuperSurvivor:Get():getPerkLevel(Perks.FromString("First Aid")) >= 1) then 
 			TaskMangerIn:AddToTop(DoctorTask:new(ASuperSurvivor))
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Doctor"))
+		
 		elseif(order == "Doctor") then
 			ASuperSurvivor:Speak(getSpeech("IDontKnowHowDoctor"))
 		end
+		
 		ASuperSurvivor:Speak(getSpeech("Roger")) 
 		getSpecificPlayer(0):Say(OrderDisplayName[order]);
 	end
@@ -114,7 +153,8 @@ function MedicalCheckSurvivor(test,player)
 
 end
 
-function AskToJoin(test,player)
+
+function AskToJoin(test,player) -- When the NPC asks another npc to join a group
 
 	local SS = SSM:Get(player:getModData().ID)
 	local MySS = SSM:Get(0)
@@ -141,6 +181,7 @@ function AskToJoin(test,player)
 				end
 			else
 				group:addMember(MySS, getText("ContextMenu_Job_Partner"))
+			--	group:addMember(MySS, getText("ContextMenu_Job_Companion"))
 			end
 		end
 	else
@@ -148,9 +189,10 @@ function AskToJoin(test,player)
 	end
 	
 end
-function InviteToParty(test,player)
+function InviteToParty(test,player) -- When the player offers an NPC to join the group
 	local SS = SSM:Get(player:getModData().ID)
-	getSpecificPlayer(0):Say(getText("ContextMenu_SD_YouWantToJoin"))	
+	getSpecificPlayer(0):Say(getText("ContextMenu_SD_YouWantToJoin"))
+	SS:PlusRelationshipWP(1.0) -- Slight bonus to what existed, npcs are a bit rude 
 
 	local Relationship = SS:getRelationshipWP()
 	--player:Say(tostring(Relationship))
@@ -183,9 +225,10 @@ function InviteToParty(test,player)
 		SS:setAIMode("Follow")
 		tm:clear()
 		tm:AddToTop(followtask)
+		SS:setGroupRole("Companion") -- Newly added
 	else
 		SS:Speak(getSpeech("No"))
-		SS:PlusRelationshipWP(-1.0)
+		SS:PlusRelationshipWP(-2.0) -- changed to -2 from -1
 	end	
 	
 end
@@ -382,6 +425,23 @@ function DebugCharacterUnStuck(test,SS)
 	SS.player:update()
 	SS.player:setNPC(true)
 	SS.player:setBlockMovement(true)
+	ISTimedActionQueue.add(ISGetHitFromBehindAction:new(SS.player,getSpecificPlayer(0)))
+	
+	local xoff = SS.player:getX() + ZombRand(-3,3)
+    local yoff = SS.player:getY() + ZombRand(-3,3)	
+    SS:DebugSay("CheckForIfStuck is about to trigger a StopWalk!")
+    SS:StopWalk()
+	ISTimedActionQueue.add(ISGetHitFromBehindAction:new(SS.player,getSpecificPlayer(0)))
+    SS:WalkToPoint(xoff,yoff,SS.player:getZ())
+	ISTimedActionQueue.add(ISGetHitFromBehindAction:new(SS.player,getSpecificPlayer(0)))
+	
+	SS.player:setPerformingAnAction(true)
+	SS.player:setVariable("bPathfind", true)	
+	SS.player:setVariable("bKnockedDown", true)
+	SS.player:setVariable("AttackAnim", true)
+	SS.player:setVariable("BumpFall", true)
+	
+	ISTimedActionQueue.add(ISGetHitFromBehindAction:new(SS.player,getSpecificPlayer(0)))
 	
 	
 end

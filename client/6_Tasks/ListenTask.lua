@@ -16,6 +16,7 @@ function ListenTask:new(superSurvivor, TalkToMe, selfInitiated)
 	o.TicksSinceLastExchange = 0
 	o.Spoke = false
 	o.IsNPConNPC = ((o.parent.player:isLocalPlayer() == false) and (TalkToMe:isLocalPlayer() == false))
+	o.parent:DebugSay("ListenTask is about to trigger a StopWalk! ")
 	o.parent:StopWalk()
 	superSurvivor:Speak(getSpeech("Respond"))
 	
@@ -25,7 +26,9 @@ end
 
 function ListenTask:isComplete()
 	if(self.TicksSinceLastExchange > 15) or (self.parent:getDangerSeenCount() > 0) or (self.parent:needToFollow()) then
-		if(not self.parent:isInGroup(self.Aite)) then self.parent:Speak(getText("ContextMenu_SD_Bye1")) end 
+		if(not self.parent:isInGroup(self.Aite)) then 
+			self.parent:Speak(getText("ContextMenu_SD_Bye1")) 
+		end 
 		return true
 	else
 		return false
@@ -51,6 +54,7 @@ function ListenTask:update()
 		if (distance > 1.8) then
 			self.parent:walkTo(self.Aite:getCurrentSquare()) 				 		
 		else
+			self.parent:DebugSay("ListenTask is about to trigger a StopWalk! Path B")
 			self.parent:StopWalk()
 			self.parent.player:faceThisObject(self.Aite)
 			if(self.Spoke == false) then

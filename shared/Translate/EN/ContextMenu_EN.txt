@@ -9,7 +9,7 @@
 ContextMenu_EN = {
 
 
-    ContextMenu_Title  = "Survivors V0.14",
+    ContextMenu_Title  = "Survivors Version 0.16.3",
 
    
     --[[Jobs]]--
@@ -168,6 +168,18 @@ ContextMenu_EN = {
 
     ContextMenu_SOption_DebugOptions = "Debug Options",
 	ContextMenu_SOption_DebugOptionsDesc = "Turns on debug right click survivor options",
+
+    ContextMenu_SDebugOption_DebugSay = "SuperDebug() Mode - LAG WARNING: ",
+	ContextMenu_SDebugOption_DebugSayDesc = "You need to turn on Debug mode along with superdebug() for NPCs to tell you SuperDebug information. This will enable the function DebugSay to NPCs, which is a custom function that will give precise detail of what the NPC is up to. You will need to be at least 6 blocks away from the NPC to recieve their SuperDebug information to the console / in game chat. ",	
+	
+    ContextMenu_Option_Display_Survivor_Names = "Display NPC Names: ",
+	ContextMenu_Option_Display_Survivor_NamesDesc = "Do you want to see the names of the NPCs displayed above their heads?",
+
+    ContextMenu_Option_Display_Hostile_Color = "Display Hostile Color: "
+	ContextMenu_Option_Display_Hostile_ColorDesc = "Do you want to know if an NPC is hostile or not? Setting this 'off' will prevent hostile NPC's names from glowing red",
+
+    ContextMenu_SOption_RoleplayMessage = "Display Roleplay Messages:"
+    ContextMenu_SOption_RoleplayMessageDesc = "This defines if messages of actions will be showed",
     --[END On\Off options]--
 
     --[Rate options]--
@@ -272,14 +284,19 @@ ContextMenu_EN = {
         ContextMenu_SD_VeryBrave = "Very Brave",
     ContextMenu_SOption_SurvivorBraveryDesc = "Determines how likely Survivors are to fight, rather than flee or avoid.",
 
-    ContextMenu_SOption_FollowGlobalRange = "Follower Global Range:"
-	ContextMenu_SOption_FollowGlobalRangeDesc = "Follower Global Range was previously in the followtask file at '5' default. With this, you can change the what previously was '5' to a larger or smaller number. This adds padding to your followers of how close/far they can be to you. This setting doesn't change dynamically in game. That's what the hotkey settings is for. (*This is also to help people be aware such settings exist*) WARNING: PLEASE TEST THIS outside your main game before setting this under 5."
+    ContextMenu_SOption_FollowGlobalRange = "[Changed] - Follower Sprint Range:",
+	ContextMenu_SOption_FollowGlobalRangeDesc = "This controls the 'follow' command, giving you the ability for NPCs to run or walk when they are x distance from you. (Instead of previously you would need to call them closer). This option may warrent unexpected results, and needs feedback. (Do not forget you can also press the + and - hotkeys (right side of the keyboard) to bring a follower closer/further from/to you.) (also, if you bring them to distance '0' they will act weird) ",
 
+    ContextMenu_SOption_PerceptionBonus = "[Experimental] - NPC Perception Boost: ",
+    ContextMenu_SOption_PerceptionBonusDesc = "This option should help NPCs 'know' when hostile things are close to them when it seems like they 'should have known'. (This option isn't fully tested but deemed decent results.)",
+    
+    ContextMenu_SDebugOption_DebugSay_Distance = "SuperDebug() - Distance: ",
+	ContextMenu_SDebugOption_DebugSay_DistanceDesc = "You can choose how far away you want to be able to see debug information from the NPCs's 'SuperDebug' Function. It's HIGHLY ADVISED to keep this a low number, otherwise you can make all npcs in a large area write to your console.",
     --[END Individual Options]--
 
     --[Hotkeys]--
     ContextMenu_SShotkey1 = "Hotkey 1 Action",
-    СontextMenu_SShotkey2 = "Hotkey 2 Action",
+    ContextMenu_SShotkey2 = "Hotkey 2 Action",
     ContextMenu_SShotkey3 = "Hotkey 3 Action",
     ContextMenu_SShotkey4 = "Hotkey 4 Action",
     ContextMenu_SShotkeyDesc = "Choose an action that will happen when you press this hotkey. Order all actions effect any members within range. While the others only effect those who are listening to you (use with t hotkey).",
@@ -311,7 +328,6 @@ ContextMenu_EN = {
     ContextMenu_SD_AidCheck = "Medical / First Aid Check",
     ContextMenu_SD_AidCheckDesc = "Walk to this survivor and medical check him, if they move the process can be interupted",
     ContextMenu_SD_SetName = "Change Name",
-    --Why NPC Clothing named like that? "ADD_Clothing"???--
     ContextMenu_SD_AddClothing = "'s Clothing",
     ContextMenu_SD_RemoveClothing = "Remove Clothing",
     
@@ -510,8 +526,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_FarmingArea = "The Farming / Crops Area",
 	ContextMenu_SD_ForageArea = "Foraging Area",
 	ContextMenu_SD_GuardArea = "Guard Area",
-	
-    
+	    
     --[[speeches]]
     ContextMenu_speech_Foraging = "*Foraging..."
 	ContextMenu_speech_FarmingActionPlanting = "*Planting seeds...*"
@@ -520,7 +535,6 @@ ContextMenu_EN = {
 	ContextMenu_speech_NoFarmingArea = "there is no farming area designated"
 	ContextMenu_speech_IDontKnowHowFarming = "I don't know how to do Farming",
     ContextMenu_speech_NoForagingHere = "I won't find anything here",
-
 
 	ContextMenu_speech_DoNotTouchFood = "The food here is for members only. Do not touch it!",
 	ContextMenu_speech_HilltopIntro = "Hello and Welcome to Hilltop! We saw this coming a long time ago, and set up this community",

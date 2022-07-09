@@ -29,7 +29,7 @@ function PatrolTask:new(superSurvivor, square1, square2)
 	o.parent = superSurvivor
 	o.Name = "Patrol"
 	o.OnGoing = true
-	
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	return o
 
 end

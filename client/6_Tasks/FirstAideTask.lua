@@ -10,12 +10,12 @@ function FirstAideTask:new(superSurvivor)
 	o.parent = superSurvivor
 	o.Name = "First Aide"
 	o.OnGoing = false
-	print(superSurvivor:getName()..": new first aide task")
 	o.parent:StopWalk()
 	o.myTimedAction = nil
 	o.Ticks = 0
 	o.WorkingBP = nil
 	o.WorkingItem = nil
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	return o
 
 end
@@ -47,12 +47,13 @@ function FirstAideTask:update()
 		local bp = bodyparts:get(i)
 		if(bp:HasInjury()) and (bp:bandaged() == false) then
 			self.WorkingBP = bp
-			self.parent:Speak("*" .. getText("ContextMenu_SD_BandageBP_Before") .. tostring(BodyPartType.getDisplayName(bp:getType())).. getText("ContextMenu_SD_BandageBP_After") .. "*" )
+			self.parent:RoleplaySpeak(getText("ContextMenu_SD_BandageBP_Before") .. tostring(BodyPartType.getDisplayName(bp:getType())).. getText("ContextMenu_SD_BandageBP_After"))
 			local item 			
 			item = self.parent.player:getInventory():getItemFromType("RippedSheets")
 			if(item == nil) then item = self.parent.player:getInventory():AddItem("Base.RippedSheets") end
 			self.WorkingItem = item;
 			--print(self.parent:getName()..": adding apply bandage TA")
+			self.parent:DebugSay("FirstAideTask is about to trigger a StopWalk! Path B")
 			self.parent:StopWalk()
 			self.myTimedAction = ISApplyBandage:new(self.parent.player, self.parent.player, item, bp, true)
 			if(not self.myTimedAction) then print("failed to create timed action apply bandage") end

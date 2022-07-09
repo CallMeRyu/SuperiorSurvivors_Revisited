@@ -20,7 +20,8 @@ function WashSelfTask:new(superSurvivor)
 	o.Complete = false
 	o.WasSuccessful = false
 	
-	superSurvivor:Speak(getText("ContextMenu_SD_LookForItem_Before").."Wash Water"..getText("ContextMenu_SD_LookForItem_After"))
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
+	superSurvivor:RoleplaySpeak(getText("ContextMenu_SD_LookForItem_Before").."Wash Water"..getText("ContextMenu_SD_LookForItem_After"))
 	return o
 
 end
@@ -59,15 +60,21 @@ function WashSelfTask:update()
 	
 	if(self.TargetItem == nil) then
 		self.Complete = true
-		if(self.WasSuccessful == false) then self.parent:Speak(getText("ContextMenu_SD_NoFindItem_Before").."Wash Water"..getText("ContextMenu_SD_NoFindItem_After")) end
+		if(self.WasSuccessful == false) then 
+			self.parent:RoleplaySpeak(getText("ContextMenu_SD_NoFindItem_Before").."Wash Water"..getText("ContextMenu_SD_NoFindItem_After")) 
+		end
 		return false
 	end
 	
 	
 	local distance, targetSquare
-	if(instanceof(self.TargetItem,"InventoryItem")) and (self.TargetItem:getWorldItem() ~= nil) then targetSquare = self.TargetItem:getWorldItem():getSquare() 
-	elseif(instanceof(self.TargetItem,"IsoObject")) and (self.TargetItem:getSquare() ~= nil) then targetSquare = self.TargetItem:getSquare() 
-	elseif(instanceof(self.TargetItem,"InventoryItem")) and (self.TargetItem:getContainer() ~= nil) then targetSquare = self.TargetItem:getContainer():getSourceGrid() end
+	if(instanceof(self.TargetItem,"InventoryItem")) and (self.TargetItem:getWorldItem() ~= nil) then 
+		targetSquare = self.TargetItem:getWorldItem():getSquare() 
+	elseif(instanceof(self.TargetItem,"IsoObject")) and (self.TargetItem:getSquare() ~= nil) then 
+		targetSquare = self.TargetItem:getSquare() 
+	elseif(instanceof(self.TargetItem,"InventoryItem")) and (self.TargetItem:getContainer() ~= nil) then 
+		targetSquare = self.TargetItem:getContainer():getSourceGrid() 
+	end
 	
 	if(not targetSquare) then
 		print("error cannot locate location of returned item")

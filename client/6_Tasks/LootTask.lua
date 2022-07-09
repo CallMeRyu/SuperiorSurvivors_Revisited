@@ -29,6 +29,7 @@ function LootCategoryTask:new(superSurvivor, building , category, thisQuantity)
 	o.Complete = false
 	o.Floor = 0
 	
+	
 	return o
 
 end
@@ -41,10 +42,20 @@ function LootCategoryTask:ForceFinish()
 	self.parent:resetContainerSquaresLooted()
 	if (self.Category == "Weapon") then
 		local weapon = FindAndReturnBestWeapon(self.PlayerBag)
-		local current = self.parent:Get():getPrimaryHandItem()
-		if(weapon ~= nil) and (current == nil or current:getMaxDamage() < weapon:getMaxDamage()) then
-			self.parent:Get():setPrimaryHandItem(weapon)
+		if(weapon == nil) then 
+			return
 		end
+
+		local current = self.parent:Get():getPrimaryHandItem()
+		if(current == nil) then 
+			return
+		end
+
+		if(current:getMaxDamage() >= weapon:getMaxDamage())then 
+			return
+		end
+		
+		self.parent:Get():setPrimaryHandItem(weapon)
 	end
 	
 end
@@ -63,18 +74,20 @@ function LootCategoryTask:isValid()
 end
 
 function LootCategoryTask:update()
-
+	-- added isTargetBuildingDangerousAlt so that it can check if the npc is in the player's base or not
 	if(not self:isValid()) or self.parent:isTooScaredToFight() then
-		self.parent:DebugSay("too scared")
 		self.Complete = true
 		return false 
 	end
 	if(self.parent:isInAction()) then
 		return false 
 	end
+		-- Checks if safebase is set to 'true' and if so, and the npc is inside a safebase the player made? forces task complete
+		if (self.Building ~= nil) and self.parent:isTargetBuildingClaimed(self.Building) then
+			self.Complete = true
+			return false 
+		end
 	
-		self.parent:DebugSay("loot update")
-		
 		if(self.Category == nil) then self.Category = "Food" end 
 		local loopcount
 		
@@ -180,11 +193,12 @@ function LootCategoryTask:update()
 				
 				else
 					self.parent:DebugSay("else")
-					local item = MyFindAndReturnCategory(self.Container, self.Category, self.parent)
+					local item = FindItemByCategory(self.Container, self.Category, self.parent)
 					if(item ~= nil) then
 							self.FoundCount = self.FoundCount + 1
-							self.parent:Speak(getText("ContextMenu_SD_TakesFromCont_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromCont_After"))							
-						if(self.parent:hasRoomInBagFor(item)) then		
+							self.parent:RoleplaySpeak(getText("ContextMenu_SD_TakesFromCont_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromCont_After"))
+						if(self.parent:hasRoomInBagFor(item)) then
+							self.parent:DebugSay("LootCategoryTask is about to trigger a StopWalk! Path B ")
 							self.parent:StopWalk()
 							ISTimedActionQueue.add(ISInventoryTransferAction:new (self.parent.player, item, self.Container, self.PlayerBag, nil))
 						else
@@ -222,7 +236,7 @@ function LootCategoryTask:update()
 					local item = self.Container					
 					self.FoundCount = self.FoundCount + 1
 										
-					self.parent:Speak(getText("ContextMenu_SD_TakesFromGround_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromGround_After"))
+					self.parent:RoleplaySpeak(getText("ContextMenu_SD_TakesFromGround_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromGround_After"))
 					local srcContainer = item:getContainer()
 					if instanceof(srcContainer,"ItemContainer") then
 						--ISTimedActionQueue.add(ISInventoryTransferAction:new (self.parent.player, item, srcContainer, self.PlayerBag, nil))

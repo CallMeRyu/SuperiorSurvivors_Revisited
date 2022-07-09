@@ -12,6 +12,7 @@ function EquipWeaponTask:new(superSurvivor)
 
 	o.OnGoing = true
 	o.Complete = false
+	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
 	return o
 
@@ -35,7 +36,7 @@ function EquipWeaponTask:update()
 		local bag = self.parent:getBag()
 		local weapon = bag:getBestWeapon()
 		if(weapon) and (weapon:getMaxDamage() > 0.1) then 
-			self.parent:Speak(getText("ContextMenu_SD_EquipsArmor_Before")..weapon:getDisplayName()..getText("ContextMenu_SD_EquipsArmor_After"))
+			self.parent:RoleplaySpeak(getText("ContextMenu_SD_EquipsArmor_Before")..weapon:getDisplayName()..getText("ContextMenu_SD_EquipsArmor_After"))
 			self.parent.player:setPrimaryHandItem(weapon)
 		end
 		
