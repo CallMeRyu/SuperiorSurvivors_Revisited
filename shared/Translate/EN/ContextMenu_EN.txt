@@ -180,6 +180,9 @@ ContextMenu_EN = {
 
     ContextMenu_SOption_RoleplayMessage = "Display Roleplay Messages:"
     ContextMenu_SOption_RoleplayMessageDesc = "This defines if messages of actions will be showed",
+
+    ContextMenu_SOption_PerceptionBonus = "[Experimental] - NPC Perception Boost: ",
+    ContextMenu_SOption_PerceptionBonusDesc = "This option should help NPCs 'know' when hostile things are close to them when it seems like they 'should have known'. (This option isn't fully tested but deemed decent results.)",
     --[END On\Off options]--
 
     --[Rate options]--
@@ -287,9 +290,6 @@ ContextMenu_EN = {
     ContextMenu_SOption_FollowGlobalRange = "[Changed] - Follower Sprint Range:",
 	ContextMenu_SOption_FollowGlobalRangeDesc = "This controls the 'follow' command, giving you the ability for NPCs to run or walk when they are x distance from you. (Instead of previously you would need to call them closer). This option may warrent unexpected results, and needs feedback. (Do not forget you can also press the + and - hotkeys (right side of the keyboard) to bring a follower closer/further from/to you.) (also, if you bring them to distance '0' they will act weird) ",
 
-    ContextMenu_SOption_PerceptionBonus = "[Experimental] - NPC Perception Boost: ",
-    ContextMenu_SOption_PerceptionBonusDesc = "This option should help NPCs 'know' when hostile things are close to them when it seems like they 'should have known'. (This option isn't fully tested but deemed decent results.)",
-    
     ContextMenu_SDebugOption_DebugSay_Distance = "SuperDebug() - Distance: ",
 	ContextMenu_SDebugOption_DebugSay_DistanceDesc = "You can choose how far away you want to be able to see debug information from the NPCs's 'SuperDebug' Function. It's HIGHLY ADVISED to keep this a low number, otherwise you can make all npcs in a large area write to your console.",
     --[END Individual Options]--
