@@ -12,6 +12,9 @@ SuperSurvivorsAmmoBoxes = {   -- for the loot stores that are spawned with prese
 }
 
 
+--- Gets a ammo box of an ammo typ
+---@param bullets string any ammo type
+---@return string returns the ammo box name
 function getAmmoBox(bullets)
 	if(isModEnabled("ORGM")) then return bullets.."_Box" end
 
@@ -45,10 +48,12 @@ function getAmmoBox(bullets)
 	elseif (bullets == "Nails") then return "NailsBox" -- For Nailgun Mod
 	end
 
---	print("no ammo box found for bullets "..tostring(bullets))
 	return ""
 end
 
+--- func desc
+---@param box string ammo box name
+---@return integer returns the amount of bullets inside of the ammo box
 function getBoxCount(box)
 	if (box == "BB177Box") then return 500
 	elseif (box == "Bullets22Box") then return 100
@@ -107,8 +112,10 @@ function SurvivorTogglePVP()
 	end
 end
 
---gets in the database the ammo type for the weapon 'weapon' 
--- incModule is not being used
+---	gets in the database the ammo type for the weapon 'weapon' 
+---@param weapon any weapon to have the ammo searched
+---@param incModule any (not being used)
+---@return any returns the ammo type of the gun or nil if not found
 function getAmmoType(weapon,incModule)
 
 	if(weapon == nil) or (weapon:getAmmoType() == nil) then 
@@ -127,7 +134,7 @@ function getAmmoType(weapon,incModule)
 	end
 
 	if(out == nil) then
---		print("no bullets found for weapon: " .. wepType)
+		print("no bullets found for weapon: " .. wepType)
 		return nil
 	end
 
@@ -167,7 +174,9 @@ function getAmmoType(weapon,incModule)
 
 end
 
---gets in the database bullets for the weapon 'weapon' 
+--- gets in the database bullets for the weapon 'weapon' 
+---@param weapon any a HandWeapon
+---@param incModule any
 function getAmmoBullets(weapon,incModule)
 
 	if(weapon == nil) then 

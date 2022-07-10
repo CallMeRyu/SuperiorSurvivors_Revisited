@@ -193,7 +193,7 @@ function LootCategoryTask:update()
 				
 				else
 					self.parent:DebugSay("else")
-					local item = MyFindAndReturnCategory(self.Container, self.Category, self.parent)
+					local item = FindItemByCategory(self.Container, self.Category, self.parent)
 					if(item ~= nil) then
 							self.FoundCount = self.FoundCount + 1
 							self.parent:RoleplaySpeak(getText("ContextMenu_SD_TakesFromCont_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromCont_After"))

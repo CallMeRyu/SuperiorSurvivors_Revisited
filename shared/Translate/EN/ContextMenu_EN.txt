@@ -1,143 +1,35 @@
+--[[
+    RWORKED BY - Akstis
+    I slightly improved translations categories so everyone who wants to take part in translations
+    can write their own and it wont be a mess.
+
+    I recomend to stay close to syntax I used
+]]--
+
 ContextMenu_EN = {
 
-ContextMenu_Title  = "Survivors Version 0.16.3",
-ContextMenu_SD_AidCheck = "Medical / First Aid Check",
-ContextMenu_SD_AidCheckDesc = "Walk to this survivor and medical check him, if they move the process can be interupted",
 
-ContextMenu_SD_AddClothing = "'s Clothing"
-ContextMenu_SD_RemoveClothing = "Remove Clothing"
-ContextMenu_UndressingClothes = "*Undressing*"
-ContextMenu_SD_SetName = "Change Name"
-ContextMenu_SD_Debug_PlayerStats = "Debug: Change Player Info"
+    ContextMenu_Title  = "Survivors Version 0.16.3",
 
-ContextMenu_Job_Leader = "Leader",
-ContextMenu_Job_Companion = "Companion",
-ContextMenu_Job_Dustman = "Dustman",
-ContextMenu_Job_Guard = "Guard",
-ContextMenu_Job_Sheriff = "Sheriff",
-ContextMenu_Job_Junkman = "Junkman",
-ContextMenu_Job_Farmer = "Farmer",
-ContextMenu_Job_Timberjack = "Timberjack",
-ContextMenu_Job_Hauler = "Hauler",
-ContextMenu_Job_Worker = "Worker",
-ContextMenu_Job_Partner = "Partner",
-ContextMenu_Job_Doctor = "Doctor",
+   
+    --[[Jobs]]--
+    ContextMenu_Job_Leader = "Leader",
+    ContextMenu_Job_Companion = "Companion",
+    ContextMenu_Job_Dustman = "Dustman",
+    ContextMenu_Job_Guard = "Guard",
+    ContextMenu_Job_Sheriff = "Sheriff",
+    ContextMenu_Job_Junkman = "Junkman",
+    ContextMenu_Job_Farmer = "Farmer",
+    ContextMenu_Job_Timberjack = "Timberjack",
+    ContextMenu_Job_Hauler = "Hauler",
+    ContextMenu_Job_Worker = "Worker",
+    ContextMenu_Job_Partner = "Partner",
+    ContextMenu_Job_Doctor = "Doctor",
+    --[[END Jobs]]--
 
-	ContextMenu_SD_NoPreSetSpawn = "Disable All Pre-set/Unique Survivors",
-	ContextMenu_SD_NoPreSetSpawnDesc = "Disable All Pre-set/Unique Survivors",
-	ContextMenu_SD_RulesOfEngagement = "Rules of Engagement",
-	ContextMenu_SD_AttackAnyoneOnSight = "Attack Anyone On Sight",
-	ContextMenu_SD_AttackHostilesOnSight = "Attack Hostiles On Sight",
-	
-	ContextMenu_SD_IGotABadFeeling = "I got a bad feeling.",
-	ContextMenu_SD_WhatWasThatSound = "What was that sound!?",
-	ContextMenu_SD_IAttackFoodThief = "That's it! Get out of here!",
-	ContextMenu_SD_IWarnFoodThief = "Hey you! stop stealing our food or else!!",
-	
-	ContextMenu_SD_OrderAll = "Order All ",
-	ContextMenu_SShotkey1 = "Hotkey 1 Action",
-	ContextMenu_SShotkey2 = "Hotkey 2 Action",
-	ContextMenu_SShotkey3 = "Hotkey 3 Action",
-	ContextMenu_SShotkey4 = "Hotkey 4 Action",
-	ContextMenu_SShotkeyDesc = "Choose an action that will happen when you press this hotkey. Order all actions effect any members within range. While the others only effect those who are listening to you (use with t hotkey).",
-	
-	ContextMenu_speech_NoForagingHere = "I won't find anything here",
-	
-	ContextMenu_speech_Sick1 = "I'm feeling sick",
-    ContextMenu_speech_Sick2 = "kind of feeling sick",
-	
-	ContextMenu_speech_VSick1 = "I'm feeling Quite sick",
-    ContextMenu_speech_VSick2 = "kind of feeling pretty sick",
-	
-	ContextMenu_speech_SSick1 = "I'm gonna puke",
-    ContextMenu_speech_SSick2 = "feel like im gonna barf",
-		
-	ContextMenu_SD_PerkLeveledUp_After = " Perk Leveled Up!*"
-	ContextMenu_SD_PerkLeveledUp_Before = "*"
-	ContextMenu_speech_Foraging = "*Foraging..."
-	ContextMenu_speech_FarmingActionPlanting = "*Planting seeds...*"
-	ContextMenu_speech_FarmingActionHarvesting = "*Harvesting...*"
-	ContextMenu_speech_FarmingActionWatering = "*Watering...*"
-	ContextMenu_speech_NoFarmingArea = "there is no farming area designated"
-	 ContextMenu_speech_IDontKnowHowFarming = "I don't know how to do Farming",
-	ContextMenu_SOption_SurvivorBravery = "Survivor Bravery",
-	ContextMenu_SOption_SurvivorBraveryDesc = "Determines how likely Survivors are to fight, rather than flee or avoid.",
-	ContextMenu_SD_Cowardly = "Cowardly",
-	ContextMenu_SD_Brave = "Brave",
-	ContextMenu_SD_VeryBrave = "Very Brave",
-	
-	ContextMenu_SOption_FollowGlobalRange = "[Changed] - Follower Sprint Range:"
-	ContextMenu_SOption_FollowGlobalRangeDesc = "This controls the 'follow' command, giving you the ability for NPCs to run or walk when they are x distance from you. (Instead of previously you would need to call them closer). This option may warrent unexpected results, and needs feedback. (Do not forget you can also press the + and - hotkeys (right side of the keyboard) to bring a follower closer/further from/to you.) (also, if you bring them to distance '0' they will act weird) "
-	
-	ContextMenu_SOption_PerceptionBonus = "[Experimental] - NPC Perception Boost: "
-	ContextMenu_SOption_PerceptionBonusDesc = "This option should help NPCs 'know' when hostile things are close to them when it seems like they 'should have known'. (This option isn't fully tested but deemed decent results.)"
-	
-	
-	ContextMenu_SOption_AltSpawn = "Alt Spawning - Groups:"
-	ContextMenu_SD_AltSpawnOff = "Off"
-	ContextMenu_SD_UpTo1 = "Spawn Only 1 NPC group"
-	ContextMenu_SD_UpTo2 = "Spawn 1 To 2 NPC groups"
-	ContextMenu_SD_UpTo3 = "Spawn 1 To 3 NPC groups"
-	ContextMenu_SD_UpTo4 = "Spawn 1 To 4 NPC groups"
-	ContextMenu_SD_UpTo5 = "Spawn 1 To 5 NPC groups"
-	ContextMenu_SD_UpTo6 = "Spawn 1 To 6 NPC groups"
-	ContextMenu_SOption_AltSpawnDesc = "Alt Spawning hourly is a new type of spawning method for NPCs to spawn. How many groups do you want to spawn around you every in game hour? 'Groups' will contain NPCs inside to spawn around you off screen every hour - (Determined by you in the other settings). You can use this spawning method along with 'NPC spawn rate', but effects may differ on performance. Turning this setting 'OFF' will turn off the other settings as well. Read the descriptions on the other Alt spawning options to know more. "
-	
-		ContextMenu_Debug_Character_Swap = "Debug: Character Swap",
-		ContextMenu_Debug_Infect&Murder_Character = "Debug: Infect&Murder Character",
-		ContextMenu_Debug_Character_Output = "Debug: Character Output",
-		ContextMenu_Debug_Unstuck = "Debug: Unstuck",
-		ContextMenu_Debug_Spawn_Soldier = "Debug: Spawn Soldier",
-	
-	ContextMenu_SOption_AltSpawnPercent = "Alt Spawning - Chance:"
-	ContextMenu_SOption_AltSpawnPercentDesc = "You can control the chance when a group(s) of NPCs spawn around you every hour by % chance. If your %chance dice surpass the random roll (Random 1-100) during an in game hour, groups of NPCs will spawn around you off screen."
-	
 
-	ContextMenu_Option_AltSpawnAmount = "Alt Spawning - Group Size:"
-		ContextMenu_AltSpawnAmount_1 = "Only 1 NPC In Each Group"
-		ContextMenu_AltSpawnAmount_2 = "Random - 1 to 2 NPCs In Each Group"
-		ContextMenu_AltSpawnAmount_3 = "Random - 1 to 3 NPCs In Each Group"
-		ContextMenu_AltSpawnAmount_4 = "Random - 1 to 4 NPCs In Each Group"
-		ContextMenu_AltSpawnAmount_5 = "Random - 1 to 5 NPCs In Each Group"
-		ContextMenu_AltSpawnAmount_6 = "Random - 1 to 6 NPCs In Each Group"
-	ContextMenu_Context_AltSpawnAmountDesc = "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)"
-	
-	ContextMenu_Option_Display_Survivor_Names = "Display NPC Names: "
-	ContextMenu_Option_Display_Survivor_NamesDesc = "Do you want to see the names of the NPCs displayed above their heads?"
-	
-	ContextMenu_Option_Display_Hostile_Color = "Display Hostile Color: "
-	ContextMenu_Option_Display_Hostile_ColorDesc = "Do you want to know if an NPC is hostile or not? Setting this 'off' will prevent hostile NPC's names from glowing red"
-		
-	ContextMenu_OutOfAmmo1 = "Out of Ammo!",
-	ContextMenu_OutOfAmmo2 = "I'm out of Ammo!",
-	ContextMenu_OutOfAmmo3 = "I'm Out",
-	ContextMenu_OutOfAmmo4 = "No more Ammo!",
-	
-	ContextMenu_OrderDesc_Farming = "Survivors will be your farmer and tend to and create crops in the designated farming area. Will bring harvested goods to food storage area.",
-	ContextMenu_OrderDesc_Barricade = "Survivors will barricade windows from the inside of the building you are in",
-	ContextMenu_OrderDesc_Chop_Wood = "If an Axe is equipped, Survivors will chop down trees in the area",
-	ContextMenu_OrderDesc_Explore = "Survivor will move around the general area, will still attack any enemies they encounter",
-	ContextMenu_OrderDesc_Follow = "Survivor will follow you at your follow distance, will only attack enemies if it does not require them to move out of your follow distance.",
-	ContextMenu_OrderDesc_Forage = "Survivor will forage around the general area. Then use Drop All to get the stuff they forage.",
-	ContextMenu_OrderDesc_Guard = "Survivor will attack any enemies they encounter but will return to the guard location afterwards",
-	ContextMenu_OrderDesc_Patrol = "Survivor will patrol back and forth from their current position to your position at the time of giving the order.",
-	ContextMenu_OrderDesc_Stand_Ground = "Survivor will come to where you stand and then not move from that spot. Will still attack anything that comes within range but will not move.",
-	ContextMenu_OrderDesc_Loot_Room = "loot the current building room for items",
-	ContextMenu_OrderDesc_Lock_Doors = "lock the doors in the current building",
-	ContextMenu_OrderDesc_Unlock_Doors = "unlock the doors in the current building",
-	ContextMenu_OrderDesc_Doctor = "Survivor will give treatement to anyone in need of treatment around. Survivor must have at least level 3 Doctor",
-	ContextMenu_OrderDesc_Go_Find_Food = "Survivor will go find and take food from the near by area wherever they can find it.",
-	ContextMenu_OrderDesc_Go_Find_Weapon = "Survivor will go find and take a weapon from the near by area wherever they can find it.",
-	ContextMenu_OrderDesc_Go_Find_Water = "Survivor will go find and take water containing item from the near by area wherever they can find it.",
-	ContextMenu_OrderDesc_Clean_Up_Inventory = "Survivor will come to you and clear out of his inventory and or bag anything he does not need such as foraged goods and empty bottles or extra weapons etc.",
-	ContextMenu_OrderDesc_Hold_Still = "Survivor will hold still and not do anything for the most part. Mostly so you can then medical treat them without them interfeiring with thier own first aide tasks. They will only hold still so long as you do too.",
-	ContextMenu_OrderDesc_Gather_Wood = "Survivor will take logs or planks from all around the area and bring to your current position until he can find no more wood",
-	ContextMenu_OrderDesc_Dismiss = "Ask Survivor to leave the group.",
-	ContextMenu_OrderDesc_Relax = "Survivor can wander around the area as he pleases",
-	ContextMenu_OrderDesc_Pile_Corpses = "Survivor will gather all near by corpses and pile at your current location",
-	ContextMenu_OrderDesc_Return_To_Base = "Survivor will return to base",
-	ContextMenu_OrderDesc_Stop = "Survivor will Stop doing, whatever it is they are doing now",
-
+    --[[Orders]]--
+    ContextMenu_SD_OrderAll = "Order All ",
 
 	ContextMenu_OrderDisplayName_Farming = "Farming",
 	ContextMenu_OrderDisplayName_Barricade = "Barricade",
@@ -164,6 +56,35 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_OrderDisplayName_Return_To_Base = "Return To Base",
 	ContextMenu_OrderDisplayName_Stop = "Stop",
 	
+    
+    ContextMenu_OrderDesc_Farming = "Survivors will be your farmer and tend to and create crops in the designated farming area. Will bring harvested goods to food storage area.",
+	ContextMenu_OrderDesc_Barricade = "Survivors will barricade windows from the inside of the building you are in",
+	ContextMenu_OrderDesc_Chop_Wood = "If an Axe is equipped, Survivors will chop down trees in the area",
+	ContextMenu_OrderDesc_Explore = "Survivor will move around the general area, will still attack any enemies they encounter",
+	ContextMenu_OrderDesc_Follow = "Survivor will follow you at your follow distance, will only attack enemies if it does not require them to move out of your follow distance.",
+	ContextMenu_OrderDesc_Forage = "Survivor will forage around the general area. Then use Drop All to get the stuff they forage.",
+	ContextMenu_OrderDesc_Guard = "Survivor will attack any enemies they encounter but will return to the guard location afterwards",
+	ContextMenu_OrderDesc_Patrol = "Survivor will patrol back and forth from their current position to your position at the time of giving the order.",
+	ContextMenu_OrderDesc_Stand_Ground = "Survivor will come to where you stand and then not move from that spot. Will still attack anything that comes within range but will not move.",
+	ContextMenu_OrderDesc_Loot_Room = "loot the current building room for items",
+	ContextMenu_OrderDesc_Lock_Doors = "lock the doors in the current building",
+	ContextMenu_OrderDesc_Unlock_Doors = "unlock the doors in the current building",
+	ContextMenu_OrderDesc_Doctor = "Survivor will give treatement to anyone in need of treatment around. Survivor must have at least level 3 Doctor",
+	ContextMenu_OrderDesc_Go_Find_Food = "Survivor will go find and take food from the near by area wherever they can find it.",
+	ContextMenu_OrderDesc_Go_Find_Weapon = "Survivor will go find and take a weapon from the near by area wherever they can find it.",
+	ContextMenu_OrderDesc_Go_Find_Water = "Survivor will go find and take water containing item from the near by area wherever they can find it.",
+	ContextMenu_OrderDesc_Clean_Up_Inventory = "Survivor will come to you and clear out of his inventory and or bag anything he does not need such as foraged goods and empty bottles or extra weapons etc.",
+	ContextMenu_OrderDesc_Hold_Still = "Survivor will hold still and not do anything for the most part. Mostly so you can then medical treat them without them interfeiring with thier own first aide tasks. They will only hold still so long as you do too.",
+	ContextMenu_OrderDesc_Gather_Wood = "Survivor will take logs or planks from all around the area and bring to your current position until he can find no more wood",
+	ContextMenu_OrderDesc_Dismiss = "Ask Survivor to leave the group.",
+	ContextMenu_OrderDesc_Relax = "Survivor can wander around the area as he pleases",
+	ContextMenu_OrderDesc_Pile_Corpses = "Survivor will gather all near by corpses and pile at your current location",
+	ContextMenu_OrderDesc_Return_To_Base = "Survivor will return to base",
+	ContextMenu_OrderDesc_Stop = "Survivor will Stop doing, whatever it is they are doing now",
+    --[[END Orders]]--
+
+
+    --[[NPC infomation]]--
 	ContextMenu_SD_Level = "Level",
 	ContextMenu_SD_Wife = "Wife",
 	ContextMenu_SD_Husband = "Husband",
@@ -188,105 +109,273 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_SD_YourGroupMembers = "Your Super Survivor Group Members",
 	ContextMenu_SD_MIASurvivor = "MIA Survivor",
 	ContextMenu_SD_BaseLocation = "Base Location",
-	
-	ContextMenu_SD_UltraLow = "Ultra Low",
-	ContextMenu_SD_ExtremelyLow = "Extremely Low",
-	ContextMenu_SD_VeryLow = "Very Low",
-	ContextMenu_SD_Low = "Low",
-	ContextMenu_SD_SlightlyLower = "Slightly Lower",
-	ContextMenu_SD_Normal = "Normal",
-	ContextMenu_SD_SlightlyHigher = "Slightly Higher",
-	ContextMenu_SD_High = "High",
-	ContextMenu_SD_VeryHigh = "Very High",
-	ContextMenu_SD_ExtremelyHigh = "Extremely High",
-	ContextMenu_SD_UltraHigh = "Ultra High",
-	ContextMenu_SD_Off = "Off",
-	ContextMenu_SD_On = "On",
-	
-	ContextMenu_SD_Every10Minutes = "Every 10 Minutes!",
-	ContextMenu_SD_EveryHour = "Every Hour!",
-	ContextMenu_SD_EveryDay = "Every Day!",
-	ContextMenu_SD_Every100Days = "Every 100 Days",
-	ContextMenu_SD_Every95Days = "Every 95 Days",
-	ContextMenu_SD_Every90Days = "Every 90 Days",
-	ContextMenu_SD_Every85Days = "Every 85 Days",
-	ContextMenu_SD_Every80Days = "Every 80 Days",
-	ContextMenu_SD_Every75Days = "Every 75 Days",
-	ContextMenu_SD_Every70Days = "Every 70 Days",
-	ContextMenu_SD_Every65Days = "Every 65 Days",
-	ContextMenu_SD_Every60Days = "Every 60 Days",
-	ContextMenu_SD_Every55Days = "Every 55 Days",
-	ContextMenu_SD_Every50Days = "Every 50 Days",
-	ContextMenu_SD_Every45Days = "Every 45 Days",
-	ContextMenu_SD_Every40Days = "Every 40 Days",
-	ContextMenu_SD_Every35Days = "Every 35 Days",
-	ContextMenu_SD_Every30Days = "Every 30 Days",
-	ContextMenu_SD_Every25Days = "Every 25 Days",
-	ContextMenu_SD_Every20Days = "Every 20 Days",
-	ContextMenu_SD_Every15Days = "Every 15 Days",
-	ContextMenu_SD_Every10Days = "Every 10 Days",
-	ContextMenu_SD_Every5Days = "Every 5 Days",
-	ContextMenu_SD_StartImmediately = "Start Immediately",
-	ContextMenu_SD_Never = "Never",
-	ContextMenu_SD_AfterDay1 = "After Day 1",
-	ContextMenu_SD_AfterDay5 = "After Day 5",
-	ContextMenu_SD_AfterDay10 = "After Day 10",
-	ContextMenu_SD_AfterDay15 = "After Day 15",
-	ContextMenu_SD_AfterDay20 = "After Day 20",
-	ContextMenu_SD_AfterDay25 = "After Day 25",
-	ContextMenu_SD_AfterDay30 = "After Day 30",
-	ContextMenu_SD_AfterDay35 = "After Day 35",
-	ContextMenu_SD_AfterDay40 = "After Day 40",
-	ContextMenu_SD_AfterDay45 = "After Day 45",
-	ContextMenu_SD_AfterDay50 = "After Day 50",
-	ContextMenu_SD_AfterDay55 = "After Day 55",
-	ContextMenu_SD_AfterDay60 = "After Day 60",
-	ContextMenu_SD_AfterDay65 = "After Day 65",
-	ContextMenu_SD_AfterDay70 = "After Day 70",
-	ContextMenu_SD_AfterDay75 = "After Day 75",
-	ContextMenu_SD_AfterDay80 = "After Day 80",
-	ContextMenu_SD_AfterDay85 = "After Day 85",
-	ContextMenu_SD_AfterDay90 = "After Day 90",
-	ContextMenu_SD_AfterDay95 = "After Day 95",
-	ContextMenu_SD_AfterDay100 = "After Day 100",
-	
+	--[[END NPC infomation]]--
 
-	ContextMenu_SD_DesperateforHumanContact = "Desperate for Human Contact",
-	ContextMenu_SD_VeryFriendly = "Very Friendly",
-	ContextMenu_SD_Friendly = "Friendly", 
-	ContextMenu_SD_Mean = "Mean",
-	ContextMenu_SD_VeryMean	= "Very Mean",
+
+    --[[OPTIONS]]--
+
+    --[Alternative spawn system]--
+    ContextMenu_SOption_AltSpawn = "Alt Spawning - Groups:"
+        ContextMenu_SD_AltSpawnOff = "Off"
+        ContextMenu_SD_UpTo1 = "Just 1 NPC group"
+        ContextMenu_SD_UpTo2 = "1 To 2 NPC groups"
+        ContextMenu_SD_UpTo3 = "1 To 3 NPC groups"
+        ContextMenu_SD_UpTo4 = "1 To 4 NPC groups"
+        ContextMenu_SD_UpTo5 = "1 To 5 NPC groups"
+        ContextMenu_SD_UpTo6 = "1 To 6 NPC groups"
+	ContextMenu_SOption_AltSpawnDesc = "Alt Spawning hourly is a new type of spawning method for NPCs to spawn. How many groups do you want to spawn around you every in game hour? 'Groups' will contain NPCs inside to spawn around you off screen every hour - (Determined by you in the other settings). You can use this spawning method along with 'NPC spawn rate', but effects may differ on performance. Turning this setting 'OFF' will turn off the other settings as well. Read the descriptions on the other Alt spawning options to know more. "
+
+    ContextMenu_Option_AltSpawnAmount = "Max Alt Spawn Group Size:",
+        ContextMenu_AltSpawnAmount_1 = "Only 1",
+        ContextMenu_AltSpawnAmount_2 = "Random from 1 to 2 max",
+        ContextMenu_AltSpawnAmount_3 = "Random from 1 to 3 max",
+        ContextMenu_AltSpawnAmount_4 = "Random from 1 to 4 max",
+        ContextMenu_AltSpawnAmount_5 = "Random from 1 to 5 max",
+        ContextMenu_AltSpawnAmount_6 = "Random from 1 to 6 max",
+    ContextMenu_Context_AltSpawnAmountDesc = "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)",
+    
+    ContextMenu_SOption_AltSpawnPercent = "Alt Spawning - Chance:"
+	ContextMenu_SOption_AltSpawnPercentDesc = "You can control the chance when a group(s) of NPCs spawn around you every hour by % chance. If your %chance dice surpass the random roll (Random 1-100) during an in game hour, groups of NPCs will spawn around you off screen."
+	 --[END Alternative spawn system]--	
+    
+    --[On\Off options]--
+    ContextMenu_SD_Off = "Off",
+    ContextMenu_SD_On = "On",
+
+    ContextMenu_SD_NoPreSetSpawn = "Disable All Pre-set/Unique Survivors",
+    ContextMenu_SD_NoPreSetSpawnDesc = "Disable All Pre-set/Unique Survivors",
+  
+    ContextMenu_SOption_LockNLoad = "Ready For Battle Mode:",
+    ContextMenu_SOption_LockNLoadDesc = "You and your Wife(if enabled) will spawn with guns and ammo, and Armor(if armor mod enabled) at the start of the game.  Great mode to use if you plan on trying out Raiders at a high spawn rate.",
+
+    ContextMenu_SOption_WifeSpawn = "Wife/Husband Spawn:",
+	ContextMenu_SOption_WifeSpawnDesc = "Spawn with a wife or husband who is already in your group at the start of the game",
 	
-	ContextMenu_SD_SurvivorInfoName_Before = "Survivor ",
+    ContextMenu_SOption_InfinitAmmo = "Survivor Infinite Ammo:",
+	ContextMenu_SOption_InfinitAmmoDesc = "If on Survivors do not neeed ammo to use guns, and never run out of ammo. If Off survivors need rounds or boxes in thier inventory to shoot guns. And can be given more ammo via right click menu, and will attempt to find ammo near by when they run out of ammo.",
+       
+    ContextMenu_SOption_FindWork = "Survivors Auto Base Tasks:",
+    ContextMenu_SOption_FindWorkDesc = "If On, survivors in or near base may do some work tasks around the base on thier own if they find themselves with nothing to do. If off they will never decide to do tasks on thier own.",
+
+    ContextMenu_SOption_SurvivorHunger = "Survivor Hunger & Thirst",
+    ContextMenu_SOption_SurvivorHungerDesc = "If Off survivors will never get hungery or thirsty. If On they will, though they will make attempts to find what they need on thier own.",
+ 
+    ContextMenu_SOption_SafeBase = "Safe Base",
+	ContextMenu_SOption_SafeBaseDesc = "Wild Survivors will avoid your marked base",
+    
+    ContextMenu_SOption_SurvivorBases = "Survivor Bases",
+	ContextMenu_SOption_SurvivorBasesDesc = "Wild Survivors will set up their own bases",
+
+    ContextMenu_SOption_DebugOptions = "Debug Options",
+	ContextMenu_SOption_DebugOptionsDesc = "Turns on debug right click survivor options",
+
+    ContextMenu_SDebugOption_DebugSay = "SuperDebug() Mode - LAG WARNING: ",
+	ContextMenu_SDebugOption_DebugSayDesc = "You need to turn on Debug mode along with superdebug() for NPCs to tell you SuperDebug information. This will enable the function DebugSay to NPCs, which is a custom function that will give precise detail of what the NPC is up to. You will need to be at least 6 blocks away from the NPC to recieve their SuperDebug information to the console / in game chat. ",	
+	
+    ContextMenu_Option_Display_Survivor_Names = "Display NPC Names: ",
+	ContextMenu_Option_Display_Survivor_NamesDesc = "Do you want to see the names of the NPCs displayed above their heads?",
+
+    ContextMenu_Option_Display_Hostile_Color = "Display Hostile Color: "
+	ContextMenu_Option_Display_Hostile_ColorDesc = "Do you want to know if an NPC is hostile or not? Setting this 'off' will prevent hostile NPC's names from glowing red",
+
+    ContextMenu_SOption_RoleplayMessage = "Display Roleplay Messages:"
+    ContextMenu_SOption_RoleplayMessageDesc = "This defines if messages of actions will be showed",
+
+    ContextMenu_SOption_PerceptionBonus = "[Experimental] - NPC Perception Boost: ",
+    ContextMenu_SOption_PerceptionBonusDesc = "This option should help NPCs 'know' when hostile things are close to them when it seems like they 'should have known'. (This option isn't fully tested but deemed decent results.)",
+    --[END On\Off options]--
+
+    --[Rate options]--
+    ContextMenu_SOption_SurvivorSpawnRate = "NPC Spawn Rate:",
+        ContextMenu_SD_UltraLow = "Ultra Low",
+	    ContextMenu_SD_ExtremelyLow = "Extremely Low",
+	    ContextMenu_SD_VeryLow = "Very Low",
+	    ContextMenu_SD_Low = "Low",
+	    ContextMenu_SD_SlightlyLower = "Slightly Lower",
+	    ContextMenu_SD_Normal = "Normal",
+	    ContextMenu_SD_SlightlyHigher = "Slightly Higher",
+	    ContextMenu_SD_High = "High",
+	    ContextMenu_SD_VeryHigh = "Very High",
+	    ContextMenu_SD_ExtremelyHigh = "Extremely High",
+	    ContextMenu_SD_UltraHigh = "Ultra High",
+	ContextMenu_SOption_SurvivorSpawnRateDesc = "This defines the amount of random survivors that will spawn. NPCs will spawn based on tiles on the map.",
+    
+	ContextMenu_SOption_RaidersChance = "Raider Event Spawning - Chance:",
+    --uses default zomboid's rates--
+	ContextMenu_SOption_RaidersChanceDesc = "The chance a Raider event will happen after the start date has passed.",
+    --[END Rate options]--
+    
+    --[Percent options]--
+    --Uses standart zomboid's %--
+	ContextMenu_SOption_ChancetoSpawnWithGun = "NPC Gun Weapon Chance:",
+	ContextMenu_SOption_ChancetoSpawnWithGunDesc = "Chance to Spawn With Gun",
+    
+    ContextMenu_SOption_WepSpawnRate = "NPC Melee Weapon Chance:",
+	ContextMenu_SOption_WepSpawnRateDesc = "This defines the chances that when a NPC spawns into the world, it will also have a random melee weapon with it.",
+    
+    ContextMenu_SOption_ChancetobeHostile = "Hostile NPC - Spawn Hostile:",
+	ContextMenu_SOption_ChancetobeHostileDesc = "This defines the chance that a random spawn survivor will be hostile when spawned",
+	
+    ContextMenu_SOption_MaxHostileSpawnRate = "Hostile NPC - Hostile Over Time:",
+	ContextMenu_SOption_MaxHostileSpawnRateDesc = "Chance to be hostile increases over time, but it will cap at this % and never go above this % Unsure if this option still works.",
+    --[END Percent options]--
+
+    --[Individual Options]--
+	ContextMenu_SOption_RaidersAfterHours = "Raider Event Spawning - After Day:",
+        ContextMenu_SD_StartImmediately = "Start Immediately",
+	    ContextMenu_SD_AfterDay1 = "After Day 1",
+	    ContextMenu_SD_AfterDay5 = "After Day 5",
+	    ContextMenu_SD_AfterDay10 = "After Day 10",
+	    ContextMenu_SD_AfterDay15 = "After Day 15",
+	    ContextMenu_SD_AfterDay20 = "After Day 20",
+	    ContextMenu_SD_AfterDay25 = "After Day 25",
+	    ContextMenu_SD_AfterDay30 = "After Day 30",
+	    ContextMenu_SD_AfterDay35 = "After Day 35",
+	    ContextMenu_SD_AfterDay40 = "After Day 40",
+	    ContextMenu_SD_AfterDay45 = "After Day 45",
+	    ContextMenu_SD_AfterDay50 = "After Day 50",
+	    ContextMenu_SD_AfterDay55 = "After Day 55",
+	    ContextMenu_SD_AfterDay60 = "After Day 60",
+	    ContextMenu_SD_AfterDay65 = "After Day 65",
+	    ContextMenu_SD_AfterDay70 = "After Day 70",
+	    ContextMenu_SD_AfterDay75 = "After Day 75",
+	    ContextMenu_SD_AfterDay80 = "After Day 80",
+	    ContextMenu_SD_AfterDay85 = "After Day 85",
+	    ContextMenu_SD_AfterDay90 = "After Day 90",
+	    ContextMenu_SD_AfterDay95 = "After Day 95",
+	    ContextMenu_SD_AfterDay100 = "After Day 100",
+	    ContextMenu_SD_Never = "Never",
+	ContextMenu_SOption_RaidersAfterHoursDesc = "Raiders Event can start to Randomly happen after this amount of time has passed. Raiders Guaranteed event also only starts calculating after this time has passed.",
+	
+	ContextMenu_SOption_RaidersGuaranteed = "Raider Event Spawning - How Often:",
+        ContextMenu_SD_Every5Days = "Every 5 Days",
+        ContextMenu_SD_Every10Days = "Every 10 Days",
+        ContextMenu_SD_Every15Days = "Every 15 Days",
+        ContextMenu_SD_Every20Days = "Every 20 Days",
+	    ContextMenu_SD_Every25Days = "Every 25 Days",
+	    ContextMenu_SD_Every30Days = "Every 30 Days",
+	    ContextMenu_SD_Every35Days = "Every 35 Days",
+	    ContextMenu_SD_Every40Days = "Every 40 Days",
+	    ContextMenu_SD_Every45Days = "Every 45 Days",
+	    ContextMenu_SD_Every50Days = "Every 50 Days",
+	    ContextMenu_SD_Every55Days = "Every 55 Days",
+	    ContextMenu_SD_Every60Days = "Every 60 Days",
+	    ContextMenu_SD_Every65Days = "Every 65 Days",
+	    ContextMenu_SD_Every70Days = "Every 70 Days",
+	    ContextMenu_SD_Every75Days = "Every 75 Days",
+	    ContextMenu_SD_Every80Days = "Every 80 Days",
+	    ContextMenu_SD_Every85Days = "Every 85 Days",
+	    ContextMenu_SD_Every90Days = "Every 90 Days",
+	    ContextMenu_SD_Every95Days = "Every 95 Days",
+	    ContextMenu_SD_Every100Days = "Every 100 Days",
+	    ContextMenu_SD_EveryDay = "Every Day!",
+	    ContextMenu_SD_EveryHour = "Every Hour!",
+        ContextMenu_SD_Every10Minutes = "Every 10 Minutes!",
+	ContextMenu_SOption_RaidersGuaranteedDesc = "If it is past the Raiders start date, and Raiders event has not happened for this amount of time. Raiders will be spawned after this amount of time passes.",
+	
+    ContextMenu_SOption_SurvivorFriendliness = "Survivor Friendliness:",
+        ContextMenu_SD_DesperateforHumanContact = "Desperate for Human Contact",
+        ContextMenu_SD_VeryFriendly = "Very Friendly",
+        ContextMenu_SD_Friendly = "Friendly", 
+        ContextMenu_SD_Mean = "Mean",
+        ContextMenu_SD_VeryMean	= "Very Mean",
+	ContextMenu_SOption_SurvivorFriendlinessDesc = "This defines how easy it is to get a random survivor to join your team. Offering more gifts increase the chance of party invite acceptance, but each time you bug them with an invite, chance also goes down. So spamming invites does not do much good.",
+
+    ContextMenu_SOption_SurvivorBravery = "Survivor Bravery",
+        ContextMenu_SD_Cowardly = "Cowardly",
+        ContextMenu_SD_Brave = "Brave",
+        ContextMenu_SD_VeryBrave = "Very Brave",
+    ContextMenu_SOption_SurvivorBraveryDesc = "Determines how likely Survivors are to fight, rather than flee or avoid.",
+
+    ContextMenu_SOption_FollowGlobalRange = "[Changed] - Follower Sprint Range:",
+	ContextMenu_SOption_FollowGlobalRangeDesc = "This controls the 'follow' command, giving you the ability for NPCs to run or walk when they are x distance from you. (Instead of previously you would need to call them closer). This option may warrent unexpected results, and needs feedback. (Do not forget you can also press the + and - hotkeys (right side of the keyboard) to bring a follower closer/further from/to you.) (also, if you bring them to distance '0' they will act weird) ",
+
+    ContextMenu_SDebugOption_DebugSay_Distance = "SuperDebug() - Distance: ",
+	ContextMenu_SDebugOption_DebugSay_DistanceDesc = "You can choose how far away you want to be able to see debug information from the NPCs's 'SuperDebug' Function. It's HIGHLY ADVISED to keep this a low number, otherwise you can make all npcs in a large area write to your console.",
+    --[END Individual Options]--
+
+    --[Hotkeys]--
+    ContextMenu_SShotkey1 = "Hotkey 1 Action",
+    ContextMenu_SShotkey2 = "Hotkey 2 Action",
+    ContextMenu_SShotkey3 = "Hotkey 3 Action",
+    ContextMenu_SShotkey4 = "Hotkey 4 Action",
+    ContextMenu_SShotkeyDesc = "Choose an action that will happen when you press this hotkey. Order all actions effect any members within range. While the others only effect those who are listening to you (use with t hotkey).",
+    
+    --I Think This options are unused--
+    ContextMenu_SOption_CallClosestGroupMember = "Call Closest Group Member",
+	ContextMenu_SOption_CallClosestNonGroupMember = "Call Closest Non-Group Member",
+	ContextMenu_SOption_AskClosestGroupMembertoFollow = "Ask Closest Group Member to Follow",
+	ContextMenu_SOption_SpawnWildSurvivor = "Spawn Wild Survivor",
+	ContextMenu_SOption_ToggleGroupWindow = "Toggle Group Window",
+	ContextMenu_SOption_LowerFollowDistance = "Lower Follow Distance",
+	ContextMenu_SOption_RaiseFollowDistance = "Raise Follow Distance",
+    --[END Hotkeys]--
+    --[[END OPTIONS]]--
+    
+
+    --[[DEBUG]]--
+    ContextMenu_SOption_DebugOptions = "Debug Options - LAG WARNING IF IS TURNED ON: ",
+	ContextMenu_SOption_DebugOptionsDesc = "Turns on ALOT of debugging information for the NPCs. Good for if you're wanting to see what's going on, but BE WARNED, keep this OFF if you do not want to see the NPCs spam tons of information. If you see others ask about this in the steam description, PLEASE let them know they have debug mode on, and to turn it off. If you want to test things, this would be the way to do it. CONSOLE.TXT, OPEN THAT TOO, THAT will give *EXTREME* details of nearly every variable the NPC has. CTRL+F 'Super Debug' to scan through the mess you're going to see. How to SEE super debug console text? You're going to need to be 6 blocks near (roughly) an NPC to see what it's up to. (This will generate lag as well because it's writing alot, very quickly, so be prepared)",
+    ContextMenu_Debug_Character_Swap = "Debug: Character Swap",
+    ContextMenu_Debug_Infect&Murder_Character = "Debug: Infect&Murder Character",
+    ContextMenu_Debug_Character_Output = "Debug: Character Output",
+    ContextMenu_Debug_Unstuck = "Debug: Unstuck",
+    ContextMenu_Debug_Spawn_Soldier = "Debug: Spawn Soldier",
+    ContextMenu_SD_Debug_PlayerStats = "Debug: Change Player Info",
+
+    
+    --[[In Game Menu thing]]--
+    ContextMenu_SD_AidCheck = "Medical / First Aid Check",
+    ContextMenu_SD_AidCheckDesc = "Walk to this survivor and medical check him, if they move the process can be interupted",
+    ContextMenu_SD_SetName = "Change Name",
+    ContextMenu_SD_AddClothing = "'s Clothing",
+    ContextMenu_SD_RemoveClothing = "Remove Clothing",
+    
+    ContextMenu_SD_ViewSurvivorInfo = "View Survivor Info",
+    ContextMenu_SD_ViewSurvivorInfoDesc = "Shows information on this survivor such as perk levels, stats, etc.",
+    ContextMenu_SD_SurvivorInfo = "Survivor Info",
+    ContextMenu_SD_SurvivorInfoName_Before = "Survivor ",
 	ContextMenu_SD_SurvivorInfoName_After = "'s Information: ",
-	ContextMenu_SD_EatFood_Before = "Eats ",
-	ContextMenu_SD_EatFood_After = "",
-	ContextMenu_SD_CallName_Before = "",
-	ContextMenu_SD_CallName_After = "! Come here!",
-	ContextMenu_SD_LookForItem_Before = "Going to look for ",
-	ContextMenu_SD_LookForItem_After = "",
-	ContextMenu_SD_NoFindItem_Before = "doesnt seem to be any ",
-	ContextMenu_SD_NoFindItem_After = " around here",
-	ContextMenu_SD_EquipsArmor_Before = "*Equips ",
-	ContextMenu_SD_EquipsArmor_After = "*",
-	ContextMenu_SD_Opens_Before = "Opens ",
-	ContextMenu_SD_Opens_After = "",
-	ContextMenu_SD_Takes_Before = "Takes ",
-	ContextMenu_SD_TakesFromGround_After = " from Ground*",
-	ContextMenu_SD_TakesFromGround_Before = "*Takes ",
-	ContextMenu_SD_TakesFromCont_After = " from Container*",
-	ContextMenu_SD_TakesFromCont_Before = "*Takes ",
-	ContextMenu_SD_Takes_After = "",
-	ContextMenu_SD_Drinking = "Drinking..",
-	ContextMenu_SD_HeyYou = "Hey you!",
-	ContextMenu_SD_EquipsArmor = "Equips Armor",
-	ContextMenu_SD_WeLooting = "we doing some scavenging?",
-	ContextMenu_SD_WeBackToBase= "Good to be back",
-	ContextMenu_SD_LeaveGroupHungry = "Forget you guys I'm going to find some food",
-	ContextMenu_SD_LeaveBCHungry = "Forget this I'm going to find some food",
+    ContextMenu_SD_CallToArms = "Call to Arms",
+    
+    ContextMenu_SD_CallOver = "Call Over",
+	ContextMenu_SD_CallOverDesc = "Ask this survivor to come over and talk",
+	ContextMenu_SD_OfferArmor = "Give Clothes",
+	ContextMenu_SD_OfferAmmoBox = "Offer Ammo Box",
+	ContextMenu_SD_OfferAmmoRound = "Offer Ammo Round",
+	ContextMenu_SD_TalkOption = "Talk",
+	ContextMenu_SD_TalkOption_Desc = "Attempt to start a dialogue with this survivor",
+	ContextMenu_SD_InviteToGroup = "Invite to Group",
+	ContextMenu_SD_AskToJoin = "Ask to Join Survivor Group",
+	ContextMenu_SD_OfferWeapon = "Offer Your Weapon as Gift",
+	ContextMenu_SD_OfferFood = "Offer Food",
+	ContextMenu_SD_OfferWater = "Offer Water",
+	ContextMenu_SD_GiveOrder = "Give Order",
+	ContextMenu_SD_OrderDescription = "Order Description",
+
+    ContextMenu_SD_UseMele = "Use Mele Weapon",
+    ContextMenu_SD_UseMeleDesc = "Ask Survivor to use his Mele Weapon",
+    ContextMenu_SD_UseGun = "Use Gun Weapon",
+    ContextMenu_SD_UseGunDesc = "Ask Survivor to use his Gun Weapon",
+    
+    ContextMenu_SD_GiveGun = "Give Your Gun to Survivor",
+    ContextMenu_SD_GiveWeapon = "Give Your Mele Weapon to Survivor" ,
+
+    ContextMenu_SD_SwapGuns = "Swap Guns with Survivor",
+	ContextMenu_SD_SwapWeapons = "Swap Mele Weapons with Survivor" ,
+
+    ContextMenu_SD_RulesOfEngagement = "Rules of Engagement",
+        ContextMenu_SD_AttackAnyoneOnSight = "Attack Anyone On Sight",
+        --miss desc for attack anyone on sight--
+        ContextMenu_SD_AttackHostilesOnSight = "Attack Hostiles On Sight",
+        --miss desc for attack hostiles on sight--
+    ContextMenu_SD_SurvivorOptions = "Survivor Options",
+    --[[END In Game Menu thing]]--
+
 	
+    --[[Player interaction with NPC's]]--
+    ContextMenu_SD_HeyYou = "Hey you!",
 	ContextMenu_SD_Bye1 = "Bye...",
-	ContextMenu_SD_SurvivorInfo = "Survivor Info",
 	ContextMenu_SD_HiThere = "Hi there",
 	ContextMenu_SD_HelloThere = "Hello there!",
 	ContextMenu_SD_HelloWord1 = "What are you thinking?",
@@ -303,23 +392,61 @@ ContextMenu_Job_Doctor = "Doctor",
     ContextMenu_SD_HelloWord12 = "What would you like to say about your current situation?",
     ContextMenu_SD_HelloWord13 = "Do you want something?", 
     ContextMenu_SD_HelloWord14 = "How do you do?", 
+	ContextMenu_SD_CallName_Before = "",
+	ContextMenu_SD_CallName_After = "! Come here!",
+    ContextMenu_SD_YouWantToJoin = "Want to join my group?",
+	ContextMenu_SD_WantSomeFood = "Want some Food?",
+	ContextMenu_SD_YouWantWater = "Want some Water?",
+	ContextMenu_SD_YouWantAmmo = "Want some Ammo?",
+	ContextMenu_SD_TakeMyWeapon = "Here take my weapon",
+	ContextMenu_SD_CanIJoin = "Can I Join your group?",
+	ContextMenu_SD_TakeArmor = "Here take this armor",
+	ContextMenu_SD_Nothing = "Nothing",
+	ContextMenu_SD_EveryOneUseMele = "Everyone use mele weapons!",
+	ContextMenu_SD_EveryOneUseGun = "Everyone use gun weapons!",
+    --[[END Player interaction with NPC's]]--
+
 	
-	ContextMenu_SD_WhatYouWant = "Yeah? What do you want?",
+    --[[Survivors Actions]]--
+	ContextMenu_SD_EatFood_Before = "Eats ",
+	ContextMenu_SD_EatFood_After = "",
+	ContextMenu_SD_EquipsArmor_Before = "*Equips ",
+	ContextMenu_SD_EquipsArmor_After = "*",
+	ContextMenu_SD_Opens_Before = "Opens ",
+	ContextMenu_SD_Opens_After = "",
+	ContextMenu_SD_Takes_Before = "Takes ",
+	ContextMenu_SD_Takes_After = "",
+	ContextMenu_SD_TakesFromGround_Before = "*Takes ",
+	ContextMenu_SD_TakesFromGround_After = " from Ground*",
+	ContextMenu_SD_TakesFromCont_Before = "*Takes ",
+	ContextMenu_SD_TakesFromCont_After = " from Container*",
+	ContextMenu_SD_Drinking = "Drinking..",
+	ContextMenu_SD_EquipsArmor = "Equips Armor",
+    ContextMenu_SD_TakesItemFromGround_Before = "Takes ",
+	ContextMenu_SD_TakesItemFromGround_After = " from ground",
+	ContextMenu_SD_BandageBP_Before = "Bandaging ",
+	ContextMenu_SD_BandageBP_After = "",
+    ContextMenu_UndressingClothes = "*Undressing*",
+    ContextMenu_SD_PickUpCorpse = "*Takes Corpse from ground*",
+    ContextMenu_SD_Resting = "Resting...",
+    ContextMenu_SD_DoctorSplint = "*Applying Splint...*",
+	ContextMenu_SD_DoctorBandageRemove = "*Removing Bandage...*",
+	ContextMenu_SD_DoctorStitches = "*Applying Stitches*",
+	ContextMenu_SD_DoctorGlass = "*Removing Glass...*",
+	ContextMenu_SD_DoctorBullet = "*Removing Bullet...*",
+	ContextMenu_SD_DoctorBandage = "*Applying Bandage...*",
+	--[[END Survivors Actions]]--
+    
+
+    --[[Survivors Interactions]]--
+    
+    ContextMenu_SD_WhatYouWant = "Yeah? What do you want?",
 	ContextMenu_SD_NotInBuilding = "we are not in a building",
 	ContextMenu_SD_CantCarryMore = "I can't carry anymore",
-	ContextMenu_SD_PickUpCorpse = "*Takes Corpse from ground*",
-	ContextMenu_SD_WhereHeGo = "hmm where did he go?",
+    ContextMenu_SD_WhereHeGo = "hmm where did he go?",
 	ContextMenu_SD_WhoSaidThat = "Who's there? Who said that?",
 	ContextMenu_SD_OverHere = "Hey! Over here!",
-	
-	ContextMenu_SD_DoctorPrefix_Before = "Doctor ",
-	ContextMenu_SD_DoctorPrefix_After = "",
-	ContextMenu_SD_VeteranPrefix_Before = "Veteran ",
-	ContextMenu_SD_VeteranPrefix_After = "",
-	ContextMenu_SD_FarmerPrefix_Before = "Farmer ",
-	ContextMenu_SD_FarmerPrefix_After = "",
-	
-	ContextMenu_SD_RainingGoInside = "It's raining. Better get inside",
+    ContextMenu_SD_RainingGoInside = "It's raining. Better get inside",
 	ContextMenu_SD_IGoRelax = "Guess I'll relax for a bit",
 	ContextMenu_SD_IGoGetWood = "Guess I'll go gather some wood",
 	ContextMenu_SD_IGoPileCorpse = "Guess I'll go pile some corpses",
@@ -329,78 +456,63 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_SD_IGoGuard = "Guess I'll get back to Guarding",
 	ContextMenu_SD_IGoBackBase = "Guess I'll get back to base",
 	ContextMenu_SD_NoWoodHere = "No Wood around here",
-	
-	ContextMenu_SD_TakesItemFromGround_Before = "Takes ",
-	ContextMenu_SD_TakesItemFromGround_After = " from ground",
+    ContextMenu_SD_NoAxeNoChopWood = "no axe anywhere, giving up chopping wood",
+	ContextMenu_SD_NoTrees = "No Trees around here",
+    ContextMenu_SD_RIPSurvivor = "R.I.P my friend",
+	ContextMenu_SD_DoctorDone = "Good as new! Take it easy now!",
+    ContextMenu_SD_HoldStill = "Hold still please...",
+	ContextMenu_SD_WeLooting = "we doing some scavenging?",
+	ContextMenu_SD_WeBackToBase= "Goot to be back",
+	ContextMenu_SD_LeaveGroupHungry = "Forget you guys I'm going to find some food",
+	ContextMenu_SD_LeaveBCHungry = "Forget this I'm going to find some food",
+	ContextMenu_SD_NoFindItem_Before = "doesnt seem to be any ",
+	ContextMenu_SD_NoFindItem_After = " around here",
+	ContextMenu_SD_LookForItem_Before = "Going to look for ",
+	ContextMenu_SD_LookForItem_After = "",
 	ContextMenu_SD_ComeWithMe_Before = "",
 	ContextMenu_SD_ComeWithMe_After = ", come with me!",	
-	ContextMenu_SD_BandageBP_Before = "Bandaging ",
-	ContextMenu_SD_BandageBP_After = "",
+    ContextMenu_SD_IGotABadFeeling = "I got a bad feeling.",
+	ContextMenu_SD_WhatWasThatSound = "What was that sound!?",
+	ContextMenu_SD_IAttackFoodThief = "That's it! Get out of here!",
+	ContextMenu_SD_IWarnFoodThief = "Hey you! stop stealing our food or else!!",
+    --[[END Survivors Interactions]]--
 	
 
-	ContextMenu_SD_Resting = "Resting...",
-	ContextMenu_SD_NoAxeNoChopWood = "no axe anywhere, giving up chopping wood",
-	ContextMenu_SD_NoTrees = "No Trees around here",
+    --notifications
+    ContextMenu_SD_PerkLeveledUp_Before = "*"	
+	ContextMenu_SD_PerkLeveledUp_After = " Perk Leveled Up!*"
+    ContextMenu_SD_ROESet = "Rules of Engagement has been set",    
+
+
+	--prefixes--
+	ContextMenu_SD_DoctorPrefix_Before = "Doctor ",
+	ContextMenu_SD_DoctorPrefix_After = "",
+	ContextMenu_SD_VeteranPrefix_Before = "Veteran ",
+	ContextMenu_SD_VeteranPrefix_After = "",
+	ContextMenu_SD_FarmerPrefix_Before = "Farmer ",
+	ContextMenu_SD_FarmerPrefix_After = "",
 	
-	ContextMenu_SD_RIPSurvivor = "R.I.P my friend",
-	ContextMenu_SD_DoctorDone = "Good as new! Take it easy now!",
-	ContextMenu_SD_DoctorSplint = "*Applying Splint...*",
-	ContextMenu_SD_DoctorBandageRemove = "*Removing Bandage...*",
-	ContextMenu_SD_DoctorStitches = "*Applying Stitches*",
-	ContextMenu_SD_DoctorGlass = "*Removing Glass...*",
-	ContextMenu_SD_DoctorBullet = "*Removing Bullet...*",
-	ContextMenu_SD_DoctorBandage = "*Applying Bandage...*",
-	ContextMenu_SD_HoldStill = "Hold still please...",
-	
-	ContextMenu_SD_YouWantToJoin = "Want to join my group?",
-	ContextMenu_SD_WantSomeFood = "Want some Food?",
-	ContextMenu_SD_YouWantWater = "Want some Water?",
-	ContextMenu_SD_YouWantAmmo = "Want some Ammo?",
-	ContextMenu_SD_TakeMyWeapon = "Here take my weapon",
-	ContextMenu_SD_CanIJoin = "Can I Join your group?",
-	ContextMenu_SD_Random_OutOfAmmo4 = "No more Ammo!",
-	ContextMenu_SD_TakeArmor = "Here take this armor",
-	ContextMenu_SD_Nothing = "Nothing",
-	ContextMenu_SD_GiveGun = "Give Your Gun to Survivor",
-	ContextMenu_SD_GiveWeapon = "Give Your Mele Weapon to Survivor" ,
-	ContextMenu_SD_SwapGuns = "Swap Guns with Survivor",
-	ContextMenu_SD_SwapWeapons = "Swap Mele Weapons with Survivor" ,
-	ContextMenu_SD_UseMele = "Use Mele Weapon",
-	ContextMenu_SD_UseGun = "Use Gun Weapon",
-	ContextMenu_SD_UseMeleDesc = "Ask Survivor to use his Mele Weapon",
-	ContextMenu_SD_UseGunDesc = "Ask Survivor to use his Gun Weapon",
-	ContextMenu_SD_EveryOneUseMele = "Everyone use mele weapons!",
-	ContextMenu_SD_EveryOneUseGun = "Everyone use gun weapons!",
-	ContextMenu_SD_ViewSurvivorInfo = "View Survivor Info",
-	ContextMenu_SD_ViewSurvivorInfoDesc = "Shows information on this survivor such as perk levels, stats, etc.",
-	ContextMenu_SD_ROESet = "Rules of Engagement has been set",
-	
+   
+    --PVP-- 
+    ContextMenu_SD_PVPOff = "Off"
+	ContextMenu_SD_PVPOn = "On"
+    ContextMenu_SD_PVPInfoBar = "PVP Mode: ",
+    ContextMenu_SD_PVPInfoBarDesc = "Previously in the settings lua, this allows you to turn on PVP mode without having to goto the settings.lua file to do so. This DOES NOT make it where hostile NPCs can't hit you. So setting this to 'off' will still force PVP on when encountering hostile NPCs. This setting was requested a few times so that if you don't want to have to press the PVP button on the bottom right of your screen if you want PVP on by default.",
 	ContextMenu_SD_PVPDisabled = "PVP Disabled",
 	ContextMenu_SD_PVPEnabled = "PVP Enabled",
 	ContextMenu_SD_PVPForced = "PVP Forced On!",	
-	
-	ContextMenu_SD_CallOver = "Call Over",
-	ContextMenu_SD_CallOverDesc = "Ask this survivor to come over and talk",
-	ContextMenu_SD_OfferArmor = "Give Clothes",
-	ContextMenu_SD_OfferAmmoBox = "Offer Ammo Box",
-	ContextMenu_SD_OfferAmmoRound = "Offer Ammo Round",
-	ContextMenu_SD_TalkOption = "Talk",
-	ContextMenu_SD_TalkOption_Desc = "Attempt to start a dialogue with this survivor",
-	ContextMenu_SD_InviteToGroup = "Invite to Group",
-	ContextMenu_SD_AskToJoin = "Ask to Join Survivor Group",
-	ContextMenu_SD_OfferWeapon = "Offer Your Weapon as Gift",
-	ContextMenu_SD_OfferFood = "Offer Food",
-	ContextMenu_SD_OfferWater = "Offer Water",
-	ContextMenu_SD_GiveOrder = "Give Order",
-	ContextMenu_SD_OrderDescription = "Order Description",
-	
+
+
+	--Area work--
 	ContextMenu_SD_SetAreaConfirm = "Set",
 	ContextMenu_SD_SetAreaCancel = "Cancel",
 	ContextMenu_SD_SetAreaClear = "Clear",
 	ContextMenu_SD_SetAreaSelect = "Select Area",
-	ContextMenu_SD_AreaSelecting = "Area Selecting",
 	ContextMenu_SD_SetAreaSelectDesc = "Select an area on the map by holding left click and dragging your mouse around to select an area.  Once area is selected options to use selected area will be available such as declairing your base territory.",
+	ContextMenu_SD_AreaSelecting = "Area Selecting",
 	
+
+	--Area Types--
 	ContextMenu_SD_BaseArea = "Base Area",
 	ContextMenu_SD_ChopTreeArea = "Chop Trees Area",
 	ContextMenu_SD_TakeCorpseArea = "Take Corpses Area",
@@ -414,79 +526,35 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_SD_FarmingArea = "The Farming / Crops Area",
 	ContextMenu_SD_ForageArea = "Foraging Area",
 	ContextMenu_SD_GuardArea = "Guard Area",
-	ContextMenu_SD_SurvivorOptions = "Survivor Options",
-	
-	ContextMenu_SD_CallToArms = "Call to Arms",
-	
-	
-	ContextMenu_SOption_CallClosestGroupMember = "Call Closest Group Member"
-	ContextMenu_SOption_CallClosestNonGroupMember = "Call Closest Non-Group Member",
-	ContextMenu_SOption_AskClosestGroupMembertoFollow = "Ask Closest Group Member to Follow",
-	ContextMenu_SOption_SpawnWildSurvivor = "Spawn Wild Survivor",
-	ContextMenu_SOption_ToggleGroupWindow = "Toggle Group Window",
-	ContextMenu_SOption_LowerFollowDistance = "Lower Follow Distance",
-	ContextMenu_SOption_RaiseFollowDistance = "Raise Follow Distance",
-	
-	ContextMenu_SOption_SurvivorSpawnRate = "NPC Spawn Rate:",
-	ContextMenu_SOption_SurvivorSpawnRateDesc = "This defines the amount of random survivors that will spawn. NPCs will spawn based on tiles on the map.",
-	ContextMenu_SOption_ChancetoSpawnWithGun = "NPC Gun Weapon Chance:",
-	ContextMenu_SOption_ChancetoSpawnWithGunDesc = "Chance to Spawn With Gun",
-	ContextMenu_SOption_RaidersGuaranteed = "Raider Event Spawning - How Often:",
-	ContextMenu_SOption_RaidersAfterHours = "Raider Event Spawning - After Day:",
-	ContextMenu_SOption_RaidersChance = "Raider Event Spawning - Chance %:",
-	ContextMenu_SOption_RaidersGuaranteedDesc = "If it is past the Raiders start date, and Raiders event has not happened for this amount of time. Raiders will be spawned after this amount of time passes.",
-	ContextMenu_SOption_RaidersAfterHoursDesc = "Raiders Event can start to Randomly happen after this amount of time has passed. Raiders Guaranteed event also only starts calculating after this time has passed.",
-	ContextMenu_SOption_RaidersChanceDesc = "The chance a Raider event will happen after the start date has passed.",
-	ContextMenu_SOption_WepSpawnRate = "NPC Melee Weapon Chance:",
-	ContextMenu_SOption_WepSpawnRateDesc = "This defines the chances that when a NPC spawns into the world, it will also have a random melee weapon with it.",
-	
-	ContextMenu_SD_PVPInfoBar = "PVP Mode: "
-	ContextMenu_SD_PVPInfoBarDesc = "Previously in the settings lua, this allows you to turn on PVP mode without having to goto the settings.lua file to do so. This DOES NOT make it where hostile NPCs can't hit you. So setting this to 'off' will still force PVP on when encountering hostile NPCs. This setting was requested a few times so that, if you don't wish to press the pvp button on the bottom right of your screen every time you load into your game, now you don't have to."
-	ContextMenu_SD_PVPOff = "Off"
-	ContextMenu_SD_PVPOn = "On"
-	
-    ContextMenu_SOption_RoleplayMessage = "Display Roleplay Messages:"
-    ContextMenu_SOption_RoleplayMessageDesc = "This defines if messages of actions will be showed"
-	ContextMenu_SOption_ChancetobeHostile = "Hostile NPC - Spawn Hostile:",
-	ContextMenu_SOption_ChancetobeHostileDesc = "This defines the chance that a random spawn survivor will be hostile when spawned",
-	ContextMenu_SOption_MaxHostileSpawnRate = "Hostile NPC - Hostile Over Time:",
-	ContextMenu_SOption_MaxHostileSpawnRateDesc = "Chance to be hostile increases over time, but it will cap at this % and never go above this % Unsure if this option still works.",
-	ContextMenu_SOption_LockNLoad = "Ready For Battle Mode:",
-	ContextMenu_SOption_LockNLoadDesc = "You and your Wife(if enabled) will spawn with guns and ammo, and Armor(if armor mod enabled) at the start of the game.  Great mode to use if you plan on trying out Raiders at a high spawn rate.",
-	ContextMenu_SOption_WifeSpawn = "Wife/Husband Spawn:",
-	ContextMenu_SOption_WifeSpawnDesc = "Spawn with a wife or husband who is already in your group at the start of the game",
-	ContextMenu_SOption_SurvivorFriendliness = "Survivor Friendliness:",
-	ContextMenu_SOption_SurvivorFriendlinessDesc = "This defines how easy it is to get a random survivor to join your team. Offering more gifts increase the chance of party invite acceptance, but each time you bug them with an invite, chance also goes down. So spamming invites does not do much good.",
-	ContextMenu_SOption_InfinitAmmo = "Survivor Infinite Ammo:",
-	ContextMenu_SOption_InfinitAmmoDesc = "If on Survivors do not neeed ammo to use guns, and never run out of ammo. If Off survivors need rounds or boxes in thier inventory to shoot guns. And can be given more ammo via right click menu, and will attempt to find ammo near by when they run out of ammo.",
-	ContextMenu_SOption_FindWork = "Survivors Auto Base Tasks:",
-	ContextMenu_SOption_FindWorkDesc = "If On, survivors in or near base may do some work tasks around the base on thier own if they find themselves with nothing to do. If off they will never decide to do tasks on thier own.",
-	ContextMenu_SOption_SurvivorHunger = "Survivor Hunger & Thirst",
-	ContextMenu_SOption_SurvivorHungerDesc = "If Off survivors will never get hungery or thirsty. If On they will, though they will make attempts to find what they need on thier own.",
-		ContextMenu_SOption_SafeBase = "Safe Base",
-		ContextMenu_SOption_SafeBaseDesc = "Wild Survivors will avoid your marked base",
-		ContextMenu_SOption_SurvivorBases = "Survivor Bases"
-		ContextMenu_SOption_SurvivorBasesDesc = "Wild Survivors will set up their own bases"
-		ContextMenu_SOption_DebugOptions = "Debug Mode: "
-		ContextMenu_SOption_DebugOptionsDesc = "Debug mode will turn on general settings like, enabling the 6 key to spawn NPCs, spawning soldiers, and among other useful details."
-		
-		ContextMenu_SDebugOption_DebugSay = "SuperDebug() Mode - LAG WARNING: "
-		ContextMenu_SDebugOption_DebugSayDesc = "You need to turn on Debug mode along with superdebug() for NPCs to tell you SuperDebug information. This will enable the function DebugSay to NPCs, which is a custom function that will give precise detail of what the NPC is up to. You will need to be at least 6 blocks away from the NPC to recieve their SuperDebug information to the console / in game chat. "
-		
-		ContextMenu_SDebugOption_DebugSay_Distance = "SuperDebug() - Distance: "
-		ContextMenu_SDebugOption_DebugSay_DistanceDesc = "You can choose how far away you want to be able to see debug information from the NPCs's 'SuperDebug' Function. It's HIGHLY ADVISED to keep this a low number, otherwise you can make all npcs in a large area write to your console."
+	    
+    --[[speeches]]
+    ContextMenu_speech_Foraging = "*Foraging..."
+	ContextMenu_speech_FarmingActionPlanting = "*Planting seeds...*"
+	ContextMenu_speech_FarmingActionHarvesting = "*Harvesting...*"
+	ContextMenu_speech_FarmingActionWatering = "*Watering...*"
+	ContextMenu_speech_NoFarmingArea = "there is no farming area designated"
+	ContextMenu_speech_IDontKnowHowFarming = "I don't know how to do Farming",
+    ContextMenu_speech_NoForagingHere = "I won't find anything here",
 
 	ContextMenu_speech_DoNotTouchFood = "The food here is for members only. Do not touch it!",
 	ContextMenu_speech_HilltopIntro = "Hello and Welcome to Hilltop! We saw this coming a long time ago, and set up this community",
 	ContextMenu_speech_BlockadeIntro = "This is the North East Blockade. No one is aloud past the rear Blockade. Lethal force will be used if necessary",
 	ContextMenu_speech_FollowMeToHilltop = "I know a safe place, follow me if you want.",
-		
+
+
+    ContextMenu_speech_WifeIntro1 = "What are we going to do darling?!",
 	ContextMenu_speech_WifeSpeech1 = "Darling?",
     ContextMenu_speech_WifeSpeech2 = "What are we going to do darling?",
     ContextMenu_speech_WifeSpeech3 = "Should we go find a safer place for now?",
     ContextMenu_speech_WifeSpeech4 = "or should we stay here?",
     ContextMenu_speech_WifeSpeech5 = "I'm scared..",
 	
+    --[[ I dont think that this is right... ]]--
+    ContextMenu_OutOfAmmo1 = "Out of Ammo!",
+	ContextMenu_OutOfAmmo2 = "I'm out of Ammo!",
+	ContextMenu_OutOfAmmo3 = "I'm Out",
+	ContextMenu_OutOfAmmo4 = "No more Ammo!",
+    ContextMenu_SD_Random_OutOfAmmo4 = "No more Ammo!",
     ContextMenu_speech_OutOfAmmo1 = "Out of Ammo!",
     ContextMenu_speech_OutOfAmmo2 = "I'm out of Ammo!",
     ContextMenu_speech_OutOfAmmo3 = "I'm Out",
@@ -495,13 +563,7 @@ ContextMenu_Job_Doctor = "Doctor",
 
     ContextMenu_speech_HowDareYou1 = "How dare you!",
 
-
-    ContextMenu_speech_WifeIntro1 = "What are we going to do darling?!",
-
-
     ContextMenu_speech_IDontKnowHowDoctor1 = "I don't know how to be a doctor.",
-   
-
 
     ContextMenu_speech_IfYouThinkSo1 = "If you think that's best. Fine then.",
     ContextMenu_speech_IfYouThinkSo2 = "If you think that's best.",
@@ -545,12 +607,24 @@ ContextMenu_Job_Doctor = "Doctor",
     ContextMenu_speech_SeenPlayerBit13 = "Don't worry, I'll make this quick.",
 
 
+	ContextMenu_speech_Sick1 = "I'm feeling sick",
+    ContextMenu_speech_Sick2 = "kind of feeling sick",
+
+
+	ContextMenu_speech_VSick1 = "I'm feeling Quite sick",
+    ContextMenu_speech_VSick2 = "kind of feeling pretty sick",
+
+
+	ContextMenu_speech_SSick1 = "I'm gonna puke",
+    ContextMenu_speech_SSick2 = "feel like im gonna barf",
+
+
     ContextMenu_speech_Crying1 = "*Sobbing*",
     ContextMenu_speech_Crying2 = "*sobs*",
     ContextMenu_speech_Crying3 = "No.. Don't leave me all alone!",
     ContextMenu_speech_Crying4 = "Don't leave me",
     ContextMenu_speech_Crying5 = "Please.. Don't leave me.",
-	ContextMenu_speech_Crying6 = "(ಥ﹏ಥ)",
+	ContextMenu_speech_Crying6 = "Wake up...please wake up!",
     ContextMenu_speech_Crying7 = "Not like this.. Please!",
     ContextMenu_speech_Crying8 = "F*ck f*ck, PLEASE NO!",
     ContextMenu_speech_Crying9 = "NO!",
@@ -653,15 +727,15 @@ ContextMenu_Job_Doctor = "Doctor",
 
 
     ContextMenu_speech_Hungry1 = "Man, I wasn't full last meal, you have anything to eat?",
-     ContextMenu_speech_Hungry2 = "Man, do you have any snacks?",
-     ContextMenu_speech_Hungry3 = "I'm starting to feel hungry.",
-     ContextMenu_speech_Hungry4 = "Are our food reserves sufficient?",
-     ContextMenu_speech_Hungry5 = "I'm starting to feel peckish.",
-     ContextMenu_speech_Hungry6 = "Do you smell the aroma of bread? I'm so greedy",
-     ContextMenu_speech_Hungry7 = "Man, give me something to eat!",
-     ContextMenu_speech_Hungry8 = "People are iron, rice is steel, you will be hungry if you don't eat a meal, ",
-     ContextMenu_speech_Hungry9 = "What shall we have for dinner?",
-     ContextMenu_speech_Hungry10 = "Man, if you have any burgers, give me one", 
+    ContextMenu_speech_Hungry2 = "Man, do you have any snacks?",
+    ContextMenu_speech_Hungry3 = "I'm starting to feel hungry.",
+    ContextMenu_speech_Hungry4 = "Are our food reserves sufficient?",
+    ContextMenu_speech_Hungry5 = "I'm starting to feel peckish.",
+    ContextMenu_speech_Hungry6 = "Do you smell the aroma of bread? I'm so greedy",
+    ContextMenu_speech_Hungry7 = "Man, give me something to eat!",
+    ContextMenu_speech_Hungry8 = "People are iron, rice is steel, you will be hungry if you don't eat a meal, ",
+    ContextMenu_speech_Hungry9 = "What shall we have for dinner?",
+    ContextMenu_speech_Hungry10 = "Man, if you have any burgers, give me one", 
 
 
     ContextMenu_speech_VHungry1 = "So hungry it hurts.",
@@ -686,6 +760,7 @@ ContextMenu_Job_Doctor = "Doctor",
 	ContextMenu_speech_Starving8 = "I'm going to die without food!",
 	ContextMenu_speech_Starving9 = "Give me something to eat I'm starving",
 	ContextMenu_speech_Starving10 = "My stomach is rumbling and begging for a little food", 
+
 
     ContextMenu_speech_Roger1 = "Ok then.",
     ContextMenu_speech_Roger2 = "Alright.",
@@ -726,7 +801,7 @@ ContextMenu_Job_Doctor = "Doctor",
     ContextMenu_speech_No5 = "Nah",
     ContextMenu_speech_No6 = "I don't think so",
     ContextMenu_speech_No7 = "Don't think so",
-	ContextMenu_speech_No8 = "Sounds good, but I refuse! One of my favorite things to do is say "NO" to guys who think they're too good!",
+	ContextMenu_speech_No8 = "Sounds good, but I refuse! One of my favorite things to do is say 'NO' to guys who think they're too good!",
 	ContextMenu_speech_No9 = "I barely know you",
 	ContextMenu_speech_No10 = "Let's talk about that later",
 	ContextMenu_speech_No11 = "Not this time",
@@ -1482,8 +1557,9 @@ ContextMenu_Job_Doctor = "Doctor",
     ContextMenu_speech_FoundZombie17 = "This could be a problem..",
     ContextMenu_speech_FoundZombie18 = "There's one.",
     ContextMenu_speech_FoundZombie19 = "Aha! I got one of them.",
-	
-	ContextMenu_Names1 = "Nicola",
+
+    --[[Names]]--
+ContextMenu_Names1 = "Nicola",
 ContextMenu_Names2 = "Katyna",
 ContextMenu_Names3 = "Fiona",
 ContextMenu_Names4 = "Susan",
@@ -2144,4 +2220,7 @@ ContextMenu_Namb157 = "Angus",
 ContextMenu_Namb158 = "Stuart",
 ContextMenu_Namb159 = "Leo",
 ContextMenu_Namb160 = "Archie"
+    --[[END Names]]--
+
+
 }

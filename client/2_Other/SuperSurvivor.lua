@@ -629,9 +629,9 @@ function SuperSurvivor:spawnPlayer(square, isFemale)
 	local nameToSet
 	if(Buddy:getModData().Name == nil) then
 		if Buddy:isFemale() then
-			nameToSet = getSpeech("GirlNames")	
+			nameToSet = getName("GirlNames")	
 		else
-			nameToSet = getSpeech("BoyNames")			
+			nameToSet = getName("BoyNames")			
 		end		
 	else
 		nameToSet = Buddy:getModData().Name
@@ -4414,7 +4414,7 @@ function SuperSurvivor:FindThisNearBy(itemType, TypeOrCategory)
 						--if(itemType == "Food") then 
 						--	FindCatResult = FindAndReturnBestFood(container)
 						--else 
-							FindCatResult = MyFindAndReturnCategory(container, itemType, self) 
+							FindCatResult = FindItemByCategory(container, itemType, self) 
 						--end
 						--print("FindCatResult: " .. tostring(FindCatResult))
 						
@@ -4475,7 +4475,7 @@ function SuperSurvivor:FindThisNearBy(itemType, TypeOrCategory)
 								(item ~= nil) and 
 								(not item:isBroken()) and
 								(
-									((TypeOrCategory == "Category") and (myIsCategory(item,itemType))) or 
+									((TypeOrCategory == "Category") and (hasCategory(item,itemType))) or 
 									((TypeOrCategory == "Type") and (tostring(item:getType()) == itemType or tostring(item:getName()) == itemType))
 								) then
 									--print("hit "..tempDistance)
