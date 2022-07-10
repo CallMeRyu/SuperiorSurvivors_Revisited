@@ -39,7 +39,8 @@ function SurvivorOrder(test,player,order,orderParam)
 			if(area) then 		
 				ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoGuard"))
 				TaskMangerIn:AddToTop(WanderInAreaTask:new(ASuperSurvivor,area)) 					
-				TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)					
+				TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)	
+				TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(area))) 
 			else
 				TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getSpecificPlayer(0):getCurrentSquare())) 
 			end
@@ -94,7 +95,6 @@ function SurvivorOrder(test,player,order,orderParam)
 			end
 		
 		elseif(order == "Chop Wood") then 
-			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end	
 			TaskMangerIn:AddToTop(ChopWoodTask:new(ASuperSurvivor))
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Timberjack"))
 		

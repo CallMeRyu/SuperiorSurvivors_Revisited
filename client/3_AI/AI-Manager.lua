@@ -159,7 +159,7 @@ function AIManager(TaskMangerIn)
 		
 		
 		
-	if (AiNPC_Job_Is(NPC,"Companion")) and (DistanceBetweenMainPlayer <= 10) then
+	if ((AiNPC_Job_Is(NPC,"Companion")) and (DistanceBetweenMainPlayer <= 10)) or (AiNPC_Job_Is(NPC,"Guard")) then
 	
 		-- ------------------------- --   				 
 		-- reminder: NPC:NPCTask_DoAttack() already 
@@ -348,7 +348,7 @@ function AIManager(TaskMangerIn)
 	-- Pursue Task 							   --
 	-- --------------------------------------- --
 	-- To make NPCs find their target that's very close by
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
+	if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))  then
 		if (ASuperSurvivor:Task_IsPursue_SC() == true) and (Distance_AnyEnemy <= 9) and (Distance_AnyEnemy < NPC:NPC_CheckPursueScore() )   then
 			if ( NPC:NPC_FleeWhileReadyingGun()) then
 				TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen)) -- If all checks out, pursue target
@@ -390,7 +390,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	--	if ((TaskMangerIn:getCurrentTask() ~= "Attack") and (TaskMangerIn:getCurrentTask() ~= "Threaten") and not ((TaskMangerIn:getCurrentTask() == "Surender") and EnemyIsSurvivor) and (TaskMangerIn:getCurrentTask() ~= "Doctor") and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) and (TaskMangerIn:getCurrentTask() ~= "Flee")) and ((ASuperSurvivor:hasWeapon() and ((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) or (ASuperSurvivor:hasWeapon() == false and (ASuperSurvivor:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))) and (IHaveInjury == false) and (ASuperSurvivor:inFrontOfLockedDoor() == false)  then
 
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
+	if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))   then
 		if (			
 				(TaskMangerIn:getCurrentTask() ~= "Attack") 
 			and (TaskMangerIn:getCurrentTask() ~= "Threaten") 
@@ -431,7 +431,7 @@ function AIManager(TaskMangerIn)
 	-- New: To attempt players that are NOT trying to encounter a fight, 
 	-- should be able to run away. maybe a dice roll for the future?
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
+	if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))   then
 		if (EnemyIsSurvivor) and (TaskMangerIn:getCurrentTask() == "Threaten") and (Distance_AnyEnemy > 10) then
 			TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
 			TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor,nil))	
@@ -444,7 +444,7 @@ function AIManager(TaskMangerIn)
 	-- find safe place if injured and enemies near		this needs updating
 	-- ----------------------------- --
 		--	if (TaskMangerIn:getCurrentTask() ~= "Find Building") and (TaskMangerIn:getCurrentTask() ~= "Flee") and (IHaveInjury) and (ASuperSurvivor:getDangerSeenCount() > 0) then
-		if not (AiNPC_Job_Is(NPC,"Companion"))  then
+		if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))   then
 			if (TaskMangerIn:getCurrentTask() ~= "Find Building")
 			and (TaskMangerIn:getCurrentTask() ~= "First Aide") 
 			and (TaskMangerIn:getCurrentTask() ~= "Flee") 
@@ -459,7 +459,7 @@ function AIManager(TaskMangerIn)
 	-- bandage injuries if no threat near by
 	-- Companions have their own healing rule
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion")) then
+	if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))  then
 		if (IHaveInjury) then
 			if (TaskMangerIn:getCurrentTask() ~= "First Aide") 
 			  and (TaskMangerIn:getCurrentTask() ~= "Flee") 
@@ -486,7 +486,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- flee from too many zombies
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then -- To ABSOLUTELY prevent these two jobs from listening to this task.
+	if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))  then -- To ABSOLUTELY prevent these two jobs from listening to this task.
 		if (TaskMangerIn:getCurrentTask() ~= "Flee") 
 		and (TaskMangerIn:getCurrentTask() ~= "Surender") 
 		and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
@@ -516,14 +516,17 @@ function AIManager(TaskMangerIn)
 				
 		if(TaskMangerIn:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
 			TaskMangerIn:getTask():ForceFinish()
-			ASuperSurvivor:DebugSay("Force Finish Task Triggered in the 'Flee from too many Zombies' condition! Reference Number LCT_000_01")
 		end
 			ASuperSurvivor:getTaskManager():clear()
 			TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
-			TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
-			NPC:NPC_ShouldRunOrWalk()
+			-- NPC:NPC_ShouldRunOrWalk()
 			NPC:NPC_EnforceWalkNearMainPlayer()
-			ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02")
+			if not (AiNPC_Job_Is(NPC,"Guard")) and not (AiNPC_Job_Is(NPC,"Doctor")) then 
+				TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
+				ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02_REG")
+			else
+				ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02_ALT")
+			end
 		end
 	end
 	
@@ -613,7 +616,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- 	Gun Readying / Reloading     -- 
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
+	if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))  then
 		if(ASuperSurvivor:getNeedAmmo())
 		and (ASuperSurvivor:hasAmmoForPrevGun()) 
 		and (IsInAction == false) 
@@ -632,7 +635,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- 	Equip Weapon Task            -- 
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion")) then
+	if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))  then
 		if(ASuperSurvivor:hasWeapon()) and (ASuperSurvivor:Get():getPrimaryHandItem() == nil) and (TaskMangerIn:getCurrentTask() ~= "Equip Weapon")  then
 				TaskMangerIn:AddToTop(EquipWeaponTask:new(ASuperSurvivor))
 				ASuperSurvivor:DebugSay("Weapon related condition met in AI manager triggered! Reference number 007")
@@ -642,7 +645,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- 	Equip Weapon Task            -- 
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
+	if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))   then
 		if(IsInAction == false) and (ASuperSurvivor:getNeedAmmo() == false) and ASuperSurvivor:usingGun() and (ASuperSurvivor:getDangerSeenCount() == 0) and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and (NPC:NPC_FleeWhileReadyingGun()) then			
 			--print(ASuperSurvivor:getName() .. " AI detected need to ready gun")
 			ASuperSurvivor:ReadyGun(weapon)		
@@ -671,16 +674,28 @@ function AIManager(TaskMangerIn)
 	-- ---------------------------------------------------------- --
 	-- ------------------- Base Tasks---------------------------- --
 	-- ---------------------------------------------------------- --
+	-- This part needs testing. marking out for now so I don't forget
+--	if (ASuperSurvivor:getGroupRole() == "Guard") and (not IsInBase) and (ZombRand(4)==0) and (not HisGroup:getGroupArea("GuardArea")) then
+--		TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("GuardArea"))))
+--		NPC:DebugSay("Guard has returned to their standing area")
+--	end	
 	
 	if(getSpecificPlayer(0) == nil) or (not getSpecificPlayer(0):isAsleep()) then
 		SafeToGoOutAndWork = true
 		local AutoWorkTaskTimeLimit = 300 
 		
 		
-		if (NPC:getName() ~= nil) and (NPC:getAIMode() ~= nil) and (NPC:getCurrentTask() ~= nil) and (NPC:getGroupRole() ~= nil) and (NPC:getCurrentTask() ~= nil) and (IsInAction ~= nil) then
-			print("basetasks " .. ASuperSurvivor:getName().." "..ASuperSurvivor:getAIMode() .. " " .. TaskMangerIn:getCurrentTask() .. " " .. ASuperSurvivor:getGroupRole() .. " " .. ASuperSurvivor:getCurrentTask() .. " " .. tostring(IsInAction))
-			print("")
-		end
+		--if (NPC:getName() ~= nil) and (NPC:getAIMode() ~= nil) and (NPC:getCurrentTask() ~= nil) and (NPC:getGroupRole() ~= nil) and (NPC:getCurrentTask() ~= nil) and (IsInAction ~= nil) then
+		----	print("basetasks " .. ASuperSurvivor:getName().." "..ASuperSurvivor:getAIMode() .. " " .. TaskMangerIn:getCurrentTask() .. " " .. ASuperSurvivor:getGroupRole() .. " " .. ASuperSurvivor:getCurrentTask() .. " " .. tostring(IsInAction))
+		----	print("")
+		--end
+		
+
+--	if (ASuperSurvivor:getGroupRole() == "Doctor") and (not IsInAction) and (not IsInBase) and (ZombRand(4)==0) and (not HisGroup:getGroupArea("MedicalStorageArea")) then
+--		TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
+--		NPC:DebugSay("Medic has returned to their medic area")
+--	end
+		
 		
 		if(not SurvivorsFindWorkThemselves or not IsInBase) and (ASuperSurvivor:getGroupRole() == "Guard") and (ASuperSurvivor:getCurrentTask() == "None") and (not IsInAction) and (ZombRand(4)==0) then
 				
@@ -701,7 +716,7 @@ function AIManager(TaskMangerIn)
 					TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)
 					ASuperSurvivor:DebugSay("Guard area condition met in AI manager! Reference number 000-10")
 				else
-					print("area was nil")
+				--	print("Guard condition area was nil")
 					ASuperSurvivor:DebugSay("Guard condition met in AI manager! Reference number 000-11")
 				end
 			end
@@ -763,8 +778,8 @@ function AIManager(TaskMangerIn)
 
 					TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 	
 
-			elseif(SurvivorsFindWorkThemselves) then
-				print("yes im a worker: "..tostring(ASuperSurvivor:Get():getBodyDamage():getWetness()))
+			elseif(SurvivorsFindWorkThemselves) and not (AiNPC_Job_Is(NPC,"Guard")) and not (AiNPC_Job_Is(NPC,"Doctor")) and not (AiNPC_Job_Is(NPC,"Farming")) then
+			--	print("yes im a worker: "..tostring(ASuperSurvivor:Get():getBodyDamage():getWetness()))
 
 				--if(RainManager.isRaining()) and (ASuperSurvivor:Get():getBodyDamage():getWetness() > 0.5) and (ASuperSurvivor:Get():isOutside()) and (TaskMangerIn.TaskUpdateLimit ~= 0) and (TaskMangerIn:getCurrentTask() ~= "Enter New Building") and (TaskMangerIn:getCurrentTask() ~= "Find Building") then
 				--	ASuperSurvivor:Speak(getText("ContextMenu_SD_RainingGoInside"))
@@ -857,13 +872,13 @@ function AIManager(TaskMangerIn)
 						end
 
 						-- priority assignments (post-randomize)
-						if ASuperSurvivor:getGroupRole() == "Doctor" then
-							jobScores["Doctor"] = jobScores["Doctor"] + 3
-						elseif ASuperSurvivor:getGroupRole() == "Farmer" then
-							jobScores["Farming"] = jobScores["Farming"] + 3
-						elseif ASuperSurvivor:getGroupRole() == "Guard" then
-							jobScores["Guard"] = jobScores["Guard"] + 3
-						end
+					--if ASuperSurvivor:getGroupRole() == "Doctor" then
+					--	jobScores["Doctor"] = jobScores["Doctor"] + 3
+					--elseif ASuperSurvivor:getGroupRole() == "Farmer" then
+					--	jobScores["Farming"] = jobScores["Farming"] + 3
+					--elseif ASuperSurvivor:getGroupRole() == "Guard" then
+					--	jobScores["Guard"] = jobScores["Guard"] + 3
+					--end
 
 						-- find the best task
 						for key, value in pairs(jobScores) do

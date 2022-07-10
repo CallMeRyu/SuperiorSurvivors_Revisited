@@ -2052,10 +2052,10 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 --	self.LastSurvivorSeen = nil
 	local dangerRange = 2
 	
-	if (self:getGroupRole() == "Companion") then 
-		atLeastThisClose = 5
-		closestSoFar = 5
-		dangerRange = 5 
+	if (self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard") then 
+		atLeastThisClose = 6
+		closestSoFar = 6
+		dangerRange = 1
 	end
 	
 	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
@@ -2126,12 +2126,12 @@ function SuperSurvivor:NPC_FleeWhileReadyingGun()
 	
 	-- Ready gun, despite being an if statement, it's also running the code to make the gun ready.  
 --	if (self:hasGun() == true) and ((NPCsDangerSeen >= 2) or ((Distance_AnyEnemy < 3) and (Enemy_Is_a_Zombie or Enemy_Is_a_Human))) then	
-	if (self:hasGun() == true) and (self:isTooScaredToFight()) then	
+	if (self:hasGun() == true) then	
 		if (self:getGroupRole() == "Random Solo") then -- Prevents any job classes from doing the following
-			if (self:ReadyGun(Weapon_HandGun)) then
+			if (self:ReadyGun(Weapon_HandGun)) and (NPCsDangerSeen > 0) and (Enemy_Is_a_Zombie) then
 				self:NPCTask_Clear()
 				self:NPCTask_DoFlee()
-				self:NPCTask_DoFleeFromHere()
+			--	self:NPCTask_DoFleeFromHere()
 				self:NPC_EnforceWalkNearMainPlayer()
 				self:DebugSay("NPC_FleeWhileReadyingGun Triggered! Reference number NFWRG_0001")
 			end
