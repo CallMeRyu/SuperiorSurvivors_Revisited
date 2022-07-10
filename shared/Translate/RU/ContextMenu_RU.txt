@@ -472,8 +472,8 @@ ContextMenu_RU = {
     ContextMenu_SD_ComeWithMe_Before = "",
 	ContextMenu_SD_ComeWithMe_After = ", иди со мной!",		
     ContextMenu_SD_IGotABadFeeling = "У меня плохое предчувствие.",
-	ContextMenu_SD_WhatWasThatSound = "Что это был за звук?!",
-	ContextMenu_SD_IAttackFoodThief = "Ну всё! Проваривай отсюда!!",
+	ContextMenu_SD_WhatWasThatSound = "Что это был за звук?! Сейчас проверю.",
+	ContextMenu_SD_IAttackFoodThief = "Ну всё! Проваливай отсюда!!",
 	ContextMenu_SD_IWarnFoodThief = "Эй ты!! Прекрати воровать нашу еду, а иначе!!",
     --[[END Survivors Interactions]]--
 

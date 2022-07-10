@@ -472,7 +472,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_ComeWithMe_Before = "",
 	ContextMenu_SD_ComeWithMe_After = ", come with me!",	
     ContextMenu_SD_IGotABadFeeling = "I got a bad feeling.",
-	ContextMenu_SD_WhatWasThatSound = "What was that sound!?",
+	ContextMenu_SD_WhatWasThatSound = "What was that sound!? I'll check it out.",
 	ContextMenu_SD_IAttackFoodThief = "That's it! Get out of here!",
 	ContextMenu_SD_IWarnFoodThief = "Hey you! stop stealing our food or else!!",
     --[[END Survivors Interactions]]--
