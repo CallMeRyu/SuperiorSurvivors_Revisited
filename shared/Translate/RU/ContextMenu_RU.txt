@@ -472,8 +472,8 @@ ContextMenu_RU = {
     ContextMenu_SD_ComeWithMe_Before = "",
 	ContextMenu_SD_ComeWithMe_After = ", иди со мной!",		
     ContextMenu_SD_IGotABadFeeling = "У меня плохое предчувствие.",
-	ContextMenu_SD_WhatWasThatSound = "Что это был за звук?!",
-	ContextMenu_SD_IAttackFoodThief = "Ну всё! Проваривай отсюда!!",
+	ContextMenu_SD_WhatWasThatSound = "Что это был за звук?! Сейчас проверю.",
+	ContextMenu_SD_IAttackFoodThief = "Ну всё! Проваливай отсюда!!",
 	ContextMenu_SD_IWarnFoodThief = "Эй ты!! Прекрати воровать нашу еду, а иначе!!",
     --[[END Survivors Interactions]]--
 
@@ -1559,10 +1559,4 @@ ContextMenu_RU = {
     ContextMenu_speech_FoundZombie17 = "Этот зомби может быть проблемой.",
     ContextMenu_speech_FoundZombie18 = "Здесь.",
     ContextMenu_speech_FoundZombie19 = "Ага! Вижу одного!",
-
-    ContextMenu_speech_GoCheckOut1 = "Что это было? Сейчас проверю.",
-    ContextMenu_speech_GoCheckOut2 = "Что за звук? Пойду проверю.",
-    ContextMenu_speech_GoCheckOut3 = "Пойду проверять, что там случилось.",
-    ContextMenu_speech_GoCheckOut4 = "Это один из тех? Нужно убедиться.",
-    ContextMenu_speech_GoCheckOut5 = "Что тут происходит?",
 }

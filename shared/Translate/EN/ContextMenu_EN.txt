@@ -472,7 +472,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_ComeWithMe_Before = "",
 	ContextMenu_SD_ComeWithMe_After = ", come with me!",	
     ContextMenu_SD_IGotABadFeeling = "I got a bad feeling.",
-	ContextMenu_SD_WhatWasThatSound = "What was that sound!?",
+	ContextMenu_SD_WhatWasThatSound = "What was that sound!? I'll check it out.",
 	ContextMenu_SD_IAttackFoodThief = "That's it! Get out of here!",
 	ContextMenu_SD_IWarnFoodThief = "Hey you! stop stealing our food or else!!",
     --[[END Survivors Interactions]]--
@@ -1557,13 +1557,6 @@ ContextMenu_EN = {
     ContextMenu_speech_FoundZombie17 = "This could be a problem..",
     ContextMenu_speech_FoundZombie18 = "There's one.",
     ContextMenu_speech_FoundZombie19 = "Aha! I got one of them.",
-
-    ContextMenu_speech_GoCheckOut1 = "What was that!? Lets check it out.",
-    ContextMenu_speech_GoCheckOut2 = "What was that sound? I'll go chek.",
-    ContextMenu_speech_GoCheckOut3 = "I'm going to check what's going on.",
-    ContextMenu_speech_GoCheckOut4 = "Is that a hostile? I need to check.",
-    ContextMenu_speech_GoCheckOut5 = "What's going on?",
-
 
     --[[Names]]--
 ContextMenu_Names1 = "Nicola",
