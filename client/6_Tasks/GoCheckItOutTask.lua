@@ -13,7 +13,7 @@ function GoCheckItOutTask:new(superSurvivor, spot)
 	o.SeenSpot = false
 	o.Ticks = 0
 	o.Complete = false
-	o.parent:Speak("What was that!? Lets check it out.") 
+	o.parent:RoleplaySpeak(getText("ContextMenu_speech_GoCheckOut1")) 
 	
 	return o
 

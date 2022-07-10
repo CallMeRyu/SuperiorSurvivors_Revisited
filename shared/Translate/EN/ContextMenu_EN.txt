@@ -1558,6 +1558,13 @@ ContextMenu_EN = {
     ContextMenu_speech_FoundZombie18 = "There's one.",
     ContextMenu_speech_FoundZombie19 = "Aha! I got one of them.",
 
+    ContextMenu_speech_GoCheckOut1 = "What was that!? Lets check it out.",
+    ContextMenu_speech_GoCheckOut2 = "What was that sound? I'll go chek.",
+    ContextMenu_speech_GoCheckOut3 = "I'm going to check what's going on.",
+    ContextMenu_speech_GoCheckOut4 = "Is that a hostile? I need to check.",
+    ContextMenu_speech_GoCheckOut5 = "What's going on?",
+
+
     --[[Names]]--
 ContextMenu_Names1 = "Nicola",
 ContextMenu_Names2 = "Katyna",

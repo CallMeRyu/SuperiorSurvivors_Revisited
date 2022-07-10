@@ -1559,4 +1559,10 @@ ContextMenu_RU = {
     ContextMenu_speech_FoundZombie17 = "Этот зомби может быть проблемой.",
     ContextMenu_speech_FoundZombie18 = "Здесь.",
     ContextMenu_speech_FoundZombie19 = "Ага! Вижу одного!",
+
+    ContextMenu_speech_GoCheckOut1 = "Что это было? Сейчас проверю.",
+    ContextMenu_speech_GoCheckOut2 = "Что за звук? Пойду проверю.",
+    ContextMenu_speech_GoCheckOut3 = "Пойду проверять, что там случилось.",
+    ContextMenu_speech_GoCheckOut4 = "Это один из тех? Нужно убедиться.",
+    ContextMenu_speech_GoCheckOut5 = "Что тут происходит?",
 }
