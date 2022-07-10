@@ -836,7 +836,7 @@ function SuperSurvivorsNewSurvivorManager()
 			
 				spawnSquare = getCell():getGridSquare(x,y,0)
 				
-				if (spawnSquare ~= nil) and (not hisGroup:IsInBounds(spawnSquare)) and spawnSquare:isOutside() and (not spawnSquare:IsOnScreen()) and (not spawnSquare:isSolid()) and (not spawnSquare:isSolidFloor() ) then 
+				if (spawnSquare ~= nil) and (not hisGroup:IsInBounds(spawnSquare)) and spawnSquare:isOutside() and (not spawnSquare:IsOnScreen()) and (not spawnSquare:isSolid()) and (spawnSquare:isSolidFloor() ) then 
 					success = true
 					break
 				end
