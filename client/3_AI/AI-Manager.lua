@@ -693,27 +693,27 @@ function AIManager(TaskMangerIn)
 		if (ASuperSurvivor:getGroupRole() == "Guard") then
 			-- if getGroupArea 'getGroupArea = does this area exist'
 			
-			if ( Task_Is_Not("Attack") and Task_Is_Not("Pursue") and Task_Is_Not("Threaten") and Task_Is_Not("Flee") and Task_Is_Not("First Aide") and Task_Is_Not("Find This") and not IsInBase ) then
+			if ( Task_Is_Not("Attack") and Task_Is_Not("Threaten") and Task_Is_Not("Flee") and Task_Is_Not("First Aide") and Task_Is_Not("Find This") ) then
 			
-				if(HisGroup:getGroupAreaCenterSquare("GuardArea") ~= nil) then
+				if(HisGroup:getGroupAreaCenterSquare("GuardArea") ~= nil) and (HisGroup:getGroupArea("GuardArea")) then
 					TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("GuardArea"))))
 					NPC:DebugSay("GuardTask Cond_0001")
 				end
 				
-				if(HisGroup:getGroupAreaCenterSquare("TempGuardArea") ~= nil) then
+				if(HisGroup:getGroupAreaCenterSquare("TempGuardArea") ~= nil) and (HisGroup:getGroupArea("TempGuardArea")) then
 					TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("TempGuardArea"))))
 					NPC:DebugSay("GuardTask Cond_0002")
 				end
 				
-				if(HisGroup:getGroupAreaCenterSquare("GuardArea") == nil) and (HisGroup:getGroupAreaCenterSquare("GuardArea") == nil) and (CenterBaseSquare ~= nil) then
+				if(HisGroup:getGroupAreaCenterSquare("GuardArea") == nil) and (HisGroup:getGroupAreaCenterSquare("TempGuardArea") == nil) and (CenterBaseSquare ~= nil) and not (IsInBase) then
 					TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
 					if (NPC:isSpeaking() == false) then	NPC:DebugSay("GuardTask Cond_0003") end
-				else
-					NPC:DebugSay("GuardTask Cond_0004 - Uh boss? There's no guard area OR base areas that you have set.")
+				--else
+				--	NPC:DebugSay("GuardTask Cond_0004 - Uh boss? There's no guard area OR base areas that you have set.")
 				end
 				
-			else
-				if (NPC:isSpeaking() == false) then	NPC:DebugSay("GuardTask Cond_0005") end
+			--else
+			--	if (NPC:isSpeaking() == false) then	NPC:DebugSay("GuardTask Cond_0005") end
 			end
 			
 		end			
