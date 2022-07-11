@@ -770,7 +770,7 @@ function SuperSurvivorsNewSurvivorManager()
 	
 		if(getSpecificPlayer(0) == nil) then return false end
 		--this unrelated to raiders but need this to run every once in a while
-		getSpecificPlayer(0):getModData().hitByCharacter = false
+			getSpecificPlayer(0):getModData().hitByCharacter = false
 			getSpecificPlayer(0):getModData().semiHostile = false
 			getSpecificPlayer(0):getModData().dealBreaker = nil
 			
@@ -778,20 +778,21 @@ function SuperSurvivorsNewSurvivorManager()
 				SSM:AsleepHealAll()
 			end
 		
-		if(getSpecificPlayer(0):getModData().LastRaidTime == nil) then getSpecificPlayer(0):getModData().LastRaidTime = (RaidsStartAfterThisManyHours + 2) end
-		local LastRaidTime = getSpecificPlayer(0):getModData().LastRaidTime
+	--	if(getSpecificPlayer(0):getModData().LastRaidTime == nil) then getSpecificPlayer(0):getModData().LastRaidTime = (RaidsStartAfterThisManyHours + 2) end
+	
+	--	local LastRaidTime = getSpecificPlayer(0):getModData().LastRaidTime
 	
 		local mySS = SSM:Get(0)
-		local hours = math.floor(getGameTime():getWorldAgeHours())
-		local chance = RaidChanceForEveryTenMinutes
-		if(mySS ~= nil and not mySS:isInBase()) then
-			chance = (RaidChanceForEveryTenMinutes*1.5)
-		end
+		--local hours = math.floor(getGameTime():getWorldAgeHours())
+		--local chance = RaidChanceForEveryTenMinutes
+		--if(mySS ~= nil and not mySS:isInBase()) then
+		--	chance = (RaidChanceForEveryTenMinutes*1.5)
+		--end
 		
-		local RaidersStartTimePassed = (hours >= RaidsStartAfterThisManyHours)
-		local RaiderResult = (ZombRand(chance) == 0)
+		--local RaidersStartTimePassed = (hours >= RaidsStartAfterThisManyHours)
+		--local RaiderResult = (ZombRand(chance) == 0)
 		--local RaiderAtLeastTimedExceeded = ((hours - LastRaidTime) >= RaidsAtLeastEveryThisManyHours)
-		local RaiderAtLeastTimedExceeded = ((hours - LastRaidTime) >= 1) -- The timer will now not care
+		--local RaiderAtLeastTimedExceeded = ((hours - LastRaidTime) >= 1) -- The timer will now not care
 			
 	--	if RaidersStartTimePassed and ( RaiderResult or RaiderAtLeastTimedExceeded ) and mySS ~= nil then
 		
@@ -845,7 +846,7 @@ function SuperSurvivorsNewSurvivorManager()
 			
 			
 			if(success) and (spawnSquare) then
-				getSpecificPlayer(0):getModData().LastRaidTime = hours
+			--	getSpecificPlayer(0):getModData().LastRaidTime = hours
 				--if(getSpecificPlayer(0):isAsleep()) then 
 				--	getSpecificPlayer(0):Say(getText("ContextMenu_SD_IGotABadFeeling"))
 				--	getSpecificPlayer(0):forceAwake()
@@ -901,7 +902,7 @@ function SuperSurvivorsNewSurvivorManager()
 						bag:AddItem(food)
 					end
 					
-					local number = ZombRand(1,3)
+					--local number = ZombRand(1,3)
 					--setRandomSurvivorSuit(raider,"Rare","Bandit"..tostring(number))
 					
 					getRandomSurvivorSuit(raider) -- Even if it says 'raider' it's not giving raider outfits 
