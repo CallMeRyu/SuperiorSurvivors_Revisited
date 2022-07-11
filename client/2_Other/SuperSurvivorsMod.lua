@@ -39,7 +39,10 @@ function SuperSurvivorsOnTick()
 			--print("Done:"..tostring(HighlightX1)..","..tostring(HighlightX2).." : "..tostring(HighlightY1)..","..tostring(HighlightY2))
 		end
 		
-		if (Mouse.isLeftPressed()) then SuperSurvivorSelectAreaHOLD = false end
+		if (Mouse.isLeftPressed()) then 
+			SuperSurvivorSelectAreaHOLD = false 
+			SuperSurvivorSelectingArea = false -- new
+		end
 		
 		
 		if(HighlightX1) and (HighlightX2) then
@@ -655,17 +658,17 @@ function supersurvivortemp(keyNum)
 			SSM:SaveAll()
 			SSGM:Save()
 			saveSurvivorMap()
-		
-		elseif( keyNum == getCore():getKey("SSHotkey_1")) then -- esc key
+		-- The 'key' in markouts are the default keys befor a player changes them
+		elseif( keyNum == getCore():getKey("SSHotkey_1")) then -- Up key
 			local index = SuperSurvivorGetOption("SSHotkey1")
 			SuperSurvivorsHotKeyOrder(index)			
-		elseif( keyNum == getCore():getKey("SSHotkey_2")) then -- esc key
+		elseif( keyNum == getCore():getKey("SSHotkey_2")) then -- Down key
 			local index = SuperSurvivorGetOption("SSHotkey2")
 			SuperSurvivorsHotKeyOrder(index)
-		elseif( keyNum == getCore():getKey("SSHotkey_3")) then -- esc key
+		elseif( keyNum == getCore():getKey("SSHotkey_3")) then -- Left key
 			local index = SuperSurvivorGetOption("SSHotkey3")
 			SuperSurvivorsHotKeyOrder(index)			
-		elseif( keyNum == getCore():getKey("SSHotkey_4")) then -- esc key
+		elseif( keyNum == getCore():getKey("SSHotkey_4")) then -- Right key
 			local index = SuperSurvivorGetOption("SSHotkey4")
 			SuperSurvivorsHotKeyOrder(index)
 		elseif( keyNum == 0) then 

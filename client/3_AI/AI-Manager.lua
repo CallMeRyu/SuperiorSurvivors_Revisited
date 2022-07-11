@@ -131,6 +131,13 @@ function AIManager(TaskMangerIn)
 	if(HisGroup) then CenterBaseSquare = HisGroup:getBaseCenter() end
 
 
+	-- Simplified Local functions
+	local function Task_Is_Not(TaskName)
+		return (AiTmi:getCurrentTask() ~= TaskName) 
+	end	
+	local function Task_Is(TaskName)
+		return (AiTmi:getCurrentTask() == TaskName) 
+	end
 
 
 
@@ -674,16 +681,40 @@ function AIManager(TaskMangerIn)
 	-- ---------------------------------------------------------- --
 	-- ------------------- Base Tasks---------------------------- --
 	-- ---------------------------------------------------------- --
-	-- This part needs testing. marking out for now so I don't forget
---	if (ASuperSurvivor:getGroupRole() == "Guard") and (not IsInBase) and (ZombRand(4)==0) and (not HisGroup:getGroupArea("GuardArea")) then
---		TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("GuardArea"))))
---		NPC:DebugSay("Guard has returned to their standing area")
---	end	
+
 	
 	if(getSpecificPlayer(0) == nil) or (not getSpecificPlayer(0):isAsleep()) then
 		SafeToGoOutAndWork = true
 		local AutoWorkTaskTimeLimit = 300 
-		
+
+		-- -------
+		-- Guard 
+		-- -------
+		if (ASuperSurvivor:getGroupRole() == "Guard") then
+			-- if getGroupArea 'getGroupArea = does this area exist'
+			
+			if ( Task_Is_Not("Attack") and Task_Is_Not("Pursue") and Task_Is_Not("Threaten") and Task_Is_Not("Flee") and Task_Is_Not("First Aide") and not IsInBase ) then
+			
+				if (HisGroup:getGroupArea("GuardArea")) then
+					TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("GuardArea"))))
+					NPC:DebugSay("GuardTask Cond_0001")
+				end
+				
+				if (HisGroup:getGroupArea("TempGuardArea")) then
+					TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("TempGuardArea"))))
+					NPC:DebugSay("GuardTask Cond_0002")
+				end
+				
+				if not ((HisGroup:getGroupArea("TempGuardArea")) or (HisGroup:getGroupArea("GuardArea")))  then
+					TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
+					NPC:DebugSay("GuardTask Cond_0003")
+				end
+				
+			else
+				NPC:DebugSay("GuardTask Cond_0004")
+			end
+			
+		end			
 		
 		--if (NPC:getName() ~= nil) and (NPC:getAIMode() ~= nil) and (NPC:getCurrentTask() ~= nil) and (NPC:getGroupRole() ~= nil) and (NPC:getCurrentTask() ~= nil) and (IsInAction ~= nil) then
 		----	print("basetasks " .. ASuperSurvivor:getName().." "..ASuperSurvivor:getAIMode() .. " " .. TaskMangerIn:getCurrentTask() .. " " .. ASuperSurvivor:getGroupRole() .. " " .. ASuperSurvivor:getCurrentTask() .. " " .. tostring(IsInAction))
@@ -691,35 +722,29 @@ function AIManager(TaskMangerIn)
 		--end
 		
 
---	if (ASuperSurvivor:getGroupRole() == "Doctor") and (not IsInAction) and (not IsInBase) and (ZombRand(4)==0) and (not HisGroup:getGroupArea("MedicalStorageArea")) then
---		TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
---		NPC:DebugSay("Medic has returned to their medic area")
---	end
-		
-		
 		if(not SurvivorsFindWorkThemselves or not IsInBase) and (ASuperSurvivor:getGroupRole() == "Guard") and (ASuperSurvivor:getCurrentTask() == "None") and (not IsInAction) and (ZombRand(4)==0) then
 				
-			local randresult = ZombRand(10) + 1
-			--print("Guard - random job result is:"..tostring(randresult))
-			if(randresult == 1) then
-			
-				ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoRelax"))
-				TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
-				ASuperSurvivor:DebugSay("Relax condition met in AI manager! Reference number 0009")
-				
-			else
-			
-				local area = HisGroup:getGroupArea("GuardArea")
-				if(area) then 		
-					ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoGuard"))
-					TaskMangerIn:AddToTop(WanderInAreaTask:new(ASuperSurvivor,area)) 					
-					TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)
-					ASuperSurvivor:DebugSay("Guard area condition met in AI manager! Reference number 000-10")
-				else
-				--	print("Guard condition area was nil")
-					ASuperSurvivor:DebugSay("Guard condition met in AI manager! Reference number 000-11")
-				end
-			end
+		--	local randresult = ZombRand(10) + 1
+		--	--print("Guard - random job result is:"..tostring(randresult))
+		--	if(randresult == 1) then
+		--	
+		--		ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoRelax"))
+		--		TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
+		--		ASuperSurvivor:DebugSay("Relax condition met in AI manager! Reference number 0009")
+		--		
+		--	else
+		--	
+		--		local area = HisGroup:getGroupArea("GuardArea")
+		--		if(area) then 		
+		--			ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoGuard"))
+		--			TaskMangerIn:AddToTop(WanderInAreaTask:new(ASuperSurvivor,area)) 					
+		--			TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)
+		--			ASuperSurvivor:DebugSay("Guard area condition met in AI manager! Reference number 000-10")
+		--		else
+		--		--	print("Guard condition area was nil")
+		--			ASuperSurvivor:DebugSay("Guard condition met in AI manager! Reference number 000-11")
+		--		end
+		--	end
 		
 		elseif (ASuperSurvivor:getCurrentTask() == "None") and (IsInBase) and (not IsInAction) and (ZombRand(4)==0) then
 			
