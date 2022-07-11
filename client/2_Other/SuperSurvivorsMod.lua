@@ -40,7 +40,7 @@ function SuperSurvivorsOnTick()
 		end
 		
 		if (Mouse.isLeftPressed()) then 
-			SuperSurvivorSelectAreaHOLD = false 
+			SuperSurvivorSelectAreaHOLD = false -- I did a folder scan, this var doesn't do anything?
 			SuperSurvivorSelectingArea = false -- new
 		end
 		
@@ -165,6 +165,8 @@ function SuperSurvivorsLoadGridsquare(square)
 			
 			Option_Display_Survivor_Names = SuperSurvivorGetOptionValue("Option_Display_Survivor_Names")
 			Option_Display_Hostile_Color = SuperSurvivorGetOptionValue("Option_Display_Hostile_Color")
+			
+			Option_Panic_Distance = SuperSurvivorGetOptionValue("Option_Panic_Distance")
 			
 			Option_ForcePVP = SuperSurvivorGetOptionValue("Option_ForcePVP")
 			Option_FollowDistance = SuperSurvivorGetOptionValue("Option_FollowDistance")

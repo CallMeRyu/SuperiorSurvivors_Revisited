@@ -183,7 +183,11 @@ ContextMenu_EN = {
 
     ContextMenu_SOption_PerceptionBonus = "[Experimental] - NPC Perception Boost: ",
     ContextMenu_SOption_PerceptionBonusDesc = "This option should help NPCs 'know' when hostile things are close to them when it seems like they 'should have known'. (This option isn't fully tested but deemed decent results.)",
-    --[END On\Off options]--
+	
+	ContextMenu_SOption_Panic_Distance = "[Experimental] - Panic Distance"
+	ContextMenu_SOption_Panic_DistanceDesc = "In the FleeAwayFromHereTask file, there was previously a value set to 'if my distance is less than 30 blocks away from where I was, continue running away in panic'. This option allows you to the power to change that value any time FleeAwayFromHereTask is being given to an NPC. Setting it to 0 may result in the npc doing nothing or only moving away by 1 block (No it doesn't make sense, but that's why it's experimental.)"
+ 
+	--[END On\Off options]--
 
     --[Rate options]--
     ContextMenu_SOption_SurvivorSpawnRate = "NPC Spawn Rate:",

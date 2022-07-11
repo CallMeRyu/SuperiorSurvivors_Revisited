@@ -42,8 +42,10 @@ function SurvivorOrder(test,player,order,orderParam)
 				TaskMangerIn:AddToTop(WanderInAreaTask:new(ASuperSurvivor,area)) 					
 				TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)	
 				TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(area))) 
-			else
+			elseif (areaTemp) then
 				TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,areaTemp)) 
+			else
+				ASuperSurvivor:Speak("And Where are you wanting me to guard at again? Show me an area to guard at.")
 			end
 		
 		elseif(order == "Patrol") then 

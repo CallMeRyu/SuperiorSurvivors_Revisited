@@ -493,7 +493,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	-- flee from too many zombies
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion")) and not (AiNPC_Job_Is(NPC,"Guard"))  then -- To ABSOLUTELY prevent these two jobs from listening to this task.
+	if not (AiNPC_Job_Is(NPC,"Companion"))  then -- To ABSOLUTELY prevent these two jobs from listening to this task.
 		if (TaskMangerIn:getCurrentTask() ~= "Flee") 
 		and (TaskMangerIn:getCurrentTask() ~= "Surender") 
 		and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
@@ -526,8 +526,8 @@ function AIManager(TaskMangerIn)
 		end
 			ASuperSurvivor:getTaskManager():clear()
 			TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
-			-- NPC:NPC_ShouldRunOrWalk()
 			NPC:NPC_EnforceWalkNearMainPlayer()
+
 			if not (AiNPC_Job_Is(NPC,"Guard")) and not (AiNPC_Job_Is(NPC,"Doctor")) then 
 				TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
 				ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02_REG")
@@ -693,25 +693,27 @@ function AIManager(TaskMangerIn)
 		if (ASuperSurvivor:getGroupRole() == "Guard") then
 			-- if getGroupArea 'getGroupArea = does this area exist'
 			
-			if ( Task_Is_Not("Attack") and Task_Is_Not("Pursue") and Task_Is_Not("Threaten") and Task_Is_Not("Flee") and Task_Is_Not("First Aide") and not IsInBase ) then
+			if ( Task_Is_Not("Attack") and Task_Is_Not("Pursue") and Task_Is_Not("Threaten") and Task_Is_Not("Flee") and Task_Is_Not("First Aide") and Task_Is_Not("Find This") and not IsInBase ) then
 			
-				if (HisGroup:getGroupArea("GuardArea")) then
+				if(HisGroup:getGroupAreaCenterSquare("GuardArea") ~= nil) then
 					TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("GuardArea"))))
 					NPC:DebugSay("GuardTask Cond_0001")
 				end
 				
-				if (HisGroup:getGroupArea("TempGuardArea")) then
+				if(HisGroup:getGroupAreaCenterSquare("TempGuardArea") ~= nil) then
 					TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("TempGuardArea"))))
 					NPC:DebugSay("GuardTask Cond_0002")
 				end
 				
-				if not ((HisGroup:getGroupArea("TempGuardArea")) or (HisGroup:getGroupArea("GuardArea")))  then
+				if(HisGroup:getGroupAreaCenterSquare("GuardArea") == nil) and (HisGroup:getGroupAreaCenterSquare("GuardArea") == nil) and (CenterBaseSquare ~= nil) then
 					TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
-					NPC:DebugSay("GuardTask Cond_0003")
+					if (NPC:isSpeaking() == false) then	NPC:DebugSay("GuardTask Cond_0003") end
+				else
+					NPC:DebugSay("GuardTask Cond_0004 - Uh boss? There's no guard area OR base areas that you have set.")
 				end
 				
 			else
-				NPC:DebugSay("GuardTask Cond_0004")
+				if (NPC:isSpeaking() == false) then	NPC:DebugSay("GuardTask Cond_0005") end
 			end
 			
 		end			

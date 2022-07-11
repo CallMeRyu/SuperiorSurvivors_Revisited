@@ -181,6 +181,8 @@ end
 	if(not SuperSurvivorOptions["Option_FollowDistance"]) then SuperSurvivorOptions["Option_FollowDistance"] = 5 end
 	if(not SuperSurvivorOptions["Option_ForcePVP"]) then SuperSurvivorOptions["Option_ForcePVP"] = 0 end
 	
+	if(not SuperSurvivorOptions["Option_Panic_Distance"]) then SuperSurvivorOptions["Option_Panic_Distance"] = 21 end
+	
 	if(not SuperSurvivorOptions["Option_Display_Survivor_Names"]) then SuperSurvivorOptions["Option_Display_Survivor_Names"] = 2 end
 	if(not SuperSurvivorOptions["Option_Display_Hostile_Color"]) then SuperSurvivorOptions["Option_Display_Hostile_Color"] = 2 end
 	
@@ -563,6 +565,9 @@ if index then
 			
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('Option_Perception_Bonus',splitpoint,y,comboWidth,getText("ContextMenu_SOption_PerceptionBonus"),options,getText("ContextMenu_SOption_PerceptionBonusDesc"))
+		
+		local options = NPC_Options_ZeroToOneHundredAbsolute()
+		self:addCustomCombo('Option_Panic_Distance',splitpoint,y,comboWidth,getText("ContextMenu_SOption_Panic_Distance"),options,getText("ContextMenu_SOption_Panic_DistanceDesc"))
 
 
 	y = y + spacing4x
