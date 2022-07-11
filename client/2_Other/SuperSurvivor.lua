@@ -82,35 +82,35 @@ function SuperSurvivor:new(isFemale,square)
 	if(o.player:getPerkLevel(Perks.FromString("Aiming")) >= 3) then 
 		local innerresult = ZombRand(1, 6)
 		if(innerresult == 1) then
-			Dress = "MarinesCamo"
+			Dress = "Preset_MarinesCamo"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.M16A3")
 			else
 				o:giveWeapon("Base.AssaultRifle")
 			end
 		elseif(innerresult == 2) then
-			Dress = "ArmyCamo"
+			Dress = "Preset_ArmyCamo"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.SCARL")
 			else
 				o:giveWeapon("Base.AssaultRifle")
 			end
 		elseif(innerresult == 3) then
-			Dress = "Army"
+			Dress = "Preset_Army"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.M4A1")
 			else
 				o:giveWeapon("Base.AssaultRifle")
 			end
 		elseif(innerresult == 4) then
-			Dress = "Guard"
+			Dress = "Preset_Guard"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.G18")
 			else
 				o:giveWeapon("Base.Pistol3")
 			end
 		else
-			Dress = "Police"
+			Dress = "Preset_Police"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.G18")
 			else
@@ -118,11 +118,11 @@ function SuperSurvivor:new(isFemale,square)
 			end
 		end
 	elseif(o.player:getPerkLevel(Perks.FromString("Doctor")) >= 3) then
-		Dress = "Doctor"	
+		Dress = "Preset_Doctor"	
 	elseif(o.player:getPerkLevel(Perks.FromString("Cooking")) >= 3) then
-		Dress = "Chef"		
+		Dress = "Preset_Chef"		
 	elseif(o.player:getPerkLevel(Perks.FromString("Farming")) >= 3) then
-		Dress = "Farmer"		
+		Dress = "Preset_Farmer"		
 	end
 		
 	o:SuitUp(Dress)
