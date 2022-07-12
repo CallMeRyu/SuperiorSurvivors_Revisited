@@ -683,7 +683,7 @@ function AIManager(TaskMangerIn)
 	-- ---------------------------------------------------------- --
 
 	
-	if(getSpecificPlayer(0) == nil) or (not getSpecificPlayer(0):isAsleep()) then
+	if((getSpecificPlayer(0) == nil) or (not getSpecificPlayer(0):isAsleep())) and (getGameSpeed() == 1) then
 		SafeToGoOutAndWork = true
 		local AutoWorkTaskTimeLimit = 300 
 
@@ -708,9 +708,10 @@ function AIManager(TaskMangerIn)
 				if(HisGroup:getGroupAreaCenterSquare("GuardArea") == nil) and (HisGroup:getGroupAreaCenterSquare("TempGuardArea") == nil) and (CenterBaseSquare ~= nil) and not (IsInBase) then
 					TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
 					if (NPC:isSpeaking() == false) then	NPC:DebugSay("GuardTask Cond_0003") end
-				--else
+				else
+					TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor, HisGroup:getRandomBaseSquare() ))
 				--	NPC:DebugSay("GuardTask Cond_0004 - Uh boss? There's no guard area OR base areas that you have set.")
-				end
+				end				
 				
 			--else
 			--	if (NPC:isSpeaking() == false) then	NPC:DebugSay("GuardTask Cond_0005") end

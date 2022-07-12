@@ -2968,7 +2968,9 @@ function SuperSurvivor:update()
 	self:CheckForIfStuck() -- New function to cleanup the update() function
 	self:NPCcalculateWalkSpeed()
 	--self:DoVision()
-	self.MyTaskManager:update()
+	if (not getSpecificPlayer(0):isAsleep()) and (self:getGroupRole() ~= "Random Solo") then
+		self.MyTaskManager:update()
+	end
 
 	--self:Speak(tostring(self:isInBase()))	
 	if(self.Reducer % 480 == 0) then 

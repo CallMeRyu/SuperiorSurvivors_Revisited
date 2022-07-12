@@ -762,7 +762,7 @@ Events.OnEquipPrimary.Add(SuperSurvivorsOnEquipPrimary);
 -- ALT SPAWNING
 function SuperSurvivorsNewSurvivorManager()
 	-- To make sure if the player has chosen not to use Alt spawning
-	if (AlternativeSpawning == 1) then
+	if (AlternativeSpawning == 1) or (getSpecificPlayer(0):isAsleep()) then
 		return false 
 	end
 	
