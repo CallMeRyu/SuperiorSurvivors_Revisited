@@ -10,10 +10,14 @@ function SuperSurvivorsOnTick()
 	if(SuperSurvivorSelectAnArea) then
 		
 	
-		if (Mouse.isLeftDown()) then SuperSurvivorMouseDownTicks = SuperSurvivorMouseDownTicks + 1
-		else SuperSurvivorMouseDownTicks = 0 end
+		if (Mouse.isLeftDown()) then 
+			SuperSurvivorMouseDownTicks = SuperSurvivorMouseDownTicks + 1
+		else 
+			SuperSurvivorMouseDownTicks = 0 
+			SuperSurvivorSelectingArea = 0 
+		end
 		
-		if (SuperSurvivorMouseDownTicks > 10) then
+		if (SuperSurvivorMouseDownTicks > 15) then
 		
 		
 			

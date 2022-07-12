@@ -11,16 +11,13 @@ function FleeTask:new(superSurvivor)
 	o.Name = "Flee"
 	o.OnGoing = false
 	if o.parent.TargetBuilding ~= nil then o.parent:MarkAttemptedBuildingExplored(o.parent.TargetBuilding) end -- otherwise he just keeps running back to the building though the threat likely lingers there
-		
-	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
-	
+
 	return o
 	
 end
 
 function FleeTask:isComplete()
 	if (self.parent:getDangerSeenCount() == 0) or self.parent:needToFollow() then 
-		self.parent:DebugSay("FleeTask is about to trigger a StopWalk! ")
 		self.parent:StopWalk()
 		--print(self:getName().."stopping walking7")
 		self.parent:setRunning(false)
@@ -35,10 +32,13 @@ end
 
 function FleeTask:update()
 	
+	self.parent:setRunning(true)
+	
 	if(not self:isValid()) then return false end
 	self.parent:setSneaking(false)
 	
+	
 	self.parent:walkTo(getFleeSquare(self.parent.player,self.parent.LastEnemeySeen))
-	self.parent:NPC_EnforceWalkNearMainPlayer()
-
+	
+	
 end

@@ -36,15 +36,11 @@ function SurvivorOrder(test,player,order,orderParam)
 		elseif(order == "Guard") then 
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Guard"))
 			local area = ASuperSurvivor:getGroup():getGroupArea("GuardArea")
-			local areaTemp = ASuperSurvivor:getGroup():getGroupArea("TempGuardArea")
 			if(area) then 	
 				ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoGuard"))
 				TaskMangerIn:AddToTop(WanderInAreaTask:new(ASuperSurvivor,area)) 					
 				TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)	
 				TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(area))) 
-			elseif (areaTemp) then
-				TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,areaTemp)) 
-			else
 				ASuperSurvivor:Speak("And Where are you wanting me to guard at again? Show me an area to guard at.")
 			end
 		
@@ -865,7 +861,6 @@ function SurvivorsFillWorldObjectContextMenu(player, context, worldobjects, test
 		SuperSurvivorsAreaSelect(submenu, "FarmingArea", getText("ContextMenu_SD_FarmingArea"))
 		SuperSurvivorsAreaSelect(submenu, "ForageArea", getText("ContextMenu_SD_ForageArea"))
 		SuperSurvivorsAreaSelect(submenu, "GuardArea", getText("ContextMenu_SD_GuardArea"))
-		SuperSurvivorsAreaSelect(submenu, "TempGuardArea", "Temp Guard Area")
 		
 	context:addSubMenu(selectOption, submenu);
 	

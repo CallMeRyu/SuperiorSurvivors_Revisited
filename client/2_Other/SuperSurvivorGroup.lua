@@ -28,7 +28,6 @@ function SuperSurvivorGroup:new(GID)
 	o.GroupAreas["WeaponStorageArea"] = {0,0,0,0,0}
 	o.GroupAreas["MedicalStorageArea"] = {0,0,0,0,0}
 	o.GroupAreas["GuardArea"] = {0,0,0,0,0}
-	o.GroupAreas["TempGuardArea"] = {0,0,0,0,0} -- New
 	
 	return o
 
