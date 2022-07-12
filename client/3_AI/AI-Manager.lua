@@ -192,7 +192,6 @@ function AIManager(TaskMangerIn)
 		-- ----------- --
 		-- Attack
 		-- ----------- --
-		if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
 			-- ----- Perception Buff --- --
 			--	NPC:Companion_DoSixthSenseScan()
 			-- ------------------------- --
@@ -201,7 +200,9 @@ function AIManager(TaskMangerIn)
 					(TaskMangerIn:getCurrentTask() ~= "Attack") 
 				and (TaskMangerIn:getCurrentTask() ~= "Threaten") 
 				and (TaskMangerIn:getCurrentTask() ~= "First Aide") 
-				and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
+				and (Task_Is_Not("Flee"))
+				
+			---	and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
 				) 
 			and (
 				   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or  (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 
@@ -226,7 +227,6 @@ function AIManager(TaskMangerIn)
 					ASuperSurvivor:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_02")
 				end
 			end
-		end
 	
 	
 
@@ -235,25 +235,22 @@ function AIManager(TaskMangerIn)
 	-- 	Reload Gun	    			
 	--  NPC:getDangerSeenCount() removed
 	-- --------------------------------- --
-		if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
-		
 			if(ASuperSurvivor:getNeedAmmo())
 			and (ASuperSurvivor:hasAmmoForPrevGun()) 
 			and (IsInAction == false)
+			and (Task_Is_Not("Flee"))
 			then
 				NPC:setNeedAmmo(false)
 				NPC:reEquipGun()
 				NPC:DebugSay("Companion RELOAD_Gun_0001")
 			end
-			
-		end
 		
 		-- --------------------------------- --
 		-- 	Ready Weapon	    			
 		--  NPC:getDangerSeenCount() removed
 		-- --------------------------------- --
-		if (AiNPC_TaskIsNot(AiTmi,"First Aide")) then
 			if(IsInAction == false) 
+			and (Task_Is_Not("Flee"))
 			and (ASuperSurvivor:getNeedAmmo() == false) 
 			and ASuperSurvivor:usingGun() 
 			
@@ -263,12 +260,11 @@ function AIManager(TaskMangerIn)
 				ASuperSurvivor:ReadyGun(weapon)		
 				if (NPC:isSpeaking() == false) then NPC:DebugSay("Companion READY_Gun_0001") end
 			end	
-		end
 		
 		-- ----------------------------- --
 		-- 	Equip Weapon                 -- 
 		-- ----------------------------- --
-		if(ASuperSurvivor:hasWeapon()) and (ASuperSurvivor:Get():getPrimaryHandItem() == nil) and (TaskMangerIn:getCurrentTask() ~= "Equip Weapon") and (AiNPC_TaskIsNot(AiTmi,"First Aide"))  then
+		if(ASuperSurvivor:hasWeapon()) and (ASuperSurvivor:Get():getPrimaryHandItem() == nil) and (TaskMangerIn:getCurrentTask() ~= "Equip Weapon") then
 				TaskMangerIn:AddToTop(EquipWeaponTask:new(ASuperSurvivor))
 				ASuperSurvivor:DebugSay("Companion EQUIP_Gun_0001")
 		end
@@ -278,13 +274,11 @@ function AIManager(TaskMangerIn)
 		-- Flee to heal  --
 		-- -----------   --
 		if      (TaskMangerIn:getCurrentTask() ~= "Find Building")
-			and (TaskMangerIn:getCurrentTask() ~= "First Aide") 
+		--	and (TaskMangerIn:getCurrentTask() ~= "First Aide") 
 			and (TaskMangerIn:getCurrentTask() ~= "Flee") 
 			and (IHaveInjury)
-			and (ASuperSurvivor:getDangerSeenCount() > 1) 
+			and (ASuperSurvivor:getDangerSeenCount() > 1 or NPC.EnemiesOnMe > 0) 
 			then
-			--	TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))	
-				TaskMangerIn:AddToTop(FindUnlootedBuildingTask:new(ASuperSurvivor))	
 				TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
 				ASuperSurvivor:DebugSay("Companion HEALING_0001")
 		end
@@ -300,6 +294,8 @@ function AIManager(TaskMangerIn)
 			  and (TaskMangerIn:getCurrentTask() ~= "Flee") 
 			  and (TaskMangerIn:getCurrentTask() ~= "Doctor") 
 			  and (TaskMangerIn:getCurrentTask() ~= "Pursue") 
+			  and (TaskMangerIn:getCurrentTask() ~= "Threaten") 
+			  and (TaskMangerIn:getCurrentTask() ~= "Attack") 
 			
 			  and (TaskMangerIn:getCurrentTask() ~= "Hold Still")  
 			then
@@ -501,9 +497,8 @@ function AIManager(TaskMangerIn)
 		--and ( ((NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie)) or (ASuperSurvivor:isTooScaredToFight()) )
 		and 
 		( 
-		   (not ASuperSurvivor:hasWeapon() and (ASuperSurvivor:usingGun() == false) and ((ASuperSurvivor:getDangerSeenCount() > 0) and (NPC:getSeenCount() >= 3)) ) -- If one enemy is VERY close & see 3 or more enemies
 --		or ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1) or ((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 3))) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
-		or ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1 and (Distance_AnyEnemy < 3) and (EnemyIsZombie)) 	 or 	((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 2) and (EnemyIsZombie)) ) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
+		   ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1 and (Distance_AnyEnemy < 3) and (EnemyIsZombie)) 	 or 	((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 2) and (EnemyIsZombie)) ) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
 		or ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1 and (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) or 	( (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) ) )  							  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
 		or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
 		or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false)
@@ -514,9 +509,10 @@ function AIManager(TaskMangerIn)
 		 -- now that I understand that getDangerSeenCount means if something is like SUPER close to the npc, you can simulate 
 		 -- the idea of 'there's an enemy basically on me and I see more in the distance, I don't think this is worth fighting'
 		or (
-				(   (NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie) and (NPC:hasGun())		)
-			or
-				(   (NPC:getSeenCount() > 4) and (EnemyIsZombie) and (not NPC:hasGun()) 	)
+			   (   (NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie) and (NPC:hasGun())		)
+			or (   (NPC:getSeenCount() > 4) and (EnemyIsZombie) and (not NPC:hasGun()) 	)
+			or (not ASuperSurvivor:hasWeapon())
+			or (NPC.EnemiesOnMe > 0 and NPC:getDangerSeenCount() > 2 and EnemyIsZombie)
 			)									
 		) 
 		then
@@ -693,7 +689,7 @@ function AIManager(TaskMangerIn)
 		if (ASuperSurvivor:getGroupRole() == "Guard") then
 			-- if getGroupArea 'getGroupArea = does this area exist'
 			
-			if ( Task_Is_Not("Attack") and Task_Is_Not("Threaten") and Task_Is_Not("Flee") and Task_Is_Not("First Aide") and Task_Is_Not("Find This") and Task_Is_Not("Eat Food") and Task_Is_Not("Follow") and (IsInAction == false) ) and (ZombRand(2)==0) then
+			if ( Task_Is_Not("Attack") and Task_Is_Not("Threaten") and Task_Is_Not("Flee") and Task_Is_Not("First Aide") and Task_Is_Not("Find This") and Task_Is_Not("Eat Food") and Task_Is_Not("Follow") and (IsInAction == false) ) and (ZombRand(3)==0) then
 			
 				if(HisGroup:getGroupAreaCenterSquare("GuardArea") ~= nil) and (HisGroup:getGroupArea("GuardArea")) then
 					TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("GuardArea"))))

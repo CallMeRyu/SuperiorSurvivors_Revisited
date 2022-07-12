@@ -1100,6 +1100,7 @@ function SuperSurvivor:DebugSay(text)
 			print("---------------")
 			print(self:getName().."		getCurrentTask	= "..tostring(self:getCurrentTask()))
 			print(self:getName().."		getGroupRole	= "..tostring(self:getGroupRole()))
+			print(self:getName().."		AIMode			= "..tostring(self.player:getModData().AIMode))
 			
 			print("")
 			print("--------------------")
@@ -2055,7 +2056,7 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 	if (self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard") then 
 		atLeastThisClose = 6
 		closestSoFar = 6
-		dangerRange = 0
+		dangerRange = 1
 	end
 	
 	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end

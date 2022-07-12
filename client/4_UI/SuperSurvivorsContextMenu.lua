@@ -220,14 +220,19 @@ function InviteToParty(test,player) -- When the player offers an NPC to join the
 			Group = SSGM:Get(GID)
 		end
 		
-		if(Group) then Group:addMember(SS, getText("ContextMenu_Job_Partner"))
+		if(Group) then Group:addMember(SS, getText("ContextMenu_Job_Companion")) -- was Partner
 		else print("error could not find or create group") end
 		
 		local followtask = FollowTask:new(SS,getSpecificPlayer(0))
 		local tm = SS:getTaskManager()
-		SS:setAIMode("Follow")
+
 		tm:clear()
 		tm:AddToTop(followtask)
+		
+		-- This will make sure the newly joined npc will default to follow, thus not run away when first join the group
+		local ASuperSurvivor = SSM:Get(player:getModData().ID)
+		ASuperSurvivor:setAIMode("Follow") 
+		
 		SS:setGroupRole("Companion") -- Newly added
 	else
 		SS:Speak(getSpeech("No"))
