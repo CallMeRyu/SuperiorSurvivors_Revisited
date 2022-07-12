@@ -2055,7 +2055,7 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 	if (self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard") then 
 		atLeastThisClose = 6
 		closestSoFar = 6
-		dangerRange = 1
+		dangerRange = 0
 	end
 	
 	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
@@ -2883,31 +2883,17 @@ function SuperSurvivor:update()
 	if(self:isDead()) then 
 		
 		return false
-	
 	end
 	
-	self:DoVision() -- Moving this up to the top
 	
---																					-- I know this is 'not companion' but the function works almost too well not to use.
---	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 10) then				-- The test line, there's no need to let this be for debug options, it adds 10x lag. 
-		if (Option_Perception_Bonus == 2) then										-- The in game option from supersurvivorsmod.lua
-			if (not (self:getGroupRole() == "Companion")) then 						-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
-				--if (not (self:usingGun()) and (self.isHostile == true)) then		-- Hostiles with guns are banned from using this. It makes them very OP (Until further notice)
-
-				--	if (self.LastEnemeySeen ~= nil) and (getDistanceBetween(self.player,self.LastEnemeySeen) > 1) then		-- This in theory should make the NPC re-scan for new entities around them
-						self:Companion_DoSixthSenseScan() 
-				--	end
-				--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
-				--else
-				--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH A====")
-				--end
-			--else
-			--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH B ====")
-			end
-		--else
-		--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH C ====")
+	-- I know this is 'not companion' but the function works almost too well not to use.
+	if (Option_Perception_Bonus == 2) then					-- The in game option from supersurvivorsmod.lua
+		if (not (self:getGroupRole() == "Companion")) then 	-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
+			self:Companion_DoSixthSenseScan() 
 		end
---	end
+	end
+
+	self:DoVision() -- Moving this up to the top
 	
 	
 	

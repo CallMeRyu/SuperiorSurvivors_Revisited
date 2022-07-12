@@ -683,7 +683,7 @@ function AIManager(TaskMangerIn)
 	-- ---------------------------------------------------------- --
 
 	
-	if((getSpecificPlayer(0) == nil) or (not getSpecificPlayer(0):isAsleep())) and (getGameSpeed() == 1) then
+	if(getSpecificPlayer(0) == nil) or (not getSpecificPlayer(0):isAsleep()) then
 		SafeToGoOutAndWork = true
 		local AutoWorkTaskTimeLimit = 300 
 
@@ -693,7 +693,7 @@ function AIManager(TaskMangerIn)
 		if (ASuperSurvivor:getGroupRole() == "Guard") then
 			-- if getGroupArea 'getGroupArea = does this area exist'
 			
-			if ( Task_Is_Not("Attack") and Task_Is_Not("Threaten") and Task_Is_Not("Flee") and Task_Is_Not("First Aide") and Task_Is_Not("Find This") ) then
+			if ( Task_Is_Not("Attack") and Task_Is_Not("Threaten") and Task_Is_Not("Flee") and Task_Is_Not("First Aide") and Task_Is_Not("Find This") and Task_Is_Not("Eat Food") and Task_Is_Not("Follow") and (IsInAction == false) ) and (ZombRand(2)==0) then
 			
 				if(HisGroup:getGroupAreaCenterSquare("GuardArea") ~= nil) and (HisGroup:getGroupArea("GuardArea")) then
 					TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(HisGroup:getGroupArea("GuardArea"))))
