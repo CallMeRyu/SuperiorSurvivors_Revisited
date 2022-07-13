@@ -85,7 +85,7 @@ Events.OnRenderTick.Add(SuperSurvivorsOnTick)
 
 function SuperSurvivorSoldierSpawn(square)
 	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
-	ASuperSurvivor:SuitUp("MarinesCamo")
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
 
 	ASuperSurvivor:giveWeapon(getWeapon(RangeWeapons[ZombRand(1,#RangeWeapons)]),true) 
 	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
