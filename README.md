@@ -19,3 +19,9 @@ Please provide bug reports / feedback on the steamgroup or discord!
 * Added a attempt-failsafe to the infamous 'crash while asleep' bug
 * Fixed the infamous 'Select area reset' bug
 * Progress to the guard job to be a little smarter in combat and knowing where the guard area you set is at (otherwise the guard will goto your base zone)
+
+## EXP 17 - U3
+* cleaned up leftover code that was previously tested with
+* NPCs should be able to flee from danger more properly
+
+* Rare bug: there is a chance follower job will still stand there trying to heal. HOWEVER, they will still run away from danger. Allow your follow distance to be big enough to allow the NPC to have enough personal space.
