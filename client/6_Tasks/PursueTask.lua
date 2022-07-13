@@ -52,6 +52,7 @@ end
 function PursueTask:isComplete()	
 	if (not self.Target) or self.Target:isDead() or (self.parent:HasInjury()) or self.parent:isEnemy( self.Target) == false then return true
 	else 
+		self.parent:NPC_EnforceWalkNearMainPlayer()
 		return self.Complete 
 	end
 end
@@ -83,7 +84,6 @@ function PursueTask:update()
 			
 			self.parent:walkToDirect(self.LastSquareSeen)
 			self.parent:NPC_ShouldRunOrWalk()
-			self.parent:NPC_EnforceWalkNearMainPlayer()
 			
 			if(ZombRand(4) == 0) and (self.parent:isSpeaking() == false) then
 				self.parent:Speak(getSpeech("SawHimThere"))

@@ -479,28 +479,26 @@ function AIManager(TaskMangerIn)
 		and (TaskMangerIn:getCurrentTask() ~= "Surender") 
 		and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
 		and 
-		( 
-		   ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1 and (Distance_AnyEnemy < 3) and (EnemyIsZombie)) 	 or 	((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 2) and (EnemyIsZombie)) ) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
-		or ( ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and ( (ASuperSurvivor:getDangerSeenCount() > 1 and (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) or 	( (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) ) )  							  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
-		or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
-		or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false)
-		or (ASuperSurvivor:isTooScaredToFight())
-		 
+		(
+		   ( ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and ( (NPC:getDangerSeenCount() > 1 and (Distance_AnyEnemy  < 3) and (EnemyIsZombie)) 	or 	((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 2) and (EnemyIsZombie)) ) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
+		or ( ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and ( (NPC:getDangerSeenCount() > 1 and (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) or 	( (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) ) )  							  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
 		 -- To check for EnemyIsZombie, which will look there and go 'OH GOD, I can't fight THIS many zombies' 
 		 -- Update: I may of already fixed this issue on the lines above... 
 		 -- now that I understand that getDangerSeenCount means if something is like SUPER close to the npc, you can simulate 
 		 -- the idea of 'there's an enemy basically on me and I see more in the distance, I don't think this is worth fighting'
 		or (
-			   (   (NPC:getSeenCount() > 4) and (NPC:isEnemyInRange()) and (EnemyIsZombie) and (NPC:hasGun())	)
-			
-			or (   (NPC:getSeenCount() > 4) and (EnemyIsZombie) and (not NPC:hasGun()) 	)
-			
-			or (NPC.EnemiesOnMe > 0 and NPC:getDangerSeenCount() > 2 and EnemyIsZombie)
-			
-			or (not ASuperSurvivor:hasWeapon() and (ASuperSurvivor:getDangerSeenCount() > 0) )
-			
-			)									
-		) 
+			    (NPC.EnemiesOnMe > 0 and NPC:getDangerSeenCount() > 1 and NPC:getSeenCount() > 2)
+			   
+			 or (not ASuperSurvivor:hasWeapon() and (ASuperSurvivor:getDangerSeenCount() > 0) )
+			 
+			 or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
+			 
+			 or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false)
+			 
+			 or (ASuperSurvivor:isTooScaredToFight())
+			 
+			)
+		)
 		then
 		 if(TaskMangerIn:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
 		 	TaskMangerIn:getTask():ForceFinish()

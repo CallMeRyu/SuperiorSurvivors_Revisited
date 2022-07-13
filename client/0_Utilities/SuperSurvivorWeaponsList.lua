@@ -10,10 +10,10 @@ MeleWeapons = {
 "Base.BaseballBat","Base.BaseballBat","Base.BaseballBat","Base.BaseballBatNails",
 "Base.Golfclub","Base.TennisRacket","Base.BadmintonRacket","Base.Poolcue","Base.HockeyStick","Base.LaCrosseStick","Base.IcePick",
 "Base.Pan","Base.Saucepan","Base.GridlePan","Base.RollingPin",
-"Base.GuitarAcoustic","Base.GuitarElectricBlack","Base.GuitarElectricBassBlue","Base.Flute",
+-- "Base.GuitarAcoustic","Base.GuitarElectricBlack","Base.GuitarElectricBassBlue","Base.Flute",		-- Far too slow animations
 
 "Base.GardenFork","Base.WoodenLance",
-"Base.SpearCrafted","Base.SpearCrafted","Base.SpearKnife","Base.SpearScissors","Base.SpearScrewdriver","Base.SpearHuntingKnife",
+-- "Base.SpearCrafted","Base.SpearCrafted","Base.SpearKnife","Base.SpearScissors","Base.SpearScrewdriver","Base.SpearHuntingKnife",		-- Spears freeze animation
 
 "Base.Axe","Base.HandAxe","Base.WoodAxe","Base.Pickaxe","Base.AxeStone","Base.HandScythe",
 "Base.Stake",

@@ -1602,8 +1602,10 @@ function SuperSurvivor:DoVision()
 
 	local atLeastThisClose = 19;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 200
-	local closestSurvivorSoFar = 200
+	--local closestSoFar = 200
+	local closestSoFar = 25
+	--local closestSurvivorSoFar = 200
+	local closestSurvivorSoFar = 25
 	self.seenCount = 0
 	self.dangerSeenCount = 0
 	self.EnemiesOnMe = 0
@@ -2054,7 +2056,9 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 
 	local dangerRange = 2
 	
-	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
+	--if self.AttackRange > dangerRange then 
+	--	dangerRange = self.AttackRange 
+	--end
 	
 	if (self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard") then 
 		atLeastThisClose = 10
@@ -2496,9 +2500,9 @@ function SuperSurvivor:Task_IsPursue_SC()
 	
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 5) and (self:getGroupRole() ~= "Companion") then
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 1) and (self:getGroupRole() ~= "Companion") then
-	if (self.LastEnemeySeen == nil)  then
-		self:DoHumanEntityScan()
-	end
+	--if (self.LastEnemeySeen == nil) and (ZombRand(4)==0)  then
+	--	self:DoHumanEntityScan()
+	--end
 	
 	-- This was a test, it didn't work very well. It was an attempt to block door spam but other things are doing that already.
 	--if (self:inFrontOfDoor() ~= nil) and (getDistanceBetween(self.LastEnemeySeen,self.player) >= 8) and (Enemy_Is_a_Human) and not (Enemy_Is_a_Zombie) then
@@ -2894,10 +2898,9 @@ function SuperSurvivor:update()
 	self:DoVision()
 	
 	-- I know this is 'not companion' but the function works almost too well not to use.
-	if (Option_Perception_Bonus == 2) then					-- The in game option from supersurvivorsmod.lua
-		if (not (self:getGroupRole() == "Companion")) then 	-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
+	if (Option_Perception_Bonus == 2) and (ZombRand(4)==0) then	-- The in game option from supersurvivorsmod.lua and to keep it from scanning infinitely
+		if (not (self:getGroupRole() == "Companion")) then 		-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
 			self:Companion_DoSixthSenseScan() 
-			
 		end
 	end
 
@@ -3463,18 +3466,17 @@ function SuperSurvivor:ReadyGun(weapon)
 				
 				local ammotype = magazine:getAmmoType();
 				if (not self.player:getInventory():containsWithModule(ammotype)) and (magazine:getCurrentAmmoCount()==0) and (SurvivorInfiniteAmmo) then
+					readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 5
 					magazine:setCurrentAmmoCount(magazine:getMaxAmmo())
 				end
 				
 				self:DebugSay(self:getName().." trying to load magazine into gun - readyGun_AntiStuck_Ticks = "..tostring(readyGun_AntiStuck_Ticks))
-				if readyGun_AntiStuck_Ticks >= 0 and readyGun_AntiStuck_Ticks < 15 then
+				if readyGun_AntiStuck_Ticks > 0 and readyGun_AntiStuck_Ticks < 15 then
 					ISTimedActionQueue.add(ISInsertMagazine:new(self.player, weapon, magazine))
 					ISReloadWeaponAction.ReloadBestMagazine(self.player, weapon)
-					readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 1
+					readyGun_AntiStuck_Ticks = 0
 				end
-				
-				readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 1
-				
+
 				return	true		
 			else
 				self:DebugSay(self:getName().." error trying to spawn mag for gun?")
@@ -3927,7 +3929,7 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
 
 		
-		if (self:Task_IsNotFleeOrFleeFromSpot()) and (distanceAlt <= 1) then
+		if (self:Task_IsNotFleeOrFleeFromSpot()) or (distanceAlt <= 1) or (distance and self:Task_IsAttack()) or (distance and self:Task_IsThreaten() or (distance and self:Task_IsPursue() ) then
 			self:setRunning(false)
 			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to false due to distance and Task_IsNotFleeOrFleeFromSpot returned true SRW_0001")
 		else
@@ -3939,7 +3941,6 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		self:setRunning(false)
 	end
 	
-	self:setRunning(false)
 	
 end
 function SuperSurvivor:NPC_EnforceWalkNearMainPlayer()
