@@ -3929,7 +3929,7 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
 
 		
-		if (self:Task_IsNotFleeOrFleeFromSpot()) or (distanceAlt <= 1) or (distance and self:Task_IsAttack()) or (distance and self:Task_IsThreaten() or (distance and self:Task_IsPursue() ) then
+		if (self:Task_IsNotFleeOrFleeFromSpot()) or (distanceAlt <= 1) or (distance and self:Task_IsAttack()) or (distance and self:Task_IsThreaten() or (distance and self:Task_IsPursue()) ) then
 			self:setRunning(false)
 			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to false due to distance and Task_IsNotFleeOrFleeFromSpot returned true SRW_0001")
 		else
