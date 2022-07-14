@@ -384,8 +384,8 @@ function AIManager(TaskMangerIn)
 			and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
 			and (TaskMangerIn:getCurrentTask() ~= "Flee")
 			and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot") 
-			and (NPC:NPC_CheckPursueScore() > 0) -- New: It maybe pursue, but it can be used for attack too, it's helping against door spam
-			and ( Distance_AnyEnemy < NPC:NPC_CheckPursueScore() ) -- Don't want them chasing from across the map
+			--and (NPC:NPC_CheckPursueScore() > 0) -- New: It maybe pursue, but it can be used for attack too, it's helping against door spam
+			--and ( Distance_AnyEnemy < NPC:NPC_CheckPursueScore() ) -- Don't want them chasing from across the map
 			) 
 		and (
 			   (ASuperSurvivor:hasWeapon() and 		   ((ASuperSurvivor:getDangerSeenCount() >= 1) or (ASuperSurvivor:isEnemyInRange(ASuperSurvivor.LastEnemeySeen)))) 

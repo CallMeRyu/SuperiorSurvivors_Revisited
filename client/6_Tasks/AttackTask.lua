@@ -57,8 +57,7 @@ function AttackTask:update()
 	local NPC_AttackRange = self.parent:isEnemyInRange(self.parent.LastEnemeySeen)
 	
 	-- Controls if the NPC is litreally running or walking state.
-	self.parent:NPC_ShouldRunOrWalk()
-	self.parent:NPC_EnforceWalkNearMainPlayer()
+--	self.parent:NPC_ShouldRunOrWalk()
 
 --	if (NPC_AttackRange) or (theDistance <= minrange) or (theDistance < 0.65) then
 	if (NPC_AttackRange) or (theDistance < 0.65) then
@@ -98,7 +97,6 @@ function AttackTask:update()
 	
 		self.parent:NPC_ManageLockedDoors() -- To prevent getting stuck in doors
 	--	self.parent:NPC_MovementManagement() -- To move around 
-		self.parent:NPC_EnforceWalkNearMainPlayer()
 
 
 	--	self.parent:DebugSay("walking close to attack:"..tostring(theDistance))

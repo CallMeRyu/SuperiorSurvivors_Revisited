@@ -2049,8 +2049,8 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 	local closestSoFar = 4
 	local closestSurvivorSoFar = 4
 --	self.seenCount = 0
-	self.dangerSeenCount = 0
-	self.EnemiesOnMe = 0
+--	self.dangerSeenCount = 0
+--	self.EnemiesOnMe = 0
 --	self.LastEnemeySeen = nil
 --	self.LastSurvivorSeen = nil
 
@@ -3941,7 +3941,7 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
 
 		
-		if (self:Task_IsNotFleeOrFleeFromSpot()) or (distanceAlt <= 1) or (distance and self:Task_IsAttack()) or (distance and self:Task_IsThreaten() or (distance and self:Task_IsPursue()) ) then
+		if(not (self:Task_IsNotFleeOrFleeFromSpot() == true) ) or (distanceAlt <= 1) or (distance and self:Task_IsAttack()) or (distance and self:Task_IsThreaten() or (distance and self:Task_IsPursue()) ) then
 			self:setRunning(false)
 			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to false due to distance and Task_IsNotFleeOrFleeFromSpot returned true SRW_0001")
 		else
@@ -3976,8 +3976,6 @@ function SuperSurvivor:NPC_ERW_AroundMainPlayer(VarDist)
 				self:setRunning(false)
 			end
 		end
-	self:NPC_EnforceWalkNearMainPlayer() -- New
-
 end
 -- ERW stands for 'EnforceRunWalk' walk priority
 function SuperSurvivor:NPC_ERW_AroundMainPlayerReverse(VarDist)
@@ -3992,8 +3990,6 @@ function SuperSurvivor:NPC_ERW_AroundMainPlayerReverse(VarDist)
 				self:setRunning(true)
 			end
 		end
-	self:NPC_EnforceWalkNearMainPlayer() -- New
-
 end
 
 
@@ -4035,21 +4031,23 @@ function SuperSurvivor:NPC_MovementManagement()
 		local RealDistance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local minrange = self:getMinWeaponRange()
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
-		
-		self:NPC_ERW_AroundMainPlayerReverse(minrange)
-		
+
 		if (distance > minrange + 0.1) then
 			-- The actual walking itself
 			if(instanceof(self.LastEnemeySeen,"IsoPlayer")) then	
 				self:walkToDirect(cs)
+				self:setRunning(true)
+				
 			else
 				local fs = cs:getTileInDirection(self.LastEnemeySeen:getDir())
 				if(fs) and (fs:isFree(true)) then
 					self:walkToDirect(fs)
 					self:DebugSay("AtkTicks NPC_MovementManagement Walkto FS")
+					self:setRunning(true)
 				else 
 					self:walkToDirect(cs) 
 					self:DebugSay("AtkTicks NPC_MovementManagement Walkto CS")
+					self:setRunning(true)
 				end	
 			end
 		end
