@@ -2457,14 +2457,14 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		-- -------------------------------------- --
 		if (self:hasGun() == true) then
 			self:zDebugSayPTSC(zRangeToPursue,"10")
-			if (self:WeaponReady() == false) then
+			if (self:WeaponReady() == true) then
 				self:zDebugSayPTSC(zRangeToPursue,"11")
 				zRangeToPursue = 5
 				return zRangeToPursue
 				
 			elseif (self:WeaponReady() == false) then
 				self:zDebugSayPTSC(zRangeToPursue,"11_A1")
-				zRangeToPursue = 5
+				zRangeToPursue = 0
 				return zRangeToPursue
 			end
 		end

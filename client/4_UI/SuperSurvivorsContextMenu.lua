@@ -20,9 +20,12 @@ function SurvivorOrder(test,player,order,orderParam)
 			TaskMangerIn:AddToTop(LootCategoryTask:new(ASuperSurvivor,ASuperSurvivor:getBuilding(),orderParam,0)) 
 		
 		elseif(order == "Follow") then
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Companion")) 
+			ASuperSurvivor:setAIMode("Follow") 
+			ASuperSurvivor:setGroupRole("Follow") 
 			TaskMangerIn:clear()
-			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 
+			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Companion")) 
+			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
+			ASuperSurvivor:setAIMode("Follow")
 		
 		elseif(order == "Pile Corpses") then 
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Dustman")) 
@@ -228,7 +231,8 @@ function InviteToParty(test,player) -- When the player offers an NPC to join the
 		-- This will make sure the newly joined npc will default to follow, thus not run away when first join the group
 		local ASuperSurvivor = SSM:Get(player:getModData().ID)
 		ASuperSurvivor:setAIMode("Follow") 
-		
+		ASuperSurvivor:setGroupRole("Follow") 
+			
 		SS:setGroupRole("Companion") -- Newly added
 	else
 		SS:Speak(getSpeech("No"))

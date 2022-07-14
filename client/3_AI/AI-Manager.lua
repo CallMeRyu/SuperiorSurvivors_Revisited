@@ -155,8 +155,10 @@ function AIManager(TaskMangerIn)
 		 or ( (DistanceBetweenMainPlayer > 12) ) -- For general purpose
 		 ) 	
 		then
+			NPC.LastEnemeySeen = nil
 			TaskMangerIn:clear()
 			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
+			ASuperSurvivor:needToFollow()
 			NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
 		end
 		
@@ -164,7 +166,7 @@ function AIManager(TaskMangerIn)
 		
 		
 		
-	if (AiNPC_Job_Is(NPC,"Companion") and (DistanceBetweenMainPlayer <= GFollowDistance)) then
+	if (AiNPC_Job_Is(NPC,"Companion") and (DistanceBetweenMainPlayer <= 12)) then
 	
 		-- ------------------------- --   				 
 		-- reminder: NPC:NPCTask_DoAttack() already 
@@ -182,7 +184,7 @@ function AIManager(TaskMangerIn)
 		-- ------------ --
 		-- Pursue
 		-- ------------ --
-		if AiNPC_TaskIsNot(AiTmi,"First Aide") and AiNPC_TaskIsNot(AiTmi,"Pursue") and AiNPC_TaskIsNot(AiTmi,"Attack") and AiNPC_TaskIsNot(AiTmi,"Flee") then
+		if AiNPC_TaskIsNot(AiTmi,"First Aide") and AiNPC_TaskIsNot(AiTmi,"Pursue") and AiNPC_TaskIsNot(AiTmi,"Attack") and AiNPC_TaskIsNot(AiTmi,"Flee") and (NPC.LastEnemeySeen ~= nil and Distance_AnyEnemy < NPC:NPC_CheckPursueScore() )  then
 			if (EnemyIsSurvivor or EnemyIsZombie) then
 				TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
 			end
@@ -229,10 +231,10 @@ function AIManager(TaskMangerIn)
 	
 
 	
-	-- --------------------------------- --
-	-- 	Reload Gun
-	--  NPC:getDangerSeenCount() removed
-	-- --------------------------------- --
+		-- --------------------------------- --
+		-- 	Reload Gun
+		--  NPC:getDangerSeenCount() removed
+		-- --------------------------------- --
 			if(ASuperSurvivor:getNeedAmmo()) and (ASuperSurvivor:hasAmmoForPrevGun()) 
 			then
 				NPC:setNeedAmmo(false)
@@ -286,7 +288,6 @@ function AIManager(TaskMangerIn)
 			end
 		end	
 
-	
 	end
 
 	-- --------------------------------------- --
