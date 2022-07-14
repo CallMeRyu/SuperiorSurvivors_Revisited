@@ -453,6 +453,18 @@ end
 function DebugSpawnSoldier()
 	local ss = SuperSurvivorSoldierSpawn(getSpecificPlayer(0):getCurrentSquare())
 end
+function DebugSpawnSoldierMelee()
+	local ss = SuperSurvivorSoldierSpawnMelee(getSpecificPlayer(0):getCurrentSquare())
+end
+
+function DebugSpawnSoldierHostile()
+	local ss = SuperSurvivorSoldierSpawnHostile(getSpecificPlayer(0):getCurrentSquare())
+end
+function DebugSpawnSoldierMeleeHostile()
+	local ss = SuperSurvivorSoldierSpawnMeleeHostile(getSpecificPlayer(0):getCurrentSquare())
+end
+
+
 
 function OfferArmor(test,SS,item)
 	local player = SS:Get()
@@ -912,6 +924,11 @@ function SurvivorsFillWorldObjectContextMenu(player, context, worldobjects, test
 
 	if (DebugOptions) then 
 		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier"), nil, DebugSpawnSoldier)  -- debug spawn soldier
+		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier").." - Melee", nil, DebugSpawnSoldierMelee)  -- debug spawn soldier melee
+		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier").. " - Hostile", nil, DebugSpawnSoldierHostile)  -- debug spawn soldier
+		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier").." - Hostile Melee", nil, DebugSpawnSoldierMeleeHostile)  -- debug spawn soldier melee
+
+		
 		submenu:addOption(getText("ContextMenu_SD_Debug_PlayerStats"), nil, ISPlayerStatsUI.OnOpenPanel)  --use debug mod to change player name
 	end	
 	submenu:addSubMenu(MeleOrGunOption, subsubmenu);

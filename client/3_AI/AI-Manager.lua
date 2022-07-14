@@ -152,7 +152,7 @@ function AIManager(TaskMangerIn)
 		 ( 	-- Checks for NPC and main player is indoor/outdoor-like conditions
 			( (DistanceBetweenMainPlayer > 5) and    (    getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) ) -- Player Outside / NPC Inside
 		 or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) ) -- Player Inside / NPC Outside
-		 or ( (DistanceBetweenMainPlayer > GFollowDistance+5) ) -- For general purpose
+		 or ( (DistanceBetweenMainPlayer > 12) ) -- For general purpose
 		 ) 	
 		then
 			TaskMangerIn:clear()

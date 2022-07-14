@@ -17,7 +17,7 @@ function SuperSurvivorsOnTick()
 			SuperSurvivorSelectingArea = 0 
 		end
 		
-		if (SuperSurvivorMouseDownTicks > 15) then
+		if (SuperSurvivorMouseDownTicks > 15) then -- 10 acts instant, so a left click would reset the select area finalization.
 		
 		
 			
@@ -95,6 +95,51 @@ function SuperSurvivorSoldierSpawn(square)
 
 	return ASuperSurvivor
 end
+
+function SuperSurvivorSoldierSpawnMelee(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+
+	return ASuperSurvivor
+end
+
+
+function SuperSurvivorSoldierSpawnHostile(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(RangeWeapons[ZombRand(1,#RangeWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor:setHostile(true)
+
+	return ASuperSurvivor
+end
+
+function SuperSurvivorSoldierSpawnMeleeHostile(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor:setHostile(true)
+
+	return ASuperSurvivor
+end
+
+
+
 
 function SuperSurvivorRandomSpawn(square)
 	

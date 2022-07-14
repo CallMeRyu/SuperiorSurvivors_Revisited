@@ -2416,8 +2416,14 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		--  Companion: They should always be cautious of their surroundings
 		-- -------------------------------------- --
 		if ((self:getGroupRole() == "Companion") and (self:isEnemyInRange(self.LastEnemeySeen))) then
-			zRangeToPursue = 5
-			return zRangeToPursue
+			if getDistanceBetween(getSpecificPlayer(0),self.player) < 10 then
+				zRangeToPursue = 5
+				return zRangeToPursue
+			end
+			if getDistanceBetween(getSpecificPlayer(0),self.player) >= 10 then
+				zRangeToPursue = 0
+				return zRangeToPursue
+			end
 		end
 		
 		-- ------------------------ --
