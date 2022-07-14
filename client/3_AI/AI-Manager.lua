@@ -579,6 +579,7 @@ end
 			if(HisGroup) then 
 				local area = HisGroup:getGroupAreaCenterSquare("FoodStorageArea")
 				if(area) then ASuperSurvivor:walkTo(area) end
+				ASuperSurvivor:Speak("I'm going to get some food before I die of hunger.")
 			end
 			TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor, "Water", "Category", 1))
 			ASuperSurvivor:DebugSay("Not enter new building condition met! Condition number (to compare in ai manager file) 0004")
