@@ -25,3 +25,7 @@ Please provide bug reports / feedback on the steamgroup or discord!
 * NPCs should be able to flee from danger more properly
 
 * Rare bug: there is a chance follower job will still stand there trying to heal. HOWEVER, they will still run away from danger. Allow your follow distance to be big enough to allow the NPC to have enough personal space.
+
+## EXP 17 - U4
+* Fixed as close as possible on NPCs running away from danger. 
+* Bits of improvement towards movement management.

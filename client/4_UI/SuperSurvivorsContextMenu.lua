@@ -20,9 +20,12 @@ function SurvivorOrder(test,player,order,orderParam)
 			TaskMangerIn:AddToTop(LootCategoryTask:new(ASuperSurvivor,ASuperSurvivor:getBuilding(),orderParam,0)) 
 		
 		elseif(order == "Follow") then
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Companion")) 
+			ASuperSurvivor:setAIMode("Follow") 
+			ASuperSurvivor:setGroupRole("Follow") 
 			TaskMangerIn:clear()
-			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 
+			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Companion")) 
+			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
+			ASuperSurvivor:setAIMode("Follow")
 		
 		elseif(order == "Pile Corpses") then 
 			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Dustman")) 
@@ -228,7 +231,8 @@ function InviteToParty(test,player) -- When the player offers an NPC to join the
 		-- This will make sure the newly joined npc will default to follow, thus not run away when first join the group
 		local ASuperSurvivor = SSM:Get(player:getModData().ID)
 		ASuperSurvivor:setAIMode("Follow") 
-		
+		ASuperSurvivor:setGroupRole("Follow") 
+			
 		SS:setGroupRole("Companion") -- Newly added
 	else
 		SS:Speak(getSpeech("No"))
@@ -453,6 +457,18 @@ end
 function DebugSpawnSoldier()
 	local ss = SuperSurvivorSoldierSpawn(getSpecificPlayer(0):getCurrentSquare())
 end
+function DebugSpawnSoldierMelee()
+	local ss = SuperSurvivorSoldierSpawnMelee(getSpecificPlayer(0):getCurrentSquare())
+end
+
+function DebugSpawnSoldierHostile()
+	local ss = SuperSurvivorSoldierSpawnHostile(getSpecificPlayer(0):getCurrentSquare())
+end
+function DebugSpawnSoldierMeleeHostile()
+	local ss = SuperSurvivorSoldierSpawnMeleeHostile(getSpecificPlayer(0):getCurrentSquare())
+end
+
+
 
 function OfferArmor(test,SS,item)
 	local player = SS:Get()
@@ -858,7 +874,7 @@ function SurvivorsFillWorldObjectContextMenu(player, context, worldobjects, test
 		SuperSurvivorsAreaSelect(submenu, "WeaponStorageArea", getText("ContextMenu_SD_WeaponStorageArea"))		
 		SuperSurvivorsAreaSelect(submenu, "ToolStorageArea", getText("ContextMenu_SD_ToolStorageArea"))		
 		SuperSurvivorsAreaSelect(submenu, "MedicalStorageArea", getText("ContextMenu_SD_MedicalStorageArea"))
-		SuperSurvivorsAreaSelect(submenu, "FarmingArea", getText("ContextMenu_SD_FarmingArea"))
+	--	SuperSurvivorsAreaSelect(submenu, "FarmingArea", getText("ContextMenu_SD_FarmingArea"))		-- Farming does not work
 		SuperSurvivorsAreaSelect(submenu, "ForageArea", getText("ContextMenu_SD_ForageArea"))
 		SuperSurvivorsAreaSelect(submenu, "GuardArea", getText("ContextMenu_SD_GuardArea"))
 		
@@ -912,6 +928,11 @@ function SurvivorsFillWorldObjectContextMenu(player, context, worldobjects, test
 
 	if (DebugOptions) then 
 		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier"), nil, DebugSpawnSoldier)  -- debug spawn soldier
+		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier").." - Melee", nil, DebugSpawnSoldierMelee)  -- debug spawn soldier melee
+		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier").. " - Hostile", nil, DebugSpawnSoldierHostile)  -- debug spawn soldier
+		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier").." - Hostile Melee", nil, DebugSpawnSoldierMeleeHostile)  -- debug spawn soldier melee
+
+		
 		submenu:addOption(getText("ContextMenu_SD_Debug_PlayerStats"), nil, ISPlayerStatsUI.OnOpenPanel)  --use debug mod to change player name
 	end	
 	submenu:addSubMenu(MeleOrGunOption, subsubmenu);
