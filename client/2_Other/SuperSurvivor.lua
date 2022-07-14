@@ -2060,11 +2060,13 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 	--	dangerRange = self.AttackRange 
 	--end
 	
-	if (self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard") then 
+	if (self:getGroupRole() == "Companion") then 
 		atLeastThisClose = 5
 		closestSoFar = 10
 		closestSurvivorSoFar = 10
 		dangerRange = 3
+		self.dangerSeenCount = 0
+		self.EnemiesOnMe = 0
 	end	
 
 	

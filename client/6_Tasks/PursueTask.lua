@@ -101,7 +101,12 @@ function PursueTask:update()
 			self.parent.TargetBuilding = self.TargetSS:getBuilding() 
 		end
 		self.parent:walkToDirect(self.Target:getCurrentSquare())
-		self.parent:setRunning(true)
+		
+		if theDistance <= 1 then
+			self.parent:setRunning(false)
+		elseif theDistance > 1 then
+			self.parent:setRunning(true)
+		end
 
 	end
 	
