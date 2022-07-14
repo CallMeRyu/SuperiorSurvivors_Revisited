@@ -27,7 +27,6 @@ function AttackTask:isComplete()
 		if theDistance < 1 then
 			self.parent:StopWalk()
 		end
-
 		return true 
 	end
 end

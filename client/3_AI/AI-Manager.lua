@@ -159,12 +159,13 @@ function AIManager(TaskMangerIn)
 			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
 			NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
 		end
-
+		
 	end
-
-
+		
+		
+		
 	if (AiNPC_Job_Is(NPC,"Companion") and (DistanceBetweenMainPlayer <= GFollowDistance)) then
-
+	
 		-- ------------------------- --   				 
 		-- reminder: NPC:NPCTask_DoAttack() already 
 		-- checks 'if task ~= attack, then do attack' in it
@@ -416,7 +417,7 @@ function AIManager(TaskMangerIn)
 	-- should be able to run away. maybe a dice roll for the future?
 	-- ----------------------------- --
 	if not (AiNPC_Job_Is(NPC,"Companion"))  then
-		if (EnemyIsSurvivor) and (TaskMangerIn:getCurrentTask() == "Threaten") and (Distance_AnyEnemy > 10) then
+		if (EnemyIsSurvivor) and ((Task_Is("Threaten")) and (Distance_AnyEnemy > 10)) and (Task_Is_Not("Flee")) then
 			TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
 			TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor,nil))	
 			TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor))
@@ -469,26 +470,63 @@ function AIManager(TaskMangerIn)
 	end
 
 	-- ----------------------------- --
-	-- flee Task
+	-- flee from too many zombies
 	-- ----------------------------- --
 	if not (AiNPC_Job_Is(NPC,"Companion"))  then -- To ABSOLUTELY prevent these two jobs from listening to this task.
-		if (TaskMangerIn:getCurrentTask() ~= "Flee")
-			and (TaskMangerIn:getCurrentTask() ~= "Surender") 
-			and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
-			and (
-				( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (not NPC:usingGun()) ) 	-- Melee
-				or ( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (NPC:usingGun()) ) 	-- Gun general
-				or ( (NPC.EnemiesOnMe > 0) and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) )
-				or ( IHaveInjury and NPC.dangerSeenCount > 0 )
-				or ( NPC.dangerSeenCount >= 5)
-				)
-			then
-				TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
-				ASuperSurvivor:DebugSay("NOT-COMPANION FLEEINGTASK_0001")
+		if (TaskMangerIn:getCurrentTask() ~= "Flee") 
+		and (TaskMangerIn:getCurrentTask() ~= "Surender") 
+		and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
+		and 
+		(
+		   ( ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and ( (NPC:getDangerSeenCount() > 1 and (Distance_AnyEnemy  < 3) and (EnemyIsZombie)) 	or 	((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 2) and (EnemyIsZombie)) ) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
+		or ( ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and ( (NPC:getDangerSeenCount() > 1 and (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) or 	( (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) ) )  							  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
+		 -- To check for EnemyIsZombie, which will look there and go 'OH GOD, I can't fight THIS many zombies' 
+		 -- Update: I may of already fixed this issue on the lines above... 
+		 -- now that I understand that getDangerSeenCount means if something is like SUPER close to the npc, you can simulate 
+		 -- the idea of 'there's an enemy basically on me and I see more in the distance, I don't think this is worth fighting'
+		or (
+			    (NPC.EnemiesOnMe > 3 and NPC:getDangerSeenCount() > 3 and NPC:getSeenCount() > 3)
+			   
+			 or (not ASuperSurvivor:hasWeapon() and (ASuperSurvivor:getDangerSeenCount() > 0) )
+			 
+			 or (IHaveInjury and ASuperSurvivor:getDangerSeenCount() > 0) 
+			 
+			 or (EnemyIsSurvivorHasGun and ASuperSurvivor:hasGun() == false)
+			 
+			 or (ASuperSurvivor:isTooScaredToFight())
+			 
+			)
+		)
+		then
+		 if(TaskMangerIn:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
+		 	TaskMangerIn:getTask():ForceFinish()
+		 end
+		 	ASuperSurvivor:getTaskManager():clear()
+		 	TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
+		 
+		 	if not (AiNPC_Job_Is(NPC,"Guard")) and not (AiNPC_Job_Is(NPC,"Doctor")) then 
+		 		TaskMangerIn:AddToTop(FleeFromHereTask:new(ASuperSurvivor,ASuperSurvivor:Get():getCurrentSquare()))
+		 		ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02_REG")
+		 	else
+		 		ASuperSurvivor:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02_ALT")
+		 	end
 		end
 	end
 	
-
+	if (TaskMangerIn:getCurrentTask() ~= "Flee")
+	and (TaskMangerIn:getCurrentTask() ~= "Surender") 
+	and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
+	and (
+		   ( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (not NPC:usingGun()) ) 	-- Melee
+		or ( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (NPC:usingGun()) ) 	-- Gun general
+		or ( (NPC.EnemiesOnMe > 0) and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) )
+		or ( IHaveInjury and NPC.dangerSeenCount > 0 )
+		or ( NPC.dangerSeenCount >= 5)
+		)
+	then
+		TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
+		ASuperSurvivor:DebugSay("Companion FLEEINGTASK_0001")
+end
 	
 	-- ----------------------------- --
 	-- If NPC is Starving or drhydrating, force leave group

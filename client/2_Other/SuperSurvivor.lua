@@ -2097,21 +2097,16 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 							self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						end
 
-						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) then
+						if(self:getGroupRole() == "Companion") and (tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
 							self.dangerSeenCount = self.dangerSeenCount + 1
 							self:DebugSay("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
 						end
 
-						if((self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard")) and (tempdistance < dangerRange+5) and (instanceof(character,"IsoHuman")) and (character:getZ() == self.player:getZ()) then
-							self.dangerSeenCount = self.dangerSeenCount + 1
-							self:DebugSay("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
+						if(not CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
+							self.seenCount = self.seenCount + 1 
 						end
 
-						--if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
-						--	self.seenCount = self.seenCount + 1 
-						--end
-
-						if( ( ((not CanSee) or (CanSee)) or (tempdistance < 3.5)) and (tempdistance < closestSoFar) ) then
+						if( (not CanSee)  and (tempdistance < closestSoFar) ) then
 							closestSoFar = tempdistance ;
 							self.player:getModData().seenZombie = true;
 							closestNumber = i;							
@@ -2917,6 +2912,7 @@ function SuperSurvivor:update()
 			self:Companion_DoSixthSenseScan() 
 		end
 	end
+
 
 	
 	

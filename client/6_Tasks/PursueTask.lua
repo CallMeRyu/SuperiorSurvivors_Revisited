@@ -78,6 +78,11 @@ function PursueTask:update()
 	if(self.parent.player:CanSee(self.Target) == false) then
 
 		local distancetoLastSpotSeen = getDistanceBetween(self.LastSquareSeen,self.parent.player)
+
+		if distancetoLastSpotSeen > 1.5 then
+			self.parent:setRunning(true)
+		end
+
 		if(distancetoLastSpotSeen > 2.5) then
 
 
