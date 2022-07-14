@@ -29,3 +29,12 @@ Please provide bug reports / feedback on the steamgroup or discord!
 ## EXP 17 - U4
 * Fixed as close as possible on NPCs running away from danger. 
 * Bits of improvement towards movement management.
+
+## EXP 17 - U5
+* The player will now post a message above their head every 1 minute, if they are trying to use an unsupported mod (The mod name will display too)
+* removed farming order since it no longer works (I genuinely tried making it work too)
+* added speech text to npcs when they're heading away to get food/water
+* Removed some weapons that always lead the NPC to be frozen when used
+* Follower job Improvements
+
+
