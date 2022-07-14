@@ -244,7 +244,7 @@ function AIManager(TaskMangerIn)
 		-- 	Ready Weapon
 		--  NPC:getDangerSeenCount() removed
 		-- --------------------------------- --
-			if ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and (ASuperSurvivor:hasAmmoForPrevGun()) and NPC:usingGun()
+			if ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and (ASuperSurvivor:hasAmmoForPrevGun()) and NPC:usingGun() and (ASuperSurvivor:getNeedAmmo()) 
 			then
 				NPC:ReadyGun(weapon)
 				if (NPC:isSpeaking() == false) then NPC:DebugSay("Companion READY_Gun_0001") end
