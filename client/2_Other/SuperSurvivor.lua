@@ -2912,7 +2912,7 @@ function SuperSurvivor:update()
 	self:DoVision()
 	
 	-- I know this is 'not companion' but the function works almost too well not to use.
-	if (Option_Perception_Bonus == 2) and (ZombRand(4)==0) then	-- The in game option from supersurvivorsmod.lua and to keep it from scanning infinitely
+	if (Option_Perception_Bonus == 2) then	-- The in game option from supersurvivorsmod.lua and to keep it from scanning infinitely
 		if (not (self:getGroupRole() == "Companion")) then 		-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
 			self:Companion_DoSixthSenseScan() 
 		end
