@@ -182,7 +182,7 @@ function AIManager(TaskMangerIn)
 		-- ------------ --
 		-- Pursue
 		-- ------------ --
-		if AiNPC_TaskIsNot(AiTmi,"First Aide") and AiNPC_TaskIsNot(AiTmi,"Pursue") and AiNPC_TaskIsNot(AiTmi,"Attack") then
+		if AiNPC_TaskIsNot(AiTmi,"First Aide") and AiNPC_TaskIsNot(AiTmi,"Pursue") and AiNPC_TaskIsNot(AiTmi,"Attack") and AiNPC_TaskIsNot(AiTmi,"Flee") then
 			if (EnemyIsSurvivor or EnemyIsZombie) then
 				TaskMangerIn:AddToTop(PursueTask:new(ASuperSurvivor,ASuperSurvivor.LastEnemeySeen))
 			end
@@ -230,31 +230,26 @@ function AIManager(TaskMangerIn)
 
 	
 	-- --------------------------------- --
-	-- 	Reload Gun	    			
+	-- 	Reload Gun
 	--  NPC:getDangerSeenCount() removed
 	-- --------------------------------- --
-			if(ASuperSurvivor:getNeedAmmo())
-			and (ASuperSurvivor:hasAmmoForPrevGun()) 
+			if(ASuperSurvivor:getNeedAmmo()) and (ASuperSurvivor:hasAmmoForPrevGun()) 
 			then
 				NPC:setNeedAmmo(false)
 				NPC:reEquipGun()
 				NPC:DebugSay("Companion RELOAD_Gun_0001")
 			end
-		
+
 		-- --------------------------------- --
-		-- 	Ready Weapon	    			
+		-- 	Ready Weapon
 		--  NPC:getDangerSeenCount() removed
 		-- --------------------------------- --
-			if ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon)))
-		--	and (ASuperSurvivor:getNeedAmmo() == false) 
-			and ASuperSurvivor:usingGun() 
-			
-		--	and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon)))
+			if ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and (ASuperSurvivor:hasAmmoForPrevGun()) and NPC:usingGun()
 			then
-				ASuperSurvivor:ReadyGun(weapon)		
+				NPC:ReadyGun(weapon)
 				if (NPC:isSpeaking() == false) then NPC:DebugSay("Companion READY_Gun_0001") end
-			end	
-		
+			end
+
 		-- ----------------------------- --
 		-- 	Equip Weapon                 -- 
 		-- ----------------------------- --
@@ -262,21 +257,24 @@ function AIManager(TaskMangerIn)
 				TaskMangerIn:AddToTop(EquipWeaponTask:new(ASuperSurvivor))
 				ASuperSurvivor:DebugSay("Companion EQUIP_Gun_0001")
 		end
-		
+
 		-- Careful setting up Flee to heal and 'healing', they will conflict very easily.
 		-- -----------   --
 		-- Flee to heal  -- 
 		-- -----------   --
-		if      (TaskMangerIn:getCurrentTask() ~= "Flee")
+		if (TaskMangerIn:getCurrentTask() ~= "Flee")
 			and (
-				   (NPC.EnemiesOnMe > 0 and NPC.dangerSeenCount > 2) 
-				or (IHaveInjury and NPC.dangerSeenCount > 0))
+				   ( (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (not NPC:usingGun()) ) 	-- Melee
+				or ( (NPC.EnemiesOnMe > 0) and NPC.dangerSeenCount > 1 and NPC.seenCount > 2 )	-- General
+				or ( (NPC.EnemiesOnMe > 0) and (NPC:hasWeapon()) and (NPC:usingGun()) ) 	-- Gun general
 				or ( (NPC.EnemiesOnMe > 0) and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) )
+				or ( IHaveInjury and NPC.dangerSeenCount > 0 )
+				)
 			then
 				TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
 				ASuperSurvivor:DebugSay("Companion FLEEINGTASK_0001")
 		end
-		
+
 		-- ----------- --
 		-- Healing	   --
 		-- ----------- --
