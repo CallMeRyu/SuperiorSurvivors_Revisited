@@ -159,13 +159,12 @@ function AIManager(TaskMangerIn)
 			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
 			NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
 		end
-		
+
 	end
-		
-		
-		
+
+
 	if (AiNPC_Job_Is(NPC,"Companion") and (DistanceBetweenMainPlayer <= GFollowDistance)) then
-	
+
 		-- ------------------------- --   				 
 		-- reminder: NPC:NPCTask_DoAttack() already 
 		-- checks 'if task ~= attack, then do attack' in it
