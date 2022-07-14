@@ -2046,11 +2046,11 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 
 	local atLeastThisClose = 3;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 3
-	local closestSurvivorSoFar = 3
+	local closestSoFar = 4
+	local closestSurvivorSoFar = 4
 --	self.seenCount = 0
---	self.dangerSeenCount = 0
---	self.EnemiesOnMe = 0
+	self.dangerSeenCount = 0
+	self.EnemiesOnMe = 0
 --	self.LastEnemeySeen = nil
 --	self.LastSurvivorSeen = nil
 
@@ -2061,12 +2061,10 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 	--end
 	
 	if (self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard") then 
-		atLeastThisClose = 10
+		atLeastThisClose = 5
 		closestSoFar = 10
 		closestSurvivorSoFar = 10
 		dangerRange = 3
-		self.dangerSeenCount = 0
-		self.EnemiesOnMe = 0
 	end	
 
 	
@@ -2096,16 +2094,21 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 						if(tempdistance < 2) and (self:usingGun()) and (character:getZ() == self.player:getZ()) then 
 							self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						end
-										
+
 						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) then
 							self.dangerSeenCount = self.dangerSeenCount + 1
 							self:DebugSay("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
-							--else
-							--self:DebugSay("self.dangerSeenCount IS NOT WORKING, BUT HERE'S THE AMOUNT ANYWAYS = "..tostring(self.dangerSeenCount))
 						end
+
+						if((self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard")) and (tempdistance < dangerRange+5) and (instanceof(character,"IsoHuman")) and (character:getZ() == self.player:getZ()) then
+							self.dangerSeenCount = self.dangerSeenCount + 1
+							self:DebugSay("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
+						end
+
 						--if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
 						--	self.seenCount = self.seenCount + 1 
 						--end
+
 						if( ( ((not CanSee) or (CanSee)) or (tempdistance < 3.5)) and (tempdistance < closestSoFar) ) then
 							closestSoFar = tempdistance ;
 							self.player:getModData().seenZombie = true;

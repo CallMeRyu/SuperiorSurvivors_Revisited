@@ -152,7 +152,7 @@ function AIManager(TaskMangerIn)
 		 ( 	-- Checks for NPC and main player is indoor/outdoor-like conditions
 			( (DistanceBetweenMainPlayer > 5) and    (    getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside() ) ) -- Player Outside / NPC Inside
 		 or ( (DistanceBetweenMainPlayer > 5) and    (not getSpecificPlayer(0):isOutside() and     NPC:Get():isOutside() ) ) -- Player Inside / NPC Outside
-		 or ( (DistanceBetweenMainPlayer > GFollowDistance+3) ) -- For general purpose
+		 or ( (DistanceBetweenMainPlayer > GFollowDistance+5) ) -- For general purpose
 		 ) 	
 		then
 			TaskMangerIn:clear()
@@ -198,7 +198,7 @@ function AIManager(TaskMangerIn)
 					(TaskMangerIn:getCurrentTask() ~= "Attack") 
 				and (TaskMangerIn:getCurrentTask() ~= "Threaten") 
 				and (TaskMangerIn:getCurrentTask() ~= "First Aide") 
-			--	and (Task_Is_Not("Flee"))
+				and (Task_Is_Not("Flee"))
 				
 			---	and (ASuperSurvivor:isInSameRoom(ASuperSurvivor.LastEnemeySeen)) 
 				) 
@@ -264,11 +264,11 @@ function AIManager(TaskMangerIn)
 		-- -----------   --
 		if (TaskMangerIn:getCurrentTask() ~= "Flee")
 			and (
-				   ( (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (not NPC:usingGun()) ) 	-- Melee
-				or ( (NPC.EnemiesOnMe > 0) and NPC.dangerSeenCount > 1 and NPC.seenCount > 2 )	-- General
-				or ( (NPC.EnemiesOnMe > 0) and (NPC:hasWeapon()) and (NPC:usingGun()) ) 	-- Gun general
+				   ( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (not NPC:usingGun()) ) 	-- Melee
+				or ( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (NPC:usingGun()) ) 	-- Gun general
 				or ( (NPC.EnemiesOnMe > 0) and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) )
 				or ( IHaveInjury and NPC.dangerSeenCount > 0 )
+				or ( NPC.dangerSeenCount >= 5)
 				)
 			then
 				TaskMangerIn:AddToTop(FleeTask:new(ASuperSurvivor))
