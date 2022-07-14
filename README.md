@@ -38,3 +38,4 @@ Please provide bug reports / feedback on the steamgroup or discord!
 * Follower job Improvements
 
 
+Do not fret, I am aware of the post in the steam group about farming. I do not have the time to add that code right now but I will look into it.
