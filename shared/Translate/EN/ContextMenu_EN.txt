@@ -9,7 +9,7 @@
 ContextMenu_EN = {
 
 
-    ContextMenu_Title  = "Survivors Version 0.17",
+    ContextMenu_Title  = "Survivors Version",
 
    
     --[[Jobs]]--

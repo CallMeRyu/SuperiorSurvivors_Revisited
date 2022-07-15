@@ -413,7 +413,7 @@ if index then
 		local spacing2x = 20
 		local spacing4x = 30
 	
-		self:addPage(getText("ContextMenu_Title"))
+		self:addPage(getText("ContextMenu_Title").." 0.17.2") -- Be sure to add a space before the numbers
 		self.addY = 0
 		
 		local label
