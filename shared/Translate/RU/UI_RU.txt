@@ -1,6 +1,6 @@
 Challenge_RU = {
-	Challenge_PrisonEscape_name = "11. ����� �� T�����",
-    Challenge_PrisonEscape_desc = "������ ����� ���������� ������ ������� ���� ������������ ��-�� �������� ������� ����. � ���������, �� ���� ������ ����� � ���������� ������ ����� ��� ���������. ����� ��, �������, ���������� �����, ������ ������ ���� ���. ���� �� �� ������� ���������� ������ ������, ����� ���� ������� ������. ",
-    Challenge_PrisonEscapeInfoBox = "����� ������. ������ ��� �������."
-	Challenge_PrisonKeyRing = "'s ������"
+	Challenge_PrisonEscape_name = "11.          T     ",
+    Challenge_PrisonEscape_desc = "                                                           -                        .            ,                                                             .         ,        ,                 ,                       .                                            ,                          . ",
+    Challenge_PrisonEscapeInfoBox = "            .                   ."
+	Challenge_PrisonKeyRing = "'s       "
 }
