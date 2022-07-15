@@ -1,40 +1,104 @@
---[[
-    RWORKED BY - Akstis
-    I slightly improved translations categories so everyone who wants to take part in translations
-    can write their own and it wont be a mess.
-
-    I recomend to stay close to syntax I used
-]]--
-
 ContextMenu_RU = {
 
+ContextMenu_Title  = "��������",
+ContextMenu_SD_AidCheck = "����������� / ��������������� ������",
+ContextMenu_SD_AidCheckDesc = "��������� � ����� ��������� � ��������� ����������� ������ ���, ���� ��� ���������, ������� ����� ���� ��������������",
 
-    ContextMenu_Title  = "Survivors ������: 0.17",
+ContextMenu_SD_AddClothing = " ������"
+ContextMenu_SD_RemoveClothing = "����� ������"
+ContextMenu_UndressingClothes = "*����������*"
+ContextMenu_SD_SetName = "�������� ���"
+ContextMenu_SD_Debug_PlayerStats = "�������: ��������� �������� �� ������"
 
+ContextMenu_Job_Leader = "�����",
+ContextMenu_Job_Companion = "���������",
+ContextMenu_Job_Dustman = "�������",
+ContextMenu_Job_Guard = "��������",
+ContextMenu_Job_Sheriff = "�������",
+ContextMenu_Job_Junkman = "��������",
+ContextMenu_Job_Farmer = "������",
+ContextMenu_Job_Timberjack = "��������",
+ContextMenu_Job_Hauler = "����������������",
+ContextMenu_Job_Worker = "�������",
+ContextMenu_Job_Partner = "�������",
+ContextMenu_Job_Doctor = "������", 
 
-    --[[Jobs]]--
-    ContextMenu_Job_Leader = "�����",
-    ContextMenu_Job_Companion = "���������",
-    ContextMenu_Job_Dustman = "�������",
-    ContextMenu_Job_Guard = "��������",
-    ContextMenu_Job_Sheriff = "�����",
-    ContextMenu_Job_Junkman = "��������",
-    ContextMenu_Job_Farmer = "������",
-    ContextMenu_Job_Timberjack = "��������",
-    ContextMenu_Job_Hauler = "���������",
-    ContextMenu_Job_Worker = "�������",
-    ContextMenu_Job_Partner = "�������",
-    ContextMenu_Job_Doctor = "������", 
-    --[[END Jobs]]--
+	ContextMenu_SD_OrderAll = "��������� ����",
+	ContextMenu_SShotkey1 = "�������� ������� ������� #1",
+	ContextMenu_SShotkey2 = "�������� ������� ������� #2",
+	ContextMenu_SShotkey3 = "�������� ������� ������� #3",
+	ContextMenu_SShotkey4 = "�������� ������� ������� #4",
+	ContextMenu_SShotkeyDesc = "�������� ��������, ������� ����������, ����� �� ������� �� ��� ������� �������. ������ ���� ��������� �� ���� �����, ��� ��������� � ������� ��������. ����� ��� �� ��������� ��������� ������ �� ���, ��� ������ ���. (������� �� "T").",
+	
+	ContextMenu_speech_NoForagingHere = "����� ������ ���!",
+	
+	ContextMenu_speech_Sick1 = "� ���� ����������� �����������",
+    ContextMenu_speech_Sick2 = "������ � ������� ������",
+	
+	ContextMenu_speech_VSick1 = "��� ����� ��� ����...",
+    ContextMenu_speech_VSick2 = "� ��������, ��� ��� ����������� ��������� ��� ����",
+	
+	ContextMenu_speech_SSick1 = "���� ������ �������",
+    ContextMenu_speech_SSick2 = "� ������ ����� ������� ����� �����!",
+		
+	ContextMenu_SD_PerkLeveledUp_After = " �������!*"
+	ContextMenu_SD_PerkLeveledUp_Before = "*������� ������"
+	ContextMenu_speech_Foraging = "*�������...*"
+	ContextMenu_speech_FarmingActionPlanting = "*���� ������...*"
+	ContextMenu_speech_FarmingActionHarvesting = "*������� ������...*"
+	ContextMenu_speech_FarmingActionWatering = "*�������...*"
+	ContextMenu_speech_NoFarmingArea = "� ���� ����� �� ��������� ���������� �����������"
+	 ContextMenu_speech_IDontKnowHowFarming = "� �� ���� ��� ���������� �����������",
+	ContextMenu_SOption_SurvivorBravery = "��������� ��������",
+	ContextMenu_SOption_SurvivorBraveryDesc = "���������� ����������� ����, ������ �� �������� ���������, � �� �������� ���.",
+	ContextMenu_SD_Cowardly = "���������",
+	ContextMenu_SD_Brave = "�������",
+	ContextMenu_SD_VeryBrave = "����� �������",
+	
+	
+		ContextMenu_Debug_Character_Swap = "�������: ������ ��������",
+		ContextMenu_Debug_Infect&Murder_Character = "�������: �������� ��������� � ��������",
+		ContextMenu_Debug_Character_Output = "�������: ����� ��������",
+		ContextMenu_Debug_Unstuck = "�������: �����������",
+		ContextMenu_Debug_Spawn_Soldier = "�������: ����� ������",
+		
+		
+		
+	ContextMenu_OutOfAmmo1 = "��� ��������!",
+	ContextMenu_OutOfAmmo2 = "� ���� ��� ��������!",
+	ContextMenu_OutOfAmmo3 = "� ������!",
+	ContextMenu_OutOfAmmo4 = "������ ��� ��������!",
+	
+	ContextMenu_OrderDesc_Farming = "�������� ����� ���������� ������ � ���������� ���������� ��� ����� ���������. �� �������� ��������� ������ �� ����� � ����.",
+	ContextMenu_OrderDesc_Barricade = "�������� ����� ������������ ���� ������ ������, ��� �� ����������.",
+	ContextMenu_OrderDesc_Chop_Wood = "���� ����� ���� � ����, �������� ����� ������ ������� � ���� �������.",
+	ContextMenu_OrderDesc_Explore = "�������� ����� ������ � ���� ������� � ����� ������� ����� ������, � �������� �� ����������.",
+	ContextMenu_OrderDesc_Follow = "�������� ����� ��������� �� ����, �������� ��������� ����� ���� � ������ ��������� ������, ���� ��� ����� ������ ������ ������������.",
+	ContextMenu_OrderDesc_Forage = "�������� ����� ���������� ��������������� � ���� �������. ����������� '�������� ��' ����� �������� ��, ��� ������ ��������.",
+	ContextMenu_OrderDesc_Guard = "�������� ����� ��������� ������ ��� �������, � �����, �������� �� ���� ��������� ��������������.",
+	ContextMenu_OrderDesc_Patrol = "�������� ����� ������������� ���������� �� ����� ����� �� ������ ��������������, ��� ��� ����� ������.",
+	ContextMenu_OrderDesc_Stand_Ground = "�������� ����� ������ � ��� �����, ��� �� ���������� � ������ ������ � �� ������ ������� � ���� �������. ������ ��������� ����, ��� �������� �� ������������ ����������, �� �� ������ ������� � �������� �����.",
+	ContextMenu_OrderDesc_Loot_Room = "���������� ������� �� ������� ���������",
+	ContextMenu_OrderDesc_Lock_Doors = "��������� ����� � ���� ������",
+	ContextMenu_OrderDesc_Unlock_Doors = "��������� ����� � ���� ������",
+	ContextMenu_OrderDesc_Doctor = "�������� ����� ������ ���, ��� ������� � ����������� ������ ����������. �� ������ ����� ��� ������� 3 ������� ������ ������.",
+	ContextMenu_OrderDesc_Go_Find_Food = "�������� ����� ������ ��� ����������.",
+	ContextMenu_OrderDesc_Go_Find_Weapon = "�������� ����� ������ ������ ����������.",
+	ContextMenu_OrderDesc_Go_Find_Water = "�������� ����� ������ ���� ����������.",
+	ContextMenu_OrderDesc_Clean_Up_Inventory = "�������� �������� � ��� � ����� ������� ���� ���������, ��� ��� �� �����. ��������: ������� � ���� ����, ������ �������, ������ ������, � �.�.",
+	ContextMenu_OrderDesc_Hold_Still = "�� ������� �����, �������� �� ������ ��������� � �� ����� ������ ������. ������, �� ������ ������� ������ ������ ��� �� ������������� � ����������� �������. �� ����� ��� ������, ���� �� ��� �� ��������.",
+	ContextMenu_OrderDesc_Gather_Wood = "�������� ����� �������� ������ � ����� ���������� � ������ ������ �� � �����, ��� �� ����������, ���� �� ���������� ������.",
+	ContextMenu_OrderDesc_Dismiss = "��������� ��������� �������� ������.",
+	ContextMenu_OrderDesc_Relax = "�������� ����� �������� �������� �� ���.",
+	ContextMenu_OrderDesc_Pile_Corpses = "�������� ����� �������� ����� � ������������ �� � �� �����, ��� �� ���������� � ������ ������.",
+	ContextMenu_OrderDesc_Return_To_Base = "�������� �������� �� ����.",
+	ContextMenu_OrderDesc_Stop = "�������� ���������� ������ ������� ������.",
 
-
-    --[[Orders]]--
-    ContextMenu_SD_OrderAll = "��������� ����",
 
 	ContextMenu_OrderDisplayName_Farming = "���������� �����������",
 	ContextMenu_OrderDisplayName_Barricade = "���������������",
 	ContextMenu_OrderDisplayName_Chop_Wood = "������ �������",
-	ContextMenu_OrderDisplayName_Explore = "�����������",
+	ContextMenu_OrderDisplayName_Explore = "������",
 	ContextMenu_OrderDisplayName_Follow = "���������",
 	ContextMenu_OrderDisplayName_Forage = "��������",
 	ContextMenu_OrderDisplayName_Guard = "��������",
@@ -42,8 +106,8 @@ ContextMenu_RU = {
 	ContextMenu_OrderDisplayName_Stand_Ground = "������",
 	ContextMenu_OrderDisplayName_Loot_Room = "���������� �������",
 	ContextMenu_OrderDisplayName_Lock_Doors = "������� �����",
-	ContextMenu_OrderDisplayName_Unlock_Doors = "������� �����",
-	ContextMenu_OrderDisplayName_Doctor = "������� ������",
+	ContextMenu_OrderDisplayName_Unlock_Doors = "�������������� �����",
+	ContextMenu_OrderDisplayName_Doctor = "������",
 	ContextMenu_OrderDisplayName_Go_Find_Food = "������ ���",
 	ContextMenu_OrderDisplayName_Go_Find_Weapon = "������ ������",
 	ContextMenu_OrderDisplayName_Go_Find_Water =  "������ ����",
@@ -56,35 +120,6 @@ ContextMenu_RU = {
 	ContextMenu_OrderDisplayName_Return_To_Base = "��������� �� ����",
 	ContextMenu_OrderDisplayName_Stop = "�������� ��������",
 	
-    
-    ContextMenu_OrderDesc_Farming = "�������� ����� ���������� ������ � ���������� ���������� ��� ����� ���������. �� �������� ��������� ������ �� ����� � ����.",
-	ContextMenu_OrderDesc_Barricade = "�������� ����� ������������ ���� ������ ������, ��� �� ����������.",
-	ContextMenu_OrderDesc_Chop_Wood = "���� � ��������� ���� �����, �� �� ����� ������ ������� � ���� �������.",
-	ContextMenu_OrderDesc_Explore = "�������� ����� ����������� ��� ������� � ����� ������� ����� ������, � �������� �� ����������.",
-	ContextMenu_OrderDesc_Follow = "�������� ����� ��������� �� ����, �������� ��������� ����� ���� � ������ ��������� ������, ���� ��� ����� ������ ������ ������������.",
-	ContextMenu_OrderDesc_Forage = "�������� ����� ���������� ��������������� � ���� �������. ����������� '�������� ������' ����� �������� ��, ��� ������ ��������.",
-	ContextMenu_OrderDesc_Guard = "�������� ����� ��������� ������ ��� �������, � �����, �������� �� ���� ��������� ��������������.",
-	ContextMenu_OrderDesc_Patrol = "�������� ����� ������������� ���������� �� ����� ����� �� ������ ��������������, ��� ��� ����� ������.",
-	ContextMenu_OrderDesc_Stand_Ground = "�������� ����� ������ � ��� �����, ��� �� ���������� � ������ ������ � �� ������ ������� � ���� �������. ������ ��������� ����, ��� �������� �� ������������ ����������, �� �� ������ ������� � �������� �����.",
-	ContextMenu_OrderDesc_Loot_Room = "�������� ����� ���������� ������� �� ������� ���������",
-	ContextMenu_OrderDesc_Lock_Doors = "�������� ����� ��������� ����� � ���� ������",
-	ContextMenu_OrderDesc_Unlock_Doors = "�������� ����� ��������� ����� � ���� ������",
-	ContextMenu_OrderDesc_Doctor = "�������� ����� ������ ���, ��� ��������� � ����������� ������ ����������. �� ������ ����� ��� ������� 3 ������� ������ ������.",
-	ContextMenu_OrderDesc_Go_Find_Food = "�������� ����� ������ ��� ����������.",
-	ContextMenu_OrderDesc_Go_Find_Weapon = "�������� ����� ������ ������ ����������.",
-	ContextMenu_OrderDesc_Go_Find_Water = "�������� ����� ������ ���� ����������.",
-	ContextMenu_OrderDesc_Clean_Up_Inventory = "�������� �������� � ��� � ������� ���, ��� ��� �� �����. ��������: ������� � ���� ����, ������ �������, ������ ������, � �.�.",
-	ContextMenu_OrderDesc_Hold_Still = "�� ������� �����, �������� �� ������ ��������� � �� ����� ������ ������, � �� ������� ������� ��� ������ ������. �� ����� ������ �� �����, ���� ������� �� ����������.",
-	ContextMenu_OrderDesc_Gather_Wood = "�������� ����� �������� ������ � ����� ���������� � ������ ������ �� � �����, ��� �� ����������, ���� �� ���������� ������.",
-	ContextMenu_OrderDesc_Dismiss = "��������� ��������� �������� ������.",
-	ContextMenu_OrderDesc_Relax = "�������� ����� �������� �������� �� ���.",
-	ContextMenu_OrderDesc_Pile_Corpses = "�������� ����� �������� ����� � ������������ �� � �� �����, ��� �� ���������� � ������ ������.",
-	ContextMenu_OrderDesc_Return_To_Base = "�������� �������� �� ����.",
-	ContextMenu_OrderDesc_Stop = "�������� ���������� ������ ������� ������.",
-     --[[END Orders]]--
-
-
-    --[[NPC infomation]]--
 	ContextMenu_SD_Level = "�������",
 	ContextMenu_SD_Wife = "����",
 	ContextMenu_SD_Husband = "���",
@@ -94,8 +129,8 @@ ContextMenu_RU = {
 	ContextMenu_SD_CurrentTask = "������� ������",
 	ContextMenu_SD_AmmoCount = "���-�� ��������",
 	ContextMenu_SD_AmmoType = "��� ��������",
-	ContextMenu_SD_AmmoBoxType = "��� ������� � ���������",
-
+	ContextMenu_SD_AmmoBoxType = "��� ������� ��������",
+	
 	ContextMenu_SD_HeadArmor = "����",
 	ContextMenu_SD_BodyArmor = "����������",
 	ContextMenu_SD_ArmArmor = "������",
@@ -105,348 +140,127 @@ ContextMenu_RU = {
 	ContextMenu_SD_FeetArmor = "�����",
 	ContextMenu_SD_SurvivorID = "ID ���������",
 	ContextMenu_SD_GroupID = "ID ������",
-	ContextMenu_SD_GroupRole = "���� � ������",
+	ContextMenu_SD_GroupRole = "����",
 	ContextMenu_SD_YourGroupMembers = "������ ����� ������",
 	ContextMenu_SD_MIASurvivor = "��������� ��� �����",
 	ContextMenu_SD_BaseLocation = "�������������� ����",
-	--[[END NPC infomation]]--
-
-
-    --[[OPTIONS]]--
-
-    --[Alternative spawn system]--
-    ContextMenu_SOption_AltSpawn = "����.����� - ������:"
-        ContextMenu_SD_AltSpawnOff = "����"
-        ContextMenu_SD_UpTo1 = "���� ������"
-        ContextMenu_SD_UpTo2 = "�� 1 �� 2-� �����"
-        ContextMenu_SD_UpTo3 = "�� 1 �� 3-� �����"
-        ContextMenu_SD_UpTo4 = "�� 1 �� 4-� �����"
-        ContextMenu_SD_UpTo5 = "�� 1 �� 5-�� �����"
-        ContextMenu_SD_UpTo6 = "�� 1 �� 6-�� �����"
-	ContextMenu_SOption_AltSpawnDesc = "����.����� - ��� ����� ����� ������ ���. ������� ����� �� ������ ������ ������ ���� ������ ������� ���? � ������� ����� ���������� ���, ������� ����� ������� �� ��������� ������ ������ - (������� ����� � ����. ���������). �� ������ ������������ � ����.����� � �������, �� ��� ����� ��������� �� ������������������. ���������� ���� ����� �������� � ���������� ��������� �� �� �����. ���������� �������� ����. �������� ����.������, ����� ������ ������. "
-
-    ContextMenu_Option_AltSpawnAmount = "����������� ���-�� ������ � ������ ��� ������������� ����.������:",
-        ContextMenu_AltSpawnAmount_1 = "������ 1",
-        ContextMenu_AltSpawnAmount_2 = "�� ������ �� 1 �� 2-� ����.",
-        ContextMenu_AltSpawnAmount_3 = "�� ������ �� 1 �� 3-� ����.",
-        ContextMenu_AltSpawnAmount_4 = "�� ������ �� 1 �� 4-� ����.",
-        ContextMenu_AltSpawnAmount_5 = "�� ������ �� 1 �� 5-�� ����.",
-        ContextMenu_AltSpawnAmount_6 = "�� ������ �� 1 �� 6-�� ����.",
-    ContextMenu_Context_AltSpawnAmountDesc = "������ � ����.������� �� ������ ������� ���-�� ������ � ��������� ������. ����� ������ ����� �������, ������ ������� ������������� ���� ����� �� ������ � ��������� ������� �� ��� � ��������� ������. �� ������� ������� ������� �������� ������ ������ � ������� ���-��� ������ � ������, ������ ��� ��� ����� �������� � �����. (���� ����.����� ������ �������� - �� ��� ����� �� ��������)",
-
-    ContextMenu_SOption_AltSpawnPercent = "�������������� ����� ������ ��� � %:",
-    ContextMenu_SOption_AltSpawnPercentDesc = "�������������� ����� �������� ��������� ������� ������ ������� ���, � ���� ���� ������� �������� � �������������, �� ������ ��������� ��� ����� � �������. �� ������ ������������ ���� ����� ���� ����� '������� ��������� ��������' ���������, ���� ������ ������ ������ ��� ������ ���. ���� ����� ������ ������ �� ��� FPS, ������ ��� �� �� ������ ���. �������� ��� ������ ��������� ������ �� �����, � ������������ �� �� ������� �����. (�� ������ ������������ ����� � ������ ����� ������, �� ������� ������������������. ����� ����, ��� ���-��� ������!)",
-    --[END Alternative spawn system]--	
-    
-    --[On\Off options]--
-    ContextMenu_SD_Off = "����",
+	
+	ContextMenu_SD_UltraLow = "�����������", 
+	ContextMenu_SD_ExtremelyLow = "������ �����",
+	ContextMenu_SD_VeryLow = "����� �����",
+	ContextMenu_SD_Low = "�����",
+	ContextMenu_SD_SlightlyLower = "���� ����",
+	ContextMenu_SD_Normal = "���������",
+	ContextMenu_SD_SlightlyHigher = "���� ����", 
+	ContextMenu_SD_High = "������",
+	ContextMenu_SD_VeryHigh = "����� ������",
+	ContextMenu_SD_ExtremelyHigh = "����������� ������",
+	ContextMenu_SD_UltraHigh = "������������",
+	ContextMenu_SD_Off = "����",
 	ContextMenu_SD_On = "���",
-
-    ContextMenu_SD_NoPreSetSpawn = "��������� ���� �����������������/���������� ��������",
-	ContextMenu_SD_NoPreSetSpawnDesc = "� ���� �� ����������, ��� ������ ��� �������, ������� (����)",
-  
-    ContextMenu_SOption_LockNLoad = "����� '����� � ���'",
-	ContextMenu_SOption_LockNLoadDesc = "�� � ���� ����/��� (���� ��������) ������ ���������� � �������, ��������� � ������ � ������ ������ ����. ���������� �������������, ���� � ��� �������� ������� ���� ��������� ��������.",
-    
-    ContextMenu_SOption_WifeSpawn = "��� / ����",
-	ContextMenu_SOption_WifeSpawnDesc = "������� ���� ��� ���� � ������ ������ ���� � ������ ���/�� � ���� ������.",
 	
-    ContextMenu_SOption_InfinitAmmo = "����������� �������",
-	ContextMenu_SOption_InfinitAmmoDesc = "���� ��������, �� �������� �� ����������� ������� ��� ��������. ���� ���������, �� �������� ���������� ����� ������� ��� ������� � ��������� � ���� � ���������. ���� ������ �������� ����� ����� ���� (��� �� ���������), �����, �������� ����� �������� ����� ������� ����� � ����.",
-
-    ContextMenu_SOption_FindWork = "����������� ��������",
-	ContextMenu_SOption_FindWorkDesc = "���� ��������, �������� �� ����� ���� ����� �������� ��������� �������, ���� �� ����� ������ ������. ���� ���������, �� ��� ������ �� ����� ������ ��� ������ �������.",
+	ContextMenu_SD_Every10Minutes = "������ 10 �����",
+	ContextMenu_SD_EveryHour = "������ ���",
+	ContextMenu_SD_EveryDay = "������ ����",
+	ContextMenu_SD_Every100Days = "������ 100 ����",
+	ContextMenu_SD_Every95Days = "������ 95 ����",
+	ContextMenu_SD_Every90Days = "������ 90 ����",
+	ContextMenu_SD_Every85Days = "������ 85 ����",
+	ContextMenu_SD_Every80Days = "������ 80 ����",
+	ContextMenu_SD_Every75Days = "������ 75 ����",
+	ContextMenu_SD_Every70Days = "������ 70 ����",
+	ContextMenu_SD_Every65Days = "������ 65 ����",
+	ContextMenu_SD_Every60Days = "������ 60 ����",
+	ContextMenu_SD_Every55Days = "������ 55 ����",
+	ContextMenu_SD_Every50Days = "������ 50 ����",
+	ContextMenu_SD_Every45Days = "������ 45 ����",
+	ContextMenu_SD_Every40Days = "������ 40 ����",
+	ContextMenu_SD_Every35Days = "������ 35 ����",
+	ContextMenu_SD_Every30Days = "������ 30 ����",
+	ContextMenu_SD_Every25Days = "������ 25 ����",
+	ContextMenu_SD_Every20Days = "������ 20 ����",
+	ContextMenu_SD_Every15Days = "������ 15 ����",
+	ContextMenu_SD_Every10Days = "������ 10 ����",
+	ContextMenu_SD_Every5Days = "������ 5 ����",
+	ContextMenu_SD_StartImmediately = "����� ������ ����",
+	ContextMenu_SD_Never = "�������",
+	ContextMenu_SD_AfterDay1 = "����� 1 ���",
+	ContextMenu_SD_AfterDay5 = "����� 5 ���",
+	ContextMenu_SD_AfterDay10 = "����� 10 ���",
+	ContextMenu_SD_AfterDay15 = "����� 15 ���",
+	ContextMenu_SD_AfterDay20 = "����� 20 ���",
+	ContextMenu_SD_AfterDay25 = "����� 25 ���",
+	ContextMenu_SD_AfterDay30 = "����� 30 ���",
+	ContextMenu_SD_AfterDay35 = "����� 35 ���",
+	ContextMenu_SD_AfterDay40 = "����� 40 ���",
+	ContextMenu_SD_AfterDay45 = "����� 45 ���",
+	ContextMenu_SD_AfterDay50 = "����� 50 ���",
+	ContextMenu_SD_AfterDay55 = "����� 55 ���",
+	ContextMenu_SD_AfterDay60 = "����� 60 ���",
+	ContextMenu_SD_AfterDay65 = "����� 65 ���",
+	ContextMenu_SD_AfterDay70 = "����� 70 ���",
+	ContextMenu_SD_AfterDay75 = "����� 75 ���",
+	ContextMenu_SD_AfterDay80 = "����� 80 ���",
+	ContextMenu_SD_AfterDay85 = "����� 85 ���",
+	ContextMenu_SD_AfterDay90 = "����� 90 ���",
+	ContextMenu_SD_AfterDay95 = "����� 95 ���",
+	ContextMenu_SD_AfterDay100 = "����� 100 ���",
 	
-	ContextMenu_SOption_SurvivorHunger = "����� � �����",
-	ContextMenu_SOption_SurvivorHungerDesc = "���� ��������� �������� ������ ����� ������. �� �� �������� ������ ��� ����. ���� ��������, �� ��� ����� �������� ����� ���� ��� ��� ����.",
+
+	ContextMenu_SD_DesperateforHumanContact = "�������� ��������� � ������",
+	ContextMenu_SD_VeryFriendly = "����� �����������",
+	ContextMenu_SD_Friendly = "�����������", 
+	ContextMenu_SD_Mean = "������",
+	ContextMenu_SD_VeryMean	= "����� ������",
 	
-    ContextMenu_SOption_SafeBase = "���������� ����",
-	ContextMenu_SOption_SafeBaseDesc = "����� �������� ����� �������� ����� ���������� ����",
-	    
-    ContextMenu_SOption_SurvivorBases = "���� ��������"
-	ContextMenu_SOption_SurvivorBasesDesc = "����� �������� ����� ��������� ���� ����������� ����"
-
-    ContextMenu_SOption_DebugOptions = "��������� �������"
-	ContextMenu_SOption_DebugOptionsDesc = "�������� ���� �������."
-
-    ContextMenu_SDebugOption_DebugSay = "������������() - �������� ����: ",
-	ContextMenu_SDebugOption_DebugSayDesc = "��� ����� �������� '��������� �������' ������ � ���� ������ ����� ������ ���������. ��� ����� �������� � ��� ������� DebugSay, ��� ��������� ������� ������� ���� ������ ���������� � ��� ��� ��� ���������� ������. ��� ����� ���� � ������� 6 ������ �� ��� ����� �������� ��� ���������� � �������/������� ���. ",	
-	
-    ContextMenu_Option_Display_Survivor_Names = "���������� ����� � ���: ",
-	ContextMenu_Option_Display_Survivor_NamesDesc = "������ ������ ����� ��� � ��� ��� ��������?",
-
-    ContextMenu_Option_Display_Hostile_Color = "���������� ���� � ���� ���: "
-	ContextMenu_Option_Display_Hostile_ColorDesc = "������ �����, ��� ��� ��������� ��� ���? ����� '����' ���� ����� � ���������� ��� �� ����� �������� ����.",
-
-    ContextMenu_SOption_RoleplayMessage = "���������� �������� ����������:"
-    ContextMenu_SOption_RoleplayMessageDesc = "��� ����� ������ �� ��, ����� �� ������� ��� ���������� �������� ��� ������������ ��� �� ��������.",
-    
-    ContextMenu_SOption_PerceptionBonus = "[����������������] - ����� � ���������� ���: ",
-    ContextMenu_SOption_PerceptionBonusDesc = "��� ����� ������ ������ ��� ������, ����� ��������� ������ � ���, � ��� ������ ����� ��� '������ ��� �����'. (��� ����� ��� �� �������������, �� ��� ������ �������.)",
-    --[END On\Off options]--
-
-    --[Rate options]--
-    ContextMenu_SOption_SurvivorSpawnRate = "������� ��������� ��������",
-        ContextMenu_SD_UltraLow = "�����������", 
-	    ContextMenu_SD_ExtremelyLow = "������ �����",
-	    ContextMenu_SD_VeryLow = "����� �����",
-	    ContextMenu_SD_Low = "�����",
-	    ContextMenu_SD_SlightlyLower = "���� ����",
-	    ContextMenu_SD_Normal = "���������",
-	    ContextMenu_SD_SlightlyHigher = "���� ����", 
-	    ContextMenu_SD_High = "������",
-	    ContextMenu_SD_VeryHigh = "����� ������",
-	    ContextMenu_SD_ExtremelyHigh = "����������� ������",
-	    ContextMenu_SD_UltraHigh = "������������",
-    ContextMenu_SOption_SurvivorSpawnRateDesc = "���������� ���-�� ��������� ��������, ������� ����� ����������.",
-
-	ContextMenu_SOption_RaidersChance = "���� ��������� ��������",
-    --uses default zomboid's rates--
-	ContextMenu_SOption_RaidersChanceDesc = "���� ����� ������ �� ��������� �������� ����� ����, ��� ���������� ������ �� ���������.",
-    --[END Rate options]--
-    
-    --[Percent options]--
-    --Uses standart zomboid's %--
-	ContextMenu_SOption_ChancetoSpawnWithGun = "���� ��������� � �����������",
-	ContextMenu_SOption_ChancetoSpawnWithGunDesc = "���� ��������� ��������� � ����������� � �����.",
-    
-    ContextMenu_SOption_WepSpawnRate = "���� ��������� � ������� �������� ���",
-	ContextMenu_SOption_WepSpawnRateDesc = "������ �� ��������� ��������� � ������� �������� ��� � ������ ������ ����.",
-    
-    ContextMenu_SOption_ChancetobeHostile = "���� ��������� ����������� ���������",
-	ContextMenu_SOption_ChancetobeHostileDesc = "������ �� ��������� ����������� ���������.",
-	
-    ContextMenu_SOption_MaxHostileSpawnRate = "������������ ���� ��������� ����������� ���������",
-	ContextMenu_SOption_MaxHostileSpawnRateDesc = "���� ��������� ���� ���������� ������������� � �������� �������, � ���� ���� �� �������� ������� ��������",
-    --[END Percent options]--
-
-    --[Individual Options]--
-	ContextMenu_SOption_RaidersAfterHours = "��������� ��������",
-        ContextMenu_SD_StartImmediately = "����� ������ ����",
-	    ContextMenu_SD_AfterDay1 = "����� 1 ���",
-	    ContextMenu_SD_AfterDay5 = "����� 5 ���",
-	    ContextMenu_SD_AfterDay10 = "����� 10 ���",
-	    ContextMenu_SD_AfterDay15 = "����� 15 ���",
-	    ContextMenu_SD_AfterDay20 = "����� 20 ���",
-        ContextMenu_SD_AfterDay25 = "����� 25 ���",
-        ContextMenu_SD_AfterDay30 = "����� 30 ���",
-        ContextMenu_SD_AfterDay35 = "����� 35 ���",
-        ContextMenu_SD_AfterDay40 = "����� 40 ���",
-        ContextMenu_SD_AfterDay45 = "����� 45 ���",
-        ContextMenu_SD_AfterDay50 = "����� 50 ���",
-        ContextMenu_SD_AfterDay55 = "����� 55 ���",
-        ContextMenu_SD_AfterDay60 = "����� 60 ���",
-        ContextMenu_SD_AfterDay65 = "����� 65 ���",
-        ContextMenu_SD_AfterDay70 = "����� 70 ���",
-        ContextMenu_SD_AfterDay75 = "����� 75 ���",
-        ContextMenu_SD_AfterDay80 = "����� 80 ���",
-        ContextMenu_SD_AfterDay85 = "����� 85 ���",
-        ContextMenu_SD_AfterDay90 = "����� 90 ���",
-        ContextMenu_SD_AfterDay95 = "����� 95 ���",
-        ContextMenu_SD_AfterDay100 = "����� 100 ���",
-	    ContextMenu_SD_Never = "�������",
-    ContextMenu_SOption_RaidersAfterHoursDesc = "������� ������ �������� ����������, ��� ������ ������� �����. ��������������� ��������� �������� ����� ���������� ����� ����, ��� ������ ��� �����.",
-
-    ContextMenu_SOption_RaidersGuaranteed = "��������������� ��������� ��������",
-        ContextMenu_SD_Every5Days = "������ 5 ����",
-        ContextMenu_SD_Every10Days = "������ 10 ����",
-        ContextMenu_SD_Every15Days = "������ 15 ����",
-        ContextMenu_SD_Every20Days = "������ 20 ����",
-        ContextMenu_SD_Every25Days = "������ 25 ����",
-        ContextMenu_SD_Every30Days = "������ 30 ����",
-        ContextMenu_SD_Every35Days = "������ 35 ����",
-        ContextMenu_SD_Every40Days = "������ 40 ����",
-        ContextMenu_SD_Every45Days = "������ 45 ����",
-        ContextMenu_SD_Every50Days = "������ 50 ����",
-        ContextMenu_SD_Every55Days = "������ 55 ����",
-        ContextMenu_SD_Every60Days = "������ 60 ����",
-        ContextMenu_SD_Every65Days = "������ 65 ����",
-        ContextMenu_SD_Every70Days = "������ 70 ����",
-        ContextMenu_SD_Every75Days = "������ 75 ����",
-        ContextMenu_SD_Every80Days = "������ 80 ����",
-        ContextMenu_SD_Every85Days = "������ 85 ����",
-        ContextMenu_SD_Every90Days = "������ 90 ����",
-        ContextMenu_SD_Every95Days = "������ 95 ����",
-        ContextMenu_SD_Every100Days = "������ 100 ����",
-        ContextMenu_SD_EveryDay = "������ ����!",
-        ContextMenu_SD_EveryHour = "������ ���!",
-        ContextMenu_SD_Every10Minutes = "������ 10 �����!",
-    ContextMenu_SOption_RaidersGuaranteedDesc = "���� ������ ��������� �������� ��� �� ������, �� ��� �������������� �������� ����� ������ ���-�� �������.",
-	
-    ContextMenu_SOption_SurvivorFriendliness = "������������� ��������",
-        ContextMenu_SD_DesperateforHumanContact = "�������� ��������� � ������",
-        ContextMenu_SD_VeryFriendly = "����� �����������",
-        ContextMenu_SD_Friendly = "�����������", 
-        ContextMenu_SD_Mean = "������������",
-        ContextMenu_SD_VeryMean	= "���� �� ����",
-    ContextMenu_SOption_SurvivorFriendlinessDesc = "������ �� ��, ��� ����� �������� ���������� �������� � ���� ������. ������� ���-�� �������� ����������� ���� ���������� � �������, �� ������ ���, ����� �� ����������� ��������� � ������������, ���� ����������. ������ ����������� � ������ �� �������� �� � ���� ��������.",
-
-    ContextMenu_SOption_SurvivorBravery = "��������� ��������",
-        ContextMenu_SD_Cowardly = "���������",
-        ContextMenu_SD_Brave = "�������",
-        ContextMenu_SD_VeryBrave = "����� �������",
-    ContextMenu_SOption_SurvivorBraveryDesc = "���������� ����������� ����, ������ �� �������� ���������, ��� �������� ���.",
-
-    ContextMenu_SOption_FollowGlobalRange = "[��������] - ���������� �� ���� ���������:",
-	ContextMenu_SOption_FollowGlobalRangeDesc = "��� ����� ���� ��� �������� ��������� �� ������� ��� ����� ������ ��� ������ �� ����. (��� �������� ������� �� �����). ��� ����� ����� �������� � �������������� ����������� � ��������� � �������. (�� ���������, ��� ������ ������������ +/- �� �������, ����� ������������ ��������� ���������� ��� �� ����.) (� ���, ���� �� ���������� ��������� � 0 - ��� ������ ����� ���� �������) ",
-
-    ContextMenu_SDebugOption_DebugSay_Distance = "������������() - ����������: ",
-	ContextMenu_SDebugOption_DebugSay_DistanceDesc = "�� ������ ������� ���������� �� ������� ����� ������������ ��������� ����� �������. ����� ������������� ������� ������ ��������, ����� ��� ��� � ������ ����� ���������� ��������� � �������, ��� �������� � �����.",
-    --[END Individual Options]--
-
-    --[Hotkeys]--
-    ContextMenu_SShotkey1 = "�������� ������� ������� #1",
-	ContextMenu_SShotkey2 = "�������� ������� ������� #2",
-	ContextMenu_SShotkey3 = "�������� ������� ������� #3",
-	ContextMenu_SShotkey4 = "�������� ������� ������� #4",
-	ContextMenu_SShotkeyDesc = "�������� ��������, ������� ����������, ����� �� ������� �� ��� ������� �������. ������ ��������� �� ���� �����, ��� ��������� � ����� ������ � �� ���, ��� ��� ������(������� �� "T").",
-    
-    --I Think This options are unused--
-    ContextMenu_SOption_CallClosestGroupMember = "������� ���������� ����� ������"
-	ContextMenu_SOption_CallClosestNonGroupMember = "������� ���������� ���������",
-	ContextMenu_SOption_AskClosestGroupMembertoFollow = "��������� ��������� ������ ������ ��������� �� ����",
-	ContextMenu_SOption_SpawnWildSurvivor = "���������� ������ ���������",
-	ContextMenu_SOption_ToggleGroupWindow = "����������� ���� ������",
-	ContextMenu_SOption_LowerFollowDistance = "�������� ��������� ����������",
-	ContextMenu_SOption_RaiseFollowDistance = "�������� ��������� ����������",
-    --[END Hotkeys]--
-    --[[END OPTIONS]]--
-
-
-    --[[DEBUG]]--
-    ContextMenu_SOption_DebugOptions = "��������� ������� - �������� ����, ���� ���: ",
-	ContextMenu_SOption_DebugOptionsDesc = "�������� ����� ���������� � ���. �������� ��� ���, ��� ����� �����, ��� ����������, �� ����������� ������ �����, ���� �� ������, ����� ��� ������� �����������. ���� �������, ��� ���-�� �������� � ������������ ���� �������� - ����� �� �����, ��� � ��� ��� ����� ���, � �� ����� � ����. ������� �������� ��� �����. �������� ���� CONSOLE.TXT, �� ���� *�����������* ���������� ������� ����� ��� ������ ���������� � ����. CTRL+F '����� �����' ����� ����� ���-�� ������. ��� ������� ����� � ������? �� ������ ���� �������� 6 ������ �� ��� ����� �������, ��� �� ������. (��� ���� ������, ��� ����� ����� ���� ������ ������������ � ���, ������ �����������)",
-    ContextMenu_Debug_Character_Swap = "�������: ������ ��������",
-    ContextMenu_Debug_Character_Output = "�������: ����� ��������",
-    ContextMenu_Debug_Infect&Murder_Character = "�������: �������� ��������� � ��������",
-    ContextMenu_Debug_Unstuck = "�������: ���������",
-    ContextMenu_Debug_Spawn_Soldier = "�������: ���������� �������",
-    ContextMenu_SD_Debug_PlayerStats = "�������: �������� �� ������",
-
-
-    --[[In Game Menu thing]]--
-    ContextMenu_SD_AidCheck = "����������� ������",
-    ContextMenu_SD_AidCheckDesc = "��������� � ����� ��������� � ��������� ����������� ������, �������, ���� �� ��������� � ����� - ������� ���������",
-    ContextMenu_SD_SetName = "�������� ���",
-    ContextMenu_SD_AddClothing = " 's ����������",
-    ContextMenu_SD_RemoveClothing = "����� ������",
-    
-    ContextMenu_SD_ViewSurvivorInfo = "���������� ���������� � ��������",
-	ContextMenu_SD_ViewSurvivorInfoDesc = "���������� ���������� � ������ ��������: ������, ����������, � �.�.",
-	ContextMenu_SD_SurvivorInfo = "���������� � ��������",
-	ContextMenu_SD_SurvivorInfoName_Before = "���� ",
+	ContextMenu_SD_SurvivorInfoName_Before = "��������� ",
 	ContextMenu_SD_SurvivorInfoName_After = ": ",
-    ContextMenu_SD_CallToArms = "�������� � ������",
-
-    ContextMenu_SD_CallOver = "�������",
-	ContextMenu_SD_CallOverDesc = "��������� ��������� ������ � ��� � ����������.",
-	ContextMenu_SD_OfferArmor = "���� �����",
-	ContextMenu_SD_OfferAmmoBox = "���� ������� ��������",
-	ContextMenu_SD_OfferAmmoRound = "���� ������",
-	ContextMenu_SD_TalkOption = "�������",
-	ContextMenu_SD_TalkOption_Desc = "���������� ������ ������ � ���� ��������.",
-	ContextMenu_SD_InviteToGroup = "���������� � ������",
-	ContextMenu_SD_AskToJoin = "��������� �������������� � ������ ��������.",
-	ContextMenu_SD_OfferWeapon = "���������� ������ ��� �������.",
-	ContextMenu_SD_OfferFood = "���������� ���",
-	ContextMenu_SD_OfferWater = "���������� ����",
-	ContextMenu_SD_GiveOrder = "���� ������",
-	ContextMenu_SD_OrderDescription = "�������� �������",
-
-    ContextMenu_SD_UseMele = "������������ ������ �������� ���",
-	ContextMenu_SD_UseMeleDesc = "���������� ��������� ������������ ��� ������ �������� ���",
-    ContextMenu_SD_UseGun = "������������ ���������",
-	ContextMenu_SD_UseGunDesc = "���������� ��������� ������������ ���� ���������",
-	 
-    ContextMenu_SD_GiveGun = "���� ���� ��������� ���������",
-	ContextMenu_SD_GiveWeapon = "���� ���� ������ �������� ��� ���������" ,
-
-	ContextMenu_SD_SwapGuns = "���������� �����������",
-	ContextMenu_SD_SwapWeapons = "���������� ������� �������� ��� � ��������" ,
-
-    ContextMenu_SD_RulesOfEngagement = "������� ���",
-	    ContextMenu_SD_AttackAnyoneOnSight = "��������� ���� � ���� ������",
-        ContextMenu_SD_AttackAnyoneOnSightDesc = "�������� ����� ������ ����� ��������� ����: �����, �����������/��������� �����������/����������� �������� (�� �������� ������ ������)"
-	    ContextMenu_SD_AttackHostilesOnSight = "��������� ������ � ���� ������",
-        ContextMenu_SD_AttackHostilesOnSightDesc = "�������� ����� ��������� ��������� ����������� �������� � �����"
-    --idk where to put it-- 
-	ContextMenu_SD_SurvivorOptions = "����� ���������",
-    --[[END In Game Menu thing]]--
-
-
-    --[[Player interaction with NPC's]]--
-    ContextMenu_SD_HeyYou = "��, ��!",
-    ContextMenu_SD_Bye1 = "����...",
-	ContextMenu_SD_HiThere = "������!",
-	ContextMenu_SD_HelloThere = "����������!",
-    ContextMenu_SD_HelloWord1 = "� ��� �������?",
-    ContextMenu_SD_HelloWord2 = "� �������?",
-    ContextMenu_SD_HelloWord3 = "��� ��?",
-    ContextMenu_SD_HelloWord4 = "��� ����?",
-    ContextMenu_SD_HelloWord5 = "�� ����� ������?",
-    ContextMenu_SD_HelloWord6 = "� ��� ��� �� ��� ���������?",
-    ContextMenu_SD_HelloWord7 = "���� ���-������ �������?",
-    ContextMenu_SD_HelloWord8 = "��� ������ �����������?",
-    ContextMenu_SD_HelloWord9 = "��-���� ��������� ����?",
-    ContextMenu_SD_HelloWord10 = "�������, �������, �����������?",
-    ContextMenu_SD_HelloWord11 = "������� ��������, ��� �� �� ���� ���� �������",
-    ContextMenu_SD_HelloWord12 = "�� ������� �� ���� ���?",
-    ContextMenu_SD_HelloWord13 = "������ ����-������?", 
-    ContextMenu_SD_HelloWord14 = "�� ��� ����?", 
+	ContextMenu_SD_EatFood_Before = "������� ",
+	ContextMenu_SD_EatFood_After = "",
 	ContextMenu_SD_CallName_Before = "",
 	ContextMenu_SD_CallName_After = "! ��� ����!",
-    ContextMenu_SD_YouWantToJoin = "�� ������ �������������� � ��� ������?",
-	ContextMenu_SD_WantSomeFood = "�� ������ ���?",
-	ContextMenu_SD_YouWantWater = "�� ������ ����?",
-	ContextMenu_SD_YouWantAmmo = "�� ������ ��������?",
-	ContextMenu_SD_TakeMyWeapon = "������ �� ������.",
-	ContextMenu_SD_CanIJoin = "���� �� � �������������� � ���� ������?",
-	ContextMenu_SD_TakeArmor = "������ ��� �����.",
-	ContextMenu_SD_Nothing = "������",
-	ContextMenu_SD_EveryOneUseMele = "��� ������� ������ �������� ���!",
-	ContextMenu_SD_EveryOneUseGun = "��� ������� �����!",
-    --[[END Player interaction with NPC's]]--
-
-
-    --[[Survivors Actions]]--
-	ContextMenu_SD_EatFood_Before = "��� ",
-	ContextMenu_SD_EatFood_After = "",
+	ContextMenu_SD_LookForItem_Before = "��������� ������ ",
+	ContextMenu_SD_LookForItem_After = "",
+	ContextMenu_SD_NoFindItem_Before = "������, ��� ",
+	ContextMenu_SD_NoFindItem_After = " ����� ���",
 	ContextMenu_SD_EquipsArmor_Before = "*�������� ",
 	ContextMenu_SD_EquipsArmor_After = "*",
 	ContextMenu_SD_Opens_Before = "*��������� ",
 	ContextMenu_SD_Opens_After = "*",
-	ContextMenu_SD_Takes_Before = "*���� ",
-	ContextMenu_SD_Takes_After = "*",
-	ContextMenu_SD_TakesFromGround_Before = "*���� ",
+	ContextMenu_SD_Takes_Before = "*����� ",
 	ContextMenu_SD_TakesFromGround_After = " � �����*",
-	ContextMenu_SD_TakesFromCont_Before = "*���� ",
+	ContextMenu_SD_TakesFromGround_Before = "*����� ",
 	ContextMenu_SD_TakesFromCont_After = " �� ����������*",
-	ContextMenu_SD_Drinking = "����..",
+	ContextMenu_SD_TakesFromCont_Before = "*����� ",
+	ContextMenu_SD_Takes_After = "*",
+	ContextMenu_SD_Drinking = "���..",
+	ContextMenu_SD_HeyYou = "��, ��!",
 	ContextMenu_SD_EquipsArmor = "�������� �����",
-    ContextMenu_SD_TakesItemFromGround_Before = "��������� ",
-	ContextMenu_SD_TakesItemFromGround_After = " � ����",
-	ContextMenu_SD_BandageBP_Before = "������������ ",
-	ContextMenu_SD_BandageBP_After = "",
-    ContextMenu_UndressingClothes = "*�����������*",
-    ContextMenu_SD_PickUpCorpse = "*��������� ���� � ����*",
-    ContextMenu_SD_Resting = "��������...",
-    ContextMenu_SD_DoctorSplint = "*����������� ����...*",
-	ContextMenu_SD_DoctorBandageRemove = "*������� ����...*",
-	ContextMenu_SD_DoctorStitches = "*����������� ���...*",
-	ContextMenu_SD_DoctorGlass = "*��������������...*",
-	ContextMenu_SD_DoctorBullet = "*�������� ����...*",
-	ContextMenu_SD_DoctorBandage = "*����������� ����...*",
-	--[[END Survivors Actions]]--
-
-
-    --[[Survivors Interactions]]--
-    ContextMenu_SD_WhatYouWant = "��? �� ���-�� �����?",
-    ContextMenu_SD_NotInBuilding = "�� �� � ������.",
-	ContextMenu_SD_CantCarryMore = "�� ����� ������ ������.",
-    ContextMenu_SD_WhereHeGo = "���, ���� �� ����?",
+	ContextMenu_SD_WeLooting = "�� ����������� ��� �� ������� �����",
+	ContextMenu_SD_WeBackToBase= "�� ������������ �� ����",
+	ContextMenu_SD_LeaveGroupHungry = "��������, ������, � ��������� ����� ��� ���� ���.",
+	ContextMenu_SD_LeaveBCHungry = "��������, � ��������� ����� ��� ���� ���.",
+	
+	ContextMenu_SD_Bye1 = "����...",
+	ContextMenu_SD_SurvivorInfo = "���������� � ��������",
+	ContextMenu_SD_HiThere = "������!",
+	ContextMenu_SD_HelloThere = "����������!",
+	ContextMenu_SD_WhatYouWant = "��? �� ���-�� �����?",
+	ContextMenu_SD_NotInBuilding = "�� �� � ������.",
+	ContextMenu_SD_CantCarryMore = "� ������ �� ���� � ����� ������ ������.",
+	ContextMenu_SD_PickUpCorpse = "*��������� ����*",
+	ContextMenu_SD_WhereHeGo = "���, ���� �� ����?",
 	ContextMenu_SD_WhoSaidThat = "��� �����? ��� ��� ������?",
 	ContextMenu_SD_OverHere = "��! ��� �����?",
-    ContextMenu_SD_RainingGoInside = "��� �����, ����� ����� ����� ������?",
+	
+	ContextMenu_SD_DoctorPrefix_Before = "���� ",
+	ContextMenu_SD_DoctorPrefix_After = "",
+	ContextMenu_SD_VeteranPrefix_Before = "���� ",
+	ContextMenu_SD_VeteranPrefix_After = "",
+	ContextMenu_SD_FarmerPrefix_Before = "������ ",
+	ContextMenu_SD_FarmerPrefix_After = "",
+	
+	ContextMenu_SD_RainingGoInside = "��� �����, ����� ����� ����� ������?",
 	ContextMenu_SD_IGoRelax = "�����, ��� ����� ������� ���������.",
 	ContextMenu_SD_IGoGetWood = "�����, � ����� �������� ���������.",
 	ContextMenu_SD_IGoPileCorpse = "�����, � ����� �������� ����� � ����.",
@@ -456,63 +270,79 @@ ContextMenu_RU = {
 	ContextMenu_SD_IGoGuard = "�����, ��� ����� ��������� �������� ����������.",
 	ContextMenu_SD_IGoBackBase = "�����, ��� ����� ����� ������� �� ����.",
 	ContextMenu_SD_NoWoodHere = "����� ��� ������.",
-    ContextMenu_SD_NoAxeNoChopWood = "������ ���, ��� ����� ������ ������.",
-	ContextMenu_SD_NoTrees = "����� ��� ��������.",
-    ContextMenu_SD_RIPSurvivor = "������� � �����, ����.",
-	ContextMenu_SD_DoctorDone = "�� �� ������ ��� ���������!",
-    ContextMenu_SD_HoldStill = "����������, ���� ��������!",
-    ContextMenu_SD_WeLooting = "�� ��, ��������?",
-	ContextMenu_SD_WeBackToBase= "�� ������������ �� ����",
-	ContextMenu_SD_LeaveGroupHungry = "����� �� � ��� ���� ��� �����.",
-	ContextMenu_SD_LeaveBCHungry = "������� �� ��� � ������� ���������� � �� ��������� ��� �������� � ����� ��������.",
-    ContextMenu_SD_NoFindItem_Before = "������, ��� ",
-	ContextMenu_SD_NoFindItem_After = " ����� ���",
-    ContextMenu_SD_LookForItem_Before = "��������� ������ ",
-	ContextMenu_SD_LookForItem_After = "",
-    ContextMenu_SD_ComeWithMe_Before = "",
-	ContextMenu_SD_ComeWithMe_After = ", ��� �� ����!",		
-    ContextMenu_SD_IGotABadFeeling = "� ���� ������ ������������.",
-	ContextMenu_SD_WhatWasThatSound = "��� ��� ��� �� ����?! ������ �������.",
-	ContextMenu_SD_IAttackFoodThief = "�� ��! ���������� ������!!",
-	ContextMenu_SD_IWarnFoodThief = "�� ��!! �������� �������� ���� ���, � �����!!",
-    --[[END Survivors Interactions]]--
-
-
-    --notifications
-    ContextMenu_SD_PerkLeveledUp_Before = "*������� ������"
-	ContextMenu_SD_PerkLeveledUp_After = " �������!*"
-	ContextMenu_SD_ROESet = "������� ��� ���� �����������",
-
-
-	--prefixes--
-	ContextMenu_SD_DoctorPrefix_Before = "���� ",
-	ContextMenu_SD_DoctorPrefix_After = "",
-	ContextMenu_SD_VeteranPrefix_Before = "������� ",
-	ContextMenu_SD_VeteranPrefix_After = "",
-	ContextMenu_SD_FarmerPrefix_Before = "������ ",
-	ContextMenu_SD_FarmerPrefix_After = "",
 	
-   
-    --PVP-- 
-    ContextMenu_SD_PVPOff = "����"
-	ContextMenu_SD_PVPOn = "���"
-    ContextMenu_SD_PVPInfoBar = "PVP �����: ",
-    ContextMenu_SD_PVPInfoBarDesc = "����� ����������� ����� ��� ���, ����� �� ������� ��� � ���� � ������ ������ ���� ������.",
+	ContextMenu_SD_TakesItemFromGround_Before = "��������� ",
+	ContextMenu_SD_TakesItemFromGround_After = " � ����",
+	ContextMenu_SD_ComeWithMe_Before = "",
+	ContextMenu_SD_ComeWithMe_After = ", ��� �� ����!",	
+	ContextMenu_SD_BandageBP_Before = "������������ ",
+	ContextMenu_SD_BandageBP_After = "",
+	
+	ContextMenu_SD_IAttackFoodTheif = "��� ���! �������� ������!",
+	ContextMenu_SD_IWarnFoodTheif = "�� ��! ��������� ������ ���� ��� ��� ��� �� ��� ���� ���!",
+	ContextMenu_SD_Resting = "�������...",
+	ContextMenu_SD_NoAxeNoChopWood = "������ ���, ��� ����� ������ ������.",
+	ContextMenu_SD_NoTrees = "����� ��� ��������.",
+	
+	ContextMenu_SD_RIPSurvivor = "������� � �����, ����.",
+	ContextMenu_SD_DoctorDone = "�� �� ������ ��� ���������!",
+	ContextMenu_SD_DoctorSplint = "*���������� ����...*",
+	ContextMenu_SD_DoctorBandageRemove = "*������ ����...*",
+	ContextMenu_SD_DoctorStitches = "*���������� ���...*",
+	ContextMenu_SD_DoctorGlass = "*������ ������...*",
+	ContextMenu_SD_DoctorBullet = "*������ ����...*",
+	ContextMenu_SD_DoctorBandage = "*���������� ����...*",
+	ContextMenu_SD_HoldStill = "����������, ���� ��������!",
+	
+	ContextMenu_SD_YouWantToJoin = "�� ������ �������������� � ��� ������?",
+	ContextMenu_SD_WantSomeFood = "�� ������ ���?",
+	ContextMenu_SD_YouWantWater = "�� ������ ����?",
+	ContextMenu_SD_YouWantAmmo = "�� ������ ��������?",
+	ContextMenu_SD_TakeMyWeapon = "������ �� ������.",
+	ContextMenu_SD_CanIJoin = "���� �� � �������������� � ���� ������?",
+	ContextMenu_SD_Random_OutOfAmmo4 = "������ ��� ��������!",
+	ContextMenu_SD_TakeArmor = "������ ��� �����.",
+	ContextMenu_SD_Nothing = "������",
+	ContextMenu_SD_GiveGun = "���� ��� ������ ���������",
+	ContextMenu_SD_GiveWeapon = "���� ���� ������ �������� ��� ���������" ,
+	ContextMenu_SD_SwapGuns = "���������� �������",
+	ContextMenu_SD_SwapWeapons = "���������� ������� �������� ��� � ��������" ,
+	ContextMenu_SD_UseMele = "������������ ������ �������� ���",
+	ContextMenu_SD_UseGun = "������������ ���������",
+	ContextMenu_SD_UseMeleDesc = "������� ��������� ������������ ��� ������ �������� ���",
+	ContextMenu_SD_UseGunDesc = "������� ��������� ������������ ���� ���������",
+	ContextMenu_SD_EveryOneUseMele = "��� ������� ������ �������� ���!",
+	ContextMenu_SD_EveryOneUseGun = "��� ������� �����!",
+	ContextMenu_SD_ViewSurvivorInfo = "���������� ���������� � ��������",
+	ContextMenu_SD_ViewSurvivorInfoDesc = "���������� ���������� � ������ ��������: ������, ����������, � �.�.",
+	ContextMenu_SD_ROESet = "������� ��� ���� �����������",
+	
 	ContextMenu_SD_PVPDisabled = "��� ���������!",
 	ContextMenu_SD_PVPEnabled = "��� ��������!",
 	ContextMenu_SD_PVPForced = "��� �������� �������������!",	
-
-
-	--Area work--
-	ContextMenu_SD_SetAreaConfirm = "����������� �����",
-	ContextMenu_SD_SetAreaCancel = "�������� �����",
-	ContextMenu_SD_SetAreaClear = "�������� ����",
+	
+	ContextMenu_SD_CallOver = "�������",
+	ContextMenu_SD_CallOverDesc = "��������� ��������� ������ � ��� � ����������.",
+	ContextMenu_SD_OfferArmor = "���������� �����",
+	ContextMenu_SD_OfferAmmoBox = "���������� ������� ��������",
+	ContextMenu_SD_OfferAmmoRound = "���������� �������",
+	ContextMenu_SD_TalkOption = "�������",
+	ContextMenu_SD_TalkOption_Desc = "���������� ������ ������ � ���� ��������.",
+	ContextMenu_SD_InviteToGroup = "���������� � ������",
+	ContextMenu_SD_AskToJoin = "��������� �������������� � ������ ��������.",
+	ContextMenu_SD_OfferWeapon = "���������� ������ ��� �������.",
+	ContextMenu_SD_OfferFood = "���������� ���",
+	ContextMenu_SD_OfferWater = "���������� ����",
+	ContextMenu_SD_GiveOrder = "���� ������",
+	ContextMenu_SD_OrderDescription = "�������� �������",
+	
+	ContextMenu_SD_SetAreaConfirm = "����������",
+	ContextMenu_SD_SetAreaCancel = "��������",
+	ContextMenu_SD_SetAreaClear = "��������",
 	ContextMenu_SD_SetAreaSelect = "������� ����",
-	ContextMenu_SD_SetAreaSelectDesc = "�������� �������, ��������� ���� (��� � ���������). ����� ������ �������, ����� ����� � �������� ����� �����������.",
 	ContextMenu_SD_AreaSelecting = "����� ����",
+	ContextMenu_SD_SetAreaSelectDesc = "�������� ������� �� �����, ����� ����� ������ ���� � ��������� ����, ����� ������� �������. ����� ������ �������, ����� �������� ����� �������� ������������� ������ �������, �������� ��� ���������� ������� ����� �����������.",
 	
-	
-	--Area Types--
 	ContextMenu_SD_BaseArea = "���� ����� ����",
 	ContextMenu_SD_ChopTreeArea = "���� ����� ����",
 	ContextMenu_SD_TakeCorpseArea = "���� ������ ������",
@@ -523,110 +353,132 @@ ContextMenu_RU = {
 	ContextMenu_SD_WeaponStorageArea = "���� ������ ������",
 	ContextMenu_SD_ToolStorageArea = "���� ������ ������������",
 	ContextMenu_SD_MedicalStorageArea = "���� ������ � �������������",
-	ContextMenu_SD_FarmingArea = "���� ����������",
+	ContextMenu_SD_FarmingArea = "���� ���������� / �������",
 	ContextMenu_SD_ForageArea = "���� ��������������",
 	ContextMenu_SD_GuardArea = "���� ������",
+	ContextMenu_SD_SurvivorOptions = "����� ���������",
 	
-
-    --[[speeches]]
-    ContextMenu_speech_Foraging = "*�������...*"
-	ContextMenu_speech_FarmingActionPlanting = "*����� ������...*"
-	ContextMenu_speech_FarmingActionHarvesting = "*������� ������...*"
-	ContextMenu_speech_FarmingActionWatering = "*�������...*"
-	ContextMenu_speech_NoFarmingArea = "� ���� ����� �� ��������� ���������� �����������"
-    ContextMenu_speech_IDontKnowHowFarming = "� �� ���� ��� ���������� �����������",
-	ContextMenu_speech_NoForagingHere = "����� ������ ���!", 
- 
-
-    ContextMenu_speech_DoNotTouchFood = "��� ��� �� ��� ����! �� ������!",
-	ContextMenu_speech_HilltopIntro = "������������ ��� � ��������! �� ������ ���� ����� ����� � �������� ����� ���� ������.",
-	ContextMenu_speech_BlockadeIntro = "��� ������-��������� �������. ����� �� ������ ������ ���� ���. ��� ������������� ����� ������������ ���������� ����.",
+	ContextMenu_SD_CallToArms = "�������� � ������",
+	
+	
+	ContextMenu_SOption_CallClosestGroupMember = "������� ���������� ����� ������"
+	ContextMenu_SOption_CallClosestNonGroupMember = "������� ���������� ����� �� �� ������",
+	ContextMenu_SOption_AskClosestGroupMembertoFollow = "��������� ��������� ��������� ������ ������",
+	ContextMenu_SOption_SpawnWildSurvivor = "��������� ������ ��������",
+	ContextMenu_SOption_ToggleGroupWindow = "����������� ���� ������",
+	ContextMenu_SOption_LowerFollowDistance = "�������� ��������� ������������",
+	ContextMenu_SOption_RaiseFollowDistance = "�������� ��������� ������������",
+	
+	ContextMenu_SOption_SurvivorSpawnRate = "������� ��������� ��������",
+	ContextMenu_SOption_SurvivorSpawnRateDesc = "���������� ���-�� ��������� ��������, ������� ����� ����������.",
+	ContextMenu_SOption_ChancetoSpawnWithGun = "���� ��������� � �������",
+	ContextMenu_SOption_ChancetoSpawnWithGunDesc = "���� ��������� ��������� � ������� � �����.",
+	ContextMenu_SOption_RaidersGuaranteed = "��������������� ��������� ��������",
+	ContextMenu_SOption_RaidersGuaranteedDesc = "���� ������ ��������� �������� ��� �� ������, �� ��� �������������� �������� ����� ������ ���-�� �������.",
+	ContextMenu_SOption_RaidersAfterHours = "��������� ��������",
+	ContextMenu_SOption_RaidersAfterHoursDesc = "������� ������ �������� ����������, ��� ������ ������� �����. ��������������� ��������� �������� ����� ���������� ����� ����, ��� ������ ��� �����.",
+	ContextMenu_SOption_RaidersChance = "���� ��������� ��������",
+	ContextMenu_SOption_RaidersChanceDesc = "���� ����� ������ �� ��������� �������� ����� ����, ��� ������ ���������� ������ �� ���������.",
+	ContextMenu_SOption_WepSpawnRate = "���� ��������� � ������� �������� ���",
+	ContextMenu_SOption_WepSpawnRateDesc = "������ �� ��������� ��������� � ������� � ������ ������ ����.",
+	ContextMenu_SOption_ChancetobeHostile = "���� ��������� ����������� ���������",
+	ContextMenu_SOption_ChancetobeHostileDesc = "������ �� ��������� ����������� ���������.",
+	ContextMenu_SOption_MaxHostileSpawnRate = "MAX ���� ��������� ����������� ���������",
+	ContextMenu_SOption_MaxHostileSpawnRateDesc = "���� ���� ���������� ������������� � �������� �������, �� �� ����� �������� ������ �� ������������� �������� � �� ������ ��� ���������.",
+	ContextMenu_SOption_LockNLoad = "����� '����� � ���'",
+	ContextMenu_SOption_LockNLoadDesc = "�� � ���� ���� (���� ��������) ����� ���������� � �������, ��������� � ������ (���� Armor Mod �������) � ������ ������ ����. ������ ����������, ���� � ��� �������� ������� ���� ��������� ��������.",
+	ContextMenu_SOption_WifeSpawn = "��� / ����",
+	ContextMenu_SOption_WifeSpawnDesc = "������� ���� ��� ���� � ������ ������ ���� � ������ ���/�� � ���� ������.",
+	ContextMenu_SOption_SurvivorFriendliness = "������������� ��������",
+	ContextMenu_SOption_SurvivorFriendlinessDesc = "������ �� ��, ��� ����� �������� ���������� �������� � ���� ������. ����������� �������� ���-�� �������� ����������� ���� �������� � �������, �� ������ ���, ����� �� ����������� ��������� � ������������, ���� ����������. ������ ����������� � ������ �� �������� �� � ���� ��������.",
+	ContextMenu_SOption_InfinitAmmo = "����������� �������",
+	ContextMenu_SOption_InfinitAmmoDesc = "���� ��������, �� �������� �� ����������� ������� ��� ��������. ���� ��������, �� �������� ���������� ����� ������� ��� ������� � ��������� � ���� � ���������. ���� ������ �������� ����� ����� ���� (��� �� ���������), �����, ��� ����� �������� ����� ������� ����� � ����.",
+	ContextMenu_SOption_FindWork = "����������� ��������",
+	ContextMenu_SOption_FindWorkDesc = "���� ��������, �������� �� ����� ���� ����� �������� ��������� �������, ���� �� ����� ����� ��������. ���� ���������, �� ��� ������ �� ����� ������ ��� ������� ������.",
+	ContextMenu_SOption_SurvivorHunger = "����� � �����",
+	ContextMenu_SOption_SurvivorHungerDesc = "���� ��������� �������� ������ ����� ������. �� �� �������� ������ ��� ����. ���� ��������, �� ��� ����� �������� ����� ���� ��� ��� ����.",
+		ContextMenu_SOption_SafeBase = "���������� ����",
+		ContextMenu_SOption_SafeBaseDesc = "����� �������� ����� �������� ����� ���������� ����",
+		ContextMenu_SOption_SurvivorBases = "���� ��������"
+		ContextMenu_SOption_SurvivorBasesDesc = "����� �������� �������� ���� ����������� ����"
+		ContextMenu_SOption_DebugOptions = "��������� �������"
+		ContextMenu_SOption_DebugOptionsDesc = "�������� �������, �������� ������ ������� ���� ��������� ���������"
+	
+	
+	ContextMenu_speech_DoNotTouchFood = "��� ��� �� ��� ����! �� ������!",
+	ContextMenu_speech_HilltopIntro = "������������ ��� � ��������! �� ������ ���� ����� ����� � ������� ����� ���� ������.",
+	ContextMenu_speech_BlockadeIntro = "��� ������-��������� �������. ����� �� ������ ������ ���� ����� �������. ��� ������������� ����� ������������ ���������� ����.",
 	ContextMenu_speech_FollowMeToHilltop = "� ���� ���������� �����, ������ �� ����, ���� ������.",
-	
- 
-    ContextMenu_speech_WifeIntro1 = "��� �� ����� ������ ������, �������?!",
-    ContextMenu_speech_WifeSpeech1 = "�������?",
+		
+	ContextMenu_speech_WifeSpeech1 = "�������?",
     ContextMenu_speech_WifeSpeech2 = "��� �� ����� ������, �������?",
     ContextMenu_speech_WifeSpeech3 = "����� ��� ����� ����� ����� ���������� �����?",
     ContextMenu_speech_WifeSpeech4 = "��� �� ��������� �����?",
     ContextMenu_speech_WifeSpeech5 = "� ��������..",
-     
-     --[[ I dont think that this is right... ]]--
-    ContextMenu_OutOfAmmo1 = "��� ��������!",
-	ContextMenu_OutOfAmmo2 = "� ���� ��� ��������!",
-	ContextMenu_OutOfAmmo3 = "� ������!",
-	ContextMenu_OutOfAmmo4 = "������ ��� ��������!",
-	ContextMenu_SD_Random_OutOfAmmo4 = "������ ��� ��������!",
+	
     ContextMenu_speech_OutOfAmmo1 = "��� ��������!",
     ContextMenu_speech_OutOfAmmo2 = "� ���� ��� ��������!",
     ContextMenu_speech_OutOfAmmo3 = "� ������!",
     ContextMenu_speech_OutOfAmmo4 = "������ ��� ��������!",
- 
- 
+
+
     ContextMenu_speech_HowDareYou1 = "�� ��� �� ������!",
- 
+
+
+    ContextMenu_speech_WifeIntro1 = "��� �� ���������� ������ ������, �������?!",
+
+
     ContextMenu_speech_IDontKnowHowDoctor1 = "�� ���� ����, ��� �� ���� ��������.",
- 
+   
+
+
     ContextMenu_speech_IfYouThinkSo1 = "���� �� ������� ��� ��� �����, �� �����.",
     ContextMenu_speech_IfYouThinkSo2 = "������� ��� �����? ����.",
- 
- 
+
+
     ContextMenu_speech_SawHimThere1 = "� ����� ��� ����-��",
     ContextMenu_speech_SawHimThere2 = "C���!",
-    ContextMenu_speech_SawHimThere3 = "�� �����!",
+    ContextMenu_speech_SawHimThere3 = "��� �����!",
     ContextMenu_speech_SawHimThere4 = "����� ���-�� ����! ������ ����!",
 
 
     ContextMenu_speech_GonnaGetYou1 = "� �� ���� ��������!",
-    ContextMenu_speech_GonnaGetYou2 = "������, �����!",
+    ContextMenu_speech_GonnaGetYou2 = "������ �� ���!",
     ContextMenu_speech_GonnaGetYou3 = "� ������ ��� ���� ���� �����!",
     ContextMenu_speech_GonnaGetYou4 = "�� ������!",
-    ContextMenu_speech_GonnaGetYou5 = "�� �������� ����� �������, �����!",
+    ContextMenu_speech_GonnaGetYou5 = "�������� ����� �������!",
 
 
     ContextMenu_speech_SeenPlayerIll1 = "��, �� � �������?",
-    ContextMenu_speech_SeenPlayerIll2 = "������, � ����� ���-�� �� ���...",
+    ContextMenu_speech_SeenPlayerIll2 = "������, ��� �� ��������� �� ����� ������",
     ContextMenu_speech_SeenPlayerIll3 = "�������� ��� � ����",
-    ContextMenu_speech_SeenPlayerIll4 = "�� ����� ������� ���-��, ��?",
+    ContextMenu_speech_SeenPlayerIll4 = "�� ����� ������� ���-��, �����?",
     ContextMenu_speech_SeenPlayerIll5 = "����, ��� �� �� ����� ���������",
-    ContextMenu_speech_SeenPlayerIll6 = "��...�� � �������?",
+    ContextMenu_speech_SeenPlayerIll6 = "��...� �������?",
     ContextMenu_speech_SeenPlayerIll7 = "��������� �������",
     ContextMenu_speech_SeenPlayerIll8 = "���� �������? � ����� �� � �������?",
- 
+
 
     ContextMenu_speech_SeenPlayerBit1 = "��*��, ���� �������!",
     ContextMenu_speech_SeenPlayerBit2 = "����! � ���� ���� �����!",
     ContextMenu_speech_SeenPlayerBit3 = "���� ��������!",
     ContextMenu_speech_SeenPlayerBit4 = "� �� ������� ���� ������������ � ������ �� ���!",
-    ContextMenu_speech_SeenPlayerBit5 = "� ���, � ���� � ���� �����!",
+    ContextMenu_speech_SeenPlayerBit5 = "� ���, � ���� ����� �� ����!",
     ContextMenu_speech_SeenPlayerBit6 = "�**���� ��� ����� �����, ��*��!",
     ContextMenu_speech_SeenPlayerBit7 = "��! �� ��������� ������!",
-    ContextMenu_speech_SeenPlayerBit8 = "���� ���, �������?! ������ ��**�!",
+    ContextMenu_speech_SeenPlayerBit8 = "� ������ ���� �������! �� ���� ������ ����� �� ����!",
     ContextMenu_speech_SeenPlayerBit9 = "����...� ���� ������� ���� ���������, ������ ���. �� �� ������ ��������� ���, ��� ���?",
     ContextMenu_speech_SeenPlayerBit10 = "���...����?",
     ContextMenu_speech_SeenPlayerBit11 = "� ���� � ���� �� ������ ���-�� �������. ��� �����?!",
     ContextMenu_speech_SeenPlayerBit12 = "������, �� � �� ������� � ����������.",
     ContextMenu_speech_SeenPlayerBit13 = "�� ����������, � ����� ����� ���� ��������...������ �����.",
 
- 
-    ContextMenu_speech_Sick1 = "� ���� ����������� �����������",
-    ContextMenu_speech_Sick2 = "������, � ���������",
- 
- 
-    ContextMenu_speech_VSick1 = "��� ����� ����...",
-    ContextMenu_speech_VSick2 = "��������, ��� ��������",
-	
 
-	ContextMenu_speech_SSick1 = "���� ������ �������",
-    ContextMenu_speech_SSick2 = "� ������ �������!",
- 
- 
     ContextMenu_speech_Crying1 = "*������*",
     ContextMenu_speech_Crying2 = "*������*",
     ContextMenu_speech_Crying3 = "���...�� ������� ����!",
     ContextMenu_speech_Crying4 = "�� ������� ����.",
     ContextMenu_speech_Crying5 = "����������...�� ������� ����.",
-    ContextMenu_speech_Crying6 = "��, �������, �� ������, �������?!",
     ContextMenu_speech_Crying7 = "��������...����������!",
     ContextMenu_speech_Crying8 = "��*��, ��**�� � ���, �������!",
     ContextMenu_speech_Crying9 = "���!",
@@ -638,9 +490,9 @@ ContextMenu_RU = {
     ContextMenu_speech_Crying15 = "����������, ��������!",
     ContextMenu_speech_Crying16 = "��������, �� ��! *������*",
     ContextMenu_speech_Crying17 = "��������! *������*",
- 
- 
-    ContextMenu_speech_Tired1 = "� �����, ����...",
+
+
+    ContextMenu_speech_Tired1 = "�����, � ��� � �����...",
     ContextMenu_speech_Tired2 = "��� �����...",
     ContextMenu_speech_Tired3 = "��, � �����...",
     ContextMenu_speech_Tired4 = "��� ����� �������...",
@@ -651,66 +503,67 @@ ContextMenu_RU = {
     ContextMenu_speech_Tired9 = "*����������*",
     ContextMenu_speech_Tired10 = "����� �������!",
     ContextMenu_speech_Tired11 = "����� ��� �������...",
- 
- 
+
+
     ContextMenu_speech_VTired1 = "��� �����...��� ���� ������.",
     ContextMenu_speech_VTired2 = "�����...�������� ��� ������ �����...",
     ContextMenu_speech_VTired3 = "*���* ��-�-�-���.. *������* �����-�-���..",
     ContextMenu_speech_VTired4 = "*���-��-��*",
     ContextMenu_speech_VTired5 = "��� ����...",
     ContextMenu_speech_VTired6 = "��� ����� ������ �����...�������!",
- 
- 
+
+
     ContextMenu_speech_STired1 = "��� �����...��� ������ �����.",
-    ContextMenu_speech_STired2 = "�� ������ �����...",
+    ContextMenu_speech_STired2 = "�����...�������...",
     ContextMenu_speech_STired3 = "*����*...����� ���������...",
     ContextMenu_speech_STired4 = "��� ������ ����� �����! *���*",
     ContextMenu_speech_STired5 = "��� ����...� �� �� ��������! *���*",
     ContextMenu_speech_STired6 = "� ������ ����, ���� �� �� ������������ ���� �� ���� ��*��� �������!",
     ContextMenu_speech_STired7 = "�������...���� �� �������...*���*",
- 
- 
-    ContextMenu_speech_Thirsty1 = "�����, ���� �� ����... � ���� ����...",
-    ContextMenu_speech_Thirsty2 = "������� ������� ����...",
-    ContextMenu_speech_Thirsty3 = "� ��� ���� ������ ����? �������� ��������� �����.",
-    ContextMenu_speech_Thirsty4 = "������� ����������� �������",
-    ContextMenu_speech_Thirsty5 = "� ���� ��������� �� ���...",
-    ContextMenu_speech_Thirsty6 = "����...",
-    ContextMenu_speech_Thirsty7 = "������ ��� ����������� �� �������� �� ���-������ ������.",
-    ContextMenu_speech_Thirsty8 = "������� ������� ����...",
-    ContextMenu_speech_Thirsty9 = "������ ���-������ ����?",
-    ContextMenu_speech_Thirsty10 = "���� ���������? ��������� ���",
- 
- 
-    ContextMenu_speech_VThirsty1 = "�����, ���� �� ����?.. � ���� ����...",
-    ContextMenu_speech_VThirsty2 = "� ��� ���� ����...",
-    ContextMenu_speech_VThirsty3 = "���� ������ ����? ������ � ���� ����.",
-    ContextMenu_speech_VThirsty4 = "��� ����� ����...",
-    ContextMenu_speech_VThirsty5 = "��, � ���� ��������� �� ���...",
-    ContextMenu_speech_VThirsty6 = "� �� ���� ���� ��� ����.",
-    ContextMenu_speech_VThirsty7 = "������� ������� ����...",
-    ContextMenu_speech_VThirsty8 = "� ���� ��������� �� ���, ���� ���-������ ������?",
-    ContextMenu_speech_VThirsty9 = "��� ����� ����� ���-������ ������.",
-    ContextMenu_speech_VThirsty10 = "��� ���� ����� ����������, � ��� ���� ���-������ ������...",
- 
- 
+
+
+
+    ContextMenu_speech_Thirsty1 = "�����, ���� �� ����... � ������� ���� ����...",
+     ContextMenu_speech_Thirsty2 = "������� ������� ����...",
+     ContextMenu_speech_Thirsty3 = "� ��� ���� ������ ����? ���������� ��������� �����.",
+     ContextMenu_speech_Thirsty4 = "�������� ����������� �������",
+     ContextMenu_speech_Thirsty5 = "� ���� ��������� �� ���...",
+     ContextMenu_speech_Thirsty6 = "�����...",
+     ContextMenu_speech_Thirsty7 = "������ ��� ����������� �� �������� �� ���-������ ������.",
+     ContextMenu_speech_Thirsty8 = "������� ������� ����...",
+     ContextMenu_speech_Thirsty9 = "������ ���-������?",
+     ContextMenu_speech_Thirsty10 = "���� ���������? ��������� ���", 
+
+
+    ContextMenu_speech_VThirsty1 = "�����, ���� �� ����... � ���� ����...",
+      ContextMenu_speech_VThirsty2 = "� ��� ���� ����...",
+      ContextMenu_speech_VThirsty3 = "���� ������ ����? ������� ���� �����.",
+      ContextMenu_speech_VThirsty4 = "��� ����� ����...",
+      ContextMenu_speech_VThirsty5 = "��, � ���� ��������� �� ���...",
+      ContextMenu_speech_VThirsty6 = "� �� ���� ���� ��� ����.",
+      ContextMenu_speech_VThirsty7 = "������� ������� ����...",
+      ContextMenu_speech_VThirsty8 = "� ���� ��������� �� ���, ���� ���-������ ������?",
+      ContextMenu_speech_VThirsty9 = "��� ����� ����� ���-������ ������.",
+      ContextMenu_speech_VThirsty10 = "��� ���� ����� ����������, � ��� ���� ���-������ ������...", 
+
+
     ContextMenu_speech_SThirsty1 = "� ������ �� �����",
-    ContextMenu_speech_SThirsty2 = "��� ������� ����... ������...",
-    ContextMenu_speech_SThirsty3 = "����.. ����������..",
-    ContextMenu_speech_SThirsty4 = "���.. ������� ����.. ����..",
-    ContextMenu_speech_SThirsty5 = "��� �����... ���-������ ������..",
-    ContextMenu_speech_SThirsty6 = "� ������ �� ���� ���... ����..",
-    ContextMenu_speech_SThirsty7 = "��� �����... ���-������ ������...",
-    ContextMenu_speech_SThirsty8 = "� �� ���� ���� ��� ����... ���� ����...",
-    ContextMenu_speech_SThirsty9 = "� ��� ���� ����, ��� ������",
-    ContextMenu_speech_SThirsty10 = "����� ���-������ ������...���� �����...",
- 
- 
+     ContextMenu_speech_SThirsty2 = "��� ������� ����... ������...",
+     ContextMenu_speech_SThirsty3 = "����.. ����������..",
+     ContextMenu_speech_SThirsty4 = "���.. ������� ����.. ����..",
+     ContextMenu_speech_SThirsty5 = "��� �����... ���-������ ������..",
+     ContextMenu_speech_SThirsty6 = "� ������ �� ���� ���... ����..",
+ContextMenu_speech_SThirsty7 = "��� �����... ���-������ ������...",
+      ContextMenu_speech_SThirsty8 = "� �� ���� ���� ��� ����... ���� ����...",
+ContextMenu_speech_SThirsty9 = "� ��� ���� ����, ��� ������",
+ContextMenu_speech_SThirsty10 = "����������, ����� ��� ������... ���� �������� �����...", 
+
+
     ContextMenu_speech_Respond1 = "��?",
     ContextMenu_speech_Respond2 = "�-��?",
     ContextMenu_speech_Respond3 = "��? ����?",
     ContextMenu_speech_Respond4 = "����?",
-    ContextMenu_speech_Respond5 = "��� ����?",
+    ContextMenu_speech_Respond5 = "��� ���?",
     ContextMenu_speech_Respond6 = "� �����?",
     ContextMenu_speech_Respond7 = "�����.",
     ContextMenu_speech_Respond8 = "� �����.", "����� ������?",
@@ -721,49 +574,48 @@ ContextMenu_RU = {
     ContextMenu_speech_Respond13 = "��� � ���� ������� ��� ����?",
     ContextMenu_speech_Respond14 = "� �����.",
 	ContextMenu_speech_Respond15 = "Aye?",
-    ContextMenu_speech_Respond16 = "�������",
-    ContextMenu_speech_Respond17 = "���-�� �����?",
-    ContextMenu_speech_Respond18 = "������ ���� ����������?",
-    ContextMenu_speech_Respond19 = "���?",
-    ContextMenu_speech_Respond20 = "� �����, � �����", 
- 
- 
-    ContextMenu_speech_Hungry1 = "�����, � �� ������ � ������� ���, � ���� ���� �����?",
-    ContextMenu_speech_Hungry2 = "�����, � ���� ���� ���-������ ����������?",
-    ContextMenu_speech_Hungry3 = "� ������������.",
-    ContextMenu_speech_Hungry4 = "���������� �� � ��� ������� ���?",
-    ContextMenu_speech_Hungry5 = "� ������� ������� �� ������",
-    ContextMenu_speech_Hungry6 = "���������� ����� �����? � ����� ��������",
-    ContextMenu_speech_Hungry7 = "�����, ��� ��� ���-������ ������!",
-    ContextMenu_speech_Hungry8 = "������ ������, ��� ������ ����, ��� ������� ����.",
-    ContextMenu_speech_Hungry9 = "��� ����� ���� �� ����?",
-    ContextMenu_speech_Hungry10 = "�����, ���� � ���� ���� ����������, ��� ��� ����",
+ContextMenu_speech_Respond16 = "�������",
+ContextMenu_speech_Respond17 = "����� � ��� �����?",
+ContextMenu_speech_Respond18 = "������ ���� ����������?",
+ContextMenu_speech_Respond19 = "���-������?",
+ContextMenu_speech_Respond20 = "� �����, � �����", 
 
- 
+
+    ContextMenu_speech_Hungry1 = "�����, � �� ������ �� ������� ���, � ���� ���� ��� ������?",
+      ContextMenu_speech_Hungry2 = "�����, � ���� ���� ���-������ ����������?",
+      ContextMenu_speech_Hungry3 = "� ������������.",
+      ContextMenu_speech_Hungry4 = "���������� �� � ��� ������� ���?",
+      ContextMenu_speech_Hungry5 = "���� �������� ���������",
+      ContextMenu_speech_Hungry6 = "���������� ����� �����? � ����� ������",
+      ContextMenu_speech_Hungry7 = "�����, ��� ��� ���-������ ������!",
+      ContextMenu_speech_Hungry8 = "���� �� ������, ��� �� �����, �� ������ �������, ���� �� ����������", ",
+      ContextMenu_speech_Hungry9 = "��� ����� ���� �� ����?",
+      ContextMenu_speech_Hungry10 = "�����, ���� � ���� ���� ����������, ��� ��� ����", 
+
+
     ContextMenu_speech_VHungry1 = "����� ���� �� ������.",
     ContextMenu_speech_VHungry2 = "����� ��������...���� �� ���� �����.",
     ContextMenu_speech_VHungry3 = "��� ����� ���-�� ����� ������ ������!",
     ContextMenu_speech_VHungry4 = "�...��������...",
     ContextMenu_speech_VHungry5 = "� ������������!",
     ContextMenu_speech_VHungry6 = "�� ���� ���������, ����� ��������� ��� �� ���-��.",
-    ContextMenu_speech_VHungry7 = "����, ��� �����. ���-������ ������ ��� ��� �����?",
+    ContextMenu_speech_VHungry7 = "����, ��� �����. ���-������ ������ ���?",
     ContextMenu_speech_VHungry8 = "� ������ �� �����, ���� ��� �� ����� ���!",
 	ContextMenu_speech_VHungry9 = "�����, � ��� �������, ����������, �������� �� ���� ����...",
-    ContextMenu_speech_VHungry10 = "� ��� �������... ����� �����", 
- 
- 
+ContextMenu_speech_VHungry10 = "� ��� �������... ������� � ������", 
+
+
     ContextMenu_speech_Starving1 = "������...���...",
     ContextMenu_speech_Starving2 = "��� �������...������ ����...",
     ContextMenu_speech_Starving3 = "� ��...����� ���-������...������...",
     ContextMenu_speech_Starving4 = "���...���-������...",
-    ContextMenu_speech_Starving5 = "��� �� ��������?..�, �����, � ���� �� ������ ���...",
+    ContextMenu_speech_Starving5 = "��� �� ��������...�, �����, � ���� �� ������ ���...",
     ContextMenu_speech_Starving6 = "��������� ���� ��� ���...� ������ ����� �� ��������...",
     ContextMenu_speech_Starving7 = "� �� ���� ������ ����...����� ��������...����� ���� ���-������ ������...",
 	ContextMenu_speech_Starving8 = "� ���� ��� ���!",
-    ContextMenu_speech_Starving9 = "��� ��� ���-������ ������, � �������",
-    ContextMenu_speech_Starving10 = "��� ������� ����� � ������ ������� ���", 
- 
- 
+ContextMenu_speech_Starving9 = "��� ��� ���-������ ������, � �������",
+ContextMenu_speech_Starving10 = "��� ������� ����� � ������ ������� ���", 
+
     ContextMenu_speech_Roger1 = "����.",
     ContextMenu_speech_Roger2 = "������.",
     ContextMenu_speech_Roger3 = "�������.",
@@ -782,20 +634,20 @@ ContextMenu_RU = {
     ContextMenu_speech_Roger16 = "��������.",
     ContextMenu_speech_Roger17 = "�����!",
 	ContextMenu_speech_Roger18 = "�������.",
-    ContextMenu_speech_Roger19 = "���, �����.",
-    ContextMenu_speech_Roger20= "�� ����� ���.",
-    ContextMenu_speech_Roger21= "������ � ���������.",
-    ContextMenu_speech_Roger22= "���� ��������.",
-    ContextMenu_speech_Roger23= "�����������",
-    ContextMenu_speech_Roger24= "��, ��������.",
-    ContextMenu_speech_Roger25= "��, �������.",
-    ContextMenu_speech_Roger26= "������� ��������.",
-    ContextMenu_speech_Roger27= "��, ���.",
-    ContextMenu_speech_Roger28= "��� ������ ������.",
-    ContextMenu_speech_Roger29= "���, ��, ���!",
-    ContextMenu_speech_Roger30= "�������.",
+ContextMenu_speech_Roger19 = "���� ���� ����� ��������",
+ContextMenu_speech_Roger20= "�� ����� ���.",
+ContextMenu_speech_Roger21= "� ����� � ���������.",
+ContextMenu_speech_Roger22= "���� ����������.",
+ContextMenu_speech_Roger23= "����������",
+ContextMenu_speech_Roger24= "��, ��������.",
+ContextMenu_speech_Roger25= "��, �������.",
+ContextMenu_speech_Roger26= "����� �������",
+ContextMenu_speech_Roger27= "��, ���",
+ContextMenu_speech_Roger28= "��� ������ ������.",
+ContextMenu_speech_Roger29= "���, ��, ���!",
+ContextMenu_speech_Roger30= "������� ������� ���", 
 
- 
+
     ContextMenu_speech_No1 = "���.",
     ContextMenu_speech_No2 = "���, �������.",
     ContextMenu_speech_No3 = "�� �� ���!",
@@ -803,26 +655,26 @@ ContextMenu_RU = {
     ContextMenu_speech_No5 = "���!",
     ContextMenu_speech_No6 = "� ��� �� �����",
     ContextMenu_speech_No7 = "�� �����",
-	ContextMenu_speech_No8 = "������ �������, �� � �����������! ���� �� ���� ������� ������� � �������� "���" �����, ������� ������� ���� ������� ����*����!",
-    ContextMenu_speech_No9 = "� ��� ����� �� ����",
-    ContextMenu_speech_No10 = "��������� �� ���� �����",
-    ContextMenu_speech_No11 = "�� � ���� ���",
-    ContextMenu_speech_No12 = "�� ���� �������� ��������, �������� ������ ��� ��������",
+	ContextMenu_speech_No8 = "������ �������, �� � �����������! ���� �� ���� ������� ������� � �������� "���" ������, ������� ������� ���� ������� ��������!",
+ContextMenu_speech_No9 = "� ��� ����� �� ����",
+ContextMenu_speech_No10 = "��������� �� ���� �����",
+ContextMenu_speech_No11 = "�� � ���� ���",
+ContextMenu_speech_No12 = "�� ���� �������� ��������, �������� ������ ��� ��������", 
 
 
     ContextMenu_speech_Thanks1 = "�������",
     ContextMenu_speech_Thanks2 = "�������!",
     ContextMenu_speech_Thanks3 = "���������.",
-	ContextMenu_speech_Thanks4 = "���������...",
-    ContextMenu_speech_Thanks5 = "������� �������!",
-    ContextMenu_speech_Thanks6 = "������",
-    ContextMenu_speech_Thanks7 = "��� ��� ��, ��� ��� ���� �����",
-    ContextMenu_speech_Thanks8 = "�� ��� ����",
- 
- 
- 
+	ContextMenu_speech_thanks4 = "���� �������� ����� �������������",
+ContextMenu_speech_thanks5 = "������� �������!",
+ContextMenu_speech_thans6 = "������",
+ContextMenu_speech_thanks7 = "��� ��� ��, ��� ��� ���� �����",
+ContextMenu_speech_thanks8 = "�� ��� ����", 
+
+
+
     ContextMenu_speech_HitByPlayer1 = "��� �� �������!?",
-    ContextMenu_speech_HitByPlayer2 = "������? �� ���!?",
+    ContextMenu_speech_HitByPlayer2 = "������? ������!?",
     ContextMenu_speech_HitByPlayer3 = "��! ������!",
     ContextMenu_speech_HitByPlayer4 = "�� ������?! ��� �� �������?!",
     ContextMenu_speech_HitByPlayer5 = "��� � ����� �� ���?!",
@@ -838,7 +690,7 @@ ContextMenu_RU = {
     ContextMenu_speech_HitByPlayer15 = "� ���, ����� �� �����?!",
     ContextMenu_speech_HitByPlayer16 = "������� � ����� �� ��**��� �����?!",
     ContextMenu_speech_HitByPlayer17 = "� ������� ��� ������ �����?!",
-    ContextMenu_speech_HitByPlayer18 = "������� �� ��������, �����.",
+    ContextMenu_speech_HitByPlayer18 = "��� ��� ���������� ������.",
     ContextMenu_speech_HitByPlayer19 = "��, �� ��������� �� ����.",
     ContextMenu_speech_HitByPlayer20 = "�� ��� �������, �����?!",
     ContextMenu_speech_HitByPlayer21 = "����!",
@@ -849,9 +701,9 @@ ContextMenu_RU = {
     ContextMenu_speech_HitByPlayer26 = "������ ���� ������, ���*��!",
     ContextMenu_speech_HitByPlayer27 = "���**���",
     ContextMenu_speech_HitByPlayer28 = "� ���� ������ ���! ����!",
-	ContextMenu_speech_HitByPlayer29 = "�� ��� ��� ������. � ��������� ����� ���� �����������."
- 
- 
+	ContextMenu_speech_HitByPlayer29 = "�������� ��� �� ���� ���, ������ ��������� � ��������� �����." 
+
+
     ContextMenu_speech_SeenFirstZombie1 = "��� ���?!",
     ContextMenu_speech_SeenFirstZombie2 = "��� ������.",
     ContextMenu_speech_SeenFirstZombie3 = "��� � ��� �� ���?!",
@@ -865,15 +717,15 @@ ContextMenu_RU = {
     ContextMenu_speech_SeenFirstZombie11 = "��, � ����...����, ��� ��� �����?!",
     ContextMenu_speech_SeenFirstZombie12 = "��� �� ��� � �����...������?!",
     ContextMenu_speech_SeenFirstZombie13 = "���...����� �������?",
-    ContextMenu_speech_SeenFirstZombie14 = "� ��� �������...��� ���� �� '���'?",
+    ContextMenu_speech_SeenFirstZombie14 = "� ��� �������...��� ���� �� '����������'?",
     ContextMenu_speech_SeenFirstZombie15 = "��� ���, ��*��, �����?!",
     ContextMenu_speech_SeenFirstZombie16 = "������ �����?",
     ContextMenu_speech_SeenFirstZombie17 = "�*��, ��� � ����� �� ���?!",
     ContextMenu_speech_SeenFirstZombie18 = "���...��� ���!?",
- 
- 
+
+
     ContextMenu_speech_IdleChatter1 = "����� �� ������������ �����?",
-    ContextMenu_speech_IdleChatter2 = "� ������(�) � ������ �������� '�������', ������, ��� ���������.",
+    ContextMenu_speech_IdleChatter2 = "� ������(�) � ������ �������� '�������', ������, ��� ����� ������ ���� ����������.",
     ContextMenu_speech_IdleChatter3 = "�����-���� ������ � '��������'? ������, ���������� ���� ���������� �������.",
     ContextMenu_speech_IdleChatter4 = "� ������(�), ����� �� ����� � ������������.",
     ContextMenu_speech_IdleChatter5 = "�����������, ���� ������ �� ������ �� �������, ���� �� ����� ����� �� ����...",
@@ -884,7 +736,7 @@ ContextMenu_RU = {
     ContextMenu_speech_IdleChatter10 = "�� ������ ���?",
     ContextMenu_speech_IdleChatter11 = "� ������� �����, ��� ������� � ����� ������ ������������ �������� � ������ �� ������� ������.",
     ContextMenu_speech_IdleChatter12 = "�������, � ���-�� ������.",
-    ContextMenu_speech_IdleChatter13 = "� �������, ��� ������ �� ������� ����� ����.",
+    ContextMenu_speech_IdleChatter13 = "� �������, ��� ����� ���� ������ �� ����������.",
     ContextMenu_speech_IdleChatter14 = "�������, ��� ���� �� ����� �����? ��� �� ���������?",
     ContextMenu_speech_IdleChatter15 = "��� ����� ���������� ���������?",
     ContextMenu_speech_IdleChatter16 = "� ������, ��� ����� ��� ��� �� ������.",
@@ -902,7 +754,7 @@ ContextMenu_RU = {
     ContextMenu_speech_IdleChatter28 = "�������, ��� ����� ���������.",
     ContextMenu_speech_IdleChatter29 = "�� ���� ���������, ����� ��������� ��� �������� ���...",
     ContextMenu_speech_IdleChatter30 = "��� ��� �������� ������� ����, �� ��� ��?",
-    ContextMenu_speech_IdleChatter31 = "��� ����� ����� ����� �����������.",
+    ContextMenu_speech_IdleChatter31 = "��� ����� ����� ������ ��� �����.",
     ContextMenu_speech_IdleChatter32 = "������� ����� ����������, ����� ����� ��� ����� �������� ���� �� ������.",
     ContextMenu_speech_IdleChatter33 = "� ����� ��� ����� ������� �� �������������. ������ �� ��������� ������?",
     ContextMenu_speech_IdleChatter34 = "� �� �� ��������� �� ������� ������� C�����. ��.",
@@ -914,20 +766,20 @@ ContextMenu_RU = {
     ContextMenu_speech_IdleChatter40 = "�������, ����� ���������� ������ � ���� ������?",
     ContextMenu_speech_IdleChatter41 = "������, � �� ������� �����, �� �� ����, �� ����������� �� ������.",
     ContextMenu_speech_IdleChatter42 = "��� �� ������� ���� ����� �����.",
-    ContextMenu_speech_IdleChatter43 = "��� �������, ����� ���������� ���������?",
+    ContextMenu_speech_IdleChatter43 = "��� �������, ����� ������������� ���������?",
     ContextMenu_speech_IdleChatter44 = "����� ����������� ����-������?",
     ContextMenu_speech_IdleChatter45 = "�� ��������� ������, ��� ��������. � ���, ��� ���������� � �����.",
     ContextMenu_speech_IdleChatter46 = "�� ��������� ������, ��� ��������. �� �� ������������� ��� � ���, ��� � �������� ����� � �����.",
-    ContextMenu_speech_IdleChatter47 = "�� ����� ��� � ��*�� ������� �����! ��� �� ��*��, �*�*� �� ���� �������.",
+    ContextMenu_speech_IdleChatter47 = "�� ����� ��� � ��*�� ������� �����! ��� �� ��*�� �� ����� �� ���� �������.",
     ContextMenu_speech_IdleChatter48 = "��� �������, ������� ����� ���� � ������?",
-    ContextMenu_speech_IdleChatter49 = "������ �������, ��� ��� ��� ���.",
+    ContextMenu_speech_IdleChatter49 = "������ �������, ��� ��� ��������� � � �������� �� ���.",
     ContextMenu_speech_IdleChatter50 = "�� �����-������ ������������, ��-�� ���� �� ��������?",
     ContextMenu_speech_IdleChatter51 = "� ������� ���� ������������ � ������� ���� - ����������.",
     ContextMenu_speech_IdleChatter52 = "��� �������, ��������� ��� ����� � ������?",
     ContextMenu_speech_IdleChatter53 = "����! �� ������ ���?..��, �������� ����������.",
     ContextMenu_speech_IdleChatter54 = "��� ��� �� ���? ������ ����� ����������.",
-    ContextMenu_speech_IdleChatter55 = "������...� ������ ����� ��������� ����...",
-    ContextMenu_speech_IdleChatter56 = "��, ���� ���� ��������...������ ���� �� �����.",
+    ContextMenu_speech_IdleChatter55 = "������...� ������ ����� ��������� ����������� �������...",
+    ContextMenu_speech_IdleChatter56 = "��, ���� ���� ���������� ������� ����� ���� ����, ���������?",
     ContextMenu_speech_IdleChatter57 = "�� ��� �������� ��� ���� �������� �����.",
     ContextMenu_speech_IdleChatter58 = "��� ������ �������� ������� ����� ������?",
     ContextMenu_speech_IdleChatter59 = "� �� �������� �� ��������, ���� � ���� ����.",
@@ -936,7 +788,7 @@ ContextMenu_RU = {
     ContextMenu_speech_IdleChatter62 = "������, ������ ���� ����� �� ����� �����.",
     ContextMenu_speech_IdleChatter63 = "���-������ �����������, ����� ���� ��� � ���� ������ ����?",
     ContextMenu_speech_IdleChatter64 = "������ ����, ��� ���� �������...����...������.",
-    ContextMenu_speech_IdleChatter65 = "� ����������, ��� �� ���� �����. � �� ����, ��� �� � ����� ��� ����.",
+    ContextMenu_speech_IdleChatter65 = "� ����� ���� ����������, ��� �� ���� �����. � �� ����, ��� �� � ����� �� �����.",
     ContextMenu_speech_IdleChatter66 = "��� �� �������, �� ��� ���� ������, ����� ��������?",
     ContextMenu_speech_IdleChatter67 = "�� �����-������ ������ ��� �������, ����� ����, ��� �� ������ �� �*���?",
     ContextMenu_speech_IdleChatter68 = "�� �����-������ ������ ��� �������, ����� ����, ��� �� ����� ������?",
@@ -945,15 +797,15 @@ ContextMenu_RU = {
     ContextMenu_speech_IdleChatter71 = "��� �������, ���� ��� �������?",
     ContextMenu_speech_IdleChatter72 = "����� ��� ����� ������ ���� ����. ����� ������ ����-������?",
     ContextMenu_speech_IdleChatter73 = "��� ������� � ��� ���� ���������?",
-    ContextMenu_speech_IdleChatter74 = "����� �����...��������...",
+    ContextMenu_speech_IdleChatter74 = "����� �����...�������...",
     ContextMenu_speech_IdleChatter75 = "������ 5 ������, ��� ������� ����� ����� - ������� ��������.",
-    ContextMenu_speech_IdleChatter76 = "��� �������, ��� ����� ��� �� ����� ������������?",
+    ContextMenu_speech_IdleChatter76 = "��� �������, ��� ����� ��� �� ����� ��� ������������?",
     ContextMenu_speech_IdleChatter77 = "�������, � ���� ������ �� � �������.",
     ContextMenu_speech_IdleChatter78 = "����� ��� ����� ����� �� �����? � ������, ��� ����� ����������.",
     ContextMenu_speech_IdleChatter79 = "������...�� ����� ������� ����...� ������ �����, ����� �� ����.",
     ContextMenu_speech_IdleChatter80 = "� ����� ��� ������? ��� ������� �� ��������� ��������.",
     ContextMenu_speech_IdleChatter81 = "�� ������?",
-    ContextMenu_speech_IdleChatter82 = "������ ����� ��������. � ����� � ������.",
+    ContextMenu_speech_IdleChatter82 = "��� �� ������ ����������� �� ���� � ����� �������� ����.",
     ContextMenu_speech_IdleChatter83 = "�����, ��� �� �������� ���������� �����? ���� ����, ��� �� ������ ��� ���.",
     ContextMenu_speech_IdleChatter84 = "���� ������ ��������, ��� ����� ����, ���������, ��� �� ���...����� ������ ����� �������� �� ������.",
     ContextMenu_speech_IdleChatter85 = "� ���� �� ���������?",
@@ -971,16 +823,16 @@ ContextMenu_RU = {
     ContextMenu_speech_IdleChatter97 = "�������, ��� �����...�� ������������� ������� ��������, ����� ����.",
     ContextMenu_speech_IdleChatter98 = "� ������, ��� ������ ����� ���������� ������. �*��!",
     ContextMenu_speech_IdleChatter99 = "����� ����� ����� ��� ������� �������?",
-    ContextMenu_speech_IdleChatter100 = "� �������� ���� ������ �����, �� � �� ����� ��, ����� ������� ���� ���� �� ��.",
+    ContextMenu_speech_IdleChatter100 = "� �������� ���� ������ �����, �� � �� ����� ��, ����� ������� ���� ���������� ����.",
     ContextMenu_speech_IdleChatter101 = "���������, ��������� ��� ���?",
     ContextMenu_speech_IdleChatter102 = "��� �� ��� ��������, ��� ����� ��������.",
     ContextMenu_speech_IdleChatter103 = "�� ���������?",
-    ContextMenu_speech_IdleChatter104 = "� �� ��� ��� �����, ��� ����� - ��� �����...",
+    ContextMenu_speech_IdleChatter104 = "� �� ��� ��� �����, ��� ����� ��� �����...",
     ContextMenu_speech_IdleChatter105 = "� ����� ������ �� ����� �����...",
     ContextMenu_speech_IdleChatter106 = "���������, ������� ��� �����...����?",
     ContextMenu_speech_IdleChatter107 = "��� ����� �������� ���������. �� ���� �� ������ ���������� ��������?",
     ContextMenu_speech_IdleChatter108 = "��� ����� �������� ���������. �� ���� �� ������, ����� ���� ������ �����?",
-    ContextMenu_speech_IdleChatter109 = "�� ��� ������? � ���������, ������ ��� ������� ����.",
+    ContextMenu_speech_IdleChatter109 = "�� ��� ������? � ��� ���������, ������ ��� ���� ����.",
     ContextMenu_speech_IdleChatter110 = "*�������� ���-�� ��������*",
     ContextMenu_speech_IdleChatter111 = "� �� ��������� ������ ���������, �� ����� ��� �� ����������, ��� ������� ��������� ������ �����, ����� ��� ���������?",
     ContextMenu_speech_IdleChatter112 = "����...���� � ����� ����� �� ����, ������ ������ ��� ����. � �� ���� ���� ������� ������.",
@@ -991,29 +843,29 @@ ContextMenu_RU = {
     ContextMenu_speech_IdleChatter117 = "�����������, ��� ���� ���������� ���, ��.",
     ContextMenu_speech_IdleChatter118 = "� ������, ��� ������� ��������� � ����.",
     ContextMenu_speech_IdleChatter119 = "����� ��� ������, � �������� ������.",
-    ContextMenu_speech_IdleChatter120 = "��...� ���� ����� �� ����, � ������� ���� ���� �����. � �� ����, ���� �� �� ����� ����.",
+    ContextMenu_speech_IdleChatter120 = "��...� ���� ����� �� ����, ��� � ������� ���� ���� �����. � �� ����, ���� �� �� ����� ����.",
     ContextMenu_speech_IdleChatter121 = "���������, ���� �� ���������� �����?",
     ContextMenu_speech_IdleChatter122 = "������...�� �������� ���-������?",
     ContextMenu_speech_IdleChatter123 = "�����, ��� ����� ������?",
-    ContextMenu_speech_IdleChatter124 = "�� �����-������ �����������, ��� �� �� �����, ���� �� ���� �������?",
-    ContextMenu_speech_IdleChatter125 = "��� ����� �������� �������� �����? ����� ����...������. �����?",
+    ContextMenu_speech_IdleChatter124 = "�� �����-������ �����������, ��� �� �� �����, ���� ������� �� ����?",
+    ContextMenu_speech_IdleChatter125 = "��� ����� �������� �������� �����? ����� ����...������.",
     ContextMenu_speech_IdleChatter126 = "���� �����-������ ����?",
     ContextMenu_speech_IdleChatter127 = "�������, � ���� ���� ����� �� �������?",
     ContextMenu_speech_IdleChatter128 = "��� ����� �� ����� ����� ���������� ���?",
     ContextMenu_speech_IdleChatter129 = "���� ����� ��������� � ������ �� ������.",
 	ContextMenu_speech_IdleChatter130 = "��������� �� ��� ������, ��� ����� ��� ���� ������ �����... ������������ � �������...",
-    ContextMenu_speech_IdleChatter131 = "� ����������� ��� ��� ���� ������ ���������?",
-    ContextMenu_speech_IdleChatter132 = "� ���� ��� ������� �������",
-    ContextMenu_speech_IdleChatter133 = "������������ �� ����������� � ��������.",
-    ContextMenu_speech_IdleChatter134 = "� ��� ��� ���� � �������...",
-    ContextMenu_speech_IdleChatter135 = "��������� ���� ������, �� '���' ��� ��� ����. ",
-    ContextMenu_speech_IdleChatter136 = "���� �� ��� � ����!",
-    ContextMenu_speech_IdleChatter137 = "��� ������ �������������? �� ��� ������� � �������?",
-    ContextMenu_speech_IdleChatter138 = "� ������ ����� ��������� ����� ��� �����, � ������� ��� � ���.",
-    ContextMenu_speech_IdleChatter139 = "'���� ����� ������ - ����� ����� ��������� �������'",
-    ContextMenu_speech_IdleChatter140 = "� �����. � ������� ������, � ������� ������ ������ � ��, ��� ���� �����. � ��� � ���� ��������."
+ContextMenu_speech_IdleChatter131 = "� ����������� ��� ��� ���� ������ ���������?",
+ContextMenu_speech_IdleChatter132 = "� ���� ��� ������� �������",
+ContextMenu_speech_IdleChatter133 = "������������ �� ����������� � ��������.",
+ContextMenu_speech_IdleChatter134 = "� ��� ��� ��������� �� ������� ������...",
+ContextMenu_speech_IdleChatter135 = "��������� ���� ������, �� �� ��� ��� ���. ",
+ContextMenu_speech_IdleChatter136 = "���� ��� ����� �������� �����������, �� ������� ����, ���� ������������� ������ ����� � ����.",
+ContextMenu_speech_IdleChatter137 = "��� ������ �������������? ��� ������������ ���������?",
+ContextMenu_speech_IdleChatter138 = "� ������ ����� ��������� ����� ��� �����, � ������� ��� � ���.",
+ContextMenu_speech_IdleChatter139 = "'� ���� ��� �������. ���, ��� �� ������ �������, ��� ����� ������ ����������.'",
+ContextMenu_speech_IdleChatter140 = "� �����. � ������� ������, � ������� ������ ������ � ��, ��� ���� �����. � � �������� ���." 
 
- 
+
     ContextMenu_speech_PreZombieChatter1 = "�� ���� ���� ���...",
     ContextMenu_speech_PreZombieChatter2 = "�������, ������� � �� �������� �� �����.",
     ContextMenu_speech_PreZombieChatter3 = "�������, �������� �� ��� �������.",
@@ -1028,8 +880,8 @@ ContextMenu_RU = {
     ContextMenu_speech_PreZombieChatter12 = "��...���-�� ������? ��� ��� �����������?",
     ContextMenu_speech_PreZombieChatter13 = "������� ������� �������.",
     ContextMenu_speech_PreZombieChatter14 = "������ ����!",
- 
- 
+
+
     ContextMenu_speech_Hurt1 = "��! ��*�� ���!",
     ContextMenu_speech_Hurt2 = "��, ���*��!",
     ContextMenu_speech_Hurt3 = "�*��!",
@@ -1045,12 +897,12 @@ ContextMenu_RU = {
     ContextMenu_speech_Hurt13 = "����! � ���� ������!",
     ContextMenu_speech_Hurt14 = "�*��, �*��, �*��!",
     ContextMenu_speech_Hurt15 = "�����!",
-    ContextMenu_speech_Hurt16 = "��� �� ����� �������������� ��������� � ����!",
+    ContextMenu_speech_Hurt16 = "�� ��������� �! ��� ������ �����������!",
     ContextMenu_speech_Hurt17 = "��*��, � ���� ������!",
     ContextMenu_speech_Hurt18 = "���*��! ��� ������! � ���� ������!",
 
 
-    ContextMenu_speech_Injured1 = "���! � �����!",
+    ContextMenu_speech_Injured1 = "��! � �����!",
     ContextMenu_speech_Injured2 = "������� �� ��� ���� �����!",
     ContextMenu_speech_Injured3 = "�����! � �����!",
     ContextMenu_speech_Injured4 = "��� ����� ������ ������!",
@@ -1109,13 +961,13 @@ ContextMenu_RU = {
     ContextMenu_speech_SeriousInjured16 = "���-������, ��������!",
     ContextMenu_speech_SeriousInjured17 = "��������!",
     ContextMenu_speech_SeriousInjured18 = "*������ �������*",
-    ContextMenu_speech_SeriousInjured19 = "� �����, ��� ������ �������...",
+    ContextMenu_speech_SeriousInjured19 = "� ����� ��� � ������ �������...",
     ContextMenu_speech_SeriousInjured20 = "���� �*��� ����� ����!",
     ContextMenu_speech_SeriousInjured21 = "��������! �, ��*��, ������ ����� �����!",
     ContextMenu_speech_SeriousInjured22 = "��*��, � ���� ����� ��������!",
     ContextMenu_speech_SeriousInjured23 = "������!",
- 
- 
+
+
     ContextMenu_speech_FatalInjured1 = "��...� ������...��� �����...",
     ContextMenu_speech_FatalInjured2 = "� ������ �����...��������...",
     ContextMenu_speech_FatalInjured3 = "...�-������...���-������...��������...",
@@ -1123,18 +975,18 @@ ContextMenu_RU = {
     ContextMenu_speech_FatalInjured5 = "� ����...��� ����� ������, � �����...",
     ContextMenu_speech_FatalInjured6 = "�******��...���-������...��������",
     ContextMenu_speech_FatalInjured7 = "� �� ����...���� ����� �� ����...",
-    ContextMenu_speech_FatalInjured8 = "��****...��� �����... ������... ������... ��*��",
+    ContextMenu_speech_FatalInjured8 = "��****...��� ����� ������ ������...
     ContextMenu_speech_FatalInjured9 = "*������ �������*",
-    ContextMenu_speech_FatalInjured10 = "�...�� �����...��� �����...",
+    ContextMenu_speech_FatalInjured10 = "�...�����...����� ��� ����� ������� ���...",
     ContextMenu_speech_FatalInjured11 = "���������!",
-    ContextMenu_speech_FatalInjured12 = "*������������ � �����*",
+    ContextMenu_speech_FatalInjured12 = "*������ �������*",
     ContextMenu_speech_FatalInjured13 = "�����...� �� ����������...",
     ContextMenu_speech_FatalInjured14 = "� �� ������� ���� �������� ����� ����!",
     ContextMenu_speech_FatalInjured15 = "�����!",
     ContextMenu_speech_FatalInjured16 = "��������! ��������!",
-    ContextMenu_speech_FatalInjured17 = "*������ �� ����*",
-    
- 
+    ContextMenu_speech_FatalInjured17 = "*������ �� ����",
+
+
     ContextMenu_speech_FinalWords1 = "���...�...�������...",
     ContextMenu_speech_FinalWords2 = "���...����...",
     ContextMenu_speech_FinalWords3 = "...��...������...",
@@ -1172,13 +1024,13 @@ ContextMenu_RU = {
     ContextMenu_speech_NameText2 = "���� ����� ",
     ContextMenu_speech_NameText3 = "������. � ",
     ContextMenu_speech_NameText4 = "������, ���� ����� ",
-    ContextMenu_speech_NameText5 = "�����������, ���� ����� ",
+    ContextMenu_speech_NameText5 = "����������� ����, ���� ����� ",
     ContextMenu_speech_NameText6 = "�� ��� ",
     ContextMenu_speech_NameText7 = "������, ��� ��� ",
     ContextMenu_speech_NameText8 = "����������, ������� ���� ",
     ContextMenu_speech_NameText9 = "������ ����� ���� ",
- 
- 
+
+
     ContextMenu_speech_Greetings1 = "������! ����� ��������� ������?",
     ContextMenu_speech_Greetings2 = "� ����� � �����, ��?",
     ContextMenu_speech_Greetings3 = "�� �������� ����, �����?",
@@ -1222,7 +1074,7 @@ ContextMenu_RU = {
     ContextMenu_speech_Greetings41 = "�� ��������� �������� �������, ����� �����������?",
     ContextMenu_speech_Greetings42 = "�...� �� ���� �������� � ��������. ���� �� � ����� � �����?",
     ContextMenu_speech_Greetings43 = "� �� ��� ��������� ���� ��������.",
-    ContextMenu_speech_Greetings44 = "�������, � ����� � �����, �� ���� ���, � ����� ���� ��������.",
+    ContextMenu_speech_Greetings44 = "�������, � ����� � �����, �� � �� ����� ����.",
     ContextMenu_speech_Greetings45 = "��! ��, ��! ����� ��������� ������? ������ �������� ���.",
     ContextMenu_speech_Greetings46 = "�� �� ��������� ��� ���������, ��� ���� ������?",
 
@@ -1294,7 +1146,7 @@ ContextMenu_RU = {
     ContextMenu_speech_FoundHidingPlace40 = "����� ����� ���� � ��������.",
     ContextMenu_speech_FoundHidingPlace41 = "�������, ������� ����� ���.",
 
- 
+
     ContextMenu_speech_NoWhereToHide1 = "��� ����� ����� ��� ����������!",
     ContextMenu_speech_NoWhereToHide2 = "��*��! ��� ����� ����!",
     ContextMenu_speech_NoWhereToHide3 = "��� � ���� ����������?!",
@@ -1391,7 +1243,7 @@ ContextMenu_RU = {
     ContextMenu_speech_Screem22 = "� ������ ����! ������!",
     ContextMenu_speech_Screem23 = "����! ��������! ������!",
 
- 
+
     ContextMenu_speech_Attack1 = "������ �� ��*��, ��� �*����!",
     ContextMenu_speech_Attack2 = "������!",
     ContextMenu_speech_Attack3 = "������ ���?! ������!",
@@ -1429,7 +1281,7 @@ ContextMenu_RU = {
     ContextMenu_speech_Attack35 = "������� ���, ������� ������!",
     ContextMenu_speech_Attack36 = "������� ���, ����� ������!",
     ContextMenu_speech_Attack37 = "������, ���������� �����!",
-    ContextMenu_speech_Attack38 = "���, �����!",
+    ContextMenu_speech_Attack38 = "����� ���!",
 
 
     ContextMenu_speech_AttackS1 = "�����!",
@@ -1529,7 +1381,7 @@ ContextMenu_RU = {
     ContextMenu_speech_FoundSurvivor23 = "������! �� �� ���� �� �����!",
     ContextMenu_speech_FoundSurvivor24 = "������!",
     ContextMenu_speech_FoundSurvivor25 = "�����, ������ � �������� �� ����!",
-    ContextMenu_speech_FoundSurvivor26 = "������ � �������� �� ����!,"
+    ContextMenu_speech_FoundSurvivor26 = "������ � �������� �� ����!,
     ContextMenu_speech_FoundSurvivor27 = "� ���� ����!",
     ContextMenu_speech_FoundSurvivor28 = "�� ������...� �� ���� ����...",
     ContextMenu_speech_FoundSurvivor29 = "����� ��� ��!",
@@ -1549,7 +1401,7 @@ ContextMenu_RU = {
     ContextMenu_speech_FoundZombie7 = "� ���� ������ �� ����!",
     ContextMenu_speech_FoundZombie8 = "���, �����!",
     ContextMenu_speech_FoundZombie9 = "����� �����!",
-    ContextMenu_speech_FoundZombie10 = "� ���� ���� �����.",
+    ContextMenu_speech_FoundZombie10 = "� ���� ����. �����.",
     ContextMenu_speech_FoundZombie11 = "���� ���!",
     ContextMenu_speech_FoundZombie12 = "�����! ���� ���!",
     ContextMenu_speech_FoundZombie13 = "��� ���� ����!",
@@ -1559,4 +1411,5 @@ ContextMenu_RU = {
     ContextMenu_speech_FoundZombie17 = "���� ����� ����� ���� ���������.",
     ContextMenu_speech_FoundZombie18 = "�����.",
     ContextMenu_speech_FoundZombie19 = "���! ���� ������!",
-}
+	}
+	
