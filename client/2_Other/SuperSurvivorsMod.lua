@@ -1285,3 +1285,45 @@ end
 
 --Events.OnGameStart.Add(SSOnGameStartHandle)
 
+-- Checks for spamming people when they use incompatible mods can be found here.
+local function SSSpamChecks()
+
+	if isModEnabled("Amputation") then
+	print("TheOnlyCure doesn't work with SuperiorSurvivors!")
+	getSpecificPlayer(0):Say("TheOnlyCure doesn't work with SuperiorSurvivors!")
+	end
+	if isModEnabled("SwapIt") then
+	print("SwapIt doesn't work with SuperiorSurvivors!")
+	getSpecificPlayer(0):Say("SwapIt doesn't work with SuperiorSurvivors!")
+	end
+	if isModEnabled("SubparSurvivors") then
+	print("SubparSurvivors doesn't work with SuperiorSurvivors!")
+	getSpecificPlayer(0):Say("SubparSurvivors doesn't work with SuperiorSurvivors!")
+	end
+	if isModEnabled("SuperSurvivors") then
+	print("SuperSurvivors doesn't work with SuperiorSurvivors!")
+	getSpecificPlayer(0):Say("SuperSurvivors doesn't work with SuperiorSurvivors!")
+	end
+	if isModEnabled("SuperbSurvivors") then
+	print("SuperbSurvivors doesn't work with SuperiorSurvivors!")
+	getSpecificPlayer(0):Say("SuperbSurvivors doesn't work with SuperiorSurvivors!")
+	end
+	if isModEnabled("SubparSurvivors") then
+	print("SubparSurvivors doesn't work with SuperiorSurvivors!")
+	getSpecificPlayer(0):Say("SubparSurvivors doesn't work with SuperiorSurvivors!")
+	end
+	if isModEnabled("Survivors") then
+	print("Survivors doesn't work with SuperiorSurvivors!")
+	getSpecificPlayer(0):Say("Survivors doesn't work with SuperiorSurvivors!")
+	end
+	if isModEnabled("SuperbSurvivorz") then
+	print("SurvivorsDieOff doesn't work with SuperiorSurvivors!")
+	getSpecificPlayer(0):Say("SurvivorsDieOff doesn't work with SuperiorSurvivors!")
+	end
+	if isModEnabled("SuperbUndressedSurvivors") then
+	print("SuperbUndressedSurvivors doesn't work with SuperiorSurvivors!")
+	getSpecificPlayer(0):Say("SuperbUndressedSurvivors doesn't work with SuperiorSurvivors!")
+	end
+end
+
+Events.EveryOneMinute.Add(SSSpamChecks)
