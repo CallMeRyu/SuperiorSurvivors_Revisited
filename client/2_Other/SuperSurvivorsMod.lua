@@ -1286,6 +1286,7 @@ function SSOnGameStartHandle()
 end
 
 --Events.OnGameStart.Add(SSOnGameStartHandle)
+-- Mod ID name, then the Mod's actual name
 
 local function SSSpamCheck_Preset(Var1,Var2)
 
