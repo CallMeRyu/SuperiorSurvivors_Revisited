@@ -296,6 +296,10 @@ ContextMenu_EN = {
 
     ContextMenu_SDebugOption_DebugSay_Distance = "SuperDebug() - Distance: ",
 	ContextMenu_SDebugOption_DebugSay_DistanceDesc = "You can choose how far away you want to be able to see debug information from the NPCs's 'SuperDebug' Function. It's HIGHLY ADVISED to keep this a low number, otherwise you can make all npcs in a large area write to your console.",
+    
+    ContextMenu_SOption_WarningMSG = "Unsupported Mod Message: "
+    ContextMenu_SOption_WarningMSGDesc = "WARNING: You are about to disable the mods that Superior Survivors mod can not handle. This warning system is new, so that players can know which mod to disable to make superior survivors work, instead of havnig to manually check every mod one by one. If you know of a mod that breaks superior survivors, pleaes report it to the discord or on the steam page to help the community! The warning message is there to disable the mod in question to make the NPC mod work. If you turn this option off, then you're on your own."
+
     --[END Individual Options]--
 
     --[Hotkeys]--
