@@ -52,6 +52,7 @@ end
 function PursueTask:isComplete()	
 	if (not self.Target) or self.Target:isDead() or (self.parent:HasInjury()) or self.parent:isEnemy( self.Target) == false then return true
 	else 
+		self.parent:NPC_EnforceWalkNearMainPlayer()
 		return self.Complete 
 	end
 end
@@ -72,26 +73,26 @@ function PursueTask:update()
 			return false
 		end
 	end
-	
-	
-	
+
+
 	if(self.parent.player:CanSee(self.Target) == false) then
-		
-		
+
 		local distancetoLastSpotSeen = getDistanceBetween(self.LastSquareSeen,self.parent.player)
+
+		if distancetoLastSpotSeen > 1.5 then
+			self.parent:setRunning(true)
+		end
+
 		if(distancetoLastSpotSeen > 2.5) then
-			
-			self.parent:walkToDirect(self.LastSquareSeen)
-			self.parent:NPC_ShouldRunOrWalk()
-			self.parent:NPC_EnforceWalkNearMainPlayer()
-			
+
+
 			if(ZombRand(4) == 0) and (self.parent:isSpeaking() == false) then
 				self.parent:Speak(getSpeech("SawHimThere"))
 			end
-			
+
 		else
-			
-		--	self.parent:setRunning(false)
+
+			self.parent:setRunning(false)
 			self.Complete = true
 			self.parent:Speak(getText("ContextMenu_SD_WhereHeGo"))
 		end
@@ -106,8 +107,12 @@ function PursueTask:update()
 		end
 		self.parent:walkToDirect(self.Target:getCurrentSquare())
 		
-		self.parent:NPC_ShouldRunOrWalk()
-		self.parent:NPC_EnforceWalkNearMainPlayer()
+		if theDistance <= 1 then
+			self.parent:setRunning(false)
+		elseif theDistance > 1 then
+			self.parent:setRunning(true)
+		end
+
 	end
 	
 	

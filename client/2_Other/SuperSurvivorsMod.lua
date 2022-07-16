@@ -10,10 +10,14 @@ function SuperSurvivorsOnTick()
 	if(SuperSurvivorSelectAnArea) then
 		
 	
-		if (Mouse.isLeftDown()) then SuperSurvivorMouseDownTicks = SuperSurvivorMouseDownTicks + 1
-		else SuperSurvivorMouseDownTicks = 0 end
+		if (Mouse.isLeftDown()) then 
+			SuperSurvivorMouseDownTicks = SuperSurvivorMouseDownTicks + 1
+		else 
+			SuperSurvivorMouseDownTicks = 0 
+			SuperSurvivorSelectingArea = 0 
+		end
 		
-		if (SuperSurvivorMouseDownTicks > 10) then
+		if (SuperSurvivorMouseDownTicks > 15) then -- 10 acts instant, so a left click would reset the select area finalization.
 		
 		
 			
@@ -39,7 +43,10 @@ function SuperSurvivorsOnTick()
 			--print("Done:"..tostring(HighlightX1)..","..tostring(HighlightX2).." : "..tostring(HighlightY1)..","..tostring(HighlightY2))
 		end
 		
-		if (Mouse.isLeftPressed()) then SuperSurvivorSelectAreaHOLD = false end
+		if (Mouse.isLeftPressed()) then 
+			SuperSurvivorSelectAreaHOLD = false -- I did a folder scan, this var doesn't do anything?
+			SuperSurvivorSelectingArea = false -- new
+		end
 		
 		
 		if(HighlightX1) and (HighlightX2) then
@@ -78,7 +85,7 @@ Events.OnRenderTick.Add(SuperSurvivorsOnTick)
 
 function SuperSurvivorSoldierSpawn(square)
 	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
-	ASuperSurvivor:SuitUp("MarinesCamo")
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
 
 	ASuperSurvivor:giveWeapon(getWeapon(RangeWeapons[ZombRand(1,#RangeWeapons)]),true) 
 	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
@@ -88,6 +95,51 @@ function SuperSurvivorSoldierSpawn(square)
 
 	return ASuperSurvivor
 end
+
+function SuperSurvivorSoldierSpawnMelee(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+
+	return ASuperSurvivor
+end
+
+
+function SuperSurvivorSoldierSpawnHostile(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(RangeWeapons[ZombRand(1,#RangeWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor:setHostile(true)
+
+	return ASuperSurvivor
+end
+
+function SuperSurvivorSoldierSpawnMeleeHostile(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor:setHostile(true)
+
+	return ASuperSurvivor
+end
+
+
+
 
 function SuperSurvivorRandomSpawn(square)
 	
@@ -156,12 +208,16 @@ function SuperSurvivorsLoadGridsquare(square)
 			local gameVersion = getCore():getGameVersion()
 			IsDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() > 50 and gameVersion:getMinor() < 53)
 			IsNpcDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() >= 53)
-			
+	
+			Option_WarningMSG = SuperSurvivorGetOptionValue("Option_WarningMSG")
+
 			
 			Option_Perception_Bonus = SuperSurvivorGetOptionValue("Option_Perception_Bonus")
 			
 			Option_Display_Survivor_Names = SuperSurvivorGetOptionValue("Option_Display_Survivor_Names")
 			Option_Display_Hostile_Color = SuperSurvivorGetOptionValue("Option_Display_Hostile_Color")
+			
+			Option_Panic_Distance = SuperSurvivorGetOptionValue("Option_Panic_Distance")
 			
 			Option_ForcePVP = SuperSurvivorGetOptionValue("Option_ForcePVP")
 			Option_FollowDistance = SuperSurvivorGetOptionValue("Option_FollowDistance")
@@ -655,17 +711,17 @@ function supersurvivortemp(keyNum)
 			SSM:SaveAll()
 			SSGM:Save()
 			saveSurvivorMap()
-		
-		elseif( keyNum == getCore():getKey("SSHotkey_1")) then -- esc key
+		-- The 'key' in markouts are the default keys befor a player changes them
+		elseif( keyNum == getCore():getKey("SSHotkey_1")) then -- Up key
 			local index = SuperSurvivorGetOption("SSHotkey1")
 			SuperSurvivorsHotKeyOrder(index)			
-		elseif( keyNum == getCore():getKey("SSHotkey_2")) then -- esc key
+		elseif( keyNum == getCore():getKey("SSHotkey_2")) then -- Down key
 			local index = SuperSurvivorGetOption("SSHotkey2")
 			SuperSurvivorsHotKeyOrder(index)
-		elseif( keyNum == getCore():getKey("SSHotkey_3")) then -- esc key
+		elseif( keyNum == getCore():getKey("SSHotkey_3")) then -- Left key
 			local index = SuperSurvivorGetOption("SSHotkey3")
 			SuperSurvivorsHotKeyOrder(index)			
-		elseif( keyNum == getCore():getKey("SSHotkey_4")) then -- esc key
+		elseif( keyNum == getCore():getKey("SSHotkey_4")) then -- Right key
 			local index = SuperSurvivorGetOption("SSHotkey4")
 			SuperSurvivorsHotKeyOrder(index)
 		elseif( keyNum == 0) then 
@@ -757,7 +813,7 @@ Events.OnEquipPrimary.Add(SuperSurvivorsOnEquipPrimary);
 -- ALT SPAWNING
 function SuperSurvivorsNewSurvivorManager()
 	-- To make sure if the player has chosen not to use Alt spawning
-	if (AlternativeSpawning == 1) then
+	if (AlternativeSpawning == 1) or (getSpecificPlayer(0):isAsleep()) then
 		return false 
 	end
 	
@@ -770,7 +826,7 @@ function SuperSurvivorsNewSurvivorManager()
 	
 		if(getSpecificPlayer(0) == nil) then return false end
 		--this unrelated to raiders but need this to run every once in a while
-		getSpecificPlayer(0):getModData().hitByCharacter = false
+			getSpecificPlayer(0):getModData().hitByCharacter = false
 			getSpecificPlayer(0):getModData().semiHostile = false
 			getSpecificPlayer(0):getModData().dealBreaker = nil
 			
@@ -778,20 +834,21 @@ function SuperSurvivorsNewSurvivorManager()
 				SSM:AsleepHealAll()
 			end
 		
-		if(getSpecificPlayer(0):getModData().LastRaidTime == nil) then getSpecificPlayer(0):getModData().LastRaidTime = (RaidsStartAfterThisManyHours + 2) end
-		local LastRaidTime = getSpecificPlayer(0):getModData().LastRaidTime
+	--	if(getSpecificPlayer(0):getModData().LastRaidTime == nil) then getSpecificPlayer(0):getModData().LastRaidTime = (RaidsStartAfterThisManyHours + 2) end
+	
+	--	local LastRaidTime = getSpecificPlayer(0):getModData().LastRaidTime
 	
 		local mySS = SSM:Get(0)
-		local hours = math.floor(getGameTime():getWorldAgeHours())
-		local chance = RaidChanceForEveryTenMinutes
-		if(mySS ~= nil and not mySS:isInBase()) then
-			chance = (RaidChanceForEveryTenMinutes*1.5)
-		end
+		--local hours = math.floor(getGameTime():getWorldAgeHours())
+		--local chance = RaidChanceForEveryTenMinutes
+		--if(mySS ~= nil and not mySS:isInBase()) then
+		--	chance = (RaidChanceForEveryTenMinutes*1.5)
+		--end
 		
-		local RaidersStartTimePassed = (hours >= RaidsStartAfterThisManyHours)
-		local RaiderResult = (ZombRand(chance) == 0)
+		--local RaidersStartTimePassed = (hours >= RaidsStartAfterThisManyHours)
+		--local RaiderResult = (ZombRand(chance) == 0)
 		--local RaiderAtLeastTimedExceeded = ((hours - LastRaidTime) >= RaidsAtLeastEveryThisManyHours)
-		local RaiderAtLeastTimedExceeded = ((hours - LastRaidTime) >= 1) -- The timer will now not care
+		--local RaiderAtLeastTimedExceeded = ((hours - LastRaidTime) >= 1) -- The timer will now not care
 			
 	--	if RaidersStartTimePassed and ( RaiderResult or RaiderAtLeastTimedExceeded ) and mySS ~= nil then
 		
@@ -845,7 +902,7 @@ function SuperSurvivorsNewSurvivorManager()
 			
 			
 			if(success) and (spawnSquare) then
-				getSpecificPlayer(0):getModData().LastRaidTime = hours
+			--	getSpecificPlayer(0):getModData().LastRaidTime = hours
 				--if(getSpecificPlayer(0):isAsleep()) then 
 				--	getSpecificPlayer(0):Say(getText("ContextMenu_SD_IGotABadFeeling"))
 				--	getSpecificPlayer(0):forceAwake()
@@ -901,7 +958,7 @@ function SuperSurvivorsNewSurvivorManager()
 						bag:AddItem(food)
 					end
 					
-					local number = ZombRand(1,3)
+					--local number = ZombRand(1,3)
 					--setRandomSurvivorSuit(raider,"Rare","Bandit"..tostring(number))
 					
 					getRandomSurvivorSuit(raider) -- Even if it says 'raider' it's not giving raider outfits 
@@ -1229,4 +1286,30 @@ function SSOnGameStartHandle()
 end
 
 --Events.OnGameStart.Add(SSOnGameStartHandle)
+-- Mod ID name, then the Mod's actual name
 
+local function SSSpamCheck_Preset(Var1,Var2)
+
+	if (Option_WarningMSG == 2) then
+		if isModEnabled(Var1) then
+			print(Var2 .. " doesn't work with SuperiorSurvivors!")
+			getSpecificPlayer(0):Say(Var2 .. " doesn't work with SuperiorSurvivors! To disable Message, check Options and warning.")
+		end
+	end
+end
+
+-- Checks for spamming people when they use incompatible mods can be found here.
+local function SSSpamChecks()
+
+	SSSpamCheck_Preset("Amputation","TheOnlyCure")
+	SSSpamCheck_Preset("SwapIt","SwapIt")
+	SSSpamCheck_Preset("SuperSurvivors","SuperSurvivors")
+	SSSpamCheck_Preset("SuperbSurvivors","SuperbSurvivors")
+	SSSpamCheck_Preset("SubparSurvivors","SubparSurvivors")
+	SSSpamCheck_Preset("Survivors","Survivors")
+	SSSpamCheck_Preset("SuperbSurvivorz","SuperbSurvivorz")
+	SSSpamCheck_Preset("SuperbUndressedSurvivors","SuperbUndressedSurvivors")
+
+end
+
+Events.EveryOneMinute.Add(SSSpamChecks)

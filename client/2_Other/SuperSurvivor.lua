@@ -82,35 +82,35 @@ function SuperSurvivor:new(isFemale,square)
 	if(o.player:getPerkLevel(Perks.FromString("Aiming")) >= 3) then 
 		local innerresult = ZombRand(1, 6)
 		if(innerresult == 1) then
-			Dress = "MarinesCamo"
+			Dress = "Preset_MarinesCamo"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.M16A3")
 			else
 				o:giveWeapon("Base.AssaultRifle")
 			end
 		elseif(innerresult == 2) then
-			Dress = "ArmyCamo"
+			Dress = "Preset_ArmyCamo"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.SCARL")
 			else
 				o:giveWeapon("Base.AssaultRifle")
 			end
 		elseif(innerresult == 3) then
-			Dress = "Army"
+			Dress = "Preset_Army"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.M4A1")
 			else
 				o:giveWeapon("Base.AssaultRifle")
 			end
 		elseif(innerresult == 4) then
-			Dress = "Guard"
+			Dress = "Preset_Guard"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.G18")
 			else
 				o:giveWeapon("Base.Pistol3")
 			end
 		else
-			Dress = "Police"
+			Dress = "Preset_Police"
 			if(isModEnabled("Brita")) then
 				o:giveWeapon("Brita.G18")
 			else
@@ -118,11 +118,11 @@ function SuperSurvivor:new(isFemale,square)
 			end
 		end
 	elseif(o.player:getPerkLevel(Perks.FromString("Doctor")) >= 3) then
-		Dress = "Doctor"	
+		Dress = "Preset_Doctor"	
 	elseif(o.player:getPerkLevel(Perks.FromString("Cooking")) >= 3) then
-		Dress = "Chef"		
+		Dress = "Preset_Chef"		
 	elseif(o.player:getPerkLevel(Perks.FromString("Farming")) >= 3) then
-		Dress = "Farmer"		
+		Dress = "Preset_Farmer"		
 	end
 		
 	o:SuitUp(Dress)
@@ -1100,6 +1100,7 @@ function SuperSurvivor:DebugSay(text)
 			print("---------------")
 			print(self:getName().."		getCurrentTask	= "..tostring(self:getCurrentTask()))
 			print(self:getName().."		getGroupRole	= "..tostring(self:getGroupRole()))
+			print(self:getName().."		AIMode			= "..tostring(self.player:getModData().AIMode))
 			
 			print("")
 			print("--------------------")
@@ -1601,8 +1602,10 @@ function SuperSurvivor:DoVision()
 
 	local atLeastThisClose = 19;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 200
-	local closestSurvivorSoFar = 200
+	--local closestSoFar = 200
+	local closestSoFar = 25
+	--local closestSurvivorSoFar = 200
+	local closestSurvivorSoFar = 25
 	self.seenCount = 0
 	self.dangerSeenCount = 0
 	self.EnemiesOnMe = 0
@@ -1999,9 +2002,9 @@ function SuperSurvivor:DoHumanEntityScan()
 					
 						local CanSee = self:RealCanSee(character)
 						
-						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
-							self.EnemiesOnMe = self.EnemiesOnMe + 1 
-						end
+						--if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
+						--	self.EnemiesOnMe = self.EnemiesOnMe + 1 
+						--end
 						-- Removed: The sixth sense and dovision does this well enough. this would just stack numbers infinitely
 						--if(tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
 						--	self.dangerSeenCount = self.dangerSeenCount + 1 
@@ -2043,23 +2046,31 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 
 	local atLeastThisClose = 3;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 3
-	local closestSurvivorSoFar = 3
+	local closestSoFar = 4
+	local closestSurvivorSoFar = 4
 --	self.seenCount = 0
 --	self.dangerSeenCount = 0
 --	self.EnemiesOnMe = 0
 --	self.LastEnemeySeen = nil
 --	self.LastSurvivorSeen = nil
+
 	local dangerRange = 2
 	
-	if (self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard") then 
-		atLeastThisClose = 6
-		closestSoFar = 6
-		dangerRange = 1
-	end
+	--if self.AttackRange > dangerRange then 
+	--	dangerRange = self.AttackRange 
+	--end
 	
-	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
+	if (self:getGroupRole() == "Companion") then 
+		atLeastThisClose = 5
+		closestSoFar = 10
+		closestSurvivorSoFar = 10
+		dangerRange = 3
+		self.dangerSeenCount = 0
+		self.EnemiesOnMe = 0
+	end	
+
 	
+
 	local closestNumber = nil
 	local tempdistance = 1
 	
@@ -2076,19 +2087,26 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 					
 						local CanSee = self:RealCanSee(character)
 						
-						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
+						-- Melee scan
+						if(tempdistance < 1) and (not (self:usingGun())) and (character:getZ() == self.player:getZ()) then 
 							self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						end
-						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) and not (self:getGroupRole() == "Companion") then
+						
+						-- Gun Scan
+						if(tempdistance < 2) and (self:usingGun()) and (character:getZ() == self.player:getZ()) then 
+							self.EnemiesOnMe = self.EnemiesOnMe + 1 
+						end
+
+						if(self:getGroupRole() == "Companion") and (tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
 							self.dangerSeenCount = self.dangerSeenCount + 1
 							self:DebugSay("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
-							--else
-							--self:DebugSay("self.dangerSeenCount IS NOT WORKING, BUT HERE'S THE AMOUNT ANYWAYS = "..tostring(self.dangerSeenCount))
 						end
-						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
+
+						if(not CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
 							self.seenCount = self.seenCount + 1 
 						end
-						if( ( ((not CanSee) or (CanSee)) or (tempdistance < 3.5)) and (tempdistance < closestSoFar) ) then
+
+						if( (not CanSee)  and (tempdistance < closestSoFar) ) then
 							closestSoFar = tempdistance ;
 							self.player:getModData().seenZombie = true;
 							closestNumber = i;							
@@ -2262,7 +2280,7 @@ function SuperSurvivor:Task_IsNotFleeFromSpot()
 	end
 end
 function SuperSurvivor:Task_IsNotFleeOrFleeFromSpot()
-	if (self:getTaskManager():getCurrentTask() ~= "Flee") and (self:getTaskManager():getCurrentTask() ~= "Flee From Spot") then
+	if (not (self:getTaskManager():getCurrentTask() == "Flee")) and (not (self:getTaskManager():getCurrentTask() == "Flee From Spot")) then
 		return true
 	end
 end
@@ -2398,8 +2416,14 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		--  Companion: They should always be cautious of their surroundings
 		-- -------------------------------------- --
 		if ((self:getGroupRole() == "Companion") and (self:isEnemyInRange(self.LastEnemeySeen))) then
-			zRangeToPursue = 5
-			return zRangeToPursue
+			if getDistanceBetween(getSpecificPlayer(0),self.player) < 10 then
+				zRangeToPursue = 5
+				return zRangeToPursue
+			end
+			if getDistanceBetween(getSpecificPlayer(0),self.player) >= 10 then
+				zRangeToPursue = 0
+				return zRangeToPursue
+			end
 		end
 		
 		-- ------------------------ --
@@ -2433,15 +2457,15 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		-- -------------------------------------- --
 		if (self:hasGun() == true) then
 			self:zDebugSayPTSC(zRangeToPursue,"10")
-			if (self:WeaponReady() == false) then
+			if (self:WeaponReady() == true) then
 				self:zDebugSayPTSC(zRangeToPursue,"11")
-				zRangeToPursue = 5
+				zRangeToPursue = 6
 				return zRangeToPursue
 				
-			elseif (self:WeaponReady() == false) then
-				self:zDebugSayPTSC(zRangeToPursue,"11_A1")
-				zRangeToPursue = 5
-				return zRangeToPursue
+			--elseif (self:WeaponReady() == false) then
+			--	self:zDebugSayPTSC(zRangeToPursue,"11_A1")
+			--	zRangeToPursue = 0
+			--	return zRangeToPursue
 			end
 		end
 		
@@ -2491,9 +2515,9 @@ function SuperSurvivor:Task_IsPursue_SC()
 	
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 5) and (self:getGroupRole() ~= "Companion") then
 --	if (self.LastEnemeySeen == nil) or (self.LastSurvivorSeen == nil) and (self.seenCount < 1) and (self:getGroupRole() ~= "Companion") then
-	if (self.LastEnemeySeen == nil)  then
-		self:DoHumanEntityScan()
-	end
+	--if (self.LastEnemeySeen == nil) and (ZombRand(4)==0)  then
+	--	self:DoHumanEntityScan()
+	--end
 	
 	-- This was a test, it didn't work very well. It was an attempt to block door spam but other things are doing that already.
 	--if (self:inFrontOfDoor() ~= nil) and (getDistanceBetween(self.LastEnemeySeen,self.player) >= 8) and (Enemy_Is_a_Human) and not (Enemy_Is_a_Zombie) then
@@ -2515,6 +2539,7 @@ function SuperSurvivor:Task_IsPursue_SC()
 				and (zNPC_AttackRange)
 				and (self:Task_IsNotPursue())
 				and (self:Task_IsNotSurender())
+				and (self:Task_IsNotFlee())
 			--	and (self:Task_IsNotAttemptEntryIntoBuilding() )
 				and (self:isWalkingPermitted())
 			--	and ((self:isEnemy(self.LastEnemeySeen)) or (self:isEnemy(self.LastSurvivorSeen)))
@@ -2883,31 +2908,19 @@ function SuperSurvivor:update()
 	if(self:isDead()) then 
 		
 		return false
-	
 	end
 	
-	self:DoVision() -- Moving this up to the top
+	self:DoVision()
 	
---																					-- I know this is 'not companion' but the function works almost too well not to use.
---	if (getDistanceBetween(self.player,getSpecificPlayer(0)) < 10) then				-- The test line, there's no need to let this be for debug options, it adds 10x lag. 
-		if (Option_Perception_Bonus == 2) then										-- The in game option from supersurvivorsmod.lua
-			if (not (self:getGroupRole() == "Companion")) then 						-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
-				--if (not (self:usingGun()) and (self.isHostile == true)) then		-- Hostiles with guns are banned from using this. It makes them very OP (Until further notice)
-
-				--	if (self.LastEnemeySeen ~= nil) and (getDistanceBetween(self.player,self.LastEnemeySeen) > 1) then		-- This in theory should make the NPC re-scan for new entities around them
-						self:Companion_DoSixthSenseScan() 
-				--	end
-				--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====TRUE====")
-				--else
-				--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH A====")
-				--end
-			--else
-			--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH B ====")
-			end
-		--else
-		--	print("	========================	"..tostring(self:getName()).." = ".."Sixth sense ====FALSE PATH C ====")
+	-- I know this is 'not companion' but the function works almost too well not to use.
+	if (Option_Perception_Bonus == 2) then	-- The in game option from supersurvivorsmod.lua and to keep it from scanning infinitely
+		if (not (self:getGroupRole() == "Companion")) then 		-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
+			self:Companion_DoSixthSenseScan() 
 		end
---	end
+	end
+
+
+	
 	
 	
 	
@@ -2968,7 +2981,9 @@ function SuperSurvivor:update()
 	self:CheckForIfStuck() -- New function to cleanup the update() function
 	self:NPCcalculateWalkSpeed()
 	--self:DoVision()
-	self.MyTaskManager:update()
+	if (not getSpecificPlayer(0):isAsleep()) and (self:getGroupRole() ~= "Random Solo") then
+		self.MyTaskManager:update()
+	end
 
 	--self:Speak(tostring(self:isInBase()))	
 	if(self.Reducer % 480 == 0) then 
@@ -3430,24 +3445,29 @@ end
 function SuperSurvivor:ReadyGun(weapon)
 	--self:DoZombieEntityScan()
 	
-	if(not weapon) or (not weapon:isAimedFirearm()) then return true end
+	local readyGun_AntiStuck_Ticks = 0
+
+	if(not weapon) or (not weapon:isAimedFirearm()) or readyGun_AntiStuck_Ticks >= 5 then return true end
 	
 	if weapon:isJammed() then
 		weapon:setJammed(false)
+		readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 5
 	end	
 	
 	self:DebugSay("readygun ( weapon:getCurrentAmmoCount() = " .. weapon:getCurrentAmmoCount() .. ") (weapon:getMaxAmmo() = " .. weapon:getMaxAmmo() .. ") (self.EnemiesOnMe = " .. self.EnemiesOnMe .. ")  (self.seenCount =" .. self.seenCount..")")
 	
 	if weapon:haveChamber() and not weapon:isRoundChambered() then
+		readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 1
 		if(ISReloadWeaponAction.canRack(weapon)) then
 			ISReloadWeaponAction.OnPressRackButton(self.player, weapon)
 			self:DebugSay(self:getName().." needs to rack gun")
+			readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 1
 			return true		
 		end	
 	end
 		
 	if(weapon:getMagazineType()) then
-
+		
 		if(weapon:isContainsClip() == false) then
 			self:DebugSay(self:getName().." gun needs a magazine0:"..tostring(weapon:getMagazineType()))
 			local magazine = weapon:getBestMagazine(self.player)
@@ -3458,15 +3478,21 @@ function SuperSurvivor:ReadyGun(weapon)
 			end
 			
 			if magazine then
+				readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 1
+				
 				local ammotype = magazine:getAmmoType();
-				if (not self.player:getInventory():containsWithModule(ammotype)) and 
-				(magazine:getCurrentAmmoCount()==0) and (SurvivorInfiniteAmmo) then
+				if (not self.player:getInventory():containsWithModule(ammotype)) and (magazine:getCurrentAmmoCount()==0) and (SurvivorInfiniteAmmo) then
+					readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 5
 					magazine:setCurrentAmmoCount(magazine:getMaxAmmo())
 				end
 				
-				self:DebugSay(self:getName().." trying to load magazine into gun")
-				ISTimedActionQueue.add(ISInsertMagazine:new(self.player, weapon, magazine))
-				ISReloadWeaponAction.ReloadBestMagazine(self.player, weapon)
+				self:DebugSay(self:getName().." trying to load magazine into gun - readyGun_AntiStuck_Ticks = "..tostring(readyGun_AntiStuck_Ticks))
+				if readyGun_AntiStuck_Ticks > 0 and readyGun_AntiStuck_Ticks < 15 then
+					ISTimedActionQueue.add(ISInsertMagazine:new(self.player, weapon, magazine))
+					ISReloadWeaponAction.ReloadBestMagazine(self.player, weapon)
+					readyGun_AntiStuck_Ticks = 0
+				end
+
 				return	true		
 			else
 				self:DebugSay(self:getName().." error trying to spawn mag for gun?")
@@ -3475,6 +3501,8 @@ function SuperSurvivor:ReadyGun(weapon)
 		
 		
 		if weapon:isContainsClip() then
+			readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 1
+			
 			local magazine = weapon:getBestMagazine(self.player)
 			if(magazine == nil) then magazine = self.player:getInventory():getFirstTypeRecurse(weapon:getMagazineType()) end
 			if(magazine == nil) and (SurvivorInfiniteAmmo) then 
@@ -3516,6 +3544,7 @@ function SuperSurvivor:ReadyGun(weapon)
 		
 		local magazine = weapon:getBestMagazine(self.player)
 		if magazine then
+			readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 1
 			ISInventoryPaneContextMenu.transferIfNeeded(self.player, magazine)
 			ISTimedActionQueue.add(ISInsertMagazine:new(self.player, weapon, magazine))
 			return true
@@ -3525,7 +3554,7 @@ function SuperSurvivor:ReadyGun(weapon)
 	else -- gun with no magazine
 			
 		if(self:gunAmmoInInvCount(weapon) < 1) and (SurvivorInfiniteAmmo) then
-			
+			readyGun_AntiStuck_Ticks = readyGun_AntiStuck_Ticks + 1
 			local maxammo = weapon:getMaxAmmo()
 			local ammotype = weapon:getAmmoType()
 			self:DebugSay(self:getName().." needs to spawn ammo type:" .. tostring(ammotype))
@@ -3916,7 +3945,7 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
 
 		
-		if (self:Task_IsNotFleeOrFleeFromSpot()) and (distance < 2) or (distanceAlt < 2) or (zNPC_AttackRange) then
+		if(not (self:Task_IsNotFleeOrFleeFromSpot() == true) ) or (distanceAlt <= 1) or (distance and self:Task_IsAttack()) or (distance and self:Task_IsThreaten() or (distance and self:Task_IsPursue()) ) then
 			self:setRunning(false)
 			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to false due to distance and Task_IsNotFleeOrFleeFromSpot returned true SRW_0001")
 		else
@@ -3925,8 +3954,9 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		end
 	else
 		self:NPCDebugPrint("LastEnemySeen returned Nil so, setting NPC to run Reference Number SRW_0003")
-		self:setRunning(true)
+		self:setRunning(false)
 	end
+	
 	
 end
 function SuperSurvivor:NPC_EnforceWalkNearMainPlayer()
@@ -3950,8 +3980,6 @@ function SuperSurvivor:NPC_ERW_AroundMainPlayer(VarDist)
 				self:setRunning(false)
 			end
 		end
-	self:NPC_EnforceWalkNearMainPlayer() -- New
-
 end
 -- ERW stands for 'EnforceRunWalk' walk priority
 function SuperSurvivor:NPC_ERW_AroundMainPlayerReverse(VarDist)
@@ -3966,8 +3994,6 @@ function SuperSurvivor:NPC_ERW_AroundMainPlayerReverse(VarDist)
 				self:setRunning(true)
 			end
 		end
-	self:NPC_EnforceWalkNearMainPlayer() -- New
-
 end
 
 
@@ -4009,21 +4035,23 @@ function SuperSurvivor:NPC_MovementManagement()
 		local RealDistance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local minrange = self:getMinWeaponRange()
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
-		
-		self:NPC_ERW_AroundMainPlayerReverse(minrange)
-		
+
 		if (distance > minrange + 0.1) then
 			-- The actual walking itself
 			if(instanceof(self.LastEnemeySeen,"IsoPlayer")) then	
 				self:walkToDirect(cs)
+				self:setRunning(true)
+				
 			else
 				local fs = cs:getTileInDirection(self.LastEnemeySeen:getDir())
 				if(fs) and (fs:isFree(true)) then
 					self:walkToDirect(fs)
 					self:DebugSay("AtkTicks NPC_MovementManagement Walkto FS")
+					self:setRunning(true)
 				else 
 					self:walkToDirect(cs) 
 					self:DebugSay("AtkTicks NPC_MovementManagement Walkto CS")
+					self:setRunning(true)
 				end	
 			end
 		end

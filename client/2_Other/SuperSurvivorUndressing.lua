@@ -1,4 +1,5 @@
 require "TimedActions/ISBaseTimedAction"
+require "ISUI/ISLayoutManager"
 --require "ISUI/ISPanel"
 --require "ISUI/PlayerStats/ISPlayerStatsUI"
 
