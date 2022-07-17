@@ -1,4 +1,17 @@
-local function getDialogue( text )
+
+--- gets a random speech text of a dialogue list
+---@param key string key of the speech
+---@return string a survivor speech
+function getSpeech(key)
+	if(not SurvivorSpeechTable[key]) then 
+		return "?" 
+	end
+	
+	local result = ZombRand(1,#SurvivorSpeechTable[key]);
+	return tostring(SurvivorSpeechTable[key][result]);
+end
+
+function getDialogue(text)
   return getText("GameSound_Dialogues_SS_" .. text)
 end
 

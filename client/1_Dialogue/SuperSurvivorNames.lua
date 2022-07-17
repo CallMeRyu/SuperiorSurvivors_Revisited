@@ -1,8 +1,25 @@
 ---  Below is hundreds of girl names and boy names. you dont need to translate them if you don't want to. translate as in, replace them with common names in area of language or change to your phonetic alphabeht. if you do. know that there does not need to be this many. you could just do like 50 of each.
  
-local function getName(name)
+function getName(name)
   return getText("Moodles_SS_" .. name)
 end
+
+---@alias	gender
+---| "GirlNames"
+---| "BoyNames"
+
+--- gets a random survivor name based on gender
+---@param key gender key of the name
+---@return string a random survivor name
+function getRandomName(key)
+	if(not SurvivorNameTable[key]) then 
+		return "?" 
+	end
+	
+	local result = ZombRand(1,#SurvivorNameTable[key]);
+	return tostring(SurvivorNameTable[key][result]);
+end
+
 
 local function getGirlNames()
   local girlNamesCount = 500

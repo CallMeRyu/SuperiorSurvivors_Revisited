@@ -1,5 +1,8 @@
 -- thanks and some credit to Fenris_Wolf from ORGM mod for creating this hotkeys file!  I just tweaked it to use my own key bindings! and added support for settings too ~Nolan
 
+local function getOptionText(text)
+	return getText("UI_Option_SS_" .. text)
+end
 
 function SuperSurvivorGetOption(option)
 	
@@ -10,7 +13,8 @@ end
 function SuperSurvivorGetOptionValue(option)
 	
 	local num = SuperSurvivorGetOption(option)
-	print("num:"..tostring(num))
+	print(option .." : " .. tostring(num))
+
 	if(option == "WifeSpawn") then return (num ~= 1)
 	elseif(option == "LockNLoad") then return (num ~= 1)
 	elseif(option == "SpawnRate") and (num == 1) then return 0
@@ -258,7 +262,7 @@ hotkey options
 ]]
 SSHotKeyOptions = {}
 for i=1,#Orders do
-	SSHotKeyOptions[i] = getText("ContextMenu_SD_OrderAll") .. " " .. OrderDisplayName[Orders[i]]
+	SSHotKeyOptions[i] = getOptionText("SS_OrderAll") .. " " .. OrderDisplayName[Orders[i]]
 end
 for i=1,#Orders do
 	table.insert(SSHotKeyOptions,OrderDisplayName[Orders[i]])
@@ -330,7 +334,7 @@ if index then
 	-- ---------------------------------------- --
 	
 	function NPC_Options_OffOn() -- Because Order of position Matters of if 'Off' and 'On' is first in the options in question
-		return { getText("ContextMenu_SD_Off"), getText("ContextMenu_SD_On") }
+		return { getOptionText("Off"), getOptionText("On") }
 	end
 	function NPC_Options_ZeroToOneHundred()
 		return 	{ "0%","1%","2%","3%","4%","5%","6%","7%","8%","9%","10%","11%","12%","13%","14%","15%","16%","17%","18%","19%","20%","21%","22%","23%","24%","25%","26%","27%","28%","29%","30%","31%","32%","33%","34%","35%","36%","37%","38%","39%","40%","41%","42%","43%","44%","45%","46%","47%","48%","49%","50%","51%","52%","53%","54%","55%","56%","57%","58%","59%","60%","61%","62%","63%","64%","65%","66%","67%","68%","69%","70%","71%","72%","73%","74%","75%","76%","77%","78%","79%","80%","81%","82%","83%","84%","85%","86%","87%","88%","89%","90%","91%","92%","93%","94%","95%","96%","97%","98%","99%","100%"}
@@ -359,47 +363,47 @@ if index then
             --    manually adjust these
             
             if label.name == "Call Closest Group Member" then
-                label:setTranslation(getText("ContextMenu_SOption_CallClosestGroupMember"))
+                label:setTranslation(getOptionText("CallClosestGroupMember"))
                 label:setX(label.x)
                 label:setWidth(label.width)
             elseif label.name == "Call Closest Non-Group Member" then 
-                label:setTranslation(getText("ContextMenu_SOption_CallClosestNonGroupMember"))
+                label:setTranslation(getOptionText("CallClosestNonGroupMember"))
                 label:setX(label.x)
                 label:setWidth(label.width)
              elseif label.name == "Ask Closest Group Member to Follow" then 
-                label:setTranslation(getText("ContextMenu_SOption_AskClosestGroupMembertoFollow"))
+                label:setTranslation(getOptionText("AskClosestGroupMembertoFollow"))
                 label:setX(label.x)
                 label:setWidth(label.width)
              elseif label.name == "Spawn Wild Survivor" then 
-                label:setTranslation(getText("ContextMenu_SOption_SpawnWildSurvivor"))
+                label:setTranslation(getOptionText("SpawnWildSurvivor"))
                 label:setX(label.x)
                 label:setWidth(label.width)
             elseif label.name == "Toggle Group Window" then  
-                label:setTranslation(getText("ContextMenu_SOption_ToggleGroupWindow"))
+                label:setTranslation(getOptionText("ToggleGroupWindow"))
                 label:setX(label.x)
                 label:setWidth(label.width)
             elseif label.name == "Lower Follow Distance" then  
-                label:setTranslation(getText("ContextMenu_SOption_LowerFollowDistance"))
+                label:setTranslation(getOptionText("LowerFollowDistance"))
                 label:setX(label.x)
                 label:setWidth(label.width)
             elseif label.name == "Raise Follow Distance" then  
-                label:setTranslation(getText("ContextMenu_SOption_RaiseFollowDistance"))
+                label:setTranslation(getOptionText("RaiseFollowDistance"))
                 label:setX(label.x)
                 label:setWidth(label.width)
             elseif label.name == "SSHotkey_1" then  
-                label:setTranslation(getText("ContextMenu_SShotkey1"))
+                label:setTranslation(getOptionText("SShotkey1"))
                 label:setX(label.x)
                 label:setWidth(label.width)
             elseif label.name == "SSHotkey_2" then  
-                label:setTranslation(getText("ContextMenu_SShotkey2"))
+                label:setTranslation(getOptionText("SShotkey2"))
                 label:setX(label.x)
                 label:setWidth(label.width)
             elseif label.name == "SSHotkey_3" then  
-                label:setTranslation(getText("ContextMenu_SShotkey3"))
+                label:setTranslation(getOptionText("SShotkey3"))
                 label:setX(label.x)
                 label:setWidth(label.width)
             elseif label.name == "SSHotkey_4" then  
-                label:setTranslation(getText("ContextMenu_SShotkey4"))
+                label:setTranslation(getOptionText("SShotkey4"))
                 label:setX(label.x)
                 label:setWidth(label.width)
             end
@@ -413,7 +417,7 @@ if index then
 		local spacing2x = 20
 		local spacing4x = 30
 	
-		self:addPage(getText("ContextMenu_Title"))
+		self:addPage(getOptionText("Title"))
 		self.addY = 0
 		
 		local label
@@ -428,20 +432,20 @@ if index then
 
 		local options = 
 		{
-			getText("ContextMenu_SD_Off"),
-			getText("ContextMenu_SD_UltraLow"),
-			getText("ContextMenu_SD_ExtremelyLow"), 
-			getText("ContextMenu_SD_VeryLow"), 
-			getText("ContextMenu_SD_Low"), 
-			getText("ContextMenu_SD_SlightlyLower"), 
-			getText("ContextMenu_SD_Normal"), 
-			getText("ContextMenu_SD_SlightlyHigher"), 
-			getText("ContextMenu_SD_High"),
-			getText("ContextMenu_SD_VeryHigh"),
-			getText("ContextMenu_SD_ExtremelyHigh"),
-			getText("ContextMenu_SD_UltraHigh")
+			getText("Off"),
+			getText("UltraLow"),
+			getText("ExtremelyLow"), 
+			getText("VeryLow"), 
+			getText("Low"), 
+			getText("SlightlyLower"), 
+			getText("Normal"), 
+			getText("SlightlyHigher"), 
+			getText("High"),
+			getText("VeryHigh"),
+			getText("ExtremelyHigh"),
+			getText("UltraHigh")
 		}
-		self:addCustomCombo('SpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorSpawnRate"),options,getText("ContextMenu_SOption_SurvivorSpawnRateDesc"))
+		self:addCustomCombo('SpawnRate',splitpoint,y,comboWidth,getOptionText("SurvivorSpawnRate"),options,getOptionText("SurvivorSpawnRateDesc"))
 
 
 	y = y + spacing4x
@@ -449,26 +453,26 @@ if index then
 
 		local options = 
 		{
-			getText("ContextMenu_SD_AltSpawnOff"), 
-			getText("ContextMenu_SD_UpTo1"),getText("ContextMenu_SD_UpTo2"),
-			getText("ContextMenu_SD_UpTo3"),getText("ContextMenu_SD_UpTo4"),
-			getText("ContextMenu_SD_UpTo5"),getText("ContextMenu_SD_UpTo6")
+			getOptionText("AltSpawnOff"), 
+			getOptionText("UpTo1"),getOptionText("UpTo2"),
+			getOptionText("UpTo3"),getOptionText("UpTo4"),
+			getOptionText("UpTo5"),getOptionText("UpTo6")
 		}
-		self:addCustomCombo('AltSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SOption_AltSpawn"),options,getText("ContextMenu_SOption_AltSpawnDesc"))
+		self:addCustomCombo('AltSpawn',splitpoint,y,comboWidth,getOptionText("AltSpawn"),options,getOptionText("AltSpawnDesc"))
 
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('AltSpawnPercent',splitpoint,y,comboWidth,getText("ContextMenu_SOption_AltSpawnPercent"),options,getText("ContextMenu_SOption_AltSpawnPercentDesc"))
+		self:addCustomCombo('AltSpawnPercent',splitpoint,y,comboWidth,getOptionText("AltSpawnPercent"),options,getOptionText("AltSpawnPercentDesc"))
 		
 		local options = 
 		{
-			getText("ContextMenu_AltSpawnAmount_1"),
-			getText("ContextMenu_AltSpawnAmount_2"),
-			getText("ContextMenu_AltSpawnAmount_3"),
-			getText("ContextMenu_AltSpawnAmount_4"),
-			getText("ContextMenu_AltSpawnAmount_5"),
-			getText("ContextMenu_AltSpawnAmount_6")
+			getOptionText("AltSpawnAmount_1"),
+			getOptionText("AltSpawnAmount_2"),
+			getOptionText("AltSpawnAmount_3"),
+			getOptionText("AltSpawnAmount_4"),
+			getOptionText("AltSpawnAmount_5"),
+			getOptionText("AltSpawnAmount_6")
 		}
-		self:addCustomCombo('AltSpawnAmount',splitpoint,y,comboWidth,getText("ContextMenu_Option_AltSpawnAmount"),options,getText("ContextMenu_Context_AltSpawnAmountDesc"))
+		self:addCustomCombo('AltSpawnAmount',splitpoint,y,comboWidth,getOptionText("AltSpawnAmount"),options,getOptionText("AltSpawnAmountDesc"))
 
 
 	y = y + spacing4x
@@ -476,98 +480,98 @@ if index then
 
 		local options = 
 		{
-			getText("ContextMenu_SD_Every5Days"), getText("ContextMenu_SD_Every10Days"), getText("ContextMenu_SD_Every15Days"), getText("ContextMenu_SD_Every20Days"), 
-			getText("ContextMenu_SD_Every25Days"), getText("ContextMenu_SD_Every30Days"), getText("ContextMenu_SD_Every35Days"), getText("ContextMenu_SD_Every40Days"), 
-			getText("ContextMenu_SD_Every45Days"), getText("ContextMenu_SD_Every50Days"), getText("ContextMenu_SD_Every55Days"), getText("ContextMenu_SD_Every60Days"), 
-			getText("ContextMenu_SD_Every65Days"), getText("ContextMenu_SD_Every70Days"), getText("ContextMenu_SD_Every75Days"), getText("ContextMenu_SD_Every80Days"), 
-			getText("ContextMenu_SD_Every85Days"), getText("ContextMenu_SD_Every90Days"), getText("ContextMenu_SD_Every95Days"), getText("ContextMenu_SD_Every100Days"),
-			getText("ContextMenu_SD_EveryDay"), getText("ContextMenu_SD_EveryHour"), getText("ContextMenu_SD_Every10Minutes")
+			getOptionText("Every5Days"), 	getOptionText("Every10Days"), getOptionText("Every15Days"), getOptionText("Every20Days"), 
+			getOptionText("Every25Days"), getOptionText("Every30Days"), getOptionText("Every35Days"), getOptionText("Every40Days"), 
+			getOptionText("Every45Days"), getOptionText("Every50Days"), getOptionText("Every55Days"), getOptionText("Every60Days"), 
+			getOptionText("Every65Days"), getOptionText("Every70Days"), getOptionText("Every75Days"), getOptionText("Every80Days"), 
+			getOptionText("Every85Days"), getOptionText("Every90Days"), getOptionText("Every95Days"), getOptionText("Every100Days"),
+			getOptionText("EveryDay"), 		getOptionText("EveryHour"), 	getOptionText("Every10Minutes")
 		}
-		self:addCustomCombo('RaidersAtLeastHours',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RaidersGuaranteed"),options,getText("ContextMenu_SOption_RaidersGuaranteedDesc"))
+		self:addCustomCombo('RaidersAtLeastHours',splitpoint,y,comboWidth,getOptionText("RaidersGuaranteed"),options,getOptionText("RaidersGuaranteedDesc"))
 
 		local options = 
 		{
-			getText("ContextMenu_SD_StartImmediately"),	getText("ContextMenu_SD_AfterDay1"), 
-			getText("ContextMenu_SD_AfterDay5"), 				getText("ContextMenu_SD_AfterDay10"), 
-			getText("ContextMenu_SD_AfterDay15"), 			getText("ContextMenu_SD_AfterDay20"), 
-			getText("ContextMenu_SD_AfterDay25"), 			getText("ContextMenu_SD_AfterDay30"), 
-			getText("ContextMenu_SD_AfterDay35"), 			getText("ContextMenu_SD_AfterDay40"), 
-			getText("ContextMenu_SD_AfterDay45"), 			getText("ContextMenu_SD_AfterDay50"), 
-			getText("ContextMenu_SD_AfterDay55"), 			getText("ContextMenu_SD_AfterDay60"),
-			getText("ContextMenu_SD_AfterDay65"), 			getText("ContextMenu_SD_AfterDay70"), 
-			getText("ContextMenu_SD_AfterDay75"), 			getText("ContextMenu_SD_AfterDay80"), 
-			getText("ContextMenu_SD_AfterDay85"), 			getText("ContextMenu_SD_AfterDay90"), 
-			getText("ContextMenu_SD_AfterDay95"),				getText("ContextMenu_SD_Never")
+			getOptionText("StartImmediately"),	getOptionText("AfterDay1"), 
+			getOptionText("AfterDay5"), 				getOptionText("AfterDay10"), 
+			getOptionText("AfterDay15"), 				getOptionText("AfterDay20"), 
+			getOptionText("AfterDay25"), 				getOptionText("AfterDay30"), 
+			getOptionText("AfterDay35"), 				getOptionText("AfterDay40"), 
+			getOptionText("AfterDay45"), 				getOptionText("AfterDay50"), 
+			getOptionText("AfterDay55"), 				getOptionText("AfterDay60"),
+			getOptionText("AfterDay65"), 				getOptionText("AfterDay70"), 
+			getOptionText("AfterDay75"), 				getOptionText("AfterDay80"), 
+			getOptionText("AfterDay85"), 				getOptionText("AfterDay90"), 
+			getOptionText("AfterDay95"),				getOptionText("Never")
 		}
-		self:addCustomCombo('RaidersAfterHours',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RaidersAfterHours"),options,getText("ContextMenu_SOption_RaidersAfterHoursDesc"))
+		self:addCustomCombo('RaidersAfterHours',splitpoint,y,comboWidth,getOptionText("RaidersAfterHours"),options,getOptionText("RaidersAfterHoursDesc"))
 		
 		local options = 
 		{
-			getText("ContextMenu_SD_VeryHigh"), getText("ContextMenu_SD_High"),
-			getText("ContextMenu_SD_Normal"),
-			getText("ContextMenu_SD_Low"),getText("ContextMenu_SD_VeryLow")
+			getOptionText("VeryHigh"), getOptionText("High"),
+			getOptionText("Normal"),
+			getOptionText("Low"),getOptionText("VeryLow")
 		}
-		self:addCustomCombo('RaidersChance',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RaidersChance"),options,getText("ContextMenu_SOption_RaidersChanceDesc"))
+		self:addCustomCombo('RaidersChance',splitpoint,y,comboWidth,getOptionText("RaidersChance"),options,getOptionText("RaidersChanceDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('WepSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WepSpawnRate"),options,getText("ContextMenu_SOption_WepSpawnRateDesc"))
+		self:addCustomCombo('WepSpawnRate',splitpoint,y,comboWidth,getOptionText("WepSpawnRate"),options,getOptionText("WepSpawnRateDesc"))
 
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('GunSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_ChancetoSpawnWithGun"),options,getText("ContextMenu_SOption_ChancetoSpawnWithGunDesc"))
+		self:addCustomCombo('GunSpawnRate',splitpoint,y,comboWidth,getOptionText("ChancetoSpawnWithGun"),options,getOptionText("ChancetoSpawnWithGunDesc"))
 
 
 	y = y + spacing4x
 
 
-		local options = {getText("ContextMenu_SD_PVPOff"),getText("ContextMenu_SD_PVPOn")}
-		self:addCustomCombo('Option_ForcePVP',splitpoint,y,comboWidth,getText("ContextMenu_SD_PVPInfoBar"),options,getText("ContextMenu_SD_PVPInfoBarDesc"))
+		local options = {getOptionText("Off"),getOptionText("On")}
+		self:addCustomCombo('Option_ForcePVP',splitpoint,y,comboWidth,getOptionText("PVPInfoBar"),options,getOptionText("PVPInfoBarDesc"))
 		
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('HostileSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_ChancetobeHostile"),options,getText("ContextMenu_SOption_ChancetobeHostileDesc"))
+		self:addCustomCombo('HostileSpawnRate',splitpoint,y,comboWidth,getOptionText("ChancetobeHostile"),options,getOptionText("ChancetobeHostileDesc"))
 		
 		
 		local options = NPC_Options_ZeroToOneHundred() -- Hostile Over Time Odds
-		self:addCustomCombo('MaxHostileSpawnRate',splitpoint,y,comboWidth,getText("ContextMenu_SOption_MaxHostileSpawnRate"),options,getText("ContextMenu_SOption_MaxHostileSpawnRateDesc"))
+		self:addCustomCombo('MaxHostileSpawnRate',splitpoint,y,comboWidth,getOptionText("MaxHostileSpawnRate"),options,getOptionText("MaxHostileSpawnRateDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Display_Survivor_Names',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Survivor_Names"),options,getText("ContextMenu_Option_Display_Survivor_NamesDesc"))
+		self:addCustomCombo('Option_Display_Survivor_Names',splitpoint,y,comboWidth,getOptionText("Option_Display_Survivor_Names"),options,getOptionText("Option_Display_Survivor_NamesDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Display_Hostile_Color',splitpoint,y,comboWidth,getText("ContextMenu_Option_Display_Hostile_Color"),options,getText("ContextMenu_Option_Display_Hostile_ColorDesc"))
+		self:addCustomCombo('Option_Display_Hostile_Color',splitpoint,y,comboWidth,getOptionText("Option_Display_Hostile_Color"),options,getOptionText("Option_Display_Hostile_ColorDesc"))
 			
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('RoleplayMessage',splitpoint,y,comboWidth,getText("ContextMenu_SOption_RoleplayMessage"),options,getText("ContextMenu_SOption_RoleplayMessageDesc"))
+		self:addCustomCombo('RoleplayMessage',splitpoint,y,comboWidth,getOptionText("RoleplayMessage"),options,getOptionText("RoleplayMessageDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('WifeSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WifeSpawn"),options,getText("ContextMenu_SOption_WifeSpawnDesc"))
+		self:addCustomCombo('WifeSpawn',splitpoint,y,comboWidth,getOptionText("WifeSpawn"),options,getOptionText("WifeSpawnDesc"))
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('LockNLoad',splitpoint,y,comboWidth,getText("ContextMenu_SOption_LockNLoad"),options,getText("ContextMenu_SOption_LockNLoadDesc"))
+		self:addCustomCombo('LockNLoad',splitpoint,y,comboWidth,getOptionText("LockNLoad"),options,getOptionText("LockNLoadDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = {"3","4","5","6","7","8","9","10"}
-		self:addCustomCombo('Option_FollowDistance',splitpoint,y,comboWidth,getText("ContextMenu_SOption_FollowGlobalRange"),options,getText("ContextMenu_SOption_FollowGlobalRangeDesc"))
+		self:addCustomCombo('Option_FollowDistance',splitpoint,y,comboWidth,getOptionText("FollowGlobalRange"),options,getOptionText("FollowGlobalRangeDesc"))
 			
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Perception_Bonus',splitpoint,y,comboWidth,getText("ContextMenu_SOption_PerceptionBonus"),options,getText("ContextMenu_SOption_PerceptionBonusDesc"))
+		self:addCustomCombo('Option_Perception_Bonus',splitpoint,y,comboWidth,getOptionText("PerceptionBonus"),options,getOptionText("PerceptionBonusDesc"))
 		
 		local options = NPC_Options_ZeroToOneHundredAbsolute()
-		self:addCustomCombo('Option_Panic_Distance',splitpoint,y,comboWidth,getText("ContextMenu_SOption_Panic_Distance"),options,getText("ContextMenu_SOption_Panic_DistanceDesc"))
+		self:addCustomCombo('Option_Panic_Distance',splitpoint,y,comboWidth,getOptionText("Panic_Distance"),options,getOptionText("Panic_DistanceDesc"))
 
 
 	y = y + spacing4x
@@ -575,69 +579,69 @@ if index then
 
 		local options = 
 		{
-			getText("ContextMenu_SD_DesperateforHumanContact"), getText("ContextMenu_SD_VeryFriendly"), 
-			getText("ContextMenu_SD_Friendly"), getText("ContextMenu_SD_Normal"), 
-			getText("ContextMenu_SD_Mean"), getText("ContextMenu_SD_VeryMean")
+			getOptionText("DesperateforHumanContact"), getOptionText("VeryFriendly"), 
+			getOptionText("Friendly"), getOptionText("Normal"), 
+			getOptionText("Mean"), getOptionText("VeryMean")
 		}
-		self:addCustomCombo('SurvivorFriendliness',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorFriendliness"),options,getText("ContextMenu_SOption_SurvivorFriendlinessDesc"))
+		self:addCustomCombo('SurvivorFriendliness',splitpoint,y,comboWidth,getOptionText("SurvivorFriendliness"),options,getOptionText("SurvivorFriendlinessDesc"))
 			
 		local options = 
 		{
-			getText("ContextMenu_SD_Cowardly"), getText("ContextMenu_SD_Normal"),
-			getText("ContextMenu_SD_Brave"), getText("ContextMenu_SD_VeryBrave")
+			getOptionText("Cowardly"), getOptionText("Normal"),
+			getOptionText("Brave"), getOptionText("VeryBrave")
 		}
-		self:addCustomCombo('Bravery',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorBravery"),options,getText("ContextMenu_SOption_SurvivorBraveryDesc"))
+		self:addCustomCombo('Bravery',splitpoint,y,comboWidth,getOptionText("SurvivorBravery"),options,getOptionText("SurvivorBraveryDesc"))
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('NoPreSetSpawn',splitpoint,y,comboWidth,getText("ContextMenu_SD_NoPreSetSpawn"),options,getText("ContextMenu_SD_NoPreSetSpawnDesc"))
+		self:addCustomCombo('NoPreSetSpawn',splitpoint,y,comboWidth,getOptionText("NoPreSetSpawn"),options,getOptionText("NoPreSetSpawnDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('InfinitAmmo',splitpoint,y,comboWidth,getText("ContextMenu_SOption_InfinitAmmo"),options,getText("ContextMenu_SOption_InfinitAmmoDesc"))
+		self:addCustomCombo('InfinitAmmo',splitpoint,y,comboWidth,getOptionText("InfinitAmmo"),options,getOptionText("InfinitAmmoDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('FindWork',splitpoint,y,comboWidth,getText("ContextMenu_SOption_FindWork"),options,getText("ContextMenu_SOption_FindWorkDesc"))
+		self:addCustomCombo('FindWork',splitpoint,y,comboWidth,getOptionText("FindWork"),options,getOptionText("FindWorkDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('SurvivorHunger',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorHunger"),options,getText("ContextMenu_SOption_SurvivorHungerDesc"))
+		self:addCustomCombo('SurvivorHunger',splitpoint,y,comboWidth,getOptionText("SurvivorHunger"),options,getOptionText("SurvivorHungerDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('SafeBase',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SafeBase"),options,getText("ContextMenu_SOption_SafeBaseDesc"))
+		self:addCustomCombo('SafeBase',splitpoint,y,comboWidth,getOptionText("SafeBase"),options,getOptionText("SafeBaseDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('SurvivorBases',splitpoint,y,comboWidth,getText("ContextMenu_SOption_SurvivorBases"),options,getText("ContextMenu_SOption_SurvivorBasesDesc"))		
+		self:addCustomCombo('SurvivorBases',splitpoint,y,comboWidth,getOptionText("SurvivorBases"),options,getOptionText("SurvivorBasesDesc"))		
 
 
 	y = y + spacing4x
 
 
 		local options = SSHotKeyOptions
-		self:addCustomCombo('SSHotkey1',splitpoint,y,comboWidth,getText("ContextMenu_SShotkey1"),options,getText("ContextMenu_SShotkeyDesc"))					
+		self:addCustomCombo('Hotkey1',splitpoint,y,comboWidth,getOptionText("hotkey1"),options,getOptionText("hotkeyDesc"))					
 	
 		local options = SSHotKeyOptions
-		self:addCustomCombo('SSHotkey2',splitpoint,y,comboWidth,getText("ContextMenu_SShotkey2"),options,getText("ContextMenu_SShotkeyDesc"))					
+		self:addCustomCombo('SSHotkey2',splitpoint,y,comboWidth,getOptionText("hotkey2"),options,getOptionText("hotkeyDesc"))					
 	
 		local options = SSHotKeyOptions
-		self:addCustomCombo('SSHotkey3',splitpoint,y,comboWidth,getText("ContextMenu_SShotkey3"),options,getText("ContextMenu_SShotkeyDesc"))					
+		self:addCustomCombo('Hotkey3',splitpoint,y,comboWidth,getOptionText("hotkey3"),options,getOptionText("hotkeyDesc"))					
 
 		local options = SSHotKeyOptions
-		self:addCustomCombo('SSHotkey4',splitpoint,y,comboWidth,getText("ContextMenu_SShotkey4"),options,getText("ContextMenu_SShotkeyDesc"))		
+		self:addCustomCombo('Hotkey4',splitpoint,y,comboWidth,getOptionText("hotkey4"),options,getOptionText("hotkeyDesc"))		
 		
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('DebugOptions',splitpoint,y,comboWidth,getText("ContextMenu_SOption_DebugOptions"),options,getText("ContextMenu_SOption_DebugOptionsDesc"))		
+		self:addCustomCombo('DebugOptions',splitpoint,y,comboWidth,getOptionText("DebugOptions"),options,getOptionText("DebugOptionsDesc"))		
 	
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('DebugOption_DebugSay',splitpoint,y,comboWidth,getText("ContextMenu_SDebugOption_DebugSay"),options,getText("ContextMenu_SDebugOption_DebugSayDesc"))		
+		self:addCustomCombo('DebugOption_DebugSay',splitpoint,y,comboWidth,getOptionText("DebugOption_DebugSay"),options,getOptionText("DebugOption_DebugSayDesc"))		
 
 		local options = NPC_Options_ZeroToOneHundredAbsolute()
-		self:addCustomCombo('DebugOption_DebugSay_Distance',splitpoint,y,comboWidth,getText("ContextMenu_SDebugOption_DebugSay_Distance"),options,getText("ContextMenu_SDebugOption_DebugSay_DistanceDesc"))		
+		self:addCustomCombo('DebugOption_DebugSay_Distance',splitpoint,y,comboWidth,getOptionText("DebugOption_DebugSay_Distance"),options,getOptionText("DebugOption_DebugSay_DistanceDesc"))		
 
 
 
