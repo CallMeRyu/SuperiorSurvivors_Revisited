@@ -17,7 +17,7 @@ function SuperSurvivorsOnTick()
 			SuperSurvivorSelectingArea = 0 
 		end
 		
-		if (SuperSurvivorMouseDownTicks > 15) then
+		if (SuperSurvivorMouseDownTicks > 15) then -- 10 acts instant, so a left click would reset the select area finalization.
 		
 		
 			
@@ -96,6 +96,51 @@ function SuperSurvivorSoldierSpawn(square)
 	return ASuperSurvivor
 end
 
+function SuperSurvivorSoldierSpawnMelee(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+
+	return ASuperSurvivor
+end
+
+
+function SuperSurvivorSoldierSpawnHostile(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(RangeWeapons[ZombRand(1,#RangeWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor:setHostile(true)
+
+	return ASuperSurvivor
+end
+
+function SuperSurvivorSoldierSpawnMeleeHostile(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor:setHostile(true)
+
+	return ASuperSurvivor
+end
+
+
+
+
 function SuperSurvivorRandomSpawn(square)
 	
 
@@ -163,7 +208,9 @@ function SuperSurvivorsLoadGridsquare(square)
 			local gameVersion = getCore():getGameVersion()
 			IsDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() > 50 and gameVersion:getMinor() < 53)
 			IsNpcDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() >= 53)
-			
+	
+			Option_WarningMSG = SuperSurvivorGetOptionValue("Option_WarningMSG")
+
 			
 			Option_Perception_Bonus = SuperSurvivorGetOptionValue("Option_Perception_Bonus")
 			
@@ -1239,4 +1286,30 @@ function SSOnGameStartHandle()
 end
 
 --Events.OnGameStart.Add(SSOnGameStartHandle)
+-- Mod ID name, then the Mod's actual name
 
+local function SSSpamCheck_Preset(Var1,Var2)
+
+	if (Option_WarningMSG == 2) then
+		if isModEnabled(Var1) then
+			print(Var2 .. " doesn't work with SuperiorSurvivors!")
+			getSpecificPlayer(0):Say(Var2 .. " doesn't work with SuperiorSurvivors! To disable Message, check Options and warning.")
+		end
+	end
+end
+
+-- Checks for spamming people when they use incompatible mods can be found here.
+local function SSSpamChecks()
+
+	SSSpamCheck_Preset("Amputation","TheOnlyCure")
+	SSSpamCheck_Preset("SwapIt","SwapIt")
+	SSSpamCheck_Preset("SuperSurvivors","SuperSurvivors")
+	SSSpamCheck_Preset("SuperbSurvivors","SuperbSurvivors")
+	SSSpamCheck_Preset("SubparSurvivors","SubparSurvivors")
+	SSSpamCheck_Preset("Survivors","Survivors")
+	SSSpamCheck_Preset("SuperbSurvivorz","SuperbSurvivorz")
+	SSSpamCheck_Preset("SuperbUndressedSurvivors","SuperbUndressedSurvivors")
+
+end
+
+Events.EveryOneMinute.Add(SSSpamChecks)

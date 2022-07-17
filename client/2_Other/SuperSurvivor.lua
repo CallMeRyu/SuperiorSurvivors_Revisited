@@ -2044,10 +2044,10 @@ end
 
 function SuperSurvivor:Companion_DoSixthSenseScan()
 
-	local atLeastThisClose = 1;
+	local atLeastThisClose = 3;
 	local spottedList = self.player:getCell():getObjectList()
-	local closestSoFar = 3
-	local closestSurvivorSoFar = 3
+	local closestSoFar = 4
+	local closestSurvivorSoFar = 4
 --	self.seenCount = 0
 --	self.dangerSeenCount = 0
 --	self.EnemiesOnMe = 0
@@ -2060,11 +2060,13 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 	--	dangerRange = self.AttackRange 
 	--end
 	
-	if (self:getGroupRole() == "Companion") or (self:getGroupRole() == "Guard") then 
-		atLeastThisClose = 10
+	if (self:getGroupRole() == "Companion") then 
+		atLeastThisClose = 5
 		closestSoFar = 10
 		closestSurvivorSoFar = 10
-		dangerRange = 2
+		dangerRange = 3
+		self.dangerSeenCount = 0
+		self.EnemiesOnMe = 0
 	end	
 
 	
@@ -2085,19 +2087,26 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 					
 						local CanSee = self:RealCanSee(character)
 						
-						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
+						-- Melee scan
+						if(tempdistance < 1) and (not (self:usingGun())) and (character:getZ() == self.player:getZ()) then 
 							self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						end
-						if(tempdistance < dangerRange) and (instanceof(character,"IsoZombie")) and (character:getZ() == self.player:getZ()) then
+						
+						-- Gun Scan
+						if(tempdistance < 2) and (self:usingGun()) and (character:getZ() == self.player:getZ()) then 
+							self.EnemiesOnMe = self.EnemiesOnMe + 1 
+						end
+
+						if(self:getGroupRole() == "Companion") and (tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
 							self.dangerSeenCount = self.dangerSeenCount + 1
 							self:DebugSay("self.dangerSeenCount = "..tostring(self.dangerSeenCount))
-							--else
-							--self:DebugSay("self.dangerSeenCount IS NOT WORKING, BUT HERE'S THE AMOUNT ANYWAYS = "..tostring(self.dangerSeenCount))
 						end
-						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
+
+						if(not CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
 							self.seenCount = self.seenCount + 1 
 						end
-						if( ( ((not CanSee) or (CanSee)) or (tempdistance < 3.5)) and (tempdistance < closestSoFar) ) then
+
+						if( (not CanSee)  and (tempdistance < closestSoFar) ) then
 							closestSoFar = tempdistance ;
 							self.player:getModData().seenZombie = true;
 							closestNumber = i;							
@@ -2407,8 +2416,14 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		--  Companion: They should always be cautious of their surroundings
 		-- -------------------------------------- --
 		if ((self:getGroupRole() == "Companion") and (self:isEnemyInRange(self.LastEnemeySeen))) then
-			zRangeToPursue = 5
-			return zRangeToPursue
+			if getDistanceBetween(getSpecificPlayer(0),self.player) < 10 then
+				zRangeToPursue = 5
+				return zRangeToPursue
+			end
+			if getDistanceBetween(getSpecificPlayer(0),self.player) >= 10 then
+				zRangeToPursue = 0
+				return zRangeToPursue
+			end
 		end
 		
 		-- ------------------------ --
@@ -2442,15 +2457,15 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		-- -------------------------------------- --
 		if (self:hasGun() == true) then
 			self:zDebugSayPTSC(zRangeToPursue,"10")
-			if (self:WeaponReady() == false) then
+			if (self:WeaponReady() == true) then
 				self:zDebugSayPTSC(zRangeToPursue,"11")
-				zRangeToPursue = 5
+				zRangeToPursue = 6
 				return zRangeToPursue
 				
-			elseif (self:WeaponReady() == false) then
-				self:zDebugSayPTSC(zRangeToPursue,"11_A1")
-				zRangeToPursue = 5
-				return zRangeToPursue
+			--elseif (self:WeaponReady() == false) then
+			--	self:zDebugSayPTSC(zRangeToPursue,"11_A1")
+			--	zRangeToPursue = 0
+			--	return zRangeToPursue
 			end
 		end
 		
@@ -2898,11 +2913,12 @@ function SuperSurvivor:update()
 	self:DoVision()
 	
 	-- I know this is 'not companion' but the function works almost too well not to use.
-	if (Option_Perception_Bonus == 2) and (ZombRand(4)==0) then	-- The in game option from supersurvivorsmod.lua and to keep it from scanning infinitely
+	if (Option_Perception_Bonus == 2) then	-- The in game option from supersurvivorsmod.lua and to keep it from scanning infinitely
 		if (not (self:getGroupRole() == "Companion")) then 		-- See how this line is? this is the ONLY WAY I could get the follower to accept 'is not a follower'. I'm bad at math logic.
 			self:Companion_DoSixthSenseScan() 
 		end
 	end
+
 
 	
 	
@@ -3929,7 +3945,7 @@ function SuperSurvivor:NPC_ShouldRunOrWalk()
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
 
 		
-		if (self:Task_IsNotFleeOrFleeFromSpot()) or (distanceAlt <= 1) or (distance and self:Task_IsAttack()) or (distance and self:Task_IsThreaten() or (distance and self:Task_IsPursue()) ) then
+		if(not (self:Task_IsNotFleeOrFleeFromSpot() == true) ) or (distanceAlt <= 1) or (distance and self:Task_IsAttack()) or (distance and self:Task_IsThreaten() or (distance and self:Task_IsPursue()) ) then
 			self:setRunning(false)
 			self:NPCDebugPrint("NPC_ShouldRunOrWalk set running to false due to distance and Task_IsNotFleeOrFleeFromSpot returned true SRW_0001")
 		else
@@ -3964,8 +3980,6 @@ function SuperSurvivor:NPC_ERW_AroundMainPlayer(VarDist)
 				self:setRunning(false)
 			end
 		end
-	self:NPC_EnforceWalkNearMainPlayer() -- New
-
 end
 -- ERW stands for 'EnforceRunWalk' walk priority
 function SuperSurvivor:NPC_ERW_AroundMainPlayerReverse(VarDist)
@@ -3980,8 +3994,6 @@ function SuperSurvivor:NPC_ERW_AroundMainPlayerReverse(VarDist)
 				self:setRunning(true)
 			end
 		end
-	self:NPC_EnforceWalkNearMainPlayer() -- New
-
 end
 
 
@@ -4023,21 +4035,23 @@ function SuperSurvivor:NPC_MovementManagement()
 		local RealDistance = getDistanceBetween(self.player,self.LastEnemeySeen)
 		local minrange = self:getMinWeaponRange()
 		local zNPC_AttackRange = self:isEnemyInRange(self.LastEnemeySeen)
-		
-		self:NPC_ERW_AroundMainPlayerReverse(minrange)
-		
+
 		if (distance > minrange + 0.1) then
 			-- The actual walking itself
 			if(instanceof(self.LastEnemeySeen,"IsoPlayer")) then	
 				self:walkToDirect(cs)
+				self:setRunning(true)
+				
 			else
 				local fs = cs:getTileInDirection(self.LastEnemeySeen:getDir())
 				if(fs) and (fs:isFree(true)) then
 					self:walkToDirect(fs)
 					self:DebugSay("AtkTicks NPC_MovementManagement Walkto FS")
+					self:setRunning(true)
 				else 
 					self:walkToDirect(cs) 
 					self:DebugSay("AtkTicks NPC_MovementManagement Walkto CS")
+					self:setRunning(true)
 				end	
 			end
 		end

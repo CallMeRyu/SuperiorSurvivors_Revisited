@@ -175,7 +175,10 @@ end
 	if(not SuperSurvivorOptions["FindWork"]) then SuperSurvivorOptions["FindWork"] = 2 end
 	if(not SuperSurvivorOptions["SurvivorHunger"]) then SuperSurvivorOptions["SurvivorHunger"] = 2 end
 	if(not SuperSurvivorOptions["SurvivorFriendliness"]) then SuperSurvivorOptions["SurvivorFriendliness"] = 3 end
+
+	if(not SuperSurvivorOptions["Option_WarningMSG"]) then SuperSurvivorOptions["Option_WarningMSG"] = 2 end
 	
+
 	if(not SuperSurvivorOptions["Option_Perception_Bonus"]) then SuperSurvivorOptions["Option_Perception_Bonus"] = 2 end
 	
 	if(not SuperSurvivorOptions["RaidersAtLeastHours"]) then SuperSurvivorOptions["RaidersAtLeastHours"] = 13 end
@@ -417,7 +420,7 @@ if index then
 		local spacing2x = 20
 		local spacing4x = 30
 	
-		self:addPage(getOptionText("Title"))
+		self:addPage(getOptionText("Title").." 0.17.3")
 		self.addY = 0
 		
 		local label
@@ -643,6 +646,8 @@ if index then
 		local options = NPC_Options_ZeroToOneHundredAbsolute()
 		self:addCustomCombo('DebugOption_DebugSay_Distance',splitpoint,y,comboWidth,getOptionText("DebugOption_DebugSay_Distance"),options,getOptionText("DebugOption_DebugSay_DistanceDesc"))		
 
+		local options = NPC_Options_OffOn()
+		self:addCustomCombo('Option_WarningMSG',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WarningMSG"),options,getText("ContextMenu_SOption_WarningMSGDesc"))		
 
 
 

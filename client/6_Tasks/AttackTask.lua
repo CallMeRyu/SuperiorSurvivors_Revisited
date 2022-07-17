@@ -18,11 +18,15 @@ function AttackTask:new(superSurvivor)
 end
 
 function AttackTask:isComplete()
+	local theDistance = getDistanceBetween(self.Target, self.parent.player)
+
 	--self.parent.player:Say( tostring(self.parent:needToFollow()) ..",".. tostring(self.parent:getDangerSeenCount() > 0) ..",".. tostring(self.parent.LastEnemeySeen) ..",".. tostring(not self.parent.LastEnemeySeen:isDead()) ..",".. tostring(self.parent:HasInjury() == false) )
 	if(not self.parent:needToFollow()) and ((self.parent:getDangerSeenCount() > 0) or (self.parent:isEnemyInRange(self.parent.LastEnemeySeen) and self.parent:hasWeapon())) and (self.parent.LastEnemeySeen) and not self.parent.LastEnemeySeen:isDead() and (self.parent:HasInjury() == false) then 
 		return false
-	else 
-		self.parent:StopWalk()
+	else
+		if theDistance < 1 then
+			self.parent:StopWalk()
+		end
 		return true 
 	end
 end
@@ -58,7 +62,6 @@ function AttackTask:update()
 	
 	-- Controls if the NPC is litreally running or walking state.
 	self.parent:NPC_ShouldRunOrWalk()
-	self.parent:NPC_EnforceWalkNearMainPlayer()
 
 --	if (NPC_AttackRange) or (theDistance <= minrange) or (theDistance < 0.65) then
 	if (NPC_AttackRange) or (theDistance < 0.65) then
@@ -98,7 +101,6 @@ function AttackTask:update()
 	
 		self.parent:NPC_ManageLockedDoors() -- To prevent getting stuck in doors
 	--	self.parent:NPC_MovementManagement() -- To move around 
-		self.parent:NPC_EnforceWalkNearMainPlayer()
 
 
 	--	self.parent:DebugSay("walking close to attack:"..tostring(theDistance))
