@@ -43,7 +43,7 @@ function SurvivorInfoWindow:createChildren()
 	self.HomeWindow:ignoreHeightChange()
 	self:addChild(self.HomeWindow)
 	
-	self.MyCallButton = ISButton:new(FONT_HGT_SMALL * 7 + 30, FONT_HGT_SMALL + 13, 60, 25, getActionText("CallOver"), self, CallButtonPressed);		
+	self.MyCallButton = ISButton:new(FONT_HGT_SMALL * 7 + 30, FONT_HGT_SMALL + 13, 60, 25, getContextMenuText("CallOver"), self, CallButtonPressed);		
 	
 	self.MyCallButton:setEnable(true);
 	self.MyCallButton:initialise();
@@ -60,7 +60,7 @@ end
 
 function SurvivorInfoWindow:Load(ASuperSurvivor)
 	
-	local newText = getActionText("SurvivorInfoName_Before") .. ASuperSurvivor:getName() .. getActionText("SurvivorInfoName_After") .. "\n"
+	local newText = getContextMenuText("SurvivorInfoName_Before") .. ASuperSurvivor:getName() .. getContextMenuText("SurvivorInfoName_After") .. "\n"
 	local player = ASuperSurvivor:Get()
 	newText = newText .. "(" .. tostring(ASuperSurvivor:getGroupRole()) .. "/" .. ASuperSurvivor:getCurrentTask() .. ")" .. "\n\n"
 	

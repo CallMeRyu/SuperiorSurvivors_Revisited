@@ -98,9 +98,9 @@ function SuperbUndressedSurvivorsLogic(context, o)
     local SS = SSM:Get(id)
 
     if (id ~= 0) and (SS:getGroupID() == SSM:Get(0):getGroupID()) and SS:getGroupID() ~= nil then
-        local selectOption = context:addOption(SS:getName() .. getActionText("AddClothing"), worldobjects, nil)
+        local selectOption = context:addOption(SS:getName() .. getContextMenuText("AddClothing"), worldobjects, nil)
         local clothingmenu = context:getNew(context);
-        clothingmenu:addOption(getActionText("RemoveClothing"), nil, function() functionThatConnectsThisModToSuperbSurvivorsTaskManagerLogic(o) end, o, nil)
+        clothingmenu:addOption(getContextMenuText("RemoveClothing"), nil, function() functionThatConnectsThisModToSuperbSurvivorsTaskManagerLogic(o) end, o, nil)
         context:addSubMenu(selectOption, clothingmenu);  --Add ">"
     end
 end

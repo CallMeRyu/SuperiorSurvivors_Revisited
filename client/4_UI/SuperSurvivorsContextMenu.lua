@@ -591,7 +591,7 @@ function survivorMenu(context,o)
 		if(SS.player:getModData().surender) then submenu:addOption("Scram!", nil, AskToLeave, SS, nil) end
 		if(SS.player:getModData().surender) then submenu:addOption("Drop Your loot!", nil, AskToDrop, SS, nil) end
 		if (o:getModData().isHostile ~= true) then
-			local medicalOption = submenu:addOption(getContextMenuText("Medical_Check"), nil, MedicalCheckSurvivor, o, nil);
+			local medicalOption = submenu:addOption(getText("ContextMenu_Medical_Check"), nil, MedicalCheckSurvivor, o, nil);
 			local toolTip = makeToolTip(medicalOption, getContextMenuText("AidCheck"), getContextMenuText("AidCheckDesc"));							
 			
 			if (DebugOptions) then submenu:addOption(getContextMenuText("Debug_Character_Swap"), nil, DebugCharacterSwap, SS, nil) end -- debut character swap

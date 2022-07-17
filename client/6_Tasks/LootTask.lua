@@ -196,7 +196,7 @@ function LootCategoryTask:update()
 					local item = FindItemByCategory(self.Container, self.Category, self.parent)
 					if(item ~= nil) then
 							self.FoundCount = self.FoundCount + 1
-							self.parent:RoleplaySpeak(getActionText("TakesFromCont_Before") .. item:getDisplayName() .. getActionText("SD_TakesFromCont_After"))
+							self.parent:RoleplaySpeak(getActionText("TakesFromCont_Before") .. item:getDisplayName() .. getActionText("TakesFromCont_After"))
 						if(self.parent:hasRoomInBagFor(item)) then
 							self.parent:DebugSay("LootCategoryTask is about to trigger a StopWalk! Path B ")
 							self.parent:StopWalk()
