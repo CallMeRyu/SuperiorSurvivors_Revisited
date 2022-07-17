@@ -269,7 +269,7 @@ hotkey options
 ]]
 SSHotKeyOptions = {}
 for i=1,#Orders do
-	SSHotKeyOptions[i] = getOptionText("SS_OrderAll") .. " " .. OrderDisplayName[Orders[i]]
+	SSHotKeyOptions[i] = getOrderOptionText("SS_OrderAll") .. " " .. OrderDisplayName[Orders[i]]
 end
 for i=1,#Orders do
 	table.insert(SSHotKeyOptions,OrderDisplayName[Orders[i]])
