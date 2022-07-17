@@ -613,17 +613,17 @@ function SuperSurvivor:spawnPlayer(square, isFemale)
 	local namePrefix = ""
 	local namePrefixAfter = ""
 	if(Buddy:getPerkLevel(Perks.FromString("Doctor")) >= 3) then 
-		namePrefix = getText("ContextMenu_SD_DoctorPrefix_Before") 
-		namePrefixAfter = getText("ContextMenu_SD_DoctorPrefix_After") 
+		namePrefix = getName("DoctorPrefix_Before") 
+		namePrefixAfter = getName("DoctorPrefix_After") 
 	end
 	if(Buddy:getPerkLevel(Perks.FromString("Aiming")) >= 5) then 
-		namePrefix = getText("ContextMenu_SD_VeteranPrefix_Before") 
-		namePrefixAfter = getText("ContextMenu_SD_VeteranPrefix_After") 
+		namePrefix = getName("SD_VeteranPrefix_Before") 
+		namePrefixAfter = getName("VeteranPrefix_After") 
 		
 	end
 	if(Buddy:getPerkLevel(Perks.FromString("Farming")) >= 3) then 
-		namePrefix = getText("ContextMenu_SD_FarmerPrefix_Before") 
-		namePrefixAfter = getText("ContextMenu_SD_FarmerPrefix_After") 
+		namePrefix = getName("FarmerPrefix_Before") 
+		namePrefixAfter = getName("FarmerPrefix_After") 
 	end
 	
 	local nameToSet

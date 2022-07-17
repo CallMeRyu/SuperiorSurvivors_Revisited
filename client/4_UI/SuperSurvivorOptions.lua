@@ -1,13 +1,5 @@
 -- thanks and some credit to Fenris_Wolf from ORGM mod for creating this hotkeys file!  I just tweaked it to use my own key bindings! and added support for settings too ~Nolan
 
-local function getOptionText(text)
-	return getText("UI_Option_SS_" .. text)
-end
-
-local function getOrderOptionText(text)
-	return getText("ContextMenu_SS_" .. text)
-end
-
 function SuperSurvivorGetOption(option)
 	
 	if(SuperSurvivorOptions[option] ~= nil) then return tonumber(SuperSurvivorOptions[option])
@@ -269,7 +261,7 @@ hotkey options
 ]]
 SSHotKeyOptions = {}
 for i=1,#Orders do
-	SSHotKeyOptions[i] = getOrderOptionText("SS_OrderAll") .. " " .. OrderDisplayName[Orders[i]]
+	SSHotKeyOptions[i] = getContextMenuText("SS_OrderAll") .. " " .. OrderDisplayName[Orders[i]]
 end
 for i=1,#Orders do
 	table.insert(SSHotKeyOptions,OrderDisplayName[Orders[i]])
