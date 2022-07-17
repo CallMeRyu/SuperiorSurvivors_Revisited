@@ -1,0 +1,201 @@
+UI_JP = {
+	--[[structure]]--
+
+
+		UI_Option_SS_Title = "生存者",
+	--[[END structure]]--
+
+	--[[global]]--
+
+
+		UI_Option_SS_Off = "オフ",
+		UI_Option_SS_On = "オン",
+		UI_Option_SS_VeryLow = "かなり低い",
+		UI_Option_SS_Low = "低い",
+		UI_Option_SS_Normal = "普通",
+		UI_Option_SS_High = "高い",
+		UI_Option_SS_VeryHigh = "かなり高い",
+	--[[END global]]--
+
+	--[[spawn]]--
+
+
+		UI_Option_SS_SurvivorSpawnRate = "生存者の生成率",
+		UI_Option_SS_SurvivorSpawnRateDesc = "ランダムな生存者が生成される人数を定義します。",
+		UI_Option_SS_UltraLow = "最低",
+		UI_Option_SS_ExtremelyLow = "極めて低い",
+		UI_Option_SS_SlightlyLower = "やや低いです",
+		UI_Option_SS_SlightlyHigher = "やや高いです",
+		UI_Option_SS_ExtremelyHigh = "極めて高い",
+		UI_Option_SS_UltraHigh = "最高",
+	--[[END spawn]]--
+
+	--[[alt spawn]]--
+
+
+
+
+	--[[END alt spawn]]--
+
+	--[[preset spawn]]--
+
+
+	--[[END preset spawn]]--
+
+	--[[names]]--
+
+
+	--[[END names]]--
+
+	--[[hostile]]--
+
+
+		UI_Option_SS_ChancetobeHostile = "敵対状態で生成される確率",
+		UI_Option_SS_ChancetobeHostileDesc = "ランダムな生存者が敵対状態で生成される確率を定義します。",
+		UI_Option_SS_MaxHostileSpawnRate = "時間経過と共に上昇する敵対状態になる確率の最大値",
+		UI_Option_SS_MaxHostileSpawnRateDesc = "時間経過と共に敵対状態の生存者が増加します。<br>設定した％が上限となり、設定値を上回る事はありません。",
+	--[[END hostile]]--
+
+	--[[raiders]]--
+
+
+		UI_Option_SS_RaidersChance = "ランダムな襲撃者の生成率",
+		UI_Option_SS_RaidersChanceDesc = "襲撃者が生成を開始する時間を過ぎた後に、襲撃者イベントが発生する確率を設定します。",
+		UI_Option_SS_RaidersAfterHours = "襲撃者が生成を開始する時間",
+		UI_Option_SS_StartImmediately = "即座に開始",
+		UI_Option_SS_AfterDay1 = "1日後",
+		UI_Option_SS_AfterDay5 = "5日後",
+		UI_Option_SS_AfterDay10 = "10日後",
+		UI_Option_SS_AfterDay15 = "15日後",
+		UI_Option_SS_AfterDay20 = "20日後",
+		UI_Option_SS_AfterDay25 = "25日後",
+		UI_Option_SS_AfterDay30 = "30日後",
+		UI_Option_SS_AfterDay35 = "35日後",
+		UI_Option_SS_AfterDay40 = "40日後",
+		UI_Option_SS_AfterDay45 = "45日後",
+		UI_Option_SS_AfterDay50 = "50日後",
+		UI_Option_SS_AfterDay55 = "55日後",
+		UI_Option_SS_AfterDay60 = "60日後",
+		UI_Option_SS_AfterDay65 = "65日後",
+		UI_Option_SS_AfterDay70 = "70日後",
+		UI_Option_SS_AfterDay75 = "75日後",
+		UI_Option_SS_AfterDay80 = "80日後",
+		UI_Option_SS_AfterDay85 = "85日後",
+		UI_Option_SS_AfterDay90 = "90日後",
+		UI_Option_SS_AfterDay95 = "95日後",
+		UI_Option_SS_AfterDay100 = "100日後",
+		UI_Option_SS_Never = "発生しない",
+		UI_Option_SS_RaidersAfterHoursDesc = "襲撃者イベントは設定された時間が経過した後にランダムで発生する様になります。<br>上のオプションの"次の襲撃者イベントが発生するまでの時間"はこの設定の時間が経過した後に計算を始めます。",
+		UI_Option_SS_RaidersGuaranteed = "次の襲撃者イベントが発生するまでの時間",
+		UI_Option_SS_Every5Days = "5日毎",
+		UI_Option_SS_Every10Days = "10日毎",
+		UI_Option_SS_Every15Days = "15日毎",
+		UI_Option_SS_Every20Days = "20日毎",
+		UI_Option_SS_Every25Days = "25日毎",
+		UI_Option_SS_Every30Days = "30日毎",
+		UI_Option_SS_Every35Days = "35日毎",
+		UI_Option_SS_Every40Days = "40日毎",
+		UI_Option_SS_Every45Days = "45日毎",
+		UI_Option_SS_Every50Days = "50日毎",
+		UI_Option_SS_Every55Days = "55日毎",
+		UI_Option_SS_Every60Days = "60日毎",
+		UI_Option_SS_Every65Days = "65日毎",
+		UI_Option_SS_Every70Days = "70日毎",
+		UI_Option_SS_Every75Days = "75日毎",
+		UI_Option_SS_Every80Days = "80日毎",
+		UI_Option_SS_Every85Days = "85日毎",
+		UI_Option_SS_Every90Days = "90日毎",
+		UI_Option_SS_Every95Days = "95日毎",
+		UI_Option_SS_Every100Days = "100日毎",
+		UI_Option_SS_EveryDay = "毎日！",
+		UI_Option_SS_EveryHour = "毎時間！",
+		UI_Option_SS_Every10Minutes = "10分毎！",
+		UI_Option_SS_RaidersGuaranteedDesc = "襲撃者イベントは設定した時間が経過するまで発生しません。<br>襲撃者は設定した時間を経過した後に生成されます。",
+	--[[END raiders]]--
+
+	--[[weapons]]--
+
+
+		UI_Option_SS_ChancetoSpawnWithGun = "銃を持って生成される確率",
+		UI_Option_SS_ChancetoSpawnWithGunDesc = "ランダムな生存者が銃を持って生成される確率を定義します。",
+		UI_Option_SS_WepSpawnRate = "近接武器を持って生成される確率",
+		UI_Option_SS_WepSpawnRateDesc = "ランダムな生存者が近接武器を持って生成される確率を定義します。",
+	--[[END weapons]]--
+
+	--[[bravery]]--
+
+
+		UI_Option_SS_SurvivorBravery = "生存者の勇敢度",
+		UI_Option_SS_SurvivorBraveryDesc = "生存者が逃げたり避けたりするよりも、敢えて敵と戦う道を取るかどうかを設定します。",
+		UI_Option_SS_Cowardly = "臆病",
+		UI_Option_SS_Brave = "勇敢",
+		UI_Option_SS_VeryBrave = "かなり勇敢",
+	--[[END bravery]]--
+
+	--[[friendliness]]--
+
+
+		UI_Option_SS_SurvivorFriendliness = "生存者の友好度",
+		UI_Option_SS_SurvivorFriendlinessDesc = "ランダムな生存者を自分の仲間に加える時の難易度を設定します。<br>贈り物を沢山贈れば加入してくれる確率が高まります。<br>拒否された場合は拒否される度に確率が下がる為、無闇に仲間に招待するのは賢い方法ではありません。",
+		UI_Option_SS_DesperateforHumanContact = "人が恋しい",
+		UI_Option_SS_VeryFriendly = "かなり友好的",
+		UI_Option_SS_Friendly = "友好的",
+		UI_Option_SS_Mean = "狭量",
+		UI_Option_SS_VeryMean = "かなり狭量",
+	--[[END friendliness]]--
+
+	--[[on/off options]]--
+
+
+		UI_Option_SS_LockNLoad = "戦闘モードの準備",
+		UI_Option_SS_LockNLoadDesc = "プレイヤーと妻または夫(設定が有効になっている場合)に銃と弾薬と防具(防具モードが有効になっている場合)がゲーム開始時に支給されます。<br>襲撃者の生成率が高い設定で遊ぶ時には最適の手段と言えるでしょう。",
+		UI_Option_SS_WifeSpawn = "妻/夫の生成",
+		UI_Option_SS_WifeSpawnDesc = "ゲーム開始時に妻/夫が生成され、グループに加入した状態で始まります。",
+		UI_Option_SS_InfinitAmmo = "弾薬無限",
+		UI_Option_SS_InfinitAmmoDesc = "オンの場合は、生存者は銃を使う際に弾薬を必要としなくなります。<br>オフの場合は、生存者は銃を撃つ為に弾薬または弾薬箱が必要になります。<br>右クリックメニューで弾薬を渡す事が出来ます。弾薬が無くなった時は近くで弾薬を見つけようと動きます。",
+		UI_Option_SS_FindWork = "拠点の作業自動化",
+		UI_Option_SS_FindWorkDesc = "オンの場合は、拠点内または拠点周辺の生存者は自身の所属する拠点で自動的に作業を行います。<br>オフの場合は、作業を勝手に行う事は絶対に無くなります。",
+		UI_Option_SS_SurvivorHunger = "飢餓と口渇",
+		UI_Option_SS_SurvivorHungerDesc = "オフの場合は、生存者が飢えや喉の渇きに苦しむ事は無くなります。<br>オンの場合は、自身に必要な物を見つけようと自主的に動きます。",
+		UI_Option_SS_SafeBase = "安全な家",
+		UI_Option_SS_SafeBaseDesc = "オンにすると、野生の生存者は、あなたがマークしたベースから遠ざかります。",
+		UI_Option_SS_SurvivorBases = "サバイバーベース",
+		UI_Option_SS_SurvivorBasesDesc = "もしオンにすると、野生の生存者は、独自のベースを構築します。",
+	--[[END on/off options]]--
+
+	--[[perception]]--
+
+
+	--[[END perception]]--
+
+	--[[hotkeys]]--
+
+
+		UI_Option_SS_hotkey1 = "ホットキー1",
+		UI_Option_SS_hotkey2 = "ホットキー2",
+		UI_Option_SS_hotkey3 = "ホットキー3",
+		UI_Option_SS_hotkey4 = "ホットキー4",
+
+		UI_Option_SS_hotkeyDesc = "このホットキーを押した時に実行される動作を選びます。<br>プレイヤーの話を聞いている人にのみ効果があります。(ホットキー(t)で使用)<br>また"総員に告ぐ"コマンドは範囲内の全メンバーに効果があります。",
+	--[[END hotkeys]]--
+
+	--[[bindings]]--
+
+
+
+	--[[END bindings]]--
+
+	--[[debug]]--
+
+
+		UI_Option_SS_DebugOptions = "デバッグ オプション",
+		UI_Option_SS_DebugOptionsDesc = "サバイバーの右ボタン デバッグ オプションをオンにします。",
+		UI_Option_SS_LowerFollowDistance = "追従範囲を狭める",
+		UI_Option_SS_RaiseFollowDistance = "追従範囲を広げる",
+		UI_Option_SS_CallClosestGroupMember = "近くのグループメンバーを呼ぶ",
+		UI_Option_SS_CallClosestNonGroupMember = "近くのグループメンバー以外を呼ぶ",
+		UI_Option_SS_AskClosestGroupMembertoFollow = "近くのグループメンバーを追従させる",
+	--[[END debug]]--
+
+}
+

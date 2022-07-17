@@ -3256,7 +3256,7 @@ function SuperSurvivor:ManageXP()
 					display_perk = getText("IGUI_perks_Blunt") .. " " .. display_perk
 				end
 				
-				self:RoleplaySpeak(getText("ContextMenu_SD_PerkLeveledUp_Before")..tostring(display_perk)..getText("ContextMenu_SD_PerkLeveledUp_After"))
+				self:RoleplaySpeak(getActionText("PerkLeveledUp_Before")..tostring(display_perk)..getActionText("PerkLeveledUp_After"))
 			end
 			--if(SurvivorPerks[i] == "Aiming") then self.player:Say(tostring(currentXP).."/"..tostring(XPforNextLevel)) end
 		end
@@ -3828,7 +3828,7 @@ function SuperSurvivor:openBoxForGun()
 			--print("in loop!")
 			inv:AddItem(modl..ammotype)
 		end
-		self:RoleplaySpeak(getText("ContextMenu_SD_Opens_Before") .. ammoBox:getDisplayName() .. getText("ContextMenu_SD_Opens_After"))
+		self:RoleplaySpeak(getActionText("Opens_Before") .. ammoBox:getDisplayName() .. getActionText("Opens_After"))
 		ammoBox:getContainer():Remove(ammoBox)
 		return self.player:getInventory():FindAndReturn(ammotype);
 	else
@@ -4333,7 +4333,7 @@ end
 
 function SuperSurvivor:DrinkFromObject(waterObject)
     local playerObj = self.player
-	self:Speak(getText("ContextMenu_SD_Drinking"))
+	self:Speak(getActionText("Drinking"))
 	if not waterObject:getSquare() or not luautils.walkAdj(playerObj, waterObject:getSquare()) then
 		return
 	end

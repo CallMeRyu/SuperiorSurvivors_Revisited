@@ -1,0 +1,114 @@
+IGUI_EN = {
+	--[[roleplay
+		texts that are just describing what the survivor is doing
+	]]--
+
+
+		IGUI_SS_Drinking = "Drinking..",
+		IGUI_SS_EatFood_Before = "Eats ",
+		IGUI_SS_EatFood_After = "",
+		IGUI_SS_Opens_Before = "Opens ",
+		IGUI_SS_Opens_After = "",
+		IGUI_SS_Takes_Before = "Takes ",
+		IGUI_SS_Takes_After = "",
+		IGUI_SS_EquipsArmor = "Equips Armor",
+		IGUI_SS_EquipsArmor_Before = "*Equips ",
+		IGUI_SS_EquipsArmor_After = "*",
+		IGUI_SS_TakesItemFromGround_Before = "Takes ",
+		IGUI_SS_TakesItemFromGround_After = " from ground",
+		IGUI_SS_TakesFromGround_Before = "*Takes ",
+		IGUI_SS_TakesFromGround_After = " from Ground*",
+		IGUI_SS_TakesFromCont_Before = "*Takes ",
+		IGUI_SS_TakesFromCont_After = " from Container*",
+		IGUI_SS_UndressingClothes = "*Undressing*",
+		IGUI_SS_PickUpCorpse = "*Takes Corpse from ground*",
+		IGUI_SS_Resting = "Resting...",
+		IGUI_SS_BandageBP_Before = "Bandaging ",
+		IGUI_SS_BandageBP_After = "",
+		IGUI_SS_DoctorSplint = "*Applying Splint...*",
+		IGUI_SS_DoctorBandageRemove = "*Removing Bandage...*",
+		IGUI_SS_DoctorStitches = "*Applying Stitches*",
+		IGUI_SS_DoctorGlass = "*Removing Glass...*",
+		IGUI_SS_DoctorBullet = "*Removing Bullet...*",
+		IGUI_SS_DoctorBandage = "*Applying Bandage...*",
+		IGUI_SS_Foraging = "*Foraging...",
+		IGUI_SS_FarmingActionPlanting = "*Planting seeds...*",
+		IGUI_SS_FarmingActionHarvesting = "*Harvesting...*",
+		IGUI_SS_FarmingActionWatering = "*Watering...*",
+	--[[END roleplay]]--
+
+	--[[starting tasks
+		dialogue lines that indicate the start of a task
+	]]--
+
+
+		IGUI_SS_IGoRelax = "Guess I'll relax for a bit",
+		IGUI_SS_IGoGetWood = "Guess I'll go gather some wood",
+		IGUI_SS_IGoPileCorpse = "Guess I'll go pile some corpses",
+		IGUI_SS_IGoForage = "Guess I'll go do some foraging",
+		IGUI_SS_IGoChopWood = "Guess I'll go chop some wood",
+		IGUI_SS_IGoFarm = "Guess I'll get back to Farming",
+		IGUI_SS_IGoGuard = "Guess I'll get back to Guarding",
+		IGUI_SS_IGoBackBase = "Guess I'll get back to base",
+	--[[END starting tasks]]--
+
+	--[[loot
+		dialogue lines that indicate the start of a loot task
+	]]--
+
+
+		IGUI_SS_LookForItem_Before = "Going to look for ",
+		IGUI_SS_LookForItem_After = "",
+		IGUI_SS_NoForagingHere = "I won't find anything here",
+		IGUI_SS_NoFindItem_Before = "doesnt seem to be any ",
+		IGUI_SS_NoFindItem_After = " around here",
+		IGUI_SS_NoWoodHere = "No Wood around here",
+	--[[END loot]]--
+
+	--[[giving
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_TakeArmor = "Here take this armor",
+		IGUI_SS_Nothing = "Nothing",
+		IGUI_SS_EveryOneUseMele = "Everyone use mele weapons!",
+		IGUI_SS_EveryOneUseGun = "Everyone use gun weapons!",
+		IGUI_SS_WantSomeFood = "Want some Food?",
+		IGUI_SS_YouWantWater = "Want some Water?",
+		IGUI_SS_YouWantAmmo = "Want some Ammo?",
+		IGUI_SS_TakeMyWeapon = "Here take my weapon",
+	--[[END giving]]--
+
+	--[[interactions
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_OverHere = "Hey! Over here!",
+		IGUI_SS_HoldStill = "Hold still please...",
+		IGUI_SS_ComeWithMe_Before = "",
+		IGUI_SS_ComeWithMe_After = ", come with me!",
+		IGUI_SS_CallName_Before = "",
+		IGUI_SS_CallName_After = "! Come here!",
+		IGUI_SS_CanIJoin = "Can I Join your group?",
+		IGUI_SS_YouWantToJoin = "Want to join my group?",
+		IGUI_SS_WeBackToBase = "Goot to be back",
+		IGUI_SS_DoctorDone = "Good as new! Take it easy now!",
+	--[[END interactions]]--
+
+	--[[not able to do
+		dialogue lines that indicate that the task couldn't be done
+	]]--
+
+
+		IGUI_SS_NotInBuilding = "we are not in a building",
+		IGUI_SS_NoTrees = "No Trees around here",
+		IGUI_SS_NoAxeNoChopWood = "no axe anywhere, giving up chopping wood",
+		IGUI_SS_CantCarryMore = "I can't carry anymore",
+		IGUI_SS_NoFarmingArea = "there is no farming area designated",
+		IGUI_SS_IDontKnowHowFarming = "I don't know how to do Farming"
+	--[[END not able to do]]--
+
+}
+

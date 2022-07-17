@@ -547,7 +547,7 @@ end
 		ASuperSurvivor:getTaskManager():clear()
 		if (ASuperSurvivor:Get():getStats():getHunger() > 0.40) then ASuperSurvivor:Get():getStats():setHunger(0.40) end
 		if (ASuperSurvivor:Get():getStats():getThirst() > 0.40) then ASuperSurvivor:Get():getStats():setThirst(0.40) end
-		ASuperSurvivor:Speak(getText("ContextMenu_SD_LeaveGroupHungry"))
+		ASuperSurvivor:Speak(getDialogue("LeaveGroupHungry"))
 		
 	elseif (TaskMangerIn:getCurrentTask() ~= "Enter New Building") and (TaskMangerIn:getCurrentTask() ~= "Clean Inventory") and (IsInAction == false) and (TaskMangerIn:getCurrentTask() ~= "Eat Food") and (TaskMangerIn:getCurrentTask() ~= "Find This") and (TaskMangerIn:getCurrentTask() ~= "First Aide")and (TaskMangerIn:getCurrentTask() ~= "Listen") and (((ASuperSurvivor:isHungry()) and (IsInBase)) or ASuperSurvivor:isVHungry() ) and (ASuperSurvivor:getDangerSeenCount() == 0) then
 
@@ -605,7 +605,7 @@ end
 	and (ASuperSurvivor:getDangerSeenCount()==0) and (TaskMangerIn:getCurrentTask() ~= "First Aide")
 	and (ASuperSurvivor:Get():CanSee(ASuperSurvivor.LastSurvivorSeen)) 
 	 then
-		ASuperSurvivor:Speak(getText("ContextMenu_SD_HeyYou"))
+		ASuperSurvivor:Speak(getDialogue("HeyYou"))
 		ASuperSurvivor:SpokeTo(ASuperSurvivor.LastSurvivorSeen:getModData().ID)
 		ASuperSurvivor:DebugSay("Listen Task Condition Met! Reference Number 0005")
 		TaskMangerIn:AddToTop(ListenTask:new(ASuperSurvivor,ASuperSurvivor.LastSurvivorSeen,true))
@@ -733,7 +733,7 @@ end
 		--	--print("Guard - random job result is:"..tostring(randresult))
 		--	if(randresult == 1) then
 		--	
-		--		ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoRelax"))
+		--		ASuperSurvivor:Speak(getActionText("IGoRelax"))
 		--		TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
 		--		ASuperSurvivor:DebugSay("Relax condition met in AI manager! Reference number 0009")
 		--		
@@ -741,7 +741,7 @@ end
 		--	
 		--		local area = HisGroup:getGroupArea("GuardArea")
 		--		if(area) then 		
-		--			ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoGuard"))
+		--			ASuperSurvivor:Speak(getActionText("IGoGuard"))
 		--			TaskMangerIn:AddToTop(WanderInAreaTask:new(ASuperSurvivor,area)) 					
 		--			TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)
 		--			ASuperSurvivor:DebugSay("Guard area condition met in AI manager! Reference number 000-10")
@@ -758,7 +758,7 @@ end
 				--print("Doctor - random job result is:"..tostring(randresult))
 				if(randresult == 1) then
 				
-					ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoRelax"))
+					ASuperSurvivor:Speak(getActionText("IGoRelax"))
 					TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
 					ASuperSurvivor:DebugSay("Wander In base condition met in AI manager! Reference number 000-12")
 					
@@ -784,7 +784,7 @@ end
 					--print("random job result is:"..tostring(randresult))
 					if(randresult == 1) then
 					
-						ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoRelax"))
+						ASuperSurvivor:Speak(getActionText("IGoRelax"))
 						TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
 						TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)
 						
@@ -792,7 +792,7 @@ end
 					
 						local area = HisGroup:getGroupArea("FarmingArea")
 						if(area) then 		
-							ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoFarm"))
+							ASuperSurvivor:Speak(getActionText("IGoFarm"))
 							TaskMangerIn:AddToTop(FarmingTask:new(ASuperSurvivor)) 					
 							TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)					
 						else
@@ -812,7 +812,7 @@ end
 			--	print("yes im a worker: "..tostring(ASuperSurvivor:Get():getBodyDamage():getWetness()))
 
 				--if(RainManager.isRaining()) and (ASuperSurvivor:Get():getBodyDamage():getWetness() > 0.5) and (ASuperSurvivor:Get():isOutside()) and (TaskMangerIn.TaskUpdateLimit ~= 0) and (TaskMangerIn:getCurrentTask() ~= "Enter New Building") and (TaskMangerIn:getCurrentTask() ~= "Find Building") then
-				--	ASuperSurvivor:Speak(getText("ContextMenu_SD_RainingGoInside"))
+				--	ASuperSurvivor:Speak(getActionText("RainingGoInside"))
 				--	TaskMangerIn:clear()
 				--	TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor,nil))
 				--	TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))
@@ -918,12 +918,12 @@ end
 
 						ASuperSurvivor:Get():getStats():setBoredom(ASuperSurvivor:Get():getStats():getBoredom() + (ZombRand(5) / 100.0))
 						if(job == "Relax") then
-							ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoRelax"))
+							ASuperSurvivor:Speak(getActionText("IGoRelax"))
 							ASuperSurvivor:Get():getStats():setBoredom(0.0)
 							TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
 
 						elseif(job == "Gather Wood") then
-							ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoGetWood"))
+							ASuperSurvivor:Speak(getActionText("IGoGetWood"))
 							local dropSquare = CenterBaseSquare
 							local woodstoragearea = HisGroup:getGroupArea("WoodStorageArea")
 							if(woodstoragearea[1] ~= 0) then dropSquare = getCenterSquareFromArea(woodstoragearea[1],woodstoragearea[2],woodstoragearea[3],woodstoragearea[4],woodstoragearea[5]) end
@@ -931,7 +931,7 @@ end
 							TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)
 
 						elseif(job == "Pile Corpses") then
-							ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoPileCorpse"))
+							ASuperSurvivor:Speak(getActionText("IGoPileCorpse"))
 							local baseBounds = HisGroup:getBounds()
 							local dropSquare = getCell():getGridSquare(baseBounds[1]-5,baseBounds[3]-5,0)
 							local storagearea = HisGroup:getGroupArea("CorpseStorageArea")
@@ -947,7 +947,7 @@ end
 							if(FoodStorageCenter) then dropSquare = FoodStorageCenter end
 							
 							if(forageSquare ~= nil) then 				
-								ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoForage"))
+								ASuperSurvivor:Speak(getActionText("IGoForage"))
 								ASuperSurvivor:walkTo(forageSquare)
 								TaskMangerIn:AddToTop(CleanInvTask:new(ASuperSurvivor,dropSquare,false)) 
 								TaskMangerIn:AddToTop(ForageTask:new(ASuperSurvivor)) 
@@ -958,7 +958,7 @@ end
 
 						elseif(job == "Chop Wood") then
 							if(chopWoodSquare) then 		
-								ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoChopWood"))
+								ASuperSurvivor:Speak(getActionText("IGoChopWood"))
 								TaskMangerIn:AddToTop(ChopWoodTask:new(ASuperSurvivor)) 					
 								TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)					
 							else
@@ -967,7 +967,7 @@ end
 
 						elseif(job == "Farming") then
 							if(farmingArea) then 		
-								ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoFarm"))
+								ASuperSurvivor:Speak(getActionText("IGoFarm"))
 								TaskMangerIn:AddToTop(FarmingTask:new(ASuperSurvivor)) 					
 								TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)					
 							else
@@ -976,7 +976,7 @@ end
 
 						elseif(job == "Guard") then
 							if(guardArea) then 		
-								ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoGuard"))
+								ASuperSurvivor:Speak(getActionText("IGoGuard"))
 								TaskMangerIn:AddToTop(WanderInAreaTask:new(ASuperSurvivor, guardArea)) 					
 								TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)					
 							else
@@ -1017,7 +1017,7 @@ end
 		if (ASuperSurvivor:getCurrentTask() == "None") and (IsInBase == false) and (not IsInAction) and (HisGroup~=nil) then
 			local baseSq = CenterBaseSquare
 			if(baseSq ~= nil) then 
-				ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoBackBase"))
+				ASuperSurvivor:Speak(getActionText("IGoBackBase"))
 				TaskMangerIn:AddToTop(ReturnToBaseTask:new(ASuperSurvivor)) 
 				ASuperSurvivor:DebugSay("none task condition met in AI manager! Reference number Alt_000-A01")
 			end
@@ -1117,7 +1117,7 @@ end
 				group:removeMember(ASuperSurvivor:getID())
 			end
 			ASuperSurvivor:getTaskManager():clear()
-			ASuperSurvivor:Speak(getText("ContextMenu_SD_LeaveBCHungry"))
+			ASuperSurvivor:Speak(getActionText("LeaveBCHungry"))
 			ASuperSurvivor:resetAllTables()
 			ASuperSurvivor:setBaseBuilding(nil)
 			if (ASuperSurvivor:Get():getStats():getHunger() > 0.30) then ASuperSurvivor:Get():getStats():setHunger(0.30) end

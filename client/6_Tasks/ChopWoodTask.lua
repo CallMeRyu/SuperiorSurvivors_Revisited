@@ -39,7 +39,7 @@ function ChopWoodTask:update()
 		local player = self.parent:Get()
 		--player:Say(tostring(player:getStats():getEndurance()))
 		if(player:getStats():getEndurance() < 0.50) then
-			if(self.parent.Reducer % 240 == 0) then self.parent:RoleplaySpeak(getText("ContextMenu_SD_Resting")) end
+			if(self.parent.Reducer % 240 == 0) then self.parent:RoleplaySpeak(getActionText("Resting")) end
 			player:getStats():setEndurance(player:getStats():getEndurance() + 0.01)
 			return 
 		end
@@ -97,7 +97,7 @@ function ChopWoodTask:update()
 		
 		if(self.Axe == nil) and (self.axetoget == true) then -- tried getting axe with FindThisTask but still no axe so finish
 			self.Complete = true
-			self.parent:Speak(getText("ContextMenu_SD_NoAxeNoChopWood"));
+			self.parent:Speak(getActionText("NoAxeNoChopWood"));
 		elseif(self.Axe ~= nil) and (player:getPrimaryHandItem() == self.Axe) then
 			
 			--local cell = getSpecificPlayer(0):getCell();
@@ -143,7 +143,7 @@ function ChopWoodTask:update()
 					player:StopAllActionQueue();
 					self.Tree:getModData().isClaimed = gamehours;
 				else
-					self.parent:Speak(getText("ContextMenu_SD_NoTrees"));
+					self.parent:Speak(getActionText("NoTrees"));
 					self.Complete = true
 				end
 			elseif( (self.Tree ~= nil) and (self.Tree:getSquare()~=nil) and	(getDistanceBetween(self.Tree:getSquare() , player) > 2.0) )then
