@@ -208,7 +208,9 @@ function SuperSurvivorsLoadGridsquare(square)
 			local gameVersion = getCore():getGameVersion()
 			IsDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() > 50 and gameVersion:getMinor() < 53)
 			IsNpcDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() >= 53)
-			
+	
+			Option_WarningMSG = SuperSurvivorGetOptionValue("Option_WarningMSG")
+
 			
 			Option_Perception_Bonus = SuperSurvivorGetOptionValue("Option_Perception_Bonus")
 			
@@ -1284,46 +1286,30 @@ function SSOnGameStartHandle()
 end
 
 --Events.OnGameStart.Add(SSOnGameStartHandle)
+-- Mod ID name, then the Mod's actual name
+
+local function SSSpamCheck_Preset(Var1,Var2)
+
+	if (Option_WarningMSG == 2) then
+		if isModEnabled(Var1) then
+			print(Var2 .. " doesn't work with SuperiorSurvivors!")
+			getSpecificPlayer(0):Say(Var2 .. " doesn't work with SuperiorSurvivors! To disable Message, check Options and warning.")
+		end
+	end
+end
 
 -- Checks for spamming people when they use incompatible mods can be found here.
 local function SSSpamChecks()
 
-	if isModEnabled("Amputation") then
-	print("TheOnlyCure doesn't work with SuperiorSurvivors!")
-	getSpecificPlayer(0):Say("TheOnlyCure doesn't work with SuperiorSurvivors!")
-	end
-	if isModEnabled("SwapIt") then
-	print("SwapIt doesn't work with SuperiorSurvivors!")
-	getSpecificPlayer(0):Say("SwapIt doesn't work with SuperiorSurvivors!")
-	end
-	if isModEnabled("SubparSurvivors") then
-	print("SubparSurvivors doesn't work with SuperiorSurvivors!")
-	getSpecificPlayer(0):Say("SubparSurvivors doesn't work with SuperiorSurvivors!")
-	end
-	if isModEnabled("SuperSurvivors") then
-	print("SuperSurvivors doesn't work with SuperiorSurvivors!")
-	getSpecificPlayer(0):Say("SuperSurvivors doesn't work with SuperiorSurvivors!")
-	end
-	if isModEnabled("SuperbSurvivors") then
-	print("SuperbSurvivors doesn't work with SuperiorSurvivors!")
-	getSpecificPlayer(0):Say("SuperbSurvivors doesn't work with SuperiorSurvivors!")
-	end
-	if isModEnabled("SubparSurvivors") then
-	print("SubparSurvivors doesn't work with SuperiorSurvivors!")
-	getSpecificPlayer(0):Say("SubparSurvivors doesn't work with SuperiorSurvivors!")
-	end
-	if isModEnabled("Survivors") then
-	print("Survivors doesn't work with SuperiorSurvivors!")
-	getSpecificPlayer(0):Say("Survivors doesn't work with SuperiorSurvivors!")
-	end
-	if isModEnabled("SuperbSurvivorz") then
-	print("SurvivorsDieOff doesn't work with SuperiorSurvivors!")
-	getSpecificPlayer(0):Say("SurvivorsDieOff doesn't work with SuperiorSurvivors!")
-	end
-	if isModEnabled("SuperbUndressedSurvivors") then
-	print("SuperbUndressedSurvivors doesn't work with SuperiorSurvivors!")
-	getSpecificPlayer(0):Say("SuperbUndressedSurvivors doesn't work with SuperiorSurvivors!")
-	end
+	SSSpamCheck_Preset("Amputation","TheOnlyCure")
+	SSSpamCheck_Preset("SwapIt","SwapIt")
+	SSSpamCheck_Preset("SuperSurvivors","SuperSurvivors")
+	SSSpamCheck_Preset("SuperbSurvivors","SuperbSurvivors")
+	SSSpamCheck_Preset("SubparSurvivors","SubparSurvivors")
+	SSSpamCheck_Preset("Survivors","Survivors")
+	SSSpamCheck_Preset("SuperbSurvivorz","SuperbSurvivorz")
+	SSSpamCheck_Preset("SuperbUndressedSurvivors","SuperbUndressedSurvivors")
+
 end
 
 Events.EveryOneMinute.Add(SSSpamChecks)
