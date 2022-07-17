@@ -435,18 +435,18 @@ if index then
 
 		local options = 
 		{
-			getText("Off"),
-			getText("UltraLow"),
-			getText("ExtremelyLow"), 
-			getText("VeryLow"), 
-			getText("Low"), 
-			getText("SlightlyLower"), 
-			getText("Normal"), 
-			getText("SlightlyHigher"), 
-			getText("High"),
-			getText("VeryHigh"),
-			getText("ExtremelyHigh"),
-			getText("UltraHigh")
+			getOptionText("Off"),
+			getOptionText("UltraLow"),
+			getOptionText("ExtremelyLow"), 
+			getOptionText("VeryLow"), 
+			getOptionText("Low"), 
+			getOptionText("SlightlyLower"), 
+			getOptionText("Normal"), 
+			getOptionText("SlightlyHigher"), 
+			getOptionText("High"),
+			getOptionText("VeryHigh"),
+			getOptionText("ExtremelyHigh"),
+			getOptionText("UltraHigh")
 		}
 		self:addCustomCombo('SpawnRate',splitpoint,y,comboWidth,getOptionText("SurvivorSpawnRate"),options,getOptionText("SurvivorSpawnRateDesc"))
 
