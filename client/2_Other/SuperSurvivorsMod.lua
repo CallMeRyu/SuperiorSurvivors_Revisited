@@ -1293,7 +1293,7 @@ local function SSSpamCheck_Preset(Var1,Var2)
 	if (Option_WarningMSG == 2) then
 		if isModEnabled(Var1) then
 			print(Var2 .. " doesn't work with SuperiorSurvivors!")
-			getSpecificPlayer(0):Say(Var2 .. " doesn't work with SuperiorSurvivors! To disable Message, check Options and warning.")
+			getSpecificPlayer(0):Say(Var2 .. " doesn't work with SuperiorSurvivors, please disable " .. Var2 .. "! To disable this Message, check warning message option in SuperiorSurvivors.")
 		end
 	end
 end
@@ -1301,8 +1301,10 @@ end
 -- Checks for spamming people when they use incompatible mods can be found here.
 local function SSSpamChecks()
 
+	SSSpamCheck_Preset("ZM1A1","[OPEN BETA] M1A1 ABRAMS")
 	SSSpamCheck_Preset("Amputation","TheOnlyCure")
 	SSSpamCheck_Preset("SwapIt","SwapIt")
+
 	SSSpamCheck_Preset("SuperSurvivors","SuperSurvivors")
 	SSSpamCheck_Preset("SuperbSurvivors","SuperbSurvivors")
 	SSSpamCheck_Preset("SubparSurvivors","SubparSurvivors")
