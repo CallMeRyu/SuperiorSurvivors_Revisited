@@ -4,6 +4,10 @@ local function getOptionText(text)
 	return getText("UI_Option_SS_" .. text)
 end
 
+local function getOrderOptionText(text)
+	return getText("ContextMenu_SS_" .. text)
+end
+
 function SuperSurvivorGetOption(option)
 	
 	if(SuperSurvivorOptions[option] ~= nil) then return tonumber(SuperSurvivorOptions[option])
@@ -531,7 +535,7 @@ if index then
 
 
 		local options = {getOptionText("Off"),getOptionText("On")}
-		self:addCustomCombo('Option_ForcePVP',splitpoint,y,comboWidth,getOptionText("PVPInfoBar"),options,getOptionText("PVPInfoBarDesc"))
+		self:addCustomCombo('ForcePVP',splitpoint,y,comboWidth,getOptionText("PVPInfoBar"),options,getOptionText("PVPInfoBarDesc"))
 		
 		local options = NPC_Options_ZeroToOneHundred()
 		self:addCustomCombo('HostileSpawnRate',splitpoint,y,comboWidth,getOptionText("ChancetobeHostile"),options,getOptionText("ChancetobeHostileDesc"))
@@ -545,10 +549,10 @@ if index then
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Display_Survivor_Names',splitpoint,y,comboWidth,getOptionText("Option_Display_Survivor_Names"),options,getOptionText("Option_Display_Survivor_NamesDesc"))
+		self:addCustomCombo('Display_Survivor_Names',splitpoint,y,comboWidth,getOptionText("Display_Survivor_Names"),options,getOptionText("Display_Survivor_NamesDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Display_Hostile_Color',splitpoint,y,comboWidth,getOptionText("Option_Display_Hostile_Color"),options,getOptionText("Option_Display_Hostile_ColorDesc"))
+		self:addCustomCombo('Display_Hostile_Color',splitpoint,y,comboWidth,getOptionText("Display_Hostile_Color"),options,getOptionText("Display_Hostile_ColorDesc"))
 			
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('RoleplayMessage',splitpoint,y,comboWidth,getOptionText("RoleplayMessage"),options,getOptionText("RoleplayMessageDesc"))
@@ -568,13 +572,13 @@ if index then
 
 
 		local options = {"3","4","5","6","7","8","9","10"}
-		self:addCustomCombo('Option_FollowDistance',splitpoint,y,comboWidth,getOptionText("FollowGlobalRange"),options,getOptionText("FollowGlobalRangeDesc"))
+		self:addCustomCombo('FollowDistance',splitpoint,y,comboWidth,getOptionText("FollowGlobalRange"),options,getOptionText("FollowGlobalRangeDesc"))
 			
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Perception_Bonus',splitpoint,y,comboWidth,getOptionText("PerceptionBonus"),options,getOptionText("PerceptionBonusDesc"))
+		self:addCustomCombo('Perception_Bonus',splitpoint,y,comboWidth,getOptionText("PerceptionBonus"),options,getOptionText("PerceptionBonusDesc"))
 		
 		local options = NPC_Options_ZeroToOneHundredAbsolute()
-		self:addCustomCombo('Option_Panic_Distance',splitpoint,y,comboWidth,getOptionText("Panic_Distance"),options,getOptionText("Panic_DistanceDesc"))
+		self:addCustomCombo('Panic_Distance',splitpoint,y,comboWidth,getOptionText("Panic_Distance"),options,getOptionText("Panic_DistanceDesc"))
 
 
 	y = y + spacing4x
@@ -641,13 +645,13 @@ if index then
 		self:addCustomCombo('DebugOptions',splitpoint,y,comboWidth,getOptionText("DebugOptions"),options,getOptionText("DebugOptionsDesc"))		
 	
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('DebugOption_DebugSay',splitpoint,y,comboWidth,getOptionText("DebugOption_DebugSay"),options,getOptionText("DebugOption_DebugSayDesc"))		
+		self:addCustomCombo('DebugSay',splitpoint,y,comboWidth,getOptionText("DebugSay"),options,getOptionText("DebugSayDesc"))		
 
 		local options = NPC_Options_ZeroToOneHundredAbsolute()
-		self:addCustomCombo('DebugOption_DebugSay_Distance',splitpoint,y,comboWidth,getOptionText("DebugOption_DebugSay_Distance"),options,getOptionText("DebugOption_DebugSay_DistanceDesc"))		
+		self:addCustomCombo('DebugSay_Distance',splitpoint,y,comboWidth,getOptionText("DebugSay_Distance"),options,getOptionText("DebugSay_DistanceDesc"))		
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_WarningMSG',splitpoint,y,comboWidth,getText("ContextMenu_SOption_WarningMSG"),options,getText("ContextMenu_SOption_WarningMSGDesc"))		
+		self:addCustomCombo('WarningMSG',splitpoint,y,comboWidth,getOptionText("WarningMSG"),options,getOptionText("WarningMSGDesc"))		
 
 
 
