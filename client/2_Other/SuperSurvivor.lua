@@ -2374,7 +2374,7 @@ end
 function SuperSurvivor:NPC_CheckPursueScore()
 	
 	if (self.LastEnemeySeen ~= nil) then
-	local zRangeToPursue = 0 
+	local zRangeToPursue = 2
 
 		-- ------------------------------------  --
 		-- Keep pursue from happening when 	

@@ -475,6 +475,7 @@ function AIManager(TaskMangerIn)
 	-- ----------------------------- --
 	if not (AiNPC_Job_Is(NPC,"Companion"))  then -- To ABSOLUTELY prevent these two jobs from listening to this task.
 		if (TaskMangerIn:getCurrentTask() ~= "Flee") 
+		and (TaskMangerIn:getCurrentTask() ~= "Flee From Spot")
 		and (TaskMangerIn:getCurrentTask() ~= "Surender") 
 		and ((TaskMangerIn:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor) 
 		and 
