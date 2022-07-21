@@ -1,0 +1,113 @@
+IGUI_PT = {
+	--[[roleplay
+		texts that are just describing what the survivor is doing
+	]]--
+
+
+		IGUI_SS_Drinking = "Bebendo ..",
+		IGUI_SS_EatFood_Before = "Comer",
+		IGUI_SS_EatFood_After = "",
+		IGUI_SS_Opens_Before = "Abrir",
+		IGUI_SS_Opens_After = "",
+		IGUI_SS_Takes_Before = "Pegar",
+		IGUI_SS_Takes_After = "",
+		IGUI_SS_EquipsArmor = "Equipamento de Armadura",
+		IGUI_SS_EquipsArmor_Before = "* Equipamentos",
+		IGUI_SS_EquipsArmor_After = "*",
+		IGUI_SS_TakesItemFromGround_Before = "Pega",
+		IGUI_SS_TakesItemFromGround_After = "do Chão",
+		IGUI_SS_TakesFromGround_Before = "* Pegando ",
+		IGUI_SS_TakesFromGround_After = "do Chão *",
+		IGUI_SS_TakesFromCont_Before = "* Pegando ",
+		IGUI_SS_TakesFromCont_After = "do Container *",
+		IGUI_SS_PickUpCorpse = "* Pegue o cadaver do chao *",
+		IGUI_SS_Resting = "Descansando ...",
+		IGUI_SS_BandageBP_Before = "Bandagem",
+		IGUI_SS_BandageBP_After = "",
+		IGUI_SS_DoctorSplint = "* Colocando a Tala ... *",
+		IGUI_SS_DoctorBandageRemove = "* Removendo Bandagem ... *",
+		IGUI_SS_DoctorStitches = "* Aplicando Pontos *",
+		IGUI_SS_DoctorGlass = "* Removendo o Vidro ... *",
+		IGUI_SS_DoctorBullet = "* Removendo a Bala ... *",
+		IGUI_SS_DoctorBandage = "* Aplicando Bandagem ... *",
+		IGUI_SS_Foraging = "* Forrageando ...",
+		IGUI_SS_FarmingActionPlanting = "* Plantando sementes ... *",
+		IGUI_SS_FarmingActionHarvesting = "* Colhendo ... *",
+		IGUI_SS_FarmingActionWatering = "* Regando ... *",
+	--[[END roleplay]]--
+
+	--[[starting tasks
+		dialogue lines that indicate the start of a task
+	]]--
+
+
+		IGUI_SS_IGoRelax = "Acho que vou relaxar um pouco",
+		IGUI_SS_IGoGetWood = "Acho que vou juntar madeira",
+		IGUI_SS_IGoPileCorpse = "Acho que vou empilhar alguns cadáveres",
+		IGUI_SS_IGoForage = "Acho que vou fazer um pouco de forrageamento",
+		IGUI_SS_IGoChopWood = "Acho que vou cortar madeira",
+		IGUI_SS_IGoFarm = "Acho que vou voltar para a agricultura",
+		IGUI_SS_IGoGuard = "Acho que vou voltar a vigiar",
+		IGUI_SS_IGoBackBase = "Acho que voltarei a base",
+	--[[END starting tasks]]--
+
+	--[[loot
+		dialogue lines that indicate the start of a loot task
+	]]--
+
+
+		IGUI_SS_LookForItem_Before = "Indo procurar",
+		IGUI_SS_LookForItem_After = "",
+		IGUI_SS_NoForagingHere = "Eu não vou encontrar nada aqui",
+		IGUI_SS_NoFindItem_Before = "não parece ser nenhum",
+		IGUI_SS_NoFindItem_After = "por aqui",
+		IGUI_SS_NoWoodHere = "Nenhuma madeira por aqui",
+	--[[END loot]]--
+
+	--[[giving
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_TakeArmor = "Aqui pegue esta armadura",
+		IGUI_SS_Nothing = "Nada",
+		IGUI_SS_EveryOneUseMele = "Todo mundo usa arma Branca!",
+		IGUI_SS_EveryOneUseGun = "Todo mundo usa armas de Fogo!",
+		IGUI_SS_WantSomeFood = "Quer um pouco de comida?",
+		IGUI_SS_YouWantWater = "Quer um pouco de água?",
+		IGUI_SS_YouWantAmmo = "Quer um pouco de munição?",
+		IGUI_SS_TakeMyWeapon = "Aqui pegue minha arma",
+	--[[END giving]]--
+
+	--[[interactions
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_OverHere = "Ei! Por aqui!",
+		IGUI_SS_HoldStill = "Fique parado por favor ...",
+		IGUI_SS_ComeWithMe_Before = "",
+		IGUI_SS_ComeWithMe_After = ", venha comigo!",
+		IGUI_SS_CallName_Before = "",
+		IGUI_SS_CallName_After = "! Venha aqui!",
+		IGUI_SS_CanIJoin = "Posso entrar no seu grupo?",
+		IGUI_SS_YouWantToJoin = "Quer se juntar ao meu grupo?",
+		IGUI_SS_WeBackToBase = "Nós voltaremos à base",
+		IGUI_SS_DoctorDone = "Novo Novamente! agora se acalme!",
+	--[[END interactions]]--
+
+	--[[not able to do
+		dialogue lines that indicate that the task couldn't be done
+	]]--
+
+
+		IGUI_SS_NotInBuilding = "não estamos em um predio",
+		IGUI_SS_NoTrees = "Nenhuma arvore por aqui",
+		IGUI_SS_NoAxeNoChopWood = "nenhum machado aqui, desistindo de cortar madeira",
+		IGUI_SS_CantCarryMore = "Eu não posso mais carregar",
+		IGUI_SS_NoFarmingArea = "Não ha nenhuma área de cultivo designada",
+		IGUI_SS_IDontKnowHowFarming = "Eu não sei mecher com agricultura"
+	--[[END not able to do]]--
+
+}
+

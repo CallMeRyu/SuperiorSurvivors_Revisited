@@ -1,0 +1,114 @@
+IGUI_JP = {
+	--[[roleplay
+		texts that are just describing what the survivor is doing
+	]]--
+
+
+		IGUI_SS_Drinking = "ゴクゴク..",
+		IGUI_SS_EatFood_Before = "",
+		IGUI_SS_EatFood_After = "を食べました。",
+		IGUI_SS_Opens_Before = "",
+		IGUI_SS_Opens_After = "を開きました。",
+		IGUI_SS_Takes_Before = "",
+		IGUI_SS_Takes_After = "を取りました。",
+		IGUI_SS_EquipsArmor = "防具を装備",
+		IGUI_SS_EquipsArmor_Before = "",
+		IGUI_SS_EquipsArmor_After = "を装備しました。",
+		IGUI_SS_TakesItemFromGround_Before = "地面から",
+		IGUI_SS_TakesItemFromGround_After = "を取りました。",
+		IGUI_SS_TakesFromGround_Before = "地面から",
+		IGUI_SS_TakesFromGround_After = "を取りました。",
+		IGUI_SS_TakesFromCont_Before = "コンテナから",
+		IGUI_SS_TakesFromCont_After = "を取りました。",
+		IGUI_SS_UndressingClothes = "*服を脱ぐ*",
+		IGUI_SS_PickUpCorpse = "よっこいっしょっと。",
+		IGUI_SS_Resting = "休憩中...",
+		IGUI_SS_BandageBP_Before = "",
+		IGUI_SS_BandageBP_After = "に包帯を巻きました。",
+		IGUI_SS_DoctorSplint = "そえ木を当てています...",
+		IGUI_SS_DoctorBandageRemove = "包帯を取り除いています...",
+		IGUI_SS_DoctorStitches = "縫合しています...",
+		IGUI_SS_DoctorGlass = "ガラス片を取り除いています...",
+		IGUI_SS_DoctorBullet = "弾丸を取り除いています...",
+		IGUI_SS_DoctorBandage = "包帯を巻いています...*",
+		IGUI_SS_Foraging = "採取しています...",
+		IGUI_SS_FarmingActionPlanting = "種をまいています...",
+		IGUI_SS_FarmingActionHarvesting = "収穫しています...",
+		IGUI_SS_FarmingActionWatering = "水をまいています...",
+	--[[END roleplay]]--
+
+	--[[starting tasks
+		dialogue lines that indicate the start of a task
+	]]--
+
+
+		IGUI_SS_IGoRelax = "少しは休憩が出来そうだ。",
+		IGUI_SS_IGoGetWood = "木材を集めるつもりだ。",
+		IGUI_SS_IGoPileCorpse = "死体を一箇所に集めるつもりだ。",
+		IGUI_SS_IGoForage = "採取するつもりだ。",
+		IGUI_SS_IGoChopWood = "木を切るつもりだ。",
+		IGUI_SS_IGoFarm = "耕作をするつもりだ。",
+		IGUI_SS_IGoGuard = "防衛するつもりだ。",
+		IGUI_SS_IGoBackBase = "拠点に戻るつもりだ。",
+	--[[END starting tasks]]--
+
+	--[[loot
+		dialogue lines that indicate the start of a loot task
+	]]--
+
+
+		IGUI_SS_LookForItem_Before = "",
+		IGUI_SS_LookForItem_After = "を探しに行っています。",
+		IGUI_SS_NoForagingHere = "ここには何もないな。",
+		IGUI_SS_NoFindItem_Before = "この周辺には",
+		IGUI_SS_NoFindItem_After = "はない様です。",
+		IGUI_SS_NoWoodHere = "ここには木材がないよ。",
+	--[[END loot]]--
+
+	--[[giving
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_TakeArmor = "ここで防具を渡す",
+		IGUI_SS_Nothing = "なし",
+		IGUI_SS_EveryOneUseMele = "近接武器を使ってくれ！",
+		IGUI_SS_EveryOneUseGun = "銃を使ってくれ！",
+		IGUI_SS_WantSomeFood = "食料を渡す",
+		IGUI_SS_YouWantWater = "水を渡す",
+		IGUI_SS_YouWantAmmo = "弾薬を渡す",
+		IGUI_SS_TakeMyWeapon = "ここで自分の武器を渡す",
+	--[[END giving]]--
+
+	--[[interactions
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_OverHere = "おい！ここに来てくれ！",
+		IGUI_SS_HoldStill = "動かないで下さいね...",
+		IGUI_SS_ComeWithMe_Before = "",
+		IGUI_SS_ComeWithMe_After = "、一緒に来てくれ！",
+		IGUI_SS_CallName_Before = "",
+		IGUI_SS_CallName_After = "！こっちに来てくれ！",
+		IGUI_SS_CanIJoin = "グループに入る",
+		IGUI_SS_YouWantToJoin = "グループに誘う",
+		IGUI_SS_WeBackToBase = "戻ってこれて良かった。",
+		IGUI_SS_DoctorDone = "元気になったな！もう無理するなよ！",
+	--[[END interactions]]--
+
+	--[[not able to do
+		dialogue lines that indicate that the task couldn't be done
+	]]--
+
+
+		IGUI_SS_NotInBuilding = "私には建てられない。",
+		IGUI_SS_NoTrees = "ここには木がないよ。",
+		IGUI_SS_NoAxeNoChopWood = "斧を持っていないので木を切れない",
+		IGUI_SS_CantCarryMore = "もう持てないよ。",
+		IGUI_SS_NoFarmingArea = "耕作/収穫エリアがないので作業に取り掛かれない。",
+		IGUI_SS_IDontKnowHowFarming = "耕作を行おうにもその知識がないんだ。"
+	--[[END not able to do]]--
+
+}
+

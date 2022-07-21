@@ -1,0 +1,26 @@
+Moodles_RU = {
+	--[[masculine]]--
+
+
+
+	--[[END masculine]]--
+
+	--[[feminine]]--
+
+
+
+	--[[END feminine]]--
+
+	--[[prefixes]]--
+
+
+		Moodles_SS_DoctorPrefix_Before = "Врач ",
+		Moodles_SS_DoctorPrefix_After = "",
+		Moodles_SS_VeteranPrefix_Before = "Боец ",
+		Moodles_SS_VeteranPrefix_After = "",
+		Moodles_SS_FarmerPrefix_Before = "Фермер ",
+		Moodles_SS_FarmerPrefix_After = ""
+	--[[END prefixes]]--
+
+}
+

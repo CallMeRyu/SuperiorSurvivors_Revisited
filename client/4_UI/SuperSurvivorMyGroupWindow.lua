@@ -23,7 +23,7 @@ function GroupWindow:new(x, y, width, height)
 	o = ISCollapsableWindow:new(x, y, width, height);
 	setmetatable(o, self);
 	self.__index = self;
-	o.title = getText("ContextMenu_SD_YourGroupMembers");
+	o.title = getContextMenuText("YourGroupMembers");
 	o.pin = false;
 	--o:noBackground();
 	
@@ -84,7 +84,7 @@ function GroupWindow:Update()
 	if (Group == nil) then
 		print("Fixing player has no group")
 		Group = SSGM:newGroup()
-		Group:addMember(SSM:Get(0), getText("ContextMenu_Job_Leader"))		
+		Group:addMember(SSM:Get(0), getContextMenuText("Job_Leader"))		
 	end
 
 	if(Group) then
@@ -92,7 +92,7 @@ function GroupWindow:Update()
 
 		if not Group:isMember(SSM:Get(0)) then
 			print("Fixing player not in own group")
-			Group:addMember(SSM:Get(0), getText("ContextMenu_Job_Leader"))
+			Group:addMember(SSM:Get(0), getContextMenuText("Job_Leader"))
 		elseif not Group:hasLeader() then
 			print("Fixing no group leader")
 			Group:setLeader(0)
@@ -124,7 +124,7 @@ function GroupWindow:Update()
 				role = " ("..tostring(coords)..")"
 			
 			elseif (not checkSaveFileExists("Survivor"..tostring(value))) then
-				name = getText("ContextMenu_SD_MIASurvivor").."["..tostring(value).."]"
+				name = getContextMenuText("MIASurvivor").."["..tostring(value).."]"
 				role = " ("..getText("IGUI_health_Deceased")..")"
 				Group:Print()
 				print("removing unloaded survivor "..tostring(value).." from group by id bc no save file detected")
@@ -133,7 +133,7 @@ function GroupWindow:Update()
 				--print("post removal members count is:" .. tostring(Group:getMemberCount()))
 				--Group:Print()
 			else
-				name = getText("ContextMenu_SD_MIASurvivor").."["..tostring(value).."]"
+				name = getContextMenuText("MIASurvivor").."["..tostring(value).."]"
 				local coords = getCoordsFromID(value)
 				if(coords == 0) then
 					print("re-loading survivor who has no loc on survivor map")
@@ -150,7 +150,7 @@ function GroupWindow:Update()
 		--local basebounds = Group:getBounds()
 		local base = ""
 		if(baseloc ~= nil) then base = tostring(baseloc:getX())..","..tostring(baseloc:getY()) end
-		self:setHeaderText(getText("ContextMenu_SD_BaseLocation").."(".. getSpecificPlayer(0):getModData().Group .."): "..base)
+		self:setHeaderText(getContextMenuText("BaseLocation").."(".. getSpecificPlayer(0):getModData().Group .."): "..base)
 	end
 	
 	self.HomeWindow:sort()

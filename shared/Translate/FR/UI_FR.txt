@@ -1,0 +1,194 @@
+UI_FR = {
+	--[[structure]]--
+
+
+	--[[END structure]]--
+
+	--[[global]]--
+
+
+		UI_Option_SS_Off = "Off",
+		UI_Option_SS_On = "On",
+		UI_Option_SS_VeryLow = "Vraiment Bas",
+		UI_Option_SS_Low = "Bas",
+		UI_Option_SS_Normal = "Normal",
+		UI_Option_SS_High = "Haut",
+		UI_Option_SS_VeryHigh = "Vraiment Haut",
+	--[[END global]]--
+
+	--[[spawn]]--
+
+
+		UI_Option_SS_SurvivorSpawnRate = "Taux d'Apparition des Survivants",
+		UI_Option_SS_SurvivorSpawnRateDesc = "Cela défini le Nombre Aléatoire de Survivant qui vont Apparaitre",
+		UI_Option_SS_UltraLow = "Ultra Bas",
+		UI_Option_SS_ExtremelyLow = "Extremement Bas",
+		UI_Option_SS_SlightlyLower = "Légèrement Bas",
+		UI_Option_SS_SlightlyHigher = "Légèrement Haut",
+		UI_Option_SS_ExtremelyHigh = "Extremement Haut",
+		UI_Option_SS_UltraHigh = "Ultra Haut",
+	--[[END spawn]]--
+
+	--[[alt spawn]]--
+
+
+
+
+	--[[END alt spawn]]--
+
+	--[[preset spawn]]--
+
+
+	--[[END preset spawn]]--
+
+	--[[names]]--
+
+
+	--[[END names]]--
+
+	--[[hostile]]--
+
+
+		UI_Option_SS_ChancetobeHostile = "Chance d'être Hostile",
+		UI_Option_SS_ChancetobeHostileDesc = "Cela défini la chance qu'un Survivant Aléatoire soit Hostile après son apparition",
+		UI_Option_SS_MaxHostileSpawnRate = "Max Chance de devenir Hostile après",
+		UI_Option_SS_MaxHostileSpawnRateDesc = "Chance de devenir Hostile augmente après tant de temps passer, mais restera a un certain pourcentage et ne pourra aller au-dessus",
+	--[[END hostile]]--
+
+	--[[raiders]]--
+
+
+		UI_Option_SS_RaidersChance = "Taux d'apparition de Braquage Aleatoire",
+		UI_Option_SS_RaidersChanceDesc = "Défini la Chance qu'un Braquage Aléatoire arrive une fois la date de début des Braquages passer.",
+		UI_Option_SS_RaidersAfterHours = "Date de début des Braquages",
+		UI_Option_SS_StartImmediately = "Start Immédiatement",
+		UI_Option_SS_AfterDay1 = "Après Jour 1",
+		UI_Option_SS_AfterDay5 = "Après Jour 5",
+		UI_Option_SS_AfterDay10 = "Après Jour 10",
+		UI_Option_SS_AfterDay15 = "Après Jour 15",
+		UI_Option_SS_AfterDay20 = "Après Jour 20",
+		UI_Option_SS_AfterDay25 = "Après Jour 25",
+		UI_Option_SS_AfterDay30 = "Après Jour 30",
+		UI_Option_SS_AfterDay35 = "Après Jour 35",
+		UI_Option_SS_AfterDay40 = "Après Jour 40",
+		UI_Option_SS_AfterDay45 = "Après Jour 45",
+		UI_Option_SS_AfterDay50 = "Après Jour 50",
+		UI_Option_SS_AfterDay55 = "Après Jour 55",
+		UI_Option_SS_AfterDay60 = "Après Jour 60",
+		UI_Option_SS_AfterDay65 = "Après Jour 65",
+		UI_Option_SS_AfterDay70 = "Après Jour 70",
+		UI_Option_SS_AfterDay75 = "Après Jour 75",
+		UI_Option_SS_AfterDay80 = "Après Jour 80",
+		UI_Option_SS_AfterDay85 = "Après Jour 85",
+		UI_Option_SS_AfterDay90 = "Après Jour 90",
+		UI_Option_SS_AfterDay95 = "Après Jour 95",
+		UI_Option_SS_AfterDay100 = "Après Jour 100",
+		UI_Option_SS_Never = "Jamais",
+		UI_Option_SS_RaidersAfterHoursDesc = "Des Barquage commenceront à arriver aléatoirement après tant de Jours passé. Les Attaques de Braqueurs Garantie ne commenceront à être prise en compte qu'après ce Nombre de Jours aussi.",
+		UI_Option_SS_RaidersGuaranteed = "Attaque de Bandits Garantie tout les...",
+		UI_Option_SS_Every5Days = "Tout les 5 Jours",
+		UI_Option_SS_Every10Days = "Tout les 10 Jours",
+		UI_Option_SS_Every15Days = "Tout les 15 Jours",
+		UI_Option_SS_Every20Days = "Tout les 20 Jours",
+		UI_Option_SS_Every25Days = "Tout les 25 Jours",
+		UI_Option_SS_Every30Days = "Tout les 30 Jours",
+		UI_Option_SS_Every35Days = "Tout les 35 Jours",
+		UI_Option_SS_Every40Days = "Tout les 40 Jours",
+		UI_Option_SS_Every45Days = "Tout les 45 Jours",
+		UI_Option_SS_Every50Days = "Tout les 50 Jours",
+		UI_Option_SS_Every55Days = "Tout les 55 Jours",
+		UI_Option_SS_Every60Days = "Tout les 60 Jours",
+		UI_Option_SS_Every65Days = "Tout les 65 Jours",
+		UI_Option_SS_Every70Days = "Tout les 70 Jours",
+		UI_Option_SS_Every75Days = "Tout les 75 Jours",
+		UI_Option_SS_Every80Days = "Tout les 80 Jours",
+		UI_Option_SS_Every85Days = "Tout les 85 Jours",
+		UI_Option_SS_Every90Days = "Tout les 90 Jours",
+		UI_Option_SS_Every95Days = "Tout les 95 Jours",
+		UI_Option_SS_Every100Days = "Tout les 100 Jours",
+		UI_Option_SS_EveryDay = "Tout les Jour!",
+		UI_Option_SS_EveryHour = "Toutes les Heures!",
+		UI_Option_SS_Every10Minutes = "Toutes les 10 Minutes!",
+		UI_Option_SS_RaidersGuaranteedDesc = "Si vous avez passé la date de début des Braquages, Et qu'il n'y a pas eu d'attaque de Bandits depuis tant de Jours, un Braquage démarrera alors.",
+	--[[END raiders]]--
+
+	--[[weapons]]--
+
+
+		UI_Option_SS_ChancetoSpawnWithGun = "Taux de Spawn avec une Arme de Distance",
+		UI_Option_SS_ChancetoSpawnWithGunDesc = "Chance qu'un Survivant a d'apparaitre avec une Arme de Distance",
+		UI_Option_SS_WepSpawnRate = "Taux de Spawn avec une Arme de Mêlée",
+		UI_Option_SS_WepSpawnRateDesc = "Chance qu'un Survivant a d'apparaitre avec une Arme de Mêlée",
+	--[[END weapons]]--
+
+	--[[bravery]]--
+
+
+		UI_Option_SS_SurvivorBravery = "Bravoure du Survivant",
+		UI_Option_SS_SurvivorBraveryDesc = "Détermine la motivation du Survivant à ce battre, plutôt que de fuir ou d'éviter le combat.",
+		UI_Option_SS_Cowardly = "Lâche",
+		UI_Option_SS_Brave = "Brave",
+		UI_Option_SS_VeryBrave = "Vraiment Brave",
+	--[[END bravery]]--
+
+	--[[friendliness]]--
+
+
+		UI_Option_SS_SurvivorFriendliness = "Cordialité du Survivant",
+		UI_Option_SS_SurvivorFriendlinessDesc = "Cela défini la facilité avec laquelle un Survivant joindra votre Groupe. Offrir quelques cadeaux améliorera les chances qu'il accepte votre invitation, mais chaque refus feront descendre ces mêmes chances, donc éviter de faire plusieurs demandes sans rien Offrir entre temps.",
+		UI_Option_SS_DesperateforHumanContact = "Désespérement besoin de contact humain",
+		UI_Option_SS_VeryFriendly = "Vraiment Amical",
+		UI_Option_SS_Friendly = "Amical",
+		UI_Option_SS_Mean = "Méchant",
+		UI_Option_SS_VeryMean = "Vraiment Méchant",
+	--[[END friendliness]]--
+
+	--[[on/off options]]--
+
+
+		UI_Option_SS_LockNLoad = "Mode Prêt à en Découdre",
+		UI_Option_SS_LockNLoadDesc = "Vous et votre Epou(se), si actif, allez apparaitre avec une Arme de Distance, des munitions, et de l'Armure(si un mod d'Armure est actif) au début de la partie. Bon Mode de jeu si vous avez prévu d'affronté de nombreux Bandits avec des Taux d'apparition Elevée.",
+		UI_Option_SS_WifeSpawn = "Epou(se) Spawn",
+		UI_Option_SS_WifeSpawnDesc = "Apparition en jeu avec votre Mari ou Epouse déjà intégré a votre Groupe en début de Partie",
+		UI_Option_SS_InfinitAmmo = "Survivant avec munitions Illimités",
+		UI_Option_SS_InfinitAmmoDesc = "Si actif, le Survivant n'aura pas besoin de trouver de munitions pour utilisé une Arme. Si désactiver, le Survivant devra avoir des balles et/ou des boites dans l'Inventaire pour tirer. Vous pouvez leur donner des munitions à l'aide du clic-droit, et ils essayront de trouver des munitions par eux-meme quand ils commenceront à en manqué.",
+		UI_Option_SS_FindWork = "Tâche de Base Automatique des Survivants",
+		UI_Option_SS_FindWorkDesc = "Si actif, les Survivants dans ou autour de la base feront des tâches de Base par eux-mêmes s'ils n'ont aucune tâche en cours. Si désactiver, ils ne décideront jamais de leurs tâches par eux-mêmes.",
+		UI_Option_SS_SurvivorHunger = "Faim&Soif du Survivant",
+		UI_Option_SS_SurvivorHungerDesc = "Si désactiver, les Survivants n'auront jamais Faim ou Soif. Si actif, ils auront Faim et Soif, et ils pourront essayé de trouver de quoi survivre par eux-mêmes, peut-être à vos depens...",
+	--[[END on/off options]]--
+
+	--[[perception]]--
+
+
+	--[[END perception]]--
+
+	--[[hotkeys]]--
+
+
+		UI_Option_SS_hotkey1 = "Action 1",
+		UI_Option_SS_hotkey2 = "Action 2",
+		UI_Option_SS_hotkey3 = "Action 3",
+		UI_Option_SS_hotkey4 = "Action 4",
+
+		UI_Option_SS_hotkeyDesc = "Choisi l'action qui arrivera quand tu appuies sur cette touche. Les effets des actions "Ordre à tous " affecte tous les membres à porté. Alors que les autres effets n'affecte que ceux qui vous écoute (utiliser avec la touche t).",
+	--[[END hotkeys]]--
+
+	--[[bindings]]--
+
+
+
+	--[[END bindings]]--
+
+	--[[debug]]--
+
+
+		UI_Option_SS_LowerFollowDistance = "Baisser la Distance de Suivi",
+		UI_Option_SS_RaiseFollowDistance = "Augmenter la Distance de Suivi",
+		UI_Option_SS_CallClosestGroupMember = "Appel le Survivant du Groupe le + Proche",
+		UI_Option_SS_CallClosestNonGroupMember = "Appel le Non-Membre du Groupe le + Proche",
+		UI_Option_SS_AskClosestGroupMembertoFollow = "Demande au Membre le + Proche de Suivre",
+	--[[END debug]]--
+
+}
+

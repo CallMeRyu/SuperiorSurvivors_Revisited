@@ -27,7 +27,7 @@ end
 function ListenTask:isComplete()
 	if(self.TicksSinceLastExchange > 15) or (self.parent:getDangerSeenCount() > 0) or (self.parent:needToFollow()) then
 		if(not self.parent:isInGroup(self.Aite)) then 
-			self.parent:Speak(getText("ContextMenu_SD_Bye1")) 
+			self.parent:Speak(getDialogue("Bye1")) 
 		end 
 		return true
 	else
@@ -62,8 +62,8 @@ function ListenTask:update()
 				self.TicksSinceLastExchange = 0
 				self.parent:SpokeTo(self.Aite:getModData().ID)
 				if(self.parent:Get():getModData().InitGreeting ~= nil) and (not self.IsNPConNPC) then self.parent:Speak(self.parent:Get():getModData().InitGreeting) 
-				elseif(self.WasSelfInit) then self.parent:Speak(getText("ContextMenu_SD_HiThere"))				
-				else self.parent:Speak(getText("ContextMenu_SD_WhatYouWant")) end
+				elseif(self.WasSelfInit) then self.parent:Speak(getDialogue("HiThere"))				
+				else self.parent:Speak(getDialogue("WhatYouWant")) end
 			elseif(self.parent.player:isLocalPlayer() == false) then
 				if(ZombRand(2) == 0) and 
 				(self.parent:isSpeaking()==false) and 

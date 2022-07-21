@@ -25,7 +25,7 @@ function ISDisinfect:update()
     if self.character ~= self.otherPlayer then
         self.character:faceThisObject(self.otherPlayer)
     end
-    local jobType = getText("ContextMenu_Disinfect")
+    local jobType = getActionText("Disinfect")
     ISHealthPanel.setBodyPartActionForPlayer(self.otherPlayer, self.bodyPart, self, jobType, { disinfect = true })
 
     self.character:setMetabolicTarget(Metabolics.LightDomestic);

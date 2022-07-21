@@ -47,9 +47,9 @@ function ForageTask:update()
 					options["MedicinalPlants"] = true;
 					options["ForestGoods"] = true;
 					ISTimedActionQueue.add(ISNPCScavengeAction:new(player, player:getCurrentSquare():getZone(), options));
-					self.parent:RoleplaySpeak(getText("ContextMenu_speech_Foraging"));					
+					self.parent:RoleplaySpeak(getActionText("Foraging"));					
 				else
-					self.parent:Speak(getText("ContextMenu_speech_NoForagingHere").."(" .. tostring(player:getCurrentSquare():getZoneType()) .. ")");
+					self.parent:Speak(getActionText("NoForagingHere").."(" .. tostring(player:getCurrentSquare():getZoneType()) .. ")");
 					if(self.group ~= nil) then
 						local forage = self.group:getGroupAreaCenterSquare("ForageArea")
 						if(forage ~= nil) then 				

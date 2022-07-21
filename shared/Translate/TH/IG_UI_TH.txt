@@ -1,0 +1,114 @@
+IGUI_TH = {
+	--[[roleplay
+		texts that are just describing what the survivor is doing
+	]]--
+
+
+		IGUI_SS_Drinking = "กำลังดื่ม...",
+		IGUI_SS_EatFood_Before = "กิน",
+		IGUI_SS_EatFood_After = "",
+		IGUI_SS_Opens_Before = "เปิด",
+		IGUI_SS_Opens_After = "",
+		IGUI_SS_Takes_Before = "รับ",
+		IGUI_SS_Takes_After = "",
+		IGUI_SS_EquipsArmor = "แต่งตัว",
+		IGUI_SS_EquipsArmor_Before = "*อุปกรณ์",
+		IGUI_SS_EquipsArmor_After = "*",
+		IGUI_SS_TakesItemFromGround_Before = "รับ",
+		IGUI_SS_TakesItemFromGround_After = "จากพื้นดิน",
+		IGUI_SS_TakesFromGround_Before = "*หยิบ ",
+		IGUI_SS_TakesFromGround_After = "จากพื้นดิน*",
+		IGUI_SS_TakesFromCont_Before = "*หยิบ ",
+		IGUI_SS_TakesFromCont_After = "จากคอนเทนเนอร์*",
+		IGUI_SS_UndressingClothes = "*เปลื้องผ้า*",
+		IGUI_SS_PickUpCorpse = "*ซากศพจากพื้นดิน*",
+		IGUI_SS_Resting = "กำลังพักผ่อน...",
+		IGUI_SS_BandageBP_Before = "ผ้าพันแผลในผ้าพันแผล...",
+		IGUI_SS_BandageBP_After = "",
+		IGUI_SS_DoctorSplint = "*ในเฝือกคงที่...*",
+		IGUI_SS_DoctorBandageRemove = "*กำลังถอดผ้าพันแผล...*",
+		IGUI_SS_DoctorStitches = "*เย็บแผล*",
+		IGUI_SS_DoctorGlass = "*เอาแก้วออก...*",
+		IGUI_SS_DoctorBullet = "*เอาเศษกระสุน...*",
+		IGUI_SS_DoctorBandage = "*กำลังใช้ผ้าพันแผล...*",
+		IGUI_SS_Foraging = "*หาอาหารในป่า...",
+		IGUI_SS_FarmingActionPlanting = "*ฝังเมล็ดในดิน...*",
+		IGUI_SS_FarmingActionHarvesting = "*กำลังเก็บเกี่ยวพืชผล...*",
+		IGUI_SS_FarmingActionWatering = "*การทำฟาร์ม...*",
+	--[[END roleplay]]--
+
+	--[[starting tasks
+		dialogue lines that indicate the start of a task
+	]]--
+
+
+		IGUI_SS_IGoRelax = "ฉันว่าฉันพักผ่อนได้นิดหน่อย",
+		IGUI_SS_IGoGetWood = "ฉันว่าฉันควรไปเก็บไม้",
+		IGUI_SS_IGoPileCorpse = "ฉันเดาว่าถึงเวลาที่ฉันต้องจัดการกับศพแล้ว",
+		IGUI_SS_IGoForage = "ฉันเดาว่าฉันควรจะออกไปหาอาหารป่า",
+		IGUI_SS_IGoChopWood = "ฉันเดาว่าฉันกำลังจะไปโค่นต้นไม้",
+		IGUI_SS_IGoFarm = "ฉันเดาว่าถึงเวลาที่ฉันต้องทำฟาร์มแล้ว",
+		IGUI_SS_IGoGuard = "ฉันเดาว่าฉันควรจะไปลาดตระเวน",
+		IGUI_SS_IGoBackBase = "ฉันเดาว่าฉันควรกลับไปที่ฐาน",
+	--[[END starting tasks]]--
+
+	--[[loot
+		dialogue lines that indicate the start of a loot task
+	]]--
+
+
+		IGUI_SS_LookForItem_Before = "กำลังมองหา",
+		IGUI_SS_LookForItem_After = "",
+		IGUI_SS_NoForagingHere = "ไม่พบอะไรที่นี่",
+		IGUI_SS_NoFindItem_Before = "ดูเหมือนไม่ใช่",
+		IGUI_SS_NoFindItem_After = "รอบๆ นี้",
+		IGUI_SS_NoWoodHere = "ไม่มีต้นไม้อยู่รอบๆ",
+	--[[END loot]]--
+
+	--[[giving
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_TakeArmor = "มาเอาชุดนี้",
+		IGUI_SS_Nothing = "ไม่มี",
+		IGUI_SS_EveryOneUseMele = "ทุกคนใช้อาวุธระยะประชิด!",
+		IGUI_SS_EveryOneUseGun = "ทุกคนใช้ปืน!",
+		IGUI_SS_WantSomeFood = "ต้องการอาหารไหม",
+		IGUI_SS_YouWantWater = "คุณต้องการน้ำไหม",
+		IGUI_SS_YouWantAmmo = "ต้องการกระสุน?",
+		IGUI_SS_TakeMyWeapon = "มาเอาอาวุธนี้",
+	--[[END giving]]--
+
+	--[[interactions
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_OverHere = "สวัสดี ทางนี้!",
+		IGUI_SS_HoldStill = "โปรดรอสักครู่...",
+		IGUI_SS_ComeWithMe_Before = "",
+		IGUI_SS_ComeWithMe_After = "มากับฉัน!",
+		IGUI_SS_CallName_Before = "",
+		IGUI_SS_CallName_After = "! มามากกว่า!",
+		IGUI_SS_CanIJoin = "ฉันขอเข้าร่วมทีมของคุณได้ไหม",
+		IGUI_SS_YouWantToJoin = "ต้องการเข้าร่วมทีมของฉันหรือไม่",
+		IGUI_SS_WeBackToBase = "ดีใจที่ได้อยู่บ้าน",
+		IGUI_SS_DoctorDone = "โชคดีที่เจอทัน! ใจเย็นๆ!",
+	--[[END interactions]]--
+
+	--[[not able to do
+		dialogue lines that indicate that the task couldn't be done
+	]]--
+
+
+		IGUI_SS_NotInBuilding = "เราไม่ได้อยู่ในอาคาร",
+		IGUI_SS_NoTrees = "ไม่มีต้นไม้อยู่รอบๆ",
+		IGUI_SS_NoAxeNoChopWood = "หาขวานไม่เจอ เลิกตัดต้นไม้เถอะ...",
+		IGUI_SS_CantCarryMore = "ฉันแบกไม่ไหวแล้ว",
+		IGUI_SS_NoFarmingArea = "ไม่ได้ระบุพื้นที่เกษตรกรรม",
+		IGUI_SS_IDontKnowHowFarming = "ฉันไม่รู้วิธีทำฟาร์ม"
+	--[[END not able to do]]--
+
+}
+

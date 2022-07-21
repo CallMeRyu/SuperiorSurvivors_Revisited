@@ -101,7 +101,7 @@ function GatherWoodTask:update()
 					--ISTimedActionQueue.add(ISWalkToTimedAction:new(player, self.Target:getSquare():getN()));
 					self.parent:walkTo(self.Target:getSquare());
 				else
-					self.parent:Speak(getText("ContextMenu_SD_NoWoodHere"));
+					self.parent:Speak(getActionText("NoWoodHere"));
 					self.Complete = true
 				end
 				
@@ -121,7 +121,7 @@ function GatherWoodTask:update()
 						self.Target:getWorldItem():removeFromSquare() 
 					end
 					self.Target:setWorldItem(nil)
-					self.parent:RoleplaySpeak(getText("ContextMenu_SD_TakesItemFromGround_Before") .. self.Target:getDisplayName() .. getText("ContextMenu_SD_TakesItemFromGround_After"))
+					self.parent:RoleplaySpeak(getActionText("TakesItemFromGround_Before") .. self.Target:getDisplayName() .. getActionText("TakesItemFromGround_After"))
 					self.CarryingToPoint = true
 				else
 					self.Target = nil
