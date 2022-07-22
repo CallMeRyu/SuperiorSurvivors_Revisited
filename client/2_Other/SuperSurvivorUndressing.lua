@@ -73,7 +73,7 @@ function SuperSurvivor:UnequipClothes()
             if item:IsClothing() then
                 if item:isEquipped() and (not (item:getTexture():getName() == "Question_On")) then
                     SS:getTaskManager():AddToTop(ISUnequipClothingAction:new(self.player, item, 30))
-                    SS:Speak(getText("ContextMenu_UndressingClothes"))
+                    SS:Speak(getActionText("UndressingClothes"))
                 end
             end
         end
@@ -98,10 +98,9 @@ function SuperbUndressedSurvivorsLogic(context, o)
     local SS = SSM:Get(id)
 
     if (id ~= 0) and (SS:getGroupID() == SSM:Get(0):getGroupID()) and SS:getGroupID() ~= nil then
-        local selectOption = context:addOption(SS:getName() .. getText("ContextMenu_SD_AddClothing"), worldobjects, nil)
+        local selectOption = context:addOption(SS:getName() .. getContextMenuText("AddClothing"), worldobjects, nil)
         local clothingmenu = context:getNew(context);
-        clothingmenu:addOption(getText("ContextMenu_SD_RemoveClothing"), nil, function() functionThatConnectsThisModToSuperbSurvivorsTaskManagerLogic(o) end, o, nil)
-		--clothingmenu:addOption(getText("ContextMenu_SD_SetOwnName"), nil, ISPlayerStatsUI.OnOpenPanel, o, nil)
+        clothingmenu:addOption(getContextMenuText("RemoveClothing"), nil, function() functionThatConnectsThisModToSuperbSurvivorsTaskManagerLogic(o) end, o, nil)
         context:addSubMenu(selectOption, clothingmenu);  --Add ">"
     end
 end

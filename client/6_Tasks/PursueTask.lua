@@ -94,7 +94,7 @@ function PursueTask:update()
 
 			self.parent:setRunning(false)
 			self.Complete = true
-			self.parent:Speak(getText("ContextMenu_SD_WhereHeGo"))
+			self.parent:Speak(getDialogue("WhereHeGo"))
 		end
 		
 	else

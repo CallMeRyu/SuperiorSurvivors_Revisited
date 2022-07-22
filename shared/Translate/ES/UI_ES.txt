@@ -1,0 +1,190 @@
+UI_ES = {
+	--[[structure]]--
+
+
+	--[[END structure]]--
+
+	--[[global]]--
+
+
+		UI_Option_SS_Off = "Apagado",
+		UI_Option_SS_On = "Encendido",
+		UI_Option_SS_VeryLow = "Muy baja",
+		UI_Option_SS_Low = "Baja",
+		UI_Option_SS_Normal = "Normal",
+		UI_Option_SS_High = "Alta",
+		UI_Option_SS_VeryHigh = "Muy alta",
+	--[[END global]]--
+
+	--[[spawn]]--
+
+
+		UI_Option_SS_SurvivorSpawnRate = "Tasa de generación de supervivientes",
+		UI_Option_SS_SurvivorSpawnRateDesc = "Esto define la cantidad de sobrevivientes aleatorios que se generarán",
+		UI_Option_SS_ExtremelyLow = "Extremadamente baja",
+		UI_Option_SS_ExtremelyHigh = "Extremadamente alta",
+	--[[END spawn]]--
+
+	--[[alt spawn]]--
+
+
+
+
+	--[[END alt spawn]]--
+
+	--[[preset spawn]]--
+
+
+	--[[END preset spawn]]--
+
+	--[[names]]--
+
+
+	--[[END names]]--
+
+	--[[hostile]]--
+
+
+		UI_Option_SS_ChancetobeHostile = "Posibilidad de que sea hostil",
+		UI_Option_SS_ChancetobeHostileDesc = "Esto define la posibilidad de que un sobreviviente generado al azar sea hostil cuando sea generado.",
+		UI_Option_SS_MaxHostileSpawnRate = "Máxima posibilidad de ser hostil con el tiempo",
+		UI_Option_SS_MaxHostileSpawnRateDesc = "Posibilidad de ser hostil incrementa con el tiempo, pero no pasara de este valor",
+	--[[END hostile]]--
+
+	--[[raiders]]--
+
+
+		UI_Option_SS_RaidersChance = "Posibilidad de que se generen invasores al azar",
+		UI_Option_SS_RaidersChanceDesc = "La posibilidad de que un evento de invasores ocurra después de que la fecha de inicio ha pasado.",
+		UI_Option_SS_RaidersAfterHours = "El evento de invasores comienza a generarse después de esta cantidad de días",
+		UI_Option_SS_StartImmediately = "Empezar Inmediatamente",
+		UI_Option_SS_AfterDay1 = "Después del día 1",
+		UI_Option_SS_AfterDay5 = "Después del día 5",
+		UI_Option_SS_AfterDay10 = "Después del día 10",
+		UI_Option_SS_AfterDay15 = "Después del día 15",
+		UI_Option_SS_AfterDay20 = "Después del día 20",
+		UI_Option_SS_AfterDay25 = "Después del día 25",
+		UI_Option_SS_AfterDay30 = "Después del día 30",
+		UI_Option_SS_AfterDay35 = "Después del día 35",
+		UI_Option_SS_AfterDay40 = "Después del día 40",
+		UI_Option_SS_AfterDay45 = "Después del día 45",
+		UI_Option_SS_AfterDay50 = "Después del día 50",
+		UI_Option_SS_AfterDay55 = "Después del día 55",
+		UI_Option_SS_AfterDay60 = "Después del día 60",
+		UI_Option_SS_AfterDay65 = "Después del día 65",
+		UI_Option_SS_AfterDay70 = "Después del día 70",
+		UI_Option_SS_AfterDay75 = "Después del día 75",
+		UI_Option_SS_AfterDay80 = "Después del día 80",
+		UI_Option_SS_AfterDay85 = "Después del día 85",
+		UI_Option_SS_AfterDay90 = "Después del día 90",
+		UI_Option_SS_AfterDay95 = "Después del día 95",
+		UI_Option_SS_AfterDay100 = "Después del día 100",
+		UI_Option_SS_Never = "Nunca",
+		UI_Option_SS_RaidersAfterHoursDesc = "El evento de invasores puede comenzar a ocurrir al azar después de que esta cantidad de tiempo haya pasado, El evento de invasores garantizado solo empezara a contar después de que este tiempo haya pasado.",
+		UI_Option_SS_RaidersGuaranteed = "Cada cuanto el Evento de invasores esta garantizado",
+		UI_Option_SS_Every5Days = "Cada 5 días",
+		UI_Option_SS_Every10Days = "Cada 10 días",
+		UI_Option_SS_Every15Days = "Cada 15 días",
+		UI_Option_SS_Every20Days = "Cada 20 días",
+		UI_Option_SS_Every25Days = "Cada 25 días",
+		UI_Option_SS_Every30Days = "Cada 30 días",
+		UI_Option_SS_Every35Days = "Cada 35 días",
+		UI_Option_SS_Every40Days = "Cada 40 días",
+		UI_Option_SS_Every45Days = "Cada 45 días",
+		UI_Option_SS_Every50Days = "Cada 50 días",
+		UI_Option_SS_Every55Days = "Cada 55 días",
+		UI_Option_SS_Every60Days = "Cada 60 días",
+		UI_Option_SS_Every65Days = "Cada 65 días",
+		UI_Option_SS_Every70Days = "Cada 70 días",
+		UI_Option_SS_Every75Days = "Cada 75 días",
+		UI_Option_SS_Every80Days = "Cada 80 días",
+		UI_Option_SS_Every85Days = "Cada 85 días",
+		UI_Option_SS_Every90Days = "Cada 90 días",
+		UI_Option_SS_Every95Days = "Cada 95 días",
+		UI_Option_SS_Every100Days = "Cada 100 días",
+		UI_Option_SS_EveryDay = "¡Cada dia!",
+		UI_Option_SS_EveryHour = "¡Cada hora!",
+		UI_Option_SS_Every10Minutes = "¡Cada 10 minutos!",
+		UI_Option_SS_RaidersGuaranteedDesc = "Si ha pasado la fecha de inicio de los invasores, y el evento de invasores no ha ocurrido por esta cantidad de tiempo, los invasores serán generados.",
+	--[[END raiders]]--
+
+	--[[weapons]]--
+
+
+		UI_Option_SS_ChancetoSpawnWithGun = "Posibilidad de generarse con armas",
+		UI_Option_SS_ChancetoSpawnWithGunDesc = "Posibilidad de aparecer con algún arma de fuego",
+		UI_Option_SS_WepSpawnRate = "Posibilidad de que se generen con armas cuerpo a cuerpo",
+		UI_Option_SS_WepSpawnRateDesc = "Esto define la posibilidad de que un sobreviviente generado al azar comienza con un arma de cuerpo a cuerpo.",
+	--[[END weapons]]--
+
+	--[[bravery]]--
+
+
+		UI_Option_SS_SurvivorBravery = "Valentía del sobreviviente",
+		UI_Option_SS_SurvivorBraveryDesc = "Determina qué tan probables es que los supervivientes luchen, en lugar de huir o evitar el conflicto.",
+		UI_Option_SS_Cowardly = "Cobarde",
+		UI_Option_SS_Brave = "Valiente",
+		UI_Option_SS_VeryBrave = "Muy Valiente",
+	--[[END bravery]]--
+
+	--[[friendliness]]--
+
+
+		UI_Option_SS_SurvivorFriendliness = "Amabilidad de el superviviente",
+		UI_Option_SS_SurvivorFriendlinessDesc = "Esto define que tan fácil es hacer que un sobreviviente se una a tu equipo, Ofreciéndole mas regalos incrementa la aceptación de la invitación al grupo, pero cada ves que los molestas con una invitación, las posibilidades pueden bajar, así que mandar muchas invitaciones no hacen mucho bien.",
+		UI_Option_SS_DesperateforHumanContact = "Desesperado por contacto humano",
+		UI_Option_SS_VeryFriendly = "Muy amigable",
+		UI_Option_SS_Friendly = "Amigable",
+		UI_Option_SS_Mean = "Ruin",
+		UI_Option_SS_VeryMean = "Muy ruin",
+	--[[END friendliness]]--
+
+	--[[on/off options]]--
+
+
+		UI_Option_SS_LockNLoad = "Listo para el modo de batalla",
+		UI_Option_SS_LockNLoadDesc = "Tu y tu pareja(Si esta activada) comenzarán con armas, munición y armadura(si esta activado el mod de armaduras) al inicio de el juego. Gran modo para usar si piensas intentar luchar contra invasores con alto rango de aparición.",
+		UI_Option_SS_WifeSpawn = "Generación de Esposa/Esposo",
+		UI_Option_SS_WifeSpawnDesc = "Iniciar el juego con pareja quien ya está en tu grupo desde el inicio.",
+		UI_Option_SS_InfinitAmmo = "Munición infinita para sobrevivientes",
+		UI_Option_SS_InfinitAmmoDesc = "Si esta activado, los sobrevivientes no necesitan munición para usar armas, y nunca se quedaran sin municion. Si está desactivado los sobrevivientes necesitan munición o cajas de munición en su inventario para poder disparar las armas. Es posible darles mas munición usando el click derecho, y también intentarán buscar munición cerca cuando no tengan mas.",
+		UI_Option_SS_FindWork = "Tareas para los sobrevivientes automáticas",
+		UI_Option_SS_FindWorkDesc = "Si está activado, los sobrevivientes dentro o cerca de la base harán algo de trabajo cerca de la base por su propia cuenta si están sin nada que hacer. Si esta desactivado nunca decidirán hacer tareas por su cuenta propia..",
+		UI_Option_SS_SurvivorHunger = "Hambre y sed de los sobrevivientes",
+		UI_Option_SS_SurvivorHungerDesc = "Si está desactivado los sobrevivientes nunca tendrán hambre y sed. Si está activado, ellos harán el intento por encontrar lo que necesiten por su propia cuenta.",
+	--[[END on/off options]]--
+
+	--[[perception]]--
+
+
+	--[[END perception]]--
+
+	--[[hotkeys]]--
+
+
+		UI_Option_SS_hotkey1 = "Tecla de acción rápida 1",
+		UI_Option_SS_hotkey2 = "Tecla de acción rápida 2",
+		UI_Option_SS_hotkey3 = "Tecla de acción rápida 3",
+		UI_Option_SS_hotkey4 = "Tecla de acción rápida 4",
+
+		UI_Option_SS_hotkeyDesc = "Elige una acción que va a pasar cuando presiones esta tecla de acción rápida. Ordenar a todos afecta los miembros dentro de el rango. Mientras que los otros solo afectan a aquellos que te escuchan (usar la tecla t).",
+	--[[END hotkeys]]--
+
+	--[[bindings]]--
+
+
+
+	--[[END bindings]]--
+
+	--[[debug]]--
+
+
+		UI_Option_SS_LowerFollowDistance = "Menor distancia de seguimiento",
+		UI_Option_SS_RaiseFollowDistance = "Mayor  distancia de seguimiento",
+		UI_Option_SS_CallClosestGroupMember = "Llamar al miembro mas cercano del grupo",
+		UI_Option_SS_CallClosestNonGroupMember = "Llamar al miembro mas cercano que no sea del grupo",
+		UI_Option_SS_AskClosestGroupMembertoFollow = "Pedir al miembro mas cercano del grupo que te siga",
+	--[[END debug]]--
+
+}
+

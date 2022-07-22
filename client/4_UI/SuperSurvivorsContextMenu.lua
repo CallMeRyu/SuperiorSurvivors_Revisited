@@ -3,7 +3,9 @@
 -- if you don't change the job along with the task, the npc will just return to the player
 require ('CharacterSave_SaveLoad')
 
-
+local function getJobText(text)
+	return getContextMenuText("Job_" .. text)
+end
 
 LootTypes = {"Food","Weapon","Item","Clothing","Container","Literature"};
 
@@ -23,12 +25,12 @@ function SurvivorOrder(test,player,order,orderParam)
 			ASuperSurvivor:setAIMode("Follow") 
 			ASuperSurvivor:setGroupRole("Follow") 
 			TaskMangerIn:clear()
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Companion")) 
+			ASuperSurvivor:setGroupRole(getJobText("Companion")) 
 			TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0)))
 			ASuperSurvivor:setAIMode("Follow")
 		
 		elseif(order == "Pile Corpses") then 
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Dustman")) 
+			ASuperSurvivor:setGroupRole(getJobText("Dustman")) 
 			local dropSquare = getSpecificPlayer(0):getCurrentSquare()
 			local storagearea = ASuperSurvivor:getGroup():getGroupArea("CorpseStorageArea")
 			if(storagearea[1] ~= 0) then 
@@ -37,10 +39,10 @@ function SurvivorOrder(test,player,order,orderParam)
 			TaskMangerIn:AddToTop(PileCorpsesTask:new(ASuperSurvivor,dropSquare)) 
 		
 		elseif(order == "Guard") then 
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Guard"))
+			ASuperSurvivor:setGroupRole(getJobText("Guard"))
 			local area = ASuperSurvivor:getGroup():getGroupArea("GuardArea")
 			if(area) then 	
-				ASuperSurvivor:Speak(getText("ContextMenu_SD_IGoGuard"))
+				ASuperSurvivor:Speak(getContextMenuText("IGoGuard"))
 				TaskMangerIn:AddToTop(WanderInAreaTask:new(ASuperSurvivor,area)) 					
 				TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)	
 				TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getRandomAreaSquare(area))) 
@@ -48,64 +50,64 @@ function SurvivorOrder(test,player,order,orderParam)
 			end
 		
 		elseif(order == "Patrol") then 
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Sheriff"))
+			ASuperSurvivor:setGroupRole(getJobText("Sheriff"))
 			TaskMangerIn:AddToTop(PatrolTask:new(ASuperSurvivor,getSpecificPlayer(0):getCurrentSquare(),ASuperSurvivor:Get():getCurrentSquare())) 		
 		
 		elseif(order == "Return To Base") then 
-			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end-- To prevent follower companion tasks overwrite
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end-- To prevent follower companion tasks overwrite
 			TaskMangerIn:clear()
 			TaskMangerIn:AddToTop(ReturnToBaseTask:new(ASuperSurvivor)) 
 		
 		elseif(order == "Explore") then
-			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end
 			TaskMangerIn:AddToTop(WanderTask:new(ASuperSurvivor)) 
 		
 		elseif(order == "Stop") then 
-			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end
 			TaskMangerIn:clear()
 		
 		elseif(order == "Relax") and (ASuperSurvivor:getBuilding()~=nil) then 
-			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end
 			TaskMangerIn:clear()
 			TaskMangerIn:AddToTop(WanderInBuildingTask:new(ASuperSurvivor,ASuperSurvivor:getBuilding())) 
 		
 		elseif(order == "Relax") and (ASuperSurvivor:getBuilding()==nil) then 
-			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end
 			TaskMangerIn:clear()
 			TaskMangerIn:AddToTop(WanderInBuildingTask:new(ASuperSurvivor,nil)) 
 			TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor)) 
 		
 		elseif(order == "Barricade") then 
 			TaskMangerIn:AddToTop(BarricadeBuildingTask:new(ASuperSurvivor)) 
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))
+			ASuperSurvivor:setGroupRole(getJobText("Worker"))
 		
 		elseif(order == "Stand Ground") then 
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Guard"))	
+			ASuperSurvivor:setGroupRole(getJobText("Guard"))	
 			TaskMangerIn:AddToTop(GuardTask:new(ASuperSurvivor,getSpecificPlayer(0):getCurrentSquare()))
 			ASuperSurvivor:setWalkingPermitted(false)
 		
 		elseif(order == "Forage") then
 			TaskMangerIn:AddToTop(ForageTask:new(ASuperSurvivor))
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Junkman"))
+			ASuperSurvivor:setGroupRole(getJobText("Junkman"))
 		
 		elseif(order == "Farming") then 
 			if(true) then--if(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Farming")) >= 3) then
 				TaskMangerIn:AddToTop(FarmingTask:new(ASuperSurvivor))
-				ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Farmer")) 
+				ASuperSurvivor:setGroupRole(getJobText("Farmer")) 
 			else
-				ASuperSurvivor:Speak(getText("ContextMenu_speech_IDontKnowHowFarming"))
+				ASuperSurvivor:Speak(getActionText("IDontKnowHowFarming"))
 			end
 		
 		elseif(order == "Chop Wood") then 
 			TaskMangerIn:AddToTop(ChopWoodTask:new(ASuperSurvivor))
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Timberjack"))
+			ASuperSurvivor:setGroupRole(getJobText("Timberjack"))
 		
 		elseif(order == "Hold Still") then 
 			TaskMangerIn:AddToTop(HoldStillTask:new(ASuperSurvivor,true))
-			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Guard"))	end	
+			if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Guard"))	end	
 		
 		elseif(order == "Gather Wood") then 
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Hauler"))
+			ASuperSurvivor:setGroupRole(getJobText("Hauler"))
 			local dropSquare = getSpecificPlayer(0):getCurrentSquare()
 			local woodstoragearea = ASuperSurvivor:getGroup():getGroupArea("WoodStorageArea")
 			if(woodstoragearea[1] ~= 0) then dropSquare = getCenterSquareFromArea(woodstoragearea[1],woodstoragearea[2],woodstoragearea[3],woodstoragearea[4],woodstoragearea[5]) end
@@ -126,15 +128,15 @@ function SurvivorOrder(test,player,order,orderParam)
 				ASuperSurvivor:Speak(getSpeech("IfYouThinkSo")) 
 			end
 
-		elseif(order == "Unlock Doors") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(LockDoorsTask:new(ASuperSurvivor,false))
-		elseif(order == "Go Find Food") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Food","Category",1))
-		elseif(order == "Go Find Weapon") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Weapon","Category",1))
-		elseif(order == "Go Find Water") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Water","Category",1))
-		elseif(order == "Clean Up Inventory") 	then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Worker"))	end		TaskMangerIn:AddToTop(CleanInvTask:new(ASuperSurvivor,getSpecificPlayer(0),false))
+		elseif(order == "Unlock Doors") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end		TaskMangerIn:AddToTop(LockDoorsTask:new(ASuperSurvivor,false))
+		elseif(order == "Go Find Food") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end		TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Food","Category",1))
+		elseif(order == "Go Find Weapon") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end		TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Weapon","Category",1))
+		elseif(order == "Go Find Water") 		then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end		TaskMangerIn:AddToTop(FindThisTask:new(ASuperSurvivor,"Water","Category",1))
+		elseif(order == "Clean Up Inventory") 	then 	if (ASuperSurvivor:getGroupRole() == "Companion") then 	ASuperSurvivor:setGroupRole(getJobText("Worker"))	end		TaskMangerIn:AddToTop(CleanInvTask:new(ASuperSurvivor,getSpecificPlayer(0),false))
 
 		elseif(order == "Doctor") and (ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Doctor")) >= 1 or ASuperSurvivor:Get():getPerkLevel(Perks.FromString("First Aid")) >= 1) then 
 			TaskMangerIn:AddToTop(DoctorTask:new(ASuperSurvivor))
-			ASuperSurvivor:setGroupRole(getText("ContextMenu_Job_Doctor"))
+			ASuperSurvivor:setGroupRole(getJobText("Doctor"))
 		
 		elseif(order == "Doctor") then
 			ASuperSurvivor:Speak(getSpeech("IDontKnowHowDoctor"))
@@ -160,7 +162,7 @@ function AskToJoin(test,player) -- When the NPC asks another npc to join a group
 
 	local SS = SSM:Get(player:getModData().ID)
 	local MySS = SSM:Get(0)
-	getSpecificPlayer(0):Say(getText("ContextMenu_SD_CanIJoin"))		
+	getSpecificPlayer(0):Say(getActionText("CanIJoin"))		
 	
 	local Relationship = SS:getRelationshipWP()
 	--player:Say(tostring(Relationship))
@@ -178,12 +180,12 @@ function AskToJoin(test,player) -- When the NPC asks another npc to join a group
 				for x=1, #members do
 					if(members[x] and members[x].player ~= nil) then
 						members[x]:Speak(getSpeech("Roger"));
-						group:addMember(members[x], getText("ContextMenu_Job_Partner"))
+						group:addMember(members[x], getJobText("Partner"))
 					end
 				end
 			else
-				group:addMember(MySS, getText("ContextMenu_Job_Partner"))
-			--	group:addMember(MySS, getText("ContextMenu_Job_Companion"))
+				group:addMember(MySS, getJobText("Partner"))
+			--	group:addMember(MySS, getJobText("Companion"))
 			end
 		end
 	else
@@ -193,7 +195,7 @@ function AskToJoin(test,player) -- When the NPC asks another npc to join a group
 end
 function InviteToParty(test,player) -- When the player offers an NPC to join the group
 	local SS = SSM:Get(player:getModData().ID)
-	getSpecificPlayer(0):Say(getText("ContextMenu_SD_YouWantToJoin"))
+	getSpecificPlayer(0):Say(getActionText("YouWantToJoin"))
 	SS:PlusRelationshipWP(1.0) -- Slight bonus to what existed, npcs are a bit rude 
 
 	local Relationship = SS:getRelationshipWP()
@@ -213,13 +215,13 @@ function InviteToParty(test,player) -- When the player offers an NPC to join the
 		local GID, Group
 		if(SSM:Get(0):getGroupID() == nil) then
 			Group = SSGM:newGroup()
-			Group:addMember(SSM:Get(0), getText("ContextMenu_Job_Leader"))
+			Group:addMember(SSM:Get(0), getJobText("Leader"))
 		else
 			GID = SSM:Get(0):getGroupID()
 			Group = SSGM:Get(GID)
 		end
 		
-		if(Group) then Group:addMember(SS, getText("ContextMenu_Job_Companion")) -- was Partner
+		if(Group) then Group:addMember(SS, getJobText("Companion")) -- was Partner
 		else print("error could not find or create group") end
 		
 		local followtask = FollowTask:new(SS,getSpecificPlayer(0))
@@ -245,7 +247,7 @@ function OfferFood(test,player)
 	
 	local RSS = SSM:Get(0)
 	local realPlayer = RSS:Get()
-	realPlayer:Say(getText("ContextMenu_SD_WantSomeFood"))		
+	realPlayer:Say(getActionText("WantSomeFood"))		
 	local task = SS:getTaskManager():getTaskFromName("Listen")
 	if(task ~= nil) and (task.Name == "Listen") then task:Talked() end
 	
@@ -262,7 +264,7 @@ function OfferFood(test,player)
 end
 function OfferWater(test,player)
 	local SS = SSM:Get(player:getModData().ID)
-	getSpecificPlayer(0):Say(getText("ContextMenu_SD_YouWantWater"))		
+	getSpecificPlayer(0):Say(getActionText("YouWantWater"))		
 	local task = SS:getTaskManager():getTaskFromName("Listen")
 	if(task ~= nil) and (task.Name == "Listen") then task:Talked() end
 	
@@ -276,7 +278,7 @@ function OfferWater(test,player)
 end
 function OfferAmmo(test,player,ammo)
 	local SS = SSM:Get(player:getModData().ID)
-	getSpecificPlayer(0):Say(getText("ContextMenu_SD_YouWantAmmo"))		
+	getSpecificPlayer(0):Say(getActionText("YouWantAmmo"))		
 	local task = SS:getTaskManager():getTaskFromName("Listen")
 	if(task ~= nil) and (task.Name == "Listen") then task:Talked() end
 	
@@ -290,7 +292,7 @@ end
 
 function offerORGMAmmo(test,player,ammoName)
 	local SS = SSM:Get(player:getModData().ID)
-	getSpecificPlayer(0):Say(getText("ContextMenu_SD_YouWantAmmo"))		
+	getSpecificPlayer(0):Say(getActionText("YouWantAmmo"))		
 	local task = SS:getTaskManager():getTaskFromName("Listen")
 	
 	if(task ~= nil) and (task.Name == "Listen") then 
@@ -312,7 +314,7 @@ end
 
 function OfferWeapon(test,player)
 	local SS = SSM:Get(player:getModData().ID)
-	getSpecificPlayer(0):Say(getText("ContextMenu_SD_TakeMyWeapon"))	
+	getSpecificPlayer(0):Say(getActionText("TakeMyWeapon"))	
 	local task = SS:getTaskManager():getTaskFromName("Listen")
 	if(task ~= nil) and (task.Name == "Listen") then task:Talked() end
 	
@@ -472,7 +474,7 @@ end
 
 function OfferArmor(test,SS,item)
 	local player = SS:Get()
-	getSpecificPlayer(0):Say(getText("ContextMenu_SD_TakeArmor"))	
+	getSpecificPlayer(0):Say(getActionText("TakeArmor"))	
 	local task = SS:getTaskManager():getTaskFromName("Listen")
 	if(task ~= nil) and (task.Name == "Listen") then task:Talked() end
 	
@@ -563,15 +565,15 @@ function TalkToSurvivor(test,SS)
 		if(SS:Get():getModData().Greeting ~= nil) then SS:Speak(SS:Get():getModData().Greeting)
 		else SS:Speak(getSpeech("IdleChatter")) end
 	else 
-		SS:Speak(getText("ContextMenu_SD_WhoSaidThat"));
+		SS:Speak(getDialogue("WhoSaidThat"));
 	end
 end
 function CallSurvivor(test,player)
 	
 	if(getDistanceBetween(getSpecificPlayer(0),player) > 3) then 
-		getSpecificPlayer(0):Say(getText("ContextMenu_SD_OverHere"))		
+		getSpecificPlayer(0):Say(getActionText("OverHere"))		
 	else
-		getSpecificPlayer(0):Say(getText("ContextMenu_SD_HelloThere"))		
+		getSpecificPlayer(0):Say(getDialogue("HelloThere"))		
 	end
 	
 	local SS = SSM:Get(player:getModData().ID)
@@ -590,32 +592,32 @@ function survivorMenu(context,o)
 		if(SS.player:getModData().surender) then submenu:addOption("Drop Your loot!", nil, AskToDrop, SS, nil) end
 		if (o:getModData().isHostile ~= true) then
 			local medicalOption = submenu:addOption(getText("ContextMenu_Medical_Check"), nil, MedicalCheckSurvivor, o, nil);
-			local toolTip = makeToolTip(medicalOption, getText("ContextMenu_SD_AidCheck"), getText("ContextMenu_SD_AidCheckDesc"));							
+			local toolTip = makeToolTip(medicalOption, getContextMenuText("AidCheck"), getContextMenuText("AidCheckDesc"));							
 			
-			if (DebugOptions) then submenu:addOption(getText("ContextMenu_Debug_Character_Swap"), nil, DebugCharacterSwap, SS, nil) end -- debut character swap
-			if (DebugOptions) then submenu:addOption(getText("ContextMenu_Debug_Infect&Murder_Character"), nil, DebugCharacterKill, SS, nil) end -- debut character swap
+			if (DebugOptions) then submenu:addOption(getContextMenuText("Debug_Character_Swap"), nil, DebugCharacterSwap, SS, nil) end -- debut character swap
+			if (DebugOptions) then submenu:addOption(getContextMenuText("Debug_Infect&Murder_Character"), nil, DebugCharacterKill, SS, nil) end -- debut character swap
 			--if (DebugOptions) then submenu:addOption("Debug Toggle isBM ("..tostring(o:getModData().ID)..")", nil, DebugCharacterToggleBM, SS, nil) end -- debut character swap
 			--if (DebugOptions) then submenu:addOption("Debug Toggle isNPC ("..tostring(o:getModData().ID)..")", nil, DebugCharacterToggleNPC, SS, nil) end -- debut character swap
-			if (DebugOptions) then submenu:addOption(getText("ContextMenu_Debug_Character_Output"), nil, DebugCharacterOutput, SS, nil) end -- debut character swap
-			if (DebugOptions) then submenu:addOption(getText("ContextMenu_Debug_Unstuck"), nil, DebugCharacterUnStuck, SS, nil) end -- debut character swap
+			if (DebugOptions) then submenu:addOption(getContextMenuText("Debug_Character_Output"), nil, DebugCharacterOutput, SS, nil) end -- debut character swap
+			if (DebugOptions) then submenu:addOption(getContextMenuText("Debug_Unstuck"), nil, DebugCharacterUnStuck, SS, nil) end -- debut character swap
 		end		
 		if (o:getModData().isHostile ~= true) and ( (SS:getTaskManager():getCurrentTask() == "Listen") or (SS:getTaskManager():getCurrentTask() == "Take Gift") or (getDistanceBetween(SS:Get(),getSpecificPlayer(0)) < 2) ) then
-			local selectOption = submenu:addOption(getText("ContextMenu_SD_TalkOption"), nil, TalkToSurvivor, SS, nil);
-			local toolTip = makeToolTip(selectOption,getText("ContextMenu_SD_TalkOption"),getText("ContextMenu_SD_TalkOption_Desc"));
+			local selectOption = submenu:addOption(		getContextMenuText("TalkOption"), nil, TalkToSurvivor, SS, nil);
+			local toolTip = makeToolTip(selectOption,	getContextMenuText("TalkOption"), getContextMenuText("TalkOption_Desc"));
 			if((SS:getGroupID() ~= SSM:Get(0):getGroupID()) or SS:getGroupID() == nil) then -- not in group
 				if (o:getModData().NoParty ~= true) then
-					submenu:addOption(getText("ContextMenu_SD_InviteToGroup"), nil, InviteToParty, o, nil);
+					submenu:addOption(getContextMenuText("InviteToGroup"), nil, InviteToParty, o, nil);
 				end
 				if ((SS:getGroup() ~= nil) and (SS:getGroupID() ~= SSM:Get(0):getGroupID())) --[[and (o:getModData().NoParty ~= true)]] then
-					submenu:addOption(getText("ContextMenu_SD_AskToJoin"), nil, AskToJoin, o, nil);
+					submenu:addOption(getContextMenuText("AskToJoin"), nil, AskToJoin, o, nil);
 				end				
 				if ((o:getPrimaryHandItem() == nil) and (getSpecificPlayer(0):getPrimaryHandItem() ~= nil) ) then
-					submenu:addOption(getText("ContextMenu_SD_OfferWeapon"), nil, OfferWeapon, o, nil);
+					submenu:addOption(getContextMenuText("OfferWeapon"), nil, OfferWeapon, o, nil);
 				end				
 			elseif((SS:getGroupID() == SSM:Get(0):getGroupID()) and SS:getGroupID() ~= nil) then
 				---orders
 				local i = 1;
-				local orderOption = submenu:addOption(getText("ContextMenu_SD_GiveOrder"), worldobjects, nil);
+				local orderOption = submenu:addOption(getContextMenuText("GiveOrder"), worldobjects, nil);
 				local subsubmenu = submenu:getNew(submenu);
 				while(Orders[i]) do
 					if(Orders[i] == "Loot Room") then
@@ -628,7 +630,7 @@ function survivorMenu(context,o)
 						end
 						subsubmenu:addSubMenu(lootTypeOption, subsubsubmenu);
 					else
-						makeToolTip(subsubmenu:addOption(OrderDisplayName[Orders[i]], nil, SurvivorOrder, o, Orders[i]), getText("ContextMenu_SD_OrderDescription"),OrderDesc[Orders[i]]);
+						makeToolTip(subsubmenu:addOption(OrderDisplayName[Orders[i]], nil, SurvivorOrder, o, Orders[i]), getContextMenuText("OrderDescription"),OrderDesc[Orders[i]]);
 					end
 					i = i + 1;
 				end
@@ -639,17 +641,17 @@ function survivorMenu(context,o)
 					local OfferWeapon = getSpecificPlayer(0):getPrimaryHandItem()
 					local Type = "Gun"
 					local Label = ""
-					local SurvivorWeaponName = getText("ContextMenu_SD_Nothing") 
+					local SurvivorWeaponName = getActionText("Nothing") 
 					if(o:getPrimaryHandItem() ~= nil) then SurvivorWeaponName = o:getPrimaryHandItem():getDisplayName() end
 					if(not OfferWeapon:isAimedFirearm()) then Type = "Mele" end
 					local swapweaponsOption, tooltipText
 					if(Type == "Gun") then 
 						
 						if SS.LastGunUsed == nil then 
-							Label = getText("ContextMenu_SD_GiveGun") 
+							Label = getContextMenuText("GiveGun") 
 							--tooltipText = "Give your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName() .. " to this Survivor to be his Gun type Weapon"
 						else 
-							Label = getText("ContextMenu_SD_SwapGuns") 
+							Label = getContextMenuText("SwapGuns") 
 							--tooltipText = "Trade your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName().." with ".. o:getForname().."\'s ".. SurvivorWeaponName						
 						end
 						swapweaponsOption = submenu:addOption(Label, nil, SwapWeaponsSurvivor, SS, "Gun");
@@ -657,10 +659,10 @@ function survivorMenu(context,o)
 					else
 						
 						if SS.LastMeleUsed == nil then 
-							Label = getText("ContextMenu_SD_GiveWeapon")
+							Label = getContextMenuText("GiveWeapon")
 							--tooltipText = "Give your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName() .. " to this Survivor to be his Mele type Weapon"
 						else 
-							Label = getText("ContextMenu_SD_SwapWeapons")
+							Label = getContextMenuText("SwapWeapons")
 							--tooltipText = "Trade your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName().." with ".. o:getForname().."\'s ".. SurvivorWeaponName
 						end
 						swapweaponsOption = submenu:addOption(Label, nil, SwapWeaponsSurvivor, SS, "Mele");
@@ -674,36 +676,35 @@ function survivorMenu(context,o)
 				
 				if (o:getPrimaryHandItem() ~= SS.LastMeleUsed) and (SS.LastMeleUsed ~= nil) then
 				
-					local ForceMeleOption = submenu:addOption(getText("ContextMenu_SD_UseMele"), nil, ForceWeaponType, SS, false)
+					local ForceMeleOption = submenu:addOption(getContextMenuText("UseMele"), nil, ForceWeaponType, SS, false)
 					
-					local tooltip = makeToolTip(ForceMeleOption,getText("ContextMenu_SD_UseMele"),getText("ContextMenu_SD_UseMeleDesc"))
+					local tooltip = makeToolTip(ForceMeleOption,getContextMenuText("UseMele"),getContextMenuText("UseMeleDesc"))
 				end
 				if (o:getPrimaryHandItem() ~= SS.LastGunUsed) and (SS.LastGunUsed ~= nil) then
 				
-					local ForceMeleOption = submenu:addOption(getText("ContextMenu_SD_UseGun"), nil, ForceWeaponType, SS, true)
+					local ForceMeleOption = submenu:addOption(getContextMenuText("UseGun"), nil, ForceWeaponType, SS, true)
 					
-					local tooltip = makeToolTip(ForceMeleOption,getText("ContextMenu_SD_UseGun"),getText("ContextMenu_SD_UseGunDesc"))
+					local tooltip = makeToolTip(ForceMeleOption,getContextMenuText("UseGun"),getContextMenuText("UseGunDesc"))
 				end
 						
-				local SetNameOption = submenu:addOption(getText("ContextMenu_SD_SetName"), nil, SetName, SS, true)
-				--local SetNameOption = submenu:addOption(getText("ContextMenu_SD_SetOwnName"), nil, SetOwnName, character, true)
+				local SetNameOption = submenu:addOption(getContextMenuText("SetName"), nil, SetName, SS, true)
 			end
 			
-			local viewinfoOption = submenu:addOption(getText("ContextMenu_SD_ViewSurvivorInfo"), nil, ViewSurvivorInfo, SS, nil)				
-			local tooltip = makeToolTip(viewinfoOption,getText("ContextMenu_SD_ViewSurvivorInfo"),getText("ContextMenu_SD_ViewSurvivorInfoDesc"))
+			local viewinfoOption = submenu:addOption(		getContextMenuText("ViewSurvivorInfo"), nil, ViewSurvivorInfo, SS, nil)				
+			local tooltip = makeToolTip(viewinfoOption,	getContextMenuText("ViewSurvivorInfo"),getContextMenuText("ViewSurvivorInfoDesc"))
 				
 			if (SSM:Get(0):hasFood()) then
-				submenu:addOption(getText("ContextMenu_SD_OfferFood"), nil, OfferFood, o, nil);
+				submenu:addOption(getContextMenuText("OfferFood"), nil, OfferFood, o, nil);
 			end
 			if (SSM:Get(0):hasWater()) then
-				submenu:addOption(getText("ContextMenu_SD_OfferWater"), nil, OfferWater, o, nil);
+				submenu:addOption(getContextMenuText("OfferWater"), nil, OfferWater, o, nil);
 			end
 			
 			
 			local armors = SSM:Get(0):getUnEquipedArmors()
 			if(armors) then
 				--getSpecificPlayer(0):Say("hereiam2")
-				local selectOption = submenu:addOption(getText("ContextMenu_SD_OfferArmor"), worldobjects, nil);
+				local selectOption = submenu:addOption(getContextMenuText("OfferArmor"), worldobjects, nil);
 				local armormenu = submenu:getNew(submenu);
 
 				for i=1, #armors do
@@ -723,7 +724,7 @@ function survivorMenu(context,o)
 			end
 			
 			if (ammoBox ~= nil) then
-				submenu:addOption(getText("ContextMenu_SD_OfferAmmoBox"), nil, OfferAmmo, o, ammoBox);
+				submenu:addOption(getContextMenuText("OfferAmmoBox"), nil, OfferAmmo, o, ammoBox);
 			end
 			
 			local ammoRound
@@ -733,13 +734,13 @@ function survivorMenu(context,o)
 			end
 			
 			if (ammoRound ~= nil) then
-				submenu:addOption(getText("ContextMenu_SD_OfferAmmoRound"), nil, OfferAmmo, o, ammoRound);
+				submenu:addOption(getContextMenuText("OfferAmmoRound"), nil, OfferAmmo, o, ammoRound);
 			end
 			
 		end
 		if (o:getModData().isHostile ~= true) and (SS:getDangerSeenCount() == 0) and (SS:getTaskManager():getCurrentTask() ~= "Listen") then
-			local selectOption = submenu:addOption(getText("ContextMenu_SD_CallOver"), nil, CallSurvivor, o, nil);
-			local toolTip = makeToolTip(selectOption,getText("ContextMenu_SD_CallOver"),getText("ContextMenu_SD_CallOverDesc"));
+			local selectOption = submenu:addOption(		getContextMenuText("CallOver"), nil, CallSurvivor, o, nil);
+			local toolTip = makeToolTip(selectOption,	getContextMenuText("CallOver"), getContextMenuText("CallOverDesc"));
 		end
 		
 		
@@ -844,11 +845,11 @@ function SuperSurvivorsAreaSelect(context, area, Display)
 	local submenu = context:getNew(context);
 
 	if(SuperSurvivorSelectArea[area]) then 
-		submenu:addOption(getText("ContextMenu_SD_SetAreaConfirm"), nil, SelectingArea, area, 1)
-		submenu:addOption(getText("ContextMenu_SD_SetAreaCancel"), nil, SelectingArea, area, 0)
-		submenu:addOption(getText("ContextMenu_SD_SetAreaClear"), nil, SelectingArea, area, -1)
+		submenu:addOption(getContextMenuText("SetAreaConfirm"), nil, SelectingArea, area, 1)
+		submenu:addOption(getContextMenuText("SetAreaCancel"), nil, SelectingArea, area, 0)
+		submenu:addOption(getContextMenuText("SetAreaClear"), nil, SelectingArea, area, -1)
 	else 
-		makeToolTip(submenu:addOption(getText("ContextMenu_SD_SetAreaSelect"), nil, StartSelectingArea, area),getText("ContextMenu_SD_SetAreaSelect"),getText("ContextMenu_SD_SetAreaSelectDesc"))
+		makeToolTip(submenu:addOption(getContextMenuText("SetAreaSelect"), nil, StartSelectingArea, area),getContextMenuText("SetAreaSelect"),getContextMenuText("SetAreaSelectDesc"))
 	end
 		
 	context:addSubMenu(selectOption, submenu);
@@ -861,22 +862,22 @@ function SurvivorsFillWorldObjectContextMenu(player, context, worldobjects, test
         return
     end
 	
-	local selectOption = context:addOption(getText("ContextMenu_SD_AreaSelecting"), worldobjects, nil);
+	local selectOption = context:addOption(getContextMenuText("AreaSelecting"), worldobjects, nil);
 	local submenu = context:getNew(context);
 		
-		SuperSurvivorsAreaSelect(submenu, "BaseArea", getText("ContextMenu_SD_BaseArea"))
-		SuperSurvivorsAreaSelect(submenu, "ChopTreeArea", getText("ContextMenu_SD_ChopTreeArea"))		
-		SuperSurvivorsAreaSelect(submenu, "TakeCorpseArea", getText("ContextMenu_SD_TakeCorpseArea"))		
-		SuperSurvivorsAreaSelect(submenu, "CorpseStorageArea", getText("ContextMenu_SD_CorpseStorageArea"))
-		SuperSurvivorsAreaSelect(submenu, "TakeWoodArea", getText("ContextMenu_SD_TakeWoodArea"))		
-		SuperSurvivorsAreaSelect(submenu, "WoodStorageArea", getText("ContextMenu_SD_WoodStorageArea"))
-		SuperSurvivorsAreaSelect(submenu, "FoodStorageArea", getText("ContextMenu_SD_FoodStorageArea"))
-		SuperSurvivorsAreaSelect(submenu, "WeaponStorageArea", getText("ContextMenu_SD_WeaponStorageArea"))		
-		SuperSurvivorsAreaSelect(submenu, "ToolStorageArea", getText("ContextMenu_SD_ToolStorageArea"))		
-		SuperSurvivorsAreaSelect(submenu, "MedicalStorageArea", getText("ContextMenu_SD_MedicalStorageArea"))
-		SuperSurvivorsAreaSelect(submenu, "FarmingArea", getText("ContextMenu_SD_FarmingArea"))		-- Farming does not work
-		SuperSurvivorsAreaSelect(submenu, "ForageArea", getText("ContextMenu_SD_ForageArea"))
-		SuperSurvivorsAreaSelect(submenu, "GuardArea", getText("ContextMenu_SD_GuardArea"))
+		SuperSurvivorsAreaSelect(submenu, "BaseArea", 					getContextMenuText("BaseArea"))
+		SuperSurvivorsAreaSelect(submenu, "ChopTreeArea", 			getContextMenuText("ChopTreeArea"))		
+		SuperSurvivorsAreaSelect(submenu, "TakeCorpseArea", 		getContextMenuText("TakeCorpseArea"))		
+		SuperSurvivorsAreaSelect(submenu, "CorpseStorageArea", 	getContextMenuText("CorpseStorageArea"))
+		SuperSurvivorsAreaSelect(submenu, "TakeWoodArea", 			getContextMenuText("TakeWoodArea"))		
+		SuperSurvivorsAreaSelect(submenu, "WoodStorageArea", 		getContextMenuText("WoodStorageArea"))
+		SuperSurvivorsAreaSelect(submenu, "FoodStorageArea", 		getContextMenuText("FoodStorageArea"))
+		SuperSurvivorsAreaSelect(submenu, "WeaponStorageArea", 	getContextMenuText("WeaponStorageArea"))		
+		SuperSurvivorsAreaSelect(submenu, "ToolStorageArea", 		getContextMenuText("ToolStorageArea"))		
+		SuperSurvivorsAreaSelect(submenu, "MedicalStorageArea", getContextMenuText("MedicalStorageArea"))
+		SuperSurvivorsAreaSelect(submenu, "FarmingArea", 			getContextMenuText("FarmingArea"))		-- Farming does not work
+		SuperSurvivorsAreaSelect(submenu, "ForageArea", 				getContextMenuText("ForageArea"))
+		SuperSurvivorsAreaSelect(submenu, "GuardArea", 					getContextMenuText("GuardArea"))
 		
 	context:addSubMenu(selectOption, submenu);
 	
@@ -907,33 +908,33 @@ function SurvivorsFillWorldObjectContextMenu(player, context, worldobjects, test
 		end
 	end
 	
-	local SurvivorOptions =context:addOption(getText("ContextMenu_SD_SurvivorOptions"), worldobjects, nil);
+	local SurvivorOptions =context:addOption(getContextMenuText("SurvivorOptions"), worldobjects, nil);
 	local submenu = context:getNew(context);
 	
-	local RulesOfEngagementOption = submenu:addOption(getText("ContextMenu_SD_RulesOfEngagement"), worldobjects, nil);
+	local RulesOfEngagementOption = submenu:addOption(getContextMenuText("RulesOfEngagement"), worldobjects, nil);
 	local subsubmenu = submenu:getNew(submenu);
 	
-	makeToolTip(subsubmenu:addOption(getText("ContextMenu_SD_AttackAnyoneOnSight"), nil, SetRulesOfEngagement, 4),"Rules of Engagement","Shoot or Attack on sight Anything that may come along. Zombies, hostile survivors, friendly survivors neutral. Only party members are the exception");
-	makeToolTip(subsubmenu:addOption(getText("ContextMenu_SD_AttackHostilesOnSight"), nil, SetRulesOfEngagement, 3),"Rules of Engagement","Shoot or Attack on sight Anything hostile that may come along. Zombies or obviously hostile survivors");
+	makeToolTip(subsubmenu:addOption(getContextMenuText("AttackAnyoneOnSight"), nil, SetRulesOfEngagement, 4),"Rules of Engagement","Shoot or Attack on sight Anything that may come along. Zombies, hostile survivors, friendly survivors neutral. Only party members are the exception");
+	makeToolTip(subsubmenu:addOption(getContextMenuText("AttackHostilesOnSight"), nil, SetRulesOfEngagement, 3),"Rules of Engagement","Shoot or Attack on sight Anything hostile that may come along. Zombies or obviously hostile survivors");
 	--makeToolTip(subsubmenu:addOption("Attack Zombies", nil, SetRulesOfEngagement, 2),"Rules of Engagement","Shoot or Attack on sight Any zombies that may come along.");
 	--makeToolTip(subsubmenu:addOption("No Attacking", nil, SetRulesOfEngagement, 1),"Rules of Engagement","Do not shoot or attack anything or anyone. Just avoid when possible.");
 	
 	submenu:addSubMenu(RulesOfEngagementOption, subsubmenu);
 	
-	local MeleOrGunOption = submenu:addOption(getText("ContextMenu_SD_CallToArms"), worldobjects, nil);
+	local MeleOrGunOption = submenu:addOption(getContextMenuText("CallToArms"), worldobjects, nil);
 	subsubmenu = submenu:getNew(submenu);
 	
-	makeToolTip(subsubmenu:addOption(getText("ContextMenu_SD_UseMele"), nil, SetMeleOrGun, 'mele'),getText("ContextMenu_SD_UseMele"),getText("ContextMenu_SD_UseMeleDesc"));
-	makeToolTip(subsubmenu:addOption(getText("ContextMenu_SD_UseGun"), nil, SetMeleOrGun, 'gun'),getText("ContextMenu_SD_UseGun"),getText("ContextMenu_SD_UseGunDesc"));
+	makeToolTip(subsubmenu:addOption(getContextMenuText("UseMele"), nil, SetMeleOrGun, 'mele'),	getContextMenuText("UseMele"),getContextMenuText("UseMeleDesc"));
+	makeToolTip(subsubmenu:addOption(getContextMenuText("UseGun"), nil, SetMeleOrGun, 'gun'),		getContextMenuText("UseGun"),	getContextMenuText("UseGunDesc"));
 
 	if (DebugOptions) then 
-		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier"), nil, DebugSpawnSoldier)  -- debug spawn soldier
-		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier").." - Melee", nil, DebugSpawnSoldierMelee)  -- debug spawn soldier melee
-		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier").. " - Hostile", nil, DebugSpawnSoldierHostile)  -- debug spawn soldier
-		submenu:addOption(getText("ContextMenu_Debug_Spawn_Soldier").." - Hostile Melee", nil, DebugSpawnSoldierMeleeHostile)  -- debug spawn soldier melee
+		submenu:addOption(getContextMenuText("Debug_Spawn_Soldier"), nil, DebugSpawnSoldier)  -- debug spawn soldier
+		submenu:addOption(getContextMenuText("Debug_Spawn_Soldier").." - Melee", nil, DebugSpawnSoldierMelee)  -- debug spawn soldier melee
+		submenu:addOption(getContextMenuText("Debug_Spawn_Soldier").. " - Hostile", nil, DebugSpawnSoldierHostile)  -- debug spawn soldier
+		submenu:addOption(getContextMenuText("Debug_Spawn_Soldier").." - Hostile Melee", nil, DebugSpawnSoldierMeleeHostile)  -- debug spawn soldier melee
 
 		
-		submenu:addOption(getText("ContextMenu_SD_Debug_PlayerStats"), nil, ISPlayerStatsUI.OnOpenPanel)  --use debug mod to change player name
+		submenu:addOption(getContextMenuText("Debug_PlayerStats"), nil, ISPlayerStatsUI.OnOpenPanel)  --use debug mod to change player name
 	end	
 	submenu:addSubMenu(MeleOrGunOption, subsubmenu);
 	
@@ -948,7 +949,7 @@ function SetRulesOfEngagement(test,value)
 	local group = SS:getGroup()
 	if(group) then
 		group:setROE(value)
-		getSpecificPlayer(0):Say(getText("ContextMenu_SD_ROESet"));
+		getSpecificPlayer(0):Say(getContextMenuText("ROESet"));
 	end
 end
 
@@ -959,9 +960,9 @@ function SetMeleOrGun(test,value)
 		local myGroup = SSGM:Get(mySS:getGroupID())
 		if(myGroup) then 
 			if(value == "gun") then 
-				mySS:Get():Say(getText("ContextMenu_SD_EveryOneUseGun"))
+				mySS:Get():Say(getContextMenuText("EveryOneUseGun"))
 			else
-				mySS:Get():Say(getText("ContextMenu_SD_EveryOneUseMele"))
+				mySS:Get():Say(getContextMenuText("EveryOneUseMele"))
 			end
 			myGroup:UseWeaponType(value) 
 		end
@@ -981,7 +982,7 @@ end
 function SetName(test, SS)
 	
 	local name = SS:getName()
-	local modal = ISTextBox:new(0, 0, 280, 180, getText("ContextMenu_SD_SetName"), name, nil, OnSetName, 0, SS)
+	local modal = ISTextBox:new(0, 0, 280, 180, getContextMenuText("SetName"), name, nil, OnSetName, 0, SS)
     modal:initialise()
     modal:addToUIManager()
 end
@@ -995,7 +996,7 @@ end
 --end
 --function SetOwnName(test, character)
 --	local name = character:getDescriptor():getForename()
---	local modal = ISTextBox:new(0, 0, 280, 180, getText("ContextMenu_SD_SetOwnName"), name, nil, OnSetOwnName, 0, character)
+--	local modal = ISTextBox:new(0, 0, 280, 180, getContextMenuText("SetOwnName"), name, nil, OnSetOwnName, 0, character)
 --   modal:initialise()
 --   modal:addToUIManager()
 --end

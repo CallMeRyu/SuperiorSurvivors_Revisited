@@ -70,7 +70,7 @@ function DoctorTask:update()
 	if(self.Patient ~= nil) then 
 		
 		if(self.Patient:isDead()) then
-			self.parent:Speak(getText("ContextMenu_SD_RIPSurvivor"))
+			self.parent:Speak(getDialogue("RIPSurvivor"))
 			self.Patient = nil
 			return false
 		end
@@ -100,23 +100,23 @@ function DoctorTask:update()
 					self.parent:DebugSay("DoctorTask is about to trigger a StopWalk! ")
 					self.parent:StopWalk()
 					if treatment == "Splint" then 
-						self.parent:RoleplaySpeak(getText("ContextMenu_SD_DoctorSplint"))
+						self.parent:RoleplaySpeak(getActionText("DoctorSplint"))
 						ISTimedActionQueue.add(ISSplint:new(doctor, self.Patient, rippedsheets, doctor:getInventory():AddItem("Base.Plank"), bp, true))
 					elseif treatment == "Bandage Removal" then 
-						self.parent:RoleplaySpeak(getText("ContextMenu_SD_DoctorBandageRemove"))
+						self.parent:RoleplaySpeak(getActionText("DoctorBandageRemove"))
 						ISTimedActionQueue.add(ISApplyBandage:new(doctor, self.Patient, bandage, bp, false))
 					elseif treatment == "Stich" then 
-						self.parent:RoleplaySpeak(getText("ContextMenu_SD_DoctorStitches"))
+						self.parent:RoleplaySpeak(getActionText("DoctorStitches"))
 						ISTimedActionQueue.add(ISStitch:new(doctor, self.Patient, doctor:getInventory():AddItem("Base.SutureNeedle"), bp, true))
 					elseif treatment == "Remove Glass" then 
-						self.parent:RoleplaySpeak(getText("ContextMenu_SD_DoctorGlass"))
+						self.parent:RoleplaySpeak(getActionText("DoctorGlass"))
 						ISTimedActionQueue.add(ISRemoveGlass:new(doctor, self.Patient, bp))
 					elseif treatment == "Remove Bullet" then 
-						self.parent:RoleplaySpeak(getText("ContextMenu_SD_DoctorBullet"))
+						self.parent:RoleplaySpeak(getActionText("DoctorBullet"))
 						ISTimedActionQueue.add(ISRemoveBullet:new(doctor, self.Patient, bp))
 					elseif treatment == "Bandage" then 						
 						ISTimedActionQueue.add(ISDisinfect:new(doctor, self.Patient, alcohol, bp))
-						self.parent:RoleplaySpeak(getText("ContextMenu_SD_DoctorBandage"))
+						self.parent:RoleplaySpeak(getActionText("DoctorBandage"))
 						ISTimedActionQueue.add(ISApplyBandage:new(doctor, self.Patient, bandage, bp, true))
 					
 					end
@@ -125,7 +125,7 @@ function DoctorTask:update()
 			end
 			
 			if(foundbodypartneedingtreatment == false) then
-				self.parent:Speak(getText("ContextMenu_SD_DoctorDone"))
+				self.parent:Speak(getActionText("SD_DoctorDone"))
 				self.parent:Get():StopAllActionQueue()
 				if(self.Patient ~= nil) then 
 					local ID = self.Patient:getModData().ID
@@ -140,7 +140,7 @@ function DoctorTask:update()
 			end
 			
 		else
-			self.parent:Speak(getText("ContextMenu_SD_HoldStill"))
+			self.parent:Speak(getActionText("SD_HoldStill"))
 			self.parent:walkTo(self.Patient:getCurrentSquare())
 		end
 	else 

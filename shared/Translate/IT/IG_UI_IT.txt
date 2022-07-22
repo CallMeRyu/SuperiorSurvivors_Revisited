@@ -1,0 +1,114 @@
+IGUI_IT = {
+	--[[roleplay
+		texts that are just describing what the survivor is doing
+	]]--
+
+
+		IGUI_SS_Drinking = "Sta bevendo..",
+		IGUI_SS_EatFood_Before = "Mangia ",
+		IGUI_SS_EatFood_After = "",
+		IGUI_SS_Opens_Before = "Apre ",
+		IGUI_SS_Opens_After = "",
+		IGUI_SS_Takes_Before = "Prende ",
+		IGUI_SS_Takes_After = "",
+		IGUI_SS_EquipsArmor = "Equipaggia armatura",
+		IGUI_SS_EquipsArmor_Before = "*Sta indossando ",
+		IGUI_SS_EquipsArmor_After = "*",
+		IGUI_SS_TakesItemFromGround_Before = "Prende ",
+		IGUI_SS_TakesItemFromGround_After = " dal terreno",
+		IGUI_SS_TakesFromGround_Before = "*Prende ",
+		IGUI_SS_TakesFromGround_After = " dal terreno*",
+		IGUI_SS_TakesFromCont_Before = "*Prende ",
+		IGUI_SS_TakesFromCont_After = " dal contenitore*",
+		IGUI_SS_UndressingClothes = "*Spogliarsi*",
+		IGUI_SS_PickUpCorpse = "*Prende i corpi dal terreno*",
+		IGUI_SS_Resting = "Sta riposando...",
+		IGUI_SS_BandageBP_Before = "Sta bendando ",
+		IGUI_SS_BandageBP_After = "",
+		IGUI_SS_DoctorSplint = "*Sto applicando la stecca...*",
+		IGUI_SS_DoctorBandageRemove = "*Sto rimuovendo il bendaggio...*",
+		IGUI_SS_DoctorStitches = "*Sto applicando i punti*",
+		IGUI_SS_DoctorGlass = "*Sto rimuovendo il vetro...*",
+		IGUI_SS_DoctorBullet = "*Sto rimuovendo il proiettile...*",
+		IGUI_SS_DoctorBandage = "*Sto applicando il bendaggio...*",
+		IGUI_SS_Foraging = "*Foraging...",
+		IGUI_SS_FarmingActionPlanting = "*Sta piantando semi...*",
+		IGUI_SS_FarmingActionHarvesting = "*Sta raccogliendo...*",
+		IGUI_SS_FarmingActionWatering = "*Sta innaffiando...*",
+	--[[END roleplay]]--
+
+	--[[starting tasks
+		dialogue lines that indicate the start of a task
+	]]--
+
+
+		IGUI_SS_IGoRelax = "Penso che mi rilassero' per un po' ",
+		IGUI_SS_IGoGetWood = "Penso che andro' a raccogliere un po' di legna",
+		IGUI_SS_IGoPileCorpse = "Penso che andro' ad accatastare qualche corpo",
+		IGUI_SS_IGoForage = "Penso che andro' a fare un po' di foraggiamento",
+		IGUI_SS_IGoChopWood = "Penso che andro' a tagliare un po' di legna",
+		IGUI_SS_IGoFarm = "Penso che tornero' indietro a Coltivare",
+		IGUI_SS_IGoGuard = "Penso che tornero' indietro a fare la guardia",
+		IGUI_SS_IGoBackBase = "Penso che tornero' in base",
+	--[[END starting tasks]]--
+
+	--[[loot
+		dialogue lines that indicate the start of a loot task
+	]]--
+
+
+		IGUI_SS_LookForItem_Before = "Sto andando alla ricerca di ",
+		IGUI_SS_LookForItem_After = "",
+		IGUI_SS_NoForagingHere = "Non trovero' nulla qui",
+		IGUI_SS_NoFindItem_Before = "Non sembra esserci nessuno ",
+		IGUI_SS_NoFindItem_After = " nei paraggi",
+		IGUI_SS_NoWoodHere = "Non c'e' legna qui intorno",
+	--[[END loot]]--
+
+	--[[giving
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_TakeArmor = "Ecco, prendi la mia armatura",
+		IGUI_SS_Nothing = "Niente",
+		IGUI_SS_EveryOneUseMele = "Che tutti usino armi corpo a corpo!",
+		IGUI_SS_EveryOneUseGun = "Che tutti usino armi da fuoco!",
+		IGUI_SS_WantSomeFood = "Vuoi un po' di cibo?",
+		IGUI_SS_YouWantWater = "Vuoi un po' d'acqua?",
+		IGUI_SS_YouWantAmmo = "Vuoi qualche munizione?",
+		IGUI_SS_TakeMyWeapon = "Ecco, prendi la mia arma",
+	--[[END giving]]--
+
+	--[[interactions
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_OverHere = "Ehi! Da questa parte!",
+		IGUI_SS_HoldStill = "Rimani fermo per favore...",
+		IGUI_SS_ComeWithMe_Before = "",
+		IGUI_SS_ComeWithMe_After = ", vieni con me!",
+		IGUI_SS_CallName_Before = "",
+		IGUI_SS_CallName_After = "! Vieni qui!",
+		IGUI_SS_CanIJoin = "Posso entrare nel tuo gruppo?",
+		IGUI_SS_YouWantToJoin = "Ti va di entrare nel mio gruppo?",
+		IGUI_SS_WeBackToBase = "E' bello essere tornati",
+		IGUI_SS_DoctorDone = "Come nuovo! Vacci piano adesso!",
+	--[[END interactions]]--
+
+	--[[not able to do
+		dialogue lines that indicate that the task couldn't be done
+	]]--
+
+
+		IGUI_SS_NotInBuilding = "Non siamo in un edificio",
+		IGUI_SS_NoTrees = "Nessun albero nei paraggi",
+		IGUI_SS_NoAxeNoChopWood = "nessun ascia da nessuna parte, rinuncio a tagliare della legna",
+		IGUI_SS_CantCarryMore = "Non posso trasportare altro",
+		IGUI_SS_NoFarmingArea = "non c'e' alcuna area designata per coltivare",
+		IGUI_SS_IDontKnowHowFarming = "Io non so come Coltivare"
+	--[[END not able to do]]--
+
+}
+

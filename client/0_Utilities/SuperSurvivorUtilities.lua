@@ -58,34 +58,6 @@ function getPresetColor(color)
 
 end
 
---- gets a speech text
----@param key string key of the speech
----@return string a survivor speech
-function getSpeech(key)
-	if(not SurvivorSpeechTable[key]) then 
-		return "?" 
-	end
-	
-	local result = ZombRand(1,#SurvivorSpeechTable[key]);
-	return tostring(SurvivorSpeechTable[key][result]);
-end
-
----@alias	gender
----| "GirlNames"
----| "BoyNames"
-
---- gets a survivor name
----@param key gender key of the name
----@return string a random survivor name
-function getName(key)
-	if(not SurvivorNameTable[key]) then 
-		return "?" 
-	end
-	
-	local result = ZombRand(1,#SurvivorNameTable[key]);
-	return tostring(SurvivorNameTable[key][result]);
-end
-
 SurvivorPerks = {
 	"Aiming",
 	"Axe",

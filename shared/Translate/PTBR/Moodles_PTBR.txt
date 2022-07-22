@@ -1,0 +1,26 @@
+Moodles_PTBR = {
+	--[[masculine]]--
+
+
+
+	--[[END masculine]]--
+
+	--[[feminine]]--
+
+
+
+	--[[END feminine]]--
+
+	--[[prefixes]]--
+
+
+		Moodles_SS_DoctorPrefix_Before = "Doutor",
+		Moodles_SS_DoctorPrefix_After = "",
+		Moodles_SS_VeteranPrefix_Before = "Veterano",
+		Moodles_SS_VeteranPrefix_After = "",
+		Moodles_SS_FarmerPrefix_Before = "Fazendeiro",
+		Moodles_SS_FarmerPrefix_After = ""
+	--[[END prefixes]]--
+
+}
+
