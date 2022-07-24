@@ -613,25 +613,25 @@ function SuperSurvivor:spawnPlayer(square, isFemale)
 	local namePrefix = ""
 	local namePrefixAfter = ""
 	if(Buddy:getPerkLevel(Perks.FromString("Doctor")) >= 3) then 
-		namePrefix = getName("DoctorPrefix_Before") 
-		namePrefixAfter = getName("DoctorPrefix_After") 
+		namePrefix = getText("ContextMenu_SD_DoctorPrefix_Before") 
+		namePrefixAfter = getText("ContextMenu_SD_DoctorPrefix_After") 
 	end
 	if(Buddy:getPerkLevel(Perks.FromString("Aiming")) >= 5) then 
-		namePrefix = getName("SD_VeteranPrefix_Before") 
-		namePrefixAfter = getName("VeteranPrefix_After") 
+		namePrefix = getText("ContextMenu_SD_VeteranPrefix_Before") 
+		namePrefixAfter = getText("ContextMenu_SD_VeteranPrefix_After") 
 		
 	end
 	if(Buddy:getPerkLevel(Perks.FromString("Farming")) >= 3) then 
-		namePrefix = getName("FarmerPrefix_Before") 
-		namePrefixAfter = getName("FarmerPrefix_After") 
+		namePrefix = getText("ContextMenu_SD_FarmerPrefix_Before") 
+		namePrefixAfter = getText("ContextMenu_SD_FarmerPrefix_After") 
 	end
 	
 	local nameToSet
 	if(Buddy:getModData().Name == nil) then
 		if Buddy:isFemale() then
-			nameToSet = getRandomName("GirlNames")	
+			nameToSet = getName("GirlNames")	
 		else
-			nameToSet = getRandomName("BoyNames")			
+			nameToSet = getName("BoyNames")			
 		end		
 	else
 		nameToSet = Buddy:getModData().Name
@@ -2394,7 +2394,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 
 		if (self:getTaskManager():getCurrentTask() == "Enter New Building") and not (self:RealCanSee(self.LastEnemeySeen)) then
 			self:zDebugSayPTSC(zRangeToPursue,"0_EnteringNewBuilding")
-			zRangeToPursue = 0
+			zRangeToPursue = 0 
 			return zRangeToPursue
 		end
 
@@ -3256,7 +3256,7 @@ function SuperSurvivor:ManageXP()
 					display_perk = getText("IGUI_perks_Blunt") .. " " .. display_perk
 				end
 				
-				self:RoleplaySpeak(getActionText("PerkLeveledUp_Before")..tostring(display_perk)..getActionText("PerkLeveledUp_After"))
+				self:RoleplaySpeak(getText("ContextMenu_SD_PerkLeveledUp_Before")..tostring(display_perk)..getText("ContextMenu_SD_PerkLeveledUp_After"))
 			end
 			--if(SurvivorPerks[i] == "Aiming") then self.player:Say(tostring(currentXP).."/"..tostring(XPforNextLevel)) end
 		end
@@ -3828,7 +3828,7 @@ function SuperSurvivor:openBoxForGun()
 			--print("in loop!")
 			inv:AddItem(modl..ammotype)
 		end
-		self:RoleplaySpeak(getActionText("Opens_Before") .. ammoBox:getDisplayName() .. getActionText("Opens_After"))
+		self:RoleplaySpeak(getText("ContextMenu_SD_Opens_Before") .. ammoBox:getDisplayName() .. getText("ContextMenu_SD_Opens_After"))
 		ammoBox:getContainer():Remove(ammoBox)
 		return self.player:getInventory():FindAndReturn(ammotype);
 	else
@@ -4333,7 +4333,7 @@ end
 
 function SuperSurvivor:DrinkFromObject(waterObject)
     local playerObj = self.player
-	self:Speak(getActionText("Drinking"))
+	self:Speak(getText("ContextMenu_SD_Drinking"))
 	if not waterObject:getSquare() or not luautils.walkAdj(playerObj, waterObject:getSquare()) then
 		return
 	end
