@@ -97,14 +97,14 @@ function LootCategoryTask:update()
 			self.parent:DebugSay("no building")
 
 			self.Complete = true
-			self.parent:Speak(getActionText("NotInBuilding"))
+			self.parent:Speak(getText("ContextMenu_SD_NotInBuilding"))
 		
 		elseif(not self.parent:hasRoomInBag()) then
 			self.parent:DebugSay("no room in bag")
 			
 			self.Container = nil
 			self.Complete = true
-			self.parent:Speak(getActionText("CantCarryMore"))
+			self.parent:Speak(getText("ContextMenu_SD_CantCarryMore"))
 		else
 			loopcount = 0
 			
@@ -196,7 +196,7 @@ function LootCategoryTask:update()
 					local item = FindItemByCategory(self.Container, self.Category, self.parent)
 					if(item ~= nil) then
 							self.FoundCount = self.FoundCount + 1
-							self.parent:RoleplaySpeak(getActionText("TakesFromCont_Before") .. item:getDisplayName() .. getActionText("TakesFromCont_After"))
+							self.parent:RoleplaySpeak(getText("ContextMenu_SD_TakesFromCont_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromCont_After"))
 						if(self.parent:hasRoomInBagFor(item)) then
 							self.parent:DebugSay("LootCategoryTask is about to trigger a StopWalk! Path B ")
 							self.parent:StopWalk()
@@ -236,7 +236,7 @@ function LootCategoryTask:update()
 					local item = self.Container					
 					self.FoundCount = self.FoundCount + 1
 										
-					self.parent:RoleplaySpeak(getActionText("TakesFromGround_Before") .. item:getDisplayName() .. getActionText("TakesFromGround_After"))
+					self.parent:RoleplaySpeak(getText("ContextMenu_SD_TakesFromGround_Before") .. item:getDisplayName() .. getText("ContextMenu_SD_TakesFromGround_After"))
 					local srcContainer = item:getContainer()
 					if instanceof(srcContainer,"ItemContainer") then
 						--ISTimedActionQueue.add(ISInventoryTransferAction:new (self.parent.player, item, srcContainer, self.PlayerBag, nil))

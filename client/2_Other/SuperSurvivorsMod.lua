@@ -652,7 +652,7 @@ function supersurvivortemp(keyNum)
 			
 			local SS = SSM:GetClosestNonParty()
 			if(SS) then
-				mySS:Speak(getDialogue("HeyYou"))
+				mySS:Speak(getText("ContextMenu_SD_HeyYou"))
 				SS:getTaskManager():AddToTop(ListenTask:new(SS,mySS:Get(),false))
 			end
 			
@@ -673,7 +673,7 @@ function supersurvivortemp(keyNum)
 					
 					local member = myGroup:getClosestMember(nil,mySS:Get())
 					if(member) then
-						mySS:Get():Say(getActionText("ComeWithMe_Before") .. member:Get():getForname() .. getActionText("ComeWithMe_After"))
+						mySS:Get():Say(getText("ContextMenu_SD_ComeWithMe_Before") .. member:Get():getForname() .. getText("ContextMenu_SD_ComeWithMe_After"))
 						member:getTaskManager():clear()
 						member:getTaskManager():AddToTop(FollowTask:new(member,mySS:Get()))
 						--mySS:DebugSay("Follow Task triggered in supersurvivorsmod - path a")
@@ -902,6 +902,13 @@ function SuperSurvivorsNewSurvivorManager()
 			
 			
 			if(success) and (spawnSquare) then
+			--	getSpecificPlayer(0):getModData().LastRaidTime = hours
+				--if(getSpecificPlayer(0):isAsleep()) then 
+				--	getSpecificPlayer(0):Say(getText("ContextMenu_SD_IGotABadFeeling"))
+				--	getSpecificPlayer(0):forceAwake()
+				--else
+				--	getSpecificPlayer(0):Say("A custom survivor spawned!");
+				--end
 				
 				-- ALT SPAWNING SECTION -- 
 				-- SURVIVOR, NON RAIDER SPAWNING
@@ -1189,10 +1196,10 @@ function SuperSurvivorsRaiderManager()
 		if(success) and (spawnSquare) then
 			getSpecificPlayer(0):getModData().LastRaidTime = hours
 			if(getSpecificPlayer(0):isAsleep()) then 
-				getSpecificPlayer(0):Say(getDialogue("IGotABadFeeling"))
+				getSpecificPlayer(0):Say(getText("ContextMenu_SD_IGotABadFeeling"))
 				getSpecificPlayer(0):forceAwake()
 			else
-				getSpecificPlayer(0):Say(getDialogue("WhatWasThatSound"));
+				getSpecificPlayer(0):Say(getText("ContextMenu_SD_WhatWasThatSound"));
 			end
 			-- RAIDER GROUPS
 			local RaiderGroup = SSGM:newGroup()

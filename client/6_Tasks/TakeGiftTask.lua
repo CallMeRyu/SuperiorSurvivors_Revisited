@@ -69,7 +69,7 @@ function TakeGiftTask:update()
 		local distance = getDistanceBetween(self.parent:Get(), sq)
 			
 		if(not self.DestContainer:contains(self.TheGift)) and (distance < 2.0) then
-			self.parent:RoleplaySpeak(getActionText("Takes_Before") .. self.TheGift:getDisplayName() .. getActionText("Takes_After"))
+			self.parent:RoleplaySpeak(getText("ContextMenu_SD_Takes_Before") .. self.TheGift:getDisplayName() .. getText("ContextMenu_SD_Takes_After"))
 			
 			if(self.SrcContainer == "Ground") then
 				self.DestContainer:AddItem(self.TheGift)
@@ -87,13 +87,13 @@ function TakeGiftTask:update()
 				if  self.TheGift:getCategory()=="Container" then
 					self.parent:getBag():Remove(self.TheGift)
 					self.parent:Get():getInventory():AddItem(self.TheGift)
-					self.parent:RoleplaySpeak(getActionText("SD_EquipsArmor"))
+					self.parent:RoleplaySpeak(getText("ContextMenu_SD_EquipsArmor"))
 					self.parent.player:setClothingItem_Back(self.TheGift)
 				elseif  instanceof(self.TheGift,"Clothing") then
 					print("gift clothing body location is:" .. tostring(self.TheGift:getBodyLocation()))
 					self.parent:getBag():Remove(self.TheGift)
 					self.parent:Get():getInventory():AddItem(self.TheGift)
-					self.parent:RoleplaySpeak(getActionText("EquipsArmor"))
+					self.parent:RoleplaySpeak(getText("ContextMenu_SD_EquipsArmor"))
 					self.parent:WearThis(self.TheGift)
 				end
 			else
@@ -110,7 +110,7 @@ function TakeGiftTask:update()
 			if self.TheGift:isClothing()  then
 				self.parent:getBag():Remove(self.TheGift)
 				self.parent:Get():getInventory():AddItem(self.TheGift)
-				self.parent:RoleplaySpeak(getActionText("EquipsArmor"))
+				self.parent:RoleplaySpeak(getText("ContextMenu_SD_EquipsArmor"))
 				self.parent:WearThis(self.TheGift)
 			end
 		else

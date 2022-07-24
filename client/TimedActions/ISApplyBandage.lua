@@ -33,7 +33,7 @@ function ISApplyBandage:update()
     if self.item then
         self.item:setJobDelta(self:getJobDelta());
     end
-    local jobType = self.doIt and getActionText("Bandage") or getActionText("Remove_Bandage")
+    local jobType = self.doIt and getText("ContextMenu_Bandage") or getText("ContextMenu_Remove_Bandage")
     ISHealthPanel.setBodyPartActionForPlayer(self.otherPlayer, self.bodyPart, self, jobType, { bandage = true })
     self.character:setMetabolicTarget(Metabolics.LightDomestic);
 end
@@ -48,7 +48,7 @@ function ISApplyBandage:start()
     end
     self:setOverrideHandModels(nil, nil);
     if self.item then
-        self.item:setJobType(getActionText("Apply_Bandage"));
+        self.item:setJobType(getText("ContextMenu_Apply_Bandage"));
         self.item:setJobDelta(0.0);
     end
 end

@@ -254,7 +254,7 @@ function FarmingTask:update()
 	
 	
 	if(self.group:getGroupAreaCenterSquare("FarmingArea") == nil) then
-		self.parent:Speak(getActionText("NoFarmingArea"))
+		self.parent:Speak(getText("ContextMenu_speech_NoFarmingArea"))
 		self.Complete = true
 		return nil
 	end
@@ -298,7 +298,7 @@ function FarmingTask:update()
 					local plantType = self.Plant.typeOfSeed
 					print("water " .. plantType)
 					if(self.parent:isSpeaking() == false) then 
-						self.parent:RoleplaySpeak(getActionText("FarmingActionWatering")) 
+						self.parent:RoleplaySpeak(getText("ContextMenu_speech_FarmingActionWatering")) 
 					end
 					self.parent:StopWalk()
 					ISTimedActionQueue.add(ISWaterPlantAction:new(self.parent:Get(), item, 1, self.Plant:getSquare(), 20))
@@ -317,7 +317,7 @@ function FarmingTask:update()
 		if (self.Plant ~= nil) and (self.FarmingTaskType == "Harvesting") then
 			if(self:AreWeThereYet(self.Plant:getSquare())) then
 				local plantType = self.Plant.typeOfSeed
-				self.parent:RoleplaySpeak(getActionText("FarmingActionHarvesting"))
+				self.parent:RoleplaySpeak(getText("ContextMenu_speech_FarmingActionHarvesting"))
 				self.JustHarvested = true
 				self.parent:DebugSay("FarmingTask is about to trigger a StopWalk! ")
 				self.parent:StopWalk()
@@ -368,7 +368,7 @@ function FarmingTask:update()
 		end
 		if (self.Plant ~= nil) and (self.FarmingTaskType == "Planting") then
 			if(self:AreWeThereYet(self.Plant:getSquare())) then
-				self.parent:RoleplaySpeak(getActionText("FarmingActionPlanting"))
+				self.parent:RoleplaySpeak(getText("ContextMenu_speech_FarmingActionPlanting"))
 				local seeds = self:getSomeSeeds()
 				 --print(""..nil)
 				if(seeds) and (#seeds > 0) then
@@ -412,7 +412,7 @@ function FarmingTask:update()
 		
 		if(self.NothingToDoCount > 5) then
 			self:ClearVars()
-			--self.parent:Speak(getActionText("IGoRelax") .. " (farmer)")
+			--self.parent:Speak(getText("ContextMenu_SD_IGoRelax") .. " (farmer)")
 			--local TaskMangerIn = self.parent:getTaskManager()
 			--TaskMangerIn:setTaskUpdateLimit(300)
 			--TaskMangerIn:AddToTop(WanderInBaseTask:new(self.parent))			

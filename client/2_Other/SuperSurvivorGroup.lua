@@ -186,10 +186,10 @@ function SuperSurvivorGroup:setLeader(newLeader)
 
 	if self.Leader ~= -1 then
 		local SS = SSM:Get(self.Leader)
-		if(SS) then SS:setGroupRole(getActionText("Job_Worker")) end -- old leader gets demoted to worker if exists
+		if(SS) then SS:setGroupRole(getText("ContextMenu_Job_Worker")) end -- old leader gets demoted to worker if exists
 	end
 	self.Leader = newLeader
-	SSM:Get(self.Leader):setGroupRole(getActionText("Job_Leader"))
+	SSM:Get(self.Leader):setGroupRole(getText("ContextMenu_Job_Leader"))
 	
 end
 function SuperSurvivorGroup:getLeader()
@@ -198,7 +198,7 @@ end
 function SuperSurvivorGroup:hasLeader()
 	if self.Leader ~= -1 then
 		local SS = SSM:Get(self.Leader)
-		if(SS) and SS:getGroupRole() == getActionText("Job_Leader") then return true end
+		if(SS) and SS:getGroupRole() == getText("ContextMenu_Job_Leader") then return true end
 	end
 	return false
 end
@@ -363,7 +363,7 @@ function SuperSurvivorGroup:addMember(newSurvivor, Role)
 		newSurvivor:setGroupRole(Role)
 		newSurvivor:setGroupID(self.ID)
 		
-		if(Role == getActionText("Job_Leader")) then 			
+		if(Role == getText("ContextMenu_Job_Leader")) then 			
 			self:setLeader(newSurvivor:getID()) 
 		end
 		return self.Members[#self.Members]
@@ -411,11 +411,11 @@ function SuperSurvivorGroup:stealingDetected(thief)
 		if (workingID ~= nil) and (thief ~= nil) and (thief:getModData().ID ~= nil) and (workingSS ~= nil) and (workingSS:getGroupID() == self.ID) then
 			
 			if (self:getWarnPlayer(thief:getModData().ID)) and SSM:Get(workingID):Get():CanSee(thief) then
-				SSM:Get(workingID):Speak(getDialogue("IAttackFoodThief"))
+				SSM:Get(workingID):Speak(getText("ContextMenu_SD_IAttackFoodThief"))
 				thief:getModData().semiHostile = true
 				SSM:Get(workingID):Get():getModData().hitByCharacter = true
 			elseif (not self:getWarnPlayer(thief:getModData().ID)) and SSM:Get(workingID):Get():CanSee(thief) then		
-				SSM:Get(workingID):Speak(getDialogue("IWarnFoodThief"))
+				SSM:Get(workingID):Speak(getText("ContextMenu_SD_IWarnFoodThief"))
 				self:WarnPlayer(thief:getModData().ID)
 			end	
 			
@@ -437,7 +437,7 @@ end
 function SuperSurvivorGroup:Print()
 
 	print("GroupID: "..tostring(self.ID))
-	print(getActionText("Job_Leader")..": "..tostring(self.Leader))
+	print(getText("ContextMenu_Job_Leader")..": "..tostring(self.Leader))
 	print("MemberCount: "..tostring(#self.Members))
 	print("Members: ")
 	for i=1, #self.Members do

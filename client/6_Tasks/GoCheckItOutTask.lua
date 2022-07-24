@@ -13,7 +13,7 @@ function GoCheckItOutTask:new(superSurvivor, spot)
 	o.SeenSpot = false
 	o.Ticks = 0
 	o.Complete = false
-	o.parent:Speak(getDialogue("WhatWasThatSound")) 
+	o.parent:Speak(getText("ContextMenu_SD_WhatWasThatSound")) 
 	
 	return o
 

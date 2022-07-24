@@ -20,7 +20,7 @@ end
 function SurvivorTogglePVP()
 	
 	if(IsoPlayer.getCoopPVP() == true) then
-		getSpecificPlayer(0):Say(getContextMenuText("PVPDisabled"));
+		getSpecificPlayer(0):Say(getText("ContextMenu_SD_PVPDisabled"));
 		IsoPlayer.setCoopPVP(false);		
 		getSpecificPlayer(0):getModData().PVP = false;
 		PVPDefault = false;
@@ -31,9 +31,9 @@ function SurvivorTogglePVP()
 		if(ForcePVPOn ~= true) then
 			getSpecificPlayer(0):getModData().PVP = true;
 			PVPDefault = true;
-			getSpecificPlayer(0):Say(getContextMenuText("PVPEnabled"));
+			getSpecificPlayer(0):Say(getText("ContextMenu_SD_PVPEnabled"));
 		else
-			getSpecificPlayer(0):Say(getContextMenuText("PVPForced"));
+			getSpecificPlayer(0):Say(getText("ContextMenu_SD_PVPForced"));
 		end
 		ForcePVPOn = false;
 		PVPButton:setImage(PVPTextureOn)

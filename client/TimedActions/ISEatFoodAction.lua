@@ -31,7 +31,7 @@ function ISEatFoodAction:start()
 	if self.item:getCustomMenuOption() then
 		self.item:setJobType(self.item:getCustomMenuOption())
 	else
-		self.item:setJobType(getActionText("Eat"));
+		self.item:setJobType(getText("ContextMenu_Eat"));
 	end
 	self.item:setJobDelta(0.0);
 
@@ -58,7 +58,7 @@ function ISEatFoodAction:start()
 			self:setAnimVariable("FoodType", self.item:getEatType());
 		end
 	end
-	if self.item:getCustomMenuOption() == getActionText("Drink") then
+	if self.item:getCustomMenuOption() == getText("ContextMenu_Drink") then
 		self:setActionAnim(CharacterActionAnims.Drink);
 	else
 		self:setActionAnim(CharacterActionAnims.Eat);
@@ -152,7 +152,7 @@ function ISEatFoodAction:new (character, item, percentage)
 	end
 	
 	local timerForOne = 232;
-	if o.item:getCustomMenuOption() == getActionText("Drink") then
+	if o.item:getCustomMenuOption() == getText("ContextMenu_Drink") then
 		hungerConsumed = math.abs(item:getThirstChange() * o.percentage * 100);
 		timerForOne = 171;
 		if hungerConsumed >= 3 then

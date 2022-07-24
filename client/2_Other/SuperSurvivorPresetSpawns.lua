@@ -225,9 +225,9 @@ function SuperSurvivorPresetSpawn(square)
 					--SuperSurvivor:setName(RPresetSpawns[i].Name)
 				--else
 					if SuperSurvivor.player:isFemale() then
-						nameToSet = getRandomName("GirlNames")	
+						nameToSet = getName("GirlNames")	
 					else
-						nameToSet = getRandomName("BoyNames")			
+						nameToSet = getName("BoyNames")			
 					end		
 					--SuperSurvivor:setName(RPresetSpawns[i].Name .. " " .. nameToSet)
 					SuperSurvivor:setName(nameToSet)

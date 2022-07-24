@@ -2394,7 +2394,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 
 		if (self:getTaskManager():getCurrentTask() == "Enter New Building") and not (self:RealCanSee(self.LastEnemeySeen)) then
 			self:zDebugSayPTSC(zRangeToPursue,"0_EnteringNewBuilding")
-			zRangeToPursue = 0 
+			zRangeToPursue = 0
 			return zRangeToPursue
 		end
 
