@@ -2964,7 +2964,7 @@ function SuperSurvivor:update()
 	if (getDistanceBetween(getSpecificPlayer(0),self.player) > 15) and (ZombRand(20)==0) and (self:isOnScreen()	== false) then -- don't wanna be seen healing
 		self.player:getBodyDamage():RestoreToFullHealth() -- to prevent a 'bleed' stutter bug
 	--	print("I HAVE BEEN HEALED")
-	end
+	end 
 	
 	if(self.player:isOnFire()) then 
 		self.player:getBodyDamage():RestoreToFullHealth() -- temporarily give some fireproofing as they walk right through fire via pathfinding
