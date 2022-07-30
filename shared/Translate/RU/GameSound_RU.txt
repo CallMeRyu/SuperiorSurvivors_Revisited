@@ -722,6 +722,19 @@ GameSound_Dialogues_RU = {
 		GameSound_Dialogues_SS_Roger29 = "Сэр, да, сэр!",
 		GameSound_Dialogues_SS_Roger30 = "Давайте сделаем это",
 
+		GameSound_Dialogues_SS_No1 = "Нет.",
+		GameSound_Dialogues_SS_No2 = "Нет, спасибо.",
+		GameSound_Dialogues_SS_No3 = "Ни за что!",
+		GameSound_Dialogues_SS_No4 = "Неа.",
+		GameSound_Dialogues_SS_No5 = "НЕТ!",
+		GameSound_Dialogues_SS_No6 = "Я так не думаю",
+		GameSound_Dialogues_SS_No7 = "Не думаю",
+		GameSound_Dialogues_SS_No8 = "Звучит неплохо, но я отказываюсь! Одно из моих любимых занятий — говорить "НЕТ" парням, которые считают себя слишком хорошими!",
+		GameSound_Dialogues_SS_No9 = "Я вас почти не знаю",
+		GameSound_Dialogues_SS_No10 = "Поговорим об этом позже",
+		GameSound_Dialogues_SS_No11 = "Не в этот раз",
+		GameSound_Dialogues_SS_No12 = "Не могу доверять человеку, которого только что встретил",
+
 		GameSound_Dialogues_SS_IfYouThinkSo1 = "Если ты думаешь что так лучше, то ладно.",
 		GameSound_Dialogues_SS_IfYouThinkSo2 = "Думаешь так лучше? Окей.",
 

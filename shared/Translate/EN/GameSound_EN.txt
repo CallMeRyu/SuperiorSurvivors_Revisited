@@ -727,6 +727,19 @@ GameSound_Dialogues_EN = {
 		GameSound_Dialogues_SS_Roger29 = "Sir, yes sir!",
 		GameSound_Dialogues_SS_Roger30 = "Let's do it",
 
+		GameSound_Dialogues_SS_No1 = "No",
+		GameSound_Dialogues_SS_No2 = "No Thanks",
+		GameSound_Dialogues_SS_No3 = "No way!",
+		GameSound_Dialogues_SS_No4 = "Nope",
+		GameSound_Dialogues_SS_No5 = "Nah",
+		GameSound_Dialogues_SS_No6 = "I don't think so",
+		GameSound_Dialogues_SS_No7 = "Don't think so",
+		GameSound_Dialogues_SS_No8 = "Sounds good, but I refuse! One of my favorite things to do is say 'NO' to guys who think they're too good!",
+		GameSound_Dialogues_SS_No9 = "I barely know you",
+		GameSound_Dialogues_SS_No10 = "Let's talk about that later",
+		GameSound_Dialogues_SS_No11 = "Not this time",
+		GameSound_Dialogues_SS_No12 = "Can't trust a man I just met",
+
 		GameSound_Dialogues_SS_IfYouThinkSo1 = "If you think that's best. Fine then.",
 		GameSound_Dialogues_SS_IfYouThinkSo2 = "If you think that's best.",
 
