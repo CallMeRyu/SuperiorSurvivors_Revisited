@@ -671,6 +671,14 @@ GameSound_Dialogues_FR = {
 		GameSound_Dialogues_SS_Roger16 = "Roger.",
 		GameSound_Dialogues_SS_Roger17 = "Bien recu.",
 
+		GameSound_Dialogues_SS_No1 = "Non",
+		GameSound_Dialogues_SS_No2 = "Non-merci",
+		GameSound_Dialogues_SS_No3 = "Pas moyen!",
+		GameSound_Dialogues_SS_No4 = "Nope",
+		GameSound_Dialogues_SS_No5 = "Nah",
+		GameSound_Dialogues_SS_No6 = "Je ne pense pas, non",
+		GameSound_Dialogues_SS_No7 = "J'pense pas",
+
 		GameSound_Dialogues_SS_IfYouThinkSo1 = "Si vous pensez que c'est mieux, Ok alors.",
 		GameSound_Dialogues_SS_IfYouThinkSo2 = "Si vous pensez que c'est mieux...",
 

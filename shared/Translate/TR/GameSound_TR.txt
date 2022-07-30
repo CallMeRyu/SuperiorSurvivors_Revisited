@@ -671,6 +671,14 @@ GameSound_Dialogues_TR = {
 		GameSound_Dialogues_SS_Roger16 = "Tamam,Tamam.",
 		GameSound_Dialogues_SS_Roger17 = "Bu is bende.",
 
+		GameSound_Dialogues_SS_No1 = "Hayir",
+		GameSound_Dialogues_SS_No2 = "Olmaz",
+		GameSound_Dialogues_SS_No3 = "Imkansiz!",
+		GameSound_Dialogues_SS_No4 = "Beni pas geç",
+		GameSound_Dialogues_SS_No5 = "Yapmak Istemiyorum.",
+		GameSound_Dialogues_SS_No6 = "Ben öyle düsünmüyorum",
+		GameSound_Dialogues_SS_No7 = "Reddetmek durumundayim.",
+
 		GameSound_Dialogues_SS_IfYouThinkSo1 = "Öyle Olsun Bakalim.",
 		GameSound_Dialogues_SS_IfYouThinkSo2 = "Sen Öyle Diyorsan...",
 

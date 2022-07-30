@@ -671,6 +671,14 @@ GameSound_Dialogues_IT = {
 		GameSound_Dialogues_SS_Roger16 = "Ricevuto.",
 		GameSound_Dialogues_SS_Roger17 = "Puoi contarci.",
 
+		GameSound_Dialogues_SS_No1 = "No",
+		GameSound_Dialogues_SS_No2 = "No grazie",
+		GameSound_Dialogues_SS_No3 = "Impossibile!",
+		GameSound_Dialogues_SS_No4 = "No",
+		GameSound_Dialogues_SS_No5 = "nah",
+		GameSound_Dialogues_SS_No6 = "Io non credo",
+		GameSound_Dialogues_SS_No7 = "Non credo",
+
 		GameSound_Dialogues_SS_IfYouThinkSo1 = "Se pensi che sia la cosa migliore. Bene allora.",
 		GameSound_Dialogues_SS_IfYouThinkSo2 = "Se ritieni sia meglio.",
 

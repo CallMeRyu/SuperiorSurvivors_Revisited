@@ -671,6 +671,14 @@ GameSound_Dialogues_TH = {
 		GameSound_Dialogues_SS_Roger16 = "รับทราบ",
 		GameSound_Dialogues_SS_Roger17 = "เข้าใจแล้ว",
 
+		GameSound_Dialogues_SS_No1 = "ไม่",
+		GameSound_Dialogues_SS_No2 = "ไม่ ขอบคุณ",
+		GameSound_Dialogues_SS_No3 = "ไม่มีทาง!",
+		GameSound_Dialogues_SS_No4 = "ไม่",
+		GameSound_Dialogues_SS_No5 = "ไม่ได้",
+		GameSound_Dialogues_SS_No6 = "ฉันไม่คิดอย่างนั้น",
+		GameSound_Dialogues_SS_No7 = "อย่าคิดอย่างนั้น",
+
 		GameSound_Dialogues_SS_IfYouThinkSo1 = "ถ้าคุณคิดว่ามันดีที่สุด ก็ได้",
 		GameSound_Dialogues_SS_IfYouThinkSo2 = "ถ้าคุณคิดว่ามันดีที่สุด",
 

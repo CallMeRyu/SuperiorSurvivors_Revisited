@@ -727,6 +727,19 @@ GameSound_Dialogues_CN = {
 		GameSound_Dialogues_SS_Roger29 = "先生，是的，先生！",
 		GameSound_Dialogues_SS_Roger30 = "让我们开始吧",
 
+		GameSound_Dialogues_SS_No1 = "不行",
+		GameSound_Dialogues_SS_No2 = "不,谢谢了。",
+		GameSound_Dialogues_SS_No3 = "没门儿!",
+		GameSound_Dialogues_SS_No4 = "不要",
+		GameSound_Dialogues_SS_No5 = "嗯...不好...",
+		GameSound_Dialogues_SS_No6 = "我不这么认为",
+		GameSound_Dialogues_SS_No7 = "不这么认为",
+		GameSound_Dialogues_SS_No8 = "听起来不错，但是我拒绝！我最喜欢做的一件事，就是对那些自以为很行的家伙说“NO”！",
+		GameSound_Dialogues_SS_No9 = "我几乎不认识你",
+		GameSound_Dialogues_SS_No10 = "等我们熟一点再说吧",
+		GameSound_Dialogues_SS_No11 = "下次再说吧",
+		GameSound_Dialogues_SS_No12 = "江湖险恶，还是有缘再见吧",
+
 		GameSound_Dialogues_SS_IfYouThinkSo1 = "如果你认为这是最好的。那也很好。",
 		GameSound_Dialogues_SS_IfYouThinkSo2 = "如果你认为这是最好的。",
 

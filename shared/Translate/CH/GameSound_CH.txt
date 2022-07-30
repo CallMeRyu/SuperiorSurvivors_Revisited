@@ -682,6 +682,14 @@ GameSound_Dialogues_CH = {
 		GameSound_Dialogues_SS_Roger16 = "Μ",
 		GameSound_Dialogues_SS_Roger17 = "琌癸",
 
+		GameSound_Dialogues_SS_No1 = "ぃ︽",
+		GameSound_Dialogues_SS_No2 = "ぃ,谅谅",
+		GameSound_Dialogues_SS_No3 = "⊿ㄠ!",
+		GameSound_Dialogues_SS_No4 = "ぃ璶",
+		GameSound_Dialogues_SS_No5 = "垛...ぃ...",
+		GameSound_Dialogues_SS_No6 = "иぃ硂或粄",
+		GameSound_Dialogues_SS_No7 = "ぃ硂或粄",
+
 		GameSound_Dialogues_SS_IfYouThinkSo1 = "狦粄硂琌程ê",
 		GameSound_Dialogues_SS_IfYouThinkSo2 = "狦粄硂琌程",
 

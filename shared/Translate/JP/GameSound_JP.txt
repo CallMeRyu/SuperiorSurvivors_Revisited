@@ -671,6 +671,14 @@ GameSound_Dialogues_JP = {
 		GameSound_Dialogues_SS_Roger16 = "御意。",
 		GameSound_Dialogues_SS_Roger17 = "その通りにするよ。",
 
+		GameSound_Dialogues_SS_No1 = "嫌だ。",
+		GameSound_Dialogues_SS_No2 = "お断りだ。",
+		GameSound_Dialogues_SS_No3 = "絶対に嫌だね！",
+		GameSound_Dialogues_SS_No4 = "いいや。",
+		GameSound_Dialogues_SS_No5 = "いやぁ、すまないが。",
+		GameSound_Dialogues_SS_No6 = "いや、それはないな。",
+		GameSound_Dialogues_SS_No7 = "そうは思わないね。",
+
 		GameSound_Dialogues_SS_IfYouThinkSo1 = "それが最善だと言うのなら、分かったよ。",
 		GameSound_Dialogues_SS_IfYouThinkSo2 = "それが最善だと言うのなら。",
 
