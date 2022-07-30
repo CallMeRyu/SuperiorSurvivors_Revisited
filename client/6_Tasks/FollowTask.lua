@@ -70,6 +70,11 @@ function FollowTask:update()
 	
 	self.parent:setSneaking(self.FollowChar:isSneaking()) -- sneaking if perosn you follow is
 	--print(self.parent:getName()..": isInAction = "..tostring(self.parent:isInAction()))
+
+	-- they keep talking
+	if(ZombRand(70) == 0) then 
+		self.parent:Speak(getSpeech("IdleChatter"))  
+	end
 	
 		if(true) then -- self.parent:isInAction() == false) then -- for some reason this is true when they doing nothing sometimes...
 		
