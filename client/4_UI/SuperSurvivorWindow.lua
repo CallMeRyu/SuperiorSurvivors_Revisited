@@ -322,6 +322,7 @@ function WindowSuperSurvivors:createChildren()
     self.y_pos = FONT_HGT_SMALL+3
     self.tab_width = self.width/3
     self.tab_height = 20
+    ISCollapsableWindow.createChildren(self)
     -- headers group
     self.headers_group = ISPanel:new(0, self.y_pos, self.width, 25)
     table.insert(survivor_headers, 1, self.headers_group)
