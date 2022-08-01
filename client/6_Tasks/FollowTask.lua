@@ -86,7 +86,7 @@ function FollowTask:update()
 		end
 		if(not self.InBaseAtStart) and (self.parent:isInBase()) and (self.parent:Get():getVehicle() == nil) then 
 			self.Complete = true 
-			self.parent:Speak(getDialogue("WeBackToBase"))
+			self.parent:Speak(getActionText("WeBackToBase"))
 		end
 		
 		-- Option_FollowDistance is replacing the "+5" that it normally defaults to, to the in game settings
