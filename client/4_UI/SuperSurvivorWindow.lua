@@ -477,7 +477,7 @@ function on_click_companion_call(member_index)
     local group_members = SSGM:Get(group_id):getMembers()
     local member = group_members[member_index]
     if member then
-        getSpecificPlayer(0):Say(getText("ContextMenu_SS_CallName_Before")..member:getName()..getText("ContextMenu_SS_CallName_After"))
+        getSpecificPlayer(0):Say(getActionText("CallName_Before")..member:getName()..getActionText("CallName_After"))
         member:getTaskManager():AddToTop(ListenTask:new(member, getSpecificPlayer(0), false))
     end
 end
