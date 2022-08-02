@@ -1,4 +1,57 @@
 --****************************************************
+-- PanelHeader
+--****************************************************
+local PanelHeader = ISButton:derive("PanelHeader")
+
+function PanelHeader:initialise()
+    ISButton.initialise(self)
+end
+
+function PanelHeader:onMouseMove(_, _)
+    self.parent.mouseOver = true
+end
+
+function PanelHeader:onMouseMoveOutside(_, _)
+    self.parent.mouseOver = false
+end
+
+function PanelHeader:onMouseUp(_, _)
+    if not self.parent:getIsVisible() then
+        return
+    end
+    self.parent.moving = false
+    ISMouseDrag.dragView = nil
+end
+
+function PanelHeader:onMouseUpOutside(_, _)
+    if not self.parent:getIsVisible() then
+        return
+    end
+    self.parent.moving = false
+    ISMouseDrag.dragView = nil
+end
+
+function PanelHeader:onMouseDown(x, y)
+    if not self.parent:getIsVisible() then
+        return
+    end
+    self.parent.downX = x
+    self.parent.downY = y
+    self.parent.moving = true
+    self.parent:bringToTop()
+end
+
+function PanelHeader:new(title, parent)
+    local o = {}
+    o = ISButton:new(0, 0, parent.width, 25)
+    setmetatable(o, self)
+    self.__index = self
+    o.borderColor = { r = 1, g = 1, b = 1, a = 0.2 }
+    o.title = title
+    return o
+end
+
+--****************************************************
 -- PanelBaseInfo
 --****************************************************
 PanelBaseInfo = ISPanel:derive("PanelBaseInfo")
@@ -184,28 +237,29 @@ end
 
 function PanelBaseInfo:createChildren()
     local context_area_name = (self.area_name == "Bounds") and "BaseArea" or self.area_name
-    self.text_area_name = ISButton:new(0, 0, self.width, 25, getText("ContextMenu_SS_"..context_area_name), nil, nil)
-    self.text_z = ISLabel:new(8, self.text_area_name.height+8, 25, "z: 1", 1, 1, 1, 1, nil, true)
-    self.text_x1 = ISLabel:new(8, (self.text_area_name.height*2)+(8*2), 25, "x1: 9122", 1, 1, 1, 1, nil, true)
-    self.text_y1 = ISLabel:new(8, (self.text_area_name.height*3)+(8*3), 25, "y1: 9182", 1, 1, 1, 1, nil, true)
-    self.text_x2 = ISLabel:new(8, (self.text_area_name.height*4)+(8*4), 25, "x2: 9182", 1, 1, 1, 1, nil, true)
-    self.text_y2 = ISLabel:new(8, (self.text_area_name.height*5)+(8*5), 25, "y2: 8981", 1, 1, 1, 1, nil, true)
-    self.button_select_area = ISButton:new(self.width-8-100,self.text_area_name.height+8, 100, 25, "select area", nil, function() self:on_click_select_area() end)
-    self.button_set = ISButton:new(self.width-8-100,(self.text_area_name.height*2)+(8*2), 100, 25, "set", nil, function() self:on_click_set() end)
-    self.button_cancel = ISButton:new(self.width-8-100,(self.text_area_name.height*3)+(8*3), 100, 25, "cancel", nil, function() self:on_click_cancel() end)
-    self.button_clear = ISButton:new(self.width-8-100,(self.text_area_name.height*4)+(8*4), 100, 25, "clear", nil, function() self:on_click_clear() end)
-    self.button_manual_edit = ISButton:new(self.width-8-100,(self.text_area_name.height*5)+(8*5), 100, 25, "manual edit", nil, function() self:on_click_manual() end)
-    self.button_close = ISButton:new(8,(self.text_area_name.height*6)+(8*6), self.width-16, 25, "close", nil, function() self:on_click_close() end)
-    self.text_area_name.borderColor = { r = 1, g = 1, b = 1, a = 0.2 }
-    self.text_area_name.onMouseDown = function() return  end
-    self.text_area_name.backgroundColorMouseOver = self.text_area_name.backgroundColor
+    --self.panel_header = ISButton:new(0, 0, self.width, 25, getText("ContextMenu_SS_"..context_area_name), nil, nil)
+    self.panel_header = PanelHeader:new(getText("ContextMenu_SS_"..context_area_name), self)
+    self.text_z = ISLabel:new(8, self.panel_header.height+8, 25, "z: 1", 1, 1, 1, 1, nil, true)
+    self.text_x1 = ISLabel:new(8, (self.panel_header.height*2)+(8*2), 25, "x1: 9122", 1, 1, 1, 1, nil, true)
+    self.text_y1 = ISLabel:new(8, (self.panel_header.height*3)+(8*3), 25, "y1: 9182", 1, 1, 1, 1, nil, true)
+    self.text_x2 = ISLabel:new(8, (self.panel_header.height*4)+(8*4), 25, "x2: 9182", 1, 1, 1, 1, nil, true)
+    self.text_y2 = ISLabel:new(8, (self.panel_header.height*5)+(8*5), 25, "y2: 8981", 1, 1, 1, 1, nil, true)
+    self.button_select_area = ISButton:new(self.width-8-100,self.panel_header.height+8, 100, 25, "select area", nil, function() self:on_click_select_area() end)
+    self.button_set = ISButton:new(self.width-8-100,(self.panel_header.height*2)+(8*2), 100, 25, "set", nil, function() self:on_click_set() end)
+    self.button_cancel = ISButton:new(self.width-8-100,(self.panel_header.height*3)+(8*3), 100, 25, "cancel", nil, function() self:on_click_cancel() end)
+    self.button_clear = ISButton:new(self.width-8-100,(self.panel_header.height*4)+(8*4), 100, 25, "clear", nil, function() self:on_click_clear() end)
+    self.button_manual_edit = ISButton:new(self.width-8-100,(self.panel_header.height*5)+(8*5), 100, 25, "manual edit", nil, function() self:on_click_manual() end)
+    self.button_close = ISButton:new(8,(self.panel_header.height*6)+(8*6), self.width-16, 25, "close", nil, function() self:on_click_close() end)
+    --self.panel_header.borderColor = { r = 1, g = 1, b = 1, a = 0.2 }
+    --self.panel_header.onMouseDown = function() return  end
+    --self.panel_header.backgroundColorMouseOver = self.panel_header.backgroundColor
     self.button_select_area.borderColor = { r = 1, g = 1, b = 1, a = 0.26 }
     self.button_set.borderColor = { r = 1, g = 1, b = 1, a = 0.26 }
     self.button_cancel.borderColor = { r = 1, g = 1, b = 1, a = 0.26 }
     self.button_clear.borderColor = { r = 1, g = 1, b = 1, a = 0.26 }
     self.button_manual_edit.borderColor = { r = 1, g = 1, b = 1, a = 0.26 }
     self.button_close.borderColor = { r = 1, g = 1, b = 1, a = 0.26 }
-    self:addChild(self.text_area_name)
+    self:addChild(self.panel_header)
     self:addChild(self.text_z)
     self:addChild(self.text_x1)
     self:addChild(self.text_y1)
@@ -280,7 +334,7 @@ end
 --****************************************************
 -- Debugging
 --****************************************************
-dssbp = {}
+dssbp = { file = "SuperSurvivorBasePanel.lua" }
 
 function dssbp.dfile()
     for _, _ in nil do

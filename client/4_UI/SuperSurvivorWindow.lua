@@ -25,7 +25,7 @@ base_area_visibility = {
 --****************************************************
 -- PanelGroup
 --****************************************************
-local PanelGroup = ISPanel:new(0, FONT_HGT_SMALL+1+25+3, window_width, panel_height)
+local PanelGroup = ISPanel:new(0, 14+1+25+3, window_width, panel_height)
 table.insert(survivor_panels, 1, PanelGroup)
 
 function PanelGroup:dupdate()
@@ -36,11 +36,12 @@ function PanelGroup:dupdate()
     local group_members = group:getMembers()
     for i=1, #group_members do
         local name, role = get_member_info(i)
+        if role == "IGUI_SS_Job_Leader" then role = getContextMenuText("Job_Leader") end
         local panel_entry = ISPanel:new(0, dy, 850, 30)
         panel_entry.borderColor = { r = 1, g = 1, b = 1, a = 0.2 }
         panel_entry.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
         panel_entry.dwidth = 850/2
-        local cat_member_name = ISButton:new(0, 0, panel_entry.dwidth, 30, tostring(name), nil, function() show_survivor_info(i) end)
+        local cat_member_name = ISButton:new(0, 0, panel_entry.dwidth, 30, tostring(name), nil, function() context_options.show_context_menu_member(i) end)
         local cat_member_role = ISButton:new(panel_entry.dwidth, 0, panel_entry.dwidth, 30, tostring(role), nil, function() context_options.show_context_menu_role(i) end)
         cat_member_name.borderColor = { r = 0, g = 0, b = 0, a = 0 }
         cat_member_role.borderColor = { r = 0, g = 0, b = 0, a = 0 }
@@ -89,7 +90,7 @@ end
 --****************************************************
 -- PanelBase
 --****************************************************
-local PanelBase = ISPanel:new(0, FONT_HGT_SMALL+1+25+3, window_width, panel_height)
+local PanelBase = ISPanel:new(0, 14+1+25+3, window_width, panel_height)
 PanelBase:setVisible(false)
 table.insert(survivor_panels, 2, PanelBase)
 
@@ -121,6 +122,7 @@ function PanelBaseEntry:createChildren()
     local cat_area_set = ISButton:new(self.dwidth+1, 0, self.dwidth, 30, self.area_set, nil, nil)
     local cat_area_show = ISButton:new(self.dwidth*2, 0, self.dwidth, 30, base_area_visibility[self.area_name].button_title, nil, function() on_click_base_show(self.group_id, self.area_name) end)
     local cat_area_edit = ISButton:new(self.dwidth*3, 0, self.dwidth, 30, "edit", nil, function() create_panel_base_info(self.area_name) end)
+    cat_area_name.onMouseDown = function() return end
     cat_area_set.onMouseDown = function() return  end
     cat_area_name.borderColor = { r = 0, g = 0, b = 0, a = 0 }
     cat_area_set.borderColor = { r = 0, g = 0, b = 0, a = 0 }
@@ -133,12 +135,14 @@ function PanelBaseEntry:createChildren()
         cat_area_show.backgroundColor = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
         cat_area_edit.backgroundColor = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
         cat_area_set.backgroundColorMouseOver = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
+        cat_area_name.backgroundColorMouseOver = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
     else
         cat_area_name.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
         cat_area_set.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
         cat_area_show.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
         cat_area_edit.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
         cat_area_set.backgroundColorMouseOver = { r = 0, g = 0, b = 0, a = 0 }
+        cat_area_name.backgroundColorMouseOver = { r = 0, g = 0, b = 0, a = 0 }
     end
     self:addChild(cat_area_name)
     self:addChild(cat_area_set)
@@ -215,7 +219,7 @@ end
 --****************************************************
 -- PanelCompanions
 --****************************************************
-local PanelCompanions = ISPanel:new(0, FONT_HGT_SMALL+1+25+3, window_width, panel_height)
+local PanelCompanions = ISPanel:new(0, 14+1+25+3, window_width, panel_height)
 PanelCompanions:setVisible(false)
 table.insert(survivor_panels, 3, PanelCompanions)
 
@@ -232,7 +236,7 @@ function PanelCompanions:dupdate()
         panel_entry.borderColor = { r = 1, g = 1, b = 1, a = 0.2 }
         panel_entry.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
         panel_entry.dwidth = 850/4
-        local cat_companion_name = ISButton:new(1, 0, panel_entry.dwidth, 30, tostring(name), nil, function() show_survivor_info(i) end)
+        local cat_companion_name = ISButton:new(1, 0, panel_entry.dwidth, 30, tostring(name), nil, function() context_options.show_context_menu_member(i) end)
         local cat_companion_task = ISButton:new(panel_entry.dwidth+1, 0, panel_entry.dwidth, 30, tostring(ai_mode), nil, nil)
         local cat_companion_order = ISButton:new(panel_entry.dwidth*2, 0, panel_entry.dwidth, 30, "order", nil, function() context_options.show_context_menu_order(i) end)
         local cat_companion_call = ISButton:new(panel_entry.dwidth*3, 0, panel_entry.dwidth, 30, "call", nil, function() on_click_companion_call(i) end)
@@ -310,7 +314,7 @@ end
 function create_window_super_survivors()
     window_super_survivors = WindowSuperSurvivors:new(200, 100, window_width, window_height)
     window_super_survivors:addToUIManager()
-    window_super_survivors:setVisible(true)
+    window_super_survivors:setVisible(false)
     window_super_survivors.pin = true
 end
 
@@ -319,7 +323,7 @@ function WindowSuperSurvivors:initialize()
 end
 
 function WindowSuperSurvivors:createChildren()
-    self.y_pos = FONT_HGT_SMALL+3
+    self.y_pos = 14+3
     self.tab_width = self.width/3
     self.tab_height = 20
     ISCollapsableWindow.createChildren(self)
@@ -406,7 +410,8 @@ function WindowSuperSurvivors:new(x, y, width, height)
     o.title = "Super Survivors"
     o.pin = false
     o.resizable = false
-    o.backgroundColor = { r = 0, g = 0, b = 0, a = 0.5 }
+    o.borderColor = { r = 1, g = 1, b = 1, a = 0.2 }
+    o.backgroundColor = { r = 0, g = 0, b = 0, a = 0.7 }
     return o
 end
 
@@ -414,7 +419,7 @@ end
 -- ButtonSuperSurvivors
 --****************************************************
 local ButtonSuperSurvivors = ISButton:derive("ButtonSuperSurvivors")
-local ButtonReloadMenu = ISButton:derive("ButtonSuperSurvivors")
+local ButtonReloadMenu = ISButton:derive("ButtonReloadMenu")
 
 function remove_button_super_survivors()
     button_super_survivors:removeFromUIManager()
@@ -473,7 +478,7 @@ function on_click_companion_call(member_index)
     local group_members = SSGM:Get(group_id):getMembers()
     local member = group_members[member_index]
     if member then
-        getSpecificPlayer(0):Say(getText("ContextMenu_SS_CallName_Before")..member:getName()..getText("ContextMenu_SS_CallName_After"))
+        getSpecificPlayer(0):Say(getActionText("CallName_Before")..member:getName()..getActionText("CallName_After"))
         member:getTaskManager():AddToTop(ListenTask:new(member, getSpecificPlayer(0), false))
     end
 end
@@ -544,6 +549,12 @@ context_options.show_context_menu_role = function(member_index)
     local sub_remove = context_menu:getNew(context_menu)
     sub_remove:addOption("Confirm", nil, function() group:removeMember(member:getID()) end)
     context_menu:addSubMenu(remove, sub_remove)
+end
+
+context_options.show_context_menu_member = function(member_index)
+    local context_menu = ISContextMenu.get(0, getMouseX(), getMouseY(), 1, 1)
+    context_menu:addOption("Information", nil, function() show_survivor_info(member_index)  end)
+    context_menu:addOption("Inventory", nil, function() create_panel_inventory_transfer(member_index)  end)
 end
 
 --****************************************************
@@ -623,7 +634,7 @@ Events.EveryOneMinute.Add(event_every_minute)
 --****************************************************
 -- Debugging
 --****************************************************
-dssw = {}
+dssw = { file = "SuperSurvivorWindow.lua" }
 
 function dssw.dfile()
     for _, _ in nil do
@@ -642,62 +653,6 @@ function dssw.dbug()
     print("=================")
 end
 
-function dssw.dbugc(context)
-    print("=================")
-    print("dssw::dbug")
-    print("context::"..tostring(context))
-    if context == "window" then
-        remove_window_super_survivors()
-        print("remove_window_super_survivors()")
-        create_window_super_survivors()
-        print("create_window_super_survivors()")
-    end
-    if context == "button" then
-        remove_button_super_survivors()
-        print("remove_button_super_survivors()")
-        create_button_super_survivors()
-        print("create_button_super_survivors()")
-    end
-    print("=================")
-end
-
-function dssw.dcreate()
-    print("=================")
-    print("dssw::dcreate")
-    create_window_super_survivors()
-    print("create_window_super_survivors()")
-    print("=================")
-end
-
-function dssw.dremove()
-    print("=================")
-    print("dssw::dremove")
-    remove_window_super_survivors()
-    print("remove_window_super_survivors()")
-    print("=================")
-end
-
-function dssw.dremovec(context)
-    print("=================")
-    print("dssw::dremove")
-    print("context::"..tostring(context))
-    if context == "window" then
-        remove_window_super_survivors()
-        print("remove_window_super_survivors()")
-    end
-    if context == "button" then
-        remove_button_super_survivors()
-        print("remove_button_super_survivors()")
-    end
-    print("=================")
-end
-
-function dssw.dprint()
-    print("=================")
-    print("dssw::dprint")
-    print("=================")
-end
-
 --****************************************************
 -- SuperSurvivorWindow entry point
 --****************************************************
@@ -709,9 +664,3 @@ function super_survivor_window_entry_point()
     --SurvivorOrder = wrap_survivor_order(SurvivorOrder)
 end
 Events.OnGameStart.Add(super_survivor_window_entry_point)
-
---****************************************************
--- TODO: window stuff
---****************************************************
--- Add proper event triggers in core modules.
--- Inteface with orders better.
