@@ -36,7 +36,7 @@ function PanelGroup:dupdate()
     local group_members = group:getMembers()
     for i=1, #group_members do
         local name, role = get_member_info(i)
-        if role == "IGUI_SS_Job_Leader" then role = "Leader" end
+        if role == "IGUI_SS_Job_Leader" then role = getContextMenuText("Job_Leader") end
         local panel_entry = ISPanel:new(0, dy, 850, 30)
         panel_entry.borderColor = { r = 1, g = 1, b = 1, a = 0.2 }
         panel_entry.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
