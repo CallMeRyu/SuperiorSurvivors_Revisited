@@ -1,4 +1,3 @@
-local FONT_HGT_SMALL = getTextManager():getFontHeight(UIFont.Small)
 local window_height = (30*10)+20+44+2
 local window_width = 850
 local panel_height = 30*10
@@ -484,6 +483,7 @@ function on_click_companion_call(member_index)
 end
 
 context_options.show_context_menu_order = function(member_index)
+    if member_index == 1 then return end
     local context_menu = ISContextMenu.get(0, getMouseX(), getMouseY(), 1, 1)
     context_menu:addOption("Barricade", nil, function() give_order(1, member_index) end)
     context_menu:addOption("Chop Wood", nil, function() give_order(2, member_index) end)
@@ -512,6 +512,7 @@ context_options.show_context_menu_order = function(member_index)
 end
 
 context_options.show_context_menu_role = function(member_index)
+    if member_index == 1 then return end
     local group_id = SSM:Get(0):getGroupID()
     local group = SSGM:Get(group_id)
     local group_members = SSGM:Get(group_id):getMembers()
@@ -552,6 +553,7 @@ context_options.show_context_menu_role = function(member_index)
 end
 
 context_options.show_context_menu_member = function(member_index)
+    if member_index == 1 then return end
     local context_menu = ISContextMenu.get(0, getMouseX(), getMouseY(), 1, 1)
     context_menu:addOption("Information", nil, function() show_survivor_info(member_index)  end)
     context_menu:addOption("Inventory", nil, function() create_panel_inventory_transfer(member_index)  end)

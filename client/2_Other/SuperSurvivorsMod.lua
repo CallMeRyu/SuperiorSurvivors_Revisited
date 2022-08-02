@@ -658,10 +658,12 @@ function supersurvivortemp(keyNum)
 			
 			
 			
-		elseif( keyNum == getCore():getKey("Toggle Group Window")) then -- 
-			myGroupWindow:setVisible(not myGroupWindow:getIsVisible())
-			if(myGroupWindow:getIsVisible()) then myGroupWindow:Update()
-			else mySurvivorInfoWindow:setVisible(false) end
+		elseif( keyNum == getCore():getKey("Toggle Group Window")) then
+			-- Old menu.
+			--myGroupWindow:setVisible(not myGroupWindow:getIsVisible())
+			--if(myGroupWindow:getIsVisible()) then myGroupWindow:Update()
+			--else mySurvivorInfoWindow:setVisible(false) end
+			window_super_survivors_visibility()
 		
 		
 		elseif( keyNum == getCore():getKey("Ask Closest Group Member to Follow")) then 
