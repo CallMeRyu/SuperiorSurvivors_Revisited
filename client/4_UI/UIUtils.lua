@@ -49,11 +49,11 @@ function get_group()
     local group = SSGM:Get(group_id)
     if group == nil then
         group = SSGM:newGroup()
-        group:addMember(SSM:Get(0), getText("ContextMenu_SS_Job_Leader"))
+        group:addMember(SSM:Get(0), getContextMenuText("Job_Leader"))
     end
     if group then
         if not group:isMember(SSM:Get(0)) then
-            group:addMember(SSM:Get(0), getText("ContextMenu_SS_Job_Leader"))
+            group:addMember(SSM:Get(0), getContextMenuText("Job_Leader"))
         elseif not group:hasLeader() then
             group:setLeader(0)
         end
@@ -66,11 +66,11 @@ function get_member_info(member_index)
     local group = SSGM:Get(group_id)
     if group == nil then
         group = SSGM:newGroup()
-        group:addMember(SSM:Get(0), getText("ContextMenu_SS_Job_Leader"))
+        group:addMember(SSM:Get(0), getContextMenuText("Job_Leader"))
     end
     if group then
         if not group:isMember(SSM:Get(0)) then
-            group:addMember(SSM:Get(0), getText("ContextMenu_SS_Job_Leader"))
+            group:addMember(SSM:Get(0), getContextMenuText("Job_Leader"))
         elseif not group:hasLeader() then
             group:setLeader(0)
         end
@@ -99,11 +99,11 @@ function get_member_info(member_index)
         end
         role = coords
     elseif not checkSaveFileExists("Survivor"..tostring(member)) then
-        name = getText("ContextMenu_SS_MIASurvivor").."["..tostring(member).."]"
+        name = getContextMenuText("MIASurvivor").."["..tostring(member).."]"
         role = getText("IGUI_health_Deceased")
         group:removeMember(member)
     else
-        name = getText("ContextMenu_SS_MIASurvivor").."["..tostring(member).."]"
+        name = getContextMenuText("MIASurvivor").."["..tostring(member).."]"
         local coords = getCoordsFromID(member)
         if coords == 0 then
             SSM:LoadSurvivor(member, getSpecificPlayer(0):getCurrentSquare())
@@ -119,7 +119,7 @@ function give_order(order_index, member_index)
     local group_members = SSGM:Get(group_id):getMembers()
     local member = group_members[member_index]
     if member then
-        getSpecificPlayer(0):Say(getText("ContextMenu_SS_SurvivorInfoName_Before")..member:getName()..getText("ContextMenu_SS_SurvivorInfoName_After"))
+        getSpecificPlayer(0):Say(getActionText("CallName_Before")..member:getName()..getActionText("CallName_After"))
         member:getTaskManager():AddToTop(ListenTask:new(member, getSpecificPlayer(0), false))
         SurvivorOrder(nil, member.player, Orders[order_index], nil)
     end
