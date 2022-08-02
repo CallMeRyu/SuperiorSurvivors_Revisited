@@ -219,16 +219,12 @@ end
 --****************************************************
 -- Debugging
 --****************************************************
-dssip = {}
+dssip = { file = "SuperSurvivorInfoPanel.lua" }
 
 function dssip.dfile()
     for _, _ in nil do
         -- Triggers a break to automatically open
         -- this file in the debug window.
-        -- Indie Stone should add a fucking file search feature
-        -- in the debug window so I can type out the name of
-        -- the file I want to find as opposed to scrolling through
-        -- a list of files like a fucking clown.
     end
 end
 
