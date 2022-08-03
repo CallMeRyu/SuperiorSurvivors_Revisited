@@ -344,7 +344,7 @@ function WindowSuperSurvivors:createChildren()
     self.headers_group_inventory.onMouseDown = function() return  end
     self.headers_group_name.backgroundColorMouseOver = self.headers_group_name.backgroundColor
     self.headers_group_status.backgroundColorMouseOver = self.headers_group_status.backgroundColor
-    self.headers_group_inventory.backgroundColorMouseOver = self.headers_group_status.backgroundColor
+    self.headers_group_inventory.backgroundColorMouseOver = self.headers_group_inventory.backgroundColor
     self:addChild(self.headers_group)
     self.headers_group:addChild(self.headers_group_name)
     self.headers_group:addChild(self.headers_group_status)
