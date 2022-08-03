@@ -278,6 +278,10 @@ end
 PanelInventoryTransfer = ISPanel:derive("PanelInventoryTransfer")
 
 function create_panel_inventory_transfer(member_index)
+    if panel_inventory_transfer then
+        panel_inventory_transfer:removeFromUIManager()
+        panel_inventory_transfer = nil
+    end
     panel_inventory_transfer = PanelInventoryTransfer:new(window_super_survivors.x, window_super_survivors.y+window_super_survivors.height+8, 475*2, (25*10)+(8*5), member_index)
     panel_inventory_transfer:addToUIManager()
     panel_inventory_transfer:setVisible(true)
