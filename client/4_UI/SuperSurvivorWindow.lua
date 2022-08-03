@@ -39,22 +39,28 @@ function PanelGroup:dupdate()
         local panel_entry = ISPanel:new(0, dy, 850, 30)
         panel_entry.borderColor = { r = 1, g = 1, b = 1, a = 0.2 }
         panel_entry.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
-        panel_entry.dwidth = 850/2
+        panel_entry.dwidth = 850/3
         local cat_member_name = ISButton:new(0, 0, panel_entry.dwidth, 30, tostring(name), nil, function() context_options.show_context_menu_member(i) end)
         local cat_member_role = ISButton:new(panel_entry.dwidth, 0, panel_entry.dwidth, 30, tostring(role), nil, function() context_options.show_context_menu_role(i) end)
+        local cat_member_inventory = ISButton:new(panel_entry.dwidth*2, 0, panel_entry.dwidth, 30, "Inventory", nil, function() create_panel_inventory_transfer(i) end)
+        if i == 1 then cat_member_inventory.enable = false end
         cat_member_name.borderColor = { r = 0, g = 0, b = 0, a = 0 }
         cat_member_role.borderColor = { r = 0, g = 0, b = 0, a = 0 }
+        cat_member_inventory.borderColor = { r = 0, g = 0, b = 0, a = 0 }
         if switch == 0 then
             cat_member_name.backgroundColor = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
             cat_member_role.backgroundColor = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
+            cat_member_inventory.backgroundColor = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
             switch = 1
         else
             cat_member_name.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
             cat_member_role.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
+            cat_member_inventory.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
             switch = 0
         end
         panel_entry:addChild(cat_member_name)
         panel_entry:addChild(cat_member_role)
+        panel_entry:addChild(cat_member_inventory)
         self:addChild(panel_entry)
         dy = dy+30
     end
@@ -329,16 +335,20 @@ function WindowSuperSurvivors:createChildren()
     -- headers group
     self.headers_group = ISPanel:new(0, self.y_pos, self.width, 25)
     table.insert(survivor_headers, 1, self.headers_group)
-    self.headers_group_width = self.width/2
-    self.headers_group_name = ISButton:new(1, 0, self.headers_group_width, 25, "Name", nil, nil)
-    self.headers_group_status = ISButton:new(self.headers_group_width-1, 0, self.headers_group_width, 25, "Role", nil, nil)
+    self.headers_group_width = self.width/3
+    self.headers_group_name = ISButton:new(0, 0, self.headers_group_width, 25, "Name", nil, nil)
+    self.headers_group_status = ISButton:new(self.headers_group_width, 0, self.headers_group_width, 25, "Role", nil, nil)
+    self.headers_group_inventory = ISButton:new(self.headers_group_width*2, 0, self.headers_group_width, 25, "Inventory", nil, nil)
     self.headers_group_name.onMouseDown = function() return  end
     self.headers_group_status.onMouseDown = function() return  end
+    self.headers_group_inventory.onMouseDown = function() return  end
     self.headers_group_name.backgroundColorMouseOver = self.headers_group_name.backgroundColor
     self.headers_group_status.backgroundColorMouseOver = self.headers_group_status.backgroundColor
+    self.headers_group_inventory.backgroundColorMouseOver = self.headers_group_status.backgroundColor
     self:addChild(self.headers_group)
     self.headers_group:addChild(self.headers_group_name)
     self.headers_group:addChild(self.headers_group_status)
+    self.headers_group:addChild(self.headers_group_inventory)
     -- headers base
     self.headers_base = ISPanel:new(0, self.y_pos, self.width, 25)
     self.headers_base:setVisible(false)
