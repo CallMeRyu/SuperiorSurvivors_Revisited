@@ -33,11 +33,6 @@ function SuperSurvivorPlayerInit(player)
 					wife = SSM:spawnSurvivor(not player:isFemale(), player:getCurrentSquare());
 					
 					local MData = wife:Get():getModData();
-					--if(player:isFemale()) then
-					--	wife:setName(getText("ContextMenu_SD_Husband"));
-					--else
-					--	wife:setName(getText("ContextMenu_SD_Wife"));
-					--end
 					
 					wife:Get():getModData().InitGreeting = getSpeech("WifeIntro");
 					wife:Get():getModData().seenZombie = true;

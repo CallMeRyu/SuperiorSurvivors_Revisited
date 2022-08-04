@@ -21,7 +21,7 @@ function WashSelfTask:new(superSurvivor)
 	o.WasSuccessful = false
 	
 	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
-	superSurvivor:RoleplaySpeak(getText("ContextMenu_SD_LookForItem_Before").."Wash Water"..getText("ContextMenu_SD_LookForItem_After"))
+	superSurvivor:RoleplaySpeak(getActionText("LookForItem_Before").."Wash Water"..getActionText("LookForItem_After"))
 	return o
 
 end
@@ -61,7 +61,7 @@ function WashSelfTask:update()
 	if(self.TargetItem == nil) then
 		self.Complete = true
 		if(self.WasSuccessful == false) then 
-			self.parent:RoleplaySpeak(getText("ContextMenu_SD_NoFindItem_Before").."Wash Water"..getText("ContextMenu_SD_NoFindItem_After")) 
+			self.parent:RoleplaySpeak(getActionText("NoFindItem_Before").."Wash Water"..getActionText("NoFindItem_After")) 
 		end
 		return false
 	end

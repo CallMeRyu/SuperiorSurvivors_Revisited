@@ -1,0 +1,114 @@
+IGUI_CH = {
+	--[[roleplay
+		texts that are just describing what the survivor is doing
+	]]--
+
+
+		IGUI_SS_Drinking = "飲用中...",
+		IGUI_SS_EatFood_Before = "吃 ",
+		IGUI_SS_EatFood_After = "",
+		IGUI_SS_Opens_Before = "打開 ",
+		IGUI_SS_Opens_After = "",
+		IGUI_SS_Takes_Before = "拾取 ",
+		IGUI_SS_Takes_After = "",
+		IGUI_SS_EquipsArmor = "穿上衣服",
+		IGUI_SS_EquipsArmor_Before = "*裝備 ",
+		IGUI_SS_EquipsArmor_After = "*",
+		IGUI_SS_TakesItemFromGround_Before = "取走",
+		IGUI_SS_TakesItemFromGround_After = " 從地面",
+		IGUI_SS_TakesFromGround_Before = "*拾取 ",
+		IGUI_SS_TakesFromGround_After = " 從地面上*",
+		IGUI_SS_TakesFromCont_Before = "*拾取 ",
+		IGUI_SS_TakesFromCont_After = " 從 容器中*",
+		IGUI_SS_UndressingClothes = "*脫下衣服*",
+		IGUI_SS_PickUpCorpse = "*從地面搬運屍體*",
+		IGUI_SS_Resting = "休息中...",
+		IGUI_SS_BandageBP_Before = "用繃帶包紮中...",
+		IGUI_SS_BandageBP_After = "",
+		IGUI_SS_DoctorSplint = "*固定夾板中...*",
+		IGUI_SS_DoctorBandageRemove = "*移除繃帶中...*",
+		IGUI_SS_DoctorStitches = "*縫合傷口中*",
+		IGUI_SS_DoctorGlass = "*取出玻璃中...*",
+		IGUI_SS_DoctorBullet = "*取出彈片中...*",
+		IGUI_SS_DoctorBandage = "*使用繃帶中...*",
+		IGUI_SS_Foraging = "*野外採集中...",
+		IGUI_SS_FarmingActionPlanting = "*將種子埋進土壤中...*",
+		IGUI_SS_FarmingActionHarvesting = "*收割農作物中...*",
+		IGUI_SS_FarmingActionWatering = "*澆水中...*",
+	--[[END roleplay]]--
+
+	--[[starting tasks
+		dialogue lines that indicate the start of a task
+	]]--
+
+
+		IGUI_SS_IGoRelax = "我猜我可以稍微放鬆一下",
+		IGUI_SS_IGoGetWood = "我猜我該去收集木材了",
+		IGUI_SS_IGoPileCorpse = "我猜我該去處理屍體了",
+		IGUI_SS_IGoForage = "我猜我該去野外採集了",
+		IGUI_SS_IGoChopWood = "我猜我該去砍伐樹木了",
+		IGUI_SS_IGoFarm = "我猜我該去耕種田園了",
+		IGUI_SS_IGoGuard = "我猜我該去警戒巡邏了",
+		IGUI_SS_IGoBackBase = "我猜我該返回基地了",
+	--[[END starting tasks]]--
+
+	--[[loot
+		dialogue lines that indicate the start of a loot task
+	]]--
+
+
+		IGUI_SS_LookForItem_Before = "要尋找 ",
+		IGUI_SS_LookForItem_After = "",
+		IGUI_SS_NoForagingHere = "我在這兒找不到任何東西",
+		IGUI_SS_NoFindItem_Before = "好像不是 ",
+		IGUI_SS_NoFindItem_After = " 在這周圍",
+		IGUI_SS_NoWoodHere = "周圍並沒有樹木",
+	--[[END loot]]--
+
+	--[[giving
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_TakeArmor = "過來取這件衣服",
+		IGUI_SS_Nothing = "無",
+		IGUI_SS_EveryOneUseMele = "大家都使用近戰武器!",
+		IGUI_SS_EveryOneUseGun = "大家都使用槍械!",
+		IGUI_SS_WantSomeFood = "需要食物麼?",
+		IGUI_SS_YouWantWater = "需要飲水麼?",
+		IGUI_SS_YouWantAmmo = "需要彈藥麼?",
+		IGUI_SS_TakeMyWeapon = "過來取這件武器",
+	--[[END giving]]--
+
+	--[[interactions
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_OverHere = "嗨! 這邊!",
+		IGUI_SS_HoldStill = "請稍等片刻...",
+		IGUI_SS_ComeWithMe_Before = "",
+		IGUI_SS_ComeWithMe_After = ", 跟我過來!",
+		IGUI_SS_CallName_Before = "",
+		IGUI_SS_CallName_After = "! 過來!",
+		IGUI_SS_CanIJoin = "我可以加入你的團隊麼?",
+		IGUI_SS_YouWantToJoin = "想加入我的團隊麼?",
+		IGUI_SS_WeBackToBase = "回家真好",
+		IGUI_SS_DoctorDone = "幸好發現及時!放輕鬆些!",
+	--[[END interactions]]--
+
+	--[[not able to do
+		dialogue lines that indicate that the task couldn't be done
+	]]--
+
+
+		IGUI_SS_NotInBuilding = "我們不在一棟建築裡面",
+		IGUI_SS_NoTrees = "周圍並沒有樹",
+		IGUI_SS_NoAxeNoChopWood = "到處都找不到斧子，放棄砍樹中...",
+		IGUI_SS_CantCarryMore = "我攜帶不了更多的東西啦",
+		IGUI_SS_NoFarmingArea = "沒有指定的農業區",
+		IGUI_SS_IDontKnowHowFarming = "我不知道該如何耕種"
+	--[[END not able to do]]--
+
+}
+

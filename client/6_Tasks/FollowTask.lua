@@ -70,18 +70,23 @@ function FollowTask:update()
 	
 	self.parent:setSneaking(self.FollowChar:isSneaking()) -- sneaking if perosn you follow is
 	--print(self.parent:getName()..": isInAction = "..tostring(self.parent:isInAction()))
+
+	-- they keep talking
+	if(ZombRand(70) == 0) then 
+		self.parent:Speak(getSpeech("IdleChatter"))  
+	end
 	
 		if(true) then -- self.parent:isInAction() == false) then -- for some reason this is true when they doing nothing sometimes...
 		
 		if(self.InBaseAtStart == true) and ( not self.parent:isInBase()) then 
 			if(ZombRand(2)==0) then 
-				self.parent:Speak(getText("ContextMenu_SD_WeLooting")) 
+				self.parent:Speak(getDialogue("WeLooting")) 
 			end
 			self.InBaseAtStart = false 
 		end
 		if(not self.InBaseAtStart) and (self.parent:isInBase()) and (self.parent:Get():getVehicle() == nil) then 
 			self.Complete = true 
-			self.parent:Speak(getText("ContextMenu_SD_WeBackToBase"))
+			self.parent:Speak(getActionText("WeBackToBase"))
 		end
 		
 		-- Option_FollowDistance is replacing the "+5" that it normally defaults to, to the in game settings

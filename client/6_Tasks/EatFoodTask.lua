@@ -78,7 +78,7 @@ function EatFoodTask:update()
 	if(self.parent:isInAction() == false) then
 				
 		if(self.EatingStarted == false) and (not self.parent.player:getInventory():contains(self.TheFood)) then
-			self.parent:RoleplaySpeak(getText("ContextMenu_SD_Takes_Before") .. self.TheFood:getDisplayName() .. getText("ContextMenu_SD_Takes_After"))
+			self.parent:RoleplaySpeak(getActionText("Takes_Before") .. self.TheFood:getDisplayName() .. getActionText("Takes_After"))
 			
 			self.TheFood = self.parent:ensureInInv(self.TheFood)
 			
@@ -89,7 +89,7 @@ function EatFoodTask:update()
 			if(HungerChange == 0) and (self:isCanned(self.TheFood)) then
 				local openCan = self:openCanned(self.TheFood)
 				if(openCan ~= nil) then
-					self.parent:RoleplaySpeak(getText("ContextMenu_SD_Opens_Before")..tostring(self.TheFood:getDisplayName())..getText("ContextMenu_SD_Opens_After"))
+					self.parent:RoleplaySpeak(getActionText("Opens_Before")..tostring(self.TheFood:getDisplayName())..getActionText("Opens_After"))
 					self.parent.player:getInventory():Remove(self.TheFood)
 					self.parent.player:getInventory():DoRemoveItem(self.TheFood)
 					self.TheFood = openCan
@@ -106,7 +106,7 @@ function EatFoodTask:update()
 			else self.eatthisMuch = 1.00 end	
 			--print(self.parent:getName() .. " eat " .. tostring(hunger)..","..tostring(HungerChange)..","..tostring(self.eatthisMuch))
 		
-			self.parent:RoleplaySpeak(getText("ContextMenu_SD_EatFood_Before") .. self.TheFood:getDisplayName() .. getText("ContextMenu_SD_EatFood_After"));
+			self.parent:RoleplaySpeak(getActionText("EatFood_Before") .. self.TheFood:getDisplayName() .. getActionText("EatFood_After"));
 			self.parent:DebugSay("EatFoodTask is about to trigger a StopWalk! ")
 			self.parent:StopWalk()
 			ISTimedActionQueue.add(ISEatFoodAction:new(self.parent.player,self.TheFood,self.eatthisMuch))

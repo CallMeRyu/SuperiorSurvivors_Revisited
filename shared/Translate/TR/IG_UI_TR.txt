@@ -1,0 +1,113 @@
+IGUI_TR = {
+	--[[roleplay
+		texts that are just describing what the survivor is doing
+	]]--
+
+
+		IGUI_SS_Drinking = "Içiyor..",
+		IGUI_SS_EatFood_Before = "Yiyor ",
+		IGUI_SS_EatFood_After = "",
+		IGUI_SS_Opens_Before = "Açiyor ",
+		IGUI_SS_Opens_After = "",
+		IGUI_SS_Takes_Before = "Aliyor ",
+		IGUI_SS_Takes_After = "",
+		IGUI_SS_EquipsArmor = "Zirh kusaniyor",
+		IGUI_SS_EquipsArmor_Before = "*Kusaniyor ",
+		IGUI_SS_EquipsArmor_After = "*",
+		IGUI_SS_TakesItemFromGround_Before = "Yerden ",
+		IGUI_SS_TakesItemFromGround_After = " Aliyor",
+		IGUI_SS_TakesFromGround_Before = "*Aliyor ",
+		IGUI_SS_TakesFromGround_After = " Yerden*",
+		IGUI_SS_TakesFromCont_Before = "*Aliyor ",
+		IGUI_SS_TakesFromCont_After = " Konteynirdan*",
+		IGUI_SS_PickUpCorpse = "*Cesedi yerden aliyor*",
+		IGUI_SS_Resting = "Dinleniyor...",
+		IGUI_SS_BandageBP_Before = "Sargiliyor ",
+		IGUI_SS_BandageBP_After = "",
+		IGUI_SS_DoctorSplint = "*Kirik için destek yapiliyor...*",
+		IGUI_SS_DoctorBandageRemove = "*Sargi çikariliyor...*",
+		IGUI_SS_DoctorStitches = "*Dikis Yapiliyor*",
+		IGUI_SS_DoctorGlass = "*Cam Parçasi Çikariliyor...*",
+		IGUI_SS_DoctorBullet = "*Mermi Çikariliyor...*",
+		IGUI_SS_DoctorBandage = "*Sargi uygulaniyor...*",
+		IGUI_SS_Foraging = "*Çali Çirpi Topluyor...",
+		IGUI_SS_FarmingActionPlanting = "*Tohum Ekiyor...*",
+		IGUI_SS_FarmingActionHarvesting = "*Biçiyor...*",
+		IGUI_SS_FarmingActionWatering = "*Suluyor...*",
+	--[[END roleplay]]--
+
+	--[[starting tasks
+		dialogue lines that indicate the start of a task
+	]]--
+
+
+		IGUI_SS_IGoRelax = "Sanirim biraz rahatlayacagim",
+		IGUI_SS_IGoGetWood = "Odun toplayacagim",
+		IGUI_SS_IGoPileCorpse = "Cesetleri buraya yigacagim",
+		IGUI_SS_IGoForage = "Biraz çali çirpi toplayacagim.",
+		IGUI_SS_IGoChopWood = "Agaç Kesmeye gidiyorum",
+		IGUI_SS_IGoFarm = "Tarlayla Ugrasiçagim",
+		IGUI_SS_IGoGuard = "Etrafi kolaçan ediyorum",
+		IGUI_SS_IGoBackBase = "Üsse geri dönüyorum",
+	--[[END starting tasks]]--
+
+	--[[loot
+		dialogue lines that indicate the start of a loot task
+	]]--
+
+
+		IGUI_SS_LookForItem_Before = "Aramaya Gidiyorum ",
+		IGUI_SS_LookForItem_After = "",
+		IGUI_SS_NoForagingHere = "Hiçbir sey Bulamadim",
+		IGUI_SS_NoFindItem_Before = "Sanirim Etrafta ",
+		IGUI_SS_NoFindItem_After = " hiçbir sey yok",
+		IGUI_SS_NoWoodHere = "Etrafta hiç kütük yok.",
+	--[[END loot]]--
+
+	--[[giving
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_TakeArmor = "Bu zirhi al",
+		IGUI_SS_Nothing = "Hiçbir sey",
+		IGUI_SS_EveryOneUseMele = "Herkes Yakin mesafe kullansin!",
+		IGUI_SS_EveryOneUseGun = "Herkes Atesli Silah Kullansin!",
+		IGUI_SS_WantSomeFood = "Biraz yemek ister misin?",
+		IGUI_SS_YouWantWater = "Biraz su ister misin?",
+		IGUI_SS_YouWantAmmo = "Mermi lazim mi?",
+		IGUI_SS_TakeMyWeapon = "Silahimi al",
+	--[[END giving]]--
+
+	--[[interactions
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_OverHere = "Hey!Buraya!",
+		IGUI_SS_HoldStill = "Lütfen Hareket Etme...",
+		IGUI_SS_ComeWithMe_Before = "",
+		IGUI_SS_ComeWithMe_After = ", Benimle Gel!",
+		IGUI_SS_CallName_Before = "",
+		IGUI_SS_CallName_After = "! Buraya Gel!",
+		IGUI_SS_CanIJoin = "Grubuna katilabilir miyim?",
+		IGUI_SS_YouWantToJoin = "Grubuma katilmak ister misin?",
+		IGUI_SS_WeBackToBase = "Geri Döndüm",
+		IGUI_SS_DoctorDone = "Yeni gibi oldun Kendine dikkat et!",
+	--[[END interactions]]--
+
+	--[[not able to do
+		dialogue lines that indicate that the task couldn't be done
+	]]--
+
+
+		IGUI_SS_NotInBuilding = "Bir yapinin içinde degiliz",
+		IGUI_SS_NoTrees = "Etrafta hiç agaç yok",
+		IGUI_SS_NoAxeNoChopWood = "Balta yoksa agaç kesemem",
+		IGUI_SS_CantCarryMore = "Daha fazla tasiyamam",
+		IGUI_SS_NoFarmingArea = "Tarla yapmak için alan yok",
+		IGUI_SS_IDontKnowHowFarming = "Çiftçilik yapmayi bilmiyorum"
+	--[[END not able to do]]--
+
+}
+

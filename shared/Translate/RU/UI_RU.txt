@@ -1,13 +1,211 @@
 UI_RU = {
-	UI_optionscreen_binding_Call Closest Group Member = "Позвать ближайшего члена группы"
-	UI_optionscreen_binding_Call Closest Non-Group Member = "Позвать ближайшего выжившего",
-	UI_optionscreen_binding_Ask Closest Group Member to Follow = "Приказать ближайшему члену группы следовать",
-	UI_optionscreen_binding_Spawn Wild Survivor = "Заспаунить дикого выжившего",
-	UI_optionscreen_binding_Toggle Group Window = "Переключение окна группы",
-	UI_optionscreen_binding_Lower Follow Distance = "Уменьшить расстояние следования",
-	UI_optionscreen_binding_Raise Follow Distance = "Увеличить расстояние следования",
-	UI_optionscreen_binding_SSHotkey_1 = "Команда быстрого доступа 1",
-	UI_optionscreen_binding_SSHotkey_2 = "Команда быстрого доступа 2",
-	UI_optionscreen_binding_SSHotkey_3 = "Команда быстрого доступа 3",
-	UI_optionscreen_binding_SSHotkey_4 = "Команда быстрого доступа 4",
+	--[[structure]]--
+
+
+		UI_Option_SS_Title = "Выживших",
+	--[[END structure]]--
+
+	--[[global]]--
+
+
+		UI_Option_SS_Off = "Откл",
+		UI_Option_SS_On = "Вкл",
+		UI_Option_SS_VeryLow = "Очень низко",
+		UI_Option_SS_Low = "Низко",
+		UI_Option_SS_Normal = "Нормально",
+		UI_Option_SS_High = "Высоко",
+		UI_Option_SS_VeryHigh = "Очень высоко",
+	--[[END global]]--
+
+	--[[spawn]]--
+
+
+		UI_Option_SS_SurvivorSpawnRate = "Частота появления выживших",
+		UI_Option_SS_SurvivorSpawnRateDesc = "Определяет кол-во случайных выживших, которые будут появляться.",
+		UI_Option_SS_UltraLow = "Сверхнизкий",
+		UI_Option_SS_ExtremelyLow = "Крайне низко",
+		UI_Option_SS_SlightlyLower = "Чуть ниже",
+		UI_Option_SS_SlightlyHigher = "Чуть выше",
+		UI_Option_SS_ExtremelyHigh = "Чрезвычайно высоко",
+		UI_Option_SS_UltraHigh = "Сверхвысокий",
+	--[[END spawn]]--
+
+	--[[alt spawn]]--
+
+
+
+
+	--[[END alt spawn]]--
+
+	--[[preset spawn]]--
+
+
+	--[[END preset spawn]]--
+
+	--[[names]]--
+
+
+	--[[END names]]--
+
+	--[[hostile]]--
+
+
+		UI_Option_SS_ChancetobeHostile = "Шанс появления враждебного выжившего",
+		UI_Option_SS_ChancetobeHostileDesc = "Влияет на появление враждебного выжившего.",
+		UI_Option_SS_MaxHostileSpawnRate = "MAX шанс появления враждебного выжившего",
+		UI_Option_SS_MaxHostileSpawnRateDesc = "Шанс быть враждебным увеличивается с течением времени, но он будет доходить только до определенного процента и не станет его превышать.",
+	--[[END hostile]]--
+
+	--[[raiders]]--
+
+
+		UI_Option_SS_RaidersChance = "Шанс появления рейдеров",
+		UI_Option_SS_RaidersChanceDesc = "Шанс будет влиять на появление рейдеров после того, как только произойдет первое их появление.",
+		UI_Option_SS_RaidersAfterHours = "Появление рейдеров",
+		UI_Option_SS_StartImmediately = "После старта игры",
+		UI_Option_SS_AfterDay1 = "После 1 дня",
+		UI_Option_SS_AfterDay5 = "После 5 дня",
+		UI_Option_SS_AfterDay10 = "После 10 дня",
+		UI_Option_SS_AfterDay15 = "После 15 дня",
+		UI_Option_SS_AfterDay20 = "После 20 дня",
+		UI_Option_SS_AfterDay25 = "После 25 дня",
+		UI_Option_SS_AfterDay30 = "После 30 дня",
+		UI_Option_SS_AfterDay35 = "После 35 дня",
+		UI_Option_SS_AfterDay40 = "После 40 дня",
+		UI_Option_SS_AfterDay45 = "После 45 дня",
+		UI_Option_SS_AfterDay50 = "После 50 дня",
+		UI_Option_SS_AfterDay55 = "После 55 дня",
+		UI_Option_SS_AfterDay60 = "После 60 дня",
+		UI_Option_SS_AfterDay65 = "После 65 дня",
+		UI_Option_SS_AfterDay70 = "После 70 дня",
+		UI_Option_SS_AfterDay75 = "После 75 дня",
+		UI_Option_SS_AfterDay80 = "После 80 дня",
+		UI_Option_SS_AfterDay85 = "После 85 дня",
+		UI_Option_SS_AfterDay90 = "После 90 дня",
+		UI_Option_SS_AfterDay95 = "После 95 дня",
+		UI_Option_SS_AfterDay100 = "После 100 дня",
+		UI_Option_SS_Never = "Никогда",
+		UI_Option_SS_RaidersAfterHoursDesc = "Рейдеры начнут случайно появляться, как только пройдет время. Гарантированное появление рейдеров также начинается после того, как прошло это время.",
+		UI_Option_SS_RaidersGuaranteed = "Гарантированное появление рейдеров",
+		UI_Option_SS_Every5Days = "Каждые 5 дней",
+		UI_Option_SS_Every10Days = "Каждые 10 дней",
+		UI_Option_SS_Every15Days = "Каждые 15 дней",
+		UI_Option_SS_Every20Days = "Каждые 20 дней",
+		UI_Option_SS_Every25Days = "Каждые 25 дней",
+		UI_Option_SS_Every30Days = "Каждые 30 дней",
+		UI_Option_SS_Every35Days = "Каждые 35 дней",
+		UI_Option_SS_Every40Days = "Каждые 40 дней",
+		UI_Option_SS_Every45Days = "Каждые 45 дней",
+		UI_Option_SS_Every50Days = "Каждые 50 дней",
+		UI_Option_SS_Every55Days = "Каждые 55 дней",
+		UI_Option_SS_Every60Days = "Каждые 60 дней",
+		UI_Option_SS_Every65Days = "Каждые 65 дней",
+		UI_Option_SS_Every70Days = "Каждые 70 дней",
+		UI_Option_SS_Every75Days = "Каждые 75 дней",
+		UI_Option_SS_Every80Days = "Каждые 80 дней",
+		UI_Option_SS_Every85Days = "Каждые 85 дней",
+		UI_Option_SS_Every90Days = "Каждые 90 дней",
+		UI_Option_SS_Every95Days = "Каждые 95 дней",
+		UI_Option_SS_Every100Days = "Каждые 100 дней",
+		UI_Option_SS_EveryDay = "Каждый день",
+		UI_Option_SS_EveryHour = "Каждый час",
+		UI_Option_SS_Every10Minutes = "Каждые 10 минут",
+		UI_Option_SS_RaidersGuaranteedDesc = "Если первое появление рейдеров еще не прошло, то они гарантированно появятся через данное кол-во времени.",
+	--[[END raiders]]--
+
+	--[[weapons]]--
+
+
+		UI_Option_SS_ChancetoSpawnWithGun = "Шанс появления с оружием",
+		UI_Option_SS_ChancetoSpawnWithGunDesc = "Шанс появления выжившего с оружием в руках.",
+		UI_Option_SS_WepSpawnRate = "Шанс появления с оружием ближнего боя",
+		UI_Option_SS_WepSpawnRateDesc = "Влияет на появление выжившего с оружием с самого начала игры.",
+	--[[END weapons]]--
+
+	--[[bravery]]--
+
+
+		UI_Option_SS_SurvivorBravery = "Храбрость выживших",
+		UI_Option_SS_SurvivorBraveryDesc = "Определяет вероятность того, станут ли выжившие сражаться, а не избегать боя.",
+		UI_Option_SS_Cowardly = "Трусливые",
+		UI_Option_SS_Brave = "Храбрые",
+		UI_Option_SS_VeryBrave = "Очень храбрые",
+	--[[END bravery]]--
+
+	--[[friendliness]]--
+
+
+		UI_Option_SS_SurvivorFriendliness = "Дружелюбность выживших",
+		UI_Option_SS_SurvivorFriendlinessDesc = "Влияет на то, как легко выживший согласится вступить в вашу группу. Предложение большего кол-ва подарков увеличивает шанс принятия в команду, но каждый раз, когда вы раздражаете выжившего с приглашением, шанс понижается. Частые приглашения в группу не приведут ни к чему хорошему.",
+		UI_Option_SS_DesperateforHumanContact = "Избегает контактов с людьми",
+		UI_Option_SS_VeryFriendly = "Очень дружелюбный",
+		UI_Option_SS_Friendly = "Дружелюбный",
+		UI_Option_SS_Mean = "Скупой",
+		UI_Option_SS_VeryMean = "Очень скупой",
+	--[[END friendliness]]--
+
+	--[[on/off options]]--
+
+
+		UI_Option_SS_LockNLoad = "Опция 'Готов к бою'",
+		UI_Option_SS_LockNLoadDesc = "Вы и ваша жена (если включено) будут спавниться с оружием, патронами и броней (если Armor Mod включен) с самого начала игры. Обычно включается, если у вас настроен большой шанс появления рейдеров.",
+		UI_Option_SS_WifeSpawn = "Муж / жена",
+		UI_Option_SS_WifeSpawnDesc = "Создает мужа или жену с самого начала игры и вносит его/ее в вашу группу.",
+		UI_Option_SS_InfinitAmmo = "Бесконечные патроны",
+		UI_Option_SS_InfinitAmmoDesc = "Если включено, то выжившим не потребуются патроны для стрельбы. Если включено, то выжившим необходимо иметь патроны или коробки с патронами у себя в инвентаре. Дать больше патронов можно через меню (ПКМ по выжившему), также, они будут пытаться найти патроны рядом с ними.",
+		UI_Option_SS_FindWork = "Независимые выжившие",
+		UI_Option_SS_FindWorkDesc = "Если включено, выжившие на вашей базе могут заняться различной работой, если им будет нечем заняться. Если отключено, то они ничего не будут делать без приказа игрока.",
+		UI_Option_SS_SurvivorHunger = "Голод и жажда",
+		UI_Option_SS_SurvivorHungerDesc = "Если отключено выжившие всегда будут сытыми. Им не придется кушать или пить. Если включено, то они будут пытаться найти себе еду или воду.",
+		UI_Option_SS_SafeBase = "Безопасная база",
+		UI_Option_SS_SafeBaseDesc = "Дикие выжившие будут избегать вашей отмеченной базы",
+		UI_Option_SS_SurvivorBases = "Базы выживших",
+		UI_Option_SS_SurvivorBasesDesc = "Дикий выжившие создадут свои собственные базы",
+	--[[END on/off options]]--
+
+	--[[perception]]--
+
+
+	--[[END perception]]--
+
+	--[[hotkeys]]--
+
+
+		UI_Option_SS_hotkey1 = "Действие горячей клавиши #1",
+		UI_Option_SS_hotkey2 = "Действие горячей клавиши #2",
+		UI_Option_SS_hotkey3 = "Действие горячей клавиши #3",
+		UI_Option_SS_hotkey4 = "Действие горячей клавиши #4",
+
+		UI_Option_SS_hotkeyDesc = "Выберите действие, которое произойдет, когда вы нажмете на эту горячую клавишу. Приказ всем действует на всех людей, кто находится в радиусе действия. Тогда как на остальных действует только на тех, кто слышит вас. (Нажмите на "T").",
+	--[[END hotkeys]]--
+
+	--[[bindings]]--
+
+
+		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Group Member = "Позвонить ближайшему члену группы",
+		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Non-Group Member = "Позвонить ближайшему выжившему не из группы",
+		UI_optionscreen_binding_SS_optionscreen_binding_Ask Closest Group Member to Follow = "Приказать ближайшему члену группы подписаться",
+		UI_optionscreen_binding_SS_optionscreen_binding_Spawn Wild Survivor = "Создать Wild Survivor",
+		UI_optionscreen_binding_SS_optionscreen_binding_Toggle Group Window = "Переключение окна участника",
+		UI_optionscreen_binding_SS_optionscreen_binding_Lower Follow Distance = "Уменьшить расстояние следования",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_1 = "Команда быстрого доступа 1",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_2 = "Команда быстрого доступа 2",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_3 = "Команда быстрого доступа 3",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_4 = "Команда быстрого доступа 4",
+
+	--[[END bindings]]--
+
+	--[[debug]]--
+
+
+		UI_Option_SS_DebugOptions = "Параметры отладки",
+		UI_Option_SS_DebugOptionsDesc = "Включает отладку, щелкните правой кнопкой мыши параметры выжившего",
+		UI_Option_SS_LowerFollowDistance = "Понизить дистанцию передвижения",
+		UI_Option_SS_RaiseFollowDistance = "Повысить дистанцию передвижения",
+		UI_Option_SS_CallClosestGroupMember = "Позвать ближайшего члена группы",
+		UI_Option_SS_CallClosestNonGroupMember = "Позвать ближайшего члена не из группы",
+		UI_Option_SS_AskClosestGroupMembertoFollow = "Попросить следовать ближайших членов группы",
+	--[[END debug]]--
+
 }
+

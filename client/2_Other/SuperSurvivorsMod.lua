@@ -17,7 +17,7 @@ function SuperSurvivorsOnTick()
 			SuperSurvivorSelectingArea = 0 
 		end
 		
-		if (SuperSurvivorMouseDownTicks > 15) then
+		if (SuperSurvivorMouseDownTicks > 15) then -- 10 acts instant, so a left click would reset the select area finalization.
 		
 		
 			
@@ -96,6 +96,51 @@ function SuperSurvivorSoldierSpawn(square)
 	return ASuperSurvivor
 end
 
+function SuperSurvivorSoldierSpawnMelee(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+
+	return ASuperSurvivor
+end
+
+
+function SuperSurvivorSoldierSpawnHostile(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(RangeWeapons[ZombRand(1,#RangeWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor:setHostile(true)
+
+	return ASuperSurvivor
+end
+
+function SuperSurvivorSoldierSpawnMeleeHostile(square)
+	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
+	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
+
+	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
+	ASuperSurvivor:setHostile(true)
+
+	return ASuperSurvivor
+end
+
+
+
+
 function SuperSurvivorRandomSpawn(square)
 	
 
@@ -163,7 +208,9 @@ function SuperSurvivorsLoadGridsquare(square)
 			local gameVersion = getCore():getGameVersion()
 			IsDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() > 50 and gameVersion:getMinor() < 53)
 			IsNpcDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() >= 53)
-			
+	
+			Option_WarningMSG = SuperSurvivorGetOptionValue("Option_WarningMSG")
+
 			
 			Option_Perception_Bonus = SuperSurvivorGetOptionValue("Option_Perception_Bonus")
 			
@@ -605,16 +652,18 @@ function supersurvivortemp(keyNum)
 			
 			local SS = SSM:GetClosestNonParty()
 			if(SS) then
-				mySS:Speak(getText("ContextMenu_SD_HeyYou"))
+				mySS:Speak(getDialogue("HeyYou"))
 				SS:getTaskManager():AddToTop(ListenTask:new(SS,mySS:Get(),false))
 			end
 			
 			
 			
-		elseif( keyNum == getCore():getKey("Toggle Group Window")) then -- 
-			myGroupWindow:setVisible(not myGroupWindow:getIsVisible())
-			if(myGroupWindow:getIsVisible()) then myGroupWindow:Update()
-			else mySurvivorInfoWindow:setVisible(false) end
+		elseif( keyNum == getCore():getKey("Toggle Group Window")) then
+			-- Old menu.
+			--myGroupWindow:setVisible(not myGroupWindow:getIsVisible())
+			--if(myGroupWindow:getIsVisible()) then myGroupWindow:Update()
+			--else mySurvivorInfoWindow:setVisible(false) end
+			window_super_survivors_visibility()
 		
 		
 		elseif( keyNum == getCore():getKey("Ask Closest Group Member to Follow")) then 
@@ -626,7 +675,7 @@ function supersurvivortemp(keyNum)
 					
 					local member = myGroup:getClosestMember(nil,mySS:Get())
 					if(member) then
-						mySS:Get():Say(getText("ContextMenu_SD_ComeWithMe_Before") .. member:Get():getForname() .. getText("ContextMenu_SD_ComeWithMe_After"))
+						mySS:Get():Say(getActionText("ComeWithMe_Before") .. member:Get():getForname() .. getActionText("ComeWithMe_After"))
 						member:getTaskManager():clear()
 						member:getTaskManager():AddToTop(FollowTask:new(member,mySS:Get()))
 						--mySS:DebugSay("Follow Task triggered in supersurvivorsmod - path a")
@@ -855,13 +904,6 @@ function SuperSurvivorsNewSurvivorManager()
 			
 			
 			if(success) and (spawnSquare) then
-			--	getSpecificPlayer(0):getModData().LastRaidTime = hours
-				--if(getSpecificPlayer(0):isAsleep()) then 
-				--	getSpecificPlayer(0):Say(getText("ContextMenu_SD_IGotABadFeeling"))
-				--	getSpecificPlayer(0):forceAwake()
-				--else
-				--	getSpecificPlayer(0):Say("A custom survivor spawned!");
-				--end
 				
 				-- ALT SPAWNING SECTION -- 
 				-- SURVIVOR, NON RAIDER SPAWNING
@@ -1149,10 +1191,10 @@ function SuperSurvivorsRaiderManager()
 		if(success) and (spawnSquare) then
 			getSpecificPlayer(0):getModData().LastRaidTime = hours
 			if(getSpecificPlayer(0):isAsleep()) then 
-				getSpecificPlayer(0):Say(getText("ContextMenu_SD_IGotABadFeeling"))
+				getSpecificPlayer(0):Say(getDialogue("IGotABadFeeling"))
 				getSpecificPlayer(0):forceAwake()
 			else
-				getSpecificPlayer(0):Say(getText("ContextMenu_SD_WhatWasThatSound"));
+				getSpecificPlayer(0):Say(getDialogue("WhatWasThatSound"));
 			end
 			-- RAIDER GROUPS
 			local RaiderGroup = SSGM:newGroup()
@@ -1239,4 +1281,32 @@ function SSOnGameStartHandle()
 end
 
 --Events.OnGameStart.Add(SSOnGameStartHandle)
+-- Mod ID name, then the Mod's actual name
 
+local function SSSpamCheck_Preset(Var1,Var2)
+
+	if (Option_WarningMSG == 2) then
+		if isModEnabled(Var1) then
+			print(Var2 .. " doesn't work with SuperiorSurvivors!")
+			getSpecificPlayer(0):Say(Var2 .. " doesn't work with SuperiorSurvivors, please disable " .. Var2 .. "! To disable this Message, check warning message option in SuperiorSurvivors.")
+		end
+	end
+end
+
+-- Checks for spamming people when they use incompatible mods can be found here.
+local function SSSpamChecks()
+
+	SSSpamCheck_Preset("ZM1A1","[OPEN BETA] M1A1 ABRAMS")
+	SSSpamCheck_Preset("Amputation","TheOnlyCure")
+	SSSpamCheck_Preset("SwapIt","SwapIt")
+
+	SSSpamCheck_Preset("SuperSurvivors","SuperSurvivors")
+	SSSpamCheck_Preset("SuperbSurvivors","SuperbSurvivors")
+	SSSpamCheck_Preset("SubparSurvivors","SubparSurvivors")
+	SSSpamCheck_Preset("Survivors","Survivors")
+	SSSpamCheck_Preset("SuperbSurvivorz","SuperbSurvivorz")
+	SSSpamCheck_Preset("SuperbUndressedSurvivors","SuperbUndressedSurvivors")
+
+end
+
+Events.EveryOneMinute.Add(SSSpamChecks)

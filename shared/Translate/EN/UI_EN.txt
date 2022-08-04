@@ -1,13 +1,252 @@
 UI_EN = {
-	UI_optionscreen_binding_Call Closest Group Member = "Call Closest Group Member"
-	UI_optionscreen_binding_Call Closest Non-Group Member = "Call Closest Non-Group Member",
-	UI_optionscreen_binding_Ask Closest Group Member to Follow = "Ask Closest Group Member to Follow",
-	UI_optionscreen_binding_Spawn Wild Survivor = "Spawn Wild Survivor",
-	UI_optionscreen_binding_Toggle Group Window = "Toggle Group Window",
-	UI_optionscreen_binding_Lower Follow Distance = "Lower Follow Distance",
-	UI_optionscreen_binding_Raise Follow Distance = "Raise Follow Distance",
-	UI_optionscreen_binding_SSHotkey_1 = "SSHotkey 1 Directive",
-	UI_optionscreen_binding_SSHotkey_2 = "SSHotkey 2 Directive",
-	UI_optionscreen_binding_SSHotkey_3 = "SSHotkey 3 Directive",
-	UI_optionscreen_binding_SSHotkey_4 = "SSHotkey 4 Directive",
+	--[[structure]]--
+
+
+		UI_Option_SS_Title = "Survivors Version",
+	--[[END structure]]--
+
+	--[[global]]--
+
+
+		UI_Option_SS_Off = "Off",
+		UI_Option_SS_On = "On",
+		UI_Option_SS_VeryLow = "Very Low",
+		UI_Option_SS_Low = "Low",
+		UI_Option_SS_Normal = "Normal",
+		UI_Option_SS_High = "High",
+		UI_Option_SS_VeryHigh = "Very High",
+	--[[END global]]--
+
+	--[[spawn]]--
+
+
+		UI_Option_SS_SurvivorSpawnRate = "NPC Spawn Rate:",
+		UI_Option_SS_SurvivorSpawnRateDesc = "This defines the amount of random survivors that will spawn. NPCs will spawn based on tiles on the map.",
+		UI_Option_SS_UltraLow = "Ultra Low",
+		UI_Option_SS_ExtremelyLow = "Extremely Low",
+		UI_Option_SS_SlightlyLower = "Slightly Lower",
+		UI_Option_SS_SlightlyHigher = "Slightly Higher",
+		UI_Option_SS_ExtremelyHigh = "Extremely High",
+		UI_Option_SS_UltraHigh = "Ultra High",
+	--[[END spawn]]--
+
+	--[[alt spawn]]--
+
+
+		UI_Option_SS_AltSpawn = "Alt Spawning - Groups:",
+		UI_Option_SS_AltSpawnOff = "Off",
+		UI_Option_SS_UpTo1 = "Just 1 NPC group",
+		UI_Option_SS_UpTo2 = "1 To 2 NPC groups",
+		UI_Option_SS_UpTo3 = "1 To 3 NPC groups",
+		UI_Option_SS_UpTo4 = "1 To 4 NPC groups",
+		UI_Option_SS_UpTo5 = "1 To 5 NPC groups",
+		UI_Option_SS_UpTo6 = "1 To 6 NPC groups",
+
+		UI_Option_SS_AltSpawnDesc = "Alt Spawning hourly is a new type of spawning method for NPCs to spawn. How many groups do you want to spawn around you every in game hour? 'Groups' will contain NPCs inside to spawn around you off screen every hour - (Determined by you in the other settings). You can use this spawning method along with 'NPC spawn rate', but effects may differ on performance. Turning this setting 'OFF' will turn off the other settings as well. Read the descriptions on the other Alt spawning options to know more. ",
+		UI_Option_SS_AltSpawnAmount = "Max Alt Spawn Group Size:",
+		UI_Option_SS_AltSpawnAmount_1 = "Only 1",
+		UI_Option_SS_AltSpawnAmount_2 = "Random from 1 to 2 max",
+		UI_Option_SS_AltSpawnAmount_3 = "Random from 1 to 3 max",
+		UI_Option_SS_AltSpawnAmount_4 = "Random from 1 to 4 max",
+		UI_Option_SS_AltSpawnAmount_5 = "Random from 1 to 5 max",
+		UI_Option_SS_AltSpawnAmount_6 = "Random from 1 to 6 max",
+
+		UI_Option_SS_AltSpawnAmountDesc = "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)",
+		UI_Option_SS_AltSpawnPercent = "Alt Spawning - Chance:",
+		UI_Option_SS_AltSpawnPercentDesc = "You can control the chance when a group(s) of NPCs spawn around you every hour by % chance. If your %chance dice surpass the random roll (Random 1-100) during an in game hour, groups of NPCs will spawn around you off screen.",
+	--[[END alt spawn]]--
+
+	--[[preset spawn]]--
+
+
+		UI_Option_SS_NoPreSetSpawn = "Disable All Pre-set/Unique Survivors",
+		UI_Option_SS_NoPreSetSpawnDesc = "Disable All Pre-set/Unique Survivors",
+	--[[END preset spawn]]--
+
+	--[[names]]--
+
+
+		UI_Option_SS_Display_Survivor_Names = "Display NPC Names: ",
+		UI_Option_SS_Display_Survivor_NamesDesc = "Do you want to see the names of the NPCs displayed above their heads?",
+		UI_Option_SS_Display_Hostile_Color = "Display Hostile Color: ",
+		UI_Option_SS_Display_Hostile_ColorDesc = "Do you want to know if an NPC is hostile or not? Setting this 'off' will prevent hostile NPC's names from glowing red",
+		UI_Option_SS_RoleplayMessage = "Display Roleplay Messages:",
+		UI_Option_SS_RoleplayMessageDesc = "This defines if messages of actions will be showed",
+	--[[END names]]--
+
+	--[[hostile]]--
+
+
+		UI_Option_SS_ChancetobeHostile = "Hostile NPC - Spawn Hostile:",
+		UI_Option_SS_ChancetobeHostileDesc = "This defines the chance that a random spawn survivor will be hostile when spawned",
+		UI_Option_SS_MaxHostileSpawnRate = "Hostile NPC - Hostile Over Time:",
+		UI_Option_SS_MaxHostileSpawnRateDesc = "Chance to be hostile increases over time, but it will cap at this % and never go above this % Unsure if this option still works.",
+	--[[END hostile]]--
+
+	--[[raiders]]--
+
+
+		UI_Option_SS_RaidersChance = "Raider Event Spawning - Chance:",
+		UI_Option_SS_RaidersChanceDesc = "The chance a Raider event will happen after the start date has passed.",
+		UI_Option_SS_RaidersAfterHours = "Raider Event Spawning - After Day:",
+		UI_Option_SS_StartImmediately = "Start Immediately",
+		UI_Option_SS_AfterDay1 = "After Day 1",
+		UI_Option_SS_AfterDay5 = "After Day 5",
+		UI_Option_SS_AfterDay10 = "After Day 10",
+		UI_Option_SS_AfterDay15 = "After Day 15",
+		UI_Option_SS_AfterDay20 = "After Day 20",
+		UI_Option_SS_AfterDay25 = "After Day 25",
+		UI_Option_SS_AfterDay30 = "After Day 30",
+		UI_Option_SS_AfterDay35 = "After Day 35",
+		UI_Option_SS_AfterDay40 = "After Day 40",
+		UI_Option_SS_AfterDay45 = "After Day 45",
+		UI_Option_SS_AfterDay50 = "After Day 50",
+		UI_Option_SS_AfterDay55 = "After Day 55",
+		UI_Option_SS_AfterDay60 = "After Day 60",
+		UI_Option_SS_AfterDay65 = "After Day 65",
+		UI_Option_SS_AfterDay70 = "After Day 70",
+		UI_Option_SS_AfterDay75 = "After Day 75",
+		UI_Option_SS_AfterDay80 = "After Day 80",
+		UI_Option_SS_AfterDay85 = "After Day 85",
+		UI_Option_SS_AfterDay90 = "After Day 90",
+		UI_Option_SS_AfterDay95 = "After Day 95",
+		UI_Option_SS_AfterDay100 = "After Day 100",
+		UI_Option_SS_Never = "Never",
+		UI_Option_SS_RaidersAfterHoursDesc = "Raiders Event can start to Randomly happen after this amount of time has passed. Raiders Guaranteed event also only starts calculating after this time has passed.",
+		UI_Option_SS_RaidersGuaranteed = "Raider Event Spawning - How Often:",
+		UI_Option_SS_Every5Days = "Every 5 Days",
+		UI_Option_SS_Every10Days = "Every 10 Days",
+		UI_Option_SS_Every15Days = "Every 15 Days",
+		UI_Option_SS_Every20Days = "Every 20 Days",
+		UI_Option_SS_Every25Days = "Every 25 Days",
+		UI_Option_SS_Every30Days = "Every 30 Days",
+		UI_Option_SS_Every35Days = "Every 35 Days",
+		UI_Option_SS_Every40Days = "Every 40 Days",
+		UI_Option_SS_Every45Days = "Every 45 Days",
+		UI_Option_SS_Every50Days = "Every 50 Days",
+		UI_Option_SS_Every55Days = "Every 55 Days",
+		UI_Option_SS_Every60Days = "Every 60 Days",
+		UI_Option_SS_Every65Days = "Every 65 Days",
+		UI_Option_SS_Every70Days = "Every 70 Days",
+		UI_Option_SS_Every75Days = "Every 75 Days",
+		UI_Option_SS_Every80Days = "Every 80 Days",
+		UI_Option_SS_Every85Days = "Every 85 Days",
+		UI_Option_SS_Every90Days = "Every 90 Days",
+		UI_Option_SS_Every95Days = "Every 95 Days",
+		UI_Option_SS_Every100Days = "Every 100 Days",
+		UI_Option_SS_EveryDay = "Every Day!",
+		UI_Option_SS_EveryHour = "Every Hour!",
+		UI_Option_SS_Every10Minutes = "Every 10 Minutes!",
+		UI_Option_SS_RaidersGuaranteedDesc = "If it is past the Raiders start date, and Raiders event has not happened for this amount of time. Raiders will be spawned after this amount of time passes.",
+	--[[END raiders]]--
+
+	--[[weapons]]--
+
+
+		UI_Option_SS_ChancetoSpawnWithGun = "NPC Gun Weapon Chance:",
+		UI_Option_SS_ChancetoSpawnWithGunDesc = "Chance to Spawn With Gun",
+		UI_Option_SS_WepSpawnRate = "NPC Melee Weapon Chance:",
+		UI_Option_SS_WepSpawnRateDesc = "This defines the chances that when a NPC spawns into the world, it will also have a random melee weapon with it.",
+	--[[END weapons]]--
+
+	--[[bravery]]--
+
+
+		UI_Option_SS_Panic_Distance = "[Experimental] - Panic Distance",
+		UI_Option_SS_Panic_DistanceDesc = "In the FleeAwayFromHereTask file, there was previously a value set to 'if my distance is less than 30 blocks away from where I was, continue running away in panic'. This option allows you to the power to change that value any time FleeAwayFromHereTask is being given to an NPC. Setting it to 0 may result in the npc doing nothing or only moving away by 1 block (No it doesn't make sense, but that's why it's experimental.)",
+		UI_Option_SS_SurvivorBravery = "Survivor Bravery",
+		UI_Option_SS_SurvivorBraveryDesc = "Determines how likely Survivors are to fight, rather than flee or avoid.",
+		UI_Option_SS_Cowardly = "Cowardly",
+		UI_Option_SS_Brave = "Brave",
+		UI_Option_SS_VeryBrave = "Very Brave",
+	--[[END bravery]]--
+
+	--[[friendliness]]--
+
+
+		UI_Option_SS_SurvivorFriendliness = "Survivor Friendliness:",
+		UI_Option_SS_SurvivorFriendlinessDesc = "This defines how easy it is to get a random survivor to join your team. Offering more gifts increase the chance of party invite acceptance, but each time you bug them with an invite, chance also goes down. So spamming invites does not do much good.",
+		UI_Option_SS_DesperateforHumanContact = "Desperate for Human Contact",
+		UI_Option_SS_VeryFriendly = "Very Friendly",
+		UI_Option_SS_Friendly = "Friendly",
+		UI_Option_SS_Mean = "Mean",
+		UI_Option_SS_VeryMean = "Very Mean",
+	--[[END friendliness]]--
+
+	--[[on/off options]]--
+
+
+		UI_Option_SS_LockNLoad = "Ready For Battle Mode:",
+		UI_Option_SS_LockNLoadDesc = "You and your Wife(if enabled) will spawn with guns and ammo, and Armor(if armor mod enabled) at the start of the game.  Great mode to use if you plan on trying out Raiders at a high spawn rate.",
+		UI_Option_SS_WifeSpawn = "Wife/Husband Spawn:",
+		UI_Option_SS_WifeSpawnDesc = "Spawn with a wife or husband who is already in your group at the start of the game",
+		UI_Option_SS_InfinitAmmo = "Survivor Infinite Ammo:",
+		UI_Option_SS_InfinitAmmoDesc = "If on Survivors do not neeed ammo to use guns, and never run out of ammo. If Off survivors need rounds or boxes in thier inventory to shoot guns. And can be given more ammo via right click menu, and will attempt to find ammo near by when they run out of ammo.",
+		UI_Option_SS_FindWork = "Survivors Auto Base Tasks:",
+		UI_Option_SS_FindWorkDesc = "If On, survivors in or near base may do some work tasks around the base on thier own if they find themselves with nothing to do. If off they will never decide to do tasks on thier own.",
+		UI_Option_SS_SurvivorHunger = "Survivor Hunger & Thirst",
+		UI_Option_SS_SurvivorHungerDesc = "If Off survivors will never get hungery or thirsty. If On they will, though they will make attempts to find what they need on thier own.",
+		UI_Option_SS_SafeBase = "Safe Base",
+		UI_Option_SS_SafeBaseDesc = "Wild Survivors will avoid your marked base",
+		UI_Option_SS_SurvivorBases = "Survivor Bases",
+		UI_Option_SS_SurvivorBasesDesc = "Wild Survivors will set up their own bases",
+		UI_Option_SS_PVPInfoBar = "PVP Mode: ",
+		UI_Option_SS_PVPInfoBarDesc = "Previously in the settings lua, this allows you to turn on PVP mode without having to goto the settings.lua file to do so. This DOES NOT make it where hostile NPCs can't hit you. So setting this to 'off' will still force PVP on when encountering hostile NPCs. This setting was requested a few times so that if you don't want to have to press the PVP button on the bottom right of your screen if you want PVP on by default.",
+	--[[END on/off options]]--
+
+	--[[perception]]--
+
+
+		UI_Option_SS_PerceptionBonus = "[Experimental] - NPC Perception Boost: ",
+		UI_Option_SS_PerceptionBonusDesc = "This option should help NPCs 'know' when hostile things are close to them when it seems like they 'should have known'. (This option isn't fully tested but deemed decent results.)",
+		UI_Option_SS_FollowGlobalRange = "[Changed] - Follower Sprint Range:",
+		UI_Option_SS_FollowGlobalRangeDesc = "This controls the 'follow' command, giving you the ability for NPCs to run or walk when they are x distance from you. (Instead of previously you would need to call them closer). This option may warrent unexpected results, and needs feedback. (Do not forget you can also press the + and - hotkeys (right side of the keyboard) to bring a follower closer/further from/to you.) (also, if you bring them to distance '0' they will act weird) ",
+	--[[END perception]]--
+
+	--[[hotkeys]]--
+
+
+		UI_Option_SS_hotkey1 = "Hotkey 1 Action",
+		UI_Option_SS_hotkey2 = "Hotkey 2 Action",
+		UI_Option_SS_hotkey3 = "Hotkey 3 Action",
+		UI_Option_SS_hotkey4 = "Hotkey 4 Action",
+
+		UI_Option_SS_hotkeyDesc = "Choose an action that will happen when you press this hotkey. Order all actions effect any members within range. While the others only effect those who are listening to you (use with t hotkey).",
+	--[[END hotkeys]]--
+
+	--[[bindings]]--
+
+
+		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Group Member = "Call Closest Group Member",
+		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Non-Group Member = "Call Closest Non-Group Member",
+		UI_optionscreen_binding_SS_optionscreen_binding_Ask Closest Group Member to Follow = "Ask Closest Group Member to Follow",
+		UI_optionscreen_binding_SS_optionscreen_binding_Spawn Wild Survivor = "Spawn Wild Survivor",
+		UI_optionscreen_binding_SS_optionscreen_binding_Toggle Group Window = "Toggle Group Window",
+		UI_optionscreen_binding_SS_optionscreen_binding_Lower Follow Distance = "Lower Follow Distance",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_1 = "SSHotkey 1 Directive",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_2 = "SSHotkey 2 Directive",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_3 = "SSHotkey 3 Directive",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_4 = "SSHotkey 4 Directive",
+
+	--[[END bindings]]--
+
+	--[[debug]]--
+
+
+		UI_Option_SS_DebugOptions = "Debug Options",
+		UI_Option_SS_DebugOptionsDesc = "Turns on debug right click survivor options",
+		UI_Option_SS_DebugSay = "SuperDebug() Mode - LAG WARNING: ",
+		UI_Option_SS_DebugSayDesc = "You need to turn on Debug mode along with superdebug() for NPCs to tell you SuperDebug information. This will enable the function DebugSay to NPCs, which is a custom function that will give precise detail of what the NPC is up to. You will need to be at least 6 blocks away from the NPC to recieve their SuperDebug information to the console / in game chat. ",
+		UI_Option_SS_DebugSay_Distance = "SuperDebug() - Distance: ",
+		UI_Option_SS_DebugSay_DistanceDesc = "You can choose how far away you want to be able to see debug information from the NPCs's 'SuperDebug' Function. It's HIGHLY ADVISED to keep this a low number, otherwise you can make all npcs in a large area write to your console.",
+		UI_Option_SS_LowerFollowDistance = "Lower Follow Distance",
+		UI_Option_SS_RaiseFollowDistance = "Raise Follow Distance",
+		UI_Option_SS_CallClosestGroupMember = "Call Closest Group Member",
+		UI_Option_SS_CallClosestNonGroupMember = "Call Closest Non-Group Member",
+		UI_Option_SS_AskClosestGroupMembertoFollow = "Ask Closest Group Member to Follow",
+		UI_Option_SS_WarningMSG = "Unsupported Mod Message: ",
+		UI_Option_SS_WarningMSGDesc = "WARNING: You are about to disable the mods that Superior Survivors mod can not handle. This warning system is new, so that players can know which mod to disable to make superior survivors work, instead of havnig to manually check every mod one by one. If you know of a mod that breaks superior survivors, pleaes report it to the discord or on the steam page to help the community! The warning message is there to disable the mod in question to make the NPC mod work. If you turn this option off, then you're on your own."
+	--[[END debug]]--
+
 }
+

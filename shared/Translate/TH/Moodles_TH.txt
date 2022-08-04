@@ -1,0 +1,26 @@
+Moodles_TH = {
+	--[[masculine]]--
+
+
+
+	--[[END masculine]]--
+
+	--[[feminine]]--
+
+
+
+	--[[END feminine]]--
+
+	--[[prefixes]]--
+
+
+		Moodles_SS_DoctorPrefix_Before = "หมอ ",
+		Moodles_SS_DoctorPrefix_After = "",
+		Moodles_SS_VeteranPrefix_Before = "ทหารผ่านศึก ",
+		Moodles_SS_VeteranPrefix_After = "",
+		Moodles_SS_FarmerPrefix_Before = "ชาวนา ",
+		Moodles_SS_FarmerPrefix_After = ""
+	--[[END prefixes]]--
+
+}
+

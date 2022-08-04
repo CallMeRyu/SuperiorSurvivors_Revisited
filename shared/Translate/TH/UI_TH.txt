@@ -1,0 +1,202 @@
+UI_TH = {
+	--[[structure]]--
+
+
+		UI_Option_SS_Title = "ผู้รอดชีวิต",
+	--[[END structure]]--
+
+	--[[global]]--
+
+
+		UI_Option_SS_Off = "ปิด",
+		UI_Option_SS_On = "เปิด",
+		UI_Option_SS_VeryLow = "ต่ำมาก",
+		UI_Option_SS_Low = "ต่ำ",
+		UI_Option_SS_Normal = "ปกติ",
+		UI_Option_SS_High = "สูง",
+		UI_Option_SS_VeryHigh = "สูงมาก",
+	--[[END global]]--
+
+	--[[spawn]]--
+
+
+		UI_Option_SS_SurvivorSpawnRate = "อัตราการเกิดของผู้รอดชีวิต",
+		UI_Option_SS_SurvivorSpawnRateDesc = "สิ่งนี้กำหนดจำนวนผู้รอดชีวิตแบบสุ่มที่จะวางไข่",
+		UI_Option_SS_ExtremelyLow = "ต่ำมาก",
+		UI_Option_SS_SlightlyLower = "ลดลงเล็กน้อย",
+		UI_Option_SS_SlightlyHigher = "สูงขึ้นเล็กน้อย",
+		UI_Option_SS_ExtremelyHigh = "สูงมาก",
+		UI_Option_SS_UltraHigh = "สูงมาก",
+	--[[END spawn]]--
+
+	--[[alt spawn]]--
+
+
+
+
+	--[[END alt spawn]]--
+
+	--[[preset spawn]]--
+
+
+		UI_Option_SS_NoPreSetSpawn = "ปิดการใช้งานพรีเซ็ตทั้งหมด/ผู้รอดชีวิตเพียงคนเดียว",
+		UI_Option_SS_NoPreSetSpawnDesc = "ปิดการใช้งานพรีเซ็ตทั้งหมด/ผู้รอดชีวิตเพียงคนเดียว",
+	--[[END preset spawn]]--
+
+	--[[names]]--
+
+
+	--[[END names]]--
+
+	--[[hostile]]--
+
+
+		UI_Option_SS_ChancetobeHostile = "โอกาสที่จะเป็นศัตรู",
+		UI_Option_SS_ChancetobeHostileDesc = "สิ่งนี้กำหนดโอกาสที่ผู้รอดชีวิตจากไข่สุ่มจะเป็นศัตรูเมื่อเกิด",
+		UI_Option_SS_MaxHostileSpawnRate = "โอกาสสูงสุดที่จะเป็นศัตรูเมื่อเวลาผ่านไป",
+		UI_Option_SS_MaxHostileSpawnRateDesc = "โอกาสที่จะเป็นศัตรูเพิ่มขึ้นเมื่อเวลาผ่านไป แต่จะจำกัดที่ % นี้และไม่มีวันเกิน % นี้",
+	--[[END hostile]]--
+
+	--[[raiders]]--
+
+
+		UI_Option_SS_RaidersChance = "โอกาสที่ผู้บุกรุกจะสุ่มเกิด",
+		UI_Option_SS_RaidersChanceDesc = "โอกาสที่เหตุการณ์ Raider จะเกิดขึ้นหลังจากวันที่เริ่มต้นผ่านไปแล้ว",
+		UI_Option_SS_RaidersAfterHours = "ผู้บุกรุกเริ่มวางไข่หลังจากผ่านไปหลายวัน",
+		UI_Option_SS_StartImmediately = "เริ่มทันที",
+		UI_Option_SS_AfterDay1 = "หลังจาก 1 วัน",
+		UI_Option_SS_AfterDay5 = "หลังจาก 5 วัน",
+		UI_Option_SS_AfterDay10 = "หลังจาก 10 วัน",
+		UI_Option_SS_AfterDay15 = "หลังจาก 15 วัน",
+		UI_Option_SS_AfterDay20 = "หลังจาก 20 วัน",
+		UI_Option_SS_AfterDay25 = "หลังจาก 25 วัน",
+		UI_Option_SS_AfterDay30 = "หลังจาก 30 วัน",
+		UI_Option_SS_AfterDay35 = "หลังจาก 35 วัน",
+		UI_Option_SS_AfterDay40 = "หลังจาก 40 วัน",
+		UI_Option_SS_AfterDay45 = "หลังจาก 45 วัน",
+		UI_Option_SS_AfterDay50 = "หลังจาก 50 วัน",
+		UI_Option_SS_AfterDay55 = "หลังจาก 55 วัน",
+		UI_Option_SS_AfterDay60 = "หลังจาก 60 วัน",
+		UI_Option_SS_AfterDay65 = "หลังจาก 65 วัน",
+		UI_Option_SS_AfterDay70 = "หลังจาก 70 วัน",
+		UI_Option_SS_AfterDay75 = "หลังจาก 75 วัน",
+		UI_Option_SS_AfterDay80 = "หลังจาก 80 วัน",
+		UI_Option_SS_AfterDay85 = "หลังจาก 85 วัน",
+		UI_Option_SS_AfterDay90 = "หลังจาก 90 วัน",
+		UI_Option_SS_AfterDay95 = "หลังจาก 95 วัน",
+		UI_Option_SS_AfterDay100 = "หลังจาก 100 วัน",
+		UI_Option_SS_Never = "ไม่เคย",
+		UI_Option_SS_RaidersAfterHoursDesc = "กิจกรรม โจร สามารถเริ่มต้นแบบสุ่มได้หลังจากเวลาผ่านไปแล้ว กิจกรรม โจร จะเริ่มคำนวณหลังจากเวลานี้ผ่านไปเท่านั้น",
+		UI_Option_SS_RaidersGuaranteed = "กิจกรรม โจร รับประกันทุก ๆ วันนี้",
+		UI_Option_SS_Every5Days = "ทุกๆ 5 วัน",
+		UI_Option_SS_Every10Days = "ทุกๆ 10 วัน",
+		UI_Option_SS_Every15Days = "ทุกๆ 15 วัน",
+		UI_Option_SS_Every20Days = "ทุกๆ 20 วัน",
+		UI_Option_SS_Every25Days = "ทุกๆ 25 วัน",
+		UI_Option_SS_Every30Days = "ทุกๆ 30 วัน",
+		UI_Option_SS_Every35Days = "ทุกๆ 35 วัน",
+		UI_Option_SS_Every40Days = "ทุกๆ 40 วัน",
+		UI_Option_SS_Every45Days = "ทุกๆ 45 วัน",
+		UI_Option_SS_Every50Days = "ทุกๆ 50 วัน",
+		UI_Option_SS_Every55Days = "ทุกๆ 55 วัน",
+		UI_Option_SS_Every60Days = "ทุกๆ 60 วัน",
+		UI_Option_SS_Every65Days = "ทุกๆ 65 วัน",
+		UI_Option_SS_Every70Days = "ทุกๆ 70 วัน",
+		UI_Option_SS_Every75Days = "ทุกๆ 75 วัน",
+		UI_Option_SS_Every80Days = "ทุกๆ 80 วัน",
+		UI_Option_SS_Every85Days = "ทุกๆ 85 วัน",
+		UI_Option_SS_Every90Days = "ทุกๆ 90 วัน",
+		UI_Option_SS_Every95Days = "ทุกๆ 95 วัน",
+		UI_Option_SS_Every100Days = "ทุกๆ 100 วัน",
+		UI_Option_SS_EveryDay = "ทุกวัน!",
+		UI_Option_SS_EveryHour = "ทุกชั่วโมง!",
+		UI_Option_SS_Every10Minutes = "ทุกๆ 10 นาที!",
+		UI_Option_SS_RaidersGuaranteedDesc = "หากเลยวันที่เริ่มต้นของ โจร และเหตุการณ์ โจร ยังไม่เกิดขึ้นในช่วงเวลานี้ โจร จะเกิดหลังจากระยะเวลานี้ผ่านไป",
+	--[[END raiders]]--
+
+	--[[weapons]]--
+
+
+		UI_Option_SS_ChancetoSpawnWithGun = "โอกาสในการวางไข่ด้วยปืน",
+		UI_Option_SS_ChancetoSpawnWithGunDesc = "โอกาสในการวางไข่ด้วยปืน",
+		UI_Option_SS_WepSpawnRate = "โอกาสที่จะเกิดด้วยอาวุธระยะประชิด",
+		UI_Option_SS_WepSpawnRateDesc = "สิ่งนี้กำหนดโอกาสที่ผู้รอดชีวิตจากไข่สุ่มจะเริ่มต้นด้วยอาวุธระยะประชิด",
+	--[[END weapons]]--
+
+	--[[bravery]]--
+
+
+		UI_Option_SS_SurvivorBravery = "ความกล้าหาญของผู้รอดชีวิต",
+		UI_Option_SS_SurvivorBraveryDesc = "กำหนดวิธีที่ผู้รอดชีวิตต่อสู้ ไม่วิ่งหนี หรือซ่อนตัว",
+		UI_Option_SS_Cowardly = "ขี้ขลาด",
+		UI_Option_SS_Brave = "กล้าหาญ",
+		UI_Option_SS_VeryBrave = "กล้าหาญมาก",
+	--[[END bravery]]--
+
+	--[[friendliness]]--
+
+
+		UI_Option_SS_SurvivorFriendliness = "ความเป็นมิตรกับผู้รอดชีวิต",
+		UI_Option_SS_SurvivorFriendlinessDesc = "สิ่งนี้เป็นตัวกำหนดความง่ายในการสุ่มผู้รอดชีวิตมาเข้าร่วมทีมของคุณ การเสนอของขวัญให้มากขึ้นจะเพิ่มโอกาสในการตอบรับคำเชิญเข้าร่วมปาร์ตี้ แต่ทุกครั้งที่คุณดักฟังพวกเขาด้วยคำเชิญ โอกาสก็จะลดลง ดังนั้นคำเชิญที่ส่งสแปมไม่ได้ ทำดีให้มาก",
+		UI_Option_SS_DesperateforHumanContact = "หมดหวังที่จะเชื่อมต่อกับผู้คน",
+		UI_Option_SS_VeryFriendly = "เป็นกันเองมาก",
+		UI_Option_SS_Friendly = "เป็นมิตร",
+		UI_Option_SS_Mean = "ค่าเฉลี่ย",
+		UI_Option_SS_VeryMean = "ใจร้ายมาก",
+	--[[END friendliness]]--
+
+	--[[on/off options]]--
+
+
+		UI_Option_SS_LockNLoad = "พร้อมสำหรับโหมดการต่อสู้",
+		UI_Option_SS_LockNLoadDesc = "คุณและภรรยาของคุณ (หากเปิดใช้งาน) จะเกิดมาพร้อมกับปืนและกระสุน และชุดเกราะ (หากเปิดใช้ม็อดชุดเกราะ) เมื่อเริ่มเกม โหมดที่ยอดเยี่ยมที่จะใช้หากคุณวางแผนที่จะทดลองใช้ Raiders ในอัตราการเกิดที่สูง ",
+		UI_Option_SS_WifeSpawn = "ภรรยา/สามีวางไข่",
+		UI_Option_SS_WifeSpawnDesc = "วางไข่กับภรรยาหรือสามีที่อยู่ในกลุ่มของคุณอยู่แล้วเมื่อเริ่มเกม",
+		UI_Option_SS_InfinitAmmo = "กระสุน อินฟินิท ผู้รอดชีวิต",
+		UI_Option_SS_InfinitAmmoDesc = "หากผู้รอดชีวิตไม่ต้องการกระสุนเพื่อใช้ปืนและกระสุนไม่หมด หากผู้รอดชีวิตจาก Off ต้องการกระสุนหรือกล่องในคลังเก็บของเพื่อยิงปืน และสามารถให้กระสุนเพิ่มเติมผ่านเมนูคลิกขวาและจะพยายาม หากระสุนใกล้ ๆ เมื่อกระสุนหมด",
+		UI_Option_SS_FindWork = "งานฐานอัตโนมัติของผู้รอดชีวิต",
+		UI_Option_SS_FindWorkDesc = "ถ้าเปิด ผู้รอดชีวิตในหรือใกล้ฐานอาจทำงานบางอย่างรอบๆ ฐานได้ด้วยตนเอง หากพวกเขาพบว่าตัวเองไม่มีอะไรทำ ถ้าปิด พวกเขาจะไม่มีวันตัดสินใจทำงานด้วยตัวเอง",
+		UI_Option_SS_SurvivorHunger = "ผู้รอดชีวิตหิวกระหาย",
+		UI_Option_SS_SurvivorHungerDesc = "ถ้าผู้รอดชีวิต ปิด จะไม่หิวหรือกระหายน้ำ ถ้าเปิด พวกเขาจะพยายามค้นหาสิ่งที่ต้องการด้วยตัวเอง",
+		UI_Option_SS_SafeBase = "ฐานความปลอดภัย",
+		UI_Option_SS_SafeBaseDesc = "ผู้รอดชีวิตจากป่าจะหลีกเลี่ยงฐานที่ทำเครื่องหมายไว้ของคุณ",
+		UI_Option_SS_SurvivorBases = "ฐานผู้รอดชีวิต",
+		UI_Option_SS_SurvivorBasesDesc = "ผู้รอดชีวิตจากป่าจะตั้งฐานของตัวเอง",
+	--[[END on/off options]]--
+
+	--[[perception]]--
+
+
+	--[[END perception]]--
+
+	--[[hotkeys]]--
+
+
+		UI_Option_SS_hotkey1 = "ปุ่มลัด 1 คำสั่ง",
+		UI_Option_SS_hotkey2 = "ปุ่มลัด 1 คำสั่ง",
+		UI_Option_SS_hotkey3 = "ปุ่มลัด 1 คำสั่ง",
+		UI_Option_SS_hotkey4 = "ปุ่มลัด 1 คำสั่ง",
+
+		UI_Option_SS_hotkeyDesc = "เลือกการกระทำที่จะเกิดขึ้นเมื่อคุณกดปุ่มลัดนี้ สั่งการกระทำทั้งหมดให้มีผลกับสมาชิกในทีมใด ๆ ภายในขอบเขต ในขณะที่คนอื่น ๆ ส่งผลกระทบต่อผู้ที่พูดคุยกับคุณและฟังคุณเท่านั้น (ใช้ปุ่มลัด T).",
+	--[[END hotkeys]]--
+
+	--[[bindings]]--
+
+
+
+	--[[END bindings]]--
+
+	--[[debug]]--
+
+
+		UI_Option_SS_DebugOptions = "ตัวเลือกการดีบัก",
+		UI_Option_SS_DebugOptionsDesc = "เปิดตัวเลือกผู้รอดชีวิตจากการคลิกขวาที่ดีบัก" ",
+		UI_Option_SS_LowerFollowDistance = "ลดระยะทางตาม",
+		UI_Option_SS_RaiseFollowDistance = "เพิ่มระยะทางตาม",
+		UI_Option_SS_CallClosestGroupMember = "โทรหาสมาชิกกลุ่มที่ใกล้ที่สุด",
+		UI_Option_SS_CallClosestNonGroupMember = "โทรหาผู้รอดชีวิตที่อยู่ใกล้เคียงโดยไม่มีกลุ่ม",
+		UI_Option_SS_AskClosestGroupMembertoFollow = "สั่งให้สมาชิกในทีมที่อยู่ใกล้เคียงติดตาม",
+	--[[END debug]]--
+
+}
+

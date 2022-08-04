@@ -613,25 +613,25 @@ function SuperSurvivor:spawnPlayer(square, isFemale)
 	local namePrefix = ""
 	local namePrefixAfter = ""
 	if(Buddy:getPerkLevel(Perks.FromString("Doctor")) >= 3) then 
-		namePrefix = getText("ContextMenu_SD_DoctorPrefix_Before") 
-		namePrefixAfter = getText("ContextMenu_SD_DoctorPrefix_After") 
+		namePrefix = getName("DoctorPrefix_Before") 
+		namePrefixAfter = getName("DoctorPrefix_After") 
 	end
 	if(Buddy:getPerkLevel(Perks.FromString("Aiming")) >= 5) then 
-		namePrefix = getText("ContextMenu_SD_VeteranPrefix_Before") 
-		namePrefixAfter = getText("ContextMenu_SD_VeteranPrefix_After") 
+		namePrefix = getName("SD_VeteranPrefix_Before") 
+		namePrefixAfter = getName("VeteranPrefix_After") 
 		
 	end
 	if(Buddy:getPerkLevel(Perks.FromString("Farming")) >= 3) then 
-		namePrefix = getText("ContextMenu_SD_FarmerPrefix_Before") 
-		namePrefixAfter = getText("ContextMenu_SD_FarmerPrefix_After") 
+		namePrefix = getName("FarmerPrefix_Before") 
+		namePrefixAfter = getName("FarmerPrefix_After") 
 	end
 	
 	local nameToSet
 	if(Buddy:getModData().Name == nil) then
 		if Buddy:isFemale() then
-			nameToSet = getName("GirlNames")	
+			nameToSet = getRandomName("GirlNames")	
 		else
-			nameToSet = getName("BoyNames")			
+			nameToSet = getRandomName("BoyNames")			
 		end		
 	else
 		nameToSet = Buddy:getModData().Name
@@ -2374,7 +2374,7 @@ end
 function SuperSurvivor:NPC_CheckPursueScore()
 	
 	if (self.LastEnemeySeen ~= nil) then
-	local zRangeToPursue = 0 
+	local zRangeToPursue = 2
 
 		-- ------------------------------------  --
 		-- Keep pursue from happening when 	
@@ -2416,8 +2416,14 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		--  Companion: They should always be cautious of their surroundings
 		-- -------------------------------------- --
 		if ((self:getGroupRole() == "Companion") and (self:isEnemyInRange(self.LastEnemeySeen))) then
-			zRangeToPursue = 5
-			return zRangeToPursue
+			if getDistanceBetween(getSpecificPlayer(0),self.player) < 10 then
+				zRangeToPursue = 5
+				return zRangeToPursue
+			end
+			if getDistanceBetween(getSpecificPlayer(0),self.player) >= 10 then
+				zRangeToPursue = 0
+				return zRangeToPursue
+			end
 		end
 		
 		-- ------------------------ --
@@ -2451,15 +2457,15 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		-- -------------------------------------- --
 		if (self:hasGun() == true) then
 			self:zDebugSayPTSC(zRangeToPursue,"10")
-			if (self:WeaponReady() == false) then
+			if (self:WeaponReady() == true) then
 				self:zDebugSayPTSC(zRangeToPursue,"11")
-				zRangeToPursue = 5
+				zRangeToPursue = 6
 				return zRangeToPursue
 				
-			elseif (self:WeaponReady() == false) then
-				self:zDebugSayPTSC(zRangeToPursue,"11_A1")
-				zRangeToPursue = 5
-				return zRangeToPursue
+			--elseif (self:WeaponReady() == false) then
+			--	self:zDebugSayPTSC(zRangeToPursue,"11_A1")
+			--	zRangeToPursue = 0
+			--	return zRangeToPursue
 			end
 		end
 		
@@ -2954,6 +2960,11 @@ function SuperSurvivor:update()
 	if (not RainManager.isRaining()) or (not self.player:isOutside()) then
 		self.player:getBodyDamage():setWetness(self.player:getBodyDamage():getWetness() - 0.1);
 	end
+
+	if (getDistanceBetween(getSpecificPlayer(0),self.player) > 15) and (ZombRand(20)==0) and (self:isOnScreen()	== false) then -- don't wanna be seen healing
+		self.player:getBodyDamage():RestoreToFullHealth() -- to prevent a 'bleed' stutter bug
+	--	print("I HAVE BEEN HEALED")
+	end
 	
 	if(self.player:isOnFire()) then 
 		self.player:getBodyDamage():RestoreToFullHealth() -- temporarily give some fireproofing as they walk right through fire via pathfinding
@@ -3250,7 +3261,7 @@ function SuperSurvivor:ManageXP()
 					display_perk = getText("IGUI_perks_Blunt") .. " " .. display_perk
 				end
 				
-				self:RoleplaySpeak(getText("ContextMenu_SD_PerkLeveledUp_Before")..tostring(display_perk)..getText("ContextMenu_SD_PerkLeveledUp_After"))
+				self:RoleplaySpeak(getActionText("PerkLeveledUp_Before")..tostring(display_perk)..getActionText("PerkLeveledUp_After"))
 			end
 			--if(SurvivorPerks[i] == "Aiming") then self.player:Say(tostring(currentXP).."/"..tostring(XPforNextLevel)) end
 		end
@@ -3822,7 +3833,7 @@ function SuperSurvivor:openBoxForGun()
 			--print("in loop!")
 			inv:AddItem(modl..ammotype)
 		end
-		self:RoleplaySpeak(getText("ContextMenu_SD_Opens_Before") .. ammoBox:getDisplayName() .. getText("ContextMenu_SD_Opens_After"))
+		self:RoleplaySpeak(getActionText("Opens_Before") .. ammoBox:getDisplayName() .. getActionText("Opens_After"))
 		ammoBox:getContainer():Remove(ammoBox)
 		return self.player:getInventory():FindAndReturn(ammotype);
 	else
@@ -4327,7 +4338,7 @@ end
 
 function SuperSurvivor:DrinkFromObject(waterObject)
     local playerObj = self.player
-	self:Speak(getText("ContextMenu_SD_Drinking"))
+	self:Speak(getActionText("Drinking"))
 	if not waterObject:getSquare() or not luautils.walkAdj(playerObj, waterObject:getSquare()) then
 		return
 	end

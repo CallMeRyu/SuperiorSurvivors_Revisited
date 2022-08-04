@@ -19,7 +19,7 @@ function ISGrabItemAction:update()
 end
 
 function ISGrabItemAction:start()
-	self.item:getItem():setJobType(getText("ContextMenu_Grab"));
+	self.item:getItem():setJobType(getActionText("Grab"));
 	self.item:getItem():setJobDelta(0.0);
 end
 

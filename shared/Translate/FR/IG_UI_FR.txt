@@ -1,0 +1,113 @@
+IGUI_FR = {
+	--[[roleplay
+		texts that are just describing what the survivor is doing
+	]]--
+
+
+		IGUI_SS_Drinking = "Bois..",
+		IGUI_SS_EatFood_Before = "Mange ",
+		IGUI_SS_EatFood_After = "",
+		IGUI_SS_Opens_Before = "Ouvre ",
+		IGUI_SS_Opens_After = "",
+		IGUI_SS_Takes_Before = "Prend ",
+		IGUI_SS_Takes_After = "",
+		IGUI_SS_EquipsArmor = "Equipe Armure",
+		IGUI_SS_EquipsArmor_Before = "*Equipe ",
+		IGUI_SS_EquipsArmor_After = "*",
+		IGUI_SS_TakesItemFromGround_Before = "Prend ",
+		IGUI_SS_TakesItemFromGround_After = " depuis le sol",
+		IGUI_SS_TakesFromGround_Before = "*Prend ",
+		IGUI_SS_TakesFromGround_After = " depuis le sol*",
+		IGUI_SS_TakesFromCont_Before = "*Prend ",
+		IGUI_SS_TakesFromCont_After = " depuis le conteneur*",
+		IGUI_SS_PickUpCorpse = "*Prend un corp depuis le sol*",
+		IGUI_SS_Resting = "Ce repose...",
+		IGUI_SS_BandageBP_Before = "Pose un bandage sur ",
+		IGUI_SS_BandageBP_After = "",
+		IGUI_SS_DoctorSplint = "*Pose une Attelle...*",
+		IGUI_SS_DoctorBandageRemove = "*Enleve un Bandage...*",
+		IGUI_SS_DoctorStitches = "*Suture...*",
+		IGUI_SS_DoctorGlass = "*Enlève les éclats de verres...*",
+		IGUI_SS_DoctorBullet = "*Extrait la Balle...*",
+		IGUI_SS_DoctorBandage = "*Pose un Bandage...*",
+		IGUI_SS_Foraging = "*Recherche...",
+		IGUI_SS_FarmingActionPlanting = "*Plante des graines...*",
+		IGUI_SS_FarmingActionHarvesting = "*Récolte...*",
+		IGUI_SS_FarmingActionWatering = "*Arrose...*",
+	--[[END roleplay]]--
+
+	--[[starting tasks
+		dialogue lines that indicate the start of a task
+	]]--
+
+
+		IGUI_SS_IGoRelax = "Je vais me détendre un peu",
+		IGUI_SS_IGoGetWood = "Je pense que je vais allé chercher du bois",
+		IGUI_SS_IGoPileCorpse = "Il faut que j'empile ces corps",
+		IGUI_SS_IGoForage = "Je vais allé chercher des trucs",
+		IGUI_SS_IGoChopWood = "Il est temps de couper du bois",
+		IGUI_SS_IGoFarm = "Il faudrait que j'aille vérifié les cultures",
+		IGUI_SS_IGoGuard = "Je vais allé prendre ma garde",
+		IGUI_SS_IGoBackBase = "Il faudrait peut être que je retourne à la base",
+	--[[END starting tasks]]--
+
+	--[[loot
+		dialogue lines that indicate the start of a loot task
+	]]--
+
+
+		IGUI_SS_LookForItem_Before = "Va cherché ",
+		IGUI_SS_LookForItem_After = "",
+		IGUI_SS_NoForagingHere = "Je ne trouverai rien ici",
+		IGUI_SS_NoFindItem_Before = "On dirait qu'il n'y a pas de ",
+		IGUI_SS_NoFindItem_After = " dans le coin",
+		IGUI_SS_NoWoodHere = "Pas de bois par ici",
+	--[[END loot]]--
+
+	--[[giving
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_TakeArmor = "Tiens, prends cette armure",
+		IGUI_SS_Nothing = "Que dalle",
+		IGUI_SS_EveryOneUseMele = "Aux Armes!",
+		IGUI_SS_EveryOneUseGun = "Sortez les flingues!",
+		IGUI_SS_WantSomeFood = "Un peu de nourriture?",
+		IGUI_SS_YouWantWater = "Tu veux de l'eau?",
+		IGUI_SS_YouWantAmmo = "J'ai des munitions si tu veux?",
+		IGUI_SS_TakeMyWeapon = "Tiens, prends mon arme",
+	--[[END giving]]--
+
+	--[[interactions
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_OverHere = "Hey! Par là!",
+		IGUI_SS_HoldStill = "Tiens bon STP...",
+		IGUI_SS_ComeWithMe_Before = "Hey! ",
+		IGUI_SS_ComeWithMe_After = ", viens avec moi!",
+		IGUI_SS_CallName_Before = "",
+		IGUI_SS_CallName_After = "! Viens par là!",
+		IGUI_SS_CanIJoin = "Je peux me joindre au groupe?",
+		IGUI_SS_YouWantToJoin = "Tu veux rejoindre la bande?",
+		IGUI_SS_WeBackToBase = "C'est bon d'être de retour",
+		IGUI_SS_DoctorDone = "Comme neuf! Allez-y doucement maintenant!",
+	--[[END interactions]]--
+
+	--[[not able to do
+		dialogue lines that indicate that the task couldn't be done
+	]]--
+
+
+		IGUI_SS_NotInBuilding = "On n'est pas dans un bâtiment",
+		IGUI_SS_NoTrees = "Y a pas d'arbre dans le coin",
+		IGUI_SS_NoAxeNoChopWood = "Pas d'hache dans le coin, je couperai pas de bois",
+		IGUI_SS_CantCarryMore = "Je ne peux pas porté plus",
+		IGUI_SS_NoFarmingArea = "Il n'y a pas de zone agricole designé",
+		IGUI_SS_IDontKnowHowFarming = "Je ne sais pas comment faire des cultures"
+	--[[END not able to do]]--
+
+}
+

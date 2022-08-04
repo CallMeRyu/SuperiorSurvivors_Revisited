@@ -1,0 +1,26 @@
+Moodles_JP = {
+	--[[masculine]]--
+
+
+
+	--[[END masculine]]--
+
+	--[[feminine]]--
+
+
+
+	--[[END feminine]]--
+
+	--[[prefixes]]--
+
+
+		Moodles_SS_DoctorPrefix_Before = "",
+		Moodles_SS_DoctorPrefix_After = "(医者)",
+		Moodles_SS_VeteranPrefix_Before = "",
+		Moodles_SS_VeteranPrefix_After = "(退役軍人)",
+		Moodles_SS_FarmerPrefix_Before = "",
+		Moodles_SS_FarmerPrefix_After = "(農業従事者)"
+	--[[END prefixes]]--
+
+}
+

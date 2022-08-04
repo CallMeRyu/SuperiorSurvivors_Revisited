@@ -1,0 +1,114 @@
+IGUI_RU = {
+	--[[roleplay
+		texts that are just describing what the survivor is doing
+	]]--
+
+
+		IGUI_SS_Drinking = "Пью..",
+		IGUI_SS_EatFood_Before = "Сытость ",
+		IGUI_SS_EatFood_After = "",
+		IGUI_SS_Opens_Before = "*Открывает ",
+		IGUI_SS_Opens_After = "*",
+		IGUI_SS_Takes_Before = "*Берет ",
+		IGUI_SS_Takes_After = "*",
+		IGUI_SS_EquipsArmor = "Надевает броню",
+		IGUI_SS_EquipsArmor_Before = "*Надевает ",
+		IGUI_SS_EquipsArmor_After = "*",
+		IGUI_SS_TakesItemFromGround_Before = "Подбирает ",
+		IGUI_SS_TakesItemFromGround_After = " с пола",
+		IGUI_SS_TakesFromGround_Before = "*Берет ",
+		IGUI_SS_TakesFromGround_After = " с земли*",
+		IGUI_SS_TakesFromCont_Before = "*Берет ",
+		IGUI_SS_TakesFromCont_After = " из контейнера*",
+		IGUI_SS_UndressingClothes = "*Раздевание*",
+		IGUI_SS_PickUpCorpse = "*поднимает труп*",
+		IGUI_SS_Resting = "Отдыхаю...",
+		IGUI_SS_BandageBP_Before = "Перевязывает ",
+		IGUI_SS_BandageBP_After = "",
+		IGUI_SS_DoctorSplint = "*Накладываю шину...*",
+		IGUI_SS_DoctorBandageRemove = "*Убираю бинт...*",
+		IGUI_SS_DoctorStitches = "*Накладываю швы...*",
+		IGUI_SS_DoctorGlass = "*Убираю стекло...*",
+		IGUI_SS_DoctorBullet = "*Убираю пулю...*",
+		IGUI_SS_DoctorBandage = "*Накладываю бинт...*",
+		IGUI_SS_Foraging = "*Собираю...*",
+		IGUI_SS_FarmingActionPlanting = "*Сажу семена...*",
+		IGUI_SS_FarmingActionHarvesting = "*Собираю урожай...*",
+		IGUI_SS_FarmingActionWatering = "*Поливаю...*",
+	--[[END roleplay]]--
+
+	--[[starting tasks
+		dialogue lines that indicate the start of a task
+	]]--
+
+
+		IGUI_SS_IGoRelax = "Думаю, мне стоит немного отдохнуть.",
+		IGUI_SS_IGoGetWood = "Думаю, я пойду собирать древесину.",
+		IGUI_SS_IGoPileCorpse = "Думаю, я пойду собирать трупы в кучу.",
+		IGUI_SS_IGoForage = "Думаю, я лучше пойду поищу что-нибудь в лесу.",
+		IGUI_SS_IGoChopWood = "Думаю, мне лучше пойти рубить деревья.",
+		IGUI_SS_IGoFarm = "Думаю, вернусь к грядкам.",
+		IGUI_SS_IGoGuard = "Думаю, мне лучше вернуться охранять территорию.",
+		IGUI_SS_IGoBackBase = "Думаю, мне стоит пойти обратно на базу.",
+	--[[END starting tasks]]--
+
+	--[[loot
+		dialogue lines that indicate the start of a loot task
+	]]--
+
+
+		IGUI_SS_LookForItem_Before = "Собираюсь искать ",
+		IGUI_SS_LookForItem_After = "",
+		IGUI_SS_NoForagingHere = "Здесь ничего нет!",
+		IGUI_SS_NoFindItem_Before = "Похоже, что ",
+		IGUI_SS_NoFindItem_After = " здесь нет",
+		IGUI_SS_NoWoodHere = "Здесь нет дерева.",
+	--[[END loot]]--
+
+	--[[giving
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_TakeArmor = "Возьми мою броню.",
+		IGUI_SS_Nothing = "Ничего",
+		IGUI_SS_EveryOneUseMele = "Все достаем оружие ближнего боя!",
+		IGUI_SS_EveryOneUseGun = "Все достаем пушки!",
+		IGUI_SS_WantSomeFood = "Не хочешь еды?",
+		IGUI_SS_YouWantWater = "Не хочешь воды?",
+		IGUI_SS_YouWantAmmo = "Не хочешь патронов?",
+		IGUI_SS_TakeMyWeapon = "Возьми моё оружие.",
+	--[[END giving]]--
+
+	--[[interactions
+		dialogue lines that indicate a giving item task
+	]]--
+
+
+		IGUI_SS_OverHere = "Эй! Кто здесь?",
+		IGUI_SS_HoldStill = "Пожалуйста, стой спокойно!",
+		IGUI_SS_ComeWithMe_Before = "",
+		IGUI_SS_ComeWithMe_After = ", иди со мной!",
+		IGUI_SS_CallName_Before = "",
+		IGUI_SS_CallName_After = "! Иди сюда!",
+		IGUI_SS_CanIJoin = "Могу ли я присоединиться в твою группу?",
+		IGUI_SS_YouWantToJoin = "Не хочешь присоединиться в мою группу?",
+		IGUI_SS_WeBackToBase = "Мы возвращаемся на базу",
+		IGUI_SS_DoctorDone = "Да ты теперь как новенький!",
+	--[[END interactions]]--
+
+	--[[not able to do
+		dialogue lines that indicate that the task couldn't be done
+	]]--
+
+
+		IGUI_SS_NotInBuilding = "Мы не в здании.",
+		IGUI_SS_NoTrees = "Здесь нет деревьев.",
+		IGUI_SS_NoAxeNoChopWood = "Топора нет, мне нечем рубить дерево.",
+		IGUI_SS_CantCarryMore = "Я больше не могу с собой ничего носить.",
+		IGUI_SS_NoFarmingArea = "В этом месте не получится заниматься фермерством",
+		IGUI_SS_IDontKnowHowFarming = "Я не знаю как собираться фермерством"
+	--[[END not able to do]]--
+
+}
+

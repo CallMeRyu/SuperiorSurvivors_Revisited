@@ -1,13 +1,204 @@
 UI_TR = {
-	UI_optionscreen_binding_Call Closest Group Member = "En Yakýn Grup Üyesini Arayýn"
-	UI_optionscreen_binding_Call Closest Non-Group Member = "En Yakýn Grup Dýþý Üyeyi Arayýn",
-	UI_optionscreen_binding_Ask Closest Group Member to Follow = "En Yakýn Grup Üyesinden Takip Etmesini Ýsteyin",
-	UI_optionscreen_binding_Spawn Wild Survivor = "Vahþi Survivor'ý yumurtla",
-	UI_optionscreen_binding_Toggle Group Window = "Grup Penceresini Aç/Kapat",
-	UI_optionscreen_binding_Lower Follow Distance = "Daha Düþük Takip Mesafesi",
-	UI_optionscreen_binding_Raise Follow Distance = "Takip Mesafesini Arttýrýn",
-	UI_optionscreen_binding_SSHotkey_1 = "Kisayol Tuþu 1 Direktif",
-	UI_optionscreen_binding_SSHotkey_2 = "Kisayol Tuþu 2 Direktif",
-	UI_optionscreen_binding_SSHotkey_3 = "Kisayol Tuþu 3 Direktif",
-	UI_optionscreen_binding_SSHotkey_4 = "Kisayol Tuþu 4 Direktif",
+	--[[structure]]--
+
+
+	--[[END structure]]--
+
+	--[[global]]--
+
+
+		UI_Option_SS_Off = "Kapali",
+		UI_Option_SS_On = "Açik",
+		UI_Option_SS_VeryLow = "Çok Az",
+		UI_Option_SS_Low = "Az",
+		UI_Option_SS_Normal = "Normal",
+		UI_Option_SS_High = "Yüksek",
+		UI_Option_SS_VeryHigh = "Çok Yüksek",
+	--[[END global]]--
+
+	--[[spawn]]--
+
+
+		UI_Option_SS_SurvivorSpawnRate = "Kurtulan Sikligi",
+		UI_Option_SS_SurvivorSpawnRateDesc = "Bu kurtulan kisilerin etrafta bulunma oranini belirler",
+		UI_Option_SS_UltraLow = "Ultra Az",
+		UI_Option_SS_ExtremelyLow = "Asiri Az",
+		UI_Option_SS_SlightlyLower = "Biraz Daha Az",
+		UI_Option_SS_SlightlyHigher = "Biraz Daha Yüksek",
+		UI_Option_SS_ExtremelyHigh = "Asiri Yüksek",
+		UI_Option_SS_UltraHigh = "Ultra Yüksek",
+	--[[END spawn]]--
+
+	--[[alt spawn]]--
+
+
+
+
+	--[[END alt spawn]]--
+
+	--[[preset spawn]]--
+
+
+	--[[END preset spawn]]--
+
+	--[[names]]--
+
+
+	--[[END names]]--
+
+	--[[hostile]]--
+
+
+		UI_Option_SS_ChancetobeHostile = "Düsman olasiligi",
+		UI_Option_SS_ChancetobeHostileDesc = "Çevredeki Kurtulanlarin Düsman olma olasiligni belirler",
+		UI_Option_SS_MaxHostileSpawnRate = "Zamanli Yagmaci orani",
+		UI_Option_SS_MaxHostileSpawnRateDesc = "Zamanla Çevredeki kurtulanlarin Yagmaci olma olasiligi orani artar fakat belirtilen miktarin üstüne çikamaz",
+	--[[END hostile]]--
+
+	--[[raiders]]--
+
+
+		UI_Option_SS_RaidersChance = "Yagmacilarin görülme ihtimali",
+		UI_Option_SS_RaidersChanceDesc = "Bu olay sadece belirtilen tarih geçtikten sonra gerçeklesecektir.",
+		UI_Option_SS_RaidersAfterHours = "Yagmacilar Su günden Sonra Ortaya Çiksin",
+		UI_Option_SS_StartImmediately = "Simdi baslat",
+		UI_Option_SS_AfterDay1 = "1 Gün Sonra",
+		UI_Option_SS_AfterDay5 = "5 Gün Sonra",
+		UI_Option_SS_AfterDay10 = "10 Gün Sonra",
+		UI_Option_SS_AfterDay15 = "15 Gün Sonra",
+		UI_Option_SS_AfterDay20 = "20 Gün Sonra",
+		UI_Option_SS_AfterDay25 = "25 Gün Sonra",
+		UI_Option_SS_AfterDay30 = "30 Gün Sonra",
+		UI_Option_SS_AfterDay35 = "35 Gün Sonra",
+		UI_Option_SS_AfterDay40 = "40 Gün Sonra",
+		UI_Option_SS_AfterDay45 = "45 Gün Sonra",
+		UI_Option_SS_AfterDay50 = "50 Gün Sonra",
+		UI_Option_SS_AfterDay55 = "55 Gün Sonra",
+		UI_Option_SS_AfterDay60 = "60 Gün Sonra",
+		UI_Option_SS_AfterDay65 = "65 Gün Sonra",
+		UI_Option_SS_AfterDay70 = "70 Gün Sonra",
+		UI_Option_SS_AfterDay75 = "75 Gün Sonra",
+		UI_Option_SS_AfterDay80 = "80 Gün Sonra",
+		UI_Option_SS_AfterDay85 = "85 Gün Sonra",
+		UI_Option_SS_AfterDay90 = "90 Gün Sonra",
+		UI_Option_SS_AfterDay95 = "95 Gün Sonra",
+		UI_Option_SS_AfterDay100 = "100 Gün Sonra",
+		UI_Option_SS_Never = "Asla",
+		UI_Option_SS_RaidersAfterHoursDesc = "Yagmacilar Belirtilen Saat/Gün geçtikten sonra görülmeye baslacaktir.Bu olay Yagmacilar Garanti olayi bittikten sonra geri sayima baslar.",
+		UI_Option_SS_RaidersGuaranteed = "Bu günlerde Yagmacalira Rastlamak Garanti",
+		UI_Option_SS_Every5Days = "5 günde bir",
+		UI_Option_SS_Every10Days = "10 günde bir",
+		UI_Option_SS_Every15Days = "15 günde bir",
+		UI_Option_SS_Every20Days = "20 günde bir",
+		UI_Option_SS_Every25Days = "25 günde bir",
+		UI_Option_SS_Every30Days = "30 günde bir",
+		UI_Option_SS_Every35Days = "35 günde bir",
+		UI_Option_SS_Every40Days = "40 günde bir",
+		UI_Option_SS_Every45Days = "45 günde bir",
+		UI_Option_SS_Every50Days = "50 günde bir",
+		UI_Option_SS_Every55Days = "55 günde bir",
+		UI_Option_SS_Every60Days = "60 günde bir",
+		UI_Option_SS_Every65Days = "65 günde bir",
+		UI_Option_SS_Every70Days = "70 günde bir",
+		UI_Option_SS_Every75Days = "75 günde bir",
+		UI_Option_SS_Every80Days = "80 günde bir",
+		UI_Option_SS_Every85Days = "85 günde bir",
+		UI_Option_SS_Every90Days = "90 günde bir",
+		UI_Option_SS_Every95Days = "95 günde bir",
+		UI_Option_SS_Every100Days = "100 günde bir",
+		UI_Option_SS_EveryDay = "Her Gün!",
+		UI_Option_SS_EveryHour = "Her Saat!",
+		UI_Option_SS_Every10Minutes = "On dakikada bir kez!",
+		UI_Option_SS_RaidersGuaranteedDesc = "Baslangiç tarihine kadar Yagmacilar Bulunmayacaktir.Yagmacilar Baslangiç tarihini geçtikten sonra görülmeye baslanacaktir.",
+	--[[END raiders]]--
+
+	--[[weapons]]--
+
+
+		UI_Option_SS_ChancetoSpawnWithGun = "Silahli Olma Ihtimali",
+		UI_Option_SS_ChancetoSpawnWithGunDesc = "Kurtulanlarin Elinde Silahlar ile baslamasini belirtir",
+		UI_Option_SS_WepSpawnRate = "Yakin Mesafe silahi ile Belirme olasiligi",
+		UI_Option_SS_WepSpawnRateDesc = "Kurtulanlarin elinde yakin mesafe silah ile olma olasigini belirtir",
+	--[[END weapons]]--
+
+	--[[bravery]]--
+
+
+		UI_Option_SS_SurvivorBravery = "Hayyatta kalan Cesurluk Durumu",
+		UI_Option_SS_SurvivorBraveryDesc = "Hayatta Kalanlarin Savasmaya egilimini gösterir, Duruma göre kaçabilirler.",
+		UI_Option_SS_Cowardly = "Korkak",
+		UI_Option_SS_Brave = "Cesur",
+		UI_Option_SS_VeryBrave = "Korkusuz",
+	--[[END bravery]]--
+
+	--[[friendliness]]--
+
+
+		UI_Option_SS_SurvivorFriendliness = "Kurtulanlarda Cana yakinlik",
+		UI_Option_SS_SurvivorFriendlinessDesc = "Rastgele bir Kurtulanin gruba katilma ihtimalini belirler.Kurtulanlara hediyeler vermek bu orani arttirir fakat çok fazla grup daveti de bu durumu gittikçe kötüye götürür. Spamlamasaniz iyi olur",
+		UI_Option_SS_DesperateforHumanContact = "Kurtulan ile Arasindaki Iliski",
+		UI_Option_SS_VeryFriendly = "Can Dostu",
+		UI_Option_SS_Friendly = "Dost",
+		UI_Option_SS_Mean = "Huzursuz",
+		UI_Option_SS_VeryMean = "Çok Huzursuz",
+	--[[END friendliness]]--
+
+	--[[on/off options]]--
+
+
+		UI_Option_SS_LockNLoad = "Savasa Hazir",
+		UI_Option_SS_LockNLoadDesc = "Sen ve karin(Eger Açik ise) Silah ve mermi ile baslar,Ayni zamanda zirh ile de(Zirh modu yüklü ise) Oyuna baslar.Yüksek yagmaci oranindakiler için iyi bir fikir degil mi ?.",
+		UI_Option_SS_WifeSpawn = "Kari/Koca olma ihtimali",
+		UI_Option_SS_WifeSpawnDesc = "Oyun Basinda bulundugunuz evde kariniz veya kocaniz ile hazir bir grup halinde baslamasidir",
+		UI_Option_SS_InfinitAmmo = "Kurtulanarda Sinirsiz Cephane",
+		UI_Option_SS_InfinitAmmoDesc = "Bu seçenek açik iken silahlarda cephanelere ihtiyaçlari yoktur.Bu seçenek kapaliyken mermi veya mermi kutularina ihtiyaç duyarlar mermileri bittiginde sag tik menüsünden cephane verebilir veya  cephane aramalari saglanabilir",
+		UI_Option_SS_FindWork = "Kurtulanlar Kendi Kendine Görevlendirme",
+		UI_Option_SS_FindWorkDesc = "Bu seçenek açik iken kurtulanlar eger kendilerine görev verilmemisse (üs ve etrafinda geçerli)etraftaki görevleri kendi basina yaparlar kendi kendine tarlaya bakmasi gibi. Kapali iken  hiçbir seye müdahale etmezler. ",
+		UI_Option_SS_SurvivorHunger = "Kurtulanlarda Acikma ve Susama",
+		UI_Option_SS_SurvivorHungerDesc = "Kapali iken Kurtulanlar acikmaz ve susamaz. Açik iken kendi basinin çaresine bakmaya çalisirlar",
+	--[[END on/off options]]--
+
+	--[[perception]]--
+
+
+	--[[END perception]]--
+
+	--[[hotkeys]]--
+
+
+		UI_Option_SS_hotkey1 = "Kisayol Tuþu 1 Eylem",
+		UI_Option_SS_hotkey2 = "Kisayol Tuþu 2 Eylem",
+		UI_Option_SS_hotkey3 = "Kisayol Tuþu 3 Eylem",
+		UI_Option_SS_hotkey4 = "Kisayol Tuþu 1 Eylem",
+
+		UI_Option_SS_hotkeyDesc = "Bu Tusa Bastiginizda gerçeklesmesi için bir eylem atayin. Menzildeki tüm üyeleri etkiler.Fakat Sadece Sizi Dinliyorlarsa ise yarar ( Kisayol T yi kullanin).",
+	--[[END hotkeys]]--
+
+	--[[bindings]]--
+
+
+		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Group Member = "En Yakýn Grup Üyesini Arayýn",
+		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Non-Group Member = "En Yakýn Grup Dýþý Üyeyi Arayýn",
+		UI_optionscreen_binding_SS_optionscreen_binding_Ask Closest Group Member to Follow = "En Yakýn Grup Üyesinden Takip Etmesini Ýsteyin",
+		UI_optionscreen_binding_SS_optionscreen_binding_Spawn Wild Survivor = "Vahþi Survivor'ý yumurtla",
+		UI_optionscreen_binding_SS_optionscreen_binding_Toggle Group Window = "Grup Penceresini Aç/Kapat",
+		UI_optionscreen_binding_SS_optionscreen_binding_Lower Follow Distance = "Daha Düþük Takip Mesafesi",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_1 = "Kisayol Tuþu 1 Direktif",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_2 = "Kisayol Tuþu 2 Direktif",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_3 = "Kisayol Tuþu 3 Direktif",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_4 = "Kisayol Tuþu 4 Direktif",
+
+	--[[END bindings]]--
+
+	--[[debug]]--
+
+
+		UI_Option_SS_LowerFollowDistance = "Takip Mesafesini Azalt",
+		UI_Option_SS_RaiseFollowDistance = "Takip Mesafesini Arttir",
+		UI_Option_SS_CallClosestGroupMember = "En yakin grup üyesini çagir",
+		UI_Option_SS_CallClosestNonGroupMember = "En yakindaki gruptan olmayan kisiyi çagir",
+		UI_Option_SS_AskClosestGroupMembertoFollow = "En yakin grup üyesine takip etmesini söyle",
+	--[[END debug]]--
+
 }
+
