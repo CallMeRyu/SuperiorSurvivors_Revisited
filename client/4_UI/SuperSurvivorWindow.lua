@@ -42,25 +42,31 @@ function PanelGroup:dupdate()
         panel_entry.dwidth = 850/3
         local cat_member_name = ISButton:new(0, 0, panel_entry.dwidth, 30, tostring(name), nil, function() context_options.show_context_menu_member(i) end)
         local cat_member_role = ISButton:new(panel_entry.dwidth, 0, panel_entry.dwidth, 30, tostring(role), nil, function() context_options.show_context_menu_role(i) end)
-        local cat_member_inventory = ISButton:new(panel_entry.dwidth*2, 0, panel_entry.dwidth, 30, "Inventory", nil, function() create_panel_inventory_transfer(i) end)
+        local cat_member_inventory = ISButton:new(panel_entry.dwidth*2, 0, panel_entry.dwidth/2, 30, "Inventory", nil, function() create_panel_inventory_transfer(i) end)
+        local cat_member_loadout = ISButton:new(panel_entry.dwidth*2+cat_member_inventory.width-1, 0, panel_entry.dwidth/2, 30, "Equipment", nil, function() create_panel_loadout(i) end)
         if i == 1 then cat_member_inventory.enable = false end
+        if i == 1 then cat_member_loadout.enable = false end
         cat_member_name.borderColor = { r = 0, g = 0, b = 0, a = 0 }
         cat_member_role.borderColor = { r = 0, g = 0, b = 0, a = 0 }
         cat_member_inventory.borderColor = { r = 0, g = 0, b = 0, a = 0 }
+        cat_member_loadout.borderColor = { r = 0, g = 0, b = 0, a = 0 }
         if switch == 0 then
             cat_member_name.backgroundColor = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
             cat_member_role.backgroundColor = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
             cat_member_inventory.backgroundColor = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
+            cat_member_loadout.backgroundColor = { r = 0.25, g = 0.31, b = 0.37, a = 0.3 }
             switch = 1
         else
             cat_member_name.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
             cat_member_role.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
             cat_member_inventory.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
+            cat_member_loadout.backgroundColor = { r = 0, g = 0, b = 0, a = 0 }
             switch = 0
         end
         panel_entry:addChild(cat_member_name)
         panel_entry:addChild(cat_member_role)
         panel_entry:addChild(cat_member_inventory)
+        panel_entry:addChild(cat_member_loadout)
         self:addChild(panel_entry)
         dy = dy+30
     end
@@ -564,9 +570,15 @@ end
 
 context_options.show_context_menu_member = function(member_index)
     if member_index == 1 then return end
+    local member = SSGM:Get(SSM:Get(0):getGroupID()):getMembers()[member_index]
     local context_menu = ISContextMenu.get(0, getMouseX(), getMouseY(), 1, 1)
     context_menu:addOption("Information", nil, function() show_survivor_info(member_index)  end)
     context_menu:addOption("Inventory", nil, function() create_panel_inventory_transfer(member_index)  end)
+    local use_weapon = context_menu:addOption("Use Weapon", nil, nil)
+    local sub_use_weapon = context_menu:getNew(context_menu)
+    sub_use_weapon:addOption("Gun", nil, function() ForceWeaponType(nil, member, true) end)
+    sub_use_weapon:addOption("Melee", nil, function() ForceWeaponType(nil, member, false) end)
+    context_menu:addSubMenu(use_weapon, sub_use_weapon)
 end
 
 --****************************************************
