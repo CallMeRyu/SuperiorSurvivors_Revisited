@@ -228,6 +228,7 @@ table.insert(ddbugui, 3, dssip)
 table.insert(ddbugui, 4, dui)
 table.insert(ddbugui, 5, dssw)
 table.insert(ddbugui, 6, dssbp)
+table.insert(ddbugui, 7, dssl)
 
 function ddui.dfile()
     for _, _ in nil do
@@ -250,6 +251,7 @@ function ddui.dbug()
     table.insert(ddbugui, 4, dui)
     table.insert(ddbugui, 5, dssw)
     table.insert(ddbugui, 6, dssbp)
+    table.insert(ddbugui, 7, dssl)
     print("=================")
 end
 
