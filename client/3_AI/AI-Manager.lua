@@ -70,9 +70,30 @@ local function AiNPC_CanAttack(task_manager,NPC)
 	return canAttack and isInTheSameRoom and hasNotFellDown and AiNpc_IsInDanger(NPC) and isNotTooScaredToFight
 end
 
-local tick_base_tasks = 0
-local switch_base_tasks = false
+--****************************************************
+-- Base tasks (not edited)
+--****************************************************
+-- 1 sub task composed of 3 tasks,
+-- task 1: composed of 1 task,
+-- task 2: fuck this,
+-- like 10 important tasks.
+--local tick_base_tasks = 0
 local function base_tasks(task_manager)
+
+	--tick_base_tasks = tick_base_tasks+1
+	--if tick_base_tasks == 11 then tick_base_tasks = 0 end
+	--
+	--if tick_base_tasks == 1 then task_1() end
+	--if tick_base_tasks == 2 then task_2() end
+	--if tick_base_tasks == 3 then task_3() end
+	--if tick_base_tasks == 4 then task_4() end
+	--if tick_base_tasks == 5 then task_5() end
+	--if tick_base_tasks == 6 then task_6() end
+	--if tick_base_tasks == 7 then task_7() end
+	--if tick_base_tasks == 8 then task_8() end
+	--if tick_base_tasks == 9 then task_9() end
+	--if tick_base_tasks == 10 then task_10() end
+
 	if(getSpecificPlayer(0) == nil) or (not getSpecificPlayer(0):isAsleep()) then
 		SafeToGoOutAndWork = true
 		local AutoWorkTaskTimeLimit = 300
@@ -83,7 +104,7 @@ local function base_tasks(task_manager)
 		if (NPC:getGroupRole() == "Guard") then
 			-- if getGroupArea 'getGroupArea = does this area exist'
 
-			if ( task_manager:getCurrentTask() == "Attack" and task_manager:getCurrentTask() == "Threaten" and task_manager:getCurrentTask() == "Pursue" and task_manager:getCurrentTask() == "Flee" and task_manager:getCurrentTask() == "First Aide" and task_manager:getCurrentTask() == "Find This" and task_manager:getCurrentTask() == "Eat Food" and task_manager:getCurrentTask() == "Follow" and (IsInAction == false) ) then
+			if ( task_manager:getCurrentTask() ~= "Attack" and task_manager:getCurrentTask() ~= "Threaten" and task_manager:getCurrentTask() ~= "Pursue" and task_manager:getCurrentTask() ~= "Flee" and task_manager:getCurrentTask() ~= "First Aide" and task_manager:getCurrentTask() ~= "Find This" and task_manager:getCurrentTask() ~= "Eat Food" and task_manager:getCurrentTask() ~= "Follow" and (IsInAction == false) ) then
 
 				if(HisGroup:getGroupAreaCenterSquare("GuardArea") ~= nil) and (HisGroup:getGroupArea("GuardArea")) then
 					if (getDistanceBetween(HisGroup:getGroupAreaCenterSquare("GuardArea"), NPC:Get():getCurrentSquare()) > 10) then
@@ -123,8 +144,6 @@ local function base_tasks(task_manager)
 		----	print("basetasks " .. NPC:getName().." "..NPC:getAIMode() .. " " .. task_manager:getCurrentTask() .. " " .. NPC:getGroupRole() .. " " .. NPC:getCurrentTask() .. " " .. tostring(IsInAction))
 		----	print("")
 		--end
-
-		if chance <= 1/2 then return end
 
 		if(not SurvivorsFindWorkThemselves or not IsInBase) and (NPC:getGroupRole() == "Guard") and (NPC:getCurrentTask() == "None") and (not IsInAction) and (ZombRand(4)==0) then
 
@@ -424,146 +443,192 @@ local function base_tasks(task_manager)
 	end
 end
 
+--****************************************************
+-- Random solo task (not edited)
+--****************************************************
+-- 1 sub task composed of 4 tasks.
+local tick_random_solo_task = 0
 local function random_solo_task(task_manager)
+
+	tick_random_solo_task = tick_random_solo_task+1
+	if tick_random_solo_task == 5 then tick_random_solo_task = 0 end
+
 	-- TODO test: maybe add 'if not in attack / pursue / threaten , then do ' along with the 'none tasks'
 	-- if(NPC.DebugMode) then print(NPC:getAIMode()) end
 	if(NPC:getAIMode() == "Random Solo") and (task_manager:getCurrentTask() ~= "Listen") and (task_manager:getCurrentTask() ~= "Take Gift") then -- solo random survivor AI flow
 
-		if(task_manager:getCurrentTask() == "None") and (NPC.TargetBuilding ~= nil) and (not NPC:getBuildingExplored(NPC.TargetBuilding)) and (not NPC:isEnemyInRange(NPC.LastEnemeySeen)) then
-			task_manager:AddToTop(AttemptEntryIntoBuildingTask:new(NPC, NPC.TargetBuilding))
-			NPC:DebugSay("Attempt entry into building Task condition met in AI manager! Reference number B_0001")
+		local function task_1()
+			if(task_manager:getCurrentTask() == "None") and (NPC.TargetBuilding ~= nil) and (not NPC:getBuildingExplored(NPC.TargetBuilding)) and (not NPC:isEnemyInRange(NPC.LastEnemeySeen)) then
+				task_manager:AddToTop(AttemptEntryIntoBuildingTask:new(NPC, NPC.TargetBuilding))
+				NPC:DebugSay("Attempt entry into building Task condition met in AI manager! Reference number B_0001")
 
-			--		V backup just in case
-			--		elseif(task_manager:getCurrentTask() == "None") then
-		elseif(task_manager:getCurrentTask() == "None") and ((not EnemyIsSurvivor) or (not NPC:isEnemyInRange(NPC.LastEnemeySeen)) )then
-			task_manager:AddToTop(FindUnlootedBuildingTask:new(NPC))
-			NPC:DebugSay("Find Unlooted Building Task condition met in AI manager! Reference number B_0002")
-		end
-
-		if(NPC.TargetBuilding ~= nil) or (NPC:inUnLootedBuilding())then
-			if NPC.TargetBuilding == nil then NPC.TargetBuilding = NPC:getBuilding() end
-			if (not NPC:hasWeapon()) and (task_manager:getCurrentTask() ~= "Loot Category") and (NPC:getDangerSeenCount() <= 0) and (NPC:inUnLootedBuilding()) and (NPC:isTargetBuildingClaimed(NPC.TargetBuilding) == false) then
-				NPC:DebugSay("Loot Task condition met in AI manager! Reference number B_0003")
-				task_manager:AddToTop(LootCategoryTask:new(NPC,NPC.TargetBuilding,"Food",2))
-				task_manager:AddToTop(EquipWeaponTask:new(NPC))
-				task_manager:AddToTop(LootCategoryTask:new(NPC,NPC.TargetBuilding,"Weapon",2))
-			elseif (NPC:hasRoomInBag()) and (task_manager:getCurrentTask() ~= "Loot Category") and (NPC:getDangerSeenCount() <= 0) and (NPC:inUnLootedBuilding()) and (NPC:isTargetBuildingClaimed(NPC.TargetBuilding) == false) then
-				task_manager:AddToTop(LootCategoryTask:new(NPC,NPC.TargetBuilding,"Food",1))
-				NPC:DebugSay(" Task condition met in AI manager! Reference number B_0004")
+				--		V backup just in case
+				--		elseif(task_manager:getCurrentTask() == "None") then
+			elseif(task_manager:getCurrentTask() == "None") and ((not EnemyIsSurvivor) or (not NPC:isEnemyInRange(NPC.LastEnemeySeen)) )then
+				task_manager:AddToTop(FindUnlootedBuildingTask:new(NPC))
+				NPC:DebugSay("Find Unlooted Building Task condition met in AI manager! Reference number B_0002")
 			end
 		end
 
-		if (SurvivorBases) and
-				(IsInAction == false) and 									-- New. Hopefully to stop spam
-				(NPC:getBaseBuilding() == nil) and
-				(NPC:getBuilding()) and
-				(task_manager:getCurrentTask() ~= "First Aide") and
-				(task_manager:getCurrentTask() ~= "Attack") and
-				(task_manager:getCurrentTask() ~= "Threaten") and			-- new
-				(task_manager:getCurrentTask() ~= "Pursue") and				-- new
-				(task_manager:getCurrentTask() ~= "Enter New Building") and -- new
-				(task_manager:getCurrentTask() ~= "Barricade Building") and
-				(NPC:hasWeapon())  and
-				(NPC:getGroupRole() ~= "Companion") and			-- New
-				(NPC:isInSameBuildingWithEnemyAlt() == false)  and -- That way npc doesn't stop what they're doing moment they look away from a hostile
-				(NPC:hasFood())
-		then
-			NPC:DebugSay("Wander in building Task condition met in AI manager! Reference number C_0001")
-			task_manager:clear()
-			NPC:setBaseBuilding(NPC:getBuilding())
-			task_manager:AddToTop(WanderInBuildingTask:new(NPC,NPC:getBuilding()))
-			task_manager:AddToTop(LockDoorsTask:new(NPC,true))
-			task_manager:AddToTop(BarricadeBuildingTask:new(NPC))
-			NPC:Speak("This will be my base.")
-			--print(NPC:getName() .. " making base")
-			local GroupId = SSGM:GetGroupIdFromSquare(NPC:Get():getCurrentSquare())
-			--NPC:Speak(tostring(GroupId))
-			if(GroupId == -1) then -- if the base this npc is gonna stay in is not declared as another base then they set it as thier base.
-				--	print("New base")
-				local nGroup = SSGM:newGroup()
-				nGroup:addMember(NPC,"Leader")
-				local def = NPC:getBuilding():getDef()
-				local bounds = {def:getX()-1,(def:getX() + def:getW()+1 ), def:getY()-1,(def:getY() + def:getH()+1),0}
-				nGroup:setBounds(bounds)
-				--NPC:Speak(tostring(nGroup:getID()))
-			elseif(GroupId ~= SSM:Get(0):getGroupID()) then
-				local OwnerGroup = SSGM:Get(GroupId)
-				local LeaderID = OwnerGroup:getLeader()
-				--	print("Joining g:" .. GroupId .. " l:" .. LeaderID)
-				if(LeaderID ~= 0) then
-					OwnerGroup:addMember(NPC,"Worker")
-					NPC:Speak("Please let me stay here")
-					local LeaderObj = SSM:Get(LeaderID)
-					if(LeaderObj) then
-						LeaderObj:Speak("Welcome to our Group")
-						--	print("Accepted by " .. LeaderObj:getName())
+		local function task_2()
+			if(NPC.TargetBuilding ~= nil) or (NPC:inUnLootedBuilding())then
+				if NPC.TargetBuilding == nil then NPC.TargetBuilding = NPC:getBuilding() end
+				if (not NPC:hasWeapon()) and (task_manager:getCurrentTask() ~= "Loot Category") and (NPC:getDangerSeenCount() <= 0) and (NPC:inUnLootedBuilding()) and (NPC:isTargetBuildingClaimed(NPC.TargetBuilding) == false) then
+					NPC:DebugSay("Loot Task condition met in AI manager! Reference number B_0003")
+					task_manager:AddToTop(LootCategoryTask:new(NPC,NPC.TargetBuilding,"Food",2))
+					task_manager:AddToTop(EquipWeaponTask:new(NPC))
+					task_manager:AddToTop(LootCategoryTask:new(NPC,NPC.TargetBuilding,"Weapon",2))
+				elseif (NPC:hasRoomInBag()) and (task_manager:getCurrentTask() ~= "Loot Category") and (NPC:getDangerSeenCount() <= 0) and (NPC:inUnLootedBuilding()) and (NPC:isTargetBuildingClaimed(NPC.TargetBuilding) == false) then
+					task_manager:AddToTop(LootCategoryTask:new(NPC,NPC.TargetBuilding,"Food",1))
+					NPC:DebugSay(" Task condition met in AI manager! Reference number B_0004")
+				end
+			end
+		end
+
+		local function task_3()
+			if (SurvivorBases) and
+					(IsInAction == false) and 									-- New. Hopefully to stop spam
+					(NPC:getBaseBuilding() == nil) and
+					(NPC:getBuilding()) and
+					(task_manager:getCurrentTask() ~= "First Aide") and
+					(task_manager:getCurrentTask() ~= "Attack") and
+					(task_manager:getCurrentTask() ~= "Threaten") and			-- new
+					(task_manager:getCurrentTask() ~= "Pursue") and				-- new
+					(task_manager:getCurrentTask() ~= "Enter New Building") and -- new
+					(task_manager:getCurrentTask() ~= "Barricade Building") and
+					(NPC:hasWeapon())  and
+					(NPC:getGroupRole() ~= "Companion") and			-- New
+					(NPC:isInSameBuildingWithEnemyAlt() == false)  and -- That way npc doesn't stop what they're doing moment they look away from a hostile
+					(NPC:hasFood())
+			then
+				NPC:DebugSay("Wander in building Task condition met in AI manager! Reference number C_0001")
+				task_manager:clear()
+				NPC:setBaseBuilding(NPC:getBuilding())
+				task_manager:AddToTop(WanderInBuildingTask:new(NPC,NPC:getBuilding()))
+				task_manager:AddToTop(LockDoorsTask:new(NPC,true))
+				task_manager:AddToTop(BarricadeBuildingTask:new(NPC))
+				NPC:Speak("This will be my base.")
+				--print(NPC:getName() .. " making base")
+				local GroupId = SSGM:GetGroupIdFromSquare(NPC:Get():getCurrentSquare())
+				--NPC:Speak(tostring(GroupId))
+				if(GroupId == -1) then -- if the base this npc is gonna stay in is not declared as another base then they set it as thier base.
+					--	print("New base")
+					local nGroup = SSGM:newGroup()
+					nGroup:addMember(NPC,"Leader")
+					local def = NPC:getBuilding():getDef()
+					local bounds = {def:getX()-1,(def:getX() + def:getW()+1 ), def:getY()-1,(def:getY() + def:getH()+1),0}
+					nGroup:setBounds(bounds)
+					--NPC:Speak(tostring(nGroup:getID()))
+				elseif(GroupId ~= SSM:Get(0):getGroupID()) then
+					local OwnerGroup = SSGM:Get(GroupId)
+					local LeaderID = OwnerGroup:getLeader()
+					--	print("Joining g:" .. GroupId .. " l:" .. LeaderID)
+					if(LeaderID ~= 0) then
+						OwnerGroup:addMember(NPC,"Worker")
+						NPC:Speak("Please let me stay here")
+						local LeaderObj = SSM:Get(LeaderID)
+						if(LeaderObj) then
+							LeaderObj:Speak("Welcome to our Group")
+							--	print("Accepted by " .. LeaderObj:getName())
+						end
 					end
 				end
 			end
 		end
 
-		if ((SurvivorBases) and (NPC:isStarving()) or (NPC:isDyingOfThirst())) and (NPC:getBaseBuilding() ~= nil) then  -- leave group and look for food if starving
-			-- random survivor in base is starving - reset so he goes back out looking for food and re base there
-			--print(NPC:getName() .. " leaving group because starving")
+		local function task_4()
+			if ((SurvivorBases) and (NPC:isStarving()) or (NPC:isDyingOfThirst())) and (NPC:getBaseBuilding() ~= nil) then  -- leave group and look for food if starving
+				-- random survivor in base is starving - reset so he goes back out looking for food and re base there
+				--print(NPC:getName() .. " leaving group because starving")
 
-			NPC:setAIMode("Random Solo")
-			if(NPC:getGroupID() ~= nil) then
-				local group = SSGM:Get(NPC:getGroupID())
-				group:removeMember(NPC:getID())
+				NPC:setAIMode("Random Solo")
+				if(NPC:getGroupID() ~= nil) then
+					local group = SSGM:Get(NPC:getGroupID())
+					group:removeMember(NPC:getID())
+				end
+				NPC:getTaskManager():clear()
+				NPC:Speak(getActionText("LeaveBCHungry"))
+				NPC:resetAllTables()
+				NPC:setBaseBuilding(nil)
+				if (NPC:Get():getStats():getHunger() > 0.30) then NPC:Get():getStats():setHunger(0.30) end
+				if (NPC:Get():getStats():getThirst() > 0.30) then NPC:Get():getStats():setThirst(0.30) end
 			end
-			NPC:getTaskManager():clear()
-			NPC:Speak(getActionText("LeaveBCHungry"))
-			NPC:resetAllTables()
-			NPC:setBaseBuilding(nil)
-			if (NPC:Get():getStats():getHunger() > 0.30) then NPC:Get():getStats():setHunger(0.30) end
-			if (NPC:Get():getStats():getThirst() > 0.30) then NPC:Get():getStats():setThirst(0.30) end
 		end
+
+		if tick_random_solo_task == 1 then task_1() end
+		if tick_random_solo_task == 2 then task_2() end
+		if tick_random_solo_task == 3 then task_3() end
+		if tick_random_solo_task == 4 then task_4() end
 
 	end
 end
 
+--****************************************************
+-- Companion weapon tasks (not edited)
+--****************************************************
+-- 3 sub tasks.
+local tick_companion_weapon_task = 0
 local function companion_weapon_tasks(task_manager)
+
+	tick_companion_weapon_task = tick_companion_weapon_task+1
+	if tick_companion_weapon_task == 4 then tick_companion_weapon_task = 0 end
+
 	-- ----------------------------- --
 	-- 	Gun Readying / Reloading     --
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
-		if(NPC:getNeedAmmo())
-				and (NPC:hasAmmoForPrevGun())
-				and (IsInAction == false)
-				and (task_manager:getCurrentTask() ~= "Take Gift")
-				and (task_manager:getCurrentTask() ~= "Flee") 			-- New
-				and (task_manager:getCurrentTask() ~= "Flee From Spot") -- New
-				and (NPC:getDangerSeenCount()==0)
-		then
-			NPC:setNeedAmmo(false)
-			-- Reminder: re-enable this
-			NPC:reEquipGun()
-			NPC:DebugSay("GetNeed ammo condition met in AiManager Triggered! Reference Number 006")
+	local function task_1()
+		if not (AiNPC_Job_Is(NPC,"Companion"))  then
+			if(NPC:getNeedAmmo())
+					and (NPC:hasAmmoForPrevGun())
+					and (IsInAction == false)
+					and (task_manager:getCurrentTask() ~= "Take Gift")
+					and (task_manager:getCurrentTask() ~= "Flee") 			-- New
+					and (task_manager:getCurrentTask() ~= "Flee From Spot") -- New
+					and (NPC:getDangerSeenCount()==0)
+			then
+				NPC:setNeedAmmo(false)
+				-- Reminder: re-enable this
+				NPC:reEquipGun()
+				NPC:DebugSay("GetNeed ammo condition met in AiManager Triggered! Reference Number 006")
+			end
 		end
 	end
 
 	-- ----------------------------- --
 	-- 	Equip Weapon Task            --
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))then
-		if(NPC:hasWeapon()) and (NPC:Get():getPrimaryHandItem() == nil) and (task_manager:getCurrentTask() ~= "Equip Weapon")  then
-			task_manager:AddToTop(EquipWeaponTask:new(NPC))
-			NPC:DebugSay("Weapon related condition met in AI manager triggered! Reference number 007")
+	local function task_2()
+		if not (AiNPC_Job_Is(NPC,"Companion"))then
+			if(NPC:hasWeapon()) and (NPC:Get():getPrimaryHandItem() == nil) and (task_manager:getCurrentTask() ~= "Equip Weapon")  then
+				task_manager:AddToTop(EquipWeaponTask:new(NPC))
+				NPC:DebugSay("Weapon related condition met in AI manager triggered! Reference number 007")
+			end
 		end
 	end
 
 	-- ----------------------------- --
 	-- 	Equip Weapon Task            --
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
-		if(IsInAction == false) and (NPC:getNeedAmmo() == false) and NPC:usingGun() and (NPC:getDangerSeenCount() == 0) and ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and (NPC:NPC_FleeWhileReadyingGun()) then
-			--print(NPC:getName() .. " AI detected need to ready gun")
-			NPC:ReadyGun(weapon)
-			if (NPC:isSpeaking() == false) then NPC:DebugSay("Weapon related condition met in AI manager triggered! Reference number 0008") end
+	local function task_3()
+		if not (AiNPC_Job_Is(NPC,"Companion"))  then
+			if(IsInAction == false) and (NPC:getNeedAmmo() == false) and NPC:usingGun() and (NPC:getDangerSeenCount() == 0) and ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and (NPC:NPC_FleeWhileReadyingGun()) then
+				--print(NPC:getName() .. " AI detected need to ready gun")
+				NPC:ReadyGun(weapon)
+				if (NPC:isSpeaking() == false) then NPC:DebugSay("Weapon related condition met in AI manager triggered! Reference number 0008") end
+			end
 		end
 	end
+
+	if tick_companion_weapon_task == 1 then task_1() end
+	if tick_companion_weapon_task == 2 then task_2() end
+	if tick_companion_weapon_task == 3 then task_3() end
+
 end
 
+--****************************************************
+-- Listen to task (not edited)
+--****************************************************
+-- 1 sub task.
 local function listen_to_task(task_manager)
 	-- ----------------------------- --
 	-- 			Listen to Task
@@ -586,6 +651,10 @@ local function listen_to_task(task_manager)
 	end
 end
 
+--****************************************************
+-- Food drink task (not edited)
+--****************************************************
+-- 1 sub task.
 local function food_drink_task(task_manager)
 	-- ----------------------------- --
 	-- Find food / drink - like task --
@@ -603,6 +672,10 @@ local function food_drink_task(task_manager)
 	end
 end
 
+--****************************************************
+-- Force group leave task (not edited)
+--****************************************************
+-- 1 sub task.
 local function force_leave_group_task(task_manager)
 	-- ----------------------------- --
 	-- If NPC is Starving or drhydrating, force leave group
@@ -638,44 +711,55 @@ local function force_leave_group_task(task_manager)
 	end
 end
 
+--****************************************************
+-- Surrender task (not edited)
+--****************************************************
+-- 6 sub tasks.
+local tick_surrender_task = 0
 local function companion_tasks(task_manager)
+
+	tick_surrender_task = tick_surrender_task+1
+	if tick_surrender_task == 7 then tick_surrender_task = 0 end
+
 	-- ----------------------------- --
 	-- Attack / Threaten Target Task --
 	-- ----------------------------- --
 	--	if ((task_manager:getCurrentTask() ~= "Attack") and (task_manager:getCurrentTask() ~= "Threaten") and not ((task_manager:getCurrentTask() == "Surender") and EnemyIsSurvivor) and (task_manager:getCurrentTask() ~= "Doctor") and (NPC:isInSameRoom(NPC.LastEnemeySeen)) and (task_manager:getCurrentTask() ~= "Flee")) and ((NPC:hasWeapon() and ((NPC:getDangerSeenCount() >= 1) or (NPC:isEnemyInRange(NPC.LastEnemeySeen)))) or (NPC:hasWeapon() == false and (NPC:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))) and (IHaveInjury == false) and (NPC:inFrontOfLockedDoor() == false)  then
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
-		if (
-				(task_manager:getCurrentTask() ~= "Attack")
-						and (task_manager:getCurrentTask() ~= "Threaten")
-						and not ((task_manager:getCurrentTask() == "Surender") and EnemyIsSurvivor)
-						and (task_manager:getCurrentTask() ~= "Doctor")
-						and (NPC:isInSameRoom(NPC.LastEnemeySeen))
-						and (task_manager:getCurrentTask() ~= "Flee")
-						and (task_manager:getCurrentTask() ~= "Flee From Spot")
-				--and (NPC:NPC_CheckPursueScore() > 0) -- New: It maybe pursue, but it can be used for attack too, it's helping against door spam
-				--and ( Distance_AnyEnemy < NPC:NPC_CheckPursueScore() ) -- Don't want them chasing from across the map
-		)
-				and (
-				(NPC:hasWeapon() and 		   ((NPC:getDangerSeenCount() >= 1) or (NPC:isEnemyInRange(NPC.LastEnemeySeen))))
-						or (NPC:hasWeapon() == false and (NPC:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
-		)
+	local function task_1()
+		if not (AiNPC_Job_Is(NPC,"Companion"))  then
+			if (
+					(task_manager:getCurrentTask() ~= "Attack")
+							and (task_manager:getCurrentTask() ~= "Threaten")
+							and not ((task_manager:getCurrentTask() == "Surender") and EnemyIsSurvivor)
+							and (task_manager:getCurrentTask() ~= "Doctor")
+							and (NPC:isInSameRoom(NPC.LastEnemeySeen))
+							and (task_manager:getCurrentTask() ~= "Flee")
+							and (task_manager:getCurrentTask() ~= "Flee From Spot")
+					--and (NPC:NPC_CheckPursueScore() > 0) -- New: It maybe pursue, but it can be used for attack too, it's helping against door spam
+					--and ( Distance_AnyEnemy < NPC:NPC_CheckPursueScore() ) -- Don't want them chasing from across the map
+			)
+					and (
+					(NPC:hasWeapon() and 		   ((NPC:getDangerSeenCount() >= 1) or (NPC:isEnemyInRange(NPC.LastEnemeySeen))))
+							or (NPC:hasWeapon() == false and (NPC:getDangerSeenCount() == 1) and (not EnemyIsSurvivor))
+			)
 
-				and (not NPC:isTooScaredToFight() and (IHaveInjury == false)) -- This. I may want to change this to 'too many injuries' function
+					and (not NPC:isTooScaredToFight() and (IHaveInjury == false)) -- This. I may want to change this to 'too many injuries' function
 
-				and (not NPC:isTooScaredToFight())
-				and (NPC:inFrontOfLockedDoor() == false)
-		then
-			if(NPC.player ~= nil)
-					and (NPC.player:getModData().isRobber)
-					and (not NPC.player:getModData().hitByCharacter)
-					and EnemyIsSurvivor
-					and (not EnemySuperSurvivor.player:getModData().dealBreaker)
+					and (not NPC:isTooScaredToFight())
+					and (NPC:inFrontOfLockedDoor() == false)
 			then
-				task_manager:AddToTop(ThreatenTask:new(NPC,EnemySuperSurvivor,"Scram"))
-				NPC:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_01")
-			else
-				task_manager:AddToTop(AttackTask:new(NPC))
-				NPC:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_02")
+				if(NPC.player ~= nil)
+						and (NPC.player:getModData().isRobber)
+						and (not NPC.player:getModData().hitByCharacter)
+						and EnemyIsSurvivor
+						and (not EnemySuperSurvivor.player:getModData().dealBreaker)
+				then
+					task_manager:AddToTop(ThreatenTask:new(NPC,EnemySuperSurvivor,"Scram"))
+					NPC:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_01")
+				else
+					task_manager:AddToTop(AttackTask:new(NPC))
+					NPC:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_02")
+				end
 			end
 		end
 	end
@@ -684,12 +768,14 @@ local function companion_tasks(task_manager)
 	-- New: To attempt players that are NOT trying to encounter a fight,
 	-- should be able to run away. maybe a dice roll for the future?
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
-		if (EnemyIsSurvivor) and ((task_manager:getCurrentTask() == "Threaten") and (Distance_AnyEnemy > 10)) and (task_manager:getCurrentTask() == "Flee") then
-			task_manager:AddToTop(WanderTask:new(NPC))
-			task_manager:AddToTop(AttemptEntryIntoBuildingTask:new(NPC,nil))
-			task_manager:AddToTop(WanderTask:new(NPC))
-			task_manager:AddToTop(FindBuildingTask:new(NPC))
+	local function task_2()
+		if not (AiNPC_Job_Is(NPC,"Companion"))  then
+			if (EnemyIsSurvivor) and ((task_manager:getCurrentTask() == "Threaten") and (Distance_AnyEnemy > 10)) and (task_manager:getCurrentTask() ~= "Flee") then
+				task_manager:AddToTop(WanderTask:new(NPC))
+				task_manager:AddToTop(AttemptEntryIntoBuildingTask:new(NPC,nil))
+				task_manager:AddToTop(WanderTask:new(NPC))
+				task_manager:AddToTop(FindBuildingTask:new(NPC))
+			end
 		end
 	end
 
@@ -697,40 +783,45 @@ local function companion_tasks(task_manager)
 	-- find safe place if injured and enemies near		this needs updating
 	-- ----------------------------- --
 	--	if (task_manager:getCurrentTask() ~= "Find Building") and (task_manager:getCurrentTask() ~= "Flee") and (IHaveInjury) and (NPC:getDangerSeenCount() > 0) then
-	if not (AiNPC_Job_Is(NPC,"Companion")) then
-		if (task_manager:getCurrentTask() ~= "Find Building")
-				and (task_manager:getCurrentTask() ~= "First Aide")
-				and (task_manager:getCurrentTask() ~= "Flee")
-				and ((IHaveInjury) and (NPC:isTooScaredToFight()))
-				and (NPC:getDangerSeenCount() > 0)
-		then
-			task_manager:AddToTop(FindBuildingTask:new(NPC))
-			NPC:DebugSay("Find Safe place if Injured condition triggered! Reference Number FBTII_000_01")
+	local function task_3()
+		if not (AiNPC_Job_Is(NPC,"Companion")) then
+			if (task_manager:getCurrentTask() ~= "Find Building")
+					and (task_manager:getCurrentTask() ~= "First Aide")
+					and (task_manager:getCurrentTask() ~= "Flee")
+					and ((IHaveInjury) and (NPC:isTooScaredToFight()))
+					and (NPC:getDangerSeenCount() > 0)
+			then
+				task_manager:AddToTop(FindBuildingTask:new(NPC))
+				NPC:DebugSay("Find Safe place if Injured condition triggered! Reference Number FBTII_000_01")
+			end
 		end
 	end
+
 	-- ----------------------------- --
 	-- bandage injuries if no threat near by
 	-- Companions have their own healing rule
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then
-		if (IHaveInjury) then
-			if (task_manager:getCurrentTask() ~= "First Aide")
-					and (task_manager:getCurrentTask() ~= "Flee")
-					and (task_manager:getCurrentTask() ~= "Doctor")
-					and (task_manager:getCurrentTask() ~= "Hold Still")
-					and ((NPC:getSeenCount() >= 1) and (Distance_AnyEnemy <= 6)) -- This line doesn't make sense, what if the npc needs to heal outside of hostiles?
-			then
-				task_manager:AddToTop(FirstAideTask:new(NPC)) -- If general healing
-				task_manager:AddToTop(FleeTask:new(NPC))
-				if (ZombRand(3)==0) then
-					NPC:NPC_ShouldRunOrWalk()
-				end
-				if ((NPC:getSeenCount() >= 3) and (Distance_AnyEnemy <= 3)) then -- If EMERGENCY run away and heal
-					task_manager:AddToTop(FirstAideTask:new(NPC))
+	local function task_4()
+		if not (AiNPC_Job_Is(NPC,"Companion"))  then
+			if (IHaveInjury) then
+				if (task_manager:getCurrentTask() ~= "First Aide")
+						and (task_manager:getCurrentTask() ~= "Flee")
+						and (task_manager:getCurrentTask() ~= "Doctor")
+						and (task_manager:getCurrentTask() ~= "Hold Still")
+						and ((NPC:getSeenCount() >= 1) and (Distance_AnyEnemy <= 6)) -- This line doesn't make sense, what if the npc needs to heal outside of hostiles?
+				then
+					task_manager:AddToTop(FirstAideTask:new(NPC)) -- If general healing
 					task_manager:AddToTop(FleeTask:new(NPC))
-					task_manager:AddToTop(FleeFromHereTask:new(NPC,NPC:Get():getCurrentSquare()))
+					if (ZombRand(3)==0) then
+						NPC:NPC_ShouldRunOrWalk()
+					end
+					if ((NPC:getSeenCount() >= 3) and (Distance_AnyEnemy <= 3)) then -- If EMERGENCY run away and heal
+						task_manager:AddToTop(FirstAideTask:new(NPC))
+						task_manager:AddToTop(FleeTask:new(NPC))
+						task_manager:AddToTop(FleeFromHereTask:new(NPC,NPC:Get():getCurrentSquare()))
+					end
+					NPC:DebugSay("Bandage Injuries if no threat nearby triggered! Reference Number 000_000_02")
 				end
-				NPC:DebugSay("Bandage Injuries if no threat nearby triggered! Reference Number 000_000_02")
 			end
 		end
 	end
@@ -738,64 +829,77 @@ local function companion_tasks(task_manager)
 	-- ----------------------------- --
 	-- flee from too many zombies
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then -- To ABSOLUTELY prevent these two jobs from listening to this task.
-		if (task_manager:getCurrentTask() ~= "Flee")
-				and (task_manager:getCurrentTask() ~= "Flee From Spot")
-				and (task_manager:getCurrentTask() ~= "Surender")
-				and ((task_manager:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor)
-				and
-				(
-						( ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and ( (NPC:getDangerSeenCount() > 1 and (Distance_AnyEnemy  < 3) and (EnemyIsZombie)) 	or 	((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 2) and (EnemyIsZombie)) ) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
-								or ( ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and ( (NPC:getDangerSeenCount() > 1 and (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) or 	( (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) ) )  							  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
-								-- To check for EnemyIsZombie, which will look there and go 'OH GOD, I can't fight THIS many zombies'
-								-- Update: I may of already fixed this issue on the lines above...
-								-- now that I understand that getDangerSeenCount means if something is like SUPER close to the npc, you can simulate
-								-- the idea of 'there's an enemy basically on me and I see more in the distance, I don't think this is worth fighting'
-								or (
-								(NPC.EnemiesOnMe > 3 and NPC:getDangerSeenCount() > 3 and NPC:getSeenCount() > 3)
+	local function task_5()
+		if not (AiNPC_Job_Is(NPC,"Companion"))  then -- To ABSOLUTELY prevent these two jobs from listening to this task.
+			if (task_manager:getCurrentTask() ~= "Flee")
+					and (task_manager:getCurrentTask() ~= "Flee From Spot")
+					and (task_manager:getCurrentTask() ~= "Surender")
+					and ((task_manager:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor)
+					and
+					(
+							( ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and ( (NPC:getDangerSeenCount() > 1 and (Distance_AnyEnemy  < 3) and (EnemyIsZombie)) 	or 	((NPC:getSeenCount() >= 2) and (Distance_AnyEnemy <= 2) and (EnemyIsZombie)) ) )  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
+									or ( ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) and ( (NPC:getDangerSeenCount() > 1 and (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) or 	( (Distance_AnyEnemy <= 2) and (EnemyIsSurvivor)) ) )  							  -- AH HA, gun running away for non-companions when the npc is trying to reload or ready gun
+									-- To check for EnemyIsZombie, which will look there and go 'OH GOD, I can't fight THIS many zombies'
+									-- Update: I may of already fixed this issue on the lines above...
+									-- now that I understand that getDangerSeenCount means if something is like SUPER close to the npc, you can simulate
+									-- the idea of 'there's an enemy basically on me and I see more in the distance, I don't think this is worth fighting'
+									or (
+									(NPC.EnemiesOnMe > 3 and NPC:getDangerSeenCount() > 3 and NPC:getSeenCount() > 3)
 
-										or (not NPC:hasWeapon() and (NPC:getDangerSeenCount() > 0) )
+											or (not NPC:hasWeapon() and (NPC:getDangerSeenCount() > 0) )
 
-										or (IHaveInjury and NPC:getDangerSeenCount() > 0)
+											or (IHaveInjury and NPC:getDangerSeenCount() > 0)
 
-										or (EnemyIsSurvivorHasGun and NPC:hasGun() == false)
+											or (EnemyIsSurvivorHasGun and NPC:hasGun() == false)
 
-										or (NPC:isTooScaredToFight())
+											or (NPC:isTooScaredToFight())
 
-						)
-				)
-		then
-			if(task_manager:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
-				task_manager:getTask():ForceFinish()
-			end
-			NPC:getTaskManager():clear()
-			task_manager:AddToTop(FleeTask:new(NPC))
+							)
+					)
+			then
+				if(task_manager:getCurrentTask() == "LootCategoryTask") then -- currently to dangerous to loot said building. so give up it
+					task_manager:getTask():ForceFinish()
+				end
+				NPC:getTaskManager():clear()
+				task_manager:AddToTop(FleeTask:new(NPC))
 
-			if not (AiNPC_Job_Is(NPC,"Guard")) and not (AiNPC_Job_Is(NPC,"Doctor")) then
-				task_manager:AddToTop(FleeFromHereTask:new(NPC,NPC:Get():getCurrentSquare()))
-				NPC:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02_REG")
-			else
-				NPC:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02_ALT")
+				if not (AiNPC_Job_Is(NPC,"Guard")) and not (AiNPC_Job_Is(NPC,"Doctor")) then
+					task_manager:AddToTop(FleeFromHereTask:new(NPC,NPC:Get():getCurrentSquare()))
+					NPC:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02_REG")
+				else
+					NPC:DebugSay("Flee from too many zombies condition triggered! Reference Number LCT_000_02_ALT")
+				end
 			end
 		end
 	end
 
-	if (task_manager:getCurrentTask() ~= "Flee") and (task_manager:getCurrentTask() ~= "Surender") and ((task_manager:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor)
-			and (( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (not NPC:usingGun()) ) 	-- Melee
-			or ( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (NPC:usingGun()) ) 	-- Gun general
-			or ( (NPC.EnemiesOnMe > 0) and ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) )
-			or ( IHaveInjury and NPC.dangerSeenCount > 0 )
-			or ( NPC.dangerSeenCount >= 5)
-	)
-	then
-		task_manager:AddToTop(FleeTask:new(NPC))
-		NPC:DebugSay("Companion FLEEINGTASK_0001")
+	local function task_6()
+		if (task_manager:getCurrentTask() ~= "Flee") and (task_manager:getCurrentTask() ~= "Surender") and ((task_manager:getCurrentTask() ~= "Surender") and not EnemyIsSurvivor)
+				and (( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (not NPC:usingGun()) ) 	-- Melee
+				or ( (NPC.EnemiesOnMe > 1) and (NPC.dangerSeenCount >= 3) and (NPC:hasWeapon()) and (NPC:usingGun()) ) 	-- Gun general
+				or ( (NPC.EnemiesOnMe > 0) and ((NPC:needToReload()) or (NPC:needToReadyGun(weapon))) )
+				or ( IHaveInjury and NPC.dangerSeenCount > 0 )
+				or ( NPC.dangerSeenCount >= 5)
+		)
+		then
+			task_manager:AddToTop(FleeTask:new(NPC))
+			NPC:DebugSay("Companion FLEEINGTASK_0001")
+		end
 	end
+
+	if tick_surrender_task == 1 then task_1() end
+	if tick_surrender_task == 2 then task_2() end
+	if tick_surrender_task == 3 then task_3() end
+	if tick_surrender_task == 4 then task_4() end
+	if tick_surrender_task == 5 then task_5() end
+	if tick_surrender_task == 6 then task_6() end
+
 end
 
 --****************************************************
 -- Surrender task
 --****************************************************
+-- 1 sub task.
 local function surrender_task(task_manager)
 	-- I haven't tampered with this one, it does OK for the most part.
 	-- Bug: If you shoot the gun and it has nothing in it, the NPC will still keep their hands up
@@ -805,21 +909,18 @@ local function surrender_task(task_manager)
 	if getSpecificPlayer(0) ~= nil then
 		local facingResult = getSpecificPlayer(0):getDotWithForwardDirection(NPC.player:getX(), NPC.player:getY())
 		--NPC:Speak( tostring(facingResult) )
-		if (
-			task_manager:getCurrentTask() ~= "Surender" and
-			task_manager:getCurrentTask() ~= "Flee" and
-			task_manager:getCurrentTask() ~= "Flee From Spot" and
-			task_manager:getCurrentTask() ~= "Clean Inventory" and
-			SSM:Get(0) ~= nil and SSM:Get(0):usingGun() and
-			getSpecificPlayer(0) and
-			getSpecificPlayer(0):CanSee(NPC.player) and
-			( not NPC:usingGun() or (not NPC:RealCanSee(getSpecificPlayer(0)) and DistanceBetweenMainPlayer<=3) ) and
-			getSpecificPlayer(0):isAiming() and
-			IsoPlayer.getCoopPVP() and
-			not NPC:isInGroup(getSpecificPlayer(0)) and
-			facingResult > 0.95 and
-			DistanceBetweenMainPlayer < 6
-		) then
+		local surrender_logic_1 = task_manager:getCurrentTask() ~= "Surender"
+		local surrender_logic_2 = task_manager:getCurrentTask() ~= "Flee"
+		local surrender_logic_3 = task_manager:getCurrentTask() ~= "Flee From Spot"
+		local surrender_logic_4 = task_manager:getCurrentTask() ~= "Clean Inventory"
+		local surrender_logic_5 = SSM:Get(0) ~= nil and SSM:Get(0):usingGun()
+		local surrender_logic_6 = getSpecificPlayer(0)
+		local surrender_logic_7 = getSpecificPlayer(0):CanSee(NPC.player)
+		local surrender_logic_8 = not NPC:usingGun() or (not NPC:RealCanSee(getSpecificPlayer(0)) and DistanceBetweenMainPlayer <= 3)
+		local surrender_logic_9 = getSpecificPlayer(0):isAiming()
+		local surrender_logic_10 = IsoPlayer.getCoopPVP()
+		local surrender_logic_11 = not NPC:isInGroup(getSpecificPlayer(0))
+		if surrender_logic_1 and surrender_logic_2 and surrender_logic_3 and surrender_logic_4 and surrender_logic_5 and surrender_logic_6 and surrender_logic_7 and surrender_logic_8 and surrender_logic_9 and surrender_logic_10 and surrender_logic_11 and facingResult > 0.95 and DistanceBetweenMainPlayer < 6 then
 			task_manager:clear()
 			task_manager:AddToTop(SurenderTask:new(NPC, SSM:Get(0)))
 			NPC:DebugSay("Surrender Task Triggered! Reference Number ST_0001")
@@ -831,11 +932,12 @@ end
 --****************************************************
 -- Pursue task
 --****************************************************
+-- 1 sub task.
 local function pursue_task(task_manager)
+	-------------------------------
+	-- Pursue task
+	-------------------------------
 	-- 'If enemy is in a fair range and Pursue_SC checks out, and the NPC's enemy is in Pursue Score's range'
-	-- --------------------------------------- --
-	-- Pursue Task 							   --
-	-- --------------------------------------- --
 	-- To make NPCs find their target that's very close by
 	if not AiNPC_Job_Is(NPC,"Companion") then
 		if NPC:Task_IsPursue_SC() == true and Distance_AnyEnemy <= 9 and Distance_AnyEnemy < NPC:NPC_CheckPursueScore() then
@@ -849,137 +951,141 @@ end
 --****************************************************
 -- Companion follower task
 --****************************************************
+-- 2 sub tasks.
+--local tick_companion_follower_task = 0
 local function companion_follower_task(task_manager)
-	-- --------------------------------------- --
-	-- Companion follower related code         --
-	-- --------------------------------------- --
-	if (NPC:getGroupRole() == "Companion") then
-		if (
-			( (DistanceBetweenMainPlayer > 5) and (getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside()) ) or
-			( (DistanceBetweenMainPlayer > 5) and (not getSpecificPlayer(0):isOutside() and NPC:Get():isOutside()) ) or
-			( (DistanceBetweenMainPlayer > 12) )
-		) then
-			NPC.LastEnemeySeen = nil
-			task_manager:clear()
-			task_manager:AddToTop(FollowTask:new(NPC, getSpecificPlayer(0)))
-			NPC:needToFollow()
-			NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
+
+	--tick_companion_follower_task = tick_companion_follower_task+1
+	--if tick_companion_follower_task == 3 then tick_companion_follower_task = 0 end
+
+	-------------------------------
+	-- Companion follower related code
+	-------------------------------
+	local function task_1()
+		local companion_logic_1 = (DistanceBetweenMainPlayer > 5) and (getSpecificPlayer(0):isOutside() and not NPC:Get():isOutside())
+		local companion_logic_2 = (DistanceBetweenMainPlayer > 5) and (not getSpecificPlayer(0):isOutside() and NPC:Get():isOutside())
+		if (NPC:getGroupRole() == "Companion") then
+			if companion_logic_1 or companion_logic_2 or DistanceBetweenMainPlayer > 12 then
+				NPC.LastEnemeySeen = nil
+				task_manager:clear()
+				task_manager:AddToTop(FollowTask:new(NPC, getSpecificPlayer(0)))
+				NPC:needToFollow()
+				NPC:DebugSay("Companion Went FAR too far away, CLEARING TASKS - and returning companion!")
+			end
 		end
 	end
 
-	if AiNPC_Job_Is(NPC,"Companion") and DistanceBetweenMainPlayer <= 12 then
-		-- ------------------------- --
-		-- reminder: NPC:NPCTask_DoAttack() already
-		-- checks 'if task ~= attack, then do attack' in it
-		-- Adding it to here too just makes the companions freeze
-		-- ------------------------- --
-		-- Edit: I have trid so many other ways to do this. Any other way the companion just doesn't do anything.
-		-- So it's staying like this for now
-		-- Don't add 'and AiNPC_TaskIsNot(task_manager,"First Aide")' because you want companions to still attack enemies while hurt
-		-- ------------------------- --
-		-- ----- Perception Buff --- --
-		NPC:Companion_DoSixthSenseScan()
-		-- ------------ --
-		-- Pursue
-		-- ------------ --
-		if (
-			AiNPC_TaskIsNot(task_manager,"First Aide") and
-			AiNPC_TaskIsNot(task_manager,"Pursue") and
-			AiNPC_TaskIsNot(task_manager,"Attack") and
-			AiNPC_TaskIsNot(task_manager,"Flee") and
-			NPC.LastEnemeySeen ~= nil and Distance_AnyEnemy < NPC:NPC_CheckPursueScore()
-		) then
-			if EnemyIsSurvivor or EnemyIsZombie then
-				task_manager:AddToTop(PursueTask:new(NPC, NPC.LastEnemeySeen))
+	local function task_2()
+		if AiNPC_Job_Is(NPC,"Companion") and DistanceBetweenMainPlayer <= 12 then
+			-- ------------------------- --
+			-- reminder: NPC:NPCTask_DoAttack() already
+			-- checks 'if task ~= attack, then do attack' in it
+			-- Adding it to here too just makes the companions freeze
+			-- ------------------------- --
+			-- Edit: I have trid so many other ways to do this. Any other way the companion just doesn't do anything.
+			-- So it's staying like this for now
+			-- Don't add 'and AiNPC_TaskIsNot(task_manager,"First Aide")' because you want companions to still attack enemies while hurt
+			-- ------------------------- --
+			-- Perception buff.
+			NPC:Companion_DoSixthSenseScan()
+			-------------------------------
+			-- Pursue
+			-------------------------------
+			local pursue_logic_1 = AiNPC_TaskIsNot(task_manager,"First Aide")
+			local pursue_logic_2 = AiNPC_TaskIsNot(task_manager,"Pursue")
+			local pursue_logic_3 = AiNPC_TaskIsNot(task_manager,"Attack")
+			local pursue_logic_4 = AiNPC_TaskIsNot(task_manager,"Flee")
+			local pursue_logic_5 = NPC.LastEnemeySeen ~= nil and Distance_AnyEnemy < NPC:NPC_CheckPursueScore()
+			if pursue_logic_1 and pursue_logic_2 and pursue_logic_3 and pursue_logic_4 and pursue_logic_5 then
+				if EnemyIsSurvivor or EnemyIsZombie then
+					task_manager:AddToTop(PursueTask:new(NPC, NPC.LastEnemeySeen))
+				end
 			end
-		end
-		-- ----------- --
-		-- Attack
-		-- ----------- --
-		-- ----- Perception Buff --- --
-		--	NPC:Companion_DoSixthSenseScan()
-		-- ------------------------- --
-		if (
-			task_manager:getCurrentTask() ~= "Attack" and
-			task_manager:getCurrentTask() ~= "Threaten" and
-			task_manager:getCurrentTask() ~= "First Aide" and
-			task_manager:getCurrentTask() == "Flee" and
-			( NPC:hasWeapon() and (NPC:getDangerSeenCount() >= 1 or NPC:isEnemyInRange(NPC.LastEnemeySeen)) ) or
-			( NPC:hasWeapon() == false and NPC:getDangerSeenCount() == 1 and not EnemyIsSurvivor )
-		) and not NPC:isTooScaredToFight() then
-			if (
-				NPC.player ~= nil and
-				NPC.player:getModData().isRobber and
-				not NPC.player:getModData().hitByCharacter and
-				EnemyIsSurvivor and
-				not EnemySuperSurvivor.player:getModData().dealBreaker
-			) then
-				task_manager:AddToTop(ThreatenTask:new(NPC,EnemySuperSurvivor,"Scram"))
-				NPC:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_01")
-			else
-				task_manager:AddToTop(AttackTask:new(NPC))
-				NPC:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_02")
+			-------------------------------
+			-- Attack
+			-------------------------------
+			-- Perception buff.
+			-- NPC:Companion_DoSixthSenseScan()
+			local attack_logic_1 = task_manager:getCurrentTask() ~= "Attack" and task_manager:getCurrentTask() ~= "Threaten" and task_manager:getCurrentTask() ~= "First Aide" and task_manager:getCurrentTask() ~= "Flee"
+			local attack_logic_2 = NPC:hasWeapon() and (NPC:getDangerSeenCount() >= 1 or NPC:isEnemyInRange(NPC.LastEnemeySeen))
+			local attack_logic_3 = NPC:hasWeapon() == false and NPC:getDangerSeenCount() == 1 and not EnemyIsSurvivor
+			local attack_logic_4 = NPC.player ~= nil and NPC.player:getModData().isRobber and not NPC.player:getModData().hitByCharacter and EnemyIsSurvivor and not EnemySuperSurvivor.player:getModData().dealBreaker
+			if attack_logic_1 and (attack_logic_2 or attack_logic_3) and not NPC:isTooScaredToFight() then
+				if attack_logic_4 then
+					task_manager:AddToTop(ThreatenTask:new(NPC,EnemySuperSurvivor,"Scram"))
+					NPC:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_01")
+				else
+					task_manager:AddToTop(AttackTask:new(NPC))
+					NPC:DebugSay("Threaten/Attack Task condition triggered! Reference Number ATC_000_02")
+				end
 			end
-		end
-		-- --------------------------------- --
-		-- 	Reload Gun
-		--  NPC:getDangerSeenCount() removed
-		-- --------------------------------- --
-		if NPC:getNeedAmmo() and NPC:hasAmmoForPrevGun() then
-			NPC:setNeedAmmo(false)
-			NPC:reEquipGun()
-			NPC:DebugSay("Companion RELOAD_Gun_0001")
-		end
-		-- --------------------------------- --
-		-- 	Ready Weapon
-		--  NPC:getDangerSeenCount() removed
-		-- --------------------------------- --
-		if (NPC:needToReload() or NPC:needToReadyGun(weapon)) and NPC:hasAmmoForPrevGun() and NPC:usingGun() and NPC:getNeedAmmo() then
-			NPC:ReadyGun(weapon)
-			if NPC:isSpeaking() == false then NPC:DebugSay("Companion READY_Gun_0001") end
-		end
-		-- ----------------------------- --
-		-- 	Equip Weapon                 --
-		-- ----------------------------- --
-		if NPC:hasWeapon() and NPC:Get():getPrimaryHandItem() == nil and task_manager:getCurrentTask() ~= "Equip Weapon" then
-			task_manager:AddToTop(EquipWeaponTask:new(NPC))
-			NPC:DebugSay("Companion EQUIP_Gun_0001")
-		end
-		-- Careful setting up Flee to heal and 'healing', they will conflict very easily.
-		-- -----------   --
-		-- Flee to heal  --
-		-- -----------   --
-		if task_manager:getCurrentTask() ~= "Flee" and (
-			( NPC.EnemiesOnMe > 1 and NPC.dangerSeenCount >= 3 and NPC:hasWeapon() and not NPC:usingGun() ) or
-			( NPC.EnemiesOnMe > 1 and NPC.dangerSeenCount >= 3 and NPC:hasWeapon() and NPC:usingGun() ) or
-			( NPC.EnemiesOnMe > 0 and NPC:needToReload() or NPC:needToReadyGun(weapon) ) or
-			( IHaveInjury and NPC.dangerSeenCount > 0 ) or
-			( NPC.dangerSeenCount >= 5 )
-		) then
-			task_manager:AddToTop(FleeTask:new(NPC))
-			NPC:DebugSay("Companion FLEEINGTASK_0001")
-		end
-		-- ----------- --
-		-- Healing	   --
-		-- ----------- --
-		if IHaveInjury and NPC.dangerSeenCount <= 0 then
-			if task_manager:getCurrentTask() ~= "First Aide" then
-				task_manager:AddToTop(FirstAideTask:new(NPC))
-				NPC:DebugSay("Companion HealSelf_0001")
+			-------------------------------
+			-- Reload weapon
+			-- NPC:getDangerSeenCount() removed
+			-------------------------------
+			if NPC:getNeedAmmo() and NPC:hasAmmoForPrevGun() then
+				NPC:setNeedAmmo(false)
+				NPC:reEquipGun()
+				NPC:DebugSay("Companion RELOAD_Gun_0001")
+			end
+			-------------------------------
+			-- Ready weapon
+			-- NPC:getDangerSeenCount() removed
+			-------------------------------
+			if (NPC:needToReload() or NPC:needToReadyGun(weapon)) and NPC:hasAmmoForPrevGun() and NPC:usingGun() and NPC:getNeedAmmo() then
+				NPC:ReadyGun(weapon)
+				if NPC:isSpeaking() == false then NPC:DebugSay("Companion READY_Gun_0001") end
+			end
+			-------------------------------
+			-- Equip weapon
+			-------------------------------
+			if NPC:hasWeapon() and NPC:Get():getPrimaryHandItem() == nil and task_manager:getCurrentTask() ~= "Equip Weapon" then
+				task_manager:AddToTop(EquipWeaponTask:new(NPC))
+				NPC:DebugSay("Companion EQUIP_Gun_0001")
+			end
+			-------------------------------
+			-- Flee to heal
+			-------------------------------
+			-- Careful setting up Flee to heal and 'healing', they will conflict very easily.
+			local flee_to_heal_logic_1 = NPC.EnemiesOnMe > 1 and NPC.dangerSeenCount >= 3 and NPC:hasWeapon() and not NPC:usingGun()
+			local flee_to_heal_logic_2 = NPC.EnemiesOnMe > 1 and NPC.dangerSeenCount >= 3 and NPC:hasWeapon() and NPC:usingGun()
+			local flee_to_heal_logic_3 = NPC.EnemiesOnMe > 0 and NPC:needToReload() or NPC:needToReadyGun(weapon)
+			if task_manager:getCurrentTask() ~= "Flee" and (flee_to_heal_logic_1 or flee_to_heal_logic_2 or flee_to_heal_logic_3 or (IHaveInjury and NPC.dangerSeenCount > 0) or NPC.dangerSeenCount >= 5) then
+				task_manager:AddToTop(FleeTask:new(NPC))
+				NPC:DebugSay("Companion FLEEINGTASK_0001")
+			end
+			-------------------------------
+			-- Healing
+			-------------------------------
+			if IHaveInjury and NPC.dangerSeenCount <= 0 then
+				if task_manager:getCurrentTask() ~= "First Aide" then
+					task_manager:AddToTop(FirstAideTask:new(NPC))
+					NPC:DebugSay("Companion HealSelf_0001")
+				end
 			end
 		end
 	end
+
+	--if tick_companion_follower_task == 1 then task_1() end
+	--if tick_companion_follower_task == 2 then task_2() end
+
+	task_1()
+	task_2()
+
 end
 
 local tick_count = 0
+--local tick_switch = true
 function AIManager(task_manager)
 
-	-- Tick spread = 33,
-	-- all tasks are spread across 33
+	-- Tick spread = 31,
+	-- all tasks are spread across 31
 	-- ticks as opposed to 1 tick.
-	if tick_count == 33 then tick_count = 0 end
+	--if not tick_switch then tick_switch = not tick_switch; return task_manager end
 	tick_count = tick_count+1
-	t0 = getTimeInMillis()
+	if tick_count == 32 then tick_count = 0 end
+
+	--t0 = getTimeInMillis()
 
 	NPC = task_manager.parent
 	if NPC:needToFollow() or NPC:Get():getVehicle() ~= nil then return task_manager end
@@ -1019,63 +1125,58 @@ function AIManager(task_manager)
 	Distance_AnyEnemy = getDistanceBetween(NPC.LastEnemeySeen, NPC:Get())  -- idk if this works
 	if HisGroup then CenterBaseSquare = HisGroup:getBaseCenter() end
 
-	chance = ZombRand(0, 100)/100
+	NPC:Companion_DoSixthSenseScan()
+
+	--chance = ZombRand(0, 100)/100
 
 	-- Companion follower task.
-	-- ~2+7 sub tasks.
-	-- Every 5th tick.
-	--if tick_count%5 == 0 then companion_follower_task(task_manager) end
+	-- 2 sub tasks.
+	--if tick_count == 1 or tick_count == 2 then companion_follower_task(task_manager) end
 	companion_follower_task(task_manager)
 
 	-- Pursue task.
 	-- 1 sub task.
-	-- Every 10 ticks -> 3 times over 33 ticks.
-	if tick_count%10 == 0 then pursue_task(task_manager) end
+	if tick_count == 3 then pursue_task(task_manager) end
 
 	-- Surrender task.
 	-- 1 sub task.
-	-- Once every 33 ticks.
-	if tick_count == 1 then surrender_task(task_manager) end
+	if tick_count == 4 then surrender_task(task_manager) end
 
 	-- Companion tasks.
-	-- ~6 sub tasks.
-	-- Every 11 ticks -> 3 times over 33 ticks.
-	if tick_count%2 == 0 then companion_tasks(task_manager) end
+	-- 6 sub tasks.
+	-- ticks 5 to 10.
+	if tick_count >= 5 and tick_count <= 10 then companion_tasks(task_manager) end
 
 	-- Force leave group task.
 	-- 1 sub task
-	-- 0.66 chance to happen every 33 ticks.
-	if tick_count == 33 and chance >= 2/3 then force_leave_group_task(task_manager) end
+	if tick_count == 11 then force_leave_group_task(task_manager) end
 
 	-- Food / drink task.
 	-- 1 sub task.
-	-- 0.8 chance to happen every 33 ticks.
-	if tick_count == 18 and chance >= 4/5 then food_drink_task(task_manager) end
+	if tick_count == 12 then food_drink_task(task_manager) end
 
 	-- Listen to task.
 	-- 1 sub task.
-	-- 5 times every 33 ticks.
-	if tick_count%6 == 0 then listen_to_task(task_manager) end
+	if tick_count == 13 then listen_to_task(task_manager) end
 
 	-- Companion weapon tasks.
 	-- 3 sub tasks.
-	-- Once every 33 ticks.
-	if tick_count == 2 then companion_weapon_tasks(task_manager) end
+	-- itck 14 to 16.
+	if tick_count >= 14 and tick_count <= 16 then companion_weapon_tasks(task_manager) end
 
 	-- Base tasks.
-	-- 3 sub tasks, 1 big ass fucking sub sub task.
-	-- 9 ticks ?
-	-- Happen once on a random tick every 33 ticks.
-	if math.floor((chance/0.33)*10) == tick_count then base_tasks(task_manager) end
+	-- ~10 sub tasks.
+	-- ticks 17 to 27.
+	if tick_count >= 17 and tick_count <= 27 then base_tasks(task_manager) end
 
 	-- Random solo tasks.
 	-- 4 sub tasks.
-	-- Twice every 33 ticks.
-	if tick_count == 7 or tick_count == 27 then random_solo_task(task_manager) end
+	-- ticks 28 to 31
+	if tick_count >= 28 and tick_count <= 31 then random_solo_task(task_manager) end
 
 	--if(NPC.DebugMode) then NPC:DebugSay(NPC:getName().." "..NPC:getAIMode() .. " AIManager3 " .. task_manager:getCurrentTask()) end
 
-	print(string.format("%d %.20f", tick_count, getTimeInMillis()-t0))
-	print("chance: "..tostring(chance))
+	--print(string.format("%d %.20f", tick_count, getTimeInMillis()-t0))
+	--print("chance: "..tostring(chance))
 	return task_manager
 end
