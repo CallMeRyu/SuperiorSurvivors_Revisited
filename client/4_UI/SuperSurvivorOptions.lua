@@ -416,7 +416,7 @@ if index then
 		local spacing2x = 20
 		local spacing4x = 30
 	
-		self:addPage(getOptionText("Title").." 0.17.4")
+		self:addPage(getOptionText("Title").." 0.18 EXP")
 		self.addY = 0
 		
 		local label
