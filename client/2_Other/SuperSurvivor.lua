@@ -3152,7 +3152,9 @@ end
 function SuperSurvivor:PlayerUpdate()
 
 	if(not self.player:isLocalPlayer()) then
-	
+		
+		self.player:setFallTime(0); --disable fall damage, maybe a fix for stairs kills bugs https://steamcommunity.com/workshop/filedetails/discussion/1905148104/3075370188226183151/#c5916017125822769611
+		
 		if(self.TriggerHeldDown) and (self:CanAttackAlt() == true) and (not (self:hasGun())) then -- simulate automatic weapon fire
 			self:NPC_Attack(self.LastEnemeySeen)
 		end
