@@ -291,7 +291,8 @@ if index then
   	table.insert(keyBinding, index+8, {value = "SSHotkey_1", key = 200})
   	table.insert(keyBinding, index+9, {value = "SSHotkey_2", key = 208})
   	table.insert(keyBinding, index+10, {value = "SSHotkey_3", key = 203})
-  	table.insert(keyBinding, index+11, {value = "SSHotkey_4", key = 205})
+  	table.insert(keyBinding, index+11, {value = "SSHotkey_4", key = 205})	
+  	table.insert(keyBinding, index+13, {value = "SSRadialMenu", key = Keyboard.KEY_X})
 
 -- ----------------------- --
 -- Options Menu controller --
