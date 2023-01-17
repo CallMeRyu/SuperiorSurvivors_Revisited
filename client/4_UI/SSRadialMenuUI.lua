@@ -1,5 +1,5 @@
 ------------------------------------------
--- Clothing Actions Radial Menu
+-- Clothing Actions Radial Menu -- inspiration
 ------------------------------------------
 local SSRadialMenuUI = ISBaseObject:derive("SSRadialMenuUI")
 
