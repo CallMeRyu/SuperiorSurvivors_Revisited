@@ -140,7 +140,25 @@ function AIManager(TaskMangerIn)
 	end
 
 
-
+	-- got bitten				
+	--check if got bitten to drop inventory (or do 
+	if IHaveInjury then
+		if ASuperSurvivor.player:getBodyDamage():getNumPartsBitten() ~= 0 then
+			ASuperSurvivor:Speak("I got bitten :(")
+			
+			if TaskMangerIn:getCurrentTask() ~= "Clean Inventory" then
+				local dropSquare = nil
+				if HisGroup ~= nil then
+					dropSquare = HisGroup:getBaseCenter()
+				else
+					dropSquare = ASuperSurvivor.player:getCurrentSquare()
+				end
+				TaskMangerIn:AddToTop(CleanInvTask:new(ASuperSurvivor,dropSquare,true))
+			end
+			
+			--TODO walk away to self exile (ant dead behavior, if an ant feels dead his goes to graveward - The Zombie Ant Experiment Oleic acid) https://www.youtube.com/watch?v=ZPw9dSV6y2c
+		end
+	end
 
 
 	-- --------------------------------------- --
