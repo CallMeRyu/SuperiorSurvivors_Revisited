@@ -32,7 +32,10 @@ function ISBarricadeAction:isValid()
 		if barricade and not barricade:canAddPlank() then
 			return false
 		end
-		if not self.character:hasEquipped("Hammer") and not self.character:hasEquipped("HammerStone") then
+		if not self.character:hasEquipped("Hammer") and
+		   not self.character:hasEquipped("HammerStone") and
+		   not self.character:hasEquipped("BallPeenHammer")
+		then
 			return false
 		end
 		if not self.character:hasEquipped("Plank") then
